@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdfbf7;
+  --foreground: #2d2d2d;
+  --brand: #FF6843;
+  --brand-foreground: #ffffff;
+  --muted: #e5e0d8;
+  --muted-foreground: #7d7d7d;
+  --accent: #ff4d4d;
+  --border: #2d2d2d;
+  --secondary-accent: #2d5da1;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-secondary-accent: var(--secondary-accent);
+  --color-border: var(--border);
+
+  --font-heading: var(--font-kalam);
+  --font-body: var(--font-patrick-hand);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: radial-gradient(var(--muted) 1px, transparent 1px);
+  background-size: 24px 24px;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.wobbly {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.wobbly-md {
+  border-radius: 60px 20px 50px 20px / 20px 50px 20px 60px;
+}
+
+.wobbly-sm {
+  border-radius: 120px 30px 100px 30px / 30px 100px 30px 120px;
+}
+
+.hand-shadow {
+  box-shadow: 4px 4px 0px 0px var(--foreground);
+}
+
+.hand-shadow-lg {
+  box-shadow: 8px 8px 0px 0px var(--foreground);
+}
+
+.hand-shadow-hover {
+  transition: all 0.1s ease;
+}
+
+.hand-shadow-hover:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px var(--foreground);
+}
+
+.hand-shadow-active:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--foreground);
+}
+
+.paper-grain {
+  position: relative;
+}
+
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
 }
