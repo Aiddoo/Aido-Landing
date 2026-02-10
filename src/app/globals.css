@@ -23,8 +23,8 @@
   --color-secondary-accent: var(--secondary-accent);
   --color-border: var(--border);
 
-  --font-heading: var(--font-kalam);
-  --font-body: var(--font-patrick-hand);
+  --font-heading: var(--font-black-han);
+  --font-body: var(--font-noto-sans);
 }
 
 * {

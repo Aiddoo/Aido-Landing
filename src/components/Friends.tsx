@@ -1,36 +1,39 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import type { MessageCatalog } from "@/i18n/messages";
 
-const friends = [
-  { name: "스코티시폴드", path: "/app-assets/cat-scottish-fold.png", color: "#fff9c4", rotate: -2 },
-  { name: "오렌지태비", path: "/app-assets/cat-orange-tabby.png", color: "#e3f2fd", rotate: 3 },
-  { name: "검정고양이", path: "/app-assets/cat-black.png", color: "#f3e5f5", rotate: -1 },
-  { name: "샴", path: "/app-assets/cat-shyam.png", color: "#e8f5e9", rotate: 2 },
-  { name: "아비시니안", path: "/app-assets/cat-abyssinian.png", color: "#fdf1e3", rotate: -3 },
-]
+type FriendsProps = {
+  content: MessageCatalog["friends"];
+};
 
-export function Friends() {
+export function Friends({ content }: FriendsProps) {
   return (
-    <section className="px-6 py-24 sm:py-32 relative overflow-hidden">
-      {/* Decorative dots background for notebook feel */}
+    <section
+      id="friends"
+      className="px-6 py-24 sm:py-32 relative overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e0d8_1px,transparent_1px)] bg-size-[20px_20px]" />
 
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center space-y-4">
           <div className="inline-block px-4 py-1 bg-brand text-white wobbly-md border-2 border-foreground hand-shadow -rotate-2 font-bold mb-4">
-            Meet the Team
+            {content.label}
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">함께 할수록 즐거운 친구들</h2>
-          <p className="max-w-2xl mx-auto text-xl text-muted-foreground leading-relaxed">
-            당신의 일상을 책임질 개성 만점 Ai 매니저들을 만나보세요.
-            할 일을 마칠 때마다 고양이 친구들이 축하해줍니다!
+          <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            {content.title}
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg sm:text-xl text-muted-foreground leading-relaxed">
+            {content.descriptionLead}{" "}
+            <span className="block sm:inline mt-1 sm:mt-0">
+              {content.descriptionTail}
+            </span>
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
-          {friends.map((friend, index) => (
+          {content.cards.map((friend, index) => (
             <motion.div
               key={friend.name}
               initial={{ opacity: 0, y: 20 }}
@@ -41,7 +44,6 @@ export function Friends() {
               style={{ rotate: friend.rotate }}
               className="group relative flex flex-col items-center gap-6 rounded-sm border-2 border-foreground bg-white p-6 hand-shadow-hover hand-shadow cursor-pointer"
             >
-              {/* Tape effect */}
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-foreground opacity-10 -rotate-2" />
 
               <div
@@ -59,12 +61,11 @@ export function Friends() {
                 {friend.name}
               </span>
 
-              {/* Thumbtack */}
               <div className="absolute -top-1 -right-1 h-3 w-3 bg-accent rounded-full border border-foreground" />
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

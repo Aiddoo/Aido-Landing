@@ -1,17 +1,25 @@
-import type { Metadata } from "next";
-import { Kalam, Patrick_Hand } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import type { Metadata, Viewport } from "next";
+import { Black_Han_Sans, Noto_Sans_KR } from "next/font/google";
+import { cookies } from "next/headers";
+import { defaultLocale, isLocale, localeCookieName } from "@/i18n/config";
 import "./globals.css";
 
-const kalam = Kalam({
-  weight: ["400", "700"],
-  variable: "--font-kalam",
+const SITE_URL = "https://aido.kr";
+const SITE_NAME = "Aido";
+
+const notoSansKR = Noto_Sans_KR({
+  weight: ["400", "500", "700"],
+  variable: "--font-noto-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const patrickHand = Patrick_Hand({
+const blackHanSans = Black_Han_Sans({
   weight: "400",
-  variable: "--font-patrick-hand",
+  variable: "--font-black-han",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const viewport = {
@@ -19,48 +27,52 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-};
+} satisfies Viewport;
 
 export const metadata: Metadata = {
-  title: "Aido | 친구와 함께하는 가장 설레는 Ai Todo 서비스",
-  description: "Aido는 고양이 친구들과 함께 할 일을 관리하는 소셜 Todo 앱입니다. 개인 생산성 관리부터 친구와의 공유까지, 당신의 하루를 특별하게 만들어보세요.",
-  metadataBase: new URL("https://aido.kr"),
-  keywords: ["Aido", "에이도", "Todo 앱", "할 일 관리", "AI 비서", "고양이 Todo", "소셜 Todo", "생산성"],
-  authors: [{ name: "Aido Labs" }],
-  openGraph: {
-    title: "Aido | 친구와 함께하는 Ai Todo",
-    description: "고양이 친구들과 함께하는 즐거운 할 일 관리, Aido",
-    url: "https://aido.kr",
-    siteName: "Aido",
-    locale: "ko_KR",
-    type: "website",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Aido Logo",
-      },
-    ],
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  category: "productivity",
+  creator: "레드밴드",
+  publisher: "레드밴드",
+  manifest: "/site.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const localeFromCookie = cookieStore.get(localeCookieName)?.value ?? "";
+  const lang = isLocale(localeFromCookie) ? localeFromCookie : defaultLocale;
+
   return (
-    <html lang="ko">
+    <html lang={lang}>
       <body
-        className={`${kalam.variable} ${patrickHand.variable} antialiased`}
+        className={`${notoSansKR.variable} ${blackHanSans.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
