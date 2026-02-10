@@ -23,6 +23,7 @@ export async function generateMetadata({
       languages: {
         ko: "/ko/terms",
         en: "/en/terms",
+        "x-default": "/ko/terms",
       },
     },
     robots: {

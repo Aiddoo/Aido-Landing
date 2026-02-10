@@ -3,7 +3,7 @@
 :root {
   --background: #fdfbf7;
   --foreground: #2d2d2d;
-  --brand: #FF6843;
+  --brand: #ff6843;
   --brand-foreground: #ffffff;
   --muted: #e5e0d8;
   --muted-foreground: #7d7d7d;
@@ -40,7 +40,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
@@ -85,7 +90,10 @@ h1, h2, h3, h4, h5, h6 {
 .paper-grain::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0.05;
   pointer-events: none;
   background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");

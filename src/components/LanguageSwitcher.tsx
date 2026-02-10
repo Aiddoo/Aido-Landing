@@ -38,6 +38,7 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
           <Link
             key={item}
             href={swapLocale(pathname, item)}
+            aria-current={isActive ? "page" : undefined}
             className={[
               "rounded-full border-2 px-3 py-1 text-xs font-bold transition-all",
               isActive

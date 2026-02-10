@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Black_Han_Sans, Noto_Sans_KR } from "next/font/google";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { defaultLocale, isLocale, localeCookieName } from "@/i18n/config";
 import "./globals.css";
 
@@ -62,9 +62,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerStore = await headers();
+  const localeFromHeader = headerStore.get("x-locale") ?? "";
   const cookieStore = await cookies();
   const localeFromCookie = cookieStore.get(localeCookieName)?.value ?? "";
-  const lang = isLocale(localeFromCookie) ? localeFromCookie : defaultLocale;
+
+  const lang = isLocale(localeFromHeader)
+    ? localeFromHeader
+    : isLocale(localeFromCookie)
+      ? localeFromCookie
+      : defaultLocale;
 
   return (
     <html lang={lang}>
