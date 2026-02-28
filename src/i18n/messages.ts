@@ -25,6 +25,7 @@ type FeatureGroup = {
 
 type PreviewScreen = {
   title: string;
+  description: string;
   path: string;
   rotate: number;
 };
@@ -169,8 +170,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       headingLead: "작심삼일은 이제 그만,",
       headingHighlight: "친구와 함께 매일 성취하세요",
       descriptionLead: "혼자서는 미루던 일도, 친구와 함께라면 달라집니다.",
-      descriptionTail:
-        "귀여운 AI 고양이들이 당신의 매일을 응원하고 축하해줄 거예요.",
+      descriptionTail: "귀여운 AI 고양이들이 당신의 매일을 응원하고 축하해줄 거예요.",
       arrowNote: "곧 만나요!",
       launchBadge: "🌸 2026년 봄, 가장 먼저 만나보세요",
       scrollLabel: "더 알아보기",
@@ -186,8 +186,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       label: "Meet the Team",
       title: "당신만의 AI 응원단",
       descriptionLead: "개성 넘치는 고양이 친구들이 매일 당신을 응원해요.",
-      descriptionTail:
-        "할 일을 완료할 때마다 함께 기뻐하고, 힘들 땐 격려해줍니다!",
+      descriptionTail: "할 일을 완료할 때마다 함께 기뻐하고, 힘들 땐 격려해줍니다!",
       cards: [
         {
           name: "스코티시폴드",
@@ -236,22 +235,19 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           icon: "sparkles",
           title: "개인 생산성",
-          description:
-            "날짜별 할 일 관리와 반복 Todo로 완벽한 하루를 계획하세요.",
+          description: "날짜별 할 일 관리와 반복 Todo로 완벽한 하루를 계획하세요.",
           rotate: -1,
         },
         {
           icon: "users",
           title: "소셜 동기부여",
-          description:
-            "친구와 할 일을 공유하고 주간 달성 배지로 함께 성장하세요.",
+          description: "친구와 할 일을 공유하고 주간 달성 배지로 함께 성장하세요.",
           rotate: 2,
         },
         {
           icon: "crown",
           title: "프리미엄 경험",
-          description:
-            "로컬 데이터에서 클라우드 동기화로 이어지는 매끄러운 경험.",
+          description: "로컬 데이터에서 클라우드 동기화로 이어지는 매끄러운 경험.",
           rotate: -2,
         },
       ],
@@ -264,12 +260,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "소셜 기능",
           icon: "👥",
           goal: "친구와 함께 성장하기",
-          items: [
-            "친구 검색 & 요청",
-            "친구 Todo 피드 공유",
-            "주간 달성 배지",
-            "친구 추천 시스템",
-          ],
+          items: ["친구 검색 & 요청", "친구 Todo 피드 공유", "주간 달성 배지", "친구 추천 시스템"],
           color: "#fff9c4",
           rotate: -1,
         },
@@ -277,12 +268,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "할 일 관리",
           icon: "✓",
           goal: "스마트한 Todo 관리",
-          items: [
-            "날짜별 Todo 생성 & 관리",
-            "반복 Todo (일/주/월)",
-            "색상 & 공개 설정",
-            "완료율 통계",
-          ],
+          items: ["날짜별 Todo 생성 & 관리", "반복 Todo (일/주/월)", "색상 & 공개 설정", "완료율 통계"],
           color: "#e3f2fd",
           rotate: 2,
         },
@@ -290,12 +276,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "알림 & 리마인더",
           icon: "🔔",
           goal: "놓치지 않는 알림",
-          items: [
-            "Todo 리마인더",
-            "친구 활동 알림",
-            "주간 달성 알림",
-            "세분화된 알림 설정",
-          ],
+          items: ["Todo 리마인더", "친구 활동 알림", "주간 달성 알림", "세분화된 알림 설정"],
           color: "#f3e5f5",
           rotate: -2,
         },
@@ -303,12 +284,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "프리미엄 기능",
           icon: "⭐",
           goal: "추후 업데이트 예정",
-          items: [
-            "앱 아이콘 변경",
-            "무제한 AI 사용",
-            "고급 통계 분석",
-            "클라우드 동기화",
-          ],
+          items: ["앱 아이콘 변경", "무제한 AI 사용", "고급 통계 분석", "클라우드 동기화"],
           color: "#e8f5e9",
           rotate: 1,
         },
@@ -316,31 +292,59 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "계정 & 보안",
           icon: "🔐",
           goal: "안전한 사용 환경",
-          items: [
-            "이메일 & 소셜 로그인",
-            "프로필 관리",
-            "보안 로그인 제한",
-            "데이터 내보내기",
-          ],
+          items: ["이메일 & 소셜 로그인", "프로필 관리", "보안 로그인 제한", "데이터 내보내기"],
           color: "#fce4ec",
           rotate: -1,
         },
       ],
     },
     appPreview: {
-      titleLead: "처음부터 끝까지,",
-      titleHighlight: "완벽한 경험",
-      descriptionLead: "앱을 여는 순간부터 할 일을 완료하는 순간까지,",
-      descriptionTail:
-        "Aido는 당신의 하루를 가장 매끄럽고 즐겁게 만들어줍니다.",
+      titleLead: "이런 기능들이",
+      titleHighlight: "당신을 기다리고 있어요",
+      descriptionLead: "할 일 관리부터 친구와의 소통까지,",
+      descriptionTail: "Aido의 주요 화면들을 미리 만나보세요.",
       screens: [
-        { title: "스플래시", path: "/app-assets/splash.png", rotate: -2 },
-        { title: "메인 홈", path: "/app-assets/home.png", rotate: 1 },
-        { title: "SNS 로그인", path: "/app-assets/login.png", rotate: -1 },
         {
-          title: "이메일 로그인",
-          path: "/app-assets/email-login.png",
+          title: "홈",
+          description: "오늘의 할 일을 한눈에",
+          path: "/app-assets/home.png",
+          rotate: -1,
+        },
+        {
+          title: "주간 캘린더",
+          description: "한 주를 한눈에 관리",
+          path: "/app-assets/week-calendar.png",
+          rotate: 1,
+        },
+        {
+          title: "월간 캘린더",
+          description: "한 달의 일정을 한 번에",
+          path: "/app-assets/month-calendar.png",
+          rotate: -1,
+        },
+        {
+          title: "로그인",
+          description: "간편한 소셜 로그인",
+          path: "/app-assets/login.png",
           rotate: 2,
+        },
+        {
+          title: "알림",
+          description: "놓치지 않는 리마인더",
+          path: "/app-assets/alert.png",
+          rotate: -2,
+        },
+        {
+          title: "콕 찌르기",
+          description: "친구에게 동기부여",
+          path: "/app-assets/nudge.png",
+          rotate: 1,
+        },
+        {
+          title: "앱 아이콘",
+          description: "나만의 고양이 아이콘",
+          path: "/app-assets/app-icon-change.png",
+          rotate: -1,
         },
       ],
     },
@@ -378,23 +382,18 @@ const catalogs: Record<Locale, MessageCatalog> = {
       viewTermsLabel: "이용약관 보기",
       viewPrivacyLabel: "개인정보처리방침 보기",
       privacyTitle: "개인정보처리방침",
-      privacyDescription:
-        "Aido 서비스 이용 시 처리되는 개인정보에 대해 안내합니다.",
+      privacyDescription: "Aido 서비스 이용 시 처리되는 개인정보에 대해 안내합니다.",
       termsTitle: "이용약관",
-      termsDescription:
-        "Aido 서비스 이용 조건, 결제 및 자동 갱신, 이용자 권리와 책임을 안내합니다.",
+      termsDescription: "Aido 서비스 이용 조건, 결제 및 자동 갱신, 이용자 권리와 책임을 안내합니다.",
     },
   },
   en: {
     meta: {
-      title:
-        "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
+      title: "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
       description:
         "A fresh social to-do experience that helps you grow with friends. Reach daily goals with adorable AI cat companions and celebrate your progress together.",
-      openGraphTitle:
-        "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
-      openGraphDescription:
-        "Grow with friends, finish daily goals, and stay motivated with AI cat companions in Aido.",
+      openGraphTitle: "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
+      openGraphDescription: "Grow with friends, finish daily goals, and stay motivated with AI cat companions in Aido.",
       keywords: [
         "Aido",
         "to-do app",
@@ -418,10 +417,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
     hero: {
       headingLead: "No more quitting after three days,",
       headingHighlight: "achieve more every day with friends",
-      descriptionLead:
-        "Tasks you used to postpone become easier when you do them with friends.",
-      descriptionTail:
-        "Your AI cat crew will cheer for your progress and celebrate every win.",
+      descriptionLead: "Tasks you used to postpone become easier when you do them with friends.",
+      descriptionTail: "Your AI cat crew will cheer for your progress and celebrate every win.",
       arrowNote: "See you soon!",
       launchBadge: "🌸 Be the first to meet Aido in Spring 2026",
       scrollLabel: "Learn more",
@@ -437,8 +434,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       label: "Meet the Team",
       title: "Your Personal AI Cheer Squad",
       descriptionLead: "A unique group of cat friends supports you every day.",
-      descriptionTail:
-        "They celebrate your wins and encourage you through hard moments.",
+      descriptionTail: "They celebrate your wins and encourage you through hard moments.",
       cards: [
         {
           name: "Scottish Fold",
@@ -487,22 +483,19 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           icon: "sparkles",
           title: "Personal Productivity",
-          description:
-            "Plan each day clearly with date-based tasks and repeat schedules.",
+          description: "Plan each day clearly with date-based tasks and repeat schedules.",
           rotate: -1,
         },
         {
           icon: "users",
           title: "Social Motivation",
-          description:
-            "Share your goals with friends and grow through weekly achievement badges.",
+          description: "Share your goals with friends and grow through weekly achievement badges.",
           rotate: 2,
         },
         {
           icon: "crown",
           title: "Premium Experience",
-          description:
-            "Enjoy a smooth journey from local data to cloud-synced productivity.",
+          description: "Enjoy a smooth journey from local data to cloud-synced productivity.",
           rotate: -2,
         },
       ],
@@ -554,12 +547,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "Premium Tools",
           icon: "⭐",
           goal: "More updates coming soon",
-          items: [
-            "Custom app icons",
-            "Unlimited AI usage",
-            "Advanced insights",
-            "Cloud sync",
-          ],
+          items: ["Custom app icons", "Unlimited AI usage", "Advanced insights", "Cloud sync"],
           color: "#e8f5e9",
           rotate: 1,
         },
@@ -567,31 +555,59 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "Account & Security",
           icon: "🔐",
           goal: "A safer experience",
-          items: [
-            "Email & social sign-in",
-            "Profile management",
-            "Secure login controls",
-            "Data export",
-          ],
+          items: ["Email & social sign-in", "Profile management", "Secure login controls", "Data export"],
           color: "#fce4ec",
           rotate: -1,
         },
       ],
     },
     appPreview: {
-      titleLead: "From the first screen to the finish,",
-      titleHighlight: "a polished experience",
-      descriptionLead: "From app launch to task completion,",
-      descriptionTail:
-        "Aido makes your day smoother, lighter, and more enjoyable.",
+      titleLead: "Here's what's",
+      titleHighlight: "waiting for you",
+      descriptionLead: "From task management to social motivation,",
+      descriptionTail: "take a sneak peek at Aido's key screens.",
       screens: [
-        { title: "Splash", path: "/app-assets/splash.png", rotate: -2 },
-        { title: "Home", path: "/app-assets/home.png", rotate: 1 },
-        { title: "Social Login", path: "/app-assets/login.png", rotate: -1 },
         {
-          title: "Email Login",
-          path: "/app-assets/email-login.png",
+          title: "Home",
+          description: "Your daily tasks at a glance",
+          path: "/app-assets/home.png",
+          rotate: -1,
+        },
+        {
+          title: "Weekly",
+          description: "Plan your week ahead",
+          path: "/app-assets/week-calendar.png",
+          rotate: 1,
+        },
+        {
+          title: "Monthly",
+          description: "See the full month view",
+          path: "/app-assets/month-calendar.png",
+          rotate: -1,
+        },
+        {
+          title: "Login",
+          description: "Quick social sign-in",
+          path: "/app-assets/login.png",
           rotate: 2,
+        },
+        {
+          title: "Alerts",
+          description: "Never miss a reminder",
+          path: "/app-assets/alert.png",
+          rotate: -2,
+        },
+        {
+          title: "Nudge",
+          description: "Motivate your friends",
+          path: "/app-assets/nudge.png",
+          rotate: 1,
+        },
+        {
+          title: "App Icons",
+          description: "Pick your cat icon",
+          path: "/app-assets/app-icon-change.png",
+          rotate: -1,
         },
       ],
     },
@@ -629,11 +645,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       viewTermsLabel: "View Terms of Service",
       viewPrivacyLabel: "View Privacy Policy",
       privacyTitle: "Privacy Policy",
-      privacyDescription:
-        "How Aido collects, uses, stores, and protects your personal data.",
+      privacyDescription: "How Aido collects, uses, stores, and protects your personal data.",
       termsTitle: "Terms of Service",
-      termsDescription:
-        "Usage terms, subscription conditions, and user rights for Aido.",
+      termsDescription: "Usage terms, subscription conditions, and user rights for Aido.",
     },
   },
 };

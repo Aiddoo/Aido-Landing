@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/kim-yongmin/Desktop/aido-landing -name \"tailwind.config.*\" -o -name \"globals.css\" -o -name \"*.theme.*\" 2>/dev/null | grep -v node_modules)",
+      "Bash(ls -la /Users/kim-yongmin/Desktop/aido-landing/*.ts /Users/kim-yongmin/Desktop/aido-landing/*.js 2>/dev/null | head -20)",
+      "Bash(ls /Users/kim-yongmin/Desktop/aido-landing/*.ts 2>/dev/null)",
+      "Bash(find /Users/kim-yongmin/Desktop/aido-landing/src/components -type f -name \"*.tsx\" 2>/dev/null | head -20)",
+      "Bash(pnpm typecheck 2>&1)",
+      "Bash(pnpm lint 2>&1)",
+      "Bash(pnpm format 2>&1)",
+      "Bash(npx tsc --noEmit 2>&1)",
+      "Bash(pnpm build 2>&1)",
+      "Bash(pnpm format 2>&1 && pnpm lint 2>&1)"
+    ]
+  }
+}

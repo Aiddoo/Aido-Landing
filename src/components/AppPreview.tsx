@@ -9,10 +9,13 @@ type AppPreviewProps = {
 };
 
 export function AppPreview({ content }: AppPreviewProps) {
+  const topRow = content.screens.slice(0, 4);
+  const bottomRow = content.screens.slice(4);
+
   return (
     <section className="overflow-hidden bg-[#fafafa] px-6 py-20 sm:py-32 relative">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-20 text-center">
+        <div className="mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,39 +54,60 @@ export function AppPreview({ content }: AppPreviewProps) {
           </motion.div>
         </div>
 
-        <div className="relative">
-          <div className="flex flex-col items-center gap-12 lg:flex-row lg:justify-center lg:gap-16">
-            {content.screens.map((screen, index) => (
-              <motion.div
-                key={screen.title}
-                initial={{ opacity: 0, y: 40, rotate: screen.rotate }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.8 }}
-                whileHover={{ y: -10, rotate: 0 }}
-                className="group relative"
-              >
-                <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-foreground rounded-tl-lg" />
-                <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-foreground rounded-br-lg" />
+        {/* 상단 4개 */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-center">
+          {topRow.map((screen, index) => (
+            <ScreenCard key={screen.title} screen={screen} index={index} />
+          ))}
+        </div>
 
-                <div className="relative aspect-9/19 w-full max-w-[280px] overflow-hidden rounded-[2.5rem] border-4 border-foreground bg-white hand-shadow-lg transition-all duration-300">
-                  <Image
-                    src={screen.path}
-                    alt={screen.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="mt-8 text-center">
-                  <span className="text-sm font-bold uppercase tracking-widest text-foreground bg-muted px-4 py-1 wobbly-md border-2 border-foreground -rotate-2 inline-block">
-                    {screen.title}
-                  </span>
-                </div>
-              </motion.div>
+        {/* 하단 3개 - 중앙 정렬 */}
+        <div className="mt-6 lg:mt-8 flex justify-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
+            {bottomRow.map((screen, index) => (
+              <ScreenCard
+                key={screen.title}
+                screen={screen}
+                index={index + topRow.length}
+              />
             ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ScreenCard({
+  screen,
+  index,
+}: {
+  screen: MessageCatalog["appPreview"]["screens"][number];
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, rotate: screen.rotate }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.8 }}
+      whileHover={{ y: -10, rotate: 0 }}
+      className="group flex flex-col items-center"
+    >
+      <div className="relative aspect-[9/19] w-full max-w-[200px] overflow-hidden rounded-[2rem] border-3 border-foreground bg-white hand-shadow transition-all duration-300 group-hover:-translate-y-2">
+        <Image
+          src={screen.path}
+          alt={screen.title}
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="mt-4 text-center">
+        <span className="text-sm font-bold">{screen.title}</span>
+        <p className="text-xs text-muted-foreground mt-1">
+          {screen.description}
+        </p>
+      </div>
+    </motion.div>
   );
 }

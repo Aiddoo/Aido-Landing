@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LegalMarkdown } from "@/components/LegalMarkdown";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
@@ -44,9 +45,15 @@ export default async function LocalePrivacyPage({
     <main className="px-4 py-12 sm:px-6 sm:py-16 lg:py-20" lang={locale}>
       <div className="mx-auto w-full max-w-5xl">
         <header className="mb-6 space-y-4 sm:mb-8">
-          <p className="inline-flex items-center rounded-full border-2 border-foreground/20 bg-white px-3 py-1 text-xs font-bold tracking-wide text-foreground/70">
-            {messages.legal.badge}
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="inline-flex items-center rounded-full border-2 border-foreground/20 bg-white px-3 py-1 text-xs font-bold tracking-wide text-foreground/70">
+              {messages.legal.badge}
+            </p>
+            <LanguageSwitcher
+              locale={locale}
+              labels={messages.languageSwitcher}
+            />
+          </div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             {messages.legal.privacyTitle}
           </h1>

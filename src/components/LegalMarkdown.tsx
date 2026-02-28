@@ -1,11 +1,14 @@
 import type { ReactNode } from "react";
 
+type TableRow = string[];
+
 type MarkdownBlock =
   | { type: "heading"; level: number; text: string }
   | { type: "paragraph"; text: string }
   | { type: "unordered-list"; items: string[] }
   | { type: "ordered-list"; items: string[] }
   | { type: "blockquote"; text: string }
+  | { type: "table"; headers: TableRow; rows: TableRow[] }
   | { type: "horizontal-rule" };
 
 const INLINE_TOKEN_REGEX = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|`([^`]+)`/g;
@@ -149,6 +152,38 @@ function parseMarkdown(markdown: string): MarkdownBlock[] {
       continue;
     }
 
+    if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
+      flushParagraph();
+      const tableLines: string[] = [];
+
+      while (i < lines.length) {
+        const current = lines[i].trim();
+        if (!current.startsWith("|") || !current.endsWith("|")) {
+          break;
+        }
+        tableLines.push(current);
+        i += 1;
+      }
+
+      i -= 1;
+
+      if (tableLines.length >= 2) {
+        const parseRow = (line: string): TableRow =>
+          line
+            .slice(1, -1)
+            .split("|")
+            .map((cell) => cell.trim());
+
+        const headers = parseRow(tableLines[0]);
+        const isSeparator = (line: string) => /^\|[\s\-:|]+\|$/.test(line);
+        const startIndex = isSeparator(tableLines[1]) ? 2 : 1;
+        const rows = tableLines.slice(startIndex).map(parseRow);
+
+        blocks.push({ type: "table", headers, rows });
+      }
+      continue;
+    }
+
     const blockquoteMatch = trimmed.match(/^>\s+(.+)$/);
     if (blockquoteMatch) {
       flushParagraph();
@@ -259,6 +294,50 @@ export function LegalMarkdown({ markdown }: { markdown: string }) {
                   </li>
                 ))}
               </ol>
+            );
+          }
+
+          if (block.type === "table") {
+            return (
+              <div key={key} className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm sm:text-base">
+                  <thead>
+                    <tr className="border-b-2 border-foreground/15">
+                      {block.headers.map((header) => (
+                        <th
+                          key={`${key}-th-${header}`}
+                          className="px-3 py-2.5 text-left font-bold text-foreground"
+                        >
+                          {renderInlineMarkdown(header, `${key}-th-${header}`)}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {block.rows.map((row, rowIndex) => {
+                      const rowKey = `${key}-tr-${rowIndex}`;
+                      return (
+                        <tr
+                          key={rowKey}
+                          className="border-b border-foreground/10"
+                        >
+                          {row.map((cell, cellIndex) => (
+                            <td
+                              key={`${rowKey}-td-${cellIndex}`}
+                              className="px-3 py-2.5 text-foreground/85"
+                            >
+                              {renderInlineMarkdown(
+                                cell,
+                                `${rowKey}-td-${cellIndex}`,
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             );
           }
 
