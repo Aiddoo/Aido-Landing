@@ -1,6 +1,6 @@
 # Aido Terms of Service
 
-**Effective Date: February 28, 2026**
+**Effective Date: March 3, 2026**
 
 ---
 
@@ -63,8 +63,8 @@ The definitions of terms used in these Terms are as follows:
 
 The main features provided by the Company are as follows:
 
-1. **Task Management**: Creating, editing, deleting, completing to-dos, and recurring tasks
-2. **Calendar**: Schedule management through weekly/monthly calendar views
+1. **Task Management**: Creating, editing, deleting, completing to-dos, setting recurring tasks, and category organization
+2. **Calendar and Schedule Management**: Schedule management through weekly/monthly calendar views, device calendar integration
 3. **AI Features**: AI-powered automatic to-do parsing and recommendations, voice input for to-do creation
 4. **Social Features**: Adding friends, sharing to-dos, Nudge, Cheer, and weekly achievement badges
 5. **Subscription Service**: Premium features through the Pro plan
@@ -94,11 +94,11 @@ The main features provided by the Company are as follows:
    | Plan | Price | Key Benefits |
    |------|-------|-------------|
    | Free | Free | AI parsing 5 times/day, Nudge & Cheer 3 times/day |
-   | Pro Monthly | KRW 5,900/month | Unlimited AI parsing, Nudge & Cheer |
-   | Pro Annual | KRW 44,900/year | Unlimited AI parsing, Nudge & Cheer |
+   | Pro Monthly | KRW 5,900/month | Unlimited AI parsing, Nudge & Cheer, custom morning/evening reminders, premium app icons |
+   | Pro Annual | KRW 44,900/year | Same benefits as Pro Monthly |
 
 2. The above prices include VAT. Actual charges may vary due to exchange rates, taxes, or fees depending on the country and store policies.
-3. Payments for Paid Services are processed through in-app purchases on the Apple App Store or Google Play Store.
+3. Payments for Paid Services are processed through in-app purchases on the Apple App Store or Google Play Store, and charges are billed to the payment method registered with the Member's Apple ID or Google account.
 4. **When prices change**, the Company shall provide at least **30 days' prior notice** through in-app announcements and individual notifications. Members who do not agree may cancel their subscription before the next renewal.
 5. Minors who wish to use Paid Services require **consent from a legal guardian**, and contracts made without such consent may be canceled by the legal guardian.
 
@@ -107,9 +107,11 @@ The main features provided by the Company are as follows:
 ## Article 9 (Auto-Renewable Subscription)
 
 1. Pro subscriptions are provided on an **auto-renewable basis**.
-2. Subscriptions will automatically renew under the same conditions unless canceled at least **24 hours before** the end of the current subscription period.
-3. Renewal charges will be billed through the Apple or Google account within 24 hours before the end of the subscription period.
-4. Subscription management and auto-renewal cancellation can be done through the device's App Store or Google Play account settings.
+2. **Pro Monthly** (KRW 5,900/month) and **Pro Annual** (KRW 44,900/year) subscriptions will automatically renew at the same price and duration unless canceled at least **24 hours before** the end of the current subscription period.
+3. Renewal charges will be billed to the payment method registered with the Member's Apple ID or Google account within 24 hours before the end of the subscription period.
+4. Subscription management and auto-renewal cancellation can be done through the following paths:
+   - **iOS**: Device Settings > Apple ID > Subscriptions
+   - **Android**: Google Play app > Menu > Subscriptions
 5. Even after cancellation, Pro features remain available until the end of the already-paid subscription period.
 
 ---
@@ -177,12 +179,13 @@ The main features provided by the Company are as follows:
 ## Article 16 (Termination and Restriction of Use)
 
 1. Members may request termination (account withdrawal) at any time through in-app settings or customer support.
-2. The Company may restrict use or terminate the agreement after prior notice if a Member:
+2. Upon a withdrawal request, the Company applies a **30-day grace period**. If the Member logs in again with the same email within the grace period, the account is automatically restored. After the grace period, personal information and content are permanently deleted.
+3. The Company may restrict use or terminate the agreement after prior notice if a Member:
    - Violates obligations under these Terms
    - Interferes with the normal operation of the Service
    - Violates applicable laws
-3. Upon withdrawal, personal information shall be destroyed without delay, except for information that must be retained under applicable laws and the Privacy Policy.
-4. For Members who withdraw while using a paid subscription, refunds for the already-paid subscription period are subject to Article 11.
+4. Upon withdrawal, personal information shall be destroyed without delay, except for information that must be retained under applicable laws and the Privacy Policy.
+5. For Members who withdraw while using a paid subscription, refunds for the already-paid subscription period are subject to Article 11.
 
 ---
 
@@ -230,7 +233,7 @@ Matters not covered by these Terms shall be governed by applicable laws (includi
 
 | Item | Details |
 |------|---------|
-| Company / Representative | RedBand |
+| Company / Representative | RedBand / Kim Yongmin |
 | Business Registration No. | 309-08-95749 |
 | E-commerce Registration No. | 2026-Seoul-Gangdong-0281 |
 | Phone | 010-5877-8951 |
@@ -242,5 +245,5 @@ Inquiries regarding these Terms, subscriptions, and complaints may be submitted 
 
 ## Addendum
 
-1. These Terms of Service take effect on **February 28, 2026**.
-2. These Terms also apply to Members who registered before the effective date of these Terms.
+1. These Terms of Service take effect on **March 3, 2026**.
+2. The previous Terms of Service (effective February 28, 2026) shall cease to have effect upon the implementation of these Terms.

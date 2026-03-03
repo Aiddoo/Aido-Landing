@@ -1,6 +1,6 @@
 # Aido Privacy Policy
 
-**Effective Date: February 28, 2026**
+**Effective Date: March 3, 2026**
 
 ---
 
@@ -36,11 +36,23 @@ This Privacy Policy is intended to inform users about the processing of personal
 | App Usage Records (access time, screen views, event logs) | Service improvement, error response |
 | Push Token (Expo Push Token) | Notification delivery |
 | Error and Crash Information (Crashlytics) | App stability improvement |
-| Voice Data | Voice recognition for AI to-do creation (processed on-device, not transmitted to server) |
-| Biometric Authentication Results | App unlock (biometric data stored only on device; only authentication success/failure status is processed) |
 | Timezone Information (IANA format) | Notification and reminder timezone settings |
 
-### 2-3. Information Received from Third Parties via Social Login (OAuth)
+### 2-3. Device Permission Access (On-Device Processing)
+
+The following items are accessed with the user's consent and are **processed only on the device; they are not transmitted to the Company's servers.**
+
+| Access Item | Purpose |
+|-------------|---------|
+| Camera | Taking profile photos |
+| Photo Library | Selecting profile images |
+| Microphone and Speech Recognition | Voice input for to-do creation (voice data is processed on-device, not transmitted to server) |
+| Calendar | Syncing schedules with device calendar |
+| Biometric Authentication (Face ID/Fingerprint) | App unlock (biometric data is stored only on the device; only authentication success/failure status is processed) |
+
+- Users may change or revoke access permissions at any time through their device settings.
+
+### 2-4. Information Received from Third Parties via Social Login (OAuth)
 
 | OAuth Provider | Items Received |
 |---------------|---------------|
@@ -83,7 +95,7 @@ The Company destroys personal information without delay once the purpose of coll
 | Service access records (login records, access logs) | **3 months** | Protection of Communications Secrets Act, Article 15-2 |
 | Records related to identity verification | **6 months** | Act on Promotion of ICT Network Utilization, Article 44-5 |
 
-- Upon Member withdrawal, personal information is destroyed without delay except for information that must be retained under the legally mandated retention periods above.
+- Upon Member withdrawal, the Company applies a **30-day grace period** before destroying personal information. If the Member logs in again within the grace period, the account is restored. After the grace period, personal information is permanently deleted except for information that must be retained under the legally mandated retention periods above.
 
 ---
 
@@ -220,7 +232,7 @@ The Company implements the following technical, organizational, and physical saf
 ## Article 14 (Personal Information of Children Under 14)
 
 1. The Service is **not intended for children under 14**, and the Company does not accept membership registration from children under 14.
-2. During registration, date of birth verification is used to identify users under 14, and registration is blocked for such users.
+2. During registration, users confirm that they are 14 or older through the terms agreement process, and registration is restricted for users under 14.
 3. If the Company becomes aware that personal information of a child under 14 has been collected, it shall destroy such information without delay.
 
 ---
@@ -231,7 +243,7 @@ The Company designates the following Personal Information Protection Officer to 
 
 | Item | Details |
 |------|---------|
-| Name | RedBand |
+| Name | Kim Yongmin |
 | Position | Representative |
 | Phone | 010-5877-8951 |
 | Email | dydals3440@gmail.com |
@@ -263,5 +275,5 @@ For reports or consultations regarding personal information breaches, you may co
 
 ## Addendum
 
-1. This Privacy Policy takes effect on **February 28, 2026**.
-2. The previous Privacy Policy (effective February 10, 2026) shall cease to have effect upon the implementation of this Policy.
+1. This Privacy Policy takes effect on **March 3, 2026**.
+2. The previous Privacy Policy (effective February 28, 2026) shall cease to have effect upon the implementation of this Policy.
