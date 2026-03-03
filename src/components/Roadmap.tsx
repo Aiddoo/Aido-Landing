@@ -17,7 +17,9 @@ export function Roadmap({ content }: RoadmapProps) {
           <div className="inline-block px-4 py-1 bg-secondary-accent text-white wobbly-md border-2 border-foreground hand-shadow-hover -rotate-2 font-bold mb-4">
             {content.label}
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">{content.title}</h2>
+          <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            {content.title}
+          </h2>
         </div>
 
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
@@ -39,18 +41,24 @@ export function Roadmap({ content }: RoadmapProps) {
               <div className="space-y-6">
                 <div className="flex items-center gap-3">
                   <span className="text-4xl">{group.icon}</span>
-                  <span className="text-2xl font-bold text-brand">{group.title}</span>
+                  <span className="text-2xl font-bold text-brand">
+                    {group.title}
+                  </span>
                 </div>
 
                 <div className="pb-4 border-b-2 border-dashed border-muted">
-                  <p className="text-xl font-bold leading-tight">{group.goal}</p>
+                  <p className="text-xl font-bold leading-tight">
+                    {group.goal}
+                  </p>
                 </div>
 
                 <ul className="space-y-3">
                   {group.items.map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <span className="text-brand font-bold mt-1">✓</span>
-                      <span className="text-lg font-medium opacity-80">{item}</span>
+                      <span className="text-lg font-medium opacity-80">
+                        {item}
+                      </span>
                     </li>
                   ))}
                 </ul>

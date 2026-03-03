@@ -22,7 +22,11 @@ function applyLocaleCookie(response: NextResponse, locale: Locale) {
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  if (pathname.startsWith("/_next") || pathname.startsWith("/api") || isPublicFile(pathname)) {
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    isPublicFile(pathname)
+  ) {
     return NextResponse.next();
   }
 
@@ -49,7 +53,8 @@ export function proxy(request: NextRequest) {
 
   const targetLocale = preferredLocale;
   const targetUrl = request.nextUrl.clone();
-  targetUrl.pathname = pathname === "/" ? `/${targetLocale}` : `/${targetLocale}${pathname}`;
+  targetUrl.pathname =
+    pathname === "/" ? `/${targetLocale}` : `/${targetLocale}${pathname}`;
 
   const response = NextResponse.redirect(targetUrl);
   applyLocaleCookie(response, targetLocale);

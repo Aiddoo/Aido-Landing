@@ -10,7 +10,14 @@
       "Bash(pnpm format 2>&1)",
       "Bash(npx tsc --noEmit 2>&1)",
       "Bash(pnpm build 2>&1)",
-      "Bash(pnpm format 2>&1 && pnpm lint 2>&1)"
+      "Bash(pnpm format 2>&1 && pnpm lint 2>&1)",
+      "Bash(pnpm format -- src/components/AppPreview.tsx)",
+      "Bash(pnpm dev)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm add embla-carousel-react)",
+      "Bash(npx biome check --write src/i18n/messages.ts src/components/AppPreview.tsx)",
+      "Bash(npx biome check --write src/components/Roadmap.tsx src/components/ui/carousel.tsx src/proxy.ts)"
     ]
   }
 }

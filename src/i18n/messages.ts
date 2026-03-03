@@ -140,10 +140,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
     meta: {
       title: "Aido | 2026년 봄, 가장 설레는 할 일 관리가 시작됩니다",
       description:
-        "친구와 함께 성장하는 새로운 Todo 경험. 귀여운 고양이 친구들과 함께 매일의 목표를 달성하고, 주간 배지로 성취감을 느껴보세요. 2026년 봄 출시 예정.",
+        "친구와 함께 성장하는 새로운 Todo 경험. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 서로 독촉하세요. 2026년 봄 출시 예정.",
       openGraphTitle: "Aido | 2026년 봄, 가장 설레는 할 일 관리가 시작됩니다",
       openGraphDescription:
-        "친구와 함께 성장하는 새로운 Todo 경험. 귀여운 고양이 친구들과 함께 매일의 목표를 달성하고, 주간 배지로 성취감을 느껴보세요.",
+        "친구와 함께 성장하는 새로운 Todo 경험. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 서로 독촉하세요.",
       keywords: [
         "Aido",
         "에이도",
@@ -170,7 +170,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       headingLead: "작심삼일은 이제 그만,",
       headingHighlight: "친구와 함께 매일 성취하세요",
       descriptionLead: "혼자서는 미루던 일도, 친구와 함께라면 달라집니다.",
-      descriptionTail: "귀여운 AI 고양이들이 당신의 매일을 응원하고 축하해줄 거예요.",
+      descriptionTail:
+        "말로 쓰면 AI가 정리하고, 고양이 친구들이 매일 응원해줄 거예요.",
       arrowNote: "곧 만나요!",
       launchBadge: "🌸 2026년 봄, 가장 먼저 만나보세요",
       scrollLabel: "더 알아보기",
@@ -184,9 +185,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     friends: {
       label: "Meet the Team",
-      title: "당신만의 AI 응원단",
+      title: "열심히 하는 여러분을 응원해요!",
       descriptionLead: "개성 넘치는 고양이 친구들이 매일 당신을 응원해요.",
-      descriptionTail: "할 일을 완료할 때마다 함께 기뻐하고, 힘들 땐 격려해줍니다!",
+      descriptionTail:
+        "할 일을 완료할 때마다 함께 기뻐하고, 힘들 땐 격려해줍니다!",
       cards: [
         {
           name: "스코티시폴드",
@@ -195,13 +197,13 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: -2,
         },
         {
-          name: "오렌지태비",
+          name: "치즈 태비",
           path: "/app-assets/cat-orange-tabby.png",
           color: "#e3f2fd",
           rotate: 3,
         },
         {
-          name: "검정고양이",
+          name: "검은 고양이",
           path: "/app-assets/cat-black.png",
           color: "#f3e5f5",
           rotate: -1,
@@ -213,7 +215,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: 2,
         },
         {
-          name: "아비시니안",
+          name: "하얀 고양이",
           path: "/app-assets/cat-abyssinian.png",
           color: "#fdf1e3",
           rotate: -3,
@@ -235,19 +237,21 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           icon: "sparkles",
           title: "개인 생산성",
-          description: "날짜별 할 일 관리와 반복 Todo로 완벽한 하루를 계획하세요.",
+          description:
+            "말로 쓰면 AI가 정리하고, 반복 Todo로 완벽한 하루를 계획하세요.",
           rotate: -1,
         },
         {
           icon: "users",
           title: "소셜 동기부여",
-          description: "친구와 할 일을 공유하고 주간 달성 배지로 함께 성장하세요.",
+          description: "콕 찌르기와 응원으로 친구와 함께 성장하세요.",
           rotate: 2,
         },
         {
-          icon: "crown",
-          title: "프리미엄 경험",
-          description: "로컬 데이터에서 클라우드 동기화로 이어지는 매끄러운 경험.",
+          icon: "sparkles",
+          title: "스마트 알림",
+          description:
+            "아침 리마인더부터 마감 3단계 알림까지, 미루기를 막아줍니다.",
           rotate: -2,
         },
       ],
@@ -260,7 +264,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "소셜 기능",
           icon: "👥",
           goal: "친구와 함께 성장하기",
-          items: ["친구 검색 & 요청", "친구 Todo 피드 공유", "주간 달성 배지", "친구 추천 시스템"],
+          items: [
+            "친구 태그로 검색 & 요청",
+            "친구 Todo 피드 공유",
+            "콕 찌르기로 친구 독촉",
+            "응원 메시지 보내기",
+          ],
           color: "#fff9c4",
           rotate: -1,
         },
@@ -268,7 +277,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "할 일 관리",
           icon: "✓",
           goal: "스마트한 Todo 관리",
-          items: ["날짜별 Todo 생성 & 관리", "반복 Todo (일/주/월)", "색상 & 공개 설정", "완료율 통계"],
+          items: [
+            "AI 자연어 파싱으로 자동 생성",
+            "날짜별 Todo 생성 & 관리",
+            "반복 Todo (일/주/월)",
+            "일별 완료율 캘린더",
+          ],
           color: "#e3f2fd",
           rotate: 2,
         },
@@ -276,15 +290,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "알림 & 리마인더",
           icon: "🔔",
           goal: "놓치지 않는 알림",
-          items: ["Todo 리마인더", "친구 활동 알림", "주간 달성 알림", "세분화된 알림 설정"],
+          items: [
+            "마감 전 3단계 알림",
+            "맞춤 아침/저녁 리마인더",
+            "친구 활동 알림",
+            "주간 성취 요약 알림",
+          ],
           color: "#f3e5f5",
           rotate: -2,
         },
         {
           title: "프리미엄 기능",
           icon: "⭐",
-          goal: "추후 업데이트 예정",
-          items: ["앱 아이콘 변경", "무제한 AI 사용", "고급 통계 분석", "클라우드 동기화"],
+          goal: "더 넓은 가능성",
+          items: [
+            "5종 고양이 앱 아이콘",
+            "무제한 AI 자연어 파싱",
+            "무제한 콕 찌르기 & 응원",
+            "카테고리 30개, 무제한 친구",
+          ],
           color: "#e8f5e9",
           rotate: 1,
         },
@@ -292,7 +316,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "계정 & 보안",
           icon: "🔐",
           goal: "안전한 사용 환경",
-          items: ["이메일 & 소셜 로그인", "프로필 관리", "보안 로그인 제한", "데이터 내보내기"],
+          items: [
+            "카카오/구글/애플 소셜 로그인",
+            "프로필 관리",
+            "보안 로그인 제한",
+            "JWT 기반 안전한 인증",
+          ],
           color: "#fce4ec",
           rotate: -1,
         },
@@ -382,18 +411,23 @@ const catalogs: Record<Locale, MessageCatalog> = {
       viewTermsLabel: "이용약관 보기",
       viewPrivacyLabel: "개인정보처리방침 보기",
       privacyTitle: "개인정보처리방침",
-      privacyDescription: "Aido 서비스 이용 시 처리되는 개인정보에 대해 안내합니다.",
+      privacyDescription:
+        "Aido 서비스 이용 시 처리되는 개인정보에 대해 안내합니다.",
       termsTitle: "이용약관",
-      termsDescription: "Aido 서비스 이용 조건, 결제 및 자동 갱신, 이용자 권리와 책임을 안내합니다.",
+      termsDescription:
+        "Aido 서비스 이용 조건, 결제 및 자동 갱신, 이용자 권리와 책임을 안내합니다.",
     },
   },
   en: {
     meta: {
-      title: "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
+      title:
+        "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
       description:
-        "A fresh social to-do experience that helps you grow with friends. Reach daily goals with adorable AI cat companions and celebrate your progress together.",
-      openGraphTitle: "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
-      openGraphDescription: "Grow with friends, finish daily goals, and stay motivated with AI cat companions in Aido.",
+        "A fresh social to-do experience that helps you grow with friends. Speak naturally and AI organizes your tasks. Nudge friends to stay on track. Coming Spring 2026.",
+      openGraphTitle:
+        "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
+      openGraphDescription:
+        "Speak naturally and AI organizes your tasks. Nudge friends to stay on track. Grow together with Aido.",
       keywords: [
         "Aido",
         "to-do app",
@@ -417,8 +451,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
     hero: {
       headingLead: "No more quitting after three days,",
       headingHighlight: "achieve more every day with friends",
-      descriptionLead: "Tasks you used to postpone become easier when you do them with friends.",
-      descriptionTail: "Your AI cat crew will cheer for your progress and celebrate every win.",
+      descriptionLead:
+        "Tasks you used to postpone become easier when you do them with friends.",
+      descriptionTail:
+        "Just speak, AI organizes it all — and your cat crew cheers you on every step.",
       arrowNote: "See you soon!",
       launchBadge: "🌸 Be the first to meet Aido in Spring 2026",
       scrollLabel: "Learn more",
@@ -432,9 +468,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     friends: {
       label: "Meet the Team",
-      title: "Your Personal AI Cheer Squad",
+      title: "We're cheering for all of you!",
       descriptionLead: "A unique group of cat friends supports you every day.",
-      descriptionTail: "They celebrate your wins and encourage you through hard moments.",
+      descriptionTail:
+        "They celebrate your wins and encourage you through hard moments.",
       cards: [
         {
           name: "Scottish Fold",
@@ -443,7 +480,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: -2,
         },
         {
-          name: "Orange Tabby",
+          name: "Cheese Tabby",
           path: "/app-assets/cat-orange-tabby.png",
           color: "#e3f2fd",
           rotate: 3,
@@ -461,7 +498,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: 2,
         },
         {
-          name: "Abyssinian",
+          name: "White Cat",
           path: "/app-assets/cat-abyssinian.png",
           color: "#fdf1e3",
           rotate: -3,
@@ -483,19 +520,21 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           icon: "sparkles",
           title: "Personal Productivity",
-          description: "Plan each day clearly with date-based tasks and repeat schedules.",
+          description:
+            "Just speak and AI organizes your tasks. Plan each day with recurring todos.",
           rotate: -1,
         },
         {
           icon: "users",
           title: "Social Motivation",
-          description: "Share your goals with friends and grow through weekly achievement badges.",
+          description: "Nudge and cheer friends to grow together.",
           rotate: 2,
         },
         {
-          icon: "crown",
-          title: "Premium Experience",
-          description: "Enjoy a smooth journey from local data to cloud-synced productivity.",
+          icon: "sparkles",
+          title: "Smart Reminders",
+          description:
+            "From morning reminders to 3-stage deadline alerts — no more procrastinating.",
           rotate: -2,
         },
       ],
@@ -509,10 +548,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
           icon: "👥",
           goal: "Grow together with friends",
           items: [
-            "Friend search & requests",
+            "Search friends by tag",
             "Shared to-do feed",
-            "Weekly achievement badges",
-            "Smart friend recommendations",
+            "Nudge friends to stay on track",
+            "Send cheer messages",
           ],
           color: "#fff9c4",
           rotate: -1,
@@ -522,10 +561,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
           icon: "✓",
           goal: "Smarter daily planning",
           items: [
+            "AI natural language parsing",
             "Date-based to-do creation",
             "Recurring tasks (day/week/month)",
-            "Color & visibility settings",
-            "Completion analytics",
+            "Daily completion calendar",
           ],
           color: "#e3f2fd",
           rotate: 2,
@@ -535,10 +574,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
           icon: "🔔",
           goal: "Never miss what matters",
           items: [
-            "To-do reminders",
+            "3-stage deadline alerts",
+            "Custom morning/evening reminders",
             "Friend activity alerts",
-            "Weekly goal alerts",
-            "Fine-grained notification settings",
+            "Weekly achievement summary",
           ],
           color: "#f3e5f5",
           rotate: -2,
@@ -546,8 +585,13 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           title: "Premium Tools",
           icon: "⭐",
-          goal: "More updates coming soon",
-          items: ["Custom app icons", "Unlimited AI usage", "Advanced insights", "Cloud sync"],
+          goal: "Unlock more possibilities",
+          items: [
+            "5 cat app icons",
+            "Unlimited AI parsing",
+            "Unlimited nudge & cheer",
+            "30 categories, unlimited friends",
+          ],
           color: "#e8f5e9",
           rotate: 1,
         },
@@ -555,7 +599,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "Account & Security",
           icon: "🔐",
           goal: "A safer experience",
-          items: ["Email & social sign-in", "Profile management", "Secure login controls", "Data export"],
+          items: [
+            "Kakao/Google/Apple sign-in",
+            "Profile management",
+            "Secure login controls",
+            "JWT-based secure auth",
+          ],
           color: "#fce4ec",
           rotate: -1,
         },
@@ -645,9 +694,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
       viewTermsLabel: "View Terms of Service",
       viewPrivacyLabel: "View Privacy Policy",
       privacyTitle: "Privacy Policy",
-      privacyDescription: "How Aido collects, uses, stores, and protects your personal data.",
+      privacyDescription:
+        "How Aido collects, uses, stores, and protects your personal data.",
       termsTitle: "Terms of Service",
-      termsDescription: "Usage terms, subscription conditions, and user rights for Aido.",
+      termsDescription:
+        "Usage terms, subscription conditions, and user rights for Aido.",
     },
   },
 };
