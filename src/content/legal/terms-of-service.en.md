@@ -1,6 +1,6 @@
 # Aido Terms of Service
 
-**Effective Date: March 3, 2026**
+**Effective Date: March 5, 2026**
 
 ---
 
@@ -20,7 +20,7 @@ The definitions of terms used in these Terms are as follows:
 4. **"Paid Service"**: Refers to features offered by the Company on a paid basis, such as the Pro subscription.
 5. **"Social Login"**: Refers to registration and login through third-party authentication services such as Google, Kakao, Naver, and Apple.
 6. **"Subscription"**: Refers to a paid service agreement that auto-renews on a periodic basis.
-7. **"AI Features"**: Refers to features utilizing artificial intelligence technology, such as automatic to-do parsing and recommendations.
+7. **"AI Features"**: Refers to features utilizing artificial intelligence technology, such as automatic to-do parsing, weekly and monthly AI reports, recurring pattern analysis and suggestions.
 
 ---
 
@@ -65,10 +65,10 @@ The main features provided by the Company are as follows:
 
 1. **Task Management**: Creating, editing, deleting, completing to-dos, setting recurring tasks, and category organization
 2. **Calendar and Schedule Management**: Schedule management through weekly/monthly calendar views, device calendar integration
-3. **AI Features**: AI-powered automatic to-do parsing and recommendations, voice input for to-do creation
+3. **AI Features**: AI-powered automatic to-do parsing, weekly and monthly AI reports (achievement analysis and personalized tips), recurring pattern detection and automatic suggestions, voice input for to-do creation
 4. **Social Features**: Adding friends, sharing to-dos, Nudge, Cheer, and weekly achievement badges
 5. **Subscription Service**: Premium features through the Pro plan
-6. **Notification Service**: To-do reminders, social notifications, and morning/evening reminders
+6. **Notification Service**: Automatic to-do reminders (1 hour and 10 minutes before scheduled time), morning and evening reminders, social notifications (friend requests, Nudge, Cheer, etc.)
 7. Other features developed or provided through partnerships by the Company
 
 ---
@@ -94,8 +94,8 @@ The main features provided by the Company are as follows:
    | Plan | Price | Key Benefits |
    |------|-------|-------------|
    | Free | Free | AI parsing 5 times/day, Nudge & Cheer 3 times/day |
-   | Pro Monthly | KRW 5,900/month | Unlimited AI parsing, Nudge & Cheer, custom morning/evening reminders, premium app icons |
-   | Pro Annual | KRW 44,900/year | Same benefits as Pro Monthly |
+   | Pro Monthly | KRW 3,900/month | Unlimited AI parsing, Nudge & Cheer, weekly & monthly AI reports, AI recurring pattern suggestions, custom morning/evening reminders, premium app icons |
+   | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly |
 
 2. The above prices include VAT. Actual charges may vary due to exchange rates, taxes, or fees depending on the country and store policies.
 3. Payments for Paid Services are processed through in-app purchases on the Apple App Store or Google Play Store, and charges are billed to the payment method registered with the Member's Apple ID or Google account.
@@ -107,7 +107,7 @@ The main features provided by the Company are as follows:
 ## Article 9 (Auto-Renewable Subscription)
 
 1. Pro subscriptions are provided on an **auto-renewable basis**.
-2. **Pro Monthly** (KRW 5,900/month) and **Pro Annual** (KRW 44,900/year) subscriptions will automatically renew at the same price and duration unless canceled at least **24 hours before** the end of the current subscription period.
+2. **Pro Monthly** (KRW 3,900/month) and **Pro Annual** (KRW 29,900/year) subscriptions will automatically renew at the same price and duration unless canceled at least **24 hours before** the end of the current subscription period.
 3. Renewal charges will be billed to the payment method registered with the Member's Apple ID or Google account within 24 hours before the end of the subscription period.
 4. Subscription management and auto-renewal cancellation can be done through the following paths:
    - **iOS**: Device Settings > Apple ID > Subscriptions
@@ -140,10 +140,13 @@ The main features provided by the Company are as follows:
 
 ## Article 12 (AI Features and Disclaimer)
 
-1. The Service provides automatic to-do parsing and recommendation features utilizing external AI models such as Google Gemini.
-2. AI-generated results are **for reference only**, and their **accuracy, completeness, or suitability is not guaranteed**.
+1. The Service utilizes external AI models such as Google Gemini to provide the following features:
+   - **Automatic To-Do Parsing**: Automatically extracts title, date, category, and other details from text input
+   - **Weekly & Monthly AI Reports**: Provides task completion rates, category-based analysis, day-of-week and time-of-day pattern analysis, and personalized tips
+   - **Recurring Pattern Suggestions**: Analyzes the user's task history and automatically suggests recurring tasks
+2. AI-generated results (parsing results, reports, suggestions, etc.) are **for reference only**, and their **accuracy, completeness, or suitability is not guaranteed**.
 3. Members must review AI results before using them for final decision-making.
-4. To provide AI features, certain data such as to-do text may be transmitted to external AI services. Details are provided in the Privacy Policy.
+4. To provide AI features, certain data such as to-do text and task statistics may be transmitted to external AI services. Details are provided in the Privacy Policy.
 5. The Company is not liable for damages arising from the use of AI-generated results, except in cases of willful misconduct or gross negligence.
 
 ---
@@ -245,5 +248,5 @@ Inquiries regarding these Terms, subscriptions, and complaints may be submitted 
 
 ## Addendum
 
-1. These Terms of Service take effect on **March 3, 2026**.
-2. The previous Terms of Service (effective February 28, 2026) shall cease to have effect upon the implementation of these Terms.
+1. These Terms of Service take effect on **March 5, 2026**.
+2. The previous Terms of Service (effective March 3, 2026) shall cease to have effect upon the implementation of these Terms.

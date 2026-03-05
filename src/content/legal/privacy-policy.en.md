@@ -1,6 +1,6 @@
 # Aido Privacy Policy
 
-**Effective Date: March 3, 2026**
+**Effective Date: March 5, 2026**
 
 ---
 
@@ -73,9 +73,9 @@ The Company processes collected personal information only for the following purp
 |---------|---------|
 | Member Management | Member identification, registration/withdrawal processing, identity verification, prevention of fraudulent use |
 | Service Provision | Core features including task management, calendar (weekly/monthly), friend sharing, Nudge, Cheer, and weekly achievement badges. Publicly shared to-dos are visible to friends, and Nudge/Cheer messages are delivered to the recipient. |
-| AI Feature Provision | AI-powered automatic to-do parsing, recommendations |
+| AI Feature Provision | AI-powered automatic to-do parsing, weekly & monthly AI report generation (task statistics analysis and achievement summaries), recurring pattern analysis and automatic suggestions |
 | Subscription and Payment Management | Paid subscription processing, payment status management, receipt verification |
-| Notification Delivery | To-do reminders, social notifications, service announcements |
+| Notification Delivery | To-do reminders (1 hour and 10 minutes before scheduled time), morning & evening reminders, social notifications, service announcements |
 | Service Improvement | Usage statistics analysis, error response, service quality enhancement |
 | Customer Support | Inquiry response, complaint handling, notice delivery |
 | Marketing (Optional) | Providing event and promotional information (only to consenting Members) |
@@ -149,8 +149,11 @@ The Company transfers personal information overseas for service provision as fol
 
 ## Article 8 (Data Processing for AI Features)
 
-1. The Service transmits Members' to-do text to an external AI service (Google Gemini API) to provide AI-powered automatic to-do parsing and recommendation features.
-2. Only to-do text is transmitted; personally identifiable information such as email addresses and names is not transmitted.
+1. The Service transmits Members' data to an external AI service (Google Gemini API) to provide the following AI features:
+   - **Automatic To-Do Parsing**: Transmits to-do text to automatically extract title, date, category, and other details
+   - **Weekly & Monthly AI Reports**: Transmits task statistics (completion rates, category-based analysis, day-of-week and time-of-day patterns, and other aggregated data) to generate achievement summaries and personalized tips
+   - **Recurring Pattern Analysis**: Transmits task titles and time data to detect recurring patterns and generate suggestions
+2. Only the data items specified above are transmitted; personally identifiable information such as email addresses and names is not transmitted.
 3. Transmitted data is processed solely for the purpose of generating AI responses. The Company does not use this data for advertising or marketing purposes without separate consent.
 4. Details regarding data processing by the external AI service are subject to the privacy policy of the respective provider (Google).
 
@@ -158,8 +161,11 @@ The Company transfers personal information overseas for service provision as fol
 
 ## Article 9 (Automated Decision-Making)
 
-1. The Service may perform the following **automated decisions** using AI:
+1. The Service may perform the following **automated decisions** using AI and automation technologies:
    - Automatic parsing of to-do text (extracting title, date, category, etc.)
+   - Automatic generation of weekly and monthly AI reports (for premium users)
+   - Recurring pattern detection and automatic task suggestions (for premium users)
+   - Automatic to-do reminder delivery (1 hour and 10 minutes before the scheduled time)
    - Feature usage restrictions based on subscription status (daily usage limits, etc.)
 2. Automated decisions do not have a **significant impact** on Members' rights or obligations and are intended for providing reference information or service operations.
 3. Members may exercise the following rights regarding automated decisions:
@@ -275,5 +281,5 @@ For reports or consultations regarding personal information breaches, you may co
 
 ## Addendum
 
-1. This Privacy Policy takes effect on **March 3, 2026**.
-2. The previous Privacy Policy (effective February 28, 2026) shall cease to have effect upon the implementation of this Policy.
+1. This Privacy Policy takes effect on **March 5, 2026**.
+2. The previous Privacy Policy (effective March 3, 2026) shall cease to have effect upon the implementation of this Policy.
