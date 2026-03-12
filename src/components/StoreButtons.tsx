@@ -1,44 +1,23 @@
-"use client";
-
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
 import type { MessageCatalog } from "@/i18n/messages";
 
 type StoreButtonsProps = {
   content: MessageCatalog["storeButtons"];
 };
 
+const APP_STORE_URL =
+  "https://apps.apple.com/kr/app/%EC%95%84%EC%9D%B4%EB%91%90-ai-%ED%88%AC%EB%91%90-%ED%94%8C%EB%9E%98%EB%84%88/id6757722325";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.aido.mobile&pcampaignid=web_share";
+const storeButtonClass =
+  "group inline-flex items-center gap-4 wobbly border-[3px] border-foreground bg-white px-8 py-4 text-foreground transition-all hand-shadow hover:bg-muted hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#2d2d2d] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]";
+
 export function StoreButtons({ content }: StoreButtonsProps) {
-  const [showBubble, setShowBubble] = useState(false);
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setShowBubble(true);
-    setTimeout(() => setShowBubble(false), 3000);
-  };
-
   return (
-    <div className="flex flex-wrap items-center justify-center gap-6 relative">
-      <AnimatePresence>
-        {showBubble && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute -top-24 left-1/2 -translate-x-1/2 z-20"
-          >
-            <div className="bg-brand text-white font-bold px-6 py-3 wobbly-md border-[3px] border-foreground hand-shadow whitespace-nowrap relative">
-              {content.bubble}
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand border-r-[3px] border-b-[3px] border-foreground rotate-45" />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <button
-        type="button"
-        onClick={handleClick}
-        className="group inline-flex items-center gap-4 wobbly border-[3px] border-foreground bg-white px-8 py-4 text-foreground transition-all hand-shadow hover:bg-muted hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#2d2d2d] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
+    <div className="flex flex-wrap items-center justify-center gap-6">
+      <a
+        href={APP_STORE_URL}
+        aria-label={`${content.appStorePrefix} ${content.appStoreLabel}`}
+        className={storeButtonClass}
       >
         <svg
           viewBox="0 0 384 512"
@@ -59,12 +38,12 @@ export function StoreButtons({ content }: StoreButtonsProps) {
             {content.appStoreLabel}
           </span>
         </div>
-      </button>
+      </a>
 
-      <button
-        type="button"
-        onClick={handleClick}
-        className="group inline-flex items-center gap-4 wobbly border-[3px] border-foreground bg-white px-8 py-4 text-foreground transition-all hand-shadow hover:bg-muted hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#2d2d2d] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
+      <a
+        href={PLAY_STORE_URL}
+        aria-label={`${content.playStorePrefix} ${content.playStoreLabel}`}
+        className={storeButtonClass}
       >
         <svg
           viewBox="0 0 512 512"
@@ -85,7 +64,7 @@ export function StoreButtons({ content }: StoreButtonsProps) {
             {content.playStoreLabel}
           </span>
         </div>
-      </button>
+      </a>
     </div>
   );
 }

@@ -32,6 +32,8 @@
 }
 
 body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
   background-color: var(--background);
   background-image: radial-gradient(var(--muted) 1px, transparent 1px);
   background-size: 24px 24px;

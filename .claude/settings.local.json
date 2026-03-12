@@ -17,7 +17,8 @@
       "Bash(pnpm lint)",
       "Bash(pnpm add embla-carousel-react)",
       "Bash(npx biome check --write src/i18n/messages.ts src/components/AppPreview.tsx)",
-      "Bash(npx biome check --write src/components/Roadmap.tsx src/components/ui/carousel.tsx src/proxy.ts)"
+      "Bash(npx biome check --write src/components/Roadmap.tsx src/components/ui/carousel.tsx src/proxy.ts)",
+      "Bash(npm run build)"
     ]
   }
 }

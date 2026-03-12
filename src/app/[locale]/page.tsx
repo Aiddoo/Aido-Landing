@@ -52,10 +52,10 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
               {messages.nav.friends}
             </a>
             <a
-              href={`${prefix}#notify`}
+              href={`${prefix}#download`}
               className="hidden sm:block text-sm sm:text-base lg:text-lg font-bold text-brand hover:scale-110 active:scale-95 transition-all"
             >
-              {messages.nav.notify}
+              {messages.nav.download}
             </a>
             <LanguageSwitcher
               locale={locale}
@@ -71,7 +71,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
       <Values content={messages.values} />
       <Roadmap content={messages.roadmap} />
       <AppPreview content={messages.appPreview} />
-      <CTA content={messages.cta} />
+      <CTA content={messages.cta} storeButtons={messages.storeButtons} />
 
       <footer className="px-6 py-20 relative overflow-hidden" lang={locale}>
         <div className="w-full h-1 border-t-2 border-dashed border-foreground opacity-20 mb-20" />

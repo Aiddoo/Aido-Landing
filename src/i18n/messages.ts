@@ -10,7 +10,7 @@ type FriendCard = {
 type ValueItem = {
   icon: "sparkles" | "users" | "crown";
   title: string;
-  description: string;
+  description: string[];
   rotate: number;
 };
 
@@ -25,8 +25,10 @@ type FeatureGroup = {
 
 type PreviewScreen = {
   title: string;
-  description: string;
+  subtitle: string;
+  description: string[];
   path: string;
+  secondPath?: string;
   rotate: number;
 };
 
@@ -45,11 +47,12 @@ export type MessageCatalog = {
   };
   nav: {
     friends: string;
-    notify: string;
+    download: string;
   };
   hero: {
     headingLead: string;
     headingHighlight: string;
+    headingTail: string;
     descriptionLead: string;
     descriptionTail: string;
     arrowNote: string;
@@ -98,12 +101,9 @@ export type MessageCatalog = {
   cta: {
     titleLineOne: string;
     titleLineTwo: string;
-    descriptionLineOne: string;
-    descriptionLineTwo: string;
-    bubble: string;
-    emailPlaceholder: string;
-    buttonLabel: string;
-    privacyNote: string;
+    description: string;
+    highlights: string[];
+    closingNote: string;
     playfulText: string;
   };
   footer: {
@@ -140,7 +140,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     meta: {
       title: "Aido | 2026년 봄, 가장 설레는 할 일 관리가 시작됩니다",
       description:
-        "친구와 함께 성장하는 새로운 Todo 경험. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 서로 독촉하세요. 2026년 봄 출시 예정.",
+        "친구와 함께 성장하는 새로운 Todo 경험. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 서로 독촉하세요. 지금 App Store와 Google Play에서 만나보세요.",
       openGraphTitle: "Aido | 2026년 봄, 가장 설레는 할 일 관리가 시작됩니다",
       openGraphDescription:
         "친구와 함께 성장하는 새로운 Todo 경험. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 서로 독촉하세요.",
@@ -154,7 +154,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "소셜 Todo",
         "생산성",
         "2026 신규 앱",
-        "곧 출시",
+        "App Store",
+        "Google Play",
       ],
     },
     languageSwitcher: {
@@ -164,16 +165,17 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     nav: {
       friends: "고양이 친구들",
-      notify: "출시 알람 받기",
+      download: "앱 다운로드",
     },
     hero: {
-      headingLead: "작심삼일은 이제 그만,",
-      headingHighlight: "친구와 함께 매일 성취하세요",
+      headingLead: "작심삼일은",
+      headingHighlight: "이제 그만,",
+      headingTail: "친구와 함께 매일 성취하세요",
       descriptionLead: "혼자서는 미루던 일도, 친구와 함께라면 달라집니다.",
       descriptionTail:
         "말로 쓰면 AI가 정리하고, 고양이 친구들이 매일 응원해줄 거예요.",
-      arrowNote: "곧 만나요!",
-      launchBadge: "🌸 2026년 봄, 가장 먼저 만나보세요",
+      arrowNote: "지금 다운로드!",
+      launchBadge: "지금 App Store와 Google Play에서 만나보세요",
       scrollLabel: "더 알아보기",
     },
     storeButtons: {
@@ -237,21 +239,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           icon: "sparkles",
           title: "개인 생산성",
-          description:
-            "말로 쓰면 AI가 정리하고, 반복 Todo로 완벽한 하루를 계획하세요.",
+          description: [
+            "말로 쓰면 AI가 정리하고,",
+            "반복 Todo로 완벽한 하루를 계획하세요.",
+          ],
           rotate: -1,
         },
         {
           icon: "users",
           title: "소셜 동기부여",
-          description: "콕 찌르기와 응원으로 친구와 함께 성장하세요.",
+          description: ["콕 찌르기와 응원으로", "친구와 함께 성장하세요."],
           rotate: 2,
         },
         {
           icon: "sparkles",
           title: "스마트 알림",
-          description:
-            "아침 리마인더부터 마감 3단계 알림까지, 미루기를 막아줍니다.",
+          description: [
+            "아침 리마인더부터 마감 3단계 알림까지,",
+            "미루기를 막아줍니다.",
+          ],
           rotate: -2,
         },
       ],
@@ -334,58 +340,63 @@ const catalogs: Record<Locale, MessageCatalog> = {
       descriptionTail: "Aido의 주요 화면들을 미리 만나보세요.",
       screens: [
         {
-          title: "홈",
-          description: "오늘의 할 일을 한눈에",
+          title: "말로 쓰면, AI가 정리해요",
+          subtitle: "스마트 할 일 관리",
+          description: [
+            "생각나는 대로 적거나 말하면",
+            "AI가 자동으로 분류하고 일정에 넣어줘요.",
+            "복잡한 입력은 이제 그만.",
+          ],
           path: "/app-assets/home.png",
-          rotate: -1,
-        },
-        {
-          title: "주간 캘린더",
-          description: "한 주를 한눈에 관리",
-          path: "/app-assets/week-calendar.png",
-          rotate: 1,
-        },
-        {
-          title: "월간 캘린더",
-          description: "한 달의 일정을 한 번에",
-          path: "/app-assets/month-calendar.png",
-          rotate: -1,
-        },
-        {
-          title: "로그인",
-          description: "간편한 소셜 로그인",
-          path: "/app-assets/login.png",
-          rotate: 2,
-        },
-        {
-          title: "알림",
-          description: "놓치지 않는 리마인더",
-          path: "/app-assets/alert.png",
           rotate: -2,
         },
         {
-          title: "콕 찌르기",
-          description: "친구에게 동기부여",
-          path: "/app-assets/nudge.png",
-          rotate: 1,
+          title: "한눈에 보는 나의 일정",
+          subtitle: "주간·월간 캘린더",
+          description: [
+            "오늘 할 일부터 한 달 계획까지,",
+            "캘린더 하나로 깔끔하게 관리하세요.",
+          ],
+          path: "/app-assets/month-calendar-new.png",
+          secondPath: "/app-assets/week-calendar-new.png",
+          rotate: 2,
         },
         {
-          title: "앱 아이콘",
-          description: "나만의 고양이 아이콘",
-          path: "/app-assets/app-icon-change.png",
-          rotate: -1,
+          title: "친구와 콕 찔러 응원해요",
+          subtitle: "소셜 동기부여",
+          description: [
+            "혼자 미루던 일도 친구가 콕 찌르면 달라져요.",
+            "서로 독촉하고, 함께 달성하세요.",
+          ],
+          path: "/app-assets/nudge-new.png",
+          rotate: -2,
+        },
+        {
+          title: "AI가 분석하고, 알아서 추천까지",
+          subtitle: "AI 리포트 & 추천",
+          description: [
+            "달성률과 습관 패턴을 분석하고,",
+            "반복되는 할 일은 자동으로 제안해줘요.",
+            "수락만 누르면 끝.",
+          ],
+          path: "/app-assets/ai-report.png",
+          secondPath: "/app-assets/ai-recommend.png",
+          rotate: 2,
         },
       ],
     },
     cta: {
-      titleLineOne: "가장 먼저",
-      titleLineTwo: "경험해보세요.",
-      descriptionLineOne: "준비가 되는 대로 가장 설레는 소식을 보내드릴게요.",
-      descriptionLineTwo: "무분별한 광고는 보내지 않습니다.",
-      bubble: "속았죠? 아직 메일도 보낼 수 없답니다!",
-      emailPlaceholder: "이메일 주소 입력",
-      buttonLabel: "알림 받기",
-      privacyNote: "* 우리는 당신의 개인정보를 소중히 여깁니다.",
+      titleLineOne: "지금 시작하세요.",
+      titleLineTwo: "매일이 달라집니다.",
+      description: "고양이 친구들과 AI가 당신의 하루를 함께 만들어갑니다.",
+      highlights: [
+        "AI 할 일 정리",
+        "소셜 동기부여",
+        "스마트 알림",
+        "5종 고양이 친구",
+        "iOS & Android",
+      ],
+      closingNote: "작은 시작이 큰 변화를 만듭니다.",
       playfulText: "아이두 아이두~ 🎵",
     },
     footer: {
@@ -423,7 +434,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       title:
         "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
       description:
-        "A fresh social to-do experience that helps you grow with friends. Speak naturally and AI organizes your tasks. Nudge friends to stay on track. Coming Spring 2026.",
+        "A fresh social to-do experience that helps you grow with friends. Speak naturally and AI organizes your tasks. Nudge friends to stay on track. Available now on the App Store and Google Play.",
       openGraphTitle:
         "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
       openGraphDescription:
@@ -436,7 +447,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "social productivity",
         "habit tracking",
         "cat productivity app",
-        "upcoming app",
+        "app store",
+        "google play",
       ],
     },
     languageSwitcher: {
@@ -446,17 +458,18 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     nav: {
       friends: "Cat Friends",
-      notify: "Get Launch Alerts",
+      download: "Download App",
     },
     hero: {
-      headingLead: "No more quitting after three days,",
-      headingHighlight: "achieve more every day with friends",
+      headingLead: "No more quitting after",
+      headingHighlight: "three days,",
+      headingTail: "achieve more every day with friends",
       descriptionLead:
         "Tasks you used to postpone become easier when you do them with friends.",
       descriptionTail:
         "Just speak, AI organizes it all — and your cat crew cheers you on every step.",
-      arrowNote: "See you soon!",
-      launchBadge: "🌸 Be the first to meet Aido in Spring 2026",
+      arrowNote: "Download now!",
+      launchBadge: "Now on the App Store and Google Play",
       scrollLabel: "Learn more",
     },
     storeButtons: {
@@ -520,21 +533,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           icon: "sparkles",
           title: "Personal Productivity",
-          description:
-            "Just speak and AI organizes your tasks. Plan each day with recurring todos.",
+          description: [
+            "Just speak and AI organizes your tasks.",
+            "Plan each day with recurring todos.",
+          ],
           rotate: -1,
         },
         {
           icon: "users",
           title: "Social Motivation",
-          description: "Nudge and cheer friends to grow together.",
+          description: ["Nudge and cheer friends", "to grow together."],
           rotate: 2,
         },
         {
           icon: "sparkles",
           title: "Smart Reminders",
-          description:
-            "From morning reminders to 3-stage deadline alerts — no more procrastinating.",
+          description: [
+            "From morning reminders to 3-stage deadline alerts —",
+            "no more procrastinating.",
+          ],
           rotate: -2,
         },
       ],
@@ -617,58 +634,65 @@ const catalogs: Record<Locale, MessageCatalog> = {
       descriptionTail: "take a sneak peek at Aido's key screens.",
       screens: [
         {
-          title: "Home",
-          description: "Your daily tasks at a glance",
+          title: "Just say it, AI organizes it",
+          subtitle: "Smart Task Management",
+          description: [
+            "Type or speak your thoughts and",
+            "AI automatically categorizes and schedules them.",
+            "No more complicated inputs.",
+          ],
           path: "/app-assets/home.png",
-          rotate: -1,
-        },
-        {
-          title: "Weekly",
-          description: "Plan your week ahead",
-          path: "/app-assets/week-calendar.png",
-          rotate: 1,
-        },
-        {
-          title: "Monthly",
-          description: "See the full month view",
-          path: "/app-assets/month-calendar.png",
-          rotate: -1,
-        },
-        {
-          title: "Login",
-          description: "Quick social sign-in",
-          path: "/app-assets/login.png",
-          rotate: 2,
-        },
-        {
-          title: "Alerts",
-          description: "Never miss a reminder",
-          path: "/app-assets/alert.png",
           rotate: -2,
         },
         {
-          title: "Nudge",
-          description: "Motivate your friends",
-          path: "/app-assets/nudge.png",
-          rotate: 1,
+          title: "Your schedule at a glance",
+          subtitle: "Weekly & Monthly Calendar",
+          description: [
+            "From today's tasks to monthly plans,",
+            "manage everything cleanly with one calendar.",
+          ],
+          path: "/app-assets/month-calendar-new.png",
+          secondPath: "/app-assets/week-calendar-new.png",
+          rotate: 2,
         },
         {
-          title: "App Icons",
-          description: "Pick your cat icon",
-          path: "/app-assets/app-icon-change.png",
-          rotate: -1,
+          title: "Nudge friends to keep going",
+          subtitle: "Social Motivation",
+          description: [
+            "Tasks you kept putting off change",
+            "when a friend nudges you.",
+            "Push each other and achieve together.",
+          ],
+          path: "/app-assets/nudge-new.png",
+          rotate: -2,
+        },
+        {
+          title: "AI analyzes and recommends for you",
+          subtitle: "AI Report & Suggestions",
+          description: [
+            "Analyzes your completion rates and habit patterns,",
+            "then automatically suggests recurring tasks.",
+            "Just tap accept.",
+          ],
+          path: "/app-assets/ai-report.png",
+          secondPath: "/app-assets/ai-recommend.png",
+          rotate: 2,
         },
       ],
     },
     cta: {
-      titleLineOne: "Be among the first",
-      titleLineTwo: "to try Aido.",
-      descriptionLineOne: "We will send updates as soon as we are ready.",
-      descriptionLineTwo: "No spam, only meaningful launch news.",
-      bubble: "Got you. We cannot send real emails just yet!",
-      emailPlaceholder: "Enter your email",
-      buttonLabel: "Notify me",
-      privacyNote: "* We respect and protect your personal data.",
+      titleLineOne: "Start today.",
+      titleLineTwo: "Every day gets better.",
+      description:
+        "Cat friends and AI work together to transform your daily routine.",
+      highlights: [
+        "AI Task Planning",
+        "Social Motivation",
+        "Smart Reminders",
+        "5 Cat Friends",
+        "iOS & Android",
+      ],
+      closingNote: "Small steps lead to big changes.",
       playfulText: "Aido, Aido~ 🎵",
     },
     footer: {

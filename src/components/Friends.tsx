@@ -25,10 +25,8 @@ export function Friends({ content }: FriendsProps) {
             {content.title}
           </h2>
           <p className="max-w-2xl mx-auto text-lg sm:text-xl text-muted-foreground leading-relaxed">
-            {content.descriptionLead}{" "}
-            <span className="block sm:inline mt-1 sm:mt-0">
-              {content.descriptionTail}
-            </span>
+            <span className="block">{content.descriptionLead}</span>
+            <span className="block">{content.descriptionTail}</span>
           </p>
         </div>
 

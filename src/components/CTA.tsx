@@ -1,25 +1,21 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 import type { MessageCatalog } from "@/i18n/messages";
-import { Button } from "./ui/button";
+import { StoreButtons } from "./StoreButtons";
 
 type CTAProps = {
   content: MessageCatalog["cta"];
+  storeButtons: MessageCatalog["storeButtons"];
 };
 
-export function CTA({ content }: CTAProps) {
-  const [showBubble, setShowBubble] = useState(false);
+const pillColors = ["#fff9c4", "#e3f2fd", "#f3e5f5", "#e8f5e9", "#fdf1e3"];
+const pillRotations = [-2, 1, -1.5, 2, -1];
 
-  const handleNotifyClick = () => {
-    setShowBubble(true);
-    setTimeout(() => setShowBubble(false), 3000);
-  };
-
+export function CTA({ content, storeButtons }: CTAProps) {
   return (
     <section
-      id="notify"
+      id="download"
       className="px-6 py-32 sm:py-48 text-center relative overflow-hidden"
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 opacity-[0.03]">
@@ -49,51 +45,45 @@ export function CTA({ content }: CTAProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="space-y-12 bg-[#fff9c4] wobbly border-[3px] border-foreground p-12 hand-shadow-lg -rotate-1"
+          className="bg-[#fff9c4] wobbly border-[3px] border-foreground p-8 sm:p-14 hand-shadow-lg -rotate-1"
         >
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-10 bg-foreground opacity-10 rotate-1" />
 
-          <h2 className="text-balance text-5xl font-bold tracking-tight sm:text-7xl leading-tight!">
+          <h2 className="text-pretty text-5xl font-bold tracking-tight sm:text-7xl leading-tight! mb-6 sm:mb-8">
             {content.titleLineOne} <br />
             {content.titleLineTwo}
           </h2>
-          <p className="mx-auto max-w-lg text-2xl font-medium text-foreground leading-relaxed!">
-            {content.descriptionLineOne} <br />
-            {content.descriptionLineTwo}
+
+          <p className="mx-auto max-w-lg text-xl sm:text-2xl font-medium text-foreground/80 leading-relaxed! mb-10 sm:mb-12">
+            {content.description}
           </p>
 
-          <div className="mx-auto flex max-w-md flex-col gap-6 sm:flex-row items-stretch sm:items-center relative">
-            <AnimatePresence>
-              {showBubble && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  className="absolute -top-24 left-1/2 -translate-x-1/2 z-20"
-                >
-                  <div className="bg-brand text-white font-bold px-6 py-3 wobbly-md border-[3px] border-foreground hand-shadow whitespace-nowrap relative">
-                    {content.bubble}
-                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand border-r-[3px] border-b-[3px] border-foreground rotate-45" />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <input
-              type="email"
-              placeholder={content.emailPlaceholder}
-              className="h-16 w-full wobbly-sm border-[3px] border-foreground bg-white px-8 text-xl font-medium focus:outline-none focus:ring-4 focus:ring-brand/20 transition-all placeholder:text-muted-foreground"
-            />
-            <Button
-              size="lg"
-              className="h-16 shrink-0 wobbly border-[3px] px-10 text-2xl font-bold"
-              onClick={handleNotifyClick}
-            >
-              {content.buttonLabel}
-            </Button>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12 sm:mb-14">
+            {content.highlights.map((tag, i) => (
+              <motion.span
+                key={tag}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06, duration: 0.4 }}
+                className="inline-block px-4 py-1.5 text-sm sm:text-base font-bold border-2 border-foreground wobbly-sm hand-shadow select-none"
+                style={{
+                  backgroundColor: pillColors[i % pillColors.length],
+                  rotate: `${pillRotations[i % pillRotations.length]}deg`,
+                }}
+              >
+                {tag}
+              </motion.span>
+            ))}
           </div>
 
-          <p className="text-sm font-bold opacity-60">{content.privacyNote}</p>
+          <div className="mb-10 sm:mb-12">
+            <StoreButtons content={storeButtons} />
+          </div>
+
+          <p className="text-sm sm:text-base font-bold opacity-50">
+            {content.closingNote}
+          </p>
         </motion.div>
 
         <div className="absolute -right-12 -bottom-20 hidden xl:block rotate-6">

@@ -19,10 +19,24 @@ export function Values({ content }: ValuesProps) {
     <section className="px-6 py-24 sm:py-32 bg-muted/20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-20 text-center relative">
-          <h2 className="text-4xl font-bold tracking-tight sm:text-6xl mb-4">
+          <h2 className="text-4xl font-bold tracking-tight sm:text-6xl mb-4 relative inline-block">
             {content.title}
+            <svg
+              className="absolute -bottom-3 left-0 w-full"
+              height="12"
+              viewBox="0 0 200 12"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 10C50 2 150 2 198 10"
+                stroke="#FF6843"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            </svg>
           </h2>
-          <div className="h-1.5 w-40 bg-brand mx-auto wobbly-md" />
         </div>
         <div className="grid gap-12 sm:grid-cols-3 lg:gap-16">
           {content.items.map((value, index) => {
@@ -46,7 +60,9 @@ export function Values({ content }: ValuesProps) {
                 <div className="space-y-4">
                   <h3 className="text-3xl font-bold">{value.title}</h3>
                   <p className="text-xl text-muted-foreground leading-relaxed px-4">
-                    {value.description}
+                    {value.description.map((line, i) => (
+                      <span key={i} className="block">{line}</span>
+                    ))}
                   </p>
                 </div>
               </motion.div>

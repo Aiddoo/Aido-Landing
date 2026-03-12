@@ -40,25 +40,15 @@ export function Vision({ content }: VisionProps) {
           <div className="inline-block px-4 py-1 bg-secondary-accent text-white wobbly-md border-2 border-foreground hand-shadow transform -rotate-3 font-bold">
             {content.label}
           </div>
-          <h2 className="text-balance text-4xl font-bold tracking-tight sm:text-7xl leading-tight!">
+          <h2 className="text-pretty text-4xl font-bold tracking-tight sm:text-6xl leading-tight! text-center">
             {content.titleLead}{" "}
-            <span className="block sm:inline">{content.titleTail}</span>
+            <span className="block">{content.titleTail}</span>
           </h2>
-          <div className="grid gap-8 sm:gap-12 text-lg sm:text-xl lg:text-2xl font-medium text-foreground sm:grid-cols-2 leading-relaxed!">
-            <p className="text-balance relative pl-6 sm:pl-0">
-              <span className="absolute left-0 sm:-left-6 top-0 text-brand text-3xl sm:text-4xl">
-                "
-              </span>
-              {content.quoteOneLead}{" "}
-              <span className="block mt-2">{content.quoteOneTail}</span>
-            </p>
-            <p className="text-balance">
-              {content.quoteTwoLead}{" "}
-              <span className="block mt-2">{content.quoteTwoTail}</span>
-              <span className="text-brand text-3xl sm:text-4xl leading-none">
-                "
-              </span>
-            </p>
+          <div className="max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl font-medium text-muted-foreground leading-relaxed! text-center space-y-1">
+            <p>{content.quoteOneLead}</p>
+            <p>{content.quoteOneTail}</p>
+            <p className="pt-4">{content.quoteTwoLead}</p>
+            <p>{content.quoteTwoTail}</p>
           </div>
         </motion.div>
       </div>

@@ -52,19 +52,18 @@ export function Hero({ content, storeButtons }: HeroProps) {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="max-w-4xl z-10"
       >
-        <h1 className="text-balance text-5xl font-bold tracking-tight sm:text-7xl lg:text-9xl leading-[1.1]! mb-8">
+        <h1 className="text-pretty text-4xl font-bold tracking-tight sm:text-6xl lg:text-8xl leading-[1.1]! mb-8">
           {content.headingLead}{" "}
-          <span className="text-brand relative inline-block">
+          <span className="relative inline-block">
             {content.headingHighlight}
             <svg
               className="absolute -bottom-2 left-0 w-full"
               height="12"
               viewBox="0 0 200 12"
               fill="none"
+              preserveAspectRatio="none"
               aria-hidden="true"
-              role="img"
             >
-              <title>Brush stroke highlight</title>
               <path
                 d="M2 10C50 2 150 2 198 10"
                 stroke="#FF6843"
@@ -73,12 +72,12 @@ export function Hero({ content, storeButtons }: HeroProps) {
               />
             </svg>
           </span>
+          <br />
+          <span className="text-brand">{content.headingTail}</span>
         </h1>
-        <p className="mt-8 sm:mt-12 text-balance text-lg font-medium text-foreground sm:text-xl lg:text-3xl max-w-2xl mx-auto leading-relaxed">
-          {content.descriptionLead}{" "}
-          <span className="block sm:inline mt-2 sm:mt-0">
-            {content.descriptionTail}
-          </span>
+        <p className="mt-8 sm:mt-12 text-pretty text-base font-medium text-foreground sm:text-lg lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+          <span className="block">{content.descriptionLead}</span>
+          <span className="block">{content.descriptionTail}</span>
         </p>
 
         <div className="mt-16 flex flex-col items-center justify-center gap-12 relative">
