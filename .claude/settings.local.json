@@ -18,7 +18,11 @@
       "Bash(pnpm add embla-carousel-react)",
       "Bash(npx biome check --write src/i18n/messages.ts src/components/AppPreview.tsx)",
       "Bash(npx biome check --write src/components/Roadmap.tsx src/components/ui/carousel.tsx src/proxy.ts)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "WebFetch(domain:www.aido.kr)",
+      "Bash(identify public/og-image.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/og-image.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/kim-yongmin/Desktop/aido-landing/public/og-image.png)"
     ]
   }
 }
