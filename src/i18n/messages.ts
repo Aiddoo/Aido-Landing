@@ -138,22 +138,23 @@ export type MessageCatalog = {
 const catalogs: Record<Locale, MessageCatalog> = {
   ko: {
     meta: {
-      title: "Aido | 2026년 봄, 가장 설레는 할 일 관리가 시작됩니다",
+      title: "아이두 - AI 투두 플래너 | 친구와 함께 성장하는 할 일 관리",
       description:
-        "친구와 함께 성장하는 새로운 Todo 경험. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 서로 독촉하세요. 지금 App Store와 Google Play에서 만나보세요.",
-      openGraphTitle: "Aido | 2026년 봄, 가장 설레는 할 일 관리가 시작됩니다",
+        "AI와 함께하는 소셜 투두. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 함께 성장하세요. 고양이 친구들이 매일 응원해주는 새로운 할 일 관리 앱.",
+      openGraphTitle: "아이두 - AI 투두 플래너",
       openGraphDescription:
-        "친구와 함께 성장하는 새로운 Todo 경험. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 서로 독촉하세요.",
+        "AI와 함께하는 소셜 투두. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 함께 성장하세요.",
       keywords: [
+        "아이두",
         "Aido",
-        "에이도",
-        "Todo 앱",
-        "할 일 관리",
+        "AI 투두",
+        "AI 할 일 관리",
+        "투두 플래너",
+        "소셜 투두",
+        "할 일 관리 앱",
         "AI 비서",
-        "고양이 Todo",
-        "소셜 Todo",
-        "생산성",
-        "2026 신규 앱",
+        "고양이 투두",
+        "생산성 앱",
         "App Store",
         "Google Play",
       ],
@@ -273,7 +274,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           items: [
             "친구 태그로 검색 & 요청",
             "친구 Todo 피드 공유",
-            "콕 찌르기로 친구 독촉",
+            "콕 찌르기로 친구 응원",
             "응원 메시지 보내기",
           ],
           color: "#fff9c4",
@@ -366,7 +367,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           subtitle: "소셜 동기부여",
           description: [
             "혼자 미루던 일도 친구가 콕 찌르면 달라져요.",
-            "서로 독촉하고, 함께 달성하세요.",
+            "서로 콕 찌르고, 함께 달성하세요.",
           ],
           path: "/app-assets/nudge-new.png",
           rotate: -2,
@@ -431,24 +432,24 @@ const catalogs: Record<Locale, MessageCatalog> = {
   },
   en: {
     meta: {
-      title:
-        "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
+      title: "Aido - AI To-Do Planner | Social Productivity with Friends",
       description:
-        "A fresh social to-do experience that helps you grow with friends. Speak naturally and AI organizes your tasks. Nudge friends to stay on track. Available now on the App Store and Google Play.",
-      openGraphTitle:
-        "Aido | The Most Delightful To-Do Experience Arrives in Spring 2026",
+        "A social to-do app powered by AI. Speak naturally and AI organizes your tasks. Nudge friends and grow together. Cat friends cheer you on every day.",
+      openGraphTitle: "Aido - AI To-Do Planner",
       openGraphDescription:
-        "Speak naturally and AI organizes your tasks. Nudge friends to stay on track. Grow together with Aido.",
+        "A social to-do app powered by AI. Speak naturally and AI organizes your tasks. Nudge friends and grow together.",
       keywords: [
         "Aido",
-        "to-do app",
-        "task management",
+        "AI to-do",
+        "AI task management",
+        "to-do planner",
+        "social to-do",
+        "task management app",
         "AI assistant",
-        "social productivity",
-        "habit tracking",
-        "cat productivity app",
-        "app store",
-        "google play",
+        "cat productivity",
+        "productivity app",
+        "App Store",
+        "Google Play",
       ],
     },
     languageSwitcher: {
@@ -567,7 +568,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           items: [
             "Search friends by tag",
             "Shared to-do feed",
-            "Nudge friends to stay on track",
+            "Nudge friends and cheer them on",
             "Send cheer messages",
           ],
           color: "#fff9c4",

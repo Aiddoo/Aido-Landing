@@ -49,7 +49,7 @@ export async function generateMetadata({
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: "Aido Logo",
+          alt: "아이두 - AI 투두 플래너",
         },
       ],
     },
