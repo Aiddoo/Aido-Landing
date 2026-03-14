@@ -56,7 +56,7 @@ export function proxy(request: NextRequest) {
   targetUrl.pathname =
     pathname === "/" ? `/${targetLocale}` : `/${targetLocale}${pathname}`;
 
-  const response = NextResponse.redirect(targetUrl);
+  const response = NextResponse.rewrite(targetUrl);
   applyLocaleCookie(response, targetLocale);
   return response;
 }
