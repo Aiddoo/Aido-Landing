@@ -65,6 +65,8 @@ export type MessageCatalog = {
     appStoreLabel: string;
     playStorePrefix: string;
     playStoreLabel: string;
+    instagramPrefix: string;
+    instagramLabel: string;
   };
   friends: {
     label: string;
@@ -186,6 +188,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+      instagramPrefix: "최신소식 받아보기",
+      instagramLabel: "Instagram",
     },
     friends: {
       label: "Meet the Team",
@@ -481,6 +485,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+      instagramPrefix: "FOLLOW US ON",
+      instagramLabel: "Instagram",
     },
     friends: {
       label: "Meet the Team",
