@@ -122,6 +122,7 @@ export type MessageCatalog = {
     inquiryValue: string;
     termsLabel: string;
     privacyLabel: string;
+    instagramLabel: string;
   };
   legal: {
     badge: string;
@@ -416,6 +417,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       inquiryValue: "dydals3440@gmail.com",
       termsLabel: "이용약관",
       privacyLabel: "개인정보처리방침",
+      instagramLabel: "인스타그램",
     },
     legal: {
       badge: "Legal",
@@ -712,6 +714,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       inquiryValue: "dydals3440@gmail.com",
       termsLabel: "Terms of Service",
       privacyLabel: "Privacy Policy",
+      instagramLabel: "Instagram",
     },
     legal: {
       badge: "Legal",
