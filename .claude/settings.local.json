@@ -26,7 +26,12 @@
       "Bash(find:*)",
       "mcp__plugin_context7_context7__resolve-library-id",
       "mcp__plugin_context7_context7__query-docs",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:releasebot.io)",
+      "Bash(git add:*)",
+      "Bash(vercel:*)"
     ]
   }
 }

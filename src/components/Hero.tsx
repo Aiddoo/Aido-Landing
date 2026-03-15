@@ -105,6 +105,12 @@ export function Hero({ content, storeButtons }: HeroProps) {
           <StoreButtons content={storeButtons} />
 
           <div className="flex flex-col items-center gap-4">
+            <iframe
+              title="disquiet-badge"
+              frameBorder="0"
+              src="https://badge.disquiet.io/vote-badge?productUrlSlug=아이두&mode=light"
+              style={{ width: '210px', height: '54px', border: 'none' }}
+            />
             <div className="bg-muted px-4 py-1 wobbly-md border-2 border-foreground hand-shadow text-sm font-bold -rotate-2">
               {content.launchBadge}
             </div>
