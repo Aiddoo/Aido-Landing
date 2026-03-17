@@ -44,12 +44,12 @@ export function Vision({ content }: VisionProps) {
             {content.titleLead}{" "}
             <span className="block">{content.titleTail}</span>
           </h2>
-          <div className="max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl font-medium text-muted-foreground leading-relaxed! text-center space-y-1">
+          <blockquote className="max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl font-medium text-muted-foreground leading-relaxed! text-center space-y-1">
             <p>{content.quoteOneLead}</p>
             <p>{content.quoteOneTail}</p>
             <p className="pt-4">{content.quoteTwoLead}</p>
             <p>{content.quoteTwoTail}</p>
-          </div>
+          </blockquote>
         </motion.div>
       </div>
     </section>

@@ -48,6 +48,7 @@ export type MessageCatalog = {
   nav: {
     friends: string;
     download: string;
+    patchNotes: string;
   };
   hero: {
     headingLead: string;
@@ -126,6 +127,16 @@ export type MessageCatalog = {
     privacyLabel: string;
     instagramLabel: string;
   };
+  patchNotes: {
+    title: string;
+    description: string;
+    backHome: string;
+    bugFixes: string;
+    features: string;
+    improvements: string;
+    newRelease: string;
+    latest: string;
+  };
   legal: {
     badge: string;
     backHomeLabel: string;
@@ -170,6 +181,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     nav: {
       friends: "고양이 친구들",
       download: "앱 다운로드",
+      patchNotes: "패치 노트",
     },
     hero: {
       headingLead: "작심삼일은",
@@ -423,6 +435,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
       privacyLabel: "개인정보처리방침",
       instagramLabel: "인스타그램",
     },
+    patchNotes: {
+      title: "패치 노트",
+      description: "Aido의 최신 업데이트 내역을 확인하세요.",
+      backHome: "홈으로",
+      bugFixes: "버그 수정",
+      features: "새로운 기능",
+      improvements: "개선 사항",
+      newRelease: "신규 출시",
+      latest: "최신",
+    },
     legal: {
       badge: "Legal",
       backHomeLabel: "홈으로 돌아가기",
@@ -466,6 +488,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     nav: {
       friends: "Cat Friends",
       download: "Download App",
+      patchNotes: "Patch Notes",
     },
     hero: {
       headingLead: "No more quitting after",
@@ -721,6 +744,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
       termsLabel: "Terms of Service",
       privacyLabel: "Privacy Policy",
       instagramLabel: "Instagram",
+    },
+    patchNotes: {
+      title: "Patch Notes",
+      description: "Check out the latest updates for Aido.",
+      backHome: "Home",
+      bugFixes: "Bug Fixes",
+      features: "Features",
+      improvements: "Improvements",
+      newRelease: "New Release",
+      latest: "Latest",
     },
     legal: {
       badge: "Legal",

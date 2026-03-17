@@ -90,7 +90,7 @@ function SinglePhoneSection({
   isReversed: boolean;
 }) {
   return (
-    <motion.div
+    <motion.figure
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -107,8 +107,10 @@ function SinglePhoneSection({
         />
       </div>
 
-      <TextBlock screen={screen} align="left" />
-    </motion.div>
+      <figcaption className="flex-1">
+        <TextBlock screen={screen} align="left" />
+      </figcaption>
+    </motion.figure>
   );
 }
 
@@ -122,7 +124,7 @@ function DualPhoneSection({
   isReversed: boolean;
 }) {
   return (
-    <motion.div
+    <motion.figure
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -154,8 +156,10 @@ function DualPhoneSection({
       </div>
 
       {/* 텍스트 */}
-      <TextBlock screen={screen} align="left" />
-    </motion.div>
+      <figcaption className="flex-1">
+        <TextBlock screen={screen} align="left" />
+      </figcaption>
+    </motion.figure>
   );
 }
 
@@ -197,7 +201,7 @@ function TextBlock({
 }) {
   return (
     <div
-      className={`flex-1 text-center ${
+      className={`text-center ${
         align === "right" ? "sm:text-right" : "sm:text-left"
       }`}
     >

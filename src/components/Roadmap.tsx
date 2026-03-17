@@ -15,7 +15,7 @@ function RoadmapCard({
   index: number;
 }) {
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -31,9 +31,9 @@ function RoadmapCard({
       <div className="space-y-6">
         <div className="flex items-center gap-3">
           <span className="text-4xl">{group.icon}</span>
-          <span className="text-2xl font-bold text-brand">
+          <h3 className="text-2xl font-bold text-brand">
             {group.title}
-          </span>
+          </h3>
         </div>
 
         <div className="pb-4 border-b-2 border-dashed border-muted">
@@ -53,7 +53,7 @@ function RoadmapCard({
       <div className="absolute -bottom-6 -right-4 text-7xl font-bold opacity-5 -rotate-12 pointer-events-none">
         {group.icon}
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
 

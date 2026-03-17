@@ -43,7 +43,7 @@ export function Values({ content }: ValuesProps) {
             const Icon = iconMap[value.icon];
 
             return (
-              <motion.div
+              <motion.article
                 key={value.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export function Values({ content }: ValuesProps) {
                     ))}
                   </p>
                 </div>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>

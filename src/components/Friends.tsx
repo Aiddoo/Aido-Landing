@@ -32,7 +32,7 @@ export function Friends({ content }: FriendsProps) {
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
           {content.cards.map((friend, index) => (
-            <motion.div
+            <motion.figure
               key={friend.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -55,12 +55,12 @@ export function Friends({ content }: FriendsProps) {
                   className="object-cover p-2"
                 />
               </div>
-              <span className="text-lg font-bold text-foreground">
+              <figcaption className="text-lg font-bold text-foreground">
                 {friend.name}
-              </span>
+              </figcaption>
 
               <div className="absolute -top-1 -right-1 h-3 w-3 bg-accent rounded-full border border-foreground" />
-            </motion.div>
+            </motion.figure>
           ))}
         </div>
       </div>

@@ -105,12 +105,26 @@ export function Hero({ content, storeButtons }: HeroProps) {
           <StoreButtons content={storeButtons} />
 
           <div className="flex flex-col items-center gap-4">
-            <iframe
-              title="disquiet-badge"
-              frameBorder="0"
-              src="https://badge.disquiet.io/vote-badge?productUrlSlug=아이두&mode=light"
-              style={{ width: '210px', height: '54px', border: 'none' }}
-            />
+            <a
+              href="https://disquiet.io/product/아이두"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 wobbly border-[3px] border-foreground bg-white px-6 py-3 text-foreground transition-all hand-shadow hover:bg-muted hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#2d2d2d] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
+            >
+              <div className="flex flex-col items-start leading-none group-hover:rotate-1">
+                <span className="text-xs font-bold uppercase tracking-wider opacity-60 mb-1">
+                  DISQUIET*
+                </span>
+                <span className="text-lg font-bold sm:text-xl text-nowrap">
+                  디스콰이엇 투표 중
+                </span>
+              </div>
+              <span className="flex items-center gap-1 text-brand font-bold text-lg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(-90 12 12)" />
+                </svg>
+              </span>
+            </a>
             <div className="bg-muted px-4 py-1 wobbly-md border-2 border-foreground hand-shadow text-sm font-bold -rotate-2">
               {content.launchBadge}
             </div>

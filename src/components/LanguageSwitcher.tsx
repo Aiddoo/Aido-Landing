@@ -27,7 +27,7 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center gap-2 rounded-full border-2 border-foreground bg-white px-2 py-1 hand-shadow">
+    <nav aria-label="Language selection" className="flex items-center gap-2 rounded-full border-2 border-foreground bg-white px-2 py-1 hand-shadow">
       <span className="hidden px-2 text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/50 md:block">
         {labels.label}
       </span>
@@ -50,6 +50,6 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
           </Link>
         );
       })}
-    </div>
+    </nav>
   );
 }

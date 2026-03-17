@@ -58,9 +58,9 @@ export function CTA({ content, storeButtons }: CTAProps) {
             {content.description}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-12 sm:mb-14">
+          <ul role="list" className="flex flex-wrap items-center justify-center gap-3 mb-12 sm:mb-14">
             {content.highlights.map((tag, i) => (
-              <motion.span
+              <motion.li
                 key={tag}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -73,9 +73,9 @@ export function CTA({ content, storeButtons }: CTAProps) {
                 }}
               >
                 {tag}
-              </motion.span>
+              </motion.li>
             ))}
-          </div>
+          </ul>
 
           <div className="mb-10 sm:mb-12">
             <StoreButtons content={storeButtons} />

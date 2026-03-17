@@ -5,6 +5,7 @@ import { CTA } from "@/components/CTA";
 import { Friends } from "@/components/Friends";
 import { Hero } from "@/components/Hero";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { MobileMenu } from "@/components/MobileMenu";
 import { Roadmap } from "@/components/Roadmap";
 import { Values } from "@/components/Values";
 import { Vision } from "@/components/Vision";
@@ -51,6 +52,12 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
             >
               {messages.nav.friends}
             </a>
+            <Link
+              href={`${prefix}/patch-notes`}
+              className="hidden text-sm sm:text-base lg:text-lg font-bold text-foreground/60 sm:block hover:text-brand transition-colors"
+            >
+              {messages.nav.patchNotes}
+            </Link>
             <a
               href={`${prefix}#download`}
               className="hidden sm:block text-sm sm:text-base lg:text-lg font-bold text-brand hover:scale-110 active:scale-95 transition-all"
@@ -61,6 +68,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
               locale={locale}
               labels={messages.languageSwitcher}
             />
+            <MobileMenu prefix={prefix} labels={messages.nav} />
           </div>
         </div>
       </nav>
@@ -113,7 +121,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
           </div>
 
           <div className="pt-12 border-t-2 border-dashed border-foreground/10 flex flex-col items-center sm:items-start gap-8">
-            <div className="space-y-2 text-center sm:text-left text-sm font-medium text-foreground/70">
+            <address className="space-y-2 text-center sm:text-left text-sm font-medium text-foreground/70 not-italic">
               <p>
                 <span className="font-bold text-foreground">
                   {messages.footer.representativeLabel}
@@ -149,9 +157,9 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                   {messages.footer.inquiryValue}
                 </a>
               </p>
-            </div>
+            </address>
 
-            <div className="flex items-center gap-8 text-sm font-bold">
+            <nav aria-label="Footer links" className="flex items-center gap-8 text-sm font-bold">
               <Link
                 href={`${prefix}/terms`}
                 className="hover:text-brand transition-colors"
@@ -187,7 +195,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
               </a>
-            </div>
+            </nav>
           </div>
         </div>
 
