@@ -49,7 +49,7 @@ export async function generateMetadata({
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: "아이두 - AI 투두 플래너",
+          alt: messages.meta.openGraphTitle,
         },
       ],
     },
@@ -91,6 +91,25 @@ export default async function LocaleLayout({
     inLanguage: locale === "ko" ? "ko-KR" : "en-US",
   };
 
+  const mobileAppJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    name: SITE_NAME,
+    operatingSystem: "iOS, Android",
+    applicationCategory: "ProductivityApplication",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "KRW",
+    },
+    installUrl: [
+      "https://apps.apple.com/kr/app/%EC%95%84%EC%9D%B4%EB%91%90-ai-%ED%88%AC%EB%91%90-%ED%94%8C%EB%9E%98%EB%84%88/id6757722325",
+      "https://play.google.com/store/apps/details?id=com.aido.mobile",
+    ],
+    description: messages.meta.description,
+    inLanguage: locale === "ko" ? "ko-KR" : "en-US",
+  };
+
   return (
     <div lang={locale}>
       <script type="application/ld+json">
@@ -98,6 +117,9 @@ export default async function LocaleLayout({
       </script>
       <script type="application/ld+json">
         {JSON.stringify(websiteJsonLd)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(mobileAppJsonLd)}
       </script>
       {children}
     </div>
