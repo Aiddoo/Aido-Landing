@@ -12,6 +12,62 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.0.4",
+    date: "2026-03-19",
+    summary: {
+      ko: "AI 리포트 개선, 카테고리 관리 UX 개편, 캘린더 완료 상태 표시",
+      en: "Improved AI reports, redesigned category management, calendar completion status",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "푸시 알림 문구가 더 다양해졌어요",
+            en: "Push notification messages are now more varied",
+          },
+          {
+            ko: "AI 리포트 주간/월간 분석 분리 및 코칭 품질 개선",
+            en: "Separated weekly/monthly AI reports with improved coaching quality",
+          },
+          {
+            ko: "AI 추천이 더 다양한 패턴을 감지해요",
+            en: "AI suggestions now detect more diverse patterns",
+          },
+          {
+            ko: "일일 완료 현황에 카테고리 색상 표시",
+            en: "Category colors now shown in daily completion status",
+          },
+          {
+            ko: "카테고리 관리를 마이 탭으로 이동 및 화면 구조 개선",
+            en: "Moved category management to My tab with improved layout",
+          },
+          {
+            ko: "캘린더에서 날짜별 할일 완료 상태 표시",
+            en: "Calendar now shows daily task completion status",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "iOS 하단 탭 바 관련 앱 크래시 수정",
+            en: "Fixed crash related to bottom tab bar on iOS",
+          },
+          {
+            ko: "Android 하단 탭 바 경계선 제거",
+            en: "Removed border line on Android bottom tab bar",
+          },
+          {
+            ko: "AI 리포트 생성 시간 오류 수정",
+            en: "Fixed AI report generation timing issue",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.0.3",
     date: "2026-03-16",
     summary: {
@@ -63,8 +119,8 @@ export const releaseNotes: ReleaseNote[] = [
             en: "Fixed Kakao profile image not displaying",
           },
           {
-            ko: "Android 마이페이지 하단 컨텐츠 탭 바 가림 수정",
-            en: "Fixed tab bar overlapping bottom content on Android My Page",
+            ko: "Android에서 마이페이지 하단 내용이 가려지는 문제 수정",
+            en: "Fixed bottom content being hidden by tab bar on Android My Page",
           },
         ],
       },
@@ -80,8 +136,8 @@ export const releaseNotes: ReleaseNote[] = [
             en: "Added contact/inquiry feature",
           },
           {
-            ko: "캘린더 뷰 모드 선택 값 MMKV 저장",
-            en: "Persist calendar view mode selection with MMKV",
+            ko: "캘린더 보기 모드 선택이 유지되도록 개선",
+            en: "Calendar view mode selection is now preserved",
           },
         ],
       },
@@ -89,12 +145,12 @@ export const releaseNotes: ReleaseNote[] = [
         type: "improvements",
         items: [
           {
-            ko: "analytics 이벤트 강화 및 친구 요청 lifecycle 추적",
-            en: "Enhanced analytics events and friend request lifecycle tracking",
+            ko: "앱 사용 분석 및 친구 요청 흐름 개선",
+            en: "Improved app analytics and friend request flow",
           },
           {
-            ko: "마이페이지/프로필 설정 UI 리팩토링 및 SettingNavigation 공통 컴포넌트 추출",
-            en: "Refactored My Page/Profile settings UI and extracted shared SettingNavigation component",
+            ko: "마이페이지 및 프로필 설정 화면 디자인 개선",
+            en: "Redesigned My Page and profile settings UI",
           },
         ],
       },
@@ -104,40 +160,40 @@ export const releaseNotes: ReleaseNote[] = [
     version: "1.0.1",
     date: "2026-03-13",
     summary: {
-      ko: "주간 배지, 푸시 알림 개선 및 다수 버그 수정",
-      en: "Weekly badges, push notification improvements, and multiple bug fixes",
+      ko: "주간 배지, 알림 개선 및 다수 버그 수정",
+      en: "Weekly badges, notification improvements, and multiple bug fixes",
     },
     categories: [
       {
         type: "bugFixes",
         items: [
           {
-            ko: "시스템 폰트 크기 확대 시 리포트/바텀시트 텍스트 줄넘김 수정",
-            en: "Fixed text wrapping in reports/bottom sheets when system font size is enlarged",
+            ko: "큰 글씨 설정 시 화면 깨짐 수정",
+            en: "Fixed layout breaking when system font size is enlarged",
           },
           {
-            ko: "Android adaptive icon 원형 크롭 시 잘림 수정",
-            en: "Fixed Android adaptive icon clipping in circular crop",
+            ko: "Android 앱 아이콘이 잘리는 문제 수정",
+            en: "Fixed Android app icon being clipped",
           },
           {
-            ko: "디스코드 알림 구독 금액 표기 오류 수정",
-            en: "Fixed incorrect subscription amount display in Discord notifications",
+            ko: "구독 금액 표기 오류 수정",
+            en: "Fixed incorrect subscription price display",
           },
           {
-            ko: "oklch 색상 값 교정",
-            en: "Corrected oklch color values",
+            ko: "일부 색상이 올바르게 표시되지 않는 문제 수정",
+            en: "Fixed some colors not displaying correctly",
           },
           {
-            ko: "Android에서 계정 연결 화면에 Apple 로그인 노출 수정",
-            en: "Fixed Apple sign-in showing on account linking screen on Android",
+            ko: "Android에서 Apple 로그인이 잘못 표시되는 문제 수정",
+            en: "Fixed Apple sign-in incorrectly showing on Android",
           },
           {
-            ko: "푸시 알림 수신 시 크래시 수정",
-            en: "Fixed crash when receiving push notifications",
+            ko: "알림 수신 시 앱이 종료되는 문제 수정",
+            en: "Fixed app crash when receiving notifications",
           },
           {
-            ko: "푸시 알림 탭 시 라우팅 오류 수정",
-            en: "Fixed routing error when tapping push notifications",
+            ko: "알림을 눌렀을 때 잘못된 화면으로 이동하는 문제 수정",
+            en: "Fixed navigating to wrong screen when tapping notifications",
           },
         ],
       },
@@ -153,24 +209,24 @@ export const releaseNotes: ReleaseNote[] = [
             en: "Added weekly badge sharing feature",
           },
           {
-            ko: "점심 시간대 푸시 알림 추가",
-            en: "Added lunchtime push notifications",
+            ko: "점심 시간 리마인더 알림 추가",
+            en: "Added lunchtime reminder notifications",
           },
           {
-            ko: "스트릭 위기 알림 추가",
-            en: "Added streak at-risk alerts",
+            ko: "연속 달성이 끊기기 전 알림 추가",
+            en: "Added alerts before losing your streak",
           },
           {
-            ko: "친구 승인 실시간 반영",
-            en: "Real-time friend approval updates",
+            ko: "친구 요청 수락 시 즉시 반영",
+            en: "Friend request acceptance now updates instantly",
           },
           {
-            ko: "24시간제 시간 형식 설정 및 앱 전체 적용",
-            en: "Added 24-hour time format setting applied app-wide",
+            ko: "24시간제 시간 표시 설정 추가",
+            en: "Added 24-hour time format setting",
           },
           {
-            ko: "소셜 로그인 버튼 UI 통일 및 Apple HIG 준수",
-            en: "Unified social login button UI following Apple HIG",
+            ko: "소셜 로그인 버튼 디자인 개선",
+            en: "Improved social login button design",
           },
         ],
       },
@@ -178,20 +234,20 @@ export const releaseNotes: ReleaseNote[] = [
         type: "improvements",
         items: [
           {
-            ko: "AI 투두 파싱 정확도 향상 — 한국어 날짜/시간/기간 표현 전면 커버",
-            en: "Improved AI to-do parsing accuracy — full coverage of Korean date/time/duration expressions",
+            ko: "AI 할일 인식 정확도 향상",
+            en: "Improved AI to-do recognition accuracy",
           },
           {
-            ko: "AI 제안에 카테고리 추천 추가 및 분석 주기 매일로 변경",
-            en: "Added category suggestions to AI recommendations and changed analysis frequency to daily",
+            ko: "AI 추천에 카테고리 제안 추가 및 매일 분석",
+            en: "Added category suggestions to AI recommendations with daily analysis",
           },
           {
             ko: "프리미엄 리포트 빈 상태 화면 개선",
             en: "Improved empty state screen for premium reports",
           },
           {
-            ko: "scheduler 내부 정리 및 WeeklyAchievement catch-up 추가",
-            en: "Cleaned up scheduler internals and added WeeklyAchievement catch-up logic",
+            ko: "주간 달성 리포트 안정성 개선",
+            en: "Improved weekly achievement report reliability",
           },
         ],
       },
