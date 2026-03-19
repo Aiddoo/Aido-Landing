@@ -13,7 +13,7 @@ export type ReleaseNote = {
 export const releaseNotes: ReleaseNote[] = [
   {
     version: "1.0.4",
-    date: "2026-03-19",
+    date: "2026-03-20",
     summary: {
       ko: "AI 리포트 개선, 카테고리 관리 UX 개편, 캘린더 완료 상태 표시",
       en: "Improved AI reports, redesigned category management, calendar completion status",
@@ -21,6 +21,19 @@ export const releaseNotes: ReleaseNote[] = [
     categories: [
       {
         type: "features",
+        items: [
+          {
+            ko: "일일 완료 현황에 카테고리 색상 표시",
+            en: "Category colors now shown in daily completion status",
+          },
+          {
+            ko: "캘린더에서 날짜별 할일 완료 상태 표시",
+            en: "Calendar now shows daily task completion status",
+          },
+        ],
+      },
+      {
+        type: "improvements",
         items: [
           {
             ko: "푸시 알림 문구가 더 다양해졌어요",
@@ -35,16 +48,8 @@ export const releaseNotes: ReleaseNote[] = [
             en: "AI suggestions now detect more diverse patterns",
           },
           {
-            ko: "일일 완료 현황에 카테고리 색상 표시",
-            en: "Category colors now shown in daily completion status",
-          },
-          {
             ko: "카테고리 관리를 마이 탭으로 이동 및 화면 구조 개선",
             en: "Moved category management to My tab with improved layout",
-          },
-          {
-            ko: "캘린더에서 날짜별 할일 완료 상태 표시",
-            en: "Calendar now shows daily task completion status",
           },
         ],
       },
@@ -135,15 +140,15 @@ export const releaseNotes: ReleaseNote[] = [
             ko: "문의하기 기능 추가",
             en: "Added contact/inquiry feature",
           },
-          {
-            ko: "캘린더 보기 모드 선택이 유지되도록 개선",
-            en: "Calendar view mode selection is now preserved",
-          },
         ],
       },
       {
         type: "improvements",
         items: [
+          {
+            ko: "캘린더 보기 모드 선택이 유지되도록 개선",
+            en: "Calendar view mode selection is now preserved",
+          },
           {
             ko: "앱 사용 분석 및 친구 요청 흐름 개선",
             en: "Improved app analytics and friend request flow",
@@ -217,16 +222,8 @@ export const releaseNotes: ReleaseNote[] = [
             en: "Added alerts before losing your streak",
           },
           {
-            ko: "친구 요청 수락 시 즉시 반영",
-            en: "Friend request acceptance now updates instantly",
-          },
-          {
             ko: "24시간제 시간 표시 설정 추가",
             en: "Added 24-hour time format setting",
-          },
-          {
-            ko: "소셜 로그인 버튼 디자인 개선",
-            en: "Improved social login button design",
           },
         ],
       },
@@ -248,6 +245,14 @@ export const releaseNotes: ReleaseNote[] = [
           {
             ko: "주간 달성 리포트 안정성 개선",
             en: "Improved weekly achievement report reliability",
+          },
+          {
+            ko: "친구 요청 수락 시 즉시 반영",
+            en: "Friend request acceptance now updates instantly",
+          },
+          {
+            ko: "소셜 로그인 버튼 디자인 개선",
+            en: "Improved social login button design",
           },
         ],
       },
