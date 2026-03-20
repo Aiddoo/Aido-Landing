@@ -23,12 +23,12 @@ export const releaseNotes: ReleaseNote[] = [
         type: "features",
         items: [
           {
-            ko: "할일 오늘하기 / 내일하기 토글 기능 추가",
-            en: "Added today/tomorrow toggle for tasks",
+            ko: "오늘 할 일은 내일로 미루고, 다른 날 할 일은 오늘로 당겨올 수 있어요",
+            en: "Postpone today's tasks to tomorrow, or pull other days' tasks to today",
           },
           {
-            ko: "친구 목록 편집 모드 추가",
-            en: "Added friend list edit mode",
+            ko: "친구 목록을 편집할 수 있는 모드가 추가됐어요",
+            en: "Added a new edit mode for your friend list",
           },
         ],
       },
@@ -36,16 +36,20 @@ export const releaseNotes: ReleaseNote[] = [
         type: "improvements",
         items: [
           {
-            ko: "할일 추가·수정·삭제 시 반응 속도가 빨라졌어요",
+            ko: "할 일을 추가하거나 수정·삭제할 때 반응 속도가 훨씬 빨라졌어요",
             en: "Adding, editing, and deleting tasks now feels much faster",
           },
           {
-            ko: "AI 추천 문구가 더 다양해졌어요",
-            en: "AI suggestion messages are now more varied",
+            ko: "카테고리를 추가하거나 수정·삭제할 때 반응 속도가 훨씬 빨라졌어요",
+            en: "Adding, editing, and deleting categories now feels much faster",
           },
           {
-            ko: "카테고리 관리 화면 UX 개선",
-            en: "Improved category management screen UX",
+            ko: "AI 추천 문구가 더 다양해졌어요, 매일 새로운 제안을 받아보세요",
+            en: "AI suggestion messages are now more varied — get fresh recommendations every day",
+          },
+          {
+            ko: "카테고리 관리 화면의 사용성이 개선됐어요",
+            en: "Improved usability of the category management screen",
           },
         ],
       },
@@ -53,12 +57,12 @@ export const releaseNotes: ReleaseNote[] = [
         type: "bugFixes",
         items: [
           {
-            ko: "리마인더 알림에 수정 전 할일 제목이 표시되는 문제 수정",
-            en: "Fixed reminder notifications showing old task title after editing",
+            ko: "리마인더 알림에 수정 전 할 일 제목이 표시되던 문제를 수정했어요",
+            en: "Fixed reminder notifications showing the old task title after editing",
           },
           {
-            ko: "입력 화면 키보드 전환 시 화면이 부자연스럽게 움직이는 문제 수정",
-            en: "Fixed unnatural screen movement when switching keyboards on input screen",
+            ko: "할 일 추가 화면에서 키보드와 날짜 선택을 오갈 때 화면이 끊기던 문제를 수정했어요",
+            en: "Fixed screen stuttering when switching between keyboard and date picker on the task creation screen",
           },
         ],
       },
