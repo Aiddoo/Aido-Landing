@@ -12,6 +12,59 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.0.5",
+    date: "2026-03-21",
+    summary: {
+      ko: "할일 반응 속도 개선, 오늘/내일하기 토글, 친구 목록 편집 기능 추가",
+      en: "Faster task updates, today/tomorrow toggle, friend list editing",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "할일 오늘하기 / 내일하기 토글 기능 추가",
+            en: "Added today/tomorrow toggle for tasks",
+          },
+          {
+            ko: "친구 목록 편집 모드 추가",
+            en: "Added friend list edit mode",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "할일 추가·수정·삭제 시 반응 속도가 빨라졌어요",
+            en: "Adding, editing, and deleting tasks now feels much faster",
+          },
+          {
+            ko: "AI 추천 문구가 더 다양해졌어요",
+            en: "AI suggestion messages are now more varied",
+          },
+          {
+            ko: "카테고리 관리 화면 UX 개선",
+            en: "Improved category management screen UX",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "리마인더 알림에 수정 전 할일 제목이 표시되는 문제 수정",
+            en: "Fixed reminder notifications showing old task title after editing",
+          },
+          {
+            ko: "입력 화면 키보드 전환 시 화면이 부자연스럽게 움직이는 문제 수정",
+            en: "Fixed unnatural screen movement when switching keyboards on input screen",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.0.4",
     date: "2026-03-20",
     summary: {
