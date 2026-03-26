@@ -12,6 +12,55 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.1.0",
+    date: "2026-03-27",
+    summary: {
+      ko: "하위 항목(체크리스트) 추가, 카테고리 UX 개선",
+      en: "Sub-tasks (checklists), improved category UX",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "할 일에 하위 항목(체크리스트)을 추가할 수 있어요",
+            en: "You can now add sub-tasks (checklists) to your to-dos",
+          },
+          {
+            ko: "할 일 추가 시 카테고리를 더 쉽게 선택할 수 있어요",
+            en: "Selecting a category when adding a task is now easier",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "카테고리 관리 화면이 더 직관적으로 개선됐어요",
+            en: "Category management screen is now more intuitive",
+          },
+          {
+            ko: "반복 설정 화면이 더 깔끔해졌어요",
+            en: "Repeat settings UI has been refined",
+          },
+          {
+            ko: "카테고리 색상을 변경하면 캘린더에 바로 반영돼요",
+            en: "Changing a category color now updates the calendar instantly",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "앱을 잠깐 나갔다 돌아올 때 입력 화면이 깨지던 문제를 수정했어요",
+            en: "Fixed input screen breaking when returning from background",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.0.5",
     date: "2026-03-21",
     summary: {
