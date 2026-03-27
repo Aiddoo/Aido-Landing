@@ -12,6 +12,38 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.1.1",
+    date: "2026-03-28",
+    summary: {
+      ko: "글꼴 크기 설정 추가 및 안정성 개선",
+      en: "Font size settings and stability improvements",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "앱 내 글꼴 크기를 5단계로 조절할 수 있어요 (아주 작게 ~ 아주 크게)",
+            en: "You can now adjust the font size in 5 levels (Extra Small to Extra Large)",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "시간 선택 화면이 일부 기기에서 잘리던 문제를 수정했어요",
+            en: "Fixed time picker being cut off on some devices",
+          },
+          {
+            ko: "AI 제안 화면이 간헐적으로 깜빡이던 문제를 수정했어요",
+            en: "Fixed AI suggestion screen flickering intermittently",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.1.0",
     date: "2026-03-27",
     summary: {
