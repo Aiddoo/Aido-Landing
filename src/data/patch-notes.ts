@@ -12,6 +12,71 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.2.0",
+    date: "2026-04-02",
+    summary: {
+      ko: "날씨 알림 시스템 추가, AI 프리미엄 기능 대폭 개선",
+      en: "Weather notifications, major AI premium improvements",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "날씨 알림이 추가됐어요 — 아침·오후에 날씨에 맞는 할 일 팁을 알려드려요",
+            en: "Weather notifications are here — get weather-based task tips every morning and afternoon",
+          },
+          {
+            ko: "날씨 상세 화면에서 시간대별 날씨, 체감온도, 자외선, 미세먼지, 5일 예보를 확인할 수 있어요",
+            en: "Check hourly weather, feels-like temp, UV index, air quality, and 5-day forecast in the new weather screen",
+          },
+          {
+            ko: "날씨 알림 시간을 오전/오후 각각 원하는 시간으로 설정할 수 있어요",
+            en: "Set your preferred morning and afternoon weather notification times",
+          },
+          {
+            ko: "AI 제안이 8가지 유형으로 확장됐어요 — 습관 회복, 밸런스 제안 등 더 맞춤화된 추천을 받아보세요",
+            en: "AI suggestions expanded to 8 types — get more personalized recommendations including habit recovery and balance tips",
+          },
+          {
+            ko: "반복 할 일의 시작일을 변경하거나 삭제할 수 있어요",
+            en: "You can now change the start date or delete recurring tasks",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "AI 리포트가 더 정교해졌어요 — 습관 패턴 분석과 맞춤 코칭이 강화됐어요",
+            en: "AI reports are now more refined — enhanced habit pattern analysis and personalized coaching",
+          },
+          {
+            ko: "AI가 이전에 수락하거나 거절한 제안을 학습해서 점점 더 나에게 맞는 추천을 해줘요",
+            en: "AI learns from your accepted and declined suggestions to give better recommendations over time",
+          },
+          {
+            ko: "알림이 한꺼번에 몰려오지 않도록 시간대를 분산했어요",
+            en: "Notifications are now spread out so they don't all arrive at once",
+          },
+          {
+            ko: "푸시 알림을 꺼도 앱 내 알림 목록에서는 확인할 수 있어요",
+            en: "You can still see notifications in the app even with push notifications turned off",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "일부 화면에서 글꼴 크기 설정이 적용되지 않던 문제를 수정했어요",
+            en: "Fixed font size settings not being applied on some screens",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.1.1",
     date: "2026-03-28",
     summary: {
