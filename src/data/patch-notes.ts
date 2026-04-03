@@ -12,6 +12,48 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.2.2",
+    date: "2026-04-04",
+    summary: {
+      ko: "날씨 화면 현재 기온 표시, 알림 설정 화면 개선",
+      en: "Current temperature display, improved notification settings",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "날씨 화면에서 평균 기온 대신 현재 기온이 표시돼요",
+            en: "Weather screen now shows current temperature instead of average",
+          },
+          {
+            ko: "알림 설정 화면이 더 깔끔하게 정리됐어요",
+            en: "Notification settings screen has been reorganized for a cleaner layout",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    version: "1.2.1",
+    date: "2026-04-03",
+    summary: {
+      ko: "날씨 상세 화면 디자인 개선",
+      en: "Weather detail screen design improvements",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "날씨 상세 화면 디자인이 더 보기 좋게 개선됐어요",
+            en: "Weather detail screen has been redesigned for better readability",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.2.0",
     date: "2026-04-02",
     summary: {
