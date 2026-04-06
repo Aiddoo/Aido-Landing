@@ -12,6 +12,33 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.2.3",
+    date: "2026-04-06",
+    summary: {
+      ko: "푸시 알림 및 날씨 화면 버그 수정",
+      en: "Push notification and weather screen bug fixes",
+    },
+    categories: [
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "푸시 알림을 눌렀을 때 화면이 겹쳐 보이던 문제를 수정했어요",
+            en: "Fixed screens overlapping when tapping a push notification",
+          },
+          {
+            ko: "날씨 알림이 '할일' 카테고리로 잘못 표시되던 문제를 수정했어요",
+            en: "Fixed weather notifications incorrectly labeled as 'To-do'",
+          },
+          {
+            ko: "날씨 화면에서 강수 아이콘과 텍스트가 일치하지 않던 문제를 수정했어요",
+            en: "Fixed precipitation icon and text mismatch on the weather screen",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.2.2",
     date: "2026-04-04",
     summary: {
