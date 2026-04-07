@@ -12,6 +12,34 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.2.4",
+    date: "2026-04-07",
+    summary: {
+      ko: "하위 항목 기본 펼침 및 버그 수정",
+      en: "Sub-tasks expanded by default and bug fix",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "하위 항목이 있는 할 일이 기본으로 펼쳐져서 한눈에 확인할 수 있어요",
+            en: "Tasks with sub-items are now expanded by default so you can see everything at a glance",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "알림 메시지에 글꼴 크기 설정이 반영되지 않던 문제를 수정했어요",
+            en: "Fixed font size setting not being applied to notification messages",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.2.3",
     date: "2026-04-06",
     summary: {
