@@ -12,6 +12,55 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.3.0",
+    date: "2026-04-15",
+    summary: {
+      ko: "메모 기능 추가, AI 메모 변환, AI 제안 품질 개선",
+      en: "Memo feature, AI memo-to-task conversion, improved AI suggestions",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "메모 기능이 추가됐어요 — 떠오르는 생각을 자유롭게 메모할 수 있어요",
+            en: "Memo feature is here — jot down your thoughts freely anytime",
+          },
+          {
+            ko: "AI 메모 변환 기능이 추가됐어요 — 메모 작성 후 상단의 로봇 아이콘을 누르면 AI가 할 일과 하위 항목으로 자동 정리해줘요",
+            en: "AI memo conversion is here — tap the robot icon at the top after writing a memo and AI will automatically organize it into tasks and sub-items",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "간헐적으로 로그아웃되던 문제를 해결했어요 — 한 번만 재로그인해 주시면 이후로는 정상적으로 유지돼요",
+            en: "Fixed intermittent forced logout issue — please log in once more and it will stay connected from now on",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "AI가 더 명확하게 유저에게 필요한 할 일을 제안해줘요",
+            en: "AI now suggests tasks more clearly tailored to your needs",
+          },
+          {
+            ko: "다크모드 화면이 더 자연스러워졌어요",
+            en: "Dark mode screens now look more natural",
+          },
+          {
+            ko: "전반적인 앱의 안정성과 사용성을 개선했어요",
+            en: "Improved overall app stability and usability",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.2.4",
     date: "2026-04-07",
     summary: {
