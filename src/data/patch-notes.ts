@@ -12,6 +12,55 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.3.1",
+    date: "2026-04-19",
+    summary: {
+      ko: "캘린더 좌우 스와이프, 반복 설정 주중/주말 프리셋, AI 월간 한도 전환",
+      en: "Calendar swipe, weekday/weekend repeat presets, AI monthly quota",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "캘린더를 좌우로 스와이프해서 주/월을 넘길 수 있어요 — 넘기는 애니메이션도 더 매끄러워졌어요",
+            en: "Swipe the calendar left or right to move between weeks and months — with smoother transitions",
+          },
+          {
+            ko: "반복 설정에 주중/주말 프리셋이 추가됐어요 — [매일], [주중], [주말], [월~일] 중 원하는 주기를 한 번에 선택할 수 있어요",
+            en: "New weekday/weekend presets in repeat settings — pick [Daily], [Weekdays], [Weekends], or [Mon–Sun] in one tap",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "무료 플랜의 AI 할 일 파싱 한도가 월 5회로 바뀌었어요 — 매월 1일 0시(KST)에 리셋돼요",
+            en: "Free plan AI task parsing is now 5 times per month — resets at 00:00 KST on the 1st of every month",
+          },
+          {
+            ko: "AI가 할 일의 카테고리와 내용을 더 정확하게 구분해줘요",
+            en: "AI now separates task category and content more accurately",
+          },
+          {
+            ko: "AI 리포트 품질이 더 안정적으로 개선됐어요",
+            en: "AI reports are now more consistent and reliable",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "캘린더를 넘길 때 날씨 배지가 깜빡이던 문제를 수정했어요",
+            en: "Fixed weather badge flickering when swiping through the calendar",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.3.0",
     date: "2026-04-15",
     summary: {

@@ -1,6 +1,6 @@
 # Aido Terms of Service
 
-**Effective Date: March 13, 2026**
+**Effective Date: April 19, 2026**
 
 ---
 
@@ -96,7 +96,7 @@ The main features provided by the Company are as follows:
 
    | Plan | Price | Key Benefits |
    |------|-------|-------------|
-   | Free | Free | AI parsing 5 times/day, Nudge 3 times/day, Cheer 3 times/day, up to 5 friends, up to 3 categories |
+   | Free | Free | AI parsing 5 times/month (resets at 00:00 KST on the 1st), Nudge 3 times/day, Cheer 3 times/day, up to 5 friends, up to 3 categories |
    | Pro Monthly | KRW 3,900/month | Unlimited AI parsing, Nudge & Cheer, unlimited friends, up to 30 categories, weekly & monthly AI reports, AI recurring pattern suggestions, custom reminder times, premium app icons |
    | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly |
 
@@ -253,5 +253,5 @@ Inquiries regarding these Terms, subscriptions, and complaints may be submitted 
 
 ## Addendum
 
-1. These Terms of Service take effect on **March 13, 2026**.
-2. The previous Terms of Service (effective March 10, 2026) shall cease to have effect upon the implementation of these Terms.
+1. These Terms of Service take effect on **April 19, 2026**.
+2. The previous Terms of Service (effective March 13, 2026) shall cease to have effect upon the implementation of these Terms.
