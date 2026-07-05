@@ -12,6 +12,46 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.3.3",
+    date: "2026-07-06",
+    summary: {
+      ko: "푸시 알림 문구 개선, 날씨 알림·로그아웃 버그 수정",
+      en: "Friendlier push notifications, weather and logout bug fixes",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "푸시 알림 문구를 더 친근하고 자연스럽게 다듬었어요",
+            en: "Refined push notification copy to feel friendlier and more natural",
+          },
+          {
+            ko: "전반적인 앱의 안정성과 사용성을 개선했어요",
+            en: "Improved overall app stability and usability",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "비나 눈 예보가 있는 날에도 맑은 날씨 알림이 오던 문제를 고쳤어요",
+            en: "Fixed sunny-weather notifications being sent on days with rain or snow in the forecast",
+          },
+          {
+            ko: "네트워크가 불안정할 때 간헐적으로 로그아웃되던 문제를 고쳤어요",
+            en: "Fixed intermittent logouts on unstable network connections",
+          },
+          {
+            ko: "알림 속 친구 이름 뒤 조사가 어색하게 표시되던 문제를 고쳤어요",
+            en: "Fixed awkward Korean particles after friend names in notifications",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.3.2",
     date: "2026-05-17",
     summary: {
