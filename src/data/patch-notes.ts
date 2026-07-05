@@ -12,6 +12,25 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.3.2",
+    date: "2026-05-17",
+    summary: {
+      ko: "앱 안정성 및 사용성 개선",
+      en: "Stability and usability improvements",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "전반적인 앱의 안정성과 사용성을 개선했어요",
+            en: "Improved overall app stability and usability",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.3.1",
     date: "2026-04-19",
     summary: {
