@@ -12,6 +12,34 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.3.4",
+    date: "2026-07-06",
+    summary: {
+      ko: "앱 안정성 강화 및 로그인 유지 개선",
+      en: "Stronger app stability and more reliable sign-in",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "앱의 안정성을 강화하고, 오류가 생겼을 때 더 빠르게 찾아 고칠 수 있도록 개선했어요",
+            en: "Strengthened app stability and improved how quickly we can detect and fix issues",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "일부 상황에서 로그인이 예기치 않게 풀리던 문제를 추가로 개선했어요",
+            en: "Further fixed cases where you could be unexpectedly signed out",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.3.3",
     date: "2026-07-06",
     summary: {
