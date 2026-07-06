@@ -36,6 +36,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                 src="/logo.png"
                 alt="Aido"
                 fill
+                sizes="40px"
                 priority
                 className="object-contain p-1.5"
               />
@@ -92,6 +93,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                   src="/logo.png"
                   alt="Aido"
                   fill
+                  sizes="32px"
                   className="object-contain p-1"
                 />
               </div>

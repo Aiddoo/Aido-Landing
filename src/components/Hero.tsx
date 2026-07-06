@@ -40,6 +40,7 @@ export function Hero({ content, storeButtons }: HeroProps) {
             src="/logo.png"
             alt="Aido Logo"
             fill
+            sizes="(min-width: 1024px) 160px, 96px"
             priority
             className="object-contain p-3 sm:p-4"
           />
