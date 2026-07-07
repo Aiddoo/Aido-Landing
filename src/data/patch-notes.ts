@@ -12,6 +12,73 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.4.0",
+    date: "2026-07-07",
+    summary: {
+      ko: "영어 지원 시작 — 화면부터 알림, AI 리포트까지 전부",
+      en: "English is here — from every screen to notifications and AI reports",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "아이두가 이제 영어를 지원해요 — 설정 > 언어에서 [시스템 설정], [한국어], [English] 중 선택할 수 있어요",
+            en: "Aido now speaks English — choose [System default], [한국어], or [English] in Settings > Language",
+          },
+          {
+            ko: "처음 설치하면 기기 언어를 자동으로 따라가요 — 한국어 기기는 한국어로, 그 외에는 영어로 시작해요",
+            en: "On first install, Aido follows your device language automatically",
+          },
+          {
+            ko: "푸시 알림도 선택한 언어로 도착해요 — 리마인더, 친구 소식, 날씨 브리핑까지 전부요",
+            en: "Push notifications arrive in your language too — reminders, friend updates, and weather briefings",
+          },
+          {
+            ko: "AI 주간·월간 리포트와 반복 할 일 추천도 선택한 언어로 만들어져요",
+            en: "AI weekly/monthly reports and repeat suggestions are now generated in your language",
+          },
+          {
+            ko: "날짜·시간·요일 표기도 언어에 맞춰 자연스럽게 바뀌어요",
+            en: "Dates, times, and weekdays are formatted naturally for your language",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "언어를 바꾸면 앱을 재시작하지 않아도 모든 화면에 바로 적용돼요",
+            en: "Language changes apply instantly across the app — no restart needed",
+          },
+          {
+            ko: "전반적인 앱의 안정성과 사용성을 개선했어요",
+            en: "Improved overall app stability and usability",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    version: "1.3.5",
+    date: "2026-07-06",
+    summary: {
+      ko: "재설치 후 로그인이 풀리던 문제 수정",
+      en: "Fixed sign-in issues after reinstalling the app",
+    },
+    categories: [
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "앱을 지웠다가 다시 설치하면 로그인 직후 바로 로그아웃되던 문제를 고쳤어요",
+            en: "Fixed being signed out right after logging in on a fresh reinstall",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.3.4",
     date: "2026-07-06",
     summary: {
