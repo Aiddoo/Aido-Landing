@@ -12,6 +12,78 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.4.2",
+    date: "2026-07-09",
+    summary: {
+      ko: "이제 로그인이 풀리지 않아요",
+      en: "You stay signed in — for good this time",
+    },
+    categories: [
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "앱을 업데이트해도 로그인이 그대로 유지돼요",
+            en: "You stay signed in after updating the app",
+          },
+          {
+            ko: "앱을 쓰다가 갑자기 '다시 시도' 화면이 뜨던 문제를 고쳤어요",
+            en: "Fixed a 'Try again' screen that could suddenly appear while using the app",
+          },
+          {
+            ko: "휴대폰이 잠겨 있을 때 알림을 눌러 앱을 열어도 로그인이 유지돼요",
+            en: "You stay signed in when you open the app from a notification while your phone is locked",
+          },
+          {
+            ko: "인터넷이 안 되는 곳에서 앱을 열어도 로그인이 풀리지 않아요",
+            en: "You stay signed in when you open the app without an internet connection",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "전반적인 앱의 안정성과 사용성을 개선했어요",
+            en: "Improved overall app stability and usability",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    version: "1.4.1",
+    date: "2026-07-08",
+    summary: {
+      ko: "업데이트 후 로그인이 풀리던 문제 수정",
+      en: "Fixed being signed out after updating the app",
+    },
+    categories: [
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "앱을 업데이트한 뒤 로그아웃되던 문제를 고쳤어요 — 한 번만 다시 로그인해 주시면 그다음부터는 유지돼요",
+            en: "Fixed being signed out after updating the app — sign in once more and it will stay from then on",
+          },
+          {
+            ko: "일부 iPhone 화면에서 영어 문구가 어색하게 보이던 문제를 고쳤어요",
+            en: "Fixed awkward English wording on some iPhone screens",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "인터넷이 잠깐 끊기거나 느려져도 로그인이 유지돼요",
+            en: "You stay signed in even when your connection drops or slows down for a moment",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0",
     date: "2026-07-07",
     summary: {
