@@ -12,6 +12,25 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.4.3",
+    date: "2026-07-09",
+    summary: {
+      ko: "간헐적으로 로그인이 풀리던 현상을 해결했어요",
+      en: "Fixed intermittent sign-out issues",
+    },
+    categories: [
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "일부 사용자에게 간헐적으로 로그인이 풀리던 현상을 해결했어요",
+            en: "Resolved an issue where some users were intermittently signed out",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.2",
     date: "2026-07-09",
     summary: {
