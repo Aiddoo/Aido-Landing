@@ -1,4 +1,6 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import { Black_Han_Sans, Noto_Sans_KR } from "next/font/google";
 import { locales } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
@@ -6,10 +8,27 @@ import { resolveLocale } from "@/i18n/resolve-locale";
 const SITE_URL = "https://aido.kr";
 const SITE_NAME = "Aido";
 
+const notoSansKR = Noto_Sans_KR({
+  weight: ["400", "500", "700"],
+  variable: "--font-noto-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const blackHanSans = Black_Han_Sans({
+  weight: "400",
+  variable: "--font-black-han",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 type LocaleLayoutProps = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 };
+
+// ko/en만 정적 생성 — 그 외 로케일 세그먼트는 404 (요청시점 생성 금지 → 완전 정적)
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -111,17 +130,22 @@ export default async function LocaleLayout({
   };
 
   return (
-    <div lang={locale}>
-      <script type="application/ld+json">
-        {JSON.stringify(organizationJsonLd)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(websiteJsonLd)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(mobileAppJsonLd)}
-      </script>
-      {children}
-    </div>
+    <html lang={locale}>
+      <body
+        className={`${notoSansKR.variable} ${blackHanSans.variable} antialiased`}
+      >
+        <script type="application/ld+json">
+          {JSON.stringify(organizationJsonLd)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteJsonLd)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(mobileAppJsonLd)}
+        </script>
+        {children}
+        <Analytics />
+      </body>
+    </html>
   );
 }
