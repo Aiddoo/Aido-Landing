@@ -321,17 +321,17 @@ export function LegalMarkdown({ markdown }: { markdown: string }) {
                           key={rowKey}
                           className="border-b border-foreground/10"
                         >
-                          {row.map((cell, cellIndex) => (
-                            <td
-                              key={`${rowKey}-td-${cellIndex}`}
-                              className="px-3 py-2.5 text-foreground/85"
-                            >
-                              {renderInlineMarkdown(
-                                cell,
-                                `${rowKey}-td-${cellIndex}`,
-                              )}
-                            </td>
-                          ))}
+                          {row.map((cell, cellIndex) => {
+                            const cellKey = `${rowKey}-td-${cellIndex}`;
+                            return (
+                              <td
+                                key={cellKey}
+                                className="px-3 py-2.5 text-foreground/85"
+                              >
+                                {renderInlineMarkdown(cell, cellKey)}
+                              </td>
+                            );
+                          })}
                         </tr>
                       );
                     })}

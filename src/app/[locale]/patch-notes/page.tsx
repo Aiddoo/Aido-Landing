@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { releaseNotes } from "@/data/patch-notes";
 import type { ReleaseCategory } from "@/data/patch-notes";
-import { getMessages } from "@/i18n/messages";
-import type { MessageCatalog } from "@/i18n/messages";
-import { resolveLocale } from "@/i18n/resolve-locale";
+import { releaseNotes } from "@/data/patch-notes";
 import type { Locale } from "@/i18n/config";
+import type { MessageCatalog } from "@/i18n/messages";
+import { getMessages } from "@/i18n/messages";
+import { resolveLocale } from "@/i18n/resolve-locale";
 
 type LocalePatchNotesPageProps = {
   params: Promise<{ locale: string }>;
@@ -50,7 +50,7 @@ const categoryIcons: Record<ReleaseCategory, string> = {
 
 function getCategoryLabel(
   type: ReleaseCategory,
-  patchNotes: MessageCatalog["patchNotes"]
+  patchNotes: MessageCatalog["patchNotes"],
 ): string {
   const map: Record<ReleaseCategory, string> = {
     bugFixes: patchNotes.bugFixes,
@@ -210,14 +210,14 @@ export default async function LocalePatchNotesPage({
                                 </span>
                                 {getCategoryLabel(
                                   category.type,
-                                  messages.patchNotes
+                                  messages.patchNotes,
                                 )}
                               </span>
                             </div>
                             <ul className="space-y-2 pl-1">
-                              {category.items.map((item, itemIndex) => (
+                              {category.items.map((item) => (
                                 <li
-                                  key={itemIndex}
+                                  key={item.ko}
                                   className="flex items-start gap-2.5 text-sm sm:text-base text-foreground/80 leading-relaxed"
                                 >
                                   <span

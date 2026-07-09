@@ -161,7 +161,10 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
               </p>
             </address>
 
-            <nav aria-label="Footer links" className="flex items-center gap-8 text-sm font-bold">
+            <nav
+              aria-label="Footer links"
+              className="flex items-center gap-8 text-sm font-bold"
+            >
               <Link
                 href={`${prefix}/terms`}
                 className="hover:text-brand transition-colors"
@@ -196,6 +199,9 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
+                <span className="sr-only">
+                  {messages.footer.instagramLabel}
+                </span>
               </a>
             </nav>
           </div>

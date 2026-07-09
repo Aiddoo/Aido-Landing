@@ -58,7 +58,7 @@ export function CTA({ content, storeButtons }: CTAProps) {
             {content.description}
           </p>
 
-          <ul role="list" className="flex flex-wrap items-center justify-center gap-3 mb-12 sm:mb-14">
+          <ul className="flex flex-wrap items-center justify-center gap-3 mb-12 sm:mb-14">
             {content.highlights.map((tag, i) => (
               <motion.li
                 key={tag}

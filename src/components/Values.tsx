@@ -60,8 +60,10 @@ export function Values({ content }: ValuesProps) {
                 <div className="space-y-4">
                   <h3 className="text-3xl font-bold">{value.title}</h3>
                   <p className="text-xl text-muted-foreground leading-relaxed px-4">
-                    {value.description.map((line, i) => (
-                      <span key={i} className="block">{line}</span>
+                    {value.description.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
                     ))}
                   </p>
                 </div>

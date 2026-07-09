@@ -59,7 +59,6 @@ export function AppPreview({ content }: AppPreviewProps) {
                 <DualPhoneSection
                   key={screen.title}
                   screen={screen}
-                  index={index}
                   isReversed={isReversed}
                 />
               );
@@ -69,7 +68,6 @@ export function AppPreview({ content }: AppPreviewProps) {
               <SinglePhoneSection
                 key={screen.title}
                 screen={screen}
-                index={index}
                 isReversed={isReversed}
               />
             );
@@ -82,11 +80,9 @@ export function AppPreview({ content }: AppPreviewProps) {
 
 function SinglePhoneSection({
   screen,
-  index,
   isReversed,
 }: {
   screen: MessageCatalog["appPreview"]["screens"][number];
-  index: number;
   isReversed: boolean;
 }) {
   return (
@@ -116,11 +112,9 @@ function SinglePhoneSection({
 
 function DualPhoneSection({
   screen,
-  index,
   isReversed,
 }: {
   screen: MessageCatalog["appPreview"]["screens"][number];
-  index: number;
   isReversed: boolean;
 }) {
   return (
@@ -144,14 +138,16 @@ function DualPhoneSection({
               size="md"
             />
           </div>
-          <div className="relative -ml-12 sm:-ml-16 mt-16 sm:mt-24 z-20">
-            <PhoneMockup
-              src={screen.secondPath!}
-              alt={`${screen.title} 2`}
-              rotate={3}
-              size="md"
-            />
-          </div>
+          {screen.secondPath && (
+            <div className="relative -ml-12 sm:-ml-16 mt-16 sm:mt-24 z-20">
+              <PhoneMockup
+                src={screen.secondPath}
+                alt={`${screen.title} 2`}
+                rotate={3}
+                size="md"
+              />
+            </div>
+          )}
         </div>
       </div>
 
@@ -212,8 +208,8 @@ function TextBlock({
         {screen.title}
       </h3>
       <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-md mx-auto sm:mx-0">
-        {screen.description.map((line, i) => (
-          <span key={i} className="block">
+        {screen.description.map((line) => (
+          <span key={line} className="block">
             {line}
           </span>
         ))}

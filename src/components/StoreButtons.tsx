@@ -14,7 +14,10 @@ const storeButtonClass =
 
 export function StoreButtons({ content }: StoreButtonsProps) {
   return (
-    <nav aria-label="Download links" className="flex flex-col items-center gap-6">
+    <nav
+      aria-label="Download links"
+      className="flex flex-col items-center gap-6"
+    >
       <div className="flex flex-wrap items-center justify-center gap-6">
         <a
           href={APP_STORE_URL}

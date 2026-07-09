@@ -10,7 +10,9 @@ type LocalePrivacyPageProps = {
   params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params }: LocalePrivacyPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: LocalePrivacyPageProps): Promise<Metadata> {
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
 
@@ -32,7 +34,9 @@ export async function generateMetadata({ params }: LocalePrivacyPageProps): Prom
   };
 }
 
-export default async function LocalePrivacyPage({ params }: LocalePrivacyPageProps) {
+export default async function LocalePrivacyPage({
+  params,
+}: LocalePrivacyPageProps) {
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
   const markdown = await readLegalDocument("privacy-policy", locale);
@@ -45,7 +49,10 @@ export default async function LocalePrivacyPage({ params }: LocalePrivacyPagePro
             <p className="inline-flex items-center rounded-full border-2 border-foreground/20 bg-white px-3 py-1 text-xs font-bold tracking-wide text-foreground/70">
               {messages.legal.badge}
             </p>
-            <LanguageSwitcher locale={locale} labels={messages.languageSwitcher} />
+            <LanguageSwitcher
+              locale={locale}
+              labels={messages.languageSwitcher}
+            />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             {messages.legal.privacyTitle}
@@ -60,7 +67,10 @@ export default async function LocalePrivacyPage({ params }: LocalePrivacyPagePro
             >
               {messages.legal.viewTermsLabel}
             </Link>
-            <Link href={`/${locale}`} className="text-brand underline underline-offset-4">
+            <Link
+              href={`/${locale}`}
+              className="text-brand underline underline-offset-4"
+            >
               {messages.legal.backHomeLabel}
             </Link>
           </div>

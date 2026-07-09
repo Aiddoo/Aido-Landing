@@ -31,9 +31,7 @@ function RoadmapCard({
       <div className="space-y-6">
         <div className="flex items-center gap-3">
           <span className="text-4xl">{group.icon}</span>
-          <h3 className="text-2xl font-bold text-brand">
-            {group.title}
-          </h3>
+          <h3 className="text-2xl font-bold text-brand">{group.title}</h3>
         </div>
 
         <div className="pb-4 border-b-2 border-dashed border-muted">
@@ -75,8 +73,12 @@ export function Roadmap({ content }: RoadmapProps) {
         {(() => {
           const cols = 3;
           const remainder = content.groups.length % cols;
-          const mainGroups = remainder === 0 ? content.groups : content.groups.slice(0, -remainder);
-          const lastGroups = remainder === 0 ? [] : content.groups.slice(-remainder);
+          const mainGroups =
+            remainder === 0
+              ? content.groups
+              : content.groups.slice(0, -remainder);
+          const lastGroups =
+            remainder === 0 ? [] : content.groups.slice(-remainder);
 
           return (
             <>
@@ -89,7 +91,10 @@ export function Roadmap({ content }: RoadmapProps) {
                 <div className="mt-12 flex flex-wrap justify-center gap-12">
                   {lastGroups.map((group, index) => (
                     <div key={group.title} className="w-full max-w-sm">
-                      <RoadmapCard group={group} index={mainGroups.length + index} />
+                      <RoadmapCard
+                        group={group}
+                        index={mainGroups.length + index}
+                      />
                     </div>
                   ))}
                 </div>

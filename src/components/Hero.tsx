@@ -121,8 +121,17 @@ export function Hero({ content, storeButtons }: HeroProps) {
                 </span>
               </div>
               <span className="flex items-center gap-1 text-brand font-bold text-lg">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" transform="rotate(-90 12 12)" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+                    transform="rotate(-90 12 12)"
+                  />
                 </svg>
               </span>
             </a>
