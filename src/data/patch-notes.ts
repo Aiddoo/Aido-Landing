@@ -12,6 +12,34 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.4.4",
+    date: "2026-07-10",
+    summary: {
+      ko: "앱을 열 때 첫 화면이 더 매끄럽게 떠요",
+      en: "A smoother home screen when you open the app",
+    },
+    categories: [
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "앱을 열자마자 할 일·AI 추천·날씨에 '재시도' 화면이 뜨던 문제를 고쳤어요 — 이제 잠깐만 기다리면 화면이 알아서 채워져요",
+            en: "Fixed 'Try again' cards appearing on your to-dos, AI suggestions, and weather right after opening the app — now the screen fills in on its own after a brief moment",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "연결이 잠깐 불안정한 순간에 앱을 열어도, 로그인은 그대로 유지한 채 자동으로 다시 불러와요",
+            en: "If your connection is briefly unstable when you open the app, it reloads on its own while keeping you signed in",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.3",
     date: "2026-07-09",
     summary: {
