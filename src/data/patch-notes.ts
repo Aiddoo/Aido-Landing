@@ -12,6 +12,46 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.5.0",
+    date: "2026-07-12",
+    summary: {
+      ko: "이제 이름이나 아이디로 친구를 찾을 수 있어요",
+      en: "Now you can find friends by name or ID",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "이름이나 아이디로 친구를 검색할 수 있어요 — 인스타그램처럼 원하는 사람을 쉽게 찾아 친구로 추가하세요",
+            en: "Search for friends by name or ID — find the people you're looking for and add them, just like on Instagram",
+          },
+          {
+            ko: "같은 이름을 쓰는 사람이 여러 명이어도 아이디로 구분해서 정확히 찾을 수 있어요",
+            en: "Even when several people share the same name, you can tell them apart by their ID and find the right person",
+          },
+          {
+            ko: "친구 요청을 보낸 뒤 마음이 바뀌면 요청을 취소할 수 있어요",
+            en: "Changed your mind after sending a friend request? You can now cancel it",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "구글·애플 같은 소셜 계정으로 처음 연결할 때 더 안정적으로 처리돼요",
+            en: "Linking your account with Google or Apple for the first time is now more reliable",
+          },
+          {
+            ko: "전반적인 앱의 안정성과 사용성을 개선했어요",
+            en: "Improved overall app stability and usability",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.4",
     date: "2026-07-10",
     summary: {
