@@ -15,28 +15,28 @@ export const releaseNotes: ReleaseNote[] = [
     version: "1.5.1",
     date: "2026-07-13",
     summary: {
-      ko: "앱을 열지 않아도, 홈 화면에서 오늘 할 일을 바로 확인하세요",
-      en: "See today's to-dos right on your home screen — no need to open the app",
+      ko: "홈 화면에서 오늘 할 일을 바로 확인하세요",
+      en: "See today's to-dos right on your home screen",
     },
     categories: [
       {
         type: "features",
         items: [
           {
-            ko: "홈 화면에 위젯을 추가할 수 있어요 — 폰을 켜자마자 오늘 할 일과 몇 개나 끝냈는지 한눈에 보여요",
-            en: "Add the Aido widget to your home screen — the moment you unlock your phone, you'll see today's to-dos and how many you've finished",
+            ko: "홈 화면에 위젯을 추가할 수 있어요 — 앱을 열지 않아도 오늘 할 일이 한눈에 보여요",
+            en: "Add a widget to your home screen — see today's to-dos without opening the app",
           },
           {
-            ko: "위젯 크기를 자유롭게 바꿀 수 있어요. 작게 두면 남은 개수와 연속 달성 일수만 간단히, 크게 두면 할 일 목록까지 보여줘요",
-            en: "Resize the widget however you like — keep it small for just your remaining count and streak, or make it bigger to see the full to-do list",
+            ko: "작게 두면 남은 개수와 연속 달성 일수만, 크게 두면 할 일 목록까지 보여줘요",
+            en: "Keep it small for your remaining count and streak, or go bigger for the full list",
           },
           {
-            ko: "앱에서 할 일을 체크하면 위젯에도 바로 반영돼요. 자정이 지나면 새로운 하루로 알아서 바뀌고요",
-            en: "Check off a to-do in the app and the widget updates right away. It also rolls over to a fresh day on its own at midnight",
+            ko: "할 일을 체크하면 위젯에 바로 반영돼요",
+            en: "Check off a to-do and the widget updates right away",
           },
           {
-            ko: "위젯은 폰의 밝은 모드·어두운 모드를 따라가고, 한국어와 영어 모두 지원해요. 아이폰과 안드로이드에서 모두 쓸 수 있어요",
-            en: "The widget follows your phone's light or dark mode, and works in both Korean and English — on iPhone and Android alike",
+            ko: "아이폰과 안드로이드 모두 지원하고, 밝은 모드·어두운 모드를 따라가요",
+            en: "Works on both iPhone and Android, and follows light or dark mode",
           },
         ],
       },
@@ -44,8 +44,12 @@ export const releaseNotes: ReleaseNote[] = [
         type: "improvements",
         items: [
           {
-            ko: "위젯은 앱이 저장해 둔 내용만 보여주기 때문에, 배터리나 데이터를 거의 쓰지 않아요",
-            en: "The widget only displays what the app has already saved, so it uses almost no battery or data",
+            ko: "자정이 지나면 위젯이 새로운 하루로 알아서 바뀌어요",
+            en: "The widget rolls over to a fresh day on its own at midnight",
+          },
+          {
+            ko: "위젯은 배터리와 데이터를 거의 쓰지 않아요",
+            en: "The widget uses almost no battery or data",
           },
         ],
       },
