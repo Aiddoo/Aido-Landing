@@ -12,6 +12,59 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.5.2",
+    date: "2026-07-14",
+    summary: {
+      ko: "더 깔끔해진 위젯과 놓치지 않는 오늘",
+      en: "Cleaner widgets and a day that stays on track",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "안드로이드에서도 아이폰과 같은 디자인의 위젯 3종을 사용할 수 있어요 — 필요한 정보에 맞춰 골라보세요",
+            en: "Android now has the same three widget styles as iPhone — choose the one that shows just what you need",
+          },
+          {
+            ko: "할 일과 연속 달성을 이어갈 수 있도록 필요한 순간에 유용한 제안과 응원을 전해드려요",
+            en: "Get helpful suggestions and encouragement at the right time to keep your to-dos and streaks going",
+          },
+          {
+            ko: "맞춤 제안 알림은 회원가입할 때 선택하거나, 마이페이지의 약관 및 정책에서 언제든 바꿀 수 있어요",
+            en: "Choose whether to receive personalized suggestions when you sign up, and change it anytime under Terms & Policies in My Page",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "자정이 지나거나 다음 날 앱으로 돌아오면, 이제 새로운 오늘 날짜로 바로 시작해요",
+            en: "After midnight or when you return the next day, the app now opens right on the new day",
+          },
+          {
+            ko: "알림을 누르면 관련된 화면으로 바로 이동하고, 모두 읽으면 화면에도 즉시 반영돼요",
+            en: "Notifications now take you straight to the right place, and marking all as read updates the screen instantly",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "일부 아이폰과 안드로이드 기기에서 위젯의 글자가 잘리거나 정렬이 어긋나던 문제를 고쳤어요",
+            en: "Fixed clipped text and uneven alignment in widgets on some iPhone and Android devices",
+          },
+          {
+            ko: "화면을 불러오는 중 문제가 생겨도 앱을 계속 사용할 수 있도록 전반적인 안정성을 높였어요",
+            en: "Improved overall stability so you can keep using the app even if a screen has trouble loading",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.5.1",
     date: "2026-07-13",
     summary: {
