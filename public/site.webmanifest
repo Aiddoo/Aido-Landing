@@ -6,6 +6,14 @@
   "display": "standalone",
   "background_color": "#fdfbf7",
   "theme_color": "#FF6843",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.aido.mobile",
+      "id": "com.aido.mobile"
+    }
+  ],
   "icons": [
     {
       "src": "/icon-192.png",

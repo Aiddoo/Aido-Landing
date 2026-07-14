@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   creator: "레드밴드",
   publisher: "레드밴드",
   manifest: "/site.webmanifest",
+  itunes: {
+    appId: "6757722325",
+  },
   robots: {
     index: true,
     follow: true,
