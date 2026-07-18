@@ -12,6 +12,38 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.6.0",
+    date: "2026-07-18",
+    summary: {
+      ko: "설정을 새단장하고, 안팎으로 더 탄탄하게",
+      en: "A refreshed Settings, sturdier inside and out",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "설정에서 언어와 화면 테마를 고르는 화면을 아이콘과 함께 더 보기 좋게 새단장했어요",
+            en: "The language and theme options in Settings got a fresh look, now easier to spot with icons",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "앱의 기반 기술을 최신 버전으로 업데이트해, 더 빠르고 안정적으로 사용할 수 있어요",
+            en: "Updated the app's core technology to the latest version for a faster, more stable experience",
+          },
+          {
+            ko: "구독과 데이터 저장 방식을 최신화해 앱이 한층 더 안정적으로 동작해요",
+            en: "Modernized how subscriptions and data are stored so the app runs even more reliably",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.5.2",
     date: "2026-07-14",
     summary: {
