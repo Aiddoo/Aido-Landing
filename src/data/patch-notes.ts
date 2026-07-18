@@ -12,6 +12,33 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.7.0",
+    date: "2026-07-19",
+    summary: {
+      ko: "더 빠르고 안정적인 아이두를 위한 기초 다지기",
+      en: "Laying the groundwork for a faster, more stable Aido",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "앱을 구성하는 핵심 기술들을 최신 버전으로 업데이트해, 전보다 더 빠르고 안정적으로 동작해요",
+            en: "Updated the app's core technologies to their latest versions, so everything runs faster and more reliably",
+          },
+          {
+            ko: "문제가 생겼을 때 더 빨리 발견하고 고칠 수 있도록 내부 점검 도구를 새로 정비했어요",
+            en: "Refreshed our internal health checks so we can spot and fix issues even sooner",
+          },
+          {
+            ko: "보이지 않는 곳까지 깔끔하게 정리해, 앞으로 새로운 기능을 더 빠르고 안전하게 전해드릴 수 있어요",
+            en: "Tidied things up behind the scenes so we can bring you new features faster and more safely",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.6.0",
     date: "2026-07-18",
     summary: {
