@@ -2,10 +2,24 @@
 # 배포(CD)는 Vercel Git 연동이 담당한다 — PR은 프리뷰, main은 프로덕션.
 name: CI
 
+# 루트 문서만 바뀐 커밋은 CI를 태우지 않는다.
+# 주의: src/content/**/*.md(약관)는 사이트에 렌더링되므로 여기에 넣지 말 것.
 on:
   pull_request:
+    paths-ignore:
+      - "README.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - ".env.example"
+      - "LICENSE"
   push:
     branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - ".env.example"
+      - "LICENSE"
 
 concurrency:
   group: ci-${{ github.ref }}
