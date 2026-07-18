@@ -8,8 +8,13 @@ AI 투두 플래너 앱 "아이두"의 랜딩 페이지. Next.js 16 App Router, 
 pnpm dev          # 개발 서버
 pnpm build        # 프로덕션 빌드 (--webpack, Turbopack 아님)
 pnpm lint         # Biome (biome check)
-vercel --prod     # 배포 — git remote 없음, 배포는 Vercel CLI로만 한다
+pnpm typecheck    # tsc --noEmit
 ```
+
+## CI/CD
+
+- **CD는 Vercel Git 연동**: `main` push → 프로덕션 자동 배포, PR/브랜치 push → 프리뷰 URL. 수동 `vercel --prod`는 쓰지 않는다.
+- **CI는 GitHub Actions** (`.github/workflows/ci.yml`): PR과 main push에서 린트 → 타입체크 → 빌드. 머지 전에 CI 초록불을 확인할 것.
 
 ## 아키텍처 규칙
 
