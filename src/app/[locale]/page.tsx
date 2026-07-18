@@ -11,6 +11,7 @@ import { Values } from "@/components/Values";
 import { Vision } from "@/components/Vision";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
+import { INSTAGRAM_URL } from "@/lib/seo";
 
 type LocaleHomePageProps = {
   params: Promise<{ locale: string }>;
@@ -126,6 +127,12 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
             <address className="space-y-2 text-center sm:text-left text-sm font-medium text-foreground/70 not-italic">
               <p>
                 <span className="font-bold text-foreground">
+                  {messages.footer.companyLabel}
+                </span>{" "}
+                {messages.footer.companyValue}
+              </p>
+              <p>
+                <span className="font-bold text-foreground">
                   {messages.footer.representativeLabel}
                 </span>{" "}
                 {messages.footer.representativeValue}
@@ -178,7 +185,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                 {messages.footer.privacyLabel}
               </Link>
               <a
-                href="https://www.instagram.com/aiddoo_official/"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={messages.footer.instagramLabel}

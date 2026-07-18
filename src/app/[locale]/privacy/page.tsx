@@ -5,6 +5,7 @@ import { LegalMarkdown } from "@/components/LegalMarkdown";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
 import { readLegalDocument } from "@/lib/legal-docs";
+import { buildSocialMetadata } from "@/lib/seo";
 
 type LocalePrivacyPageProps = {
   params: Promise<{ locale: string }>;
@@ -31,6 +32,12 @@ export async function generateMetadata({
       index: true,
       follow: true,
     },
+    ...buildSocialMetadata({
+      locale,
+      title: messages.legal.privacyTitle,
+      description: messages.legal.privacyDescription,
+      path: "/privacy",
+    }),
   };
 }
 

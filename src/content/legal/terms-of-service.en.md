@@ -245,7 +245,7 @@ Matters not covered by these Terms shall be governed by applicable laws (includi
 | Business Registration No. | 309-08-95749 |
 | E-commerce Registration No. | 2026-Seoul-Gangdong-0281 |
 | Phone | 010-5877-8951 |
-| Email | dydals3440@gmail.com |
+| Email | matthew@redband.co.kr |
 
 Inquiries regarding these Terms, subscriptions, and complaints may be submitted via the contact information above.
 

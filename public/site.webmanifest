@@ -1,7 +1,7 @@
 {
   "name": "Aido",
   "short_name": "Aido",
-  "description": "친구와 함께 성장하는 새로운 Todo 경험",
+  "description": "Aido — AI to-do planner",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fdfbf7",

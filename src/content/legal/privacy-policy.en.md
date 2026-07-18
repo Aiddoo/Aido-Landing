@@ -185,7 +185,7 @@ The Company transfers personal information overseas for service provision as fol
 3. Members may exercise the following rights regarding automated decisions:
    - Request an **explanation** of the automated decision
    - **Object** to the automated decision and request reprocessing with human intervention
-4. These rights may be exercised by contacting customer support at dydals3440@gmail.com.
+4. These rights may be exercised by contacting customer support at matthew@redband.co.kr.
 
 ---
 
@@ -223,7 +223,7 @@ The Company transfers personal information overseas for service provision as fol
    - Request **account withdrawal**
    - Request **personal information transfer** (right to data portability under Article 35-2 of the Personal Information Protection Act)
 2. **Data Portability Notice**: Users may request that their personal information be transferred to themselves or a third party. The Company shall inform users of the scope of transferable personal information and transfer formats in accordance with the Personal Information Protection Act and related enforcement decrees.
-3. Rights may be exercised in writing, via email (dydals3440@gmail.com), or through in-app settings. The Company shall take action without delay.
+3. Rights may be exercised in writing, via email (matthew@redband.co.kr), or through in-app settings. The Company shall take action without delay.
 4. If a user requests correction of errors in personal information, the Company shall not use or provide the information until the correction is completed.
 5. Users may exercise their rights through a legal representative or authorized agent, in which case a power of attorney must be submitted in accordance with the Enforcement Rules of the Personal Information Protection Act.
 
@@ -266,7 +266,7 @@ The Company designates the following Personal Information Protection Officer to 
 | Name | Kim Yongmin |
 | Position | Representative (concurrent) |
 | Phone | 010-5877-8951 |
-| Email | dydals3440@gmail.com |
+| Email | matthew@redband.co.kr |
 
 Inquiries, complaints, and damage relief requests related to personal information may be submitted via the contact information above. The Company shall respond and provide processing results without delay.
 

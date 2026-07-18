@@ -113,6 +113,8 @@ export type MessageCatalog = {
     copyright: string;
     tagline: string;
     contactBadge: string;
+    companyLabel: string;
+    companyValue: string;
     representativeLabel: string;
     representativeValue: string;
     businessNumberLabel: string;
@@ -421,6 +423,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       copyright: "© 2026 Aido. All rights reserved.",
       tagline: "친구와 함께 성장하는 할 일 관리",
       contactBadge: "고객 문의",
+      companyLabel: "상호",
+      companyValue: "레드밴드",
       representativeLabel: "대표",
       representativeValue: "김용민",
       businessNumberLabel: "사업자 번호",
@@ -430,7 +434,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       hostingLabel: "호스팅사업자",
       hostingValue: "Vercel Inc.",
       inquiryLabel: "고객 문의",
-      inquiryValue: "dydals3440@gmail.com",
+      inquiryValue: "matthew@redband.co.kr",
       termsLabel: "이용약관",
       privacyLabel: "개인정보처리방침",
       instagramLabel: "인스타그램",
@@ -731,6 +735,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       copyright: "© 2026 Aido. All rights reserved.",
       tagline: "A social to-do experience that helps friends grow together",
       contactBadge: "Contact",
+      companyLabel: "Company",
+      companyValue: "RedBand",
       representativeLabel: "Representative",
       representativeValue: "Yongmin Kim",
       businessNumberLabel: "Business Registration No.",
@@ -740,7 +746,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       hostingLabel: "Hosting Provider",
       hostingValue: "Vercel Inc.",
       inquiryLabel: "Customer Inquiry",
-      inquiryValue: "dydals3440@gmail.com",
+      inquiryValue: "matthew@redband.co.kr",
       termsLabel: "Terms of Service",
       privacyLabel: "Privacy Policy",
       instagramLabel: "Instagram",

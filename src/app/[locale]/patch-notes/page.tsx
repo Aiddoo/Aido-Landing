@@ -7,6 +7,7 @@ import type { Locale } from "@/i18n/config";
 import type { MessageCatalog } from "@/i18n/messages";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
+import { buildSocialMetadata } from "@/lib/seo";
 
 type LocalePatchNotesPageProps = {
   params: Promise<{ locale: string }>;
@@ -33,6 +34,12 @@ export async function generateMetadata({
       index: true,
       follow: true,
     },
+    ...buildSocialMetadata({
+      locale,
+      title: messages.patchNotes.title,
+      description: messages.patchNotes.description,
+      path: "/patch-notes",
+    }),
   };
 }
 

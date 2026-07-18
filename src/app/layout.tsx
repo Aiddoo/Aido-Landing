@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
-
-const SITE_URL = "https://aido.kr";
-const SITE_NAME = "Aido";
 
 export const viewport = {
   themeColor: "#FF6843",
@@ -19,6 +17,15 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   itunes: {
     appId: "6757722325",
+  },
+  // 검색엔진 소유 확인 태그 — 값이 없으면 렌더링되지 않는다.
+  // Vercel 환경변수(GOOGLE_SITE_VERIFICATION, NAVER_SITE_VERIFICATION)에
+  // 코드를 넣고 재배포하면 빌드 시점에 주입된다.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.NAVER_SITE_VERIFICATION
+      ? { "naver-site-verification": process.env.NAVER_SITE_VERIFICATION }
+      : undefined,
   },
   robots: {
     index: true,

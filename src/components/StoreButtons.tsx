@@ -1,14 +1,15 @@
 import type { MessageCatalog } from "@/i18n/messages";
+import {
+  APP_STORE_URL,
+  INSTAGRAM_URL,
+  PLAY_STORE_URL as PLAY_STORE_BASE_URL,
+} from "@/lib/seo";
 
 type StoreButtonsProps = {
   content: MessageCatalog["storeButtons"];
 };
 
-const APP_STORE_URL =
-  "https://apps.apple.com/kr/app/%EC%95%84%EC%9D%B4%EB%91%90-ai-%ED%88%AC%EB%91%90-%ED%94%8C%EB%9E%98%EB%84%88/id6757722325";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.aido.mobile&pcampaignid=web_share";
-const INSTAGRAM_URL = "https://www.instagram.com/aiddoo_official/";
+const PLAY_STORE_URL = `${PLAY_STORE_BASE_URL}&pcampaignid=web_share`;
 const storeButtonClass =
   "group inline-flex items-center gap-4 wobbly border-[3px] border-foreground bg-white px-8 py-4 text-foreground transition-all hand-shadow hover:bg-muted hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#2d2d2d] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]";
 
