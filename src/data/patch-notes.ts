@@ -12,6 +12,50 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.8.0",
+    date: "2026-07-27",
+    summary: {
+      ko: "몰랐던 기능까지, 이제 한눈에",
+      en: "Every feature you've been missing, now in one place",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "메모 AI, 친구 찾기, 순서 정리처럼 유용한 기능을 모아 보여주는 '기능 가이드'가 생겼어요 — 마이페이지에서 언제든 다시 열 수 있어요",
+            en: "A new Feature Guide gathers handy features like memo AI, finding friends, and reordering — reopen it anytime from My Page",
+          },
+          {
+            ko: "아이두를 처음 쓴다면, 첫 할 일을 만들고 완료하는 시작 체크리스트가 홈에서 안내해드려요",
+            en: "New to Aido? A starter checklist on Home guides you through creating and completing your first to-do",
+          },
+          {
+            ko: "할 일과 카테고리를 길게 눌러 원하는 순서로 옮길 수 있다는 안내를 화면에서 바로 알려드려요",
+            en: "A quick tip now shows you that pressing and holding lets you drag to-dos and categories into any order",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "친구를 구분하는 8자리 코드를 해시태그(#) 표기로 통일해, 검색과 프로필에서 알아보기 쉬워졌어요",
+            en: "Your 8-character friend code now appears as a hashtag (#) everywhere, making it easier to spot in search and profiles",
+          },
+          {
+            ko: "친구가 할 일을 완료했을 때 보내드리는 알림이 더 정확한 순간에 도착해요",
+            en: "Notifications for when a friend completes a to-do now arrive at the right moment",
+          },
+          {
+            ko: "할 일과 카테고리를 빠르게 연달아 정리해도 순서가 어긋나지 않도록 안정성을 높였어요",
+            en: "Improved stability so your order stays intact even when you rearrange to-dos and categories in quick succession",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.7.0",
     date: "2026-07-19",
     summary: {
