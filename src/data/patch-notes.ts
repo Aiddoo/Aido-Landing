@@ -12,6 +12,33 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.8.1",
+    date: "2026-08-03",
+    summary: {
+      ko: "조용히, 더 매끄럽게 다듬었어요",
+      en: "Quietly polished for a smoother ride",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "앱의 기반 기술을 최신 버전으로 올려, 화면 전환과 움직임이 한층 부드러워졌어요",
+            en: "Updated the app's foundations, so screens and animations move more smoothly",
+          },
+          {
+            ko: "로그인과 구독 처리를 최신화해 더 안정적으로 동작해요",
+            en: "Modernized sign-in and subscription handling for steadier performance",
+          },
+          {
+            ko: "가끔 생기던 오류를 줄이고, 문제가 생겼을 때 더 빨리 찾아 고칠 수 있도록 정비했어요",
+            en: "Reduced occasional glitches and tuned things so we can find and fix issues sooner",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.8.0",
     date: "2026-07-27",
     summary: {
