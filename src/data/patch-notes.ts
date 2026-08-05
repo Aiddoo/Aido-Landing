@@ -12,6 +12,46 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.8.2",
+    date: "2026-08-05",
+    summary: {
+      ko: "친구의 오늘도, 더 잘 보이게",
+      en: "A clearer way to keep up with friends",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "친구가 공개한 할 일을 모두 마친 날에는 친구 캘린더에 물고기가 보여요",
+            en: "A fish now appears on a friend's calendar when they've finished all the to-dos they've shared",
+          },
+          {
+            ko: "친구가 어떤 카테고리의 할 일을 끝냈는지 색깔 점으로 한눈에 확인할 수 있어요",
+            en: "Colorful dots show which categories your friend completed at a glance",
+          },
+          {
+            ko: "친구가 공개한 할 일만 보여드려서, 서로의 하루를 부담 없이 살펴볼 수 있어요",
+            en: "You only see the to-dos your friend has chosen to share, so keeping up with their day feels comfortable",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "날짜를 바꿔도 친구의 완료 기록이 자연스럽게 이어져요",
+            en: "Friend activity now stays in sync as you move between dates",
+          },
+          {
+            ko: "내 캘린더와 친구 캘린더를 오갈 때 필요한 정보가 더 또렷하게 보여요",
+            en: "The right details are easier to follow when switching between your calendar and a friend's",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.8.1",
     date: "2026-08-03",
     summary: {
