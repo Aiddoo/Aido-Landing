@@ -12,6 +12,46 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.9.0",
+    date: "2026-08-28",
+    summary: {
+      ko: "할 일 속 대화가 더 자연스러워졌어요",
+      en: "Conversations now flow naturally inside your to-dos",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "할 일 상세에서 댓글과 답글을 한 흐름으로 보고, 원하는 댓글에 바로 답글을 남길 수 있어요",
+            en: "See comments and replies together in a to-do, and respond directly to the comment you have in mind",
+          },
+          {
+            ko: "답글이 이어진 대화를 펼쳐보고, 댓글 알림을 누르면 관련 댓글로 바로 이동할 수 있어요",
+            en: "Open the full conversation when replies continue, and jump straight to the relevant comment from a notification",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "댓글을 쓰거나 답글을 오갈 때 입력창과 화면 이동이 더 자연스럽게 이어져요",
+            en: "Writing comments and moving between replies now feels smoother, with the input ready where you need it",
+          },
+          {
+            ko: "답글을 작성하다 뒤로가기를 누르면 한 번에 이전 댓글 화면으로 돌아가요",
+            en: "When you go back while writing a reply, one tap now returns you to the comment view you came from",
+          },
+          {
+            ko: "할 일 목록의 간격을 다시 정돈하고, 댓글 작성자와 내용이 더 또렷하게 보이도록 다듬었어요",
+            en: "Tidied up spacing in the to-do list and made comment names and text easier to read",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.8.2",
     date: "2026-08-05",
     summary: {
