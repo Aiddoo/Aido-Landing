@@ -12,6 +12,42 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.10.0",
+    date: "2026-10-02",
+    summary: {
+      ko: "화면 이동부터 위젯까지, 더 자연스럽고 안정적으로",
+      en: "Smoother navigation and more reliable everyday planning",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "앱 하단 탭을 새롭게 다듬어, iPhone과 Android에서 원하는 화면으로 더 자연스럽게 이동할 수 있어요",
+            en: "Refreshed the bottom tabs for more natural navigation between screens on iPhone and Android",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "홈 화면 위젯에 오늘의 날짜, 할 일 목록과 완료 상태가 더 안정적으로 반영돼요",
+            en: "Home screen widgets now show today's date, to-dos, and completion progress more reliably",
+          },
+          {
+            ko: "입력창과 키보드 동작을 다듬어, 할 일과 댓글을 더 편하게 작성할 수 있어요",
+            en: "Improved text fields and keyboard behavior for easier to-do and comment writing",
+          },
+          {
+            ko: "메모를 작성하거나 수정하고 할 일로 바꾸는 과정이 더 안정적이에요",
+            en: "Made creating, editing, and turning memos into to-dos more reliable",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.9.0",
     date: "2026-08-28",
     summary: {
