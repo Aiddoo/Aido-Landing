@@ -38,7 +38,7 @@ pnpm seo:check    # 빌드 HTML·메타데이터·SSG·사이트맵 검증 (buil
 
 ## 콘텐츠 절차
 
-- **패치노트 추가**: `src/data/patch-notes.ts`의 `releaseNotes` 배열 **맨 앞**에 추가 (최신이 index 0 — sitemap lastmod가 여기서 자동 반영). ko/en 요약·항목 모두 작성. 커밋 메시지 관례: `feat: v1.x.x 패치노트`.
+- **패치노트 추가**: `src/data/patch-notes.ts`의 `releaseNotes` 배열 **맨 앞**에 추가 (최신이 index 0 — sitemap lastmod가 여기서 자동 반영). ko/en 요약·항목 모두 작성. 최신 기록만 기본 펼침이며 나머지는 날짜 기준 월별 보관함에 자동으로 묶인다. 기록 본문은 접힌 상태에서도 SSR HTML에 포함된다. 커밋 메시지 관례: `feat: v1.x.x 패치노트`.
 - **약관/개인정보 개정**: `src/content/legal/`의 ko·en 파일 쌍 수정 + `src/app/sitemap.ts`의 시행일 상수(`termsEffectiveDate`/`privacyEffectiveDate`) 갱신.
 
 ## 공식 표기 (임의로 바꾸지 말 것)

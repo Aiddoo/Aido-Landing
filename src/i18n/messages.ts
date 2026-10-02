@@ -88,6 +88,13 @@ export type MessageCatalog = {
     latest: string;
     badge: string;
     closingNote: string;
+    archiveTitle: string;
+    archiveDescription: string;
+    releaseCount: string;
+    releaseCountOne: string;
+    expand: string;
+    collapse: string;
+    initialNote: string;
   };
   languageSwitcher: {
     label: string;
@@ -405,6 +412,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
       improvements: "개선 사항",
       newRelease: "신규 출시",
       latest: "최신",
+      archiveTitle: "지난 업데이트",
+      archiveDescription:
+        "월별로 기록을 모아뒀어요. 궁금한 버전을 펼쳐 자세히 살펴보세요.",
+      releaseCount: "{count}개 업데이트",
+      releaseCountOne: "1개 업데이트",
+      expand: "자세히 보기",
+      collapse: "접기",
+      initialNote:
+        "아이두의 첫 번째 출시 기록이에요. 함께 시작해주셔서 고마워요.",
       badge: "업데이트 기록",
       closingNote: "더 좋은 하루를 위해, 조금씩 다듬고 있어요 🐾",
     },
@@ -679,6 +695,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
       improvements: "Improvements",
       newRelease: "New Release",
       latest: "Latest",
+      archiveTitle: "Earlier updates",
+      archiveDescription:
+        "Our updates, grouped by month. Open a version to see what changed.",
+      releaseCount: "{count} updates",
+      releaseCountOne: "1 update",
+      expand: "Read more",
+      collapse: "Show less",
+      initialNote:
+        "Our very first Aido release. Thanks for taking the first step with us.",
       badge: "Changelog",
       closingNote: "Little improvements for better days 🐾",
     },
