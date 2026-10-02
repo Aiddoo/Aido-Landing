@@ -149,7 +149,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
               </span>
               <a
                 href={`mailto:${messages.footer.inquiryValue}`}
-                className="hover:text-brand transition-colors decoration-dashed underline underline-offset-4"
+                className="hover:text-brand-ink transition-colors decoration-dashed underline underline-offset-4"
               >
                 {messages.footer.inquiryValue}
               </a>
@@ -194,7 +194,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                 </span>{" "}
                 <a
                   href={`mailto:${messages.footer.inquiryValue}`}
-                  className="underline decoration-dashed underline-offset-4 hover:text-brand"
+                  className="underline decoration-dashed underline-offset-4 hover:text-brand-ink"
                 >
                   {messages.footer.inquiryValue}
                 </a>
@@ -207,13 +207,13 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
             >
               <Link
                 href={`${prefix}/terms`}
-                className="hover:text-brand transition-colors"
+                className="hover:text-brand-ink transition-colors"
               >
                 {messages.footer.termsLabel}
               </Link>
               <Link
                 href={`${prefix}/privacy`}
-                className="hover:text-brand transition-colors"
+                className="hover:text-brand-ink transition-colors"
               >
                 {messages.footer.privacyLabel}
               </Link>
@@ -222,7 +222,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={messages.footer.instagramLabel}
-                className="inline-flex items-center justify-center w-9 h-9 wobbly-sm border-2 border-foreground rotate-1 hover:bg-brand hover:text-white hover:scale-110 active:scale-95 transition-all"
+                className="inline-flex items-center justify-center w-9 h-9 wobbly-sm border-2 border-foreground rotate-1 hover:bg-brand hover:text-foreground hover:scale-110 active:scale-95 transition-all"
               >
                 <svg
                   width="20"

@@ -15,7 +15,7 @@ export function Hero({
           <p className="section-tag">{content.eyebrow}</p>
           <h1 className="hero-title">
             {content.headingLead}
-            <span className="block text-brand sketch-underline">
+            <span className="block text-brand-ink sketch-underline">
               {content.headingHighlight}
             </span>
           </h1>

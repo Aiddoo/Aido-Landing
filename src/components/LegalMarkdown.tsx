@@ -35,7 +35,7 @@ function renderInlineMarkdown(text: string, keyPrefix: string): ReactNode[] {
           href={href}
           target={isExternal ? "_blank" : undefined}
           rel={isExternal ? "noreferrer noopener" : undefined}
-          className="font-semibold text-brand underline decoration-dashed underline-offset-4 hover:opacity-80"
+          className="font-semibold text-brand-ink underline decoration-dashed underline-offset-4 hover:decoration-solid"
         >
           {label}
         </a>,

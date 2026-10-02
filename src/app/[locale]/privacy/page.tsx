@@ -66,7 +66,7 @@ export default async function LocalePrivacyPage({
             </Link>
             <Link
               href={`/${locale}`}
-              className="text-brand underline underline-offset-4"
+              className="text-brand-ink underline underline-offset-4"
             >
               {messages.legal.backHomeLabel}
             </Link>
