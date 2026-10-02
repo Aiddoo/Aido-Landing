@@ -43,7 +43,7 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
             href={swapLocale(pathname, item)}
             aria-current={isActive ? "page" : undefined}
             className={[
-              "rounded-full border-2 px-2.5 py-1 text-xs font-bold transition-all",
+              "rounded-full border-2 px-2 py-1 text-xs font-bold transition-all",
               isActive
                 ? "border-foreground bg-brand text-foreground"
                 : "border-transparent text-foreground/75 hover:border-foreground/30 hover:text-foreground",
