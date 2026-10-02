@@ -49,3 +49,11 @@ pnpm seo:check    # 빌드 HTML·메타데이터·SSG·사이트맵 검증 (buil
 
 - 프리뷰는 빌드 시 `VERCEL_ENV=preview`로 noindex / robots disallow. 프로덕션은 index 유지.
 - 폰트는 Google Fonts의 동일한 Black Han Sans·Noto Sans KR를 `public/fonts`에서 직접 제공한다. 출처·라이선스는 해당 디렉터리 README/OFL 파일에 있다.
+
+## GitHub 운영
+
+- 비공개 작업 보드: [Aido Landing](https://github.com/orgs/Aiddoo/projects/1). 모든 이슈·PR은 실제 작업 담당자를 지정하고 보드에 연결한다.
+- 이슈 Type은 `Feature` / `Bug` / `Task` 중 선택한다. GitHub PR에는 Issue Type이 없으므로 라벨로 목적을 표시한다.
+- 라벨은 필요한 것만 조합한다: `enhancement`(기능), `bug`(수정), `documentation`(문구·문서), `maintenance`·`dependencies`(업데이트), `design`(화면), `seo`(검색).
+- 필드는 `Status`(Todo / In Progress / Done), `Priority`(P1 긴급 장애·배포 차단 / P2 일반 개선 / P3 문서·기록 정비)만 사용한다. 머지된 PR과 완료 확인한 이슈는 Done으로 정리한다.
+- 패치노트는 ko/en 모두 완결된 문장으로 쓴다. 한국어는 친근한 해요체, 영어는 짧은 문장과 마침표를 사용한다. 개발 용어·과장된 약속은 피하고, 버전·날짜·사용 한도 등 실제 변경 사실은 유지한다. 영어 기능명은 to-dos / notes / checklist items / AI suggestions / My Page로 통일한다.
