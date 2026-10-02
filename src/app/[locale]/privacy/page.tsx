@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbData } from "@/components/BreadcrumbData";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LegalMarkdown } from "@/components/LegalMarkdown";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
 import { readLegalDocument } from "@/lib/legal-docs";
-import { buildSocialMetadata } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 
 type LocalePrivacyPageProps = {
   params: Promise<{ locale: string }>;
@@ -17,28 +18,12 @@ export async function generateMetadata({
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
 
-  return {
+  return buildPageMetadata({
+    locale,
     title: messages.legal.privacyTitle,
     description: messages.legal.privacyDescription,
-    alternates: {
-      canonical: `/${locale}/privacy`,
-      languages: {
-        ko: "/ko/privacy",
-        en: "/en/privacy",
-        "x-default": "/ko/privacy",
-      },
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-    ...buildSocialMetadata({
-      locale,
-      title: messages.legal.privacyTitle,
-      description: messages.legal.privacyDescription,
-      path: "/privacy",
-    }),
-  };
+    path: "/privacy",
+  });
 }
 
 export default async function LocalePrivacyPage({
@@ -50,6 +35,11 @@ export default async function LocalePrivacyPage({
 
   return (
     <main className="px-4 py-12 sm:px-6 sm:py-16 lg:py-20" lang={locale}>
+      <BreadcrumbData
+        locale={locale}
+        path="/privacy"
+        title={messages.legal.privacyTitle}
+      />
       <div className="mx-auto w-full max-w-5xl">
         <header className="mb-6 space-y-4 sm:mb-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
