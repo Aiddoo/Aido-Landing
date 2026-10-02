@@ -16,7 +16,9 @@ const decode = (text) =>
   text
     .replaceAll("&amp;", "&")
     .replaceAll("&#x27;", "'")
-    .replaceAll("&quot;", '"');
+    .replaceAll("&quot;", '"')
+    .replaceAll("&gt;", ">")
+    .replaceAll("&lt;", "<");
 function tags(html, tag) {
   return [...html.matchAll(new RegExp(`<${tag}\\b[^>]*>`, "g"))].map(([raw]) =>
     Object.fromEntries(
@@ -112,6 +114,42 @@ for (const locale of ["ko", "en"]) {
         (data) => data["@type"] === "BreadcrumbList",
       );
       assert.equal(breadcrumb.itemListElement[1].item, `${SITE_URL}${route}`);
+    }
+    if (path === "/patch-notes") {
+      const details = tags(html, "details");
+      const releases = details.filter((item) => item["data-release-version"]);
+      assert.deepEqual(
+        releases.map((item) => item["data-release-version"]),
+        releaseNotes.map((release) => release.version),
+      );
+      assert.ok("open" in releases[0], "Latest release is open by default");
+      assert.ok(
+        releases.slice(1).every((item) => !("open" in item)),
+        "Older releases are collapsed",
+      );
+      const months = details.filter((item) => item["data-release-month"]);
+      assert.equal(
+        months.length,
+        new Set(
+          releaseNotes.slice(1).map((release) => release.date.slice(0, 7)),
+        ).size,
+      );
+      assert.ok(
+        months.every((item) => !("open" in item)),
+        "Archive months are collapsed",
+      );
+      for (const release of releaseNotes) {
+        assert.ok(
+          decode(html).includes(release.summary[locale]),
+          `${route}: ${release.version} summary`,
+        );
+        for (const category of release.categories)
+          for (const item of category.items)
+            assert.ok(
+              decode(html).includes(item[locale]),
+              `${route}: ${release.version} content in HTML`,
+            );
+      }
     }
     for (const { src } of tags(html, "img")) {
       assert.ok(src?.startsWith("/"), `${route}: local image`);

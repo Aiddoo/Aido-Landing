@@ -88,6 +88,13 @@ export type MessageCatalog = {
     latest: string;
     badge: string;
     closingNote: string;
+    archiveTitle: string;
+    archiveDescription: string;
+    releaseCount: string;
+    releaseCountOne: string;
+    expand: string;
+    collapse: string;
+    initialNote: string;
   };
   languageSwitcher: {
     label: string;
@@ -397,16 +404,26 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "Aido 서비스 이용 조건, 결제 및 자동 갱신, 이용자 권리와 책임을 안내합니다.",
     },
     patchNotes: {
-      title: "패치 노트",
-      description: "Aido의 최신 업데이트 내역을 확인하세요.",
+      title: "패치노트",
+      description:
+        "아이두가 조금씩 달라지고 있어요. 새로 생긴 기능과 더 편해진 부분을 만나보세요.",
       backHome: "홈으로",
-      bugFixes: "버그 수정",
+      bugFixes: "고친 문제",
       features: "새로운 기능",
-      improvements: "개선 사항",
-      newRelease: "신규 출시",
+      improvements: "더 편해진 부분",
+      newRelease: "첫 출시",
       latest: "최신",
+      archiveTitle: "지난 업데이트",
+      archiveDescription:
+        "월별로 기록을 모아뒀어요. 궁금한 버전을 펼쳐 자세히 살펴보세요.",
+      releaseCount: "업데이트 {count}개",
+      releaseCountOne: "업데이트 1개",
+      expand: "자세히 보기",
+      collapse: "접기",
+      initialNote:
+        "아이두의 첫 번째 출시 기록이에요. 함께 시작해주셔서 고마워요.",
       badge: "업데이트 기록",
-      closingNote: "더 좋은 하루를 위해, 조금씩 다듬고 있어요 🐾",
+      closingNote: "더 좋은 하루를 위해, 조금씩 다듬고 있어요. 🐾",
     },
     languageSwitcher: {
       label: "언어",
@@ -672,15 +689,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     patchNotes: {
       title: "Patch Notes",
-      description: "Check out the latest updates for Aido.",
+      description:
+        "Aido keeps getting a little better. Meet the new features and small improvements that make your day easier.",
       backHome: "Home",
-      bugFixes: "Bug Fixes",
-      features: "Features",
+      bugFixes: "Fixes",
+      features: "New features",
       improvements: "Improvements",
-      newRelease: "New Release",
+      newRelease: "First release",
       latest: "Latest",
-      badge: "Changelog",
-      closingNote: "Little improvements for better days 🐾",
+      archiveTitle: "Earlier updates",
+      archiveDescription:
+        "Explore earlier updates by month. Open a version to see what changed.",
+      releaseCount: "{count} updates",
+      releaseCountOne: "1 update",
+      expand: "Read more",
+      collapse: "Show less",
+      initialNote:
+        "This is Aido's very first release. Thanks for taking the first step with us.",
+      badge: "Update journal",
+      closingNote: "We keep making little improvements for better days. 🐾",
     },
     languageSwitcher: {
       label: "Language",

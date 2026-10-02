@@ -1,253 +1,222 @@
+import { ChevronDown } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbData } from "@/components/BreadcrumbData";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import type { ReleaseCategory } from "@/data/patch-notes";
-import { releaseNotes } from "@/data/patch-notes";
+import {
+  type ReleaseCategory,
+  type ReleaseNote,
+  releaseNotes,
+} from "@/data/patch-notes";
 import type { Locale } from "@/i18n/config";
-import type { MessageCatalog } from "@/i18n/messages";
-import { getMessages } from "@/i18n/messages";
+import { getMessages, type MessageCatalog } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
 import { buildPageMetadata } from "@/lib/seo";
 
-type LocalePatchNotesPageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata({
-  params,
-}: LocalePatchNotesPageProps): Promise<Metadata> {
+type Props = { params: Promise<{ locale: string }> };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = resolveLocale((await params).locale);
-  const messages = getMessages(locale);
-
+  const { patchNotes } = getMessages(locale);
   return buildPageMetadata({
     locale,
-    title: messages.patchNotes.title,
-    description: messages.patchNotes.description,
+    title: patchNotes.title,
+    description: patchNotes.description,
     path: "/patch-notes",
   });
 }
-
 const categoryColors: Record<ReleaseCategory, string> = {
   bugFixes: "#fce4ec",
   features: "#e8f5e9",
   improvements: "#e3f2fd",
 };
-
 const categoryIcons: Record<ReleaseCategory, string> = {
   bugFixes: "🐛",
   features: "✨",
   improvements: "🔧",
 };
-
-function getCategoryLabel(
-  type: ReleaseCategory,
-  patchNotes: MessageCatalog["patchNotes"],
-): string {
-  const map: Record<ReleaseCategory, string> = {
-    bugFixes: patchNotes.bugFixes,
-    features: patchNotes.features,
-    improvements: patchNotes.improvements,
-  };
-  return map[type];
-}
-
-function formatDate(dateStr: string, locale: Locale): string {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(locale === "ko" ? "ko-KR" : "en-US", {
+function formatDate(date: string, locale: Locale, monthOnly = false) {
+  return new Intl.DateTimeFormat(locale === "ko" ? "ko-KR" : "en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric",
-  });
+    ...(monthOnly ? {} : { day: "numeric" }),
+    timeZone: "UTC",
+  }).format(new Date(`${date}T00:00:00Z`));
 }
-
-export default async function LocalePatchNotesPage({
-  params,
-}: LocalePatchNotesPageProps) {
+function ReleaseCard({
+  release,
+  locale,
+  labels,
+  latest = false,
+}: {
+  release: ReleaseNote;
+  locale: Locale;
+  labels: MessageCatalog["patchNotes"];
+  latest?: boolean;
+}) {
+  const VersionHeading = latest ? "h2" : "h4";
+  const CategoryHeading = latest ? "h3" : "h5";
+  return (
+    <details
+      open={latest}
+      className={`release-note disclosure ${latest ? "release-latest" : ""}`}
+      id={`release-${release.version.replaceAll(".", "-")}`}
+      data-release-version={release.version}
+    >
+      <summary className="release-summary">
+        <div className="release-topline">
+          <div className="flex flex-wrap items-center gap-3">
+            <VersionHeading className="text-xl sm:text-2xl">
+              v{release.version}
+            </VersionHeading>
+            {latest && <span className="release-badge">{labels.latest}</span>}
+            {!release.categories.length && (
+              <span className="premium-tag mb-0">{labels.newRelease}</span>
+            )}
+          </div>
+          <div className="flex items-center gap-3">
+            <time
+              dateTime={release.date}
+              className="text-sm font-medium text-foreground/75"
+            >
+              {formatDate(release.date, locale)}
+            </time>
+            <ChevronDown
+              className="disclosure-chevron"
+              size={20}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+        <p className="release-summary-text">{release.summary[locale]}</p>
+        <span
+          className="release-toggle text-xs font-bold text-foreground/75"
+          aria-hidden="true"
+        >
+          <span className="release-toggle-open">{labels.expand}</span>
+          <span className="release-toggle-close">{labels.collapse}</span>
+        </span>
+      </summary>
+      <div className="release-content">
+        {release.categories.length ? (
+          <div className="space-y-6">
+            {release.categories.map((category) => (
+              <section key={category.type}>
+                <CategoryHeading
+                  className="release-category"
+                  style={{ backgroundColor: categoryColors[category.type] }}
+                >
+                  <span aria-hidden="true">{categoryIcons[category.type]}</span>
+                  {labels[category.type]}
+                </CategoryHeading>
+                <ul className="release-items">
+                  {category.items.map((item) => (
+                    <li key={item.ko}>{item[locale]}</li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        ) : (
+          <p className="leading-7 text-foreground/80">{labels.initialNote}</p>
+        )}
+      </div>
+    </details>
+  );
+}
+export default async function PatchNotesPage({ params }: Props) {
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
-  const prefix = `/${locale}`;
-
+  const labels = messages.patchNotes;
+  const [latest, ...older] = releaseNotes;
+  const months = new Map<string, ReleaseNote[]>();
+  for (const release of older) {
+    const key = release.date.slice(0, 7);
+    const month = months.get(key) ?? [];
+    month.push(release);
+    months.set(key, month);
+  }
   return (
-    <main
-      className="min-h-screen bg-transparent selection:bg-brand/20 selection:text-brand relative px-4 py-12 sm:px-6 sm:py-16 lg:py-20"
-      lang={locale}
-    >
+    <main className="min-h-screen px-5 py-10 sm:px-6 sm:py-16" lang={locale}>
       <BreadcrumbData
         locale={locale}
         path="/patch-notes"
-        title={messages.patchNotes.title}
+        title={labels.title}
       />
-      <div className="mx-auto w-full max-w-4xl">
-        {/* Header */}
-        <header className="mb-12 sm:mb-16">
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-            <Link
-              href={prefix}
-              className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/20 bg-white px-4 py-2 text-sm font-bold text-foreground/70 hover:border-brand hover:text-brand transition-all hand-shadow-hover hand-shadow-active"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M19 12H5" />
-                <path d="M12 19l-7-7 7-7" />
-              </svg>
-              {messages.patchNotes.backHome}
+      <div className="mx-auto max-w-4xl">
+        <header className="mb-9">
+          <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
+            <Link href={`/${locale}`} className="back-home">
+              ← {labels.backHome}
             </Link>
             <LanguageSwitcher
               locale={locale}
               labels={messages.languageSwitcher}
             />
           </div>
-
-          <div className="wobbly-md border-[3px] border-foreground bg-white p-6 sm:p-8 hand-shadow-lg">
-            <p className="inline-block bg-brand text-foreground text-xs font-bold tracking-wider uppercase px-3 py-1 wobbly-sm -rotate-2 mb-4">
-              {messages.patchNotes.badge}
-            </p>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
-              {messages.patchNotes.title}
-            </h1>
-            <p className="text-base sm:text-lg text-foreground/60 font-medium leading-relaxed">
-              {messages.patchNotes.description}
+          <div className="patch-intro">
+            <p className="section-tag">{labels.badge}</p>
+            <h1 className="section-title">{labels.title}</h1>
+            <p className="mt-4 leading-7 text-foreground/80">
+              {labels.description}
             </p>
           </div>
         </header>
-
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div
-            className="absolute left-[19px] top-2 bottom-2 w-[3px] bg-foreground/10 hidden sm:block"
-            aria-hidden="true"
-          />
-
-          <div className="space-y-8 sm:space-y-10">
-            {releaseNotes.map((release, index) => {
-              const isLatest = index === 0;
-              const isInitialRelease = release.categories.length === 0;
-
-              return (
-                <article key={release.version} className="relative sm:pl-14">
-                  {/* Timeline dot */}
-                  <div
-                    className={[
-                      "absolute left-[10px] top-6 hidden sm:flex items-center justify-center w-[22px] h-[22px] rounded-full border-[3px] z-10",
-                      isLatest
-                        ? "border-brand bg-brand"
-                        : "border-foreground/30 bg-white",
-                    ].join(" ")}
-                    aria-hidden="true"
-                  >
-                    {isLatest && (
-                      <div className="w-2 h-2 rounded-full bg-white" />
-                    )}
-                  </div>
-
-                  <div
-                    className={[
-                      "wobbly-md border-[3px] border-foreground bg-white p-5 sm:p-7 transition-all",
-                      isLatest ? "hand-shadow-lg" : "hand-shadow",
-                    ].join(" ")}
-                  >
-                    {/* Version header */}
-                    <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <h2 className="text-xl sm:text-2xl font-bold tracking-tight">
-                          v{release.version}
-                        </h2>
-                        {isLatest && (
-                          <span className="bg-brand text-foreground text-[11px] font-bold tracking-wider uppercase px-2.5 py-0.5 wobbly-sm rotate-1">
-                            {messages.patchNotes.latest}
-                          </span>
-                        )}
-                        {isInitialRelease && (
-                          <span className="bg-foreground text-white text-[11px] font-bold tracking-wider uppercase px-2.5 py-0.5 wobbly-sm -rotate-1">
-                            {messages.patchNotes.newRelease}
-                          </span>
-                        )}
-                      </div>
-                      <time
-                        dateTime={release.date}
-                        className="text-sm font-bold text-foreground/70 tabular-nums"
-                      >
-                        {formatDate(release.date, locale)}
-                      </time>
+        <ReleaseCard release={latest} locale={locale} labels={labels} latest />
+        {older.length > 0 && (
+          <section className="mt-12" aria-labelledby="archive-title">
+            <div className="mb-6">
+              <h2 id="archive-title" className="text-2xl">
+                {labels.archiveTitle}
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-foreground/75">
+                {labels.archiveDescription}
+              </p>
+            </div>
+            <div className="space-y-5">
+              {[...months].map(([month, releases]) => (
+                <details
+                  key={month}
+                  className="archive-month disclosure"
+                  data-release-month={month}
+                >
+                  <summary className="disclosure-summary">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                      <h3 className="text-xl">
+                        {formatDate(`${month}-01`, locale, true)}
+                      </h3>
+                      <span className="text-sm font-medium text-foreground/75">
+                        {releases.length === 1
+                          ? labels.releaseCountOne
+                          : labels.releaseCount.replace(
+                              "{count}",
+                              String(releases.length),
+                            )}
+                      </span>
                     </div>
-
-                    {/* Summary for initial release */}
-                    {isInitialRelease && (
-                      <p className="text-base font-medium text-foreground/70 leading-relaxed">
-                        {release.summary[locale]}
-                      </p>
-                    )}
-
-                    {/* Categories */}
-                    {release.categories.length > 0 && (
-                      <div className="space-y-5">
-                        {release.categories.map((category) => (
-                          <div key={category.type}>
-                            <div className="flex items-center gap-2 mb-3">
-                              <span
-                                className="inline-flex items-center gap-1.5 px-3 py-1 text-sm font-bold wobbly-sm border-2 border-foreground/15"
-                                style={{
-                                  backgroundColor:
-                                    categoryColors[category.type],
-                                }}
-                              >
-                                <span aria-hidden="true">
-                                  {categoryIcons[category.type]}
-                                </span>
-                                {getCategoryLabel(
-                                  category.type,
-                                  messages.patchNotes,
-                                )}
-                              </span>
-                            </div>
-                            <ul className="space-y-2 pl-1">
-                              {category.items.map((item) => (
-                                <li
-                                  key={item.ko}
-                                  className="flex items-start gap-2.5 text-sm sm:text-base text-foreground/80 leading-relaxed"
-                                >
-                                  <span
-                                    className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                                    style={{
-                                      backgroundColor:
-                                        categoryColors[category.type],
-                                      border: "1.5px solid var(--foreground)",
-                                      opacity: 0.7,
-                                    }}
-                                    aria-hidden="true"
-                                  />
-                                  {item[locale]}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    <ChevronDown
+                      size={20}
+                      className="disclosure-chevron"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  <div className="archive-releases">
+                    {releases.map((release) => (
+                      <ReleaseCard
+                        key={release.version}
+                        release={release}
+                        locale={locale}
+                        labels={labels}
+                      />
+                    ))}
                   </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Footer decoration */}
-        <div className="mt-16 flex justify-center">
-          <div className="wobbly-sm border-2 border-foreground/20 bg-white px-6 py-3 hand-shadow text-sm font-bold text-foreground/70 -rotate-1">
-            {messages.patchNotes.closingNote}
-          </div>
-        </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
+        <p className="mt-12 text-center text-sm font-medium text-foreground/75">
+          {labels.closingNote}
+        </p>
       </div>
     </main>
   );

@@ -38,7 +38,7 @@ pnpm seo:check    # 빌드 HTML·메타데이터·SSG·사이트맵 검증 (buil
 
 ## 콘텐츠 절차
 
-- **패치노트 추가**: `src/data/patch-notes.ts`의 `releaseNotes` 배열 **맨 앞**에 추가 (최신이 index 0 — sitemap lastmod가 여기서 자동 반영). ko/en 요약·항목 모두 작성. 커밋 메시지 관례: `feat: v1.x.x 패치노트`.
+- **패치노트 추가**: `src/data/patch-notes.ts`의 `releaseNotes` 배열 **맨 앞**에 추가 (최신이 index 0 — sitemap lastmod가 여기서 자동 반영). ko/en 요약·항목 모두 작성. 최신 기록만 기본 펼침이며 나머지는 날짜 기준 월별 보관함에 자동으로 묶인다. 기록 본문은 접힌 상태에서도 SSR HTML에 포함된다. 커밋 메시지 관례: `feat: v1.x.x 패치노트`.
 - **약관/개인정보 개정**: `src/content/legal/`의 ko·en 파일 쌍 수정 + `src/app/sitemap.ts`의 시행일 상수(`termsEffectiveDate`/`privacyEffectiveDate`) 갱신.
 
 ## 공식 표기 (임의로 바꾸지 말 것)
@@ -49,3 +49,11 @@ pnpm seo:check    # 빌드 HTML·메타데이터·SSG·사이트맵 검증 (buil
 
 - 프리뷰는 빌드 시 `VERCEL_ENV=preview`로 noindex / robots disallow. 프로덕션은 index 유지.
 - 폰트는 Google Fonts의 동일한 Black Han Sans·Noto Sans KR를 `public/fonts`에서 직접 제공한다. 출처·라이선스는 해당 디렉터리 README/OFL 파일에 있다.
+
+## GitHub 운영
+
+- 비공개 작업 보드: [Aido Landing](https://github.com/orgs/Aiddoo/projects/1). 모든 이슈·PR은 실제 작업 담당자를 지정하고 보드에 연결한다.
+- 이슈 Type은 `Feature` / `Bug` / `Task` 중 선택한다. GitHub PR에는 Issue Type이 없으므로 라벨로 목적을 표시한다.
+- 라벨은 필요한 것만 조합한다: `enhancement`(기능), `bug`(수정), `documentation`(문구·문서), `maintenance`·`dependencies`(업데이트), `design`(화면), `seo`(검색).
+- 필드는 `Status`(Todo / In Progress / Done), `Priority`(P1 긴급 장애·배포 차단 / P2 일반 개선 / P3 문서·기록 정비)만 사용한다. 머지된 PR과 완료 확인한 이슈는 Done으로 정리한다.
+- 패치노트는 ko/en 모두 완결된 문장으로 쓴다. 한국어는 친근한 해요체, 영어는 짧은 문장과 마침표를 사용한다. 개발 용어·과장된 약속은 피하고, 버전·날짜·사용 한도 등 실제 변경 사실은 유지한다. 영어 기능명은 to-dos / notes / checklist items / AI suggestions / My Page로 통일한다.
