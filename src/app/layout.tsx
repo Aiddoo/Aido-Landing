@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { APP_STORE_ID, SEARCH_ROBOTS, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 export const viewport = {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   publisher: "레드밴드",
   manifest: "/site.webmanifest",
   itunes: {
-    appId: "6757722325",
+    appId: APP_STORE_ID,
   },
   // 검색엔진 소유 확인 태그 — 값이 없으면 렌더링되지 않는다.
   // Vercel 환경변수(GOOGLE_SITE_VERIFICATION, NAVER_SITE_VERIFICATION)에
@@ -27,17 +27,7 @@ export const metadata: Metadata = {
       ? { "naver-site-verification": process.env.NAVER_SITE_VERIFICATION }
       : undefined,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: SEARCH_ROBOTS,
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },

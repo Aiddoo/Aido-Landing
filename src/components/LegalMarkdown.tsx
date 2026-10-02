@@ -240,8 +240,9 @@ export function LegalMarkdown({ markdown }: { markdown: string }) {
 
           if (block.type === "heading") {
             const className =
-              headingClassNames[block.level] ?? headingClassNames[6];
-            const headingLevel = Math.min(block.level, 6) as
+              headingClassNames[Math.min(block.level + 1, 6)] ??
+              headingClassNames[6];
+            const headingLevel = Math.min(block.level + 1, 6) as
               | 1
               | 2
               | 3

@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import { StructuredData } from "@/components/StructuredData";
 import { locales } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
@@ -65,7 +66,9 @@ export default async function LocaleLayout({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: SITE_NAME,
+    "@id": `${SITE_URL}/#organization`,
+    name: messages.footer.companyValue,
+    alternateName: locale === "ko" ? "RedBand" : "레드밴드",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     sameAs: [INSTAGRAM_URL, APP_STORE_URL, PLAY_STORE_URL],
@@ -80,23 +83,10 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
-    url: `${SITE_URL}/${locale}`,
-    description: messages.meta.description,
-    inLanguage: locale === "ko" ? "ko-KR" : "en-US",
-  };
-
-  const mobileAppJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "MobileApplication",
-    name: SITE_NAME,
-    operatingSystem: "iOS, Android",
-    applicationCategory: "ProductivityApplication",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "KRW",
-    },
-    installUrl: [APP_STORE_URL, PLAY_STORE_URL],
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    alternateName: ["아이두", "Aido"],
+    publisher: { "@id": `${SITE_URL}/#organization` },
     description: messages.meta.description,
     inLanguage: locale === "ko" ? "ko-KR" : "en-US",
   };
@@ -104,17 +94,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className="antialiased">
-        <script type="application/ld+json">
-          {JSON.stringify(organizationJsonLd)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(websiteJsonLd)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(mobileAppJsonLd)}
-        </script>
+        <StructuredData data={organizationJsonLd} />
+        <StructuredData data={websiteJsonLd} />
         {children}
-        <Analytics />
+        {process.env.VERCEL === "1" && <Analytics />}
       </body>
     </html>
   );

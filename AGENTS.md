@@ -9,12 +9,13 @@ pnpm dev          # 개발 서버
 pnpm build        # 프로덕션 빌드 (--webpack, Turbopack 아님)
 pnpm lint         # Biome (biome check)
 pnpm typecheck    # tsc --noEmit
+pnpm seo:check    # 빌드 HTML·메타데이터·SSG·사이트맵 검증 (build 이후)
 ```
 
 ## CI/CD
 
 - **CD는 Vercel Git 연동**: `main` push → 프로덕션 자동 배포, PR/브랜치 push → 프리뷰 URL. 수동 `vercel --prod`는 쓰지 않는다.
-- **CI는 GitHub Actions** (`.github/workflows/ci.yml`): PR과 main push에서 린트 → 타입체크 → 빌드. 머지 전에 CI 초록불을 확인할 것.
+- **CI는 GitHub Actions** (`.github/workflows/ci.yml`): PR과 main push에서 린트 → 타입체크 → 빌드 → SEO 검증. 머지 전에 CI 초록불을 확인할 것.
 
 ## 아키텍처 규칙
 
@@ -26,13 +27,13 @@ pnpm typecheck    # tsc --noEmit
 
 - 정규 도메인은 **`https://aido.kr`** (www 없음). www는 Vercel에서 308 리다이렉트. 도메인·스토어·SNS URL 상수는 `src/lib/seo.ts`에서만 가져다 쓴다 — 하드코딩 금지.
 - **새 페이지를 추가할 때** 반드시 함께 할 것:
-  1. `generateMetadata()`에 title / description / `alternates.canonical` / hreflang(`ko`·`en`·`x-default`) 작성
+  1. `generateMetadata()`에서 `buildPageMetadata()`로 title / description / canonical / hreflang(`ko`·`en`·`x-default`) 작성
   2. `buildSocialMetadata()`(`src/lib/seo.ts`) 스프레드로 OG/Twitter 추가 — Next.js는 `openGraph`를 부모와 딥 머지하지 않고 통째로 교체하므로 이 헬퍼 없이 일부 필드만 쓰면 홈의 og:url을 상속받는 버그가 재발한다
   3. `src/app/sitemap.ts`의 `routes` 배열에 항목 추가 (lastModified 포함)
 - **sitemap `lastModified`는 실제 변경일만**: 홈·패치노트는 최신 릴리스일(자동), 법적 문서는 시행일 상수. `new Date()`로 매 빌드 갱신하면 검색엔진이 이 값을 무시하게 된다 — 금지.
 - **`public/google*.html`, `public/naver*.html`은 절대 삭제 금지** — Google/네이버 소유확인 파일. 지우면 서치콘솔 소유권이 풀린다.
 - 이미지: `next.config.ts`의 `images.unoptimized: true`는 의도된 설정(과금 회피). 대신 `public/`에 넣는 이미지는 **300KB 이하로 압축**해서 커밋한다 (특히 og-image는 카카오톡 크롤러 대응).
-- JSON-LD(Organization·WebSite·MobileApplication)는 `src/app/[locale]/layout.tsx`에 있다. 채널(SNS·스토어) 추가 시 Organization `sameAs`도 갱신.
+- JSON-LD의 Organization·WebSite는 `src/app/[locale]/layout.tsx`, MobileApplication은 홈 `src/app/[locale]/page.tsx`에 있다. 하위 페이지는 BreadcrumbList를 제공한다. 채널(SNS·스토어) 추가 시 Organization `sameAs`도 갱신.
 - `GOOGLE_SITE_VERIFICATION`/`NAVER_SITE_VERIFICATION` env는 조건부 meta 태그용 — 현재는 HTML 파일 방식을 쓰므로 비워둔 상태가 정상.
 
 ## 콘텐츠 절차
@@ -45,3 +46,6 @@ pnpm typecheck    # tsc --noEmit
 - 상호: **레드밴드** (영문 **RedBand**) / 대표: 김용민 (Yongmin Kim)
 - 고객 문의: **matthew@redband.co.kr**
 - 앱: App Store id6757722325, Google Play `com.aido.mobile`, Instagram `aiddoo_official`
+
+- 프리뷰는 빌드 시 `VERCEL_ENV=preview`로 noindex / robots disallow. 프로덕션은 index 유지.
+- 폰트는 Google Fonts의 동일한 Black Han Sans·Noto Sans KR를 `public/fonts`에서 직접 제공한다. 출처·라이선스는 해당 디렉터리 README/OFL 파일에 있다.

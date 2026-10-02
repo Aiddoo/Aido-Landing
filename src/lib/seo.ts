@@ -37,12 +37,14 @@ export function buildSocialMetadata({
       siteName: SITE_NAME,
       locale: locale === "ko" ? "ko_KR" : "en_US",
       type: "website",
+      alternateLocale: locale === "ko" ? "en_US" : "ko_KR",
       images: [
         {
           url: OG_IMAGE_PATH,
           width: 1200,
           height: 630,
           alt: title,
+          type: "image/png",
         },
       ],
     },
@@ -50,7 +52,54 @@ export function buildSocialMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [OG_IMAGE_PATH],
+      images: [{ url: OG_IMAGE_PATH, alt: title }],
     },
+  };
+}
+
+export const APP_STORE_ID = "6757722325";
+export const ANDROID_APP_ID = "com.aido.mobile";
+export const IS_PREVIEW = process.env.VERCEL_ENV === "preview";
+export const SEARCH_ROBOTS: Metadata["robots"] = {
+  index: !IS_PREVIEW,
+  follow: true,
+  googleBot: {
+    index: !IS_PREVIEW,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
+
+export function buildPageMetadata({
+  locale,
+  title,
+  description,
+  path,
+  socialTitle = title,
+  socialDescription = description,
+}: SocialMetadataInput & {
+  socialTitle?: string;
+  socialDescription?: string;
+}): Metadata {
+  return {
+    title: { absolute: path ? `${title} | ${SITE_NAME}` : title },
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/${locale}${path}`,
+      languages: {
+        ko: `${SITE_URL}/ko${path}`,
+        en: `${SITE_URL}/en${path}`,
+        "x-default": `${SITE_URL}/ko${path}`,
+      },
+    },
+    robots: SEARCH_ROBOTS,
+    ...buildSocialMetadata({
+      locale,
+      title: socialTitle,
+      description: socialDescription,
+      path,
+    }),
   };
 }

@@ -1,37 +1,23 @@
 import type { Locale } from "./config";
 
-type FriendCard = {
-  name: string;
-  path: string;
-  color: string;
-  rotate: number;
-};
-
+type FriendCard = { name: string; path: string; color: string; rotate: number };
 type ValueItem = {
-  icon: "sparkles" | "users" | "crown";
+  icon: "sparkles" | "users" | "calendar";
   title: string;
   description: string[];
   rotate: number;
 };
-
-type FeatureGroup = {
-  title: string;
-  icon: string;
-  goal: string;
-  items: string[];
-  color: string;
-  rotate: number;
-};
-
 type PreviewScreen = {
   title: string;
   subtitle: string;
   description: string[];
   path: string;
+  alt: string;
   secondPath?: string;
+  secondAlt?: string;
   rotate: number;
+  premium?: boolean;
 };
-
 export type MessageCatalog = {
   meta: {
     title: string;
@@ -40,34 +26,14 @@ export type MessageCatalog = {
     openGraphDescription: string;
     keywords: string[];
   };
-  languageSwitcher: {
-    label: string;
-    ko: string;
-    en: string;
-  };
-  nav: {
-    friends: string;
-    download: string;
-    patchNotes: string;
-  };
-  hero: {
-    headingLead: string;
-    headingHighlight: string;
-    headingTail: string;
+  values: { title: string; items: ValueItem[] };
+  appPreview: {
+    titleLead: string;
+    titleHighlight: string;
     descriptionLead: string;
     descriptionTail: string;
-    arrowNote: string;
-    launchBadge: string;
-    scrollLabel: string;
-  };
-  storeButtons: {
-    bubble: string;
-    appStorePrefix: string;
-    appStoreLabel: string;
-    playStorePrefix: string;
-    playStoreLabel: string;
-    instagramPrefix: string;
-    instagramLabel: string;
+    premiumLabel: string;
+    screens: PreviewScreen[];
   };
   friends: {
     label: string;
@@ -76,38 +42,10 @@ export type MessageCatalog = {
     descriptionTail: string;
     cards: FriendCard[];
   };
-  vision: {
-    label: string;
-    titleLead: string;
-    titleTail: string;
-    quoteOneLead: string;
-    quoteOneTail: string;
-    quoteTwoLead: string;
-    quoteTwoTail: string;
-  };
-  values: {
+  faq: {
     title: string;
-    items: ValueItem[];
-  };
-  roadmap: {
-    label: string;
-    title: string;
-    groups: FeatureGroup[];
-  };
-  appPreview: {
-    titleLead: string;
-    titleHighlight: string;
-    descriptionLead: string;
-    descriptionTail: string;
-    screens: PreviewScreen[];
-  };
-  cta: {
-    titleLineOne: string;
-    titleLineTwo: string;
     description: string;
-    highlights: string[];
-    closingNote: string;
-    playfulText: string;
+    items: { question: string; answer: string }[];
   };
   footer: {
     copyright: string;
@@ -129,16 +67,6 @@ export type MessageCatalog = {
     privacyLabel: string;
     instagramLabel: string;
   };
-  patchNotes: {
-    title: string;
-    description: string;
-    backHome: string;
-    bugFixes: string;
-    features: string;
-    improvements: string;
-    newRelease: string;
-    latest: string;
-  };
   legal: {
     badge: string;
     backHomeLabel: string;
@@ -149,279 +77,296 @@ export type MessageCatalog = {
     termsTitle: string;
     termsDescription: string;
   };
+  patchNotes: {
+    title: string;
+    description: string;
+    backHome: string;
+    bugFixes: string;
+    features: string;
+    improvements: string;
+    newRelease: string;
+    latest: string;
+    badge: string;
+    closingNote: string;
+  };
+  languageSwitcher: {
+    label: string;
+    ko: string;
+    en: string;
+    navLabel: string;
+  };
+  nav: {
+    label: string;
+    features: string;
+    friends: string;
+    faq: string;
+    download: string;
+    patchNotes: string;
+    open: string;
+    close: string;
+  };
+  accessibility: {
+    skip: string;
+    home: string;
+    footer: string;
+  };
+  hero: {
+    eyebrow: string;
+    headingLead: string;
+    headingHighlight: string;
+    description: string;
+    note: string;
+    previewAlt: string;
+    previewCaption: string;
+    memoLabel: string;
+    memoText: string;
+    doneLabel: string;
+    doneText: string;
+  };
+  cta: {
+    titleLineOne: string;
+    titleLineTwo: string;
+    description: string;
+    closingNote: string;
+  };
+  storeButtons: {
+    ariaLabel: string;
+    appStorePrefix: string;
+    appStoreLabel: string;
+    playStorePrefix: string;
+    playStoreLabel: string;
+  };
 };
 
 const catalogs: Record<Locale, MessageCatalog> = {
   ko: {
     meta: {
-      title: "아이두 - AI 투두 플래너 | 친구와 함께 성장하는 할 일 관리",
+      title: "아이두(Aido) | AI 투두·메모·일정 관리 앱",
       description:
-        "AI와 함께하는 소셜 투두. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 함께 성장하세요. 고양이 친구들이 매일 응원해주는 새로운 할 일 관리 앱.",
-      openGraphTitle: "아이두 - AI 투두 플래너",
+        "떠오르는 메모와 음성을 AI가 할 일로 정리해요. 반복 일정과 캘린더로 하루를 계획하고, 친구와 콕 찌르기·댓글로 함께 끝내세요. iOS·Android에서 한국어와 영어로 만나요.",
+      openGraphTitle: "아이두 — 메모는 가볍게, 할 일은 함께",
       openGraphDescription:
-        "AI와 함께하는 소셜 투두. 말로 쓰면 AI가 정리하고, 친구와 콕 찌르기로 함께 성장하세요.",
+        "AI로 정리하고, 친구와 함께 끝내요. 메모부터 반복 일정까지, 아이두와 작은 성취를 쌓아보세요.",
       keywords: [
         "아이두",
         "Aido",
         "AI 투두",
-        "AI 할 일 관리",
-        "투두 플래너",
-        "소셜 투두",
         "할 일 관리 앱",
-        "AI 비서",
-        "고양이 투두",
-        "생산성 앱",
-        "App Store",
-        "Google Play",
+        "메모 앱",
+        "일정 관리",
+        "반복 할 일",
+        "투두 플래너",
       ],
-    },
-    languageSwitcher: {
-      label: "언어",
-      ko: "KO",
-      en: "EN",
     },
     nav: {
+      label: "주요 메뉴",
+      features: "앱 기능",
       friends: "고양이 친구들",
+      faq: "궁금한 점",
       download: "앱 다운로드",
-      patchNotes: "패치 노트",
+      patchNotes: "패치노트",
+      open: "메뉴 열기",
+      close: "메뉴 닫기",
+    },
+    accessibility: {
+      skip: "본문으로 바로 가기",
+      home: "홈",
+      footer: "하단 메뉴",
     },
     hero: {
-      headingLead: "작심삼일은",
-      headingHighlight: "이제 그만,",
-      headingTail: "친구와 함께 매일 성취하세요",
-      descriptionLead: "혼자서는 미루던 일도, 친구와 함께라면 달라집니다.",
-      descriptionTail:
-        "말로 쓰면 AI가 정리하고, 고양이 친구들이 매일 응원해줄 거예요.",
-      arrowNote: "지금 다운로드!",
-      launchBadge: "지금 App Store와 Google Play에서 만나보세요",
-      scrollLabel: "더 알아보기",
-    },
-    storeButtons: {
-      bubble: "아직 출시 준비 중이에요! 조금만 기다려주세요 🐾",
-      appStorePrefix: "Download on the",
-      appStoreLabel: "App Store",
-      playStorePrefix: "Get it on",
-      playStoreLabel: "Google Play",
-      instagramPrefix: "최신소식 받아보기",
-      instagramLabel: "Instagram",
-    },
-    friends: {
-      label: "Meet the Team",
-      title: "열심히 하는 여러분을 응원해요!",
-      descriptionLead: "개성 넘치는 고양이 친구들이 매일 당신을 응원해요.",
-      descriptionTail:
-        "할 일을 완료할 때마다 함께 기뻐하고, 힘들 땐 격려해줍니다!",
-      cards: [
-        {
-          name: "스코티시폴드",
-          path: "/app-assets/cat-scottish-fold.png",
-          color: "#fff9c4",
-          rotate: -2,
-        },
-        {
-          name: "치즈 태비",
-          path: "/app-assets/cat-orange-tabby.png",
-          color: "#e3f2fd",
-          rotate: 3,
-        },
-        {
-          name: "검은 고양이",
-          path: "/app-assets/cat-black.png",
-          color: "#f3e5f5",
-          rotate: -1,
-        },
-        {
-          name: "샴",
-          path: "/app-assets/cat-shyam.png",
-          color: "#e8f5e9",
-          rotate: 2,
-        },
-        {
-          name: "하얀 고양이",
-          path: "/app-assets/cat-abyssinian.png",
-          color: "#fdf1e3",
-          rotate: -3,
-        },
-      ],
-    },
-    vision: {
-      label: "우리의 약속",
-      titleLead: "할 일 관리,",
-      titleTail: "이렇게 즐거울 수 있습니다",
-      quoteOneLead: "복잡한 기능은 오히려 집중을 방해합니다.",
-      quoteOneTail: "우리는 정말 필요한 것만 남기고 모두 덜어냈어요.",
-      quoteTwoLead: "친구와 함께하는 즐거움, 성취의 기쁨.",
-      quoteTwoTail: "Aido는 당신의 하루를 가장 단순하고 즐겁게 만듭니다.",
+      eyebrow: "아이두 · AI 투두 플래너",
+      headingLead: "메모는 가볍게,",
+      headingHighlight: "할 일은 함께.",
+      description:
+        "떠오르는 생각을 적거나 말해보세요. AI가 할 일로 정리하고, 친구와 함께 작은 성취를 쌓아가요.",
+      note: "iOS · Android에서 무료로 시작해요",
+      previewAlt: "아이두 앱의 주간 캘린더와 할 일 목록",
+      previewCaption: "오늘 하나부터, 같이 해봐요 🐾",
+      memoLabel: "생각을 할 일로",
+      memoText: "내일 장보기, 주말에 책 읽기…",
+      doneLabel: "하나씩 해내는 하루",
+      doneText: "작은 성취도 함께 기뻐해요",
     },
     values: {
-      title: "Aido의 핵심 가치",
+      title: "부담은 덜고, 성취는 하나씩",
       items: [
         {
           icon: "sparkles",
-          title: "개인 생산성",
+          title: "생각을 할 일로",
           description: [
-            "말로 쓰면 AI가 정리하고,",
-            "반복 Todo로 완벽한 하루를 계획하세요.",
+            "메모와 자연스러운 문장을",
+            "AI가 실행할 할 일로 정리해요.",
           ],
           rotate: -1,
         },
         {
           icon: "users",
-          title: "소셜 동기부여",
-          description: ["콕 찌르기와 응원으로", "친구와 함께 성장하세요."],
-          rotate: 2,
-        },
-        {
-          icon: "sparkles",
-          title: "스마트 알림",
+          title: "친구와 함께",
           description: [
-            "아침 리마인더부터 마감 3단계 알림까지,",
-            "미루기를 막아줍니다.",
+            "콕 찌르기와 댓글로 응원하며",
+            "서로의 하루에 힘을 보태요.",
           ],
-          rotate: -2,
-        },
-      ],
-    },
-    roadmap: {
-      label: "Our Journey",
-      title: "주요 기능",
-      groups: [
-        {
-          title: "소셜 기능",
-          icon: "👥",
-          goal: "친구와 함께 성장하기",
-          items: [
-            "친구 태그로 검색 & 요청",
-            "친구 Todo 피드 공유",
-            "콕 찌르기로 친구 응원",
-            "응원 메시지 보내기",
-          ],
-          color: "#fff9c4",
-          rotate: -1,
-        },
-        {
-          title: "할 일 관리",
-          icon: "✓",
-          goal: "스마트한 Todo 관리",
-          items: [
-            "AI 자연어 파싱으로 자동 생성",
-            "날짜별 Todo 생성 & 관리",
-            "반복 Todo (일/주/월)",
-            "일별 완료율 캘린더",
-          ],
-          color: "#e3f2fd",
-          rotate: 2,
-        },
-        {
-          title: "알림 & 리마인더",
-          icon: "🔔",
-          goal: "놓치지 않는 알림",
-          items: [
-            "마감 전 3단계 알림",
-            "맞춤 아침/저녁 리마인더",
-            "친구 활동 알림",
-            "주간 성취 요약 알림",
-          ],
-          color: "#f3e5f5",
-          rotate: -2,
-        },
-        {
-          title: "프리미엄 기능",
-          icon: "⭐",
-          goal: "더 넓은 가능성",
-          items: [
-            "5종 고양이 앱 아이콘",
-            "무제한 AI 자연어 파싱",
-            "무제한 콕 찌르기 & 응원",
-            "카테고리 30개, 무제한 친구",
-          ],
-          color: "#e8f5e9",
           rotate: 1,
         },
         {
-          title: "계정 & 보안",
-          icon: "🔐",
-          goal: "안전한 사용 환경",
-          items: [
-            "카카오/구글/애플 소셜 로그인",
-            "프로필 관리",
-            "보안 로그인 제한",
-            "JWT 기반 안전한 인증",
+          icon: "calendar",
+          title: "내 하루에 맞게",
+          description: [
+            "반복 일정과 캘린더, 알림으로",
+            "놓치지 않고 차근차근 해봐요.",
           ],
-          color: "#fce4ec",
           rotate: -1,
         },
       ],
     },
     appPreview: {
-      titleLead: "이런 기능들이",
-      titleHighlight: "당신을 기다리고 있어요",
-      descriptionLead: "할 일 관리부터 친구와의 소통까지,",
-      descriptionTail: "Aido의 주요 화면들을 미리 만나보세요.",
+      titleLead: "생각에서 실행까지,",
+      titleHighlight: "아이두가 같이 갈게요",
+      descriptionLead: "복잡하게 준비하지 않아도 괜찮아요.",
+      descriptionTail: "나에게 맞는 방식으로 하루를 정리해보세요.",
+      premiumLabel: "프리미엄",
       screens: [
         {
-          title: "말로 쓰면, AI가 정리해요",
-          subtitle: "스마트 할 일 관리",
+          title: "메모가 할 일이 되는 순간",
+          subtitle: "AI 할 일 정리",
           description: [
-            "생각나는 대로 적거나 말하면",
-            "AI가 자동으로 분류하고 일정에 넣어줘요.",
-            "복잡한 입력은 이제 그만.",
+            "떠오르는 내용을 메모하면 AI가 여러 할 일로 나눠줘요. 자연스러운 문장이나 음성으로도 할 일을 입력할 수 있어요.",
+            "날짜와 시간, 반복, 카테고리를 내 흐름에 맞게 정리해요.",
           ],
-          path: "/app-assets/home.png",
+          path: "/app-assets/home.webp",
+          alt: "자연스러운 문장으로 할 일을 입력하는 아이두 AI 입력 화면",
           rotate: -2,
         },
         {
-          title: "한눈에 보는 나의 일정",
+          title: "오늘부터 한 달까지, 한눈에",
           subtitle: "주간·월간 캘린더",
           description: [
-            "오늘 할 일부터 한 달 계획까지,",
-            "캘린더 하나로 깔끔하게 관리하세요.",
+            "오늘 할 일과 주간·월간 일정을 한눈에 살펴봐요. 반복 할 일과 알림으로 꾸준한 하루를 만들어가요.",
+            "iOS·Android 홈 화면 위젯에서도 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
           ],
-          path: "/app-assets/month-calendar-new.png",
-          secondPath: "/app-assets/week-calendar-new.png",
+          path: "/app-assets/month-calendar-new.webp",
+          secondPath: "/app-assets/week-calendar-new.webp",
+          alt: "아이두 월간 캘린더의 날짜별 할 일",
+          secondAlt: "아이두 주간 캘린더의 일주일 일정",
           rotate: 2,
         },
         {
-          title: "친구와 콕 찔러 응원해요",
-          subtitle: "소셜 동기부여",
+          title: "혼자 미루던 일도, 같이 해봐요",
+          subtitle: "친구와 콕 찌르기",
           description: [
-            "혼자 미루던 일도 친구가 콕 찌르면 달라져요.",
-            "서로 콕 찌르고, 함께 달성하세요.",
+            "이름이나 고유 해시태그로 친구를 찾고, 공개한 할 일을 서로 살펴봐요. 콕 찌르기와 댓글·답글로 작은 응원을 건네요.",
+            "혼자 사용하는 것도 좋아요. 할 일마다 공개 범위를 선택할 수 있어요.",
           ],
-          path: "/app-assets/nudge-new.png",
+          path: "/app-assets/nudge-new.webp",
+          alt: "친구에게 콕 찌르기로 응원을 보내는 아이두 화면",
           rotate: -2,
         },
         {
-          title: "AI가 분석하고, 알아서 추천까지",
-          subtitle: "AI 리포트 & 추천",
+          title: "쌓인 기록에서 다음 한 걸음으로",
+          subtitle: "AI 리포트·반복 제안",
           description: [
-            "달성률과 습관 패턴을 분석하고,",
-            "반복되는 할 일은 자동으로 제안해줘요.",
-            "수락만 누르면 끝.",
+            "AI 주간·월간 리포트로 달성률과 나의 패턴을 돌아봐요. 반복되는 할 일은 AI가 제안하고, 마음에 드는 제안을 수락해 일정에 더해요.",
+            "AI 리포트와 반복 제안은 프리미엄에서 이용할 수 있어요.",
           ],
-          path: "/app-assets/ai-report.png",
-          secondPath: "/app-assets/ai-recommend.png",
+          path: "/app-assets/ai-report.webp",
+          alt: "아이두 AI 리포트의 달성률과 카테고리 분석",
           rotate: 2,
+          premium: true,
+        },
+      ],
+    },
+    friends: {
+      label: "함께할 고양이를 골라요",
+      title: "내 하루에 작은 귀여움을",
+      descriptionLead: "마음에 드는 고양이를 앱 아이콘으로 골라보세요.",
+      descriptionTail:
+        "5종 고양이 아이콘 변경은 프리미엄에서 이용할 수 있어요.",
+      cards: [
+        {
+          name: "스코티시폴드",
+          path: "/app-assets/cat-scottish-fold.webp",
+          color: "#fff9c4",
+          rotate: -2,
+        },
+        {
+          name: "치즈 태비",
+          path: "/app-assets/cat-orange-tabby.webp",
+          color: "#e3f2fd",
+          rotate: 3,
+        },
+        {
+          name: "검은 고양이",
+          path: "/app-assets/cat-black.webp",
+          color: "#f3e5f5",
+          rotate: -1,
+        },
+        {
+          name: "샴",
+          path: "/app-assets/cat-shyam.webp",
+          color: "#e8f5e9",
+          rotate: 2,
+        },
+        {
+          name: "하얀 고양이",
+          path: "/app-assets/cat-abyssinian.webp",
+          color: "#fdf1e3",
+          rotate: -3,
+        },
+      ],
+    },
+    faq: {
+      title: "궁금한 점이 있나요?",
+      description: "시작하기 전에, 아이두를 조금 더 알아봐요.",
+      items: [
+        {
+          question: "아이두는 무료로 사용할 수 있나요?",
+          answer:
+            "네, 무료로 시작할 수 있어요. 기본 할 일 관리와 캘린더, 친구 기능을 이용하고, AI 정리 등 일부 기능은 사용 한도가 있어요. 프리미엄에서는 AI 리포트·반복 제안·고양이 아이콘 변경과 더 넉넉한 사용 범위를 제공해요. 구독 가격과 상세 조건은 앱에서 확인할 수 있어요.",
+        },
+        {
+          question: "AI가 메모와 음성을 어떻게 정리해주나요?",
+          answer:
+            "자연스러운 문장으로 할 일을 적거나 음성으로 입력할 수 있어요. 메모 AI는 떠오르는 내용을 실행할 여러 할 일로 나눠줘요. 정리된 내용을 확인하고 나에게 맞게 수정해 사용해보세요.",
+        },
+        {
+          question: "매일 반복되는 할 일도 만들 수 있나요?",
+          answer:
+            "네, 일·주·월 단위의 반복 할 일을 만들 수 있어요. 날짜와 시간을 설정하고 주간·월간 캘린더에서 일정을 확인해요. AI 반복 제안은 프리미엄 기능이에요.",
+        },
+        {
+          question: "친구 없이 혼자 사용해도 괜찮나요?",
+          answer:
+            "물론이에요. 혼자서도 메모, 할 일, 캘린더로 하루를 정리할 수 있어요. 함께하고 싶을 때 친구를 찾아 콕 찌르기와 댓글로 응원해보세요.",
+        },
+        {
+          question: "모든 할 일이 친구에게 보이나요?",
+          answer:
+            "할 일마다 공개 범위를 선택할 수 있어요. 친구는 공개한 할 일을 볼 수 있고, 비공개로 설정한 할 일은 공유되지 않아요. 생성하거나 수정할 때 공개 설정을 확인해주세요.",
+        },
+        {
+          question: "어떤 기기와 언어를 지원하나요?",
+          answer:
+            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 앱과 이 웹사이트는 한국어·영어를 지원하고, 홈 화면 위젯도 iOS·Android에서 사용할 수 있어요.",
         },
       ],
     },
     cta: {
-      titleLineOne: "지금 시작하세요.",
-      titleLineTwo: "매일이 달라집니다.",
-      description: "고양이 친구들과 AI가 당신의 하루를 함께 만들어갑니다.",
-      highlights: [
-        "AI 할 일 정리",
-        "소셜 동기부여",
-        "스마트 알림",
-        "5종 고양이 친구",
-        "iOS & Android",
-      ],
-      closingNote: "작은 시작이 큰 변화를 만듭니다.",
-      playfulText: "아이두 아이두~ 🎵",
+      titleLineOne: "오늘 하나부터,",
+      titleLineTwo: "같이 시작해볼까요?",
+      description:
+        "완벽한 계획보다 작은 시작. 아이두와 나만의 하루를 만들어가요.",
+      closingNote: "무료로 시작 · 일부 기능은 프리미엄 구독",
+    },
+    storeButtons: {
+      ariaLabel: "앱 다운로드 링크",
+      appStorePrefix: "Download on the",
+      appStoreLabel: "App Store",
+      playStorePrefix: "Get it on",
+      playStoreLabel: "Google Play",
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
-      tagline: "친구와 함께 성장하는 할 일 관리",
+      tagline: "메모는 가볍게, 할 일은 함께.",
       contactBadge: "고객 문의",
       companyLabel: "상호",
       companyValue: "레드밴드",
@@ -439,16 +384,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       privacyLabel: "개인정보처리방침",
       instagramLabel: "인스타그램",
     },
-    patchNotes: {
-      title: "패치 노트",
-      description: "Aido의 최신 업데이트 내역을 확인하세요.",
-      backHome: "홈으로",
-      bugFixes: "버그 수정",
-      features: "새로운 기능",
-      improvements: "개선 사항",
-      newRelease: "신규 출시",
-      latest: "최신",
-    },
     legal: {
       badge: "Legal",
       backHomeLabel: "홈으로 돌아가기",
@@ -461,279 +396,251 @@ const catalogs: Record<Locale, MessageCatalog> = {
       termsDescription:
         "Aido 서비스 이용 조건, 결제 및 자동 갱신, 이용자 권리와 책임을 안내합니다.",
     },
+    patchNotes: {
+      title: "패치 노트",
+      description: "Aido의 최신 업데이트 내역을 확인하세요.",
+      backHome: "홈으로",
+      bugFixes: "버그 수정",
+      features: "새로운 기능",
+      improvements: "개선 사항",
+      newRelease: "신규 출시",
+      latest: "최신",
+      badge: "업데이트 기록",
+      closingNote: "더 좋은 하루를 위해, 조금씩 다듬고 있어요 🐾",
+    },
+    languageSwitcher: {
+      label: "언어",
+      ko: "KO",
+      en: "EN",
+      navLabel: "언어 선택",
+    },
   },
   en: {
     meta: {
-      title: "Aido - AI To-Do Planner | Social Productivity with Friends",
+      title: "Aido | AI To-Do Planner, Notes & Task Management",
       description:
-        "A social to-do app powered by AI. Speak naturally and AI organizes your tasks. Nudge friends and grow together. Cat friends cheer you on every day.",
-      openGraphTitle: "Aido - AI To-Do Planner",
+        "Turn notes and voice input into to-dos with AI. Plan with recurring tasks and calendars, and encourage friends with nudges and comments. For iOS and Android, in English and Korean.",
+      openGraphTitle: "Aido — Less on your mind. More done together.",
       openGraphDescription:
-        "A social to-do app powered by AI. Speak naturally and AI organizes your tasks. Nudge friends and grow together.",
+        "Turn thoughts into to-dos with AI. Plan your day, encourage friends, and celebrate small wins together.",
       keywords: [
         "Aido",
-        "AI to-do",
-        "AI task management",
-        "to-do planner",
-        "social to-do",
+        "AI to-do planner",
         "task management app",
-        "AI assistant",
-        "cat productivity",
-        "productivity app",
-        "App Store",
-        "Google Play",
+        "notes to tasks",
+        "recurring tasks",
+        "daily planner",
       ],
-    },
-    languageSwitcher: {
-      label: "Language",
-      ko: "KO",
-      en: "EN",
     },
     nav: {
+      label: "Main navigation",
+      features: "Features",
       friends: "Cat Friends",
-      download: "Download App",
-      patchNotes: "Patch Notes",
+      faq: "FAQ",
+      download: "Get the App",
+      patchNotes: "Updates",
+      open: "Open menu",
+      close: "Close menu",
+    },
+    accessibility: {
+      skip: "Skip to content",
+      home: "Home",
+      footer: "Footer navigation",
     },
     hero: {
-      headingLead: "No more quitting after",
-      headingHighlight: "three days,",
-      headingTail: "achieve more every day with friends",
-      descriptionLead:
-        "Tasks you used to postpone become easier when you do them with friends.",
-      descriptionTail:
-        "Just speak, AI organizes it all — and your cat crew cheers you on every step.",
-      arrowNote: "Download now!",
-      launchBadge: "Now on the App Store and Google Play",
-      scrollLabel: "Learn more",
-    },
-    storeButtons: {
-      bubble: "We are still preparing for launch. Please stay tuned 🐾",
-      appStorePrefix: "Download on the",
-      appStoreLabel: "App Store",
-      playStorePrefix: "Get it on",
-      playStoreLabel: "Google Play",
-      instagramPrefix: "FOLLOW US ON",
-      instagramLabel: "Instagram",
-    },
-    friends: {
-      label: "Meet the Team",
-      title: "We're cheering for all of you!",
-      descriptionLead: "A unique group of cat friends supports you every day.",
-      descriptionTail:
-        "They celebrate your wins and encourage you through hard moments.",
-      cards: [
-        {
-          name: "Scottish Fold",
-          path: "/app-assets/cat-scottish-fold.png",
-          color: "#fff9c4",
-          rotate: -2,
-        },
-        {
-          name: "Cheese Tabby",
-          path: "/app-assets/cat-orange-tabby.png",
-          color: "#e3f2fd",
-          rotate: 3,
-        },
-        {
-          name: "Black Cat",
-          path: "/app-assets/cat-black.png",
-          color: "#f3e5f5",
-          rotate: -1,
-        },
-        {
-          name: "Siamese",
-          path: "/app-assets/cat-shyam.png",
-          color: "#e8f5e9",
-          rotate: 2,
-        },
-        {
-          name: "White Cat",
-          path: "/app-assets/cat-abyssinian.png",
-          color: "#fdf1e3",
-          rotate: -3,
-        },
-      ],
-    },
-    vision: {
-      label: "Our Promise",
-      titleLead: "Task management",
-      titleTail: "can be this joyful",
-      quoteOneLead: "Too many features get in the way of focus.",
-      quoteOneTail: "We removed the noise and kept only what truly matters.",
-      quoteTwoLead: "The joy of doing things together, the thrill of progress.",
-      quoteTwoTail: "Aido keeps your day simple, clear, and rewarding.",
+      eyebrow: "Aido · AI To-Do Planner",
+      headingLead: "Less on your mind.",
+      headingHighlight: "More done together.",
+      description:
+        "Write down a thought or say it out loud. AI turns it into to-dos, and friends help you keep going — one small win at a time.",
+      note: "Start free on iOS and Android",
+      previewAlt: "Weekly calendar and to-do list in Aido",
+      previewCaption: "One small step. A little company. 🐾",
+      memoLabel: "Thoughts into to-dos",
+      memoText: "Groceries tomorrow, a book this weekend…",
+      doneLabel: "A day of small wins",
+      doneText: "A little progress is worth celebrating",
     },
     values: {
-      title: "Core Values of Aido",
+      title: "A little less pressure. A little more progress.",
       items: [
         {
           icon: "sparkles",
-          title: "Personal Productivity",
+          title: "Thoughts into tasks",
           description: [
-            "Just speak and AI organizes your tasks.",
-            "Plan each day with recurring todos.",
+            "Turn notes and everyday language",
+            "into actionable to-dos with AI.",
           ],
           rotate: -1,
         },
         {
           icon: "users",
-          title: "Social Motivation",
-          description: ["Nudge and cheer friends", "to grow together."],
-          rotate: 2,
-        },
-        {
-          icon: "sparkles",
-          title: "Smart Reminders",
+          title: "Better together",
           description: [
-            "From morning reminders to 3-stage deadline alerts —",
-            "no more procrastinating.",
+            "Send a nudge, leave a comment,",
+            "and give each other a little boost.",
           ],
-          rotate: -2,
-        },
-      ],
-    },
-    roadmap: {
-      label: "Our Journey",
-      title: "Key Features",
-      groups: [
-        {
-          title: "Social Features",
-          icon: "👥",
-          goal: "Grow together with friends",
-          items: [
-            "Search friends by tag",
-            "Shared to-do feed",
-            "Nudge friends and cheer them on",
-            "Send cheer messages",
-          ],
-          color: "#fff9c4",
-          rotate: -1,
-        },
-        {
-          title: "Task Management",
-          icon: "✓",
-          goal: "Smarter daily planning",
-          items: [
-            "AI natural language parsing",
-            "Date-based to-do creation",
-            "Recurring tasks (day/week/month)",
-            "Daily completion calendar",
-          ],
-          color: "#e3f2fd",
-          rotate: 2,
-        },
-        {
-          title: "Alerts & Reminders",
-          icon: "🔔",
-          goal: "Never miss what matters",
-          items: [
-            "3-stage deadline alerts",
-            "Custom morning/evening reminders",
-            "Friend activity alerts",
-            "Weekly achievement summary",
-          ],
-          color: "#f3e5f5",
-          rotate: -2,
-        },
-        {
-          title: "Premium Tools",
-          icon: "⭐",
-          goal: "Unlock more possibilities",
-          items: [
-            "5 cat app icons",
-            "Unlimited AI parsing",
-            "Unlimited nudge & cheer",
-            "30 categories, unlimited friends",
-          ],
-          color: "#e8f5e9",
           rotate: 1,
         },
         {
-          title: "Account & Security",
-          icon: "🔐",
-          goal: "A safer experience",
-          items: [
-            "Kakao/Google/Apple sign-in",
-            "Profile management",
-            "Secure login controls",
-            "JWT-based secure auth",
+          icon: "calendar",
+          title: "Your day, your pace",
+          description: [
+            "Plan with recurring tasks,",
+            "calendars, and timely reminders.",
           ],
-          color: "#fce4ec",
           rotate: -1,
         },
       ],
     },
     appPreview: {
-      titleLead: "Here's what's",
-      titleHighlight: "waiting for you",
-      descriptionLead: "From task management to social motivation,",
-      descriptionTail: "take a sneak peek at Aido's key screens.",
+      titleLead: "From a thought to a small win,",
+      titleHighlight: "Aido is by your side",
+      descriptionLead: "You don't need a perfect plan to begin.",
+      descriptionTail: "Find a way of planning that feels like you.",
+      premiumLabel: "Premium",
       screens: [
         {
-          title: "Just say it, AI organizes it",
-          subtitle: "Smart Task Management",
+          title: "A note becomes your next step",
+          subtitle: "AI Task Planning",
           description: [
-            "Type or speak your thoughts and",
-            "AI automatically categorizes and schedules them.",
-            "No more complicated inputs.",
+            "Jot down a note and let AI turn it into multiple to-dos. Add tasks in everyday language or with voice input, too.",
+            "Set the date, time, repetition, and category to fit your day.",
           ],
-          path: "/app-assets/home.png",
+          path: "/app-assets/home.webp",
+          alt: "Entering a task in everyday language with Aido AI",
           rotate: -2,
         },
         {
-          title: "Your schedule at a glance",
-          subtitle: "Weekly & Monthly Calendar",
+          title: "Today, this week, the whole month",
+          subtitle: "Weekly & Monthly Calendars",
           description: [
-            "From today's tasks to monthly plans,",
-            "manage everything cleanly with one calendar.",
+            "See your day and upcoming plans at a glance. Recurring tasks and reminders help you keep a steady rhythm.",
+            "Check today’s tasks and completion progress from an iOS or Android home screen widget.",
           ],
-          path: "/app-assets/month-calendar-new.png",
-          secondPath: "/app-assets/week-calendar-new.png",
+          path: "/app-assets/month-calendar-new.webp",
+          secondPath: "/app-assets/week-calendar-new.webp",
+          alt: "Date-based tasks in the Aido monthly calendar",
+          secondAlt: "A week of plans in the Aido weekly calendar",
           rotate: 2,
         },
         {
-          title: "Nudge friends to keep going",
-          subtitle: "Social Motivation",
+          title: "A little nudge goes a long way",
+          subtitle: "Plan with Friends",
           description: [
-            "Tasks you kept putting off change",
-            "when a friend nudges you.",
-            "Push each other and achieve together.",
+            "Find friends by name or their unique hashtag, then follow the to-dos they choose to share. Send a nudge or encourage them with comments and replies.",
+            "Prefer to plan solo? That’s welcome, too. Choose the visibility of each task.",
           ],
-          path: "/app-assets/nudge-new.png",
+          path: "/app-assets/nudge-new.webp",
+          alt: "Sending a friendly nudge in Aido",
           rotate: -2,
         },
         {
-          title: "AI analyzes and recommends for you",
-          subtitle: "AI Report & Suggestions",
+          title: "Learn from your days. Plan your next step.",
+          subtitle: "AI Reports & Recurring Suggestions",
           description: [
-            "Analyzes your completion rates and habit patterns,",
-            "then automatically suggests recurring tasks.",
-            "Just tap accept.",
+            "Reflect on completion rates and patterns with weekly and monthly AI reports. AI suggests recurring tasks; accept the ones that fit your routine.",
+            "AI reports and recurring suggestions are included with Premium.",
           ],
-          path: "/app-assets/ai-report.png",
-          secondPath: "/app-assets/ai-recommend.png",
+          path: "/app-assets/ai-report.webp",
+          alt: "Completion rates and category insights in an Aido AI report",
           rotate: 2,
+          premium: true,
+        },
+      ],
+    },
+    friends: {
+      label: "Pick your little companion",
+      title: "A little more cute in your day",
+      descriptionLead: "Choose a cat you love for your app icon.",
+      descriptionTail:
+        "Five cat icons are available to customize with Premium.",
+      cards: [
+        {
+          name: "Scottish Fold",
+          path: "/app-assets/cat-scottish-fold.webp",
+          color: "#fff9c4",
+          rotate: -2,
+        },
+        {
+          name: "Cheese Tabby",
+          path: "/app-assets/cat-orange-tabby.webp",
+          color: "#e3f2fd",
+          rotate: 3,
+        },
+        {
+          name: "Black Cat",
+          path: "/app-assets/cat-black.webp",
+          color: "#f3e5f5",
+          rotate: -1,
+        },
+        {
+          name: "Siamese",
+          path: "/app-assets/cat-shyam.webp",
+          color: "#e8f5e9",
+          rotate: 2,
+        },
+        {
+          name: "White Cat",
+          path: "/app-assets/cat-abyssinian.webp",
+          color: "#fdf1e3",
+          rotate: -3,
+        },
+      ],
+    },
+    faq: {
+      title: "A few things you might be wondering",
+      description: "Get to know Aido before your first small step.",
+      items: [
+        {
+          question: "Can I use Aido for free?",
+          answer:
+            "Yes, you can start for free with task management, calendars, and friend features. Some features, including AI task planning, have usage limits. Premium adds AI reports, recurring suggestions, custom cat icons, and higher limits. Check the app for current subscription prices and details.",
+        },
+        {
+          question: "How does AI work with notes and voice input?",
+          answer:
+            "Enter tasks in everyday language or use voice input. Memo AI can turn a note into multiple actionable to-dos. Review the results and adjust them to fit your plans.",
+        },
+        {
+          question: "Can I create recurring tasks?",
+          answer:
+            "Yes. Set daily, weekly, or monthly recurring tasks, choose dates and times, and see your plans in weekly and monthly calendars. AI recurring suggestions are a Premium feature.",
+        },
+        {
+          question: "Can I use Aido without friends?",
+          answer:
+            "Absolutely. You can plan on your own with notes, tasks, and calendars. When you want some company, find a friend and encourage each other with nudges and comments.",
+        },
+        {
+          question: "Can friends see all my tasks?",
+          answer:
+            "You choose the visibility of each task. Friends can see tasks you make public; private tasks are not shared. Check the visibility setting when creating or editing a task.",
+        },
+        {
+          question: "Which devices and languages are supported?",
+          answer:
+            "Download the iOS app from the App Store or the Android app from Google Play. Both the app and this website support English and Korean. Home screen widgets are available on iOS and Android, too.",
         },
       ],
     },
     cta: {
-      titleLineOne: "Start today.",
-      titleLineTwo: "Every day gets better.",
+      titleLineOne: "One small step.",
+      titleLineTwo: "Let’s start together.",
       description:
-        "Cat friends and AI work together to transform your daily routine.",
-      highlights: [
-        "AI Task Planning",
-        "Social Motivation",
-        "Smart Reminders",
-        "5 Cat Friends",
-        "iOS & Android",
-      ],
-      closingNote: "Small steps lead to big changes.",
-      playfulText: "Aido, Aido~ 🎵",
+        "A perfect plan can wait. Make a little room for your day with Aido.",
+      closingNote: "Start free · Some features require Premium",
+    },
+    storeButtons: {
+      ariaLabel: "App download links",
+      appStorePrefix: "Download on the",
+      appStoreLabel: "App Store",
+      playStorePrefix: "Get it on",
+      playStoreLabel: "Google Play",
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
-      tagline: "A social to-do experience that helps friends grow together",
+      tagline: "Less on your mind. More done together.",
       contactBadge: "Contact",
       companyLabel: "Company",
       companyValue: "RedBand",
@@ -751,16 +658,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       privacyLabel: "Privacy Policy",
       instagramLabel: "Instagram",
     },
-    patchNotes: {
-      title: "Patch Notes",
-      description: "Check out the latest updates for Aido.",
-      backHome: "Home",
-      bugFixes: "Bug Fixes",
-      features: "Features",
-      improvements: "Improvements",
-      newRelease: "New Release",
-      latest: "Latest",
-    },
     legal: {
       badge: "Legal",
       backHomeLabel: "Back to home",
@@ -772,6 +669,24 @@ const catalogs: Record<Locale, MessageCatalog> = {
       termsTitle: "Terms of Service",
       termsDescription:
         "Usage terms, subscription conditions, and user rights for Aido.",
+    },
+    patchNotes: {
+      title: "Patch Notes",
+      description: "Check out the latest updates for Aido.",
+      backHome: "Home",
+      bugFixes: "Bug Fixes",
+      features: "Features",
+      improvements: "Improvements",
+      newRelease: "New Release",
+      latest: "Latest",
+      badge: "Changelog",
+      closingNote: "Little improvements for better days 🐾",
+    },
+    languageSwitcher: {
+      label: "Language",
+      ko: "KO",
+      en: "EN",
+      navLabel: "Language selection",
     },
   },
 };

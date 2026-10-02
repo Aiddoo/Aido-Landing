@@ -28,10 +28,10 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
 
   return (
     <nav
-      aria-label="Language selection"
-      className="flex items-center gap-2 rounded-full border-2 border-foreground bg-white px-2 py-1 hand-shadow"
+      aria-label={labels.navLabel}
+      className="flex items-center gap-1 rounded-full border-2 border-foreground bg-white px-2 py-1 hand-shadow"
     >
-      <span className="hidden px-2 text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/50 md:block">
+      <span className="hidden px-2 text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/75 xl:block">
         {labels.label}
       </span>
       {locales.map((item) => {
@@ -43,10 +43,10 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
             href={swapLocale(pathname, item)}
             aria-current={isActive ? "page" : undefined}
             className={[
-              "rounded-full border-2 px-3 py-1 text-xs font-bold transition-all",
+              "rounded-full border-2 px-2.5 py-1 text-xs font-bold transition-all",
               isActive
-                ? "border-foreground bg-brand text-white"
-                : "border-transparent text-foreground/60 hover:border-foreground/30 hover:text-foreground",
+                ? "border-foreground bg-brand text-foreground"
+                : "border-transparent text-foreground/75 hover:border-foreground/30 hover:text-foreground",
             ].join(" ")}
           >
             {item === "ko" ? labels.ko : labels.en}

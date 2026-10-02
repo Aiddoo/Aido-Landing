@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbData } from "@/components/BreadcrumbData";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type { ReleaseCategory } from "@/data/patch-notes";
 import { releaseNotes } from "@/data/patch-notes";
@@ -7,7 +8,7 @@ import type { Locale } from "@/i18n/config";
 import type { MessageCatalog } from "@/i18n/messages";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
-import { buildSocialMetadata } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 
 type LocalePatchNotesPageProps = {
   params: Promise<{ locale: string }>;
@@ -19,28 +20,12 @@ export async function generateMetadata({
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
 
-  return {
+  return buildPageMetadata({
+    locale,
     title: messages.patchNotes.title,
     description: messages.patchNotes.description,
-    alternates: {
-      canonical: `/${locale}/patch-notes`,
-      languages: {
-        ko: "/ko/patch-notes",
-        en: "/en/patch-notes",
-        "x-default": "/ko/patch-notes",
-      },
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-    ...buildSocialMetadata({
-      locale,
-      title: messages.patchNotes.title,
-      description: messages.patchNotes.description,
-      path: "/patch-notes",
-    }),
-  };
+    path: "/patch-notes",
+  });
 }
 
 const categoryColors: Record<ReleaseCategory, string> = {
@@ -88,6 +73,11 @@ export default async function LocalePatchNotesPage({
       className="min-h-screen bg-transparent selection:bg-brand/20 selection:text-brand relative px-4 py-12 sm:px-6 sm:py-16 lg:py-20"
       lang={locale}
     >
+      <BreadcrumbData
+        locale={locale}
+        path="/patch-notes"
+        title={messages.patchNotes.title}
+      />
       <div className="mx-auto w-full max-w-4xl">
         {/* Header */}
         <header className="mb-12 sm:mb-16">
@@ -119,8 +109,8 @@ export default async function LocalePatchNotesPage({
           </div>
 
           <div className="wobbly-md border-[3px] border-foreground bg-white p-6 sm:p-8 hand-shadow-lg">
-            <p className="inline-block bg-brand text-white text-xs font-bold tracking-wider uppercase px-3 py-1 wobbly-sm -rotate-2 mb-4">
-              Changelog
+            <p className="inline-block bg-brand text-foreground text-xs font-bold tracking-wider uppercase px-3 py-1 wobbly-sm -rotate-2 mb-4">
+              {messages.patchNotes.badge}
             </p>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
               {messages.patchNotes.title}
@@ -174,7 +164,7 @@ export default async function LocalePatchNotesPage({
                           v{release.version}
                         </h2>
                         {isLatest && (
-                          <span className="bg-brand text-white text-[11px] font-bold tracking-wider uppercase px-2.5 py-0.5 wobbly-sm rotate-1">
+                          <span className="bg-brand text-foreground text-[11px] font-bold tracking-wider uppercase px-2.5 py-0.5 wobbly-sm rotate-1">
                             {messages.patchNotes.latest}
                           </span>
                         )}
@@ -186,7 +176,7 @@ export default async function LocalePatchNotesPage({
                       </div>
                       <time
                         dateTime={release.date}
-                        className="text-sm font-bold text-foreground/40 tabular-nums"
+                        className="text-sm font-bold text-foreground/70 tabular-nums"
                       >
                         {formatDate(release.date, locale)}
                       </time>
@@ -254,10 +244,8 @@ export default async function LocalePatchNotesPage({
 
         {/* Footer decoration */}
         <div className="mt-16 flex justify-center">
-          <div className="wobbly-sm border-2 border-foreground/20 bg-white px-6 py-3 hand-shadow text-sm font-bold text-foreground/40 -rotate-1">
-            {locale === "ko"
-              ? "더 많은 업데이트가 곧 찾아올 거예요 🐾"
-              : "More updates coming soon 🐾"}
+          <div className="wobbly-sm border-2 border-foreground/20 bg-white px-6 py-3 hand-shadow text-sm font-bold text-foreground/70 -rotate-1">
+            {messages.patchNotes.closingNote}
           </div>
         </div>
       </div>

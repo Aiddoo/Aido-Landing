@@ -1,97 +1,130 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { AppPreview } from "@/components/AppPreview";
 import { CTA } from "@/components/CTA";
+import { FAQ } from "@/components/FAQ";
 import { Friends } from "@/components/Friends";
 import { Hero } from "@/components/Hero";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MobileMenu } from "@/components/MobileMenu";
-import { Roadmap } from "@/components/Roadmap";
+import { StructuredData } from "@/components/StructuredData";
 import { Values } from "@/components/Values";
-import { Vision } from "@/components/Vision";
+import { releaseNotes } from "@/data/patch-notes";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
-import { INSTAGRAM_URL } from "@/lib/seo";
+import {
+  APP_STORE_URL,
+  buildPageMetadata,
+  INSTAGRAM_URL,
+  PLAY_STORE_URL,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
-type LocaleHomePageProps = {
-  params: Promise<{ locale: string }>;
-};
-
+type LocaleHomePageProps = { params: Promise<{ locale: string }> };
+export async function generateMetadata({
+  params,
+}: LocaleHomePageProps): Promise<Metadata> {
+  const locale = resolveLocale((await params).locale);
+  const { meta } = getMessages(locale);
+  return buildPageMetadata({
+    locale,
+    title: meta.title,
+    description: meta.description,
+    path: "",
+    socialTitle: meta.openGraphTitle,
+    socialDescription: meta.openGraphDescription,
+  });
+}
 export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
   const prefix = `/${locale}`;
-
   return (
-    <main
-      className="min-h-screen bg-transparent selection:bg-brand/20 selection:text-brand relative"
-      lang={locale}
-    >
-      <div className="paper-grain" />
-
-      <nav className="fixed top-4 sm:top-6 z-50 w-full px-4 sm:px-6 pointer-events-none">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 bg-white/80 backdrop-blur wobbly-md border-[3px] border-foreground px-4 sm:px-8 py-3 sm:py-4 hand-shadow-lg pointer-events-auto">
-          <Link href={prefix} className="flex items-center gap-3 sm:gap-4">
-            <div className="relative h-9 w-9 sm:h-10 sm:w-10 wobbly-md border-2 border-foreground bg-brand group transition-transform hover:-rotate-12">
-              <Image
-                src="/logo.png"
-                alt="Aido"
-                fill
-                sizes="40px"
-                priority
-                className="object-contain p-1.5"
-              />
-            </div>
-            <span className="text-xl sm:text-2xl font-bold tracking-tight">
-              Aido
-            </span>
-          </Link>
-
-          <div className="flex items-center gap-3 sm:gap-6">
-            <a
-              href={`${prefix}#friends`}
-              className="hidden text-sm sm:text-base lg:text-lg font-bold text-foreground/60 sm:block hover:text-brand transition-colors"
-            >
-              {messages.nav.friends}
-            </a>
-            <Link
-              href={`${prefix}/patch-notes`}
-              className="hidden text-sm sm:text-base lg:text-lg font-bold text-foreground/60 sm:block hover:text-brand transition-colors"
-            >
+    <>
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "MobileApplication",
+          "@id": `${SITE_URL}/#app`,
+          name: SITE_NAME,
+          alternateName: "아이두",
+          url: `${SITE_URL}${prefix}`,
+          operatingSystem: "iOS, Android",
+          applicationCategory: "BusinessApplication",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+          installUrl: [APP_STORE_URL, PLAY_STORE_URL],
+          description: messages.meta.description,
+          inLanguage: ["ko-KR", "en-US"],
+          softwareVersion: releaseNotes[0].version,
+          publisher: { "@id": `${SITE_URL}/#organization` },
+          featureList: messages.appPreview.screens.map(
+            (screen) => screen.subtitle,
+          ),
+        }}
+      />
+      <a href="#content" className="skip-link">
+        {messages.accessibility.skip}
+      </a>
+      <header className="site-header">
+        <Link
+          href={prefix}
+          aria-label={`Aido · ${messages.accessibility.home}`}
+          className="flex items-center gap-2"
+        >
+          <div className="relative h-9 w-9 wobbly-md border-2 border-foreground bg-brand">
+            <Image
+              src="/logo-small.webp"
+              alt=""
+              fill
+              sizes="36px"
+              className="object-contain p-1"
+            />
+          </div>
+          <span className="text-xl font-bold">Aido</span>
+        </Link>
+        <div className="flex items-center gap-3">
+          <nav
+            aria-label={messages.nav.label}
+            className="desktop-nav hidden lg:flex"
+          >
+            <a href={`${prefix}#features`}>{messages.nav.features}</a>
+            <a href={`${prefix}#faq`}>{messages.nav.faq}</a>
+            <Link href={`${prefix}/patch-notes`}>
               {messages.nav.patchNotes}
             </Link>
-            <a
-              href={`${prefix}#download`}
-              className="hidden sm:block text-sm sm:text-base lg:text-lg font-bold text-brand hover:scale-110 active:scale-95 transition-all"
-            >
+            <a href={`${prefix}#download`} className="nav-download">
               {messages.nav.download}
             </a>
-            <LanguageSwitcher
-              locale={locale}
-              labels={messages.languageSwitcher}
-            />
-            <MobileMenu prefix={prefix} labels={messages.nav} />
-          </div>
+          </nav>
+          <LanguageSwitcher
+            locale={locale}
+            labels={messages.languageSwitcher}
+          />
+          <MobileMenu prefix={prefix} labels={messages.nav} />
         </div>
-      </nav>
-
-      <Hero content={messages.hero} storeButtons={messages.storeButtons} />
-      <Friends content={messages.friends} />
-      <Vision content={messages.vision} />
-      <Values content={messages.values} />
-      <Roadmap content={messages.roadmap} />
-      <AppPreview content={messages.appPreview} />
-      <CTA content={messages.cta} storeButtons={messages.storeButtons} />
-
-      <footer className="px-6 py-20 relative overflow-hidden" lang={locale}>
-        <div className="w-full h-1 border-t-2 border-dashed border-foreground opacity-20 mb-20" />
+      </header>
+      <main id="content" className="min-h-screen selection:bg-brand/20">
+        <Hero content={messages.hero} storeButtons={messages.storeButtons} />
+        <Values content={messages.values} />
+        <AppPreview content={messages.appPreview} />
+        <Friends content={messages.friends} />
+        <FAQ content={messages.faq} />
+        <CTA content={messages.cta} storeButtons={messages.storeButtons} />
+      </main>
+      <footer
+        className="px-6 py-12 sm:py-16 relative overflow-hidden"
+        lang={locale}
+      >
+        <div className="w-full h-1 border-t-2 border-dashed border-foreground opacity-20 mb-12" />
 
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col items-center justify-between gap-12 sm:flex-row mb-12">
             <Link href={prefix} className="flex items-center gap-4 group">
               <div className="relative h-8 w-8 wobbly-md border-2 border-foreground bg-foreground p-1 grayscale group-hover:grayscale-0 transition-all group-hover:bg-brand">
                 <Image
-                  src="/logo.png"
+                  src="/logo-small.webp"
                   alt="Aido"
                   fill
                   sizes="32px"
@@ -105,13 +138,13 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
               <p className="text-lg font-bold opacity-80">
                 {messages.footer.copyright}
               </p>
-              <p className="text-sm font-medium opacity-50">
+              <p className="text-sm font-medium text-foreground/70">
                 {messages.footer.tagline}
               </p>
             </div>
 
             <div className="flex flex-col items-center sm:items-end gap-1 text-xs font-bold tracking-wider relative">
-              <span className="bg-brand text-white px-2 py-0.5 wobbly-sm -rotate-2 mb-2 inline-block">
+              <span className="bg-brand text-foreground px-2 py-0.5 wobbly-sm -rotate-2 mb-2 inline-block">
                 {messages.footer.contactBadge}
               </span>
               <a
@@ -169,8 +202,8 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
             </address>
 
             <nav
-              aria-label="Footer links"
-              className="flex items-center gap-8 text-sm font-bold"
+              aria-label={messages.accessibility.footer}
+              className="flex items-center gap-4 sm:gap-8 text-sm font-bold flex-wrap justify-center"
             >
               <Link
                 href={`${prefix}/terms`}
@@ -213,23 +246,7 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
             </nav>
           </div>
         </div>
-
-        <div className="absolute right-10 bottom-10 opacity-10 -rotate-12 pointer-events-none">
-          <svg
-            width="100"
-            height="100"
-            viewBox="0 0 100 100"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-            role="img"
-          >
-            <title>Decorative background scribble</title>
-            <path d="M10,90 Q30,10 90,50 T10,10" />
-          </svg>
-        </div>
       </footer>
-    </main>
+    </>
   );
 }

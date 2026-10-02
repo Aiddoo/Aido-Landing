@@ -1,73 +1,33 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Crown, Sparkles, Users } from "lucide-react";
+import { CalendarDays, Sparkles, Users } from "lucide-react";
 import type { MessageCatalog } from "@/i18n/messages";
 
-type ValuesProps = {
-  content: MessageCatalog["values"];
-};
-
-const iconMap = {
-  sparkles: Sparkles,
-  users: Users,
-  crown: Crown,
-} as const;
-
-export function Values({ content }: ValuesProps) {
+const icons = { calendar: CalendarDays, sparkles: Sparkles, users: Users };
+export function Values({ content }: { content: MessageCatalog["values"] }) {
   return (
-    <section className="px-6 py-24 sm:py-32 bg-muted/20">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-20 text-center relative">
-          <h2 className="text-4xl font-bold tracking-tight sm:text-6xl mb-4 relative inline-block">
-            {content.title}
-            <svg
-              className="absolute -bottom-3 left-0 w-full"
-              height="12"
-              viewBox="0 0 200 12"
-              fill="none"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M2 10C50 2 150 2 198 10"
-                stroke="#FF6843"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </svg>
-          </h2>
-        </div>
-        <div className="grid gap-12 sm:grid-cols-3 lg:gap-16">
-          {content.items.map((value, index) => {
-            const Icon = iconMap[value.icon];
-
+    <section className="section-space pt-0" aria-labelledby="values-title">
+      <div className="page-width">
+        <h2 id="values-title" className="sr-only">
+          {content.title}
+        </h2>
+        <div className="value-grid">
+          {content.items.map((item, index) => {
+            const Icon = icons[item.icon];
             return (
-              <motion.article
-                key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="flex flex-col items-center text-center group"
+              <article
+                key={item.title}
+                className={`value-card value-card-${index}`}
               >
-                <div
-                  className="flex h-24 w-24 shrink-0 items-center justify-center wobbly border-[3px] border-foreground bg-white hand-shadow transition-transform group-hover:rotate-12 mb-8"
-                  style={{ rotate: `${value.rotate}deg` }}
+                <span
+                  className="value-icon"
+                  style={{ transform: `rotate(${item.rotate}deg)` }}
                 >
-                  <Icon className="h-10 w-10 text-brand" strokeWidth={2.5} />
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-3xl font-bold">{value.title}</h3>
-                  <p className="text-xl text-muted-foreground leading-relaxed px-4">
-                    {value.description.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              </motion.article>
+                  <Icon size={26} aria-hidden="true" />
+                </span>
+                <h3 className="mb-3 text-2xl">{item.title}</h3>
+                <p className="leading-7 text-foreground/80">
+                  {item.description.join(" ")}
+                </p>
+              </article>
             );
           })}
         </div>
