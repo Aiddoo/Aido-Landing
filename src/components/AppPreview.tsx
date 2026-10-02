@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { MessageCatalog } from "@/i18n/messages";
-import { MotionFigure } from "./MotionFigure";
+import { PhonePreview } from "./PhonePreview";
 export function AppPreview({
   content,
 }: {
@@ -44,7 +44,7 @@ export function AppPreview({
               <div
                 className={`feature-phones ${screen.secondPath ? "feature-phones-dual" : ""}`}
               >
-                <MotionFigure
+                <PhonePreview
                   rotate={screen.rotate}
                   className="phone-frame feature-phone"
                 >
@@ -56,9 +56,9 @@ export function AppPreview({
                     sizes="(min-width:768px) 220px, 190px"
                     className="block h-auto w-full"
                   />
-                </MotionFigure>
+                </PhonePreview>
                 {screen.secondPath && (
-                  <MotionFigure
+                  <PhonePreview
                     rotate={-screen.rotate}
                     className="phone-frame feature-phone second-phone"
                   >
@@ -70,7 +70,7 @@ export function AppPreview({
                       sizes="(min-width:768px) 200px, 160px"
                       className="block h-auto w-full"
                     />
-                  </MotionFigure>
+                  </PhonePreview>
                 )}
               </div>
             </article>

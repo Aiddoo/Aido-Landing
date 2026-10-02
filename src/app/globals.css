@@ -374,6 +374,7 @@ html {
 .feature-phone {
   width: 220px;
   flex-shrink: 0;
+  transform: rotate(var(--phone-rotation, 0deg));
 }
 .feature-phones-dual .feature-phone {
   width: 200px;
@@ -684,5 +685,14 @@ summary::-webkit-details-marker {
   .cat-card {
     min-width: 0;
     overflow-wrap: anywhere;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .feature-phone {
+    transition: transform 0.2s;
+  }
+  .feature-phone:hover {
+    transform: translateY(-5px) rotate(0deg);
   }
 }
