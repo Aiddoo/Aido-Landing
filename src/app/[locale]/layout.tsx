@@ -1,6 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Black_Han_Sans, Noto_Sans_KR } from "next/font/google";
 import { locales } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
@@ -12,20 +11,6 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
-
-const notoSansKR = Noto_Sans_KR({
-  weight: ["400", "500", "700"],
-  variable: "--font-noto-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const blackHanSans = Black_Han_Sans({
-  weight: "400",
-  variable: "--font-black-han",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -118,9 +103,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body
-        className={`${notoSansKR.variable} ${blackHanSans.variable} antialiased`}
-      >
+      <body className="antialiased">
         <script type="application/ld+json">
           {JSON.stringify(organizationJsonLd)}
         </script>
