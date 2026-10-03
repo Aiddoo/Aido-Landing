@@ -12,6 +12,67 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.10.1",
+    date: "2026-10-04",
+    summary: {
+      ko: "날씨와 화면 이동을 더 편하게 다듬고, 새로운 고양이 친구들이 찾아왔어요.",
+      en: "Weather screens and navigation are easier to use, with new cat friends to meet.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "러시안 블루, 크림, 턱시도 고양이가 추가돼 프로필을 9가지 고양이 중에서 고를 수 있어요. 프리미엄 구독자는 앱 아이콘도 바꿀 수 있어요.",
+            en: "Russian Blue, Cream, and Tuxedo cats bring your profile choices to nine. Premium subscribers can also change their app icon.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "날씨 화면의 상단과 배경을 자연스럽게 맞추고, 라이트 모드와 다크 모드에서 더 편하게 볼 수 있도록 다듬었어요.",
+            en: "The weather screen has a more consistent header and background, with clearer colors in light and dark mode.",
+          },
+          {
+            ko: "한국 밖에서는 날씨를 국내에서만 지원한다는 안내를 확인할 수 있어요.",
+            en: "Outside Korea, you will see a notice explaining that weather is currently supported only in Korea.",
+          },
+          {
+            ko: "할 일, 메모, 마이페이지를 더 쉽게 구분할 수 있도록 하단 탭 아이콘을 새롭게 다듬었어요.",
+            en: "Refreshed bottom tab icons make to-dos, notes, and My Page easier to tell apart.",
+          },
+          {
+            ko: "등록된 할 일이나 메모가 없을 때 안내가 화면 가운데에 보이고, 캘린더를 불러오지 못하면 가까운 곳에서 다시 시도할 수 있어요.",
+            en: "Empty to-do and note lists show a centered message. If the calendar cannot load, you can retry without scrolling far.",
+          },
+          {
+            ko: "목록을 스크롤하거나 불러오는 과정을 다듬고, 화면 아래 내용이 하단 탭에 가려지지 않도록 정리했어요.",
+            en: "Lists are smoother to scroll and load, and content at the bottom stays clear of the tabs.",
+          },
+          {
+            ko: "무료로 이용할 때는 AI 기능 안내를 먼저 보여드리고, 프리미엄 AI 제안을 준비 중이거나 불러오지 못했을 때도 상태를 더 쉽게 알 수 있어요.",
+            en: "Free users see an introduction to AI features. Premium subscribers get clearer messages while AI suggestions are being prepared or cannot load.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "앱에 처음 들어왔을 때 위치와 예보가 늦게 반영되거나, 상단 온도가 가끔 보이지 않던 문제를 고쳤어요.",
+            en: "We fixed delayed location and forecast updates when opening the app, and the temperature occasionally missing from the top of the screen.",
+          },
+          {
+            ko: "Android에서 테마를 바꾸거나 이전 화면으로 돌아갈 때 앱이 갑자기 종료될 수 있던 문제를 고쳤어요.",
+            en: "We fixed an issue that could unexpectedly close the app on Android when changing themes or going back.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.10.0",
     date: "2026-10-02",
     summary: {
