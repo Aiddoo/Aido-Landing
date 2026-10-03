@@ -21,16 +21,19 @@ export function Friends({ content }: { content: MessageCatalog["friends"] }) {
           {content.cards.map((card) => (
             <figure
               key={card.name}
-              className="cat-card"
+              className={`cat-card${card.isNew ? " cat-card-new" : ""}`}
               style={{ transform: `rotate(${card.rotate}deg)` }}
             >
+              {card.isNew && (
+                <span className="cat-new-label">{content.newLabel}</span>
+              )}
               <div
                 className="cat-image"
                 style={{ backgroundColor: card.color }}
               >
                 <Image
                   src={card.path}
-                  alt=""
+                  alt={card.alt}
                   width={160}
                   height={160}
                   sizes="(min-width:768px) 128px, 96px"

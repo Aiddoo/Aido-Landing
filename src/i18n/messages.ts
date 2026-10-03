@@ -1,6 +1,13 @@
 import type { Locale } from "./config";
 
-type FriendCard = { name: string; path: string; color: string; rotate: number };
+type FriendCard = {
+  name: string;
+  path: string;
+  alt: string;
+  color: string;
+  rotate: number;
+  isNew?: boolean;
+};
 type ValueItem = {
   icon: "sparkles" | "users" | "calendar";
   title: string;
@@ -40,6 +47,7 @@ export type MessageCatalog = {
     title: string;
     descriptionLead: string;
     descriptionTail: string;
+    newLabel: string;
     cards: FriendCard[];
   };
   faq: {
@@ -285,37 +293,74 @@ const catalogs: Record<Locale, MessageCatalog> = {
     friends: {
       label: "함께할 고양이를 골라요",
       title: "내 하루에 작은 귀여움을",
-      descriptionLead: "마음에 드는 고양이를 앱 아이콘으로 골라보세요.",
+      descriptionLead: "9가지 고양이 중 내 프로필과 함께할 친구를 골라보세요.",
       descriptionTail:
-        "5종 고양이 아이콘 변경은 프리미엄에서 이용할 수 있어요.",
+        "프리미엄에서는 마음에 드는 고양이로 앱 아이콘도 바꿀 수 있어요.",
+      newLabel: "새 친구",
       cards: [
+        {
+          name: "러시안 블루",
+          path: "/app-assets/cat-russian-blue.webp",
+          alt: "연보라 배경에 졸린 표정을 짓고 있는 회색 고양이",
+          color: "#f3e5f5",
+          rotate: -2,
+          isNew: true,
+        },
+        {
+          name: "크림 고양이",
+          path: "/app-assets/cat-cream.webp",
+          alt: "연노랑 배경에 졸린 표정을 짓고 있는 크림색 고양이",
+          color: "#fff9c4",
+          rotate: 2,
+          isNew: true,
+        },
+        {
+          name: "턱시도 고양이",
+          path: "/app-assets/cat-tuxedo.webp",
+          alt: "민트색 배경에 흰 얼굴과 검은 털을 가진 고양이",
+          color: "#e8f5e9",
+          rotate: -1,
+          isNew: true,
+        },
+        {
+          name: "아이두 고양이",
+          path: "/app-assets/cat-default.webp",
+          alt: "주황색 배경에 졸린 표정을 짓고 있는 아이두의 기본 고양이",
+          color: "#fdf1e3",
+          rotate: 2,
+        },
         {
           name: "스코티시폴드",
           path: "/app-assets/cat-scottish-fold.webp",
+          alt: "연보라 배경에 접힌 귀를 가진 회색 고양이",
           color: "#fff9c4",
           rotate: -2,
         },
         {
           name: "치즈 태비",
           path: "/app-assets/cat-orange-tabby.webp",
+          alt: "하늘색 배경에 줄무늬가 있는 치즈색 고양이",
           color: "#e3f2fd",
           rotate: 3,
         },
         {
           name: "검은 고양이",
           path: "/app-assets/cat-black.webp",
+          alt: "분홍색 배경에 졸린 표정을 짓고 있는 검은 고양이",
           color: "#f3e5f5",
           rotate: -1,
         },
         {
           name: "샴",
-          path: "/app-assets/cat-shyam.webp",
+          path: "/app-assets/cat-abyssinian.webp",
+          alt: "연녹색 배경에 갈색 얼굴과 귀를 가진 고양이",
           color: "#e8f5e9",
           rotate: 2,
         },
         {
           name: "하얀 고양이",
-          path: "/app-assets/cat-abyssinian.webp",
+          path: "/app-assets/cat-shyam.webp",
+          alt: "검은 배경에 졸린 표정을 짓고 있는 하얀 고양이",
           color: "#fdf1e3",
           rotate: -3,
         },
@@ -569,37 +614,75 @@ const catalogs: Record<Locale, MessageCatalog> = {
     friends: {
       label: "Pick your little companion",
       title: "A little more cute in your day",
-      descriptionLead: "Choose a cat you love for your app icon.",
+      descriptionLead:
+        "Choose from nine cats to make your profile feel like you.",
       descriptionTail:
-        "Five cat icons are available to customize with Premium.",
+        "With Premium, you can also choose your favorite for your app icon.",
+      newLabel: "New",
       cards: [
+        {
+          name: "Russian Blue",
+          path: "/app-assets/cat-russian-blue.webp",
+          alt: "A sleepy gray cat against a lavender background",
+          color: "#f3e5f5",
+          rotate: -2,
+          isNew: true,
+        },
+        {
+          name: "Cream Cat",
+          path: "/app-assets/cat-cream.webp",
+          alt: "A sleepy cream-colored cat against a pale yellow background",
+          color: "#fff9c4",
+          rotate: 2,
+          isNew: true,
+        },
+        {
+          name: "Tuxedo Cat",
+          path: "/app-assets/cat-tuxedo.webp",
+          alt: "A black cat with a white face against a mint background",
+          color: "#e8f5e9",
+          rotate: -1,
+          isNew: true,
+        },
+        {
+          name: "Aido Cat",
+          path: "/app-assets/cat-default.webp",
+          alt: "Aido's sleepy default cat against an orange background",
+          color: "#fdf1e3",
+          rotate: 2,
+        },
         {
           name: "Scottish Fold",
           path: "/app-assets/cat-scottish-fold.webp",
+          alt: "A gray cat with folded ears against a lavender background",
           color: "#fff9c4",
           rotate: -2,
         },
         {
           name: "Cheese Tabby",
           path: "/app-assets/cat-orange-tabby.webp",
+          alt: "An orange striped cat against a sky blue background",
           color: "#e3f2fd",
           rotate: 3,
         },
         {
           name: "Black Cat",
           path: "/app-assets/cat-black.webp",
+          alt: "A sleepy black cat against a pink background",
           color: "#f3e5f5",
           rotate: -1,
         },
         {
           name: "Siamese",
-          path: "/app-assets/cat-shyam.webp",
+          path: "/app-assets/cat-abyssinian.webp",
+          alt: "A cat with a brown face and ears against a pale green background",
           color: "#e8f5e9",
           rotate: 2,
         },
         {
           name: "White Cat",
-          path: "/app-assets/cat-abyssinian.webp",
+          path: "/app-assets/cat-shyam.webp",
+          alt: "A sleepy white cat against a black background",
           color: "#fdf1e3",
           rotate: -3,
         },

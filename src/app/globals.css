@@ -397,15 +397,32 @@ html {
 }
 .cat-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  max-width: 52rem;
+  margin: auto;
 }
 .cat-card {
+  position: relative;
   background: white;
   border: 2px solid var(--foreground);
   border-radius: 22px 9px 20px 10px;
   padding: 20px 12px;
   box-shadow: 4px 4px 0 var(--foreground);
+}
+.cat-card-new {
+  background: #fff8ed;
+}
+.cat-new-label {
+  position: absolute;
+  top: -12px;
+  right: 12px;
+  padding: 3px 10px;
+  border: 1.5px solid var(--foreground);
+  border-radius: 9px 4px 8px 5px;
+  background: #fff9c4;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 .cat-image {
   width: 128px;
@@ -413,6 +430,9 @@ html {
   margin: auto;
   border-radius: 40px 25px 35px 22px;
   padding: 6px;
+}
+.cat-image img {
+  border-radius: 28px 18px 24px 16px;
 }
 .disclosure {
   background: white;
@@ -636,15 +656,18 @@ summary::-webkit-details-marker {
     margin-left: -25px;
   }
   .cat-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 14px;
     max-width: 400px;
-    margin: auto;
   }
-  .cat-card:last-child {
-    grid-column: 1 / -1;
-    width: calc(50% - 12px);
-    justify-self: center;
+  .cat-card {
+    min-width: 0;
+    padding: 14px 6px 12px;
+    font-size: 0.75rem;
+  }
+  .cat-new-label {
+    right: 6px;
+    padding: 2px 6px;
+    font-size: 0.625rem;
   }
   .cat-image {
     width: 96px;
