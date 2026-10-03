@@ -19,6 +19,7 @@ export function Hero({
               {content.headingHighlight}
             </span>
           </h1>
+          <p className="hero-functional-title">{content.functionalTitle}</p>
           <p className="hero-description">{content.description}</p>
           <StoreButtons content={storeButtons} />
           <p className="mt-5 text-sm font-medium text-foreground/75">

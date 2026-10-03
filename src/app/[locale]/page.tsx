@@ -4,10 +4,10 @@ import Link from "next/link";
 import { AppPreview } from "@/components/AppPreview";
 import { CTA } from "@/components/CTA";
 import { FAQ } from "@/components/FAQ";
+import { FeatureGuides } from "@/components/FeatureGuides";
 import { Friends } from "@/components/Friends";
 import { Hero } from "@/components/Hero";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { MobileMenu } from "@/components/MobileMenu";
+import { SiteHeader } from "@/components/SiteHeader";
 import { StructuredData } from "@/components/StructuredData";
 import { Values } from "@/components/Values";
 import { releaseNotes } from "@/data/patch-notes";
@@ -64,51 +64,12 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
           ),
         }}
       />
-      <a href="#content" className="skip-link">
-        {messages.accessibility.skip}
-      </a>
-      <header className="site-header">
-        <Link
-          href={prefix}
-          aria-label={`Aido · ${messages.accessibility.home}`}
-          className="flex items-center gap-2"
-        >
-          <div className="relative h-9 w-9 wobbly-md border-2 border-foreground bg-brand">
-            <Image
-              src="/logo-small.webp"
-              alt=""
-              fill
-              sizes="36px"
-              className="object-contain p-1"
-            />
-          </div>
-          <span className="text-xl font-bold">Aido</span>
-        </Link>
-        <div className="flex items-center gap-3">
-          <nav
-            aria-label={messages.nav.label}
-            className="desktop-nav hidden lg:flex"
-          >
-            <a href={`${prefix}#features`}>{messages.nav.features}</a>
-            <a href={`${prefix}#faq`}>{messages.nav.faq}</a>
-            <Link href={`${prefix}/patch-notes`}>
-              {messages.nav.patchNotes}
-            </Link>
-            <a href={`${prefix}#download`} className="nav-download">
-              {messages.nav.download}
-            </a>
-          </nav>
-          <LanguageSwitcher
-            locale={locale}
-            labels={messages.languageSwitcher}
-          />
-          <MobileMenu prefix={prefix} labels={messages.nav} />
-        </div>
-      </header>
+      <SiteHeader locale={locale} />
       <main id="content" className="min-h-screen selection:bg-brand/20">
         <Hero content={messages.hero} storeButtons={messages.storeButtons} />
         <Values content={messages.values} />
         <AppPreview content={messages.appPreview} />
+        <FeatureGuides locale={locale} />
         <Friends content={messages.friends} />
         <FAQ content={messages.faq} />
         <CTA content={messages.cta} storeButtons={messages.storeButtons} />

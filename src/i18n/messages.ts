@@ -1,4 +1,17 @@
+import type { FeatureGuideSlug } from "../data/feature-guides";
 import type { Locale } from "./config";
+
+type FeatureGuideContent = {
+  title: string;
+  summary: string;
+  steps: { title: string; body: string }[];
+  example: { introduction: string; items: string[]; note: string };
+  details: { title: string; body: string }[];
+  plans: { free: string; premium: string };
+  faq: { question: string; answer: string }[];
+  imageAlt: string;
+  imageCaption: string;
+};
 
 type FriendCard = {
   name: string;
@@ -26,6 +39,22 @@ type PreviewScreen = {
   premium?: boolean;
 };
 export type MessageCatalog = {
+  featureGuides: {
+    title: string;
+    description: string;
+    readGuide: string;
+    backToGuides: string;
+    stepsTitle: string;
+    exampleTitle: string;
+    plansTitle: string;
+    freeLabel: string;
+    premiumLabel: string;
+    plansNote: string;
+    relatedTitle: string;
+    relatedDescription: string;
+    updatedLabel: string;
+    guides: Record<FeatureGuideSlug, FeatureGuideContent>;
+  };
   meta: {
     title: string;
     description: string;
@@ -114,6 +143,7 @@ export type MessageCatalog = {
     label: string;
     features: string;
     friends: string;
+    guides: string;
     faq: string;
     download: string;
     patchNotes: string;
@@ -129,6 +159,7 @@ export type MessageCatalog = {
     eyebrow: string;
     headingLead: string;
     headingHighlight: string;
+    functionalTitle: string;
     description: string;
     note: string;
     previewAlt: string;
@@ -155,10 +186,234 @@ export type MessageCatalog = {
 
 const catalogs: Record<Locale, MessageCatalog> = {
   ko: {
-    meta: {
-      title: "아이두(Aido) | AI 투두·메모·일정 관리 앱",
+    featureGuides: {
+      title: "아이두로 할 일을 관리하는 방법",
       description:
-        "떠오르는 메모와 음성을 AI가 할 일로 정리해요. 반복 일정과 캘린더로 하루를 계획하고, 친구와 콕 찌르기·댓글로 함께 끝내세요. iOS·Android에서 한국어와 영어로 만나요.",
+        "생각을 할 일로 바꾸고, 반복 일정을 챙기고, 친구와 함께 끝내는 과정을 알아봐요.",
+      readGuide: "사용법 알아보기",
+      backToGuides: "모든 사용법 보기",
+      stepsTitle: "이렇게 시작해보세요",
+      exampleTitle: "내 하루에 이렇게 써봐요",
+      plansTitle: "무료로 시작하고, 필요할 때 더 넉넉하게",
+      freeLabel: "무료",
+      premiumLabel: "프리미엄",
+      plansNote: "구독 가격과 상세 이용 조건은 앱에서 확인할 수 있어요.",
+      relatedTitle: "다음으로 알아볼 기능",
+      relatedDescription: "내 하루에 필요한 기능을 하나씩 더해보세요.",
+      updatedLabel: "내용 확인일",
+      guides: {
+        "ai-todo": {
+          title: "메모·음성을 AI로 할 일로 정리하기",
+          summary:
+            "아이두는 떠오르는 생각을 메모로 남기고, AI로 여러 할 일과 체크리스트 항목으로 정리할 수 있는 투두 리스트 앱이에요. 문장을 입력하거나 말로 할 일을 만들 수도 있어요. 정리된 결과를 확인한 뒤 내 계획에 맞게 선택하고 수정해요.",
+          steps: [
+            {
+              title: "생각나는 내용을 메모해요",
+              body: "하단의 메모 탭에서 새 메모를 만들어요. 여행 준비처럼 한 번에 정리하기 어려운 일도 떠오르는 순서대로 적어보세요.",
+            },
+            {
+              title: "메모 상단의 로봇 아이콘을 눌러요",
+              body: "AI 이용 횟수와 안내를 확인하고 시작하기를 눌러요. 결과가 나올 때까지 화면에서 기다려주세요.",
+            },
+            {
+              title: "필요한 할 일만 남기고 다듬어요",
+              body: "AI가 정리한 제목과 체크리스트 항목을 읽어봐요. 필요 없는 할 일은 닫기 버튼으로 제외하고, 제목·날짜·시간·카테고리를 내 계획에 맞게 수정해요.",
+            },
+            {
+              title: "할 일로 만들고 하나씩 끝내요",
+              body: "남겨둔 할 일을 생성해요. 할 일 상세의 수정하기에서 내용을 다시 다듬을 수 있고, 끝낸 일은 완료로 표시해요.",
+            },
+          ],
+          example: {
+            introduction:
+              "여행 전에 머릿속이 복잡하다면, 먼저 메모에 준비할 일을 모아보세요.",
+            items: [
+              "메모 예시: 제주 여행 전에 항공권을 확인하고, 숙소를 예약하고, 짐을 챙겨야 해요.",
+              "정리 예시: 항공권 확인하기 · 숙소 예약하기 · 짐 챙기기.",
+              "짐 챙기기에 충전기, 세면도구 같은 체크리스트 항목을 더해요.",
+            ],
+            note: "사용 방법을 설명하기 위한 예시예요. AI 결과는 입력 내용에 따라 달라지므로 생성 전에 확인해주세요.",
+          },
+          details: [
+            {
+              title: "짧은 할 일은 마이크 버튼으로 말해요",
+              body: "할 일 추가 화면의 마이크 버튼을 눌러요. ‘이번 주 금요일 저녁 7시 약속’처럼 날짜와 시간을 함께 말해보세요. AI가 채운 내용은 저장 전에 확인해요. 음성 입력에는 기기의 마이크와 음성 인식 권한이 필요할 수 있어요.",
+            },
+            {
+              title: "AI 없이 직접 정리해도 괜찮아요",
+              body: "한 가지 할 일은 직접 입력하고 날짜, 시간, 반복, 공개 범위와 카테고리를 설정할 수 있어요. 메모 상세의 할 일로 변환을 이용하면 메모를 한 개의 할 일로 옮길 수도 있어요.",
+            },
+          ],
+          plans: {
+            free: "메모 작성과 기본 할 일 관리를 무료로 시작할 수 있어요. AI로 할 일을 정리하는 기능은 메모 AI와 함께 월 5회 한도를 사용하며, 매월 1일 0시(한국 시간)에 초기화돼요.",
+            premium:
+              "AI 할 일 정리를 횟수 제한 없이 이용할 수 있어요. AI 주간·월간 리포트와 반복 할 일 제안도 프리미엄에서 제공해요.",
+          },
+          faq: [
+            {
+              question: "AI가 만든 할 일을 수정할 수 있나요?",
+              answer:
+                "네. 생성 전에 필요 없는 할 일을 제외하고 제목·날짜·시간·카테고리를 수정할 수 있어요. 생성한 뒤에도 할 일 상세에서 수정하기를 눌러 내용을 바꿀 수 있어요.",
+            },
+            {
+              question: "메모마다 AI를 꼭 사용해야 하나요?",
+              answer:
+                "아니에요. 메모만 남겨두거나 직접 할 일을 만들 수 있어요. 메모 상세의 할 일로 변환으로 한 개의 할 일로 옮기는 방법도 있어요.",
+            },
+            {
+              question: "음성으로 날짜와 시간도 입력할 수 있나요?",
+              answer:
+                "네. 할 일 추가 화면의 마이크 버튼을 눌러 날짜와 시간을 포함해 말할 수 있어요. 인식한 내용과 AI가 정리한 일정을 확인한 뒤 저장해주세요.",
+            },
+          ],
+          imageAlt: "직접 입력과 음성 입력을 지원하는 아이두 할 일 추가 화면",
+          imageCaption:
+            "할 일 추가 화면에서 직접 입력하거나 마이크 버튼으로 말할 수 있어요.",
+        },
+        "recurring-todo": {
+          title: "반복 할 일·캘린더·위젯으로 하루 관리하기",
+          summary:
+            "매일 공부하기나 주중 운동처럼 다시 챙겨야 하는 일은 아이두의 반복 할 일로 등록해요. 주간·월간 캘린더에서 계획을 살펴보고, iPhone·Android 홈 화면 위젯에서 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
+          steps: [
+            {
+              title: "반복할 할 일을 만들어요",
+              body: "할 일 추가에서 ‘20분 책 읽기’처럼 실행할 일을 적어요. 시작할 날짜를 정하고, 시간이 필요한 일이라면 시간도 설정해요.",
+            },
+            {
+              title: "반복할 요일과 기간을 골라요",
+              body: "반복을 눌러 매일·주중·주말 중 하나를 고르거나 원하는 요일을 선택해요. 캘린더에서 시작일과 종료일을 정한 뒤 선택을 완료해요.",
+            },
+            {
+              title: "캘린더에서 계획을 확인해요",
+              body: "주간·월간 캘린더에서 날짜별 할 일을 살펴봐요. 끝낸 일은 완료로 표시하고, 일정이 달라지면 해당 할 일의 날짜나 시간을 확인해 바꿔요.",
+            },
+            {
+              title: "홈 화면에 아이두 위젯을 더해요",
+              body: "앱에 로그인한 뒤 기기의 홈 화면 위젯 목록에서 아이두를 찾아 추가해요. 작은 크기는 진행 상황을, 더 큰 크기는 오늘의 할 일 목록을 확인하기 좋아요.",
+            },
+          ],
+          example: {
+            introduction:
+              "퇴근 후 독서를 습관으로 만들고 싶다면, 부담 없는 분량부터 정해보세요.",
+            items: [
+              "할 일: 저녁에 20분 책 읽기.",
+              "반복: 주중. 시작일과 종료일을 정해 이번 달 계획을 만들어요.",
+              "캘린더에서 오늘 할 일을 확인하고, 홈 화면 위젯으로 남은 일과 완료 상태를 살펴봐요.",
+            ],
+            note: "위젯은 확인을 돕는 기능이에요. 표시 갱신 시점은 기기의 운영체제에 따라 달라질 수 있어요.",
+          },
+          details: [
+            {
+              title: "iPhone에서 위젯 추가하기",
+              body: "홈 화면의 빈 공간을 길게 누르고 편집 메뉴에서 위젯 추가를 선택해요. 아이두를 검색한 뒤 원하는 크기를 골라 추가해요. 기기의 iOS 버전에 따라 메뉴 위치가 조금 다를 수 있어요.",
+            },
+            {
+              title: "Android에서 위젯 추가하기",
+              body: "홈 화면의 빈 공간을 길게 누르고 위젯을 열어요. 아이두를 찾아 원하는 위젯을 홈 화면에 놓아요. 기기와 홈 화면 앱에 따라 추가 방법이나 크기 조절 방식이 달라질 수 있어요.",
+            },
+            {
+              title: "위젯이 이전 내용을 보여준다면",
+              body: "아이두 앱을 열어 로그인 상태와 오늘의 할 일을 확인해요. 앱에서 변경한 내용이 위젯에 반영되는지 살펴보고, 새로운 하루 안내가 보이면 앱을 다시 열어 확인해주세요.",
+            },
+          ],
+          plans: {
+            free: "반복 할 일은 직접 설정할 수 있고, 주간·월간 캘린더와 iOS·Android 홈 화면 위젯도 이용할 수 있어요.",
+            premium:
+              "AI 주간·월간 리포트로 달성 기록을 돌아보고, AI가 제안한 반복 할 일 중 나에게 맞는 제안을 수락할 수 있어요.",
+          },
+          faq: [
+            {
+              question: "월요일과 수요일에만 반복할 수 있나요?",
+              answer:
+                "네. 반복 설정에서 월요일과 수요일을 선택하고 시작일과 종료일을 정해요. 매일·주중·주말을 한 번에 선택하는 방법도 있어요.",
+            },
+            {
+              question: "반복 설정을 하려면 프리미엄이 필요한가요?",
+              answer:
+                "직접 반복 할 일을 설정하는 기능은 무료로 사용할 수 있어요. AI가 반복 할 일을 제안하는 기능은 프리미엄에서 제공해요.",
+            },
+            {
+              question: "위젯은 iPhone과 Android 모두 지원하나요?",
+              answer:
+                "네. 두 플랫폼의 홈 화면에서 사용할 수 있어요. 기기에서 아이두 앱에 로그인한 뒤 위젯을 추가해주세요.",
+            },
+          ],
+          imageAlt: "날짜별 할 일과 완료 상태가 표시된 아이두 주간 캘린더",
+          imageCaption: "주간 캘린더에서 날짜별 할 일과 완료 상태를 살펴봐요.",
+        },
+        "shared-todo": {
+          title: "친구와 할 일을 공유하고 함께 응원하기",
+          summary:
+            "아이두에서는 친구가 공개한 할 일을 보고, 콕 찌르기와 댓글·답글로 응원할 수 있어요. 각자의 투두 리스트를 관리하면서 필요한 일만 공유해요. 개인적인 할 일은 비공개로 설정하고, 혼자서 사용하는 것도 괜찮아요.",
+          steps: [
+            {
+              title: "이름이나 해시태그로 친구를 찾아요",
+              body: "친구 관리에서 검색 아이콘을 눌러 이름 또는 고유한 8자리 해시태그로 검색해요. 이름이 같은 사람이 있다면 해시태그로 친구가 맞는지 확인해요.",
+            },
+            {
+              title: "친구 요청을 보내고 연결해요",
+              body: "검색 결과의 추가를 눌러 요청을 보내요. 상대방은 받은 요청에서 수락할 수 있어요. 요청 상태는 친구 관리의 보낸 요청과 받은 요청에서 확인해요.",
+            },
+            {
+              title: "공유할 할 일의 공개 범위를 정해요",
+              body: "할 일을 만들거나 수정할 때 공개·비공개를 선택해요. 친구는 공개한 할 일만 볼 수 있어요. 개인적인 메모를 할 일로 옮겼다면 생성한 할 일의 공개 설정도 확인해주세요.",
+            },
+            {
+              title: "친구의 하루에 작은 응원을 보내요",
+              body: "친구 캘린더에서 공개된 할 일을 살펴봐요. 콕 찌르기로 알림을 보내거나, 할 일 상세에서 댓글과 답글로 이야기를 나눠요.",
+            },
+          ],
+          example: {
+            introduction:
+              "친구와 각자 운동 목표를 지키고 싶다면, 공유할 일만 공개해보세요.",
+            items: [
+              "내 할 일: 퇴근 후 30분 걷기. 공개로 설정해 친구가 볼 수 있게 해요.",
+              "친구의 공개된 운동 계획을 보고, 콕 찌르기나 ‘오늘도 같이 힘내자!’라는 댓글을 남겨요.",
+              "개인적인 일정은 비공개로 설정하고, 완료한 운동 기록은 친구 캘린더에서 함께 살펴봐요.",
+            ],
+            note: "댓글과 콕 찌르기는 실제 친구에게 전달돼요. 서로 편한 방식으로 응원해보세요.",
+          },
+          details: [
+            {
+              title: "할 일마다 공개 범위를 선택해요",
+              body: "모든 할 일을 공유할 필요는 없어요. 친구에게 보여주고 싶은 일은 공개로, 혼자 챙길 일은 비공개로 정해요. 친구 캘린더에도 공개된 할 일의 기록만 보여요.",
+            },
+            {
+              title: "댓글에 답글로 이어서 이야기해요",
+              body: "할 일 상세에서 댓글을 읽고 원하는 댓글에 답글을 남길 수 있어요. 이어진 대화를 펼쳐 보거나 댓글 알림을 눌러 해당 댓글로 이동해요.",
+            },
+          ],
+          plans: {
+            free: "친구를 최대 5명까지 추가할 수 있어요. 콕 찌르기는 하루 3회 이용할 수 있고, 공개한 할 일을 살펴보며 댓글로 응원할 수 있어요.",
+            premium:
+              "친구 수와 하루 콕 찌르기 횟수 제한 없이 이용할 수 있어요. 같은 할 일에는 24시간이 지난 뒤 다시 콕 찌르기를 보낼 수 있어요.",
+          },
+          faq: [
+            {
+              question: "친구를 추가하면 모든 할 일이 보이나요?",
+              answer:
+                "아니에요. 친구는 공개한 할 일만 볼 수 있어요. 할 일을 만들거나 수정할 때 공개 범위를 확인해주세요.",
+            },
+            {
+              question: "친구 요청을 보냈는데 목록에 바로 보이지 않아요",
+              answer:
+                "친구 관리의 보낸 요청에서 상태를 확인해요. 상대방이 받은 요청에서 수락하면 친구로 연결돼요.",
+            },
+            {
+              question: "친구 없이 혼자 사용해도 되나요?",
+              answer:
+                "물론이에요. 메모, 할 일, 반복 설정과 캘린더로 혼자 하루를 관리할 수 있어요. 함께하고 싶을 때 친구를 추가해보세요.",
+            },
+          ],
+          imageAlt: "친구의 할 일에 콕 찌르기 메시지를 보내는 아이두 화면",
+          imageCaption: "친구가 공개한 할 일에 콕 찌르기로 응원을 보내요.",
+        },
+      },
+    },
+    meta: {
+      title: "아이두(Aido) | AI 할 일 관리·투두 리스트 앱",
+      description:
+        "아이두는 메모와 음성을 할 일로 정리하는 AI 투두 리스트 앱이에요. 반복 일정·캘린더·홈 화면 위젯으로 하루를 관리하고, 친구와 공개한 할 일을 공유하며 응원해요. iOS·Android에서 무료로 시작하세요.",
       openGraphTitle: "아이두 — 메모는 가볍게, 할 일은 함께",
       openGraphDescription:
         "AI로 정리하고, 친구와 함께 끝내요. 메모부터 반복 일정까지, 아이두와 작은 성취를 쌓아보세요.",
@@ -177,6 +432,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       label: "주요 메뉴",
       features: "앱 기능",
       friends: "고양이 친구들",
+      guides: "사용법",
       faq: "궁금한 점",
       download: "앱 다운로드",
       patchNotes: "패치노트",
@@ -192,8 +448,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       eyebrow: "아이두 · AI 투두 플래너",
       headingLead: "메모는 가볍게,",
       headingHighlight: "할 일은 함께.",
+      functionalTitle: "메모와 음성을 할 일로 정리하는 AI 플래너",
       description:
-        "떠오르는 생각을 적거나 말해보세요. AI가 할 일로 정리하고, 친구와 함께 작은 성취를 쌓아가요.",
+        "반복 일정·캘린더·홈 화면 위젯으로 하루를 관리하고, 친구와 할 일을 공유하며 서로 응원해요.",
       note: "iOS · Android에서 무료로 시작해요",
       previewAlt: "아이두 앱의 주간 캘린더와 할 일 목록",
       previewCaption: "오늘 하나부터, 같이 해봐요 🐾",
@@ -249,7 +506,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "날짜와 시간, 반복, 카테고리를 내 흐름에 맞게 정리해요.",
           ],
           path: "/app-assets/home.webp",
-          alt: "자연스러운 문장으로 할 일을 입력하는 아이두 AI 입력 화면",
+          alt: "직접 입력과 음성 입력을 지원하는 아이두 할 일 추가 화면",
           rotate: -2,
         },
         {
@@ -383,7 +640,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "매일 반복되는 할 일도 만들 수 있나요?",
           answer:
-            "네, 일·주·월 단위의 반복 할 일을 만들 수 있어요. 날짜와 시간을 설정하고 주간·월간 캘린더에서 일정을 확인해요. AI 반복 제안은 프리미엄 기능이에요.",
+            "네, 매일·주중·주말 또는 원하는 요일을 골라 반복 할 일을 만들 수 있어요. 시작일과 종료일을 정하고 주간·월간 캘린더에서 일정을 확인해요. AI 반복 제안은 프리미엄 기능이에요.",
         },
         {
           question: "친구 없이 혼자 사용해도 괜찮나요?",
@@ -478,10 +735,241 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
   },
   en: {
-    meta: {
-      title: "Aido | AI To-Do Planner, Notes & Task Management",
+    featureGuides: {
+      title: "How to manage your to-dos with Aido",
       description:
-        "Turn notes and voice input into to-dos with AI. Plan with recurring tasks and calendars, and encourage friends with nudges and comments. For iOS and Android, in English and Korean.",
+        "Turn thoughts into to-dos, plan recurring activities and encourage friends along the way.",
+      readGuide: "Read the guide",
+      backToGuides: "All guides",
+      stepsTitle: "Start with these steps",
+      exampleTitle: "Try it in your day",
+      plansTitle: "Start free, with more room when you need it",
+      freeLabel: "Free",
+      premiumLabel: "Premium",
+      plansNote:
+        "Check the app for current subscription prices and full terms.",
+      relatedTitle: "More ways to use Aido",
+      relatedDescription: "Find the next feature that fits your day.",
+      updatedLabel: "Content reviewed",
+      guides: {
+        "ai-todo": {
+          title: "Turn notes and voice into to-dos with AI",
+          summary:
+            "Aido is a to-do list app that can turn a note into several to-dos and checklist items with AI. You can also type a sentence or speak to create a to-do. Review the results, select what you need and adjust the plan before you get started.",
+          steps: [
+            {
+              title: "Capture your thoughts in a note",
+              body: "Open the notes tab and create a note. Write down what comes to mind, such as everything you need to prepare for a trip.",
+            },
+            {
+              title: "Tap the robot icon at the top",
+              body: "Check your remaining AI uses and the instructions, then start. Stay on the screen while Aido prepares the results.",
+            },
+            {
+              title: "Keep and adjust the to-dos you need",
+              body: "Read the suggested titles and checklist items. Remove unwanted to-dos with the close button, then edit titles, dates, times and categories to fit your plan.",
+            },
+            {
+              title: "Create your to-dos and get started",
+              body: "Create the remaining to-dos. Use Edit in a to-do's detail screen to make further changes, and mark it complete when you finish.",
+            },
+          ],
+          example: {
+            introduction:
+              "Before a trip, collect the things you need to do in one note.",
+            items: [
+              "Example note: Before my Jeju trip, I need to check flights, book a hotel and pack.",
+              "Example to-dos: Check flights. Book a hotel. Pack for the trip.",
+              "Add checklist items such as a charger and toiletries to the packing to-do.",
+            ],
+            note: "This example illustrates the workflow. AI results depend on your input, so review them before creating to-dos.",
+          },
+          details: [
+            {
+              title: "Use the microphone for a short to-do",
+              body: "Tap the microphone button on the Add to-do screen. Say a date and time, such as 'Meet on Friday at 7 p.m.' Review the details AI fills in before saving. Voice input may require microphone and speech recognition permissions on your device.",
+            },
+            {
+              title: "Organize things yourself, too",
+              body: "You can add a to-do directly and set its date, time, repeat schedule, visibility and category. Use Convert to to-do in a note's detail screen to move the note into a single to-do.",
+            },
+          ],
+          plans: {
+            free: "Start free with notes and basic to-do management. AI to-do creation and note organization share five uses per month. The limit resets at 00:00 Korea time on the first of each month.",
+            premium:
+              "Use AI to-do organization without a usage limit. Premium also includes weekly and monthly AI reports and recurring to-do suggestions.",
+          },
+          faq: [
+            {
+              question: "Can I edit the to-dos AI creates?",
+              answer:
+                "Yes. Remove unwanted to-dos and edit titles, dates, times and categories before creating them. After creation, open a to-do's detail screen and use Edit to adjust it.",
+            },
+            {
+              question: "Do I need AI for every note?",
+              answer:
+                "No. Keep a note as it is or create to-dos yourself. You can also use Convert to to-do in the note's detail screen to move it into one to-do.",
+            },
+            {
+              question: "Can I include dates and times in voice input?",
+              answer:
+                "Yes. Tap the microphone button on the Add to-do screen and include dates and times when speaking. Check the recognized text and the resulting schedule before saving.",
+            },
+          ],
+          imageAlt:
+            "Aido Add to-do screen with text input and a microphone button",
+          imageCaption:
+            "Type a to-do or tap the microphone to speak. The app screen shown here is in Korean.",
+        },
+        "recurring-todo": {
+          title: "Plan with recurring to-dos, calendars and widgets",
+          summary:
+            "Set up recurring to-dos in Aido for activities such as daily reading or weekday exercise. Review your plans in weekly and monthly calendars, and check today's to-dos and progress with home screen widgets on iPhone and Android.",
+          steps: [
+            {
+              title: "Create the to-do you want to repeat",
+              body: "Add something specific, such as 'Read for 20 minutes.' Set a start date and choose a time if you need one.",
+            },
+            {
+              title: "Choose the days and date range",
+              body: "Open Repeat and select daily, weekdays, weekends or individual days. Choose a start and end date in the calendar, then confirm your selection.",
+            },
+            {
+              title: "Review the plan in your calendar",
+              body: "Use the weekly and monthly calendars to see each day's to-dos. Mark finished items complete. If a plan changes, check and update the relevant to-do's date or time.",
+            },
+            {
+              title: "Add an Aido home screen widget",
+              body: "Sign in to the app, then find Aido in your device's widget list. A small widget shows progress, while larger widgets also show today's to-do list.",
+            },
+          ],
+          example: {
+            introduction:
+              "Make reading after work easier to remember with a small, specific plan.",
+            items: [
+              "To-do: Read for 20 minutes in the evening.",
+              "Repeat: Weekdays. Set start and end dates for this month's plan.",
+              "Check today's plan in the calendar and use the home screen widget to see remaining to-dos and progress.",
+            ],
+            note: "Widgets help you check your day. Refresh timing can vary with your device's operating system.",
+          },
+          details: [
+            {
+              title: "Add a widget on iPhone",
+              body: "Touch and hold an empty area on your home screen. Open Edit and choose Add Widget. Search for Aido, choose a size and add it. Menu locations may vary with your iOS version.",
+            },
+            {
+              title: "Add a widget on Android",
+              body: "Touch and hold an empty area on your home screen and open Widgets. Find Aido and place a widget on the home screen. Adding and resizing widgets can vary by device and launcher.",
+            },
+            {
+              title: "If the widget shows older information",
+              body: "Open Aido and check your sign-in status and today's to-dos. Check whether changes appear in the widget. If it says a new day has started, open the app again to refresh your view.",
+            },
+          ],
+          plans: {
+            free: "Set recurring to-dos yourself, use weekly and monthly calendars, and add home screen widgets on iOS and Android.",
+            premium:
+              "Review your progress with weekly and monthly AI reports. Accept the AI's recurring to-do suggestions that fit your routine.",
+          },
+          faq: [
+            {
+              question: "Can I repeat a to-do only on Mondays and Wednesdays?",
+              answer:
+                "Yes. Select Monday and Wednesday in Repeat, then choose start and end dates. You can also select daily, weekdays or weekends with a preset.",
+            },
+            {
+              question: "Do recurring to-dos require Premium?",
+              answer:
+                "No. You can set recurring to-dos yourself for free. AI suggestions for recurring to-dos are a Premium feature.",
+            },
+            {
+              question: "Do widgets work on both iPhone and Android?",
+              answer:
+                "Yes. You can use them on both platforms' home screens. Sign in to Aido on your device before adding a widget.",
+            },
+          ],
+          imageAlt:
+            "Aido weekly calendar showing daily to-dos and completion progress",
+          imageCaption:
+            "Review to-dos and progress in the weekly calendar. The app screen shown here is in Korean.",
+        },
+        "shared-todo": {
+          title: "Share to-dos with friends and encourage each other",
+          summary:
+            "In Aido, you can see friends' public to-dos and encourage them with nudges, comments and replies. Manage your own to-do list and choose what to share. Keep personal to-dos private, and use the app on your own whenever you prefer.",
+          steps: [
+            {
+              title: "Find a friend by name or hashtag",
+              body: "Open friend management and tap the search icon. Search by name or unique eight-character hashtag. Use the hashtag to identify the right person when names are similar.",
+            },
+            {
+              title: "Send a friend request",
+              body: "Tap Add in the search results. Your friend can accept in received requests. Check the sent and received request tabs to follow the status.",
+            },
+            {
+              title: "Choose which to-dos to share",
+              body: "Choose Public or Private when creating or editing a to-do. Friends can only see public to-dos. If you turn a personal note into a to-do, check the created to-do's visibility too.",
+            },
+            {
+              title: "Send a little encouragement",
+              body: "See public to-dos in your friend's calendar. Send a nudge as a reminder, or open a to-do's detail screen to leave a comment or reply.",
+            },
+          ],
+          example: {
+            introduction:
+              "If you and a friend want to keep exercising, share the activities you want encouragement with.",
+            items: [
+              "My to-do: Walk for 30 minutes after work. Set it to Public so my friend can see it.",
+              "Check a friend's public exercise plan and send a nudge or a comment such as 'Let's keep going today!'",
+              "Keep personal plans private and follow completed exercise in the friend's calendar.",
+            ],
+            note: "Comments and nudges are sent to real friends. Choose a way to encourage each other that feels comfortable.",
+          },
+          details: [
+            {
+              title: "Choose visibility for each to-do",
+              body: "Share the to-dos you want friends to see by setting them to Public. Set personal ones to Private. A friend's calendar only shows activity from public to-dos.",
+            },
+            {
+              title: "Keep conversations going with replies",
+              body: "Read comments in a to-do's detail screen and reply to a specific comment. Expand a conversation to read its replies, or tap a comment notification to jump to that comment.",
+            },
+          ],
+          plans: {
+            free: "Add up to five friends and send up to three nudges a day. View public to-dos and encourage friends with comments.",
+            premium:
+              "Add friends and send nudges without daily count limits. Wait 24 hours before nudging the same to-do again.",
+          },
+          faq: [
+            {
+              question: "Can friends see every to-do after I add them?",
+              answer:
+                "No. Friends can only see public to-dos. Check visibility when creating or editing a to-do.",
+            },
+            {
+              question:
+                "Why isn't someone in my friend list after I send a request?",
+              answer:
+                "Check the sent requests tab in friend management. You become friends after the other person accepts in received requests.",
+            },
+            {
+              question: "Can I use Aido without adding friends?",
+              answer:
+                "Yes. Manage your day on your own with notes, to-dos, repeat settings and calendars. Add a friend when you want company.",
+            },
+          ],
+          imageAlt:
+            "Aido screen for sending a nudge message about a friend's to-do",
+          imageCaption:
+            "Encourage a friend with a nudge on a public to-do. The app screen shown here is in Korean.",
+        },
+      },
+    },
+    meta: {
+      title: "Aido | AI To-Do List & Task Planner",
+      description:
+        "Aido turns notes and voice input into to-dos with AI. Plan with recurring to-dos, calendars and home screen widgets. Share public to-dos with friends and encourage each other. Start free on iOS and Android.",
       openGraphTitle: "Aido — Less on your mind. More done together.",
       openGraphDescription:
         "Turn thoughts into to-dos with AI. Plan your day, encourage friends, and celebrate small wins together.",
@@ -498,6 +986,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       label: "Main navigation",
       features: "Features",
       friends: "Cat Friends",
+      guides: "Guides",
       faq: "FAQ",
       download: "Get the App",
       patchNotes: "Updates",
@@ -513,8 +1002,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       eyebrow: "Aido · AI To-Do Planner",
       headingLead: "Less on your mind.",
       headingHighlight: "More done together.",
+      functionalTitle: "An AI planner that turns notes and voice into to-dos",
       description:
-        "Write down a thought or say it out loud. AI turns it into to-dos, and friends help you keep going — one small win at a time.",
+        "Plan your day with recurring to-dos, calendars and home screen widgets. Share to-dos with friends and encourage each other along the way.",
       note: "Start free on iOS and Android",
       previewAlt: "Weekly calendar and to-do list in Aido",
       previewCaption: "One small step. A little company. 🐾",
@@ -705,7 +1195,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "Can I create recurring tasks?",
           answer:
-            "Yes. Set daily, weekly, or monthly recurring tasks, choose dates and times, and see your plans in weekly and monthly calendars. AI recurring suggestions are a Premium feature.",
+            "Yes. Choose daily, weekdays, weekends or specific days, then set a start and end date. See your plans in weekly and monthly calendars. AI recurring suggestions are a Premium feature.",
         },
         {
           question: "Can I use Aido without friends?",
