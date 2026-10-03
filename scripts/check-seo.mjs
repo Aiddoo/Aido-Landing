@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readdir, readFile, stat } from "node:fs/promises";
+import { featureGuides } from "../src/data/feature-guides.ts";
 import { releaseNotes } from "../src/data/patch-notes.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 import {
@@ -11,7 +12,13 @@ import {
 
 const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
-const paths = ["", "/patch-notes", "/terms", "/privacy"];
+const paths = [
+  "",
+  "/patch-notes",
+  "/terms",
+  "/privacy",
+  ...featureGuides.map((guide) => guide.path),
+];
 const decode = (text) =>
   text
     .replaceAll("&amp;", "&")
@@ -30,12 +37,20 @@ function tags(html, tag) {
   );
 }
 const prerender = JSON.parse(await read(".next/prerender-manifest.json"));
+assert.equal(
+  prerender.dynamicRoutes["/[locale]/features/[slug]"].fallback,
+  false,
+  "Unknown guide slugs must not use a dynamic fallback",
+);
 for (const locale of ["ko", "en"]) {
   const messages = getMessages(locale);
   for (const path of paths) {
     const route = `/${locale}${path}`;
     assert.ok(prerender.routes[route], `${route} must be statically generated`);
     const html = await read(`${app}${route}.html`);
+    const visibleHtml = decode(
+      html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""),
+    );
     const links = tags(html, "link");
     const meta = tags(html, "meta");
     const value = (key) =>
@@ -89,6 +104,18 @@ for (const locale of ["ko", "en"]) {
       ),
     );
     if (!path) {
+      assert.equal(
+        decode(html.match(/<title>(.+?)<\/title>/)?.[1]),
+        messages.meta.title,
+      );
+      assert.ok(visibleHtml.includes(messages.hero.functionalTitle));
+      for (const guide of featureGuides)
+        assert.ok(
+          tags(html, "a").some(
+            (link) => link.href === `/${locale}${guide.path}`,
+          ),
+          `${route}: link to ${guide.path}`,
+        );
       const application = jsonLd.find(
         (data) => data["@type"] === "MobileApplication",
       );
@@ -101,7 +128,7 @@ for (const locale of ["ko", "en"]) {
           `${route}: FAQ question in HTML`,
         );
         assert.ok(
-          decode(html).includes(question.answer),
+          visibleHtml.includes(question.answer),
           `${route}: FAQ answer in HTML`,
         );
       }
@@ -114,6 +141,49 @@ for (const locale of ["ko", "en"]) {
         (data) => data["@type"] === "BreadcrumbList",
       );
       assert.equal(breadcrumb.itemListElement[1].item, `${SITE_URL}${route}`);
+    }
+    const guide = featureGuides.find((item) => item.path === path);
+    if (guide) {
+      const content = messages.featureGuides.guides[guide.slug];
+      assert.equal(
+        decode(html.match(/<title>(.+?)<\/title>/)?.[1]),
+        `${content.title} | Aido`,
+      );
+      assert.equal(value("description"), content.summary);
+      assert.equal(value("og:title"), content.title);
+      for (const text of [
+        content.title,
+        content.summary,
+        content.plans.free,
+        content.plans.premium,
+        ...content.steps.flatMap((step) => [step.title, step.body]),
+        ...content.example.items,
+        ...content.details.flatMap((detail) => [detail.title, detail.body]),
+        ...content.faq.flatMap((question) => [
+          question.question,
+          question.answer,
+        ]),
+      ])
+        assert.ok(
+          visibleHtml.includes(text),
+          `${route}: guide content in SSR HTML: ${text.slice(0, 40)}`,
+        );
+      assert.ok(
+        tags(html, "time").some((time) => time.datetime === guide.updatedAt),
+      );
+      for (const related of featureGuides.filter(
+        (item) => item.slug !== guide.slug,
+      ))
+        assert.ok(
+          tags(html, "a").some(
+            (link) => link.href === `/${locale}${related.path}`,
+          ),
+          `${route}: related guide link`,
+        );
+      assert.ok(tags(html, "a").some((link) => link.href === APP_STORE_URL));
+      assert.ok(
+        tags(html, "a").some((link) => link.href?.startsWith(PLAY_STORE_URL)),
+      );
     }
     if (path === "/patch-notes") {
       const details = tags(html, "details");
@@ -164,7 +234,7 @@ const xml = await read(`${app}/sitemap.xml.body`);
 const entries = [...xml.matchAll(/<url>(.*?)<\/url>/gs)].map(
   ([, entry]) => entry,
 );
-assert.equal(entries.length, 8);
+assert.equal(entries.length, 14);
 for (const locale of ["ko", "en"])
   for (const path of paths) {
     const entry = entries.find((text) =>
@@ -176,8 +246,15 @@ for (const locale of ["ko", "en"])
         ? "2026-04-19"
         : path === "/privacy"
           ? "2026-03-13"
-          : releaseNotes[0].date;
+          : (featureGuides.find((guide) => guide.path === path)?.updatedAt ??
+            releaseNotes[0].date);
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
+    for (const language of ["ko", "en", "x-default"])
+      assert.ok(
+        entry.includes(
+          `hreflang="${language}" href="${SITE_URL}/${language === "x-default" ? "ko" : language}${path}"`,
+        ),
+      );
   }
 assert.ok(
   (await read(`${app}/robots.txt.body`)).includes(
@@ -198,5 +275,5 @@ for (const [, font] of (await read("src/app/fonts.css")).matchAll(
 ))
   assert.ok((await stat(`public${font}`)).size > 0);
 console.log(
-  "SEO checks passed: 8 static localized pages, metadata, JSON-LD, sitemap dates, assets and verification files.",
+  "SEO checks passed: 14 static localized pages, guide content and links, metadata, JSON-LD, sitemap dates, assets and verification files.",
 );
