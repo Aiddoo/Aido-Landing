@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICE_CONTENT_UPDATED_AT } from "@/data/app-screenshots";
 import { featureGuides } from "@/data/feature-guides";
-import { releaseNotes, upcomingReleaseNote } from "@/data/patch-notes";
+import { releaseNotes } from "@/data/patch-notes";
 import { defaultLocale, locales } from "@/i18n/config";
 import { SITE_URL } from "@/lib/seo";
 
@@ -41,7 +41,7 @@ const routes: Route[] = [
     path: "/patch-notes",
     changeFrequency: "weekly",
     priority: 0.7,
-    lastModified: new Date(upcomingReleaseNote.updatedAt),
+    lastModified: latestReleaseDate,
   },
   {
     path: "/terms",

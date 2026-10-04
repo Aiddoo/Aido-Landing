@@ -6,13 +6,12 @@ export const serviceFeatures = [
   { id: "notes", screenshots: ["notes", "note"] },
   { id: "ai", screenshots: ["add", "note"] },
   { id: "friends", screenshots: ["friend", "sent"] },
-  { id: "nudges", screenshots: ["reply", "thanks"], preview: true },
+  { id: "nudges", screenshots: ["reply", "thanks"] },
   { id: "notifications", screenshots: ["inbox", "reminders"] },
   { id: "weather", screenshots: ["weather", "androidWeather"] },
   {
     id: "widgets",
     screenshots: ["iosWidgets", "androidWidgets", "androidWidgetsSmall"],
-    preview: true,
   },
   {
     id: "insights",
@@ -24,7 +23,6 @@ export const serviceFeatures = [
 ] as const satisfies ReadonlyArray<{
   id: string;
   screenshots: readonly AppScreenshotKey[];
-  preview?: boolean;
   premium?: boolean;
   sample?: boolean;
 }>;

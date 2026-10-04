@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readdir, readFile, stat } from "node:fs/promises";
 import { SERVICE_CONTENT_UPDATED_AT } from "../src/data/app-screenshots.ts";
 import { featureGuides } from "../src/data/feature-guides.ts";
-import { releaseNotes, upcomingReleaseNote } from "../src/data/patch-notes.ts";
+import { releaseNotes } from "../src/data/patch-notes.ts";
 import { serviceFeatures } from "../src/data/service-features.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 import {
@@ -206,20 +206,7 @@ for (const locale of ["ko", "en"]) {
     }
     if (path === "/patch-notes") {
       const details = tags(html, "details");
-      const releases = details.filter(
-        (item) => item["data-release-status"] === "published",
-      );
-      const upcoming = details.filter(
-        (item) => item["data-release-status"] === "upcoming",
-      );
-      assert.equal(upcoming.length, 1);
-      assert.equal(
-        upcoming[0]["data-release-version"],
-        upcomingReleaseNote.version,
-      );
-      assert.ok("open" in upcoming[0], "Upcoming release is open by default");
-      assert.ok(visibleHtml.includes(messages.patchNotes.upcoming));
-      assert.ok(visibleHtml.includes(messages.patchNotes.upcomingNote));
+      const releases = details.filter((item) => item["data-release-version"]);
       assert.deepEqual(
         releases.map((item) => item["data-release-version"]),
         releaseNotes.map((release) => release.version),
@@ -240,7 +227,7 @@ for (const locale of ["ko", "en"]) {
         months.every((item) => !("open" in item)),
         "Archive months are collapsed",
       );
-      for (const release of [upcomingReleaseNote, ...releaseNotes]) {
+      for (const release of releaseNotes) {
         assert.ok(
           decode(html).includes(release.summary[locale]),
           `${route}: ${release.version} summary`,
@@ -274,16 +261,14 @@ for (const locale of ["ko", "en"])
     );
     assert.ok(entry);
     const date =
-      path === "/patch-notes"
-        ? upcomingReleaseNote.updatedAt
-        : path === "/services"
-          ? SERVICE_CONTENT_UPDATED_AT
-          : path === "/terms"
-            ? "2026-04-19"
-            : path === "/privacy"
-              ? "2026-03-13"
-              : (featureGuides.find((guide) => guide.path === path)
-                  ?.updatedAt ?? releaseNotes[0].date);
+      path === "/services"
+        ? SERVICE_CONTENT_UPDATED_AT
+        : path === "/terms"
+          ? "2026-04-19"
+          : path === "/privacy"
+            ? "2026-03-13"
+            : (featureGuides.find((guide) => guide.path === path)?.updatedAt ??
+              releaseNotes[0].date);
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(

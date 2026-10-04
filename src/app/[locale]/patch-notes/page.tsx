@@ -6,8 +6,6 @@ import {
   type ReleaseCategory,
   type ReleaseNote,
   releaseNotes,
-  type UpcomingReleaseNote,
-  upcomingReleaseNote,
 } from "@/data/patch-notes";
 import type { Locale } from "@/i18n/config";
 import { getMessages, type MessageCatalog } from "@/i18n/messages";
@@ -49,22 +47,19 @@ function ReleaseCard({
   labels,
   latest = false,
 }: {
-  release: ReleaseNote | UpcomingReleaseNote;
+  release: ReleaseNote;
   locale: Locale;
   labels: MessageCatalog["patchNotes"];
   latest?: boolean;
 }) {
-  const isUpcoming = !("date" in release);
-  const isFeatured = latest || isUpcoming;
-  const VersionHeading = isFeatured ? "h2" : "h4";
-  const CategoryHeading = isFeatured ? "h3" : "h5";
+  const VersionHeading = latest ? "h2" : "h4";
+  const CategoryHeading = latest ? "h3" : "h5";
   return (
     <details
-      open={isFeatured}
-      className={`release-note disclosure ${isFeatured ? "release-latest" : ""}`}
+      open={latest}
+      className={`release-note disclosure ${latest ? "release-latest" : ""}`}
       id={`release-${release.version.replaceAll(".", "-")}`}
       data-release-version={release.version}
-      data-release-status={isUpcoming ? "upcoming" : "published"}
     >
       <summary className="release-summary">
         <div className="release-topline">
@@ -72,24 +67,18 @@ function ReleaseCard({
             <VersionHeading className="text-xl sm:text-2xl">
               v{release.version}
             </VersionHeading>
-            {isFeatured && (
-              <span className="release-badge">
-                {isUpcoming ? labels.upcoming : labels.latest}
-              </span>
-            )}
+            {latest && <span className="release-badge">{labels.latest}</span>}
             {!release.categories.length && (
               <span className="premium-tag mb-0">{labels.newRelease}</span>
             )}
           </div>
           <div className="flex items-center gap-3">
-            {"date" in release && (
-              <time
-                dateTime={release.date}
-                className="text-sm font-medium text-foreground/75"
-              >
-                {formatDate(release.date, locale)}
-              </time>
-            )}
+            <time
+              dateTime={release.date}
+              className="text-sm font-medium text-foreground/75"
+            >
+              {formatDate(release.date, locale)}
+            </time>
             <ChevronDown
               className="disclosure-chevron"
               size={20}
@@ -107,11 +96,6 @@ function ReleaseCard({
         </span>
       </summary>
       <div className="release-content">
-        {isUpcoming && (
-          <p className="mb-6 text-sm leading-7 text-foreground/75">
-            {labels.upcomingNote}
-          </p>
-        )}
         {release.categories.length ? (
           <div className="space-y-6">
             {release.categories.map((category) => (
@@ -176,19 +160,7 @@ export default async function PatchNotesPage({ params }: Props) {
             </p>
           </div>
         </header>
-        <div className="space-y-6">
-          <ReleaseCard
-            release={upcomingReleaseNote}
-            locale={locale}
-            labels={labels}
-          />
-          <ReleaseCard
-            release={latest}
-            locale={locale}
-            labels={labels}
-            latest
-          />
-        </div>
+        <ReleaseCard release={latest} locale={locale} labels={labels} latest />
         {older.length > 0 && (
           <section className="mt-12" aria-labelledby="archive-title">
             <div className="mb-6">

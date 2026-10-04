@@ -59,13 +59,13 @@ src/
 
 ## 서비스 화면과 페이지 이동
 
-`/ko/services`, `/en/services`는 예시 계정으로 촬영한 실제 앱 화면을 보여 줍니다. `src/data/app-screenshots.ts`에서 언어·플랫폼·이미지 크기를, `src/data/service-features.ts`에서 기능별 화면 구성을 관리합니다. 출시 전 화면과 리포트·제안 예시는 문구로 표시합니다.
+`/ko/services`, `/en/services`는 예시 계정으로 촬영한 실제 앱 화면을 보여 줍니다. `src/data/app-screenshots.ts`에서 언어·플랫폼·이미지 크기를, `src/data/service-features.ts`에서 기능별 화면 구성을 관리합니다. 리포트·제안 예시는 문구로 표시합니다.
 
 - 페이지 이동은 Next.js `Link`, 언어 전환은 `scroll={false}`를 사용합니다.
 - 위치 이동은 브라우저 기본 앵커로 처리합니다. 로고·홈 복귀·서비스 소개 첫 화면은 `#top`, 본문 영역은 해당 `id`를 지정합니다. 같은 해시를 반복 클릭해도 이동하며 별도 스크롤 훅을 만들지 않습니다.
 - 부드러운 스크롤을 사용하는 `<html>`에는 Next.js 16의 권장 `data-scroll-behavior="smooth"`를 지정합니다. 고정 헤더의 높이는 기존 `scroll-margin-top`으로 확보합니다.
 
-출시 예정 패치노트는 `upcomingReleaseNote`에서 같은 카드·분류 UI로 제공합니다. `updatedAt`은 문구를 실제로 수정한 날이며 출시일로 표시하지 않습니다. 공개 버전과 홈의 구조화 데이터는 `releaseNotes`를 기준으로 유지하고, 정식 출시 때 해당 내용을 실제 출시일과 함께 맨 앞에 옮깁니다.
+패치노트는 `src/data/patch-notes.ts`의 `releaseNotes` 맨 앞에 ko/en 문구와 출시일을 추가합니다. 최신 기록만 기본으로 펼치고, 이전 기록은 월별 보관함에 접어 둡니다. 홈의 앱 버전과 사이트맵 변경일도 같은 카탈로그를 사용합니다.
 
 ## 기여 규칙
 

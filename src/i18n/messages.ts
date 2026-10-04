@@ -63,7 +63,6 @@ export type MessageCatalog = {
     eyebrow: string;
     introduction: string;
     screenshotNote: string;
-    previewLabel: string;
     premiumLabel: string;
     sampleLabel: string;
     iosLabel: string;
@@ -149,8 +148,6 @@ export type MessageCatalog = {
     improvements: string;
     newRelease: string;
     latest: string;
-    upcoming: string;
-    upcomingNote: string;
     badge: string;
     closingNote: string;
     archiveTitle: string;
@@ -223,8 +220,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       introduction:
         "해야 할 일을 떠올리는 순간부터, 하나를 끝내고 친구에게 마음을 전하는 순간까지. 아이두와 함께하는 하루를 보여드릴게요.",
       screenshotNote:
-        "실제 iOS·Android 앱을 예시 계정으로 촬영했어요. 이름과 할 일은 소개를 위한 예시예요. 미리보기 표시가 있는 화면은 1.11.0 출시 준비 중이며, 배포 전 모습이 달라질 수 있어요.",
-      previewLabel: "1.11.0 미리보기",
+        "실제 iOS·Android 앱을 예시 계정으로 촬영했어요. 이름과 할 일은 소개를 위한 예시예요.",
       premiumLabel: "프리미엄",
       sampleLabel: "예시 화면",
       iosLabel: "iPhone",
@@ -907,9 +903,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       improvements: "더 편해진 부분",
       newRelease: "첫 출시",
       latest: "최신",
-      upcoming: "출시 예정",
-      upcomingNote:
-        "곧 만날 업데이트예요. 정식 출시 전에 내용이 조금 달라질 수 있어요. 답장만으로 할 일이 완료되지는 않으니, 마친 할 일은 직접 체크해 주세요.",
       archiveTitle: "지난 업데이트",
       archiveDescription:
         "월별로 기록을 모아뒀어요. 궁금한 버전을 펼쳐 자세히 살펴보세요.",
@@ -938,8 +931,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       introduction:
         "From a passing thought to a finished to-do—and a little thanks to a friend. Take a look at the small moments that make a day with Aido.",
       screenshotNote:
-        "Captured in the real iOS and Android apps with example accounts. Names and plans are sample data. Screens marked Preview are being prepared for 1.11.0 and may change before release.",
-      previewLabel: "1.11.0 preview",
+        "Captured in the real iOS and Android apps with example accounts. Names and plans are sample data.",
       premiumLabel: "Premium",
       sampleLabel: "Example screens",
       iosLabel: "iPhone",
@@ -1649,9 +1641,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       improvements: "Improvements",
       newRelease: "First release",
       latest: "Latest",
-      upcoming: "Coming soon",
-      upcomingNote:
-        "Here's a look at the next update. A few details may change before release. Sending a reply does not complete a to-do, so check it off when you're done.",
       archiveTitle: "Earlier updates",
       archiveDescription:
         "Explore earlier updates by month. Open a version to see what changed.",

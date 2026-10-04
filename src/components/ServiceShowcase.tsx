@@ -35,7 +35,6 @@ export function ServiceShowcase({ locale }: { locale: Locale }) {
                   aria-hidden="true"
                 />
                 <div className="service-badges">
-                  {"preview" in feature && <span>{content.previewLabel}</span>}
                   {"premium" in feature && <span>{content.premiumLabel}</span>}
                   {"sample" in feature && <span>{content.sampleLabel}</span>}
                 </div>
