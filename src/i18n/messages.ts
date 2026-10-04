@@ -149,6 +149,8 @@ export type MessageCatalog = {
     improvements: string;
     newRelease: string;
     latest: string;
+    upcoming: string;
+    upcomingNote: string;
     badge: string;
     closingNote: string;
     archiveTitle: string;
@@ -905,6 +907,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       improvements: "더 편해진 부분",
       newRelease: "첫 출시",
       latest: "최신",
+      upcoming: "출시 예정",
+      upcomingNote:
+        "곧 만날 업데이트예요. 정식 출시 전에 내용이 조금 달라질 수 있어요. 답장만으로 할 일이 완료되지는 않으니, 마친 할 일은 직접 체크해 주세요.",
       archiveTitle: "지난 업데이트",
       archiveDescription:
         "월별로 기록을 모아뒀어요. 궁금한 버전을 펼쳐 자세히 살펴보세요.",
@@ -1644,6 +1649,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       improvements: "Improvements",
       newRelease: "First release",
       latest: "Latest",
+      upcoming: "Coming soon",
+      upcomingNote:
+        "Here's a look at the next update. A few details may change before release. Sending a reply does not complete a to-do, so check it off when you're done.",
       archiveTitle: "Earlier updates",
       archiveDescription:
         "Explore earlier updates by month. Open a version to see what changed.",

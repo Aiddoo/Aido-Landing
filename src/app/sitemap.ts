@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICE_CONTENT_UPDATED_AT } from "@/data/app-screenshots";
 import { featureGuides } from "@/data/feature-guides";
-import { releaseNotes } from "@/data/patch-notes";
+import { releaseNotes, upcomingReleaseNote } from "@/data/patch-notes";
 import { defaultLocale, locales } from "@/i18n/config";
 import { SITE_URL } from "@/lib/seo";
 
@@ -12,8 +12,6 @@ type Route = {
   lastModified: Date;
 };
 
-// 홈·패치노트는 릴리스마다 갱신되므로 최신 릴리스 날짜를,
-// 법적 문서는 각 문서의 시행일을 lastModified로 쓴다.
 const latestReleaseDate = new Date(releaseNotes[0].date);
 const termsEffectiveDate = new Date("2026-04-19");
 const privacyEffectiveDate = new Date("2026-03-13");
@@ -43,7 +41,7 @@ const routes: Route[] = [
     path: "/patch-notes",
     changeFrequency: "weekly",
     priority: 0.7,
-    lastModified: latestReleaseDate,
+    lastModified: new Date(upcomingReleaseNote.updatedAt),
   },
   {
     path: "/terms",
