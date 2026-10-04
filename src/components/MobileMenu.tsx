@@ -39,7 +39,7 @@ export function MobileMenu({
       </summary>
       <nav aria-label={labels.label} className="mobile-menu-panel">
         {[
-          ["#features", labels.features],
+          ["/services", labels.services],
           ["#guides", labels.guides],
           ["#friends", labels.friends],
           ["#faq", labels.faq],

@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { readdir, readFile, stat } from "node:fs/promises";
+import { SERVICE_CONTENT_UPDATED_AT } from "../src/data/app-screenshots.ts";
 import { featureGuides } from "../src/data/feature-guides.ts";
 import { releaseNotes } from "../src/data/patch-notes.ts";
+import { serviceFeatures } from "../src/data/service-features.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 import {
   APP_STORE_URL,
@@ -14,6 +16,7 @@ const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
 const paths = [
   "",
+  "/services",
   "/patch-notes",
   "/terms",
   "/privacy",
@@ -142,6 +145,22 @@ for (const locale of ["ko", "en"]) {
       );
       assert.equal(breadcrumb.itemListElement[1].item, `${SITE_URL}${route}`);
     }
+    if (path === "/services") {
+      assert.ok(visibleHtml.includes(messages.services.screenshotNote));
+      for (const { id, screenshots } of serviceFeatures) {
+        const feature = messages.services.features[id];
+        assert.ok(visibleHtml.includes(feature.title));
+        assert.equal(feature.captions.length, screenshots.length);
+        for (const detail of feature.details)
+          assert.ok(visibleHtml.includes(detail));
+      }
+      for (const image of tags(html, "img").filter((image) =>
+        image.src?.includes("/screenshots/"),
+      )) {
+        assert.ok(image.src.includes(`/screenshots/${locale}/`));
+        assert.ok(Number(image.width) > 0 && Number(image.height) > 0);
+      }
+    }
     const guide = featureGuides.find((item) => item.path === path);
     if (guide) {
       const content = messages.featureGuides.guides[guide.slug];
@@ -234,7 +253,7 @@ const xml = await read(`${app}/sitemap.xml.body`);
 const entries = [...xml.matchAll(/<url>(.*?)<\/url>/gs)].map(
   ([, entry]) => entry,
 );
-assert.equal(entries.length, 14);
+assert.equal(entries.length, paths.length * 2);
 for (const locale of ["ko", "en"])
   for (const path of paths) {
     const entry = entries.find((text) =>
@@ -242,12 +261,14 @@ for (const locale of ["ko", "en"])
     );
     assert.ok(entry);
     const date =
-      path === "/terms"
-        ? "2026-04-19"
-        : path === "/privacy"
-          ? "2026-03-13"
-          : (featureGuides.find((guide) => guide.path === path)?.updatedAt ??
-            releaseNotes[0].date);
+      path === "/services"
+        ? SERVICE_CONTENT_UPDATED_AT
+        : path === "/terms"
+          ? "2026-04-19"
+          : path === "/privacy"
+            ? "2026-03-13"
+            : (featureGuides.find((guide) => guide.path === path)?.updatedAt ??
+              releaseNotes[0].date);
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(
@@ -275,5 +296,5 @@ for (const [, font] of (await read("src/app/fonts.css")).matchAll(
 ))
   assert.ok((await stat(`public${font}`)).size > 0);
 console.log(
-  "SEO checks passed: 14 static localized pages, guide content and links, metadata, JSON-LD, sitemap dates, assets and verification files.",
+  "SEO checks passed: 16 static localized pages, guide content and links, metadata, JSON-LD, sitemap dates, assets and verification files.",
 );

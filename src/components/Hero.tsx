@@ -1,10 +1,14 @@
 import Image from "next/image";
+import type { Locale } from "@/i18n/config";
 import type { MessageCatalog } from "@/i18n/messages";
+import { AppScreenshot } from "./AppScreenshot";
 import { StoreButtons } from "./StoreButtons";
 export function Hero({
+  locale,
   content,
   storeButtons,
 }: {
+  locale: Locale;
   content: MessageCatalog["hero"];
   storeButtons: MessageCatalog["storeButtons"];
 }) {
@@ -32,11 +36,10 @@ export function Hero({
             <p>{content.memoText}</p>
           </div>
           <div className="hero-phone phone-frame">
-            <Image
-              src="/app-assets/week-calendar-new.webp"
+            <AppScreenshot
+              locale={locale}
+              screenshot="week"
               alt={content.previewAlt}
-              width={360}
-              height={760}
               sizes="(min-width:1024px) 240px, 210px"
               loading="eager"
               fetchPriority="high"

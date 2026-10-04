@@ -35,7 +35,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             aria-label={messages.nav.label}
             className="desktop-nav hidden lg:flex"
           >
-            <a href={`${prefix}#features`}>{messages.nav.features}</a>
+            <Link href={`${prefix}/services`}>{messages.nav.services}</Link>
             <a href={`${prefix}#guides`}>{messages.nav.guides}</a>
             <a href={`${prefix}#faq`}>{messages.nav.faq}</a>
             <Link href={`${prefix}/patch-notes`}>

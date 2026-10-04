@@ -1,4 +1,6 @@
+import type { AppScreenshotKey } from "../data/app-screenshots";
 import type { FeatureGuideSlug } from "../data/feature-guides";
+import type { ServiceFeatureId } from "../data/service-features";
 import type { Locale } from "./config";
 
 type FeatureGuideContent = {
@@ -31,9 +33,9 @@ type PreviewScreen = {
   title: string;
   subtitle: string;
   description: string[];
-  path: string;
+  screenshot: AppScreenshotKey;
   alt: string;
-  secondPath?: string;
+  secondScreenshot?: AppScreenshotKey;
   secondAlt?: string;
   rotate: number;
   premium?: boolean;
@@ -55,6 +57,29 @@ export type MessageCatalog = {
     updatedLabel: string;
     guides: Record<FeatureGuideSlug, FeatureGuideContent>;
   };
+  services: {
+    title: string;
+    description: string;
+    eyebrow: string;
+    introduction: string;
+    screenshotNote: string;
+    previewLabel: string;
+    premiumLabel: string;
+    sampleLabel: string;
+    iosLabel: string;
+    androidLabel: string;
+    jumpLabel: string;
+    features: Record<
+      ServiceFeatureId,
+      {
+        navigationLabel: string;
+        title: string;
+        description: string;
+        details: string[];
+        captions: string[];
+      }
+    >;
+  };
   meta: {
     title: string;
     description: string;
@@ -70,6 +95,7 @@ export type MessageCatalog = {
     descriptionTail: string;
     premiumLabel: string;
     screens: PreviewScreen[];
+    viewAll: string;
   };
   friends: {
     label: string;
@@ -144,6 +170,7 @@ export type MessageCatalog = {
     features: string;
     friends: string;
     guides: string;
+    services: string;
     faq: string;
     download: string;
     patchNotes: string;
@@ -186,6 +213,167 @@ export type MessageCatalog = {
 
 const catalogs: Record<Locale, MessageCatalog> = {
   ko: {
+    services: {
+      title: "아이두의 하루를 둘러보세요",
+      description:
+        "AI 할 일 정리부터 메모, 캘린더, 친구와 콕, 날씨, 위젯까지. 아이두의 실제 iOS·Android 화면으로 나에게 맞는 사용법을 찾아보세요.",
+      eyebrow: "서비스 둘러보기",
+      introduction:
+        "해야 할 일을 떠올리는 순간부터, 하나를 끝내고 친구에게 마음을 전하는 순간까지. 아이두와 함께하는 하루를 보여드릴게요.",
+      screenshotNote:
+        "실제 iOS·Android 앱을 예시 계정으로 촬영했어요. 이름과 할 일은 소개를 위한 예시예요. 미리보기 표시가 있는 화면은 1.11.0 출시 준비 중이며, 배포 전 모습이 달라질 수 있어요.",
+      previewLabel: "1.11.0 미리보기",
+      premiumLabel: "프리미엄",
+      sampleLabel: "예시 화면",
+      iosLabel: "iPhone",
+      androidLabel: "Android",
+      jumpLabel: "보고 싶은 기능으로 이동",
+      features: {
+        planning: {
+          navigationLabel: "캘린더",
+          title: "오늘은 가볍게, 한 달은 한눈에",
+          description: "주간·월간 캘린더에서 나의 속도로 계획을 세워요.",
+          details: [
+            "날짜를 눌러 할 일을 확인하고, 오늘 버튼으로 돌아와요.",
+            "카테고리 색으로 계획을 구분하고, 마친 날에는 작은 발자국을 남겨요.",
+          ],
+          captions: ["주간 캘린더와 오늘의 할 일", "월간 캘린더의 날짜별 계획"],
+        },
+        todos: {
+          navigationLabel: "할 일",
+          title: "큰 일도, 작은 단계부터",
+          description: "할 일 하나에 날짜·시간·반복과 체크리스트를 담아요.",
+          details: [
+            "체크리스트로 해야 할 일을 차근차근 나눠요.",
+            "매일·주중·주말 또는 원하는 요일에 반복하도록 설정해요.",
+            "할 일마다 공개 범위를 골라 나만의 계획도 간직해요.",
+          ],
+          captions: ["할 일 상세와 체크리스트", "반복할 요일과 기간 선택"],
+        },
+        notes: {
+          navigationLabel: "메모",
+          title: "아직 계획이 아닌 생각도 괜찮아요",
+          description: "떠오른 생각을 메모해두고, 준비가 되면 할 일로 옮겨요.",
+          details: [
+            "자주 보는 메모는 고정하고, 원하는 순서로 정리해요.",
+            "메모를 한 개의 할 일로 바꾸거나, AI로 여러 할 일로 나눠요.",
+          ],
+          captions: ["고정 메모와 메모 목록", "메모 상세와 할 일로 바꾸기"],
+        },
+        ai: {
+          navigationLabel: "AI 입력",
+          title: "생각나는 대로, 말하는 대로",
+          description: "자연스러운 문장과 음성으로 할 일을 입력해요.",
+          details: [
+            "날짜와 시간을 함께 적으면 AI가 계획으로 정리해요.",
+            "메모에서 나눈 할 일은 결과를 살펴보고 선택해 추가해요.",
+            "AI 입력의 이용 한도는 앱의 현재 요금제 안내에서 확인할 수 있어요.",
+          ],
+          captions: [
+            "날짜·시간·AI 입력이 있는 할 일 추가",
+            "메모에서 AI 할 일 정리 시작",
+          ],
+        },
+        friends: {
+          navigationLabel: "친구",
+          title: "서로의 하루에, 작은 응원 하나",
+          description:
+            "다른 고양이 프로필을 가진 친구들과 공개한 할 일을 함께 봐요.",
+          details: [
+            "이름이나 고유 해시태그로 친구를 찾고 연결해요.",
+            "친구의 할 일에 콕을 보내거나 댓글·답글로 이야기를 나눠요.",
+            "보낸 콕은 따로 모아 확인할 수 있어요.",
+          ],
+          captions: ["친구의 캘린더와 할 일", "내가 보낸 콕 목록"],
+        },
+        nudges: {
+          navigationLabel: "콕과 답장",
+          title: "응원에는 한마디, 해냈을 땐 고마움",
+          description:
+            "받은 콕에 내 마음을 답하고, 할 일을 마친 뒤 고마움을 전해요.",
+          details: [
+            "시작할게, 응원 고마워, 조금 뒤에 할게. 지금 마음에 맞는 답장을 골라요.",
+            "응원해 준 친구들을 확인하고, 완료 소식과 고마운 마음을 함께 전해요.",
+            "답장만으로 할 일이 완료되지는 않아요.",
+          ],
+          captions: [
+            "친구가 보낸 콕과 세 가지 답장",
+            "응원해 준 친구들에게 고마움 전하기",
+          ],
+        },
+        notifications: {
+          navigationLabel: "알림",
+          title: "친구의 마음과 내 일정, 한곳에서",
+          description: "알림을 살펴보고 필요한 화면으로 자연스럽게 이동해요.",
+          details: [
+            "친구 소식과 콕은 친구 탭에 모아봐요.",
+            "아침·저녁 리마인더와 날씨 알림 시간을 나의 하루에 맞춰요.",
+            "받고 싶은 알림과 광고성 알림 동의는 직접 관리해요.",
+          ],
+          captions: [
+            "친구 소식을 모은 알림 목록",
+            "내 시간에 맞춘 리마인더 설정",
+          ],
+        },
+        weather: {
+          navigationLabel: "날씨",
+          title: "나가기 전에, 오늘 하늘도 살펴요",
+          description: "할 일을 확인하면서 현재 위치의 날씨도 함께 봐요.",
+          details: [
+            "홈의 날씨 버튼에서 자세한 시간별·주간 예보를 열어요.",
+            "위치 권한은 선택할 수 있고, 날씨가 준비되지 않아도 할 일은 계속 쓸 수 있어요.",
+            "현재 날씨 서비스는 대한민국 지역을 지원해요. 해외에서는 안내 화면을 보여드려요.",
+          ],
+          captions: ["현재 날씨와 시간별 예보", "Android 날씨 화면"],
+        },
+        widgets: {
+          navigationLabel: "위젯",
+          title: "앱을 열기 전에도, 오늘 한눈에",
+          description:
+            "작은 진행 상황부터 주간 달력까지, 홈 화면 크기에 맞게 골라요.",
+          details: [
+            "작은 위젯은 완료 수·진행률·연속 기록을 보여줘요.",
+            "중간 위젯은 오늘 할 일을, 큰 위젯은 주간 달력과 목록을 함께 보여줘요.",
+            "할 일을 누르면 앱에서 확인하고, 만들기 버튼으로 새 할 일을 시작해요.",
+            "위젯 갱신 시점은 기기와 운영체제에 따라 달라질 수 있어요.",
+          ],
+          captions: [
+            "iPhone 홈 화면의 아이두 위젯",
+            "Android의 주간 달력 위젯",
+            "Android의 작은·중간 위젯",
+          ],
+        },
+        insights: {
+          navigationLabel: "리포트와 제안",
+          title: "쌓인 하루에서, 다음 한 걸음으로",
+          description: "AI 리포트와 반복 제안으로 나에게 맞는 패턴을 돌아봐요.",
+          details: [
+            "주간·월간 리포트에서 달성률과 카테고리별 기록을 확인해요.",
+            "반복되는 할 일은 AI 제안을 살펴보고 내 일정에 더해요.",
+            "아래 리포트와 제안은 기능 소개를 위한 예시예요.",
+          ],
+          captions: [
+            "앱에서 제공하는 샘플 주간 리포트",
+            "반복 제안 예시와 수락·건너뛰기",
+          ],
+        },
+        personal: {
+          navigationLabel: "나만의 아이두",
+          title: "나의 고양이, 나의 아이두",
+          description: "마이 페이지에서 프로필과 나에게 편한 화면을 고르세요.",
+          details: [
+            "아홉 가지 고양이 프로필 중 나를 닮은 친구를 골라요.",
+            "라이트·다크 모드와 글자 크기, 앱 언어를 편하게 설정해요.",
+            "프리미엄에서는 iOS·Android 앱 아이콘도 바꿀 수 있어요.",
+          ],
+          captions: [
+            "아홉 고양이 중 프로필 선택",
+            "기기 홈 화면의 앱 아이콘 선택",
+            "다크 모드로 보는 오늘의 할 일",
+          ],
+        },
+      },
+    },
     featureGuides: {
       title: "아이두로 할 일을 관리하는 방법",
       description:
@@ -433,6 +621,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       features: "앱 기능",
       friends: "고양이 친구들",
       guides: "사용법",
+      services: "서비스 둘러보기",
       faq: "궁금한 점",
       download: "앱 다운로드",
       patchNotes: "패치노트",
@@ -497,6 +686,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       descriptionLead: "복잡하게 준비하지 않아도 괜찮아요.",
       descriptionTail: "나에게 맞는 방식으로 하루를 정리해보세요.",
       premiumLabel: "프리미엄",
+      viewAll: "실제 화면으로 모든 기능 살펴보기",
       screens: [
         {
           title: "메모가 할 일이 되는 순간",
@@ -505,7 +695,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "떠오르는 내용을 메모하면 AI가 여러 할 일로 나눠줘요. 자연스러운 문장이나 음성으로도 할 일을 입력할 수 있어요.",
             "날짜와 시간, 반복, 카테고리를 내 흐름에 맞게 정리해요.",
           ],
-          path: "/app-assets/home.webp",
+          screenshot: "add",
           alt: "직접 입력과 음성 입력을 지원하는 아이두 할 일 추가 화면",
           rotate: -2,
         },
@@ -516,8 +706,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "오늘 할 일과 주간·월간 일정을 한눈에 살펴봐요. 반복 할 일과 알림으로 꾸준한 하루를 만들어가요.",
             "iOS·Android 홈 화면 위젯에서도 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
           ],
-          path: "/app-assets/month-calendar-new.webp",
-          secondPath: "/app-assets/week-calendar-new.webp",
+          screenshot: "month",
+          secondScreenshot: "week",
           alt: "아이두 월간 캘린더의 날짜별 할 일",
           secondAlt: "아이두 주간 캘린더의 일주일 일정",
           rotate: 2,
@@ -529,7 +719,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "이름이나 고유 해시태그로 친구를 찾고, 공개한 할 일을 서로 살펴봐요. 콕 찌르기와 댓글·답글로 작은 응원을 건네요.",
             "혼자 사용하는 것도 좋아요. 할 일마다 공개 범위를 선택할 수 있어요.",
           ],
-          path: "/app-assets/nudge-new.webp",
+          screenshot: "friend",
           alt: "친구에게 콕 찌르기로 응원을 보내는 아이두 화면",
           rotate: -2,
         },
@@ -540,7 +730,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "AI 주간·월간 리포트로 달성률과 나의 패턴을 돌아봐요. 반복되는 할 일은 AI가 제안하고, 마음에 드는 제안을 수락해 일정에 더해요.",
             "AI 리포트와 반복 제안은 프리미엄에서 이용할 수 있어요.",
           ],
-          path: "/app-assets/ai-report.webp",
+          screenshot: "report",
           alt: "아이두 AI 리포트의 달성률과 카테고리 분석",
           rotate: 2,
           premium: true,
@@ -735,6 +925,188 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
   },
   en: {
+    services: {
+      title: "A day with Aido",
+      description:
+        "Explore AI to-do planning, notes, calendars, friends, nudges, weather and widgets through real iOS and Android app screens. Find a rhythm that feels like you.",
+      eyebrow: "Explore Aido",
+      introduction:
+        "From a passing thought to a finished to-do—and a little thanks to a friend. Take a look at the small moments that make a day with Aido.",
+      screenshotNote:
+        "Captured in the real iOS and Android apps with example accounts. Names and plans are sample data. Screens marked Preview are being prepared for 1.11.0 and may change before release.",
+      previewLabel: "1.11.0 preview",
+      premiumLabel: "Premium",
+      sampleLabel: "Example screens",
+      iosLabel: "iPhone",
+      androidLabel: "Android",
+      jumpLabel: "Jump to a feature",
+      features: {
+        planning: {
+          navigationLabel: "Calendar",
+          title: "Start with today. See the whole month.",
+          description:
+            "Make room for your plans in weekly and monthly calendars.",
+          details: [
+            "Tap a date to see its to-dos, then return with Today.",
+            "Category colors keep plans clear. A little paw print marks a day you finished.",
+          ],
+          captions: [
+            "Weekly calendar and today’s to-dos",
+            "A month of plans at a glance",
+          ],
+        },
+        todos: {
+          navigationLabel: "To-dos",
+          title: "Big plans, small steps",
+          description:
+            "Give a to-do a date, time, repeat schedule and checklist.",
+          details: [
+            "Break a plan into checklist items you can work through.",
+            "Repeat daily, on weekdays or weekends, or on days you choose.",
+            "Choose who can see each to-do. Some plans can stay just yours.",
+          ],
+          captions: [
+            "To-do details and checklist items",
+            "Choosing repeat days and a date range",
+          ],
+        },
+        notes: {
+          navigationLabel: "Notes",
+          title: "A thought doesn’t need to be a plan yet",
+          description:
+            "Keep a note for now. Turn it into a to-do when you’re ready.",
+          details: [
+            "Pin the notes you return to and arrange them your way.",
+            "Turn a note into one to-do, or let AI split it into several.",
+          ],
+          captions: [
+            "Pinned notes and your notes list",
+            "A note, ready to become a to-do",
+          ],
+        },
+        ai: {
+          navigationLabel: "AI input",
+          title: "Type it as you think it. Say it as you go.",
+          description: "Add to-dos in everyday language or with voice input.",
+          details: [
+            "Include a date and time, and AI helps turn your words into a plan.",
+            "Review the to-dos extracted from a note before adding them.",
+            "Check the app’s current plan information for AI input limits.",
+          ],
+          captions: [
+            "Adding a to-do with dates, times and AI input",
+            "Starting AI planning from a note",
+          ],
+        },
+        friends: {
+          navigationLabel: "Friends",
+          title: "A little company for your day",
+          description:
+            "See the to-dos friends share, each with a cat of their own.",
+          details: [
+            "Find friends by name or their unique hashtag.",
+            "Send a nudge or leave comments and replies on a friend’s to-do.",
+            "Keep track of your encouragement in Sent nudges.",
+          ],
+          captions: [
+            "A friend’s calendar and shared to-dos",
+            "The nudges you’ve sent",
+          ],
+        },
+        nudges: {
+          navigationLabel: "Encouragement",
+          title: "A reply for now. A little thanks when you’re done.",
+          description:
+            "Reply to a nudge, then share your thanks after finishing a to-do.",
+          details: [
+            "Choose the reply that fits: I’ll get started, thanks for cheering me on, or I’ll do it later.",
+            "See who encouraged you and send the good news with your thanks.",
+            "Sending a reply does not complete the to-do.",
+          ],
+          captions: [
+            "A friend’s nudge and three ways to reply",
+            "Saying thanks to friends who cheered you on",
+          ],
+        },
+        notifications: {
+          navigationLabel: "Notifications",
+          title: "Friendly news and gentle reminders",
+          description:
+            "Find what matters in your notifications and open the right screen.",
+          details: [
+            "Keep friends’ updates and nudges together in the Friends tab.",
+            "Set morning, evening and weather reminder times around your day.",
+            "Choose which alerts you want, including promotional notification consent.",
+          ],
+          captions: [
+            "Friends’ updates in Notifications",
+            "Reminders set to your own schedule",
+          ],
+        },
+        weather: {
+          navigationLabel: "Weather",
+          title: "A quick look at the sky, before you go",
+          description:
+            "Check the weather for your location alongside your plans.",
+          details: [
+            "Open hourly and weekly forecasts from the weather button at home.",
+            "Location access is your choice. To-dos keep working while weather is unavailable.",
+            "Weather currently supports locations in South Korea. An information screen is shown elsewhere.",
+          ],
+          captions: [
+            "Current weather and hourly forecasts",
+            "Weather in the Android app",
+          ],
+        },
+        widgets: {
+          navigationLabel: "Widgets",
+          title: "Today at a glance, right on your home screen",
+          description:
+            "Choose a small progress view or a calendar with room for your plans.",
+          details: [
+            "Small widgets show completed to-dos, progress and your streak.",
+            "Medium widgets show today’s to-dos. Large widgets add a weekly calendar.",
+            "Tap a to-do to open it in Aido, or start a new one with the add button.",
+            "Widget refresh timing depends on your device and operating system.",
+          ],
+          captions: [
+            "Aido widgets on an iPhone home screen",
+            "The weekly calendar widget on Android",
+            "Small and medium widgets on Android",
+          ],
+        },
+        insights: {
+          navigationLabel: "Reports & suggestions",
+          title: "Look back on your days. Find your next step.",
+          description:
+            "Reflect on your patterns with AI reports and recurring suggestions.",
+          details: [
+            "Weekly and monthly reports show completion rates and category patterns.",
+            "Review recurring suggestions and add the ones that fit your routine.",
+            "The report and suggestions below are examples for this walkthrough.",
+          ],
+          captions: [
+            "The sample weekly report available in the app",
+            "Example recurring suggestions to accept or skip",
+          ],
+        },
+        personal: {
+          navigationLabel: "Make it yours",
+          title: "Your cat. Your Aido.",
+          description: "Make the app feel like you from My Page.",
+          details: [
+            "Choose your profile from nine different cats.",
+            "Set light or dark mode, text size and your app language.",
+            "Premium also lets you change the app icon on iOS and Android.",
+          ],
+          captions: [
+            "Choosing a profile from nine cats",
+            "Choosing an icon for your home screen",
+            "Today’s to-dos in dark mode",
+          ],
+        },
+      },
+    },
     featureGuides: {
       title: "How to manage your to-dos with Aido",
       description:
@@ -987,6 +1359,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       features: "Features",
       friends: "Cat Friends",
       guides: "Guides",
+      services: "Explore Aido",
       faq: "FAQ",
       download: "Get the App",
       patchNotes: "Updates",
@@ -1051,6 +1424,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       descriptionLead: "You don't need a perfect plan to begin.",
       descriptionTail: "Find a way of planning that feels like you.",
       premiumLabel: "Premium",
+      viewAll: "Explore every feature in the app",
       screens: [
         {
           title: "A note becomes your next step",
@@ -1059,7 +1433,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "Jot down a note and let AI turn it into multiple to-dos. Add tasks in everyday language or with voice input, too.",
             "Set the date, time, repetition, and category to fit your day.",
           ],
-          path: "/app-assets/home.webp",
+          screenshot: "add",
           alt: "Entering a task in everyday language with Aido AI",
           rotate: -2,
         },
@@ -1070,8 +1444,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "See your day and upcoming plans at a glance. Recurring tasks and reminders help you keep a steady rhythm.",
             "Check today’s tasks and completion progress from an iOS or Android home screen widget.",
           ],
-          path: "/app-assets/month-calendar-new.webp",
-          secondPath: "/app-assets/week-calendar-new.webp",
+          screenshot: "month",
+          secondScreenshot: "week",
           alt: "Date-based tasks in the Aido monthly calendar",
           secondAlt: "A week of plans in the Aido weekly calendar",
           rotate: 2,
@@ -1083,7 +1457,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "Find friends by name or their unique hashtag, then follow the to-dos they choose to share. Send a nudge or encourage them with comments and replies.",
             "Prefer to plan solo? That’s welcome, too. Choose the visibility of each task.",
           ],
-          path: "/app-assets/nudge-new.webp",
+          screenshot: "friend",
           alt: "Sending a friendly nudge in Aido",
           rotate: -2,
         },
@@ -1094,7 +1468,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "Reflect on completion rates and patterns with weekly and monthly AI reports. AI suggests recurring tasks; accept the ones that fit your routine.",
             "AI reports and recurring suggestions are included with Premium.",
           ],
-          path: "/app-assets/ai-report.webp",
+          screenshot: "report",
           alt: "Completion rates and category insights in an Aido AI report",
           rotate: 2,
           premium: true,

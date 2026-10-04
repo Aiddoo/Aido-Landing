@@ -41,6 +41,7 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
           <Link
             key={item}
             href={swapLocale(pathname, item)}
+            scroll={false}
             aria-current={isActive ? "page" : undefined}
             className={[
               "rounded-full border-2 px-2 py-1 text-xs font-bold transition-all",

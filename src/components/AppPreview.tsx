@@ -1,9 +1,13 @@
-import Image from "next/image";
+import Link from "next/link";
+import type { Locale } from "@/i18n/config";
 import type { MessageCatalog } from "@/i18n/messages";
+import { AppScreenshot } from "./AppScreenshot";
 import { PhonePreview } from "./PhonePreview";
 export function AppPreview({
+  locale,
   content,
 }: {
+  locale: Locale;
   content: MessageCatalog["appPreview"];
 }) {
   return (
@@ -42,31 +46,29 @@ export function AppPreview({
                 </div>
               </div>
               <div
-                className={`feature-phones ${screen.secondPath ? "feature-phones-dual" : ""}`}
+                className={`feature-phones ${screen.secondScreenshot ? "feature-phones-dual" : ""}`}
               >
                 <PhonePreview
                   rotate={screen.rotate}
                   className="phone-frame feature-phone"
                 >
-                  <Image
-                    src={screen.path}
+                  <AppScreenshot
+                    locale={locale}
+                    screenshot={screen.screenshot}
                     alt={screen.alt}
-                    width={720}
-                    height={1520}
                     sizes="(min-width:768px) 220px, 190px"
                     className="block h-auto w-full"
                   />
                 </PhonePreview>
-                {screen.secondPath && (
+                {screen.secondScreenshot && (
                   <PhonePreview
                     rotate={-screen.rotate}
                     className="phone-frame feature-phone second-phone"
                   >
-                    <Image
-                      src={screen.secondPath}
+                    <AppScreenshot
+                      locale={locale}
+                      screenshot={screen.secondScreenshot}
                       alt={screen.secondAlt ?? screen.alt}
-                      width={720}
-                      height={1520}
                       sizes="(min-width:768px) 200px, 160px"
                       className="block h-auto w-full"
                     />
@@ -75,6 +77,11 @@ export function AppPreview({
               </div>
             </article>
           ))}
+        </div>
+        <div className="service-link-wrap">
+          <Link className="service-link" href={`/${locale}/services`}>
+            {content.viewAll} <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>

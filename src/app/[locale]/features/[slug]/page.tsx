@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AppScreenshot } from "@/components/AppScreenshot";
 import { BreadcrumbData } from "@/components/BreadcrumbData";
 import { CTA } from "@/components/CTA";
 import { FAQ } from "@/components/FAQ";
@@ -96,11 +96,10 @@ export default async function FeatureGuidePage({ params }: Props) {
               </ol>
             </div>
             <figure className="guide-screen">
-              <Image
-                src={guide.image}
+              <AppScreenshot
+                locale={locale}
+                screenshot={guide.screenshot}
                 alt={content.imageAlt}
-                width={guide.width}
-                height={guide.height}
                 sizes="(min-width:768px) 280px, 240px"
                 className="phone-frame"
               />

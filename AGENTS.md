@@ -57,3 +57,13 @@ pnpm seo:check    # 빌드 HTML·메타데이터·SSG·사이트맵 검증 (buil
 - 라벨은 필요한 것만 조합한다: `enhancement`(기능), `bug`(수정), `documentation`(문구·문서), `maintenance`·`dependencies`(업데이트), `design`(화면), `seo`(검색).
 - 필드는 `Status`(Todo / In Progress / Done), `Priority`(P1 긴급 장애·배포 차단 / P2 일반 개선 / P3 문서·기록 정비)만 사용한다. 머지된 PR과 완료 확인한 이슈는 Done으로 정리한다.
 - 패치노트는 ko/en 모두 완결된 문장으로 쓴다. 한국어는 친근한 해요체, 영어는 짧은 문장과 마침표를 사용한다. 개발 용어·과장된 약속은 피하고, 버전·날짜·사용 한도 등 실제 변경 사실은 유지한다. 영어 기능명은 to-dos / notes / checklist items / AI suggestions / My Page로 통일한다.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

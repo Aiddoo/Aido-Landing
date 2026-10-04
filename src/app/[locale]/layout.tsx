@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { StructuredData } from "@/components/StructuredData";
 import { locales } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
@@ -12,6 +13,20 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
+
+const englishHeading = localFont({
+  src: "../../../public/fonts/black-han-sans-f4cb9b35097d.woff2",
+  weight: "400",
+  display: "optional",
+  variable: "--font-heading-en",
+});
+
+const englishBody = localFont({
+  src: "../../../public/fonts/noto-sans-kr-6ecf7205a09a.woff2",
+  weight: "400 700",
+  display: "optional",
+  variable: "--font-body-en",
+});
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -92,7 +107,14 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale}>
+    <html
+      lang={locale}
+      className={
+        locale === "en"
+          ? `${englishHeading.variable} ${englishBody.variable}`
+          : undefined
+      }
+    >
       <body className="antialiased">
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />

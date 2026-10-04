@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SERVICE_CONTENT_UPDATED_AT } from "@/data/app-screenshots";
 import { featureGuides } from "@/data/feature-guides";
 import { releaseNotes } from "@/data/patch-notes";
 import { defaultLocale, locales } from "@/i18n/config";
@@ -20,6 +21,12 @@ const privacyEffectiveDate = new Date("2026-03-13");
 // 정규 URL은 로케일 세그먼트가 붙은 /{locale}{path} 뿐이다. bare "/"는
 // 로케일로 리다이렉트되는 비정규 스텁이라 사이트맵에 넣지 않는다.
 const routes: Route[] = [
+  {
+    path: "/services",
+    changeFrequency: "monthly",
+    priority: 0.9,
+    lastModified: new Date(SERVICE_CONTENT_UPDATED_AT),
+  },
   ...featureGuides.map((guide) => ({
     path: guide.path,
     changeFrequency: "monthly" as const,
