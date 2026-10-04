@@ -14,6 +14,11 @@ import {
 
 const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
+const fontCss = await read("src/app/fonts.css");
+const koreanHeadingFont = fontCss.match(
+  /\/fonts\/black-han-sans-full-[a-f0-9]{12}\.woff2/,
+)?.[0];
+assert.ok(koreanHeadingFont, "Korean heading font asset is declared");
 const paths = [
   "",
   "/services",
@@ -55,6 +60,13 @@ for (const locale of ["ko", "en"]) {
       html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""),
     );
     const links = tags(html, "link");
+    assert.equal(
+      links.filter(
+        (link) => link.rel === "preload" && link.href === koreanHeadingFont,
+      ).length,
+      locale === "ko" ? 1 : 0,
+      `${route}: only Korean pages preload the Korean heading font`,
+    );
     const meta = tags(html, "meta");
     const value = (key) =>
       meta.find((item) => item.name === key || item.property === key)?.content;
@@ -291,7 +303,7 @@ const verificationFiles = (await readdir("public")).filter((file) =>
 assert.equal(verificationFiles.length, 2);
 for (const file of verificationFiles)
   assert.ok((await read(`public/${file}`)).includes("verification"));
-for (const [, font] of (await read("src/app/fonts.css")).matchAll(
+for (const [, font] of fontCss.matchAll(
   /url\(["']?(\/fonts\/[^"') ]+)["']?\)/g,
 ))
   assert.ok((await stat(`public${font}`)).size > 0);

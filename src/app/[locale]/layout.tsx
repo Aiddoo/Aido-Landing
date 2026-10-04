@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { FontPreload } from "@/components/FontPreload";
 import { StructuredData } from "@/components/StructuredData";
 import { locales } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
@@ -117,6 +118,9 @@ export default async function LocaleLayout({
       }
     >
       <body className="antialiased">
+        {locale === "ko" && (
+          <FontPreload href="/fonts/black-han-sans-full-c171859c92c5.woff2" />
+        )}
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
         {children}
