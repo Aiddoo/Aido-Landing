@@ -31,32 +31,34 @@ export function Hero({
           </p>
         </div>
         <figure className="hero-visual">
-          <div className="hero-note hero-note-top">
-            <span className="font-bold">✦ {content.memoLabel}</span>
-            <p>{content.memoText}</p>
-          </div>
-          <div className="hero-phone phone-frame">
-            <AppScreenshot
-              locale={locale}
-              screenshot="week"
-              alt={content.previewAlt}
-              sizes="(min-width:1024px) 240px, 210px"
-              loading="eager"
-              fetchPriority="high"
-              className="block h-auto w-full"
+          <div className="hero-artwork">
+            <div className="hero-note hero-note-top">
+              <span className="font-bold">✦ {content.memoLabel}</span>
+              <p>{content.memoText}</p>
+            </div>
+            <div className="hero-phone phone-frame">
+              <AppScreenshot
+                locale={locale}
+                screenshot="week"
+                alt={content.previewAlt}
+                sizes="(min-width:1024px) 240px, 210px"
+                loading="eager"
+                fetchPriority="high"
+                className="block h-auto w-full"
+              />
+            </div>
+            <div className="hero-note hero-note-bottom">
+              <span className="font-bold">✓ {content.doneLabel}</span>
+              <p>{content.doneText}</p>
+            </div>
+            <Image
+              src="/app-assets/cat-scottish-fold.webp"
+              alt=""
+              width={104}
+              height={104}
+              className="hero-cat"
             />
           </div>
-          <div className="hero-note hero-note-bottom">
-            <span className="font-bold">✓ {content.doneLabel}</span>
-            <p>{content.doneText}</p>
-          </div>
-          <Image
-            src="/app-assets/cat-scottish-fold.webp"
-            alt=""
-            width={104}
-            height={104}
-            className="hero-cat"
-          />
           <figcaption className="hero-caption">
             {content.previewCaption}
           </figcaption>

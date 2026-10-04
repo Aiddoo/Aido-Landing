@@ -443,11 +443,14 @@ html {
   text-underline-offset: 8px;
 }
 .hero-visual {
-  position: relative;
   width: 100%;
   max-width: 450px;
-  height: 540px;
   margin: 0 auto;
+  display: grid;
+  gap: 28px;
+}
+.hero-artwork {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -500,10 +503,10 @@ html {
   transform: rotate(-8deg);
 }
 .hero-caption {
-  position: absolute;
-  bottom: 0;
   font-size: 0.875rem;
   font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
 }
 .store-buttons {
   display: flex;
@@ -766,9 +769,6 @@ summary::-webkit-details-marker {
   .hero-section {
     padding-top: 130px;
   }
-  .hero-visual {
-    height: 510px;
-  }
   .hero-phone {
     width: 210px;
   }
@@ -818,7 +818,6 @@ summary::-webkit-details-marker {
   }
   .hero-visual {
     max-width: 360px;
-    height: 500px;
   }
   .hero-note {
     width: 150px;
