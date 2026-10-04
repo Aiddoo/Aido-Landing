@@ -43,6 +43,8 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
             data-analytics-event="language_switch"
             data-target-locale={item}
             href={swapLocale(pathname, item)}
+            prefetch={false}
+            scroll={false}
             aria-current={isActive ? "page" : undefined}
             className={[
               "rounded-full border-2 px-2 py-1 text-xs font-bold transition-all",

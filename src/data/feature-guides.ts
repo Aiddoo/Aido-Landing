@@ -5,25 +5,19 @@ export const featureGuides = [
     slug: "ai-todo",
     path: "/features/ai-todo",
     updatedAt: "2026-10-04",
-    image: "/app-assets/home.webp",
-    width: 360,
-    height: 760,
+    screenshot: "add",
   },
   {
     slug: "recurring-todo",
     path: "/features/recurring-todo",
     updatedAt: "2026-10-04",
-    image: "/app-assets/week-calendar-new.webp",
-    width: 480,
-    height: 1013,
+    screenshot: "week",
   },
   {
     slug: "shared-todo",
     path: "/features/shared-todo",
     updatedAt: "2026-10-04",
-    image: "/app-assets/nudge-new.webp",
-    width: 480,
-    height: 1013,
+    screenshot: "friend",
   },
 ] as const;
 

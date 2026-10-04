@@ -1,6 +1,5 @@
 import { ChevronDown } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { BreadcrumbData } from "@/components/BreadcrumbData";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import {
@@ -145,9 +144,9 @@ export default async function PatchNotesPage({ params }: Props) {
       <div className="mx-auto max-w-4xl">
         <header className="mb-9">
           <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
-            <Link href={`/${locale}`} className="back-home">
+            <a href={`/${locale}#top`} className="back-home">
               ← {labels.backHome}
-            </Link>
+            </a>
             <LanguageSwitcher
               locale={locale}
               labels={messages.languageSwitcher}

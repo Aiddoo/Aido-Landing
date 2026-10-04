@@ -14,8 +14,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         {messages.accessibility.skip}
       </a>
       <header className="site-header">
-        <Link
-          href={prefix}
+        <a
+          href={`${prefix}#top`}
           aria-label={`Aido · ${messages.accessibility.home}`}
           className="flex items-center gap-2"
         >
@@ -29,13 +29,13 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             />
           </div>
           <span className="text-xl font-bold">Aido</span>
-        </Link>
+        </a>
         <div className="flex items-center gap-3">
           <nav
             aria-label={messages.nav.label}
             className="desktop-nav hidden lg:flex"
           >
-            <a href={`${prefix}#features`}>{messages.nav.features}</a>
+            <a href={`${prefix}/services#top`}>{messages.nav.services}</a>
             <a href={`${prefix}#guides`}>{messages.nav.guides}</a>
             <a href={`${prefix}#faq`}>{messages.nav.faq}</a>
             <Link href={`${prefix}/patch-notes`}>

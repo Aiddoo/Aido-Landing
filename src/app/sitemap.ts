@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SERVICE_CONTENT_UPDATED_AT } from "@/data/app-screenshots";
 import { featureGuides } from "@/data/feature-guides";
 import { releaseNotes } from "@/data/patch-notes";
 import { defaultLocale, locales } from "@/i18n/config";
@@ -11,8 +12,6 @@ type Route = {
   lastModified: Date;
 };
 
-// 홈·패치노트는 릴리스마다 갱신되므로 최신 릴리스 날짜를,
-// 법적 문서는 각 문서의 시행일을 lastModified로 쓴다.
 const latestReleaseDate = new Date(releaseNotes[0].date);
 const termsEffectiveDate = new Date("2026-04-19");
 // Website analytics notice added; the app policy's effective date is unchanged.
@@ -21,6 +20,12 @@ const privacyLastModifiedDate = new Date("2026-10-04");
 // 정규 URL은 로케일 세그먼트가 붙은 /{locale}{path} 뿐이다. bare "/"는
 // 로케일로 리다이렉트되는 비정규 스텁이라 사이트맵에 넣지 않는다.
 const routes: Route[] = [
+  {
+    path: "/services",
+    changeFrequency: "monthly",
+    priority: 0.9,
+    lastModified: new Date(SERVICE_CONTENT_UPDATED_AT),
+  },
   ...featureGuides.map((guide) => ({
     path: guide.path,
     changeFrequency: "monthly" as const,

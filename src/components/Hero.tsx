@@ -1,10 +1,14 @@
 import Image from "next/image";
+import type { Locale } from "@/i18n/config";
 import type { MessageCatalog } from "@/i18n/messages";
+import { AppScreenshot } from "./AppScreenshot";
 import { StoreButtons } from "./StoreButtons";
 export function Hero({
+  locale,
   content,
   storeButtons,
 }: {
+  locale: Locale;
   content: MessageCatalog["hero"];
   storeButtons: MessageCatalog["storeButtons"];
 }) {
@@ -27,33 +31,34 @@ export function Hero({
           </p>
         </div>
         <figure className="hero-visual">
-          <div className="hero-note hero-note-top">
-            <span className="font-bold">✦ {content.memoLabel}</span>
-            <p>{content.memoText}</p>
-          </div>
-          <div className="hero-phone phone-frame">
+          <div className="hero-artwork">
+            <div className="hero-note hero-note-top">
+              <span className="font-bold">✦ {content.memoLabel}</span>
+              <p>{content.memoText}</p>
+            </div>
+            <div className="hero-phone phone-frame">
+              <AppScreenshot
+                locale={locale}
+                screenshot="week"
+                alt={content.previewAlt}
+                sizes="(min-width:1024px) 240px, 210px"
+                loading="eager"
+                fetchPriority="high"
+                className="block h-auto w-full"
+              />
+            </div>
+            <div className="hero-note hero-note-bottom">
+              <span className="font-bold">✓ {content.doneLabel}</span>
+              <p>{content.doneText}</p>
+            </div>
             <Image
-              src="/app-assets/week-calendar-new.webp"
-              alt={content.previewAlt}
-              width={360}
-              height={760}
-              sizes="(min-width:1024px) 240px, 210px"
-              loading="eager"
-              fetchPriority="high"
-              className="block h-auto w-full"
+              src="/app-assets/cat-scottish-fold.webp"
+              alt=""
+              width={104}
+              height={104}
+              className="hero-cat"
             />
           </div>
-          <div className="hero-note hero-note-bottom">
-            <span className="font-bold">✓ {content.doneLabel}</span>
-            <p>{content.doneText}</p>
-          </div>
-          <Image
-            src="/app-assets/cat-scottish-fold.webp"
-            alt=""
-            width={104}
-            height={104}
-            className="hero-cat"
-          />
           <figcaption className="hero-caption">
             {content.previewCaption}
           </figcaption>

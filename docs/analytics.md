@@ -2,7 +2,7 @@
 
 ## 연결 대상
 
-- 정규 웹사이트: https://aido.kr (ko/en 14개 공개 페이지).
+- 정규 웹사이트: https://aido.kr (ko/en 16개 공개 페이지).
 - Search Console: `sc-domain:aido.kr`. `https://aido.kr/sitemap.xml`은 2026-10-04에 성공적으로 읽혔고 14개 URL이 발견됐다.
 - GA4: 기존 Aido/Firebase 속성 `519461006` / 계정 `380211368` 안의 웹 스트림 **Aido Landing (aido.kr)** (`16039012294`). 모바일 iOS/Android 스트림과 구분해서 분석한다.
 - 웹 측정 ID: `G-H6J12TDN8E`. 인증 비밀이 아닌 공개 Google 태그 식별자다. Vercel **Production**의 `NEXT_PUBLIC_GA_MEASUREMENT_ID`에만 설정한다.
@@ -17,7 +17,7 @@
 | `select_content` | 기능 사용법 카드 선택 | `content_type`: `feature_guide`, `item_id`, `cta_placement`: `home_guides`/`related_guides` |
 | `language_switch` | 다른 언어로 전환 | `target_locale`, 현재 `site_locale` |
 
-페이지 종류는 `home`, `feature_guide`, `patch_notes`, `terms`, `privacy`이다. `feature_slug`는 현재 보고 있는 사용법이며, `select_content.item_id`는 이동할 사용법이다. 사용법 화면의 하단 CTA는 `cta_placement=download`이고 `page_type=feature_guide`로 홈 하단과 구분한다.
+페이지 종류는 `home`, `services`, `feature_guide`, `patch_notes`, `terms`, `privacy`이다. `feature_slug`는 현재 보고 있는 사용법이며, `select_content.item_id`는 이동할 사용법이다. 사용법 화면의 하단 CTA는 `cta_placement=download`이고 `page_type=feature_guide`로 홈 하단과 구분한다.
 
 `download_click`은 웹사이트의 주요 이벤트로 등록하며 주요 이벤트 수는 세션당 1회 집계한다. 원시 이벤트 수는 모든 클릭을 포함한다. 기본 금액은 지정하지 않는다. **실제 설치·가입·구매가 아니다.** 실제 설치는 기존 앱의 `first_open`, 가입·구매는 앱에서 확인한다. iOS/Android 스토어 경계를 넘는 동일 사용자 연결이나 광고 설치 귀속은 이 구현에서 보장하지 않는다. URL 쿼리나 사용자 ID로 임의 연결하지 않는다.
 
@@ -32,7 +32,7 @@ GA4 웹 스트림의 **Enhanced measurement는 OFF**다. 태그에 `send_page_vi
 - 방문자가 분석을 허용하기 전에는 Google/Vercel 분석 태그를 로드하지 않는다. 거절 후에도 콘텐츠·스토어 링크는 모두 사용할 수 있다.
 - 브라우저에 선택을 180일간 저장한다. 하단 설정에서 변경 가능하다. 철회하면 GA 쿠키를 삭제하고 페이지를 새로고침해 이미 로드된 태그도 종료한다. Do Not Track/Global Privacy Control을 존중한다.
 - Google Consent Mode는 기본 차단 방식이다. 광고 관련 동의 3종은 항상 denied이고 Google Signals/광고 개인화는 태그에서 끈다.
-- 알려진 14개 경로만 집계한다. URL 해시·임의 쿼리·회원 ID·이메일·메모·할 일 텍스트를 이벤트에 추가하지 않는다. 외부 referrer는 origin만 유지한다.
+- 알려진 16개 경로만 집계한다. URL 해시·임의 쿼리·회원 ID·이메일·메모·할 일 텍스트를 이벤트에 추가하지 않는다. 외부 referrer는 origin만 유지한다.
 - UTM 5종은 영문/숫자/밑줄/하이픈, 1~100자만 허용한다. 민감한 정보나 사람 이름을 캠페인 값에 넣지 않는다. 캠페인 URL에는 일반적인 슬러그를 사용한다.
 
 예: `https://aido.kr/ko?utm_source=instagram&utm_medium=social&utm_campaign=launch_202610&utm_content=bio`
@@ -50,7 +50,7 @@ Google AI Overviews/AI Mode의 노출·클릭은 Search Console의 웹 검색 �
 
 ## 검증
 
-`pnpm lint`, `pnpm typecheck`, `pnpm analytics:check`, `pnpm build`, `pnpm seo:check`를 실행한다. URL 경계·UTM/외부 referrer 정리·동의 유효기간은 CI에서 검증한다. SEO 검증은 SSG 14개 페이지, 메타데이터/JSON-LD, 링크, 사이트맵, 소유확인 파일을 검증한다.
+`pnpm lint`, `pnpm typecheck`, `pnpm analytics:check`, `pnpm build`, `pnpm seo:check`를 실행한다. URL 경계·UTM/외부 referrer 정리·동의 유효기간은 CI에서 검증한다. SEO 검증은 SSG 16개 페이지, 메타데이터/JSON-LD, 링크, 사이트맵, 소유확인 파일을 검증한다.
 
 브라우저에서는 동의 전·거절 후 태그 부재, 새로고침/언어 이동 시 선택 유지, 동의 후 태그 1개, 철회 후 태그 제거를 확인한다. GA4 DebugView로 처음 `page_view` 1개, 기능 카드 `select_content` 후 페이지뷰 1개, 언어 전환·스토어 클릭과 파라미터를 확인한다. 검증 방문에는 `?analytics_debug=1`을 붙일 수 있고 이 파라미터는 전송 URL에서 제거된다. DebugView 검증도 테스트 트래픽이므로 운영 보고서에서 감안한다.
 

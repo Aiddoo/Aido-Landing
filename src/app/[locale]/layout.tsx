@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { FontPreload } from "@/components/FontPreload";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
 import { StructuredData } from "@/components/StructuredData";
 import { locales } from "@/i18n/config";
@@ -12,6 +14,20 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
+
+const englishHeading = localFont({
+  src: "../../../public/fonts/black-han-sans-f4cb9b35097d.woff2",
+  weight: "400",
+  display: "optional",
+  variable: "--font-heading-en",
+});
+
+const englishBody = localFont({
+  src: "../../../public/fonts/noto-sans-kr-6ecf7205a09a.woff2",
+  weight: "400 700",
+  display: "optional",
+  variable: "--font-body-en",
+});
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -92,8 +108,19 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale}>
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      className={
+        locale === "en"
+          ? `${englishHeading.variable} ${englishBody.variable}`
+          : undefined
+      }
+    >
       <body className="antialiased">
+        {locale === "ko" && (
+          <FontPreload href="/fonts/black-han-sans-full-c171859c92c5.woff2" />
+        )}
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
         {children}

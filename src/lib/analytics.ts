@@ -4,6 +4,7 @@ import { SITE_URL } from "@/lib/seo";
 
 const paths = new Set([
   "",
+  "/services",
   "/patch-notes",
   "/terms",
   "/privacy",

@@ -12,6 +12,54 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    version: "1.11.0",
+    date: "2026-10-05",
+    summary: {
+      ko: "친구의 콕에 마음을 전하고, 위젯에서 오늘의 할 일을 더 편하게 살펴보세요.",
+      en: "Send a little encouragement back to your friends and keep today's to-dos close with refreshed widgets.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "친구가 보낸 콕에 ‘시작해볼게’, ‘응원 고마워’, ‘조금 뒤에 할게’로 답장할 수 있어요. 지금 내 마음을 짧고 가볍게 전해보세요. 답장만으로 할 일이 완료되지는 않으니, 마친 할 일은 직접 체크해 주세요.",
+            en: "Reply to a friend's nudge with ‘I’ll get started’, ‘Thanks for cheering me on’, or ‘I’ll do it later’. A few words are all it takes. A reply does not complete the to-do, so check it off when you’re done.",
+          },
+          {
+            ko: "공개한 할 일을 마친 뒤에는 콕으로 응원해 준 친구들에게 한 번에 고마움을 전할 수 있어요. 답장과 감사는 무료로 이용하는 분도 함께 쓸 수 있어요.",
+            en: "After completing a public to-do, thank the friends who nudged you in one go. Replies and thanks are available to free users too.",
+          },
+          {
+            ko: "중간 위젯에서는 오늘의 할 일을, 큰 위젯에서는 주간 달력과 오늘의 목록을 함께 볼 수 있어요. ‘할 일 만들기’를 누르면 앱에서 바로 추가할 수 있어요.",
+            en: "See today's to-dos in the medium widget, or your weekly calendar and today's list in the large widget. Tap ‘Add a to-do’ to create one in the app.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "받은 콕과 친구의 답장, 고마움을 알림 목록에서 함께 확인할 수 있어요. 보낸 콕에서도 친구의 반응을 살펴볼 수 있어요.",
+            en: "Find nudges, replies, and thanks together in your notifications. You can also follow your friends' responses in the nudges you've sent.",
+          },
+          {
+            ko: "작은 위젯의 익숙한 완료 수와 진행률은 그대로 두고, 모든 크기에서 주황색 고양이 발자국을 더 또렷하게 다듬었어요. iPhone과 Android의 배치도 같은 느낌으로 맞췄어요.",
+            en: "The small widget keeps its familiar count and progress bar, with brighter orange paw prints across every size. Layouts now feel more consistent on iPhone and Android.",
+          },
+          {
+            ko: "앱을 켜 둔 채 날짜가 바뀌거나 다시 돌아왔을 때 오늘의 날짜가 새날에 맞춰 갱신되도록 다듬었어요.",
+            en: "Today's date now updates when a new day begins while the app is open, or when you return to it.",
+          },
+          {
+            ko: "콕과 리마인더 알림 문구를 상황에 맞게 다듬고, 알림을 눌러 할 일로 이동하거나 이전 화면으로 돌아오는 흐름을 더 자연스럽게 정리했어요.",
+            en: "Nudge and reminder messages feel more natural, with clearer paths from a notification to your to-do and back.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.10.1",
     date: "2026-10-04",
     summary: {

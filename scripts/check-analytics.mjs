@@ -21,6 +21,7 @@ const {
 for (const locale of ["ko", "en"]) {
   for (const route of [
     "",
+    "/services",
     "/features/ai-todo",
     "/features/recurring-todo",
     "/features/shared-todo",
@@ -28,10 +29,13 @@ for (const locale of ["ko", "en"]) {
     "/terms",
     "/privacy",
   ]) {
-    const page = getAnalyticsPage(
-      `https://aido.kr/${locale}${route}?email=private%40example.com&token=secret#private`,
-      locale,
-    );
+    // Given: 한영 공개 페이지 URL에 개인정보 쿼리와 해시가 포함된다.
+    const url = `https://aido.kr/${locale}${route}?email=private%40example.com&token=secret#private`;
+
+    // When: 기존 분석 경계에서 공개 페이지 정보로 정규화한다.
+    const page = getAnalyticsPage(url, locale);
+
+    // Then: 경로와 언어만 보존하고 개인정보 쿼리와 해시는 제거한다.
     assert.equal(page.page_path, `/${locale}${route}`);
     assert.equal(page.page_location, `https://aido.kr/${locale}${route}`);
     assert.equal(page.site_locale, locale);
@@ -99,5 +103,5 @@ for (const value of [
 }
 
 console.log(
-  "Analytics checks passed: 14 public routes, canonical paths, campaign allowlist, referrer redaction, consent validation and expiry.",
+  "분석 경계 검증 통과: 한영 공개 경로 16개, 정규 URL, 캠페인 허용 목록, 외부 유입 정보 정리, 동의 유효기간.",
 );

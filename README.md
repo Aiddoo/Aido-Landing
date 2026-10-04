@@ -33,12 +33,12 @@ pnpm dev        # http://localhost:3000
 ```
 src/
 ├── app/              # App Router — [locale]/ 하위가 정규 라우트
-│   ├── [locale]/     # 홈 · features/[slug] · patch-notes · terms · privacy (ko/en SSG)
+│   ├── [locale]/     # 홈 · services · features/[slug] · patch-notes · terms · privacy (ko/en SSG)
 │   ├── robots.ts     # robots.txt
 │   └── sitemap.ts    # sitemap.xml (lastmod는 실제 변경일 기준)
 ├── components/       # UI 컴포넌트
 ├── content/legal/    # 약관·개인정보처리방침 (ko/en 마크다운)
-├── data/             # 패치노트 · 기능 사용법 경로/이미지/확인일
+├── data/             # 패치노트 · 사용법 · 서비스 기능과 실제 한영 앱 화면
 ├── i18n/             # 로케일 설정 · 메시지 카탈로그
 ├── lib/seo.ts        # 도메인·스토어 URL 상수, OG 메타데이터 헬퍼
 └── proxy.ts          # 로케일 라우팅 미들웨어
@@ -58,6 +58,15 @@ src/
 - 경로·이미지·내용 확인일: `src/data/feature-guides.ts`에서 관리합니다. `updatedAt`은 해당 사용법을 실제로 수정한 날짜에만 변경합니다. 사이트맵에 자동 반영됩니다.
 - 검증: `pnpm build` 후 `pnpm seo:check`를 실행합니다. 배포 후 Search Console에서 기능 URL의 색인·검색어·AI 노출을 확인합니다.
 
+## 서비스 화면과 페이지 이동
+
+`/ko/services`, `/en/services`는 예시 계정으로 촬영한 실제 앱 화면을 보여 줍니다. `src/data/app-screenshots.ts`에서 언어·플랫폼·이미지 크기를, `src/data/service-features.ts`에서 기능별 화면 구성을 관리합니다. 리포트·제안 예시는 문구로 표시합니다.
+
+- 페이지 이동은 Next.js `Link`, 언어 전환은 `scroll={false}`를 사용합니다.
+- 위치 이동은 브라우저 기본 앵커로 처리합니다. 로고·홈 복귀·서비스 소개 첫 화면은 `#top`, 본문 영역은 해당 `id`를 지정합니다. 같은 해시를 반복 클릭해도 이동하며 별도 스크롤 훅을 만들지 않습니다.
+- 부드러운 스크롤을 사용하는 `<html>`에는 Next.js 16의 권장 `data-scroll-behavior="smooth"`를 지정합니다. 고정 헤더의 높이는 기존 `scroll-margin-top`으로 확보합니다.
+
+패치노트는 `src/data/patch-notes.ts`의 `releaseNotes` 맨 앞에 ko/en 문구와 출시일을 추가합니다. 최신 기록만 기본으로 펼치고, 이전 기록은 월별 보관함에 접어 둡니다. 홈의 앱 버전과 사이트맵 변경일도 같은 카탈로그를 사용합니다.
 ## 검색 및 방문 분석
 
 GA4 웹 스트림과 Search Console, 페이지별 조회 및 스토어 클릭 추적은 [운영 가이드](docs/analytics.md)를 참고하세요. 운영 환경에서 방문자가 분석을 허용한 후 수집을 시작하며, 프리뷰와 개발 트래픽은 제외합니다.
