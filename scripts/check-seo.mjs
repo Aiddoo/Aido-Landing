@@ -245,7 +245,7 @@ for (const locale of ["ko", "en"])
       path === "/terms"
         ? "2026-04-19"
         : path === "/privacy"
-          ? "2026-03-13"
+          ? "2026-10-04"
           : (featureGuides.find((guide) => guide.path === path)?.updatedAt ??
             releaseNotes[0].date);
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));

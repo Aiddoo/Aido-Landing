@@ -20,7 +20,7 @@ export function CTA({
           {content.titleLineTwo}
         </h2>
         <p className="my-6 text-lg leading-8">{content.description}</p>
-        <StoreButtons content={storeButtons} />
+        <StoreButtons content={storeButtons} placement="download" />
         <p className="mt-5 text-sm text-foreground/75">{content.closingNote}</p>
       </div>
     </section>
