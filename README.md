@@ -24,6 +24,7 @@ pnpm dev        # http://localhost:3000
 | `pnpm build` | 프로덕션 빌드 |
 | `pnpm lint` | Biome 린트 |
 | `pnpm typecheck` | TypeScript 타입 검사 |
+| `pnpm analytics:check` | 분석 URL·캠페인·referrer·동의 유효기간 검증 |
 | `pnpm seo:check` | 빌드 후 HTML·메타데이터·SSG·사이트맵 검증 |
 | `pnpm format` | 코드 포맷팅 |
 
@@ -56,6 +57,10 @@ src/
 - 문구: `src/i18n/messages.ts`의 `featureGuides`에 ko/en을 함께 작성합니다. 실제 앱 동작과 이용 한도를 확인하고 수정합니다.
 - 경로·이미지·내용 확인일: `src/data/feature-guides.ts`에서 관리합니다. `updatedAt`은 해당 사용법을 실제로 수정한 날짜에만 변경합니다. 사이트맵에 자동 반영됩니다.
 - 검증: `pnpm build` 후 `pnpm seo:check`를 실행합니다. 배포 후 Search Console에서 기능 URL의 색인·검색어·AI 노출을 확인합니다.
+
+## 검색 및 방문 분석
+
+GA4 웹 스트림과 Search Console, 페이지별 조회 및 스토어 클릭 추적은 [운영 가이드](docs/analytics.md)를 참고하세요. 운영 환경에서 방문자가 분석을 허용한 후 수집을 시작하며, 프리뷰와 개발 트래픽은 제외합니다.
 
 ## 기여 규칙
 

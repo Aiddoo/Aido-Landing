@@ -41,6 +41,11 @@ export function FeatureGuides({
               return (
                 <Link
                   key={guide.slug}
+                  data-analytics-event="select_content"
+                  data-feature-slug={guide.slug}
+                  data-placement={
+                    currentSlug ? "related_guides" : "home_guides"
+                  }
                   href={`/${locale}${guide.path}`}
                   className={`guide-card value-card-${index}`}
                 >

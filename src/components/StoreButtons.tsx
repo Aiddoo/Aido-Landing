@@ -6,19 +6,26 @@ import {
 
 type StoreButtonsProps = {
   content: MessageCatalog["storeButtons"];
+  placement: "hero" | "download";
 };
 
 const PLAY_STORE_URL = `${PLAY_STORE_BASE_URL}&pcampaignid=web_share`;
 const storeButtonClass = "store-button";
 
-export function StoreButtons({ content }: StoreButtonsProps) {
+export function StoreButtons({ content, placement }: StoreButtonsProps) {
   return (
     <nav
       aria-label={content.ariaLabel}
       className="flex flex-col items-center gap-6"
     >
       <div className="store-buttons">
-        <a href={APP_STORE_URL} className={storeButtonClass}>
+        <a
+          href={APP_STORE_URL}
+          className={storeButtonClass}
+          data-analytics-event="download_click"
+          data-store="app_store"
+          data-placement={placement}
+        >
           <svg
             viewBox="0 0 384 512"
             width="28"
@@ -40,7 +47,13 @@ export function StoreButtons({ content }: StoreButtonsProps) {
           </div>
         </a>
 
-        <a href={PLAY_STORE_URL} className={storeButtonClass}>
+        <a
+          href={PLAY_STORE_URL}
+          className={storeButtonClass}
+          data-analytics-event="download_click"
+          data-store="google_play"
+          data-placement={placement}
+        >
           <svg
             viewBox="0 0 512 512"
             width="28"

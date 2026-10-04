@@ -40,6 +40,8 @@ export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
         return (
           <Link
             key={item}
+            data-analytics-event="language_switch"
+            data-target-locale={item}
             href={swapLocale(pathname, item)}
             aria-current={isActive ? "page" : undefined}
             className={[
