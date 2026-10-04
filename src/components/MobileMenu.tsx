@@ -39,17 +39,23 @@ export function MobileMenu({
       </summary>
       <nav aria-label={labels.label} className="mobile-menu-panel">
         {[
-          ["/services", labels.services],
+          ["/services#top", labels.services],
           ["#guides", labels.guides],
           ["#friends", labels.friends],
           ["#faq", labels.faq],
           ["/patch-notes", labels.patchNotes],
           ["#download", labels.download],
-        ].map(([path, label]) => (
-          <Link key={path} href={`${prefix}${path}`} onClick={close}>
-            {label}
-          </Link>
-        ))}
+        ].map(([path, label]) =>
+          path.includes("#") ? (
+            <a key={path} href={`${prefix}${path}`} onClick={close}>
+              {label}
+            </a>
+          ) : (
+            <Link key={path} href={`${prefix}${path}`} onClick={close}>
+              {label}
+            </Link>
+          ),
+        )}
       </nav>
     </details>
   );

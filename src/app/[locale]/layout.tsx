@@ -109,6 +109,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
+      data-scroll-behavior="smooth"
       className={
         locale === "en"
           ? `${englishHeading.variable} ${englishBody.variable}`

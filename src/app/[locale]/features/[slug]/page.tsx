@@ -63,7 +63,7 @@ export default async function FeatureGuidePage({ params }: Props) {
             aria-label={messages.accessibility.home}
             className="guide-breadcrumb"
           >
-            <Link href={prefix}>{messages.accessibility.home}</Link>
+            <a href={`${prefix}#top`}>{messages.accessibility.home}</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{content.title}</span>
           </nav>

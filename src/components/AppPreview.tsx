@@ -79,7 +79,7 @@ export function AppPreview({
           ))}
         </div>
         <div className="service-link-wrap">
-          <Link className="service-link" href={`/${locale}/services`}>
+          <Link className="service-link" href={`/${locale}/services#top`}>
             {content.viewAll} <span aria-hidden="true">→</span>
           </Link>
         </div>

@@ -64,12 +64,12 @@ export default async function LocaleTermsPage({
             >
               {messages.legal.viewPrivacyLabel}
             </Link>
-            <Link
-              href={`/${locale}`}
+            <a
+              href={`/${locale}#top`}
               className="text-brand-ink underline underline-offset-4"
             >
               {messages.legal.backHomeLabel}
-            </Link>
+            </a>
           </div>
         </header>
 

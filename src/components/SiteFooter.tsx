@@ -16,7 +16,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-center justify-between gap-12 sm:flex-row mb-12">
-          <Link href={prefix} className="flex items-center gap-4 group">
+          <a href={`${prefix}#top`} className="flex items-center gap-4 group">
             <div className="relative h-8 w-8 wobbly-md border-2 border-foreground bg-foreground p-1 grayscale group-hover:grayscale-0 transition-all group-hover:bg-brand">
               <Image
                 src="/logo-small.webp"
@@ -27,7 +27,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
               />
             </div>
             <span className="text-xl font-bold tracking-tight">Aido</span>
-          </Link>
+          </a>
 
           <div className="text-center sm:text-left space-y-2">
             <p className="text-lg font-bold opacity-80">
