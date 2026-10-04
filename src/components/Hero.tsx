@@ -25,7 +25,7 @@ export function Hero({
           </h1>
           <p className="hero-functional-title">{content.functionalTitle}</p>
           <p className="hero-description">{content.description}</p>
-          <StoreButtons content={storeButtons} />
+          <StoreButtons content={storeButtons} placement="hero" />
           <p className="mt-5 text-sm font-medium text-foreground/75">
             {content.note}
           </p>

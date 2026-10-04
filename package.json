@@ -10,7 +10,8 @@
     "lint": "biome check",
     "typecheck": "tsc --noEmit",
     "format": "biome format --write",
-    "seo:check": "node scripts/check-seo.mjs"
+    "seo:check": "node scripts/check-seo.mjs",
+    "analytics:check": "node scripts/check-analytics.mjs"
   },
   "packageManager": "pnpm@12.8.1",
   "dependencies": {

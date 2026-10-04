@@ -1,7 +1,7 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { FontPreload } from "@/components/FontPreload";
+import { SiteAnalytics } from "@/components/SiteAnalytics";
 import { StructuredData } from "@/components/StructuredData";
 import { locales } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
@@ -124,7 +124,14 @@ export default async function LocaleLayout({
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
         {children}
-        {process.env.VERCEL === "1" && <Analytics />}
+        {process.env.VERCEL_ENV === "production" && (
+          <SiteAnalytics
+            locale={locale}
+            labels={messages.analyticsConsent}
+            measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+            vercelAnalytics={process.env.VERCEL === "1"}
+          />
+        )}
       </body>
     </html>
   );

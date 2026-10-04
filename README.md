@@ -24,6 +24,7 @@ pnpm dev        # http://localhost:3000
 | `pnpm build` | 프로덕션 빌드 |
 | `pnpm lint` | Biome 린트 |
 | `pnpm typecheck` | TypeScript 타입 검사 |
+| `pnpm analytics:check` | 분석 URL·캠페인·referrer·동의 유효기간 검증 |
 | `pnpm seo:check` | 빌드 후 HTML·메타데이터·SSG·사이트맵 검증 |
 | `pnpm format` | 코드 포맷팅 |
 
@@ -66,6 +67,9 @@ src/
 - 부드러운 스크롤을 사용하는 `<html>`에는 Next.js 16의 권장 `data-scroll-behavior="smooth"`를 지정합니다. 고정 헤더의 높이는 기존 `scroll-margin-top`으로 확보합니다.
 
 패치노트는 `src/data/patch-notes.ts`의 `releaseNotes` 맨 앞에 ko/en 문구와 출시일을 추가합니다. 최신 기록만 기본으로 펼치고, 이전 기록은 월별 보관함에 접어 둡니다. 홈의 앱 버전과 사이트맵 변경일도 같은 카탈로그를 사용합니다.
+## 검색 및 방문 분석
+
+GA4 웹 스트림과 Search Console, 페이지별 조회 및 스토어 클릭 추적은 [운영 가이드](docs/analytics.md)를 참고하세요. 운영 환경에서 방문자가 분석을 허용한 후 수집을 시작하며, 프리뷰와 개발 트래픽은 제외합니다.
 
 ## 기여 규칙
 

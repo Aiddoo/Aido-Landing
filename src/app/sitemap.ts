@@ -14,7 +14,8 @@ type Route = {
 
 const latestReleaseDate = new Date(releaseNotes[0].date);
 const termsEffectiveDate = new Date("2026-04-19");
-const privacyEffectiveDate = new Date("2026-03-13");
+// Website analytics notice added; the app policy's effective date is unchanged.
+const privacyLastModifiedDate = new Date("2026-10-04");
 
 // 정규 URL은 로케일 세그먼트가 붙은 /{locale}{path} 뿐이다. bare "/"는
 // 로케일로 리다이렉트되는 비정규 스텁이라 사이트맵에 넣지 않는다.
@@ -53,7 +54,7 @@ const routes: Route[] = [
     path: "/privacy",
     changeFrequency: "monthly",
     priority: 0.5,
-    lastModified: privacyEffectiveDate,
+    lastModified: privacyLastModifiedDate,
   },
 ];
 

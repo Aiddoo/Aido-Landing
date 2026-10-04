@@ -297,3 +297,16 @@ For reports or consultations regarding personal information breaches, you may co
 
 1. This Privacy Policy takes effect on **March 13, 2026**.
 2. The previous Privacy Policy (effective March 10, 2026) shall cease to have effect upon the implementation of this Policy.
+
+---
+
+## Official website analytics notice (added October 4, 2026)
+
+This notice applies to analytics on the official aido.kr website. Use **Website analytics settings** at the bottom of the website to allow or decline analytics. Analytics starts only after you allow it. Declining does not limit access to content or store links. Your choice is saved in your browser for 180 days and can be changed at any time. Analytics does not start when your browser sends a Do Not Track or Global Privacy Control signal.
+
+- **Google Analytics 4 (Google LLC)** measures page visits, referral sources, campaigns, language, feature guide card selections and store button clicks to improve the website. After consent, it uses analytics cookies and Google processes visit, device and browser information. This website tag does not use advertising personalization or Google Signals. A store button click does not mean an app installation or purchase.
+- **Vercel Web Analytics (Vercel Inc.)** provides cookie-free visit statistics after consent. It processes page, referral source, device and browser information.
+- We do not add member identifiers, email addresses, to-do or note content, arbitrary URL queries or fragments to analytics events. Campaign UTM values are limited to a defined format.
+- Selecting **Decline** stops tracking and clears this site's Google Analytics cookies. Previously collected data is handled according to each analytics service's retention settings. Changing your choice does not delete historical data.
+
+See [Google's Privacy Policy](https://policies.google.com/privacy) and [Vercel Web Analytics privacy information](https://vercel.com/docs/analytics/privacy-policy) for information about processing by these services. For website analytics questions, contact matthew@redband.co.kr.

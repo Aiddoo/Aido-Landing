@@ -41,6 +41,15 @@ type PreviewScreen = {
   premium?: boolean;
 };
 export type MessageCatalog = {
+  analyticsConsent: {
+    title: string;
+    description: string;
+    accept: string;
+    reject: string;
+    privacy: string;
+    settings: string;
+    close: string;
+  };
   featureGuides: {
     title: string;
     description: string;
@@ -371,6 +380,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
         },
       },
+    },
+    analyticsConsent: {
+      title: "웹사이트 이용 분석",
+      description:
+        "동의하면 Google Analytics와 Vercel Analytics로 방문 경로와 스토어 버튼 이용을 분석해요. 선택은 언제든 변경할 수 있어요.",
+      accept: "분석 허용",
+      reject: "허용 안 함",
+      privacy: "개인정보처리방침",
+      settings: "웹사이트 분석 설정",
+      close: "닫기",
     },
     featureGuides: {
       title: "아이두로 할 일을 관리하는 방법",
@@ -1103,6 +1122,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
         },
       },
+    },
+    analyticsConsent: {
+      title: "Website analytics",
+      description:
+        "With your consent, Google Analytics and Vercel Analytics help us understand visits and store button use. You can change your choice at any time.",
+      accept: "Allow analytics",
+      reject: "Decline",
+      privacy: "Privacy policy",
+      settings: "Website analytics settings",
+      close: "Close",
     },
     featureGuides: {
       title: "How to manage your to-dos with Aido",

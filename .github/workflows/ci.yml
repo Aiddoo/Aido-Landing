@@ -53,6 +53,9 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Check analytics data boundaries
+        run: pnpm analytics:check
+
       - name: Build
         run: pnpm build
 
