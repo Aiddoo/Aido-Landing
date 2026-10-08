@@ -2,8 +2,12 @@
 @import "./fonts.css";
 
 :root {
-  --font-noto-sans: "Noto Sans KR", Arial, sans-serif;
-  --font-black-han: "Black Han Sans", "Noto Sans KR", sans-serif;
+  --font-noto-sans:
+    "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Malgun Gothic", Arial, sans-serif;
+  --font-black-han:
+    "Black Han Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --background: #fdfbf7;
   --foreground: #2d2d2d;
   --brand: #ff6843;
@@ -1004,6 +1008,56 @@ summary::-webkit-details-marker {
 }
 .release-content {
   padding: 0 24px 26px;
+}
+.release-brief {
+  margin-bottom: 28px;
+  padding: 20px;
+  border: 1.5px solid #2d2d2d35;
+  border-radius: 14px 8px 16px 8px;
+  background: #fffdf5;
+}
+.release-copy {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+.release-copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 2px solid var(--foreground);
+  border-radius: 12px 6px 12px 6px;
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.release-copy-button:hover {
+  background: var(--brand);
+}
+.release-copy-button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+.release-copy-button:focus-visible,
+.release-copy-text:focus-visible {
+  outline: 3px solid var(--foreground);
+  outline-offset: 4px;
+}
+.release-copy-text {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--foreground);
+  border-radius: 8px;
+  background: white;
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  resize: vertical;
 }
 .release-note[open] > summary {
   border-bottom: 1px dashed #2d2d2d35;

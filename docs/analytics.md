@@ -3,7 +3,7 @@
 ## 연결 대상
 
 - 정규 웹사이트: https://aido.kr (ko/en 16개 공개 페이지).
-- Search Console: `sc-domain:aido.kr`. `https://aido.kr/sitemap.xml`은 2026-10-04에 성공적으로 읽혔고 14개 URL이 발견됐다.
+- Search Console: `sc-domain:aido.kr`. `https://aido.kr/sitemap.xml`은 2026-10-04 확인 당시 성공적으로 읽혔고 14개 URL이 발견됐다. 이는 당시 관측값이며 현재 정규 페이지 수 16개와 구분한다.
 - GA4: 기존 Aido/Firebase 속성 `519461006` / 계정 `380211368` 안의 웹 스트림 **Aido Landing (aido.kr)** (`16039012294`). 모바일 iOS/Android 스트림과 구분해서 분석한다.
 - 웹 측정 ID: `G-H6J12TDN8E`. 인증 비밀이 아닌 공개 Google 태그 식별자다. Vercel **Production**의 `NEXT_PUBLIC_GA_MEASUREMENT_ID`에만 설정한다.
 - 배포는 Vercel Git 연동으로 진행한다. 로컬·Preview 빌드는 `SiteAnalytics`를 렌더링하지 않는다. 프리뷰의 noindex/robots 차단은 유지한다.
@@ -50,7 +50,7 @@ Google AI Overviews/AI Mode의 노출·클릭은 Search Console의 웹 검색 �
 
 ## 검증
 
-`pnpm lint`, `pnpm typecheck`, `pnpm analytics:check`, `pnpm build`, `pnpm seo:check`를 실행한다. URL 경계·UTM/외부 referrer 정리·동의 유효기간은 CI에서 검증한다. SEO 검증은 SSG 16개 페이지, 메타데이터/JSON-LD, 링크, 사이트맵, 소유확인 파일을 검증한다.
+분석 코드 변경은 `pnpm analytics:check`와 해당 코드의 lint/typecheck로 확인한다. URL 경계·UTM/외부 referrer 정리·동의 유효기간은 CI에서도 검증한다. 라우팅·HTML·메타데이터까지 바꿨다면 빌드 후 `pnpm seo:check`를 사용한다. 전체 CI·배포 절차는 [기여 안내](contributing.md)에 있다.
 
 브라우저에서는 동의 전·거절 후 태그 부재, 새로고침/언어 이동 시 선택 유지, 동의 후 태그 1개, 철회 후 태그 제거를 확인한다. GA4 DebugView로 처음 `page_view` 1개, 기능 카드 `select_content` 후 페이지뷰 1개, 언어 전환·스토어 클릭과 파라미터를 확인한다. 검증 방문에는 `?analytics_debug=1`을 붙일 수 있고 이 파라미터는 전송 URL에서 제거된다. DebugView 검증도 테스트 트래픽이므로 운영 보고서에서 감안한다.
 
