@@ -7,7 +7,7 @@ AI 투두 플래너 앱 **아이두(Aido)** 의 공식 랜딩 페이지입니다
 ## 기술 스택
 
 - **Next.js 16** (App Router, 완전 정적 SSG, React Compiler)
-- **React 19** · **Tailwind CSS 4** · framer-motion
+- **React 19** · **Tailwind CSS 4**
 - **한/영 i18n** — 커스텀 구현 (`src/i18n/`), 정규 URL은 `/{ko|en}/...`
 - **Biome** (린트/포맷) · **pnpm**
 
@@ -25,6 +25,7 @@ pnpm dev        # http://localhost:3000
 | `pnpm lint` | Biome 린트 |
 | `pnpm typecheck` | TypeScript 타입 검사 |
 | `pnpm analytics:check` | 분석 URL·캠페인·referrer·동의 유효기간 검증 |
+| `pnpm patch-notes:check` | 업데이트 기록·한영 문안·스토어 요약 500자 제한 검증 |
 | `pnpm seo:check` | 빌드 후 HTML·메타데이터·SSG·사이트맵 검증 |
 | `pnpm format` | 코드 포맷팅 |
 
@@ -47,8 +48,20 @@ src/
 ## 배포 & CI
 
 - **CD**: Vercel Git 연동 — `main` push는 프로덕션([aido.kr](https://aido.kr)), PR은 프리뷰 URL 자동 배포
-- **CI**: GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) — PR·main push에서 린트 → 타입체크 → 빌드 → SEO 검증
+- **CI**: GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) — PR·main push에서 린트 → 타입체크 → 분석 경계·패치노트 검사 → 빌드 → SEO·정적 렌더링·폰트 검증
 - 루트 문서(README, AGENTS.md 등)만 바뀐 커밋은 CI·배포를 건너뜁니다
+
+## 구현·운영 문서
+
+| 작업 | 참고 문서 |
+|---|---|
+| 렌더링·새 페이지·SEO | [렌더링과 SEO](docs/rendering-seo.md) |
+| 앱 출시·서비스 개선·스토어 문안·법적 문서 갱신 | [업데이트 기록](docs/updates.md) |
+| 폰트 출처·로딩·캐시·재생성 | [폰트 안내](public/fonts/README.md) |
+| GA4·Search Console·동의·이벤트 | [검색·분석 운영](docs/analytics.md) |
+| Issue·PR·CI·배포 | [기여와 배포](docs/contributing.md) |
+
+16개 한영 공개 페이지는 **SSG + Server Components**로 배포 시 생성합니다. 브라우저 상호작용에 작은 Client Components를 사용하고, Git 콘텐츠에는 ISR을 사용하지 않습니다. 폰트는 로컬 WOFF2로 제공하며 한국어 제목만 미리 받습니다. 자세한 판단 근거와 검증 범위는 해당 문서에서 관리합니다.
 
 ## 기능 사용법 콘텐츠
 
@@ -66,14 +79,17 @@ src/
 - 위치 이동은 브라우저 기본 앵커로 처리합니다. 로고·홈 복귀·서비스 소개 첫 화면은 `#top`, 본문 영역은 해당 `id`를 지정합니다. 같은 해시를 반복 클릭해도 이동하며 별도 스크롤 훅을 만들지 않습니다.
 - 부드러운 스크롤을 사용하는 `<html>`에는 Next.js 16의 권장 `data-scroll-behavior="smooth"`를 지정합니다. 고정 헤더의 높이는 기존 `scroll-margin-top`으로 확보합니다.
 
-패치노트는 `src/data/patch-notes.ts`의 `releaseNotes` 맨 앞에 ko/en 문구와 출시일을 추가합니다. 최신 기록만 기본으로 펼치고, 이전 기록은 월별 보관함에 접어 둡니다. 홈의 앱 버전과 사이트맵 변경일도 같은 카탈로그를 사용합니다.
+## 업데이트 기록
+
+`src/data/patch-notes.ts`에서 앱 출시(`releaseNotes`)와 앱 설치 없이 적용되는 서비스 개선(`serviceUpdates`)을 구분합니다. 화면에서는 날짜순으로 함께 보여주며 앱 기록의 요약 복사 버튼으로 500자 이내의 한영 공통 스토어 문안을 복사합니다. 작성·수정·검증 절차는 [업데이트 기록 안내](docs/updates.md)에 있습니다.
+
 ## 검색 및 방문 분석
 
 GA4 웹 스트림과 Search Console, 페이지별 조회 및 스토어 클릭 추적은 [운영 가이드](docs/analytics.md)를 참고하세요. 운영 환경에서 방문자가 분석을 허용한 후 수집을 시작하며, 프리뷰와 개발 트래픽은 제외합니다.
 
 ## 기여 규칙
 
-작업 규칙(SEO 규칙, 패치노트·약관 갱신 절차, i18n 원칙)은 [AGENTS.md](AGENTS.md)에 정리되어 있습니다. AI 에이전트(Claude Code, Codex)도 같은 파일을 참조합니다.
+공통 제약과 작업별 문서 안내는 [AGENTS.md](AGENTS.md)에 있습니다. Codex와 Claude Code는 같은 규칙을 참조하며, 절차·배경 설명은 위의 작업별 문서에서 관리합니다.
 
 ---
 

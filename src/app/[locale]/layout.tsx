@@ -19,6 +19,8 @@ const englishHeading = localFont({
   src: "../../../public/fonts/black-han-sans-f4cb9b35097d.woff2",
   weight: "400",
   display: "optional",
+  // Shared locale layout: unconditional preloads also download Latin fonts on ko.
+  preload: false,
   variable: "--font-heading-en",
 });
 
@@ -26,6 +28,7 @@ const englishBody = localFont({
   src: "../../../public/fonts/noto-sans-kr-6ecf7205a09a.woff2",
   weight: "400 700",
   display: "optional",
+  preload: false,
   variable: "--font-body-en",
 });
 
@@ -36,6 +39,8 @@ type LocaleLayoutProps = {
 
 // ko/en만 정적 생성 — 그 외 로케일 세그먼트는 404 (요청시점 생성 금지 → 완전 정적)
 export const dynamicParams = false;
+// Public content changes with deployments. Fail the build on request-time reads.
+export const dynamic = "error";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

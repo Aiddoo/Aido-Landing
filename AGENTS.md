@@ -1,62 +1,34 @@
-# Aido 랜딩 (aido.kr)
+# Aido Landing
 
-AI 투두 플래너 앱 "아이두"의 랜딩 페이지. Next.js 16 App Router, 완전 정적(SSG), 한/영 커스텀 i18n.
+AI 투두 플래너 아이두의 Next.js 16 App Router 랜딩입니다. 한영 공개 콘텐츠는 Git 파일에서 관리합니다. 시작 방법·명령어는 [README](README.md)를 참고합니다.
 
-## 명령어
+## 공통 제약
 
-```bash
-pnpm dev          # 개발 서버
-pnpm build        # 프로덕션 빌드 (--webpack, Turbopack 아님)
-pnpm lint         # Biome (biome check)
-pnpm typecheck    # tsc --noEmit
-pnpm seo:check    # 빌드 HTML·메타데이터·SSG·사이트맵 검증 (build 이후)
-```
+- 정규 경로는 `/{ko|en}/...`, 도메인은 `https://aido.kr`입니다. 도메인·스토어·SNS 상수는 `src/lib/seo.ts`에서 가져옵니다.
+- 공개 페이지의 SSG를 유지합니다. 로케일 레이아웃은 `dynamic = "error"`, `dynamicParams = false`이며 Git 콘텐츠는 배포 때 갱신합니다. Client Components에는 필요한 상호작용 데이터만 전달합니다.
+- UI 문구는 `src/i18n/messages.ts`에 ko/en을 함께 작성합니다. 법적 문서는 `src/content/legal/`의 한영 Markdown 쌍을 사용합니다.
+- 앱 출시 버전·출시일과 서비스 적용일을 구분합니다. 과거 출시일을 문구 편집일로 덮지 않습니다. 내부 정리만 있는 작업은 공개 기록에 넣지 않습니다.
+- 사이트맵은 실제 콘텐츠 변경일을 사용합니다. Google·네이버 소유확인 HTML, 폰트 OFL 라이선스와 해시 파일명을 보존합니다. 해시 파일의 바이트를 바꾸면 새 이름을 사용합니다.
+- 분석에는 알려진 공개 경로·허용된 이벤트만 보냅니다. 메모·할 일·회원 식별값을 추가하지 않으며 Production에서 방문자 동의 후 태그를 로드합니다.
+- 배포는 Vercel Git 연동입니다. 수동 `vercel --prod`를 사용하지 않으며 머지 전에 CI 성공을 확인합니다.
 
-## CI/CD
+## 작업별 안내
 
-- **CD는 Vercel Git 연동**: `main` push → 프로덕션 자동 배포, PR/브랜치 push → 프리뷰 URL. 수동 `vercel --prod`는 쓰지 않는다.
-- **CI는 GitHub Actions** (`.github/workflows/ci.yml`): PR과 main push에서 린트 → 타입체크 → 빌드 → SEO 검증. 머지 전에 CI 초록불을 확인할 것.
+필요한 문서만 읽습니다. 세부 절차와 배경은 해당 문서 한 곳에서 관리하고, 새로운 지침은 반복 설명보다 실제 실수·경계를 방지하는 내용에 집중합니다.
 
-## 아키텍처 규칙
+| 작업 | 문서 |
+|---|---|
+| 렌더링·라우팅·새 페이지·메타데이터 | [렌더링과 SEO](docs/rendering-seo.md) |
+| 패치노트·스토어 문안·약관 갱신 | [업데이트 기록](docs/updates.md) |
+| 폰트 변경·로딩·재생성 | [폰트 안내](public/fonts/README.md) |
+| GA4·Search Console·동의·이벤트 | [검색·분석 운영](docs/analytics.md) |
+| Issue·PR·검증·배포 | [기여와 배포](docs/contributing.md) |
 
-- 라우팅: 정규 URL은 `/{locale}{path}` 뿐이다 (`ko`|`en`). bare 경로(`/`, `/terms` 등)는 `src/proxy.ts`가 rewrite하거나 스텁 페이지가 redirect하는 비정규 주소 — 사이트맵·링크에 넣지 않는다.
-- **SSG 유지가 최우선**: `[locale]/layout.tsx`는 `dynamicParams = false`. 로케일 하위 레이아웃/페이지에서 `headers()`/`cookies()` 등 요청시점 API를 쓰면 정적 생성이 깨진다. 금지.
-- i18n: 모든 UI 문구는 `src/i18n/messages.ts`의 단일 카탈로그. **문구를 추가·수정할 땐 반드시 ko/en 둘 다** 채운다. 법적 문서만 예외적으로 `src/content/legal/*.md`(ko) + `*.en.md`.
+로컬 검사는 운영 데이터를 수정하지 않습니다. 요청 범위의 구현·관련 검증·오류 수정을 계속 수행하고, PR·머지가 요청됐다면 CI 확인과 해당 단계까지 완료합니다. 작은 문구 수정을 위해 모든 문서를 읽거나 같은 검사를 반복할 필요는 없습니다.
 
-## SEO 규칙 (2026-07 정비 완료 — 이 상태를 유지할 것)
+## 공식 정보
 
-- 정규 도메인은 **`https://aido.kr`** (www 없음). www는 Vercel에서 308 리다이렉트. 도메인·스토어·SNS URL 상수는 `src/lib/seo.ts`에서만 가져다 쓴다 — 하드코딩 금지.
-- **새 페이지를 추가할 때** 반드시 함께 할 것:
-  1. `generateMetadata()`에서 `buildPageMetadata()`로 title / description / canonical / hreflang(`ko`·`en`·`x-default`) 작성
-  2. `buildSocialMetadata()`(`src/lib/seo.ts`) 스프레드로 OG/Twitter 추가 — Next.js는 `openGraph`를 부모와 딥 머지하지 않고 통째로 교체하므로 이 헬퍼 없이 일부 필드만 쓰면 홈의 og:url을 상속받는 버그가 재발한다
-  3. `src/app/sitemap.ts`의 `routes` 배열에 항목 추가 (lastModified 포함)
-- **sitemap `lastModified`는 실제 변경일만**: 홈·패치노트는 최신 릴리스일(자동), 법적 문서는 시행일 상수. `new Date()`로 매 빌드 갱신하면 검색엔진이 이 값을 무시하게 된다 — 금지.
-- **`public/google*.html`, `public/naver*.html`은 절대 삭제 금지** — Google/네이버 소유확인 파일. 지우면 서치콘솔 소유권이 풀린다.
-- 이미지: `next.config.ts`의 `images.unoptimized: true`는 의도된 설정(과금 회피). 대신 `public/`에 넣는 이미지는 **300KB 이하로 압축**해서 커밋한다 (특히 og-image는 카카오톡 크롤러 대응).
-- JSON-LD의 Organization·WebSite는 `src/app/[locale]/layout.tsx`, MobileApplication은 홈 `src/app/[locale]/page.tsx`에 있다. 하위 페이지는 BreadcrumbList를 제공한다. 채널(SNS·스토어) 추가 시 Organization `sameAs`도 갱신.
-- `GOOGLE_SITE_VERIFICATION`/`NAVER_SITE_VERIFICATION` env는 조건부 meta 태그용 — 현재는 HTML 파일 방식을 쓰므로 비워둔 상태가 정상.
-
-## 콘텐츠 절차
-
-- **패치노트 추가**: `src/data/patch-notes.ts`의 `releaseNotes` 배열 **맨 앞**에 추가 (최신이 index 0 — sitemap lastmod가 여기서 자동 반영). ko/en 요약·항목 모두 작성. 최신 기록만 기본 펼침이며 나머지는 날짜 기준 월별 보관함에 자동으로 묶인다. 기록 본문은 접힌 상태에서도 SSR HTML에 포함된다. 커밋 메시지 관례: `feat: v1.x.x 패치노트`.
-- **약관/개인정보 개정**: `src/content/legal/`의 ko·en 파일 쌍 수정 + `src/app/sitemap.ts`의 시행일 상수(`termsEffectiveDate`/`privacyEffectiveDate`) 갱신.
-
-## 공식 표기 (임의로 바꾸지 말 것)
-
-- 상호: **레드밴드** (영문 **RedBand**) / 대표: 김용민 (Yongmin Kim)
-- 고객 문의: **matthew@redband.co.kr**
-- 앱: App Store id6757722325, Google Play `com.aido.mobile`, Instagram `aiddoo_official`
-
-- 프리뷰는 빌드 시 `VERCEL_ENV=preview`로 noindex / robots disallow. 프로덕션은 index 유지.
-- 폰트는 Google Fonts의 동일한 Black Han Sans·Noto Sans KR를 `public/fonts`에서 직접 제공한다. 출처·라이선스는 해당 디렉터리 README/OFL 파일에 있다.
-
-## GitHub 운영
-
-- 비공개 작업 보드: [Aido Landing](https://github.com/orgs/Aiddoo/projects/1). 모든 이슈·PR은 실제 작업 담당자를 지정하고 보드에 연결한다.
-- 이슈 Type은 `Feature` / `Bug` / `Task` 중 선택한다. GitHub PR에는 Issue Type이 없으므로 라벨로 목적을 표시한다.
-- 라벨은 필요한 것만 조합한다: `enhancement`(기능), `bug`(수정), `documentation`(문구·문서), `maintenance`·`dependencies`(업데이트), `design`(화면), `seo`(검색).
-- 필드는 `Status`(Todo / In Progress / Done), `Priority`(P1 긴급 장애·배포 차단 / P2 일반 개선 / P3 문서·기록 정비)만 사용한다. 머지된 PR과 완료 확인한 이슈는 Done으로 정리한다.
-- 패치노트는 ko/en 모두 완결된 문장으로 쓴다. 한국어는 친근한 해요체, 영어는 짧은 문장과 마침표를 사용한다. 개발 용어·과장된 약속은 피하고, 버전·날짜·사용 한도 등 실제 변경 사실은 유지한다. 영어 기능명은 to-dos / notes / checklist items / AI suggestions / My Page로 통일한다.
+상호 **레드밴드 / RedBand**, 대표 **김용민 / Yongmin Kim**, 문의 **matthew@redband.co.kr**. 앱·공식 채널 URL은 `src/lib/seo.ts`를 기준으로 합니다.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

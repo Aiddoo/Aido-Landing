@@ -1,8 +1,14 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readdir, readFile, stat } from "node:fs/promises";
 import { SERVICE_CONTENT_UPDATED_AT } from "../src/data/app-screenshots.ts";
 import { featureGuides } from "../src/data/feature-guides.ts";
-import { releaseNotes } from "../src/data/patch-notes.ts";
+import {
+  formatStoreNotes,
+  patchNotesUpdatedAt,
+  releaseNotes,
+  updateNotes,
+} from "../src/data/patch-notes.ts";
 import { serviceFeatures } from "../src/data/service-features.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 import {
@@ -46,6 +52,11 @@ function tags(html, tag) {
 }
 const prerender = JSON.parse(await read(".next/prerender-manifest.json"));
 assert.equal(
+  prerender.dynamicRoutes["/[locale]"].fallback,
+  false,
+  "Unknown locales must not use a dynamic fallback",
+);
+assert.equal(
   prerender.dynamicRoutes["/[locale]/features/[slug]"].fallback,
   false,
   "Unknown guide slugs must not use a dynamic fallback",
@@ -55,6 +66,12 @@ for (const locale of ["ko", "en"]) {
   for (const path of paths) {
     const route = `/${locale}${path}`;
     assert.ok(prerender.routes[route], `${route} must be statically generated`);
+    assert.equal(
+      prerender.routes[route].initialRevalidateSeconds,
+      false,
+      `${route}: public content is built on deployment, without timed ISR`,
+    );
+    assert.equal(prerender.routes[route].compute, "static", `${route}: no SSR`);
     const html = await read(`${app}${route}.html`);
     const visibleHtml = decode(
       html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""),
@@ -67,6 +84,16 @@ for (const locale of ["ko", "en"]) {
       locale === "ko" ? 1 : 0,
       `${route}: only Korean pages preload the Korean heading font`,
     );
+    assert.equal(
+      links.filter((link) => link.rel === "preload" && link.as === "font")
+        .length,
+      locale === "ko" ? 1 : 0,
+      `${route}: no unused Latin preloads or bulk Korean subset preloads`,
+    );
+    for (const link of links.filter((link) => link.as === "font")) {
+      assert.equal(link.type, "font/woff2");
+      assert.ok("crossorigin" in link);
+    }
     const meta = tags(html, "meta");
     const value = (key) =>
       meta.find((item) => item.name === key || item.property === key)?.content;
@@ -218,39 +245,67 @@ for (const locale of ["ko", "en"]) {
     }
     if (path === "/patch-notes") {
       const details = tags(html, "details");
+      const updates = details.filter((item) => item["data-update-id"]);
+      assert.deepEqual(
+        updates.map((item) => item["data-update-id"]),
+        updateNotes.map((update) => update.id),
+        "All app and service records are rendered in timeline order",
+      );
       const releases = details.filter((item) => item["data-release-version"]);
       assert.deepEqual(
         releases.map((item) => item["data-release-version"]),
         releaseNotes.map((release) => release.version),
       );
-      assert.ok("open" in releases[0], "Latest release is open by default");
+      assert.ok("open" in updates[0], "Latest record is open by default");
       assert.ok(
-        releases.slice(1).every((item) => !("open" in item)),
-        "Older releases are collapsed",
+        updates.slice(1).every((item) => !("open" in item)),
+        "Older app and service records are collapsed",
       );
       const months = details.filter((item) => item["data-release-month"]);
       assert.equal(
         months.length,
-        new Set(
-          releaseNotes.slice(1).map((release) => release.date.slice(0, 7)),
-        ).size,
+        new Set(updateNotes.slice(1).map((release) => release.date.slice(0, 7)))
+          .size,
       );
       assert.ok(
         months.every((item) => !("open" in item)),
         "Archive months are collapsed",
       );
-      for (const release of releaseNotes) {
+      for (const release of updateNotes) {
         assert.ok(
-          decode(html).includes(release.summary[locale]),
-          `${route}: ${release.version} summary`,
+          updates.some((item) => item.id === release.id),
+          `${route}: ${release.id} anchor`,
+        );
+        assert.ok(
+          visibleHtml.includes(release.summary[locale]),
+          `${route}: ${release.id} summary`,
         );
         for (const category of release.categories)
           for (const item of category.items)
             assert.ok(
-              decode(html).includes(item[locale]),
-              `${route}: ${release.version} content in HTML`,
+              visibleHtml.includes(item[locale]),
+              `${route}: ${release.id} content in SSR HTML`,
             );
+        if (release.kind === "app") {
+          for (const text of formatStoreNotes(release, locale).split("\n"))
+            if (text)
+              assert.ok(
+                visibleHtml.includes(text.replace(/^- /, "")),
+                `${route}: ${release.version} store summary in SSR HTML`,
+              );
+        } else {
+          assert.ok(
+            visibleHtml.includes(messages.patchNotes.noAppUpdateNeeded),
+          );
+        }
       }
+      assert.equal(
+        tags(html, "button").filter(
+          (button) => button.class === "release-copy-button",
+        ).length,
+        releaseNotes.length,
+        "Only app releases have a summary copy button",
+      );
     }
     for (const { src } of tags(html, "img")) {
       assert.ok(src?.startsWith("/"), `${route}: local image`);
@@ -277,10 +332,12 @@ for (const locale of ["ko", "en"])
         ? SERVICE_CONTENT_UPDATED_AT
         : path === "/terms"
           ? "2026-04-19"
-          : path === "/privacy"
-            ? "2026-10-04"
-            : (featureGuides.find((guide) => guide.path === path)?.updatedAt ??
-              releaseNotes[0].date);
+          : path === "/patch-notes"
+            ? patchNotesUpdatedAt
+            : path === "/privacy"
+              ? "2026-10-04"
+              : (featureGuides.find((guide) => guide.path === path)
+                  ?.updatedAt ?? releaseNotes[0].date);
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(
@@ -303,10 +360,29 @@ const verificationFiles = (await readdir("public")).filter((file) =>
 assert.equal(verificationFiles.length, 2);
 for (const file of verificationFiles)
   assert.ok((await read(`public/${file}`)).includes("verification"));
+assert.doesNotMatch(fontCss, /https?:\/\/|fonts\.googleapis|fonts\.gstatic/);
+for (const face of fontCss.matchAll(/@font-face\s*\{([^}]+)\}/g)) {
+  assert.match(face[1], /font-display:\s*optional/);
+  if (face[1].includes('"Noto Sans KR"')) {
+    assert.match(face[1], /font-weight:\s*400 700/);
+    assert.match(face[1], /unicode-range:/);
+  }
+}
 for (const [, font] of fontCss.matchAll(
   /url\(["']?(\/fonts\/[^"') ]+)["']?\)/g,
-))
-  assert.ok((await stat(`public${font}`)).size > 0);
+)) {
+  const bytes = await readFile(`public${font}`);
+  assert.equal(bytes.toString("ascii", 0, 4), "wOF2", `${font}: WOFF2 asset`);
+  assert.ok(bytes.length > 0 && bytes.length <= 300 * 1024);
+  assert.ok(
+    font.endsWith(
+      `-${createHash("sha256").update(bytes).digest("hex").slice(0, 12)}.woff2`,
+    ),
+    `${font}: content hash must change when cached font bytes change`,
+  );
+}
+for (const license of ["blackhansans-OFL.txt", "notosanskr-OFL.txt"])
+  assert.match(await read(`public/fonts/${license}`), /SIL OPEN FONT LICENSE/);
 console.log(
-  "SEO checks passed: 16 static localized pages, guide content and links, metadata, JSON-LD, sitemap dates, assets and verification files.",
+  "SEO checks passed: 16 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
 );

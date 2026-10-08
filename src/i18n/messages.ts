@@ -151,6 +151,13 @@ export type MessageCatalog = {
   patchNotes: {
     title: string;
     description: string;
+    appUpdate: string;
+    serviceUpdate: string;
+    noAppUpdateNeeded: string;
+    updateSummary: string;
+    copySummary: string;
+    summaryCopied: string;
+    copySummaryFallback: string;
     backHome: string;
     bugFixes: string;
     features: string;
@@ -915,7 +922,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
     patchNotes: {
       title: "패치노트",
       description:
-        "아이두가 조금씩 달라지고 있어요. 새로 생긴 기능과 더 편해진 부분을 만나보세요.",
+        "아이두가 조금씩 달라지고 있어요. 앱 업데이트와 따로 설치할 필요 없는 서비스 개선 소식을 모았어요.",
+      appUpdate: "앱 업데이트",
+      serviceUpdate: "서비스 개선",
+      noAppUpdateNeeded: "앱을 따로 업데이트하지 않아도 적용돼요.",
+      updateSummary: "업데이트 요약",
+      copySummary: "요약 복사",
+      summaryCopied: "요약을 복사했어요.",
+      copySummaryFallback:
+        "아래 문구를 선택해 직접 복사해 주세요. 줄바꿈도 함께 복사돼요.",
       backHome: "홈으로",
       bugFixes: "고친 문제",
       features: "새로운 기능",
@@ -924,7 +939,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       latest: "최신",
       archiveTitle: "지난 업데이트",
       archiveDescription:
-        "월별로 기록을 모아뒀어요. 궁금한 버전을 펼쳐 자세히 살펴보세요.",
+        "앱 업데이트와 서비스 개선을 월별로 모아뒀어요. 궁금한 기록을 펼쳐보세요.",
       releaseCount: "업데이트 {count}개",
       releaseCountOne: "업데이트 1개",
       expand: "자세히 보기",
@@ -1663,7 +1678,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
     patchNotes: {
       title: "Patch Notes",
       description:
-        "Aido keeps getting a little better. Meet the new features and small improvements that make your day easier.",
+        "Aido keeps getting a little better. Catch up on app updates and service improvements that need no new installation.",
+      appUpdate: "App update",
+      serviceUpdate: "Service improvements",
+      noAppUpdateNeeded: "These changes apply without an app update.",
+      updateSummary: "Update summary",
+      copySummary: "Copy summary",
+      summaryCopied: "Summary copied.",
+      copySummaryFallback:
+        "Select the text below and copy it manually. Line breaks are included.",
       backHome: "Home",
       bugFixes: "Fixes",
       features: "New features",
@@ -1672,7 +1695,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       latest: "Latest",
       archiveTitle: "Earlier updates",
       archiveDescription:
-        "Explore earlier updates by month. Open a version to see what changed.",
+        "Explore app updates and service improvements by month. Open a record to see what changed.",
       releaseCount: "{count} updates",
       releaseCountOne: "1 update",
       expand: "Read more",
