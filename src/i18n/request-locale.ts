@@ -15,7 +15,7 @@ function localeFromAcceptLanguage(
 
   for (const part of parts) {
     const [languageTag] = part.split(";");
-    const normalized = normalizeTag(languageTag);
+    const normalized = normalizeTag(languageTag ?? "");
 
     if (isLocale(normalized)) {
       return normalized;
@@ -26,8 +26,8 @@ function localeFromAcceptLanguage(
 }
 
 export function getPreferredLocale(input: {
-  cookieLocale?: string | null;
-  acceptLanguage?: string | null;
+  cookieLocale?: string | null | undefined;
+  acceptLanguage?: string | null | undefined;
 }): Locale {
   const cookieLocale = input.cookieLocale?.toLowerCase() ?? "";
   if (isLocale(cookieLocale)) {

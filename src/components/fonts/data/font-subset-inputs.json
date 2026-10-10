@@ -1,0 +1,8 @@
+{
+  "stylesheet": "public/fonts/fonts-ko-1553ca02ef76.css",
+  "patterns": [
+    "src/i18n/messages.ts",
+    "src/features/updates/data/patch-notes.ts",
+    "src/content/legal/*.md"
+  ]
+}

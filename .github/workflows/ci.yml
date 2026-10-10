@@ -1,4 +1,4 @@
-# CI: 품질 게이트 (린트 · 타입체크 · 빌드)
+# CI: 보안 감사 · 린트 · 타입 · 테스트 · 정적 빌드/SEO
 # 배포(CD)는 Vercel Git 연동이 담당한다 — PR은 프리뷰, main은 프로덕션.
 name: CI
 
@@ -30,16 +30,24 @@ concurrency:
 
 jobs:
   quality:
-    name: Lint · Typecheck · Build · SEO
+    name: Audit · Lint · Types · Tests · SSG · SEO
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      VERCEL_ENV: production
+      VERCEL: "1"
+      ANALYTICS_PROVIDERS: ga4,vercel
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: G-TEST123
+      PLAYWRIGHT_SKIP_BUILD: "1"
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       # pnpm 버전은 package.json의 packageManager 필드에서 읽는다
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
 
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 24
           cache: pnpm
@@ -47,14 +55,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Audit known dependency vulnerabilities
+        run: pnpm audit
+
       - name: Lint (Biome)
         run: pnpm lint
 
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: Check analytics data boundaries
-        run: pnpm analytics:check
+      - name: Unit tests (analytics boundaries and provider contracts)
+        run: pnpm test
+
+      - name: Check immutable responsive assets
+        run: pnpm images:check
 
       - name: Check update records and store copy
         run: pnpm patch-notes:check
@@ -64,3 +78,17 @@ jobs:
 
       - name: Check rendered SEO and static routes
         run: pnpm seo:check
+
+      - name: Install browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Browser tests (local mocked analytics; no production data)
+        run: pnpm test:browser
+
+      - name: Upload failed browser traces
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: browser-traces
+          path: test-results/
+          retention-days: 7

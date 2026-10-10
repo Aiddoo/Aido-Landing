@@ -18,6 +18,7 @@ AI 투두 플래너 아이두의 Next.js 16 App Router 랜딩입니다. 한영 �
 
 | 작업 | 문서 |
 |---|---|
+| 프론트엔드 구조·Props·상태·공용 UI | [프론트엔드 아키텍처](docs/frontend-architecture.md) |
 | 렌더링·라우팅·새 페이지·메타데이터 | [렌더링과 SEO](docs/rendering-seo.md) |
 | 패치노트·스토어 문안·약관 갱신 | [업데이트 기록](docs/updates.md) |
 | 폰트 변경·로딩·재생성 | [폰트 안내](public/fonts/README.md) |
@@ -32,7 +33,7 @@ AI 투두 플래너 아이두의 Next.js 16 App Router 랜딩입니다. 한영 �
 
 <!-- BEGIN:nextjs-agent-rules -->
 
-# This is NOT the Next.js you know
+## This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 

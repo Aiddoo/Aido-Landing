@@ -1,15 +1,16 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readdir, readFile, stat } from "node:fs/promises";
-import { SERVICE_CONTENT_UPDATED_AT } from "../src/data/app-screenshots.ts";
-import { featureGuides } from "../src/data/feature-guides.ts";
+import { glob, readdir, readFile, stat } from "node:fs/promises";
+import { SERVICE_CONTENT_UPDATED_AT } from "../src/components/media/data/app-screenshots.ts";
+import { responsiveImages } from "../src/components/media/data/responsive-images.ts";
+import { featureGuides } from "../src/features/feature-guides/data/feature-guides.ts";
+import { serviceFeatures } from "../src/features/services/data/service-features.ts";
 import {
   formatStoreNotes,
   patchNotesUpdatedAt,
   releaseNotes,
   updateNotes,
-} from "../src/data/patch-notes.ts";
-import { serviceFeatures } from "../src/data/service-features.ts";
+} from "../src/features/updates/data/patch-notes.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 import {
   APP_STORE_URL,
@@ -18,13 +19,38 @@ import {
   SITE_URL,
 } from "../src/lib/seo.ts";
 
+const originalSource = (src) =>
+  Object.entries(responsiveImages).find(([, image]) =>
+    image.variants.some((variant) => variant.src === src),
+  )?.[0] ?? src;
 const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
-const fontCss = await read("src/app/fonts.css");
-const koreanHeadingFont = fontCss.match(
-  /\/fonts\/black-han-sans-full-[a-f0-9]{12}\.woff2/,
-)?.[0];
-assert.ok(koreanHeadingFont, "Korean heading font asset is declared");
+const { koreanFontStylesheet, koreanHeadingFont } = await import(
+  "../src/components/fonts/font-assets.ts"
+);
+const fontCss = await read(`public${koreanFontStylesheet}`);
+assert.ok(
+  fontCss.includes(koreanHeadingFont),
+  "Korean heading font asset is declared",
+);
+const fontInputs = JSON.parse(
+  await read("src/components/fonts/data/font-subset-inputs.json"),
+);
+const fontManifest = JSON.parse(
+  await read("src/components/fonts/data/font-subset-manifest.json"),
+);
+const characters = new Set(
+  Array.from({ length: 224 }, (_, index) => index + 32),
+);
+for await (const path of glob(fontInputs.patterns)) {
+  for (const character of await read(path))
+    characters.add(character.codePointAt(0));
+}
+assert.deepEqual(
+  [...characters].sort((a, b) => a - b),
+  fontManifest.codepoints,
+  "Public text glyphs changed. Run scripts/generate-fonts.py before building.",
+);
 const paths = [
   "",
   "/services",
@@ -194,9 +220,11 @@ for (const locale of ["ko", "en"]) {
           assert.ok(visibleHtml.includes(detail));
       }
       for (const image of tags(html, "img").filter((image) =>
-        image.src?.includes("/screenshots/"),
+        originalSource(image.src)?.includes("/screenshots/"),
       )) {
-        assert.ok(image.src.includes(`/screenshots/${locale}/`));
+        assert.ok(
+          originalSource(image.src).includes(`/screenshots/${locale}/`),
+        );
         assert.ok(Number(image.width) > 0 && Number(image.height) > 0);
       }
     }
@@ -300,14 +328,24 @@ for (const locale of ["ko", "en"]) {
         }
       }
       assert.equal(
-        tags(html, "button").filter(
-          (button) => button.class === "release-copy-button",
+        tags(html, "button").filter((button) =>
+          button.class?.split(" ").includes("release-copy-button"),
         ).length,
         releaseNotes.length,
         "Only app releases have a summary copy button",
       );
     }
-    for (const { src } of tags(html, "img")) {
+    assert.equal(tags(html, "h1").length, 1, `${route}: a single page title`);
+    assert.equal(
+      links.filter(
+        (link) =>
+          link.href === koreanFontStylesheet && link.rel === "stylesheet",
+      ).length,
+      locale === "ko" ? 1 : 0,
+      `${route}: Korean font CSS only on Korean pages`,
+    );
+    for (const { src, srcset } of tags(html, "img")) {
+      assert.ok(srcset, `${route}: responsive images have a srcset`);
       assert.ok(src?.startsWith("/"), `${route}: local image`);
       assert.ok(
         (await stat(`public${src}`)).size <= 300 * 1024,
@@ -316,6 +354,16 @@ for (const locale of ["ko", "en"]) {
     }
   }
 }
+const robotsText = await read(`${app}/robots.txt.body`);
+assert.match(robotsText, /User-Agent: \*/);
+assert.match(robotsText, IS_PREVIEW ? /Disallow: \// : /Allow: \//);
+if (!IS_PREVIEW) assert.doesNotMatch(robotsText, /Disallow:/);
+const stylesheetBytes = await readFile(`public${koreanFontStylesheet}`);
+assert.ok(
+  koreanFontStylesheet.endsWith(
+    `-${createHash("sha256").update(stylesheetBytes).digest("hex").slice(0, 12)}.css`,
+  ),
+);
 const xml = await read(`${app}/sitemap.xml.body`);
 const entries = [...xml.matchAll(/<url>(.*?)<\/url>/gs)].map(
   ([, entry]) => entry,

@@ -1,0 +1,1744 @@
+{
+  "measuredAt": "2026-10-10",
+  "baselineCommit": "bad060b",
+  "baselineNext": "16.3.8",
+  "afterNext": "16.4.0",
+  "lighthouse": "13.5.0",
+  "chrome": "154.0.0.0",
+  "mode": "mobile, cold cache, simulated throttling, analytics disabled on both versions",
+  "throttling": {
+    "rttMs": 150,
+    "throughputKbps": 1638.4,
+    "cpuSlowdownMultiplier": 4
+  },
+  "runs": [
+    {
+      "version": "before",
+      "route": "ko",
+      "run": 1,
+      "performance": 77.0,
+      "FCP": 3009.1185,
+      "LCP": 4887.7658999999985,
+      "CLS": 0,
+      "TBT": 9,
+      "resources": {
+        "total": {
+          "bytes": 737800,
+          "requests": 36
+        },
+        "font": {
+          "bytes": 384414,
+          "requests": 16
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "image": {
+          "bytes": 95330,
+          "requests": 6
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 19646,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko",
+      "run": 2,
+      "performance": 77.0,
+      "FCP": 3007.882,
+      "LCP": 4886.034799999999,
+      "CLS": 0,
+      "TBT": 7,
+      "resources": {
+        "total": {
+          "bytes": 737800,
+          "requests": 36
+        },
+        "font": {
+          "bytes": 384414,
+          "requests": 16
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "image": {
+          "bytes": 95330,
+          "requests": 6
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 19646,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko",
+      "run": 3,
+      "performance": 77.0,
+      "FCP": 3007.9035,
+      "LCP": 4886.0649,
+      "CLS": 0,
+      "TBT": 7,
+      "resources": {
+        "total": {
+          "bytes": 737800,
+          "requests": 36
+        },
+        "font": {
+          "bytes": 384414,
+          "requests": 16
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "image": {
+          "bytes": 95330,
+          "requests": 6
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 19646,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko",
+      "run": 1,
+      "performance": 85.0,
+      "FCP": 2112.7264999999998,
+      "LCP": 4137.271799999999,
+      "CLS": 0,
+      "TBT": 11,
+      "resources": {
+        "total": {
+          "bytes": 554081,
+          "requests": 43
+        },
+        "script": {
+          "bytes": 189135,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "image": {
+          "bytes": 96410,
+          "requests": 7
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "document": {
+          "bytes": 23197,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 15590,
+          "requests": 5
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko",
+      "run": 2,
+      "performance": 85.0,
+      "FCP": 2109.3269999999998,
+      "LCP": 4055.1924000000004,
+      "CLS": 0,
+      "TBT": 9.5,
+      "resources": {
+        "total": {
+          "bytes": 554081,
+          "requests": 43
+        },
+        "script": {
+          "bytes": 189135,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "image": {
+          "bytes": 96410,
+          "requests": 7
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "document": {
+          "bytes": 23197,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 15590,
+          "requests": 5
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko",
+      "run": 3,
+      "performance": 85.0,
+      "FCP": 2107.944,
+      "LCP": 4127.5328,
+      "CLS": 0,
+      "TBT": 9,
+      "resources": {
+        "total": {
+          "bytes": 554081,
+          "requests": 43
+        },
+        "script": {
+          "bytes": 189135,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "image": {
+          "bytes": 96410,
+          "requests": 7
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "document": {
+          "bytes": 23197,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 15590,
+          "requests": 5
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en",
+      "run": 1,
+      "performance": 96.0,
+      "FCP": 1504.9561500000002,
+      "LCP": 2763.95615,
+      "CLS": 0,
+      "TBT": 4.5,
+      "resources": {
+        "total": {
+          "bytes": 368314,
+          "requests": 20
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "image": {
+          "bytes": 80646,
+          "requests": 5
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 18265,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en",
+      "run": 2,
+      "performance": 95.0,
+      "FCP": 1506.7074000000002,
+      "LCP": 2842.7074000000002,
+      "CLS": 0,
+      "TBT": 5.5,
+      "resources": {
+        "total": {
+          "bytes": 368314,
+          "requests": 20
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "image": {
+          "bytes": 80646,
+          "requests": 5
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 18265,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en",
+      "run": 3,
+      "performance": 96.0,
+      "FCP": 1503.1430999999998,
+      "LCP": 2760.1431000000002,
+      "CLS": 0,
+      "TBT": 3.5,
+      "resources": {
+        "total": {
+          "bytes": 368314,
+          "requests": 20
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "image": {
+          "bytes": 80646,
+          "requests": 5
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 18265,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en",
+      "run": 1,
+      "performance": 94.0,
+      "FCP": 1506.1572,
+      "LCP": 2995.1572,
+      "CLS": 0,
+      "TBT": 7,
+      "resources": {
+        "total": {
+          "bytes": 378161,
+          "requests": 25
+        },
+        "script": {
+          "bytes": 174690,
+          "requests": 9
+        },
+        "image": {
+          "bytes": 84114,
+          "requests": 6
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 21058,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 12407,
+          "requests": 4
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en",
+      "run": 2,
+      "performance": 94.0,
+      "FCP": 1504.1124,
+      "LCP": 2995.4832,
+      "CLS": 0,
+      "TBT": 7.5,
+      "resources": {
+        "total": {
+          "bytes": 378161,
+          "requests": 25
+        },
+        "script": {
+          "bytes": 174690,
+          "requests": 9
+        },
+        "image": {
+          "bytes": 84114,
+          "requests": 6
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 21058,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 12407,
+          "requests": 4
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en",
+      "run": 3,
+      "performance": 94.0,
+      "FCP": 1505.60655,
+      "LCP": 2994.6065500000004,
+      "CLS": 0,
+      "TBT": 7,
+      "resources": {
+        "total": {
+          "bytes": 378161,
+          "requests": 25
+        },
+        "script": {
+          "bytes": 174690,
+          "requests": 9
+        },
+        "image": {
+          "bytes": 84114,
+          "requests": 6
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 21058,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 12407,
+          "requests": 4
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko/services",
+      "run": 1,
+      "performance": 75.0,
+      "FCP": 3158.7735,
+      "LCP": 4958.7735,
+      "CLS": 0,
+      "TBT": 8,
+      "resources": {
+        "total": {
+          "bytes": 762116,
+          "requests": 38
+        },
+        "font": {
+          "bytes": 384414,
+          "requests": 16
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "image": {
+          "bytes": 118324,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 20968,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko/services",
+      "run": 2,
+      "performance": 75.0,
+      "FCP": 3156.6475,
+      "LCP": 4956.6475,
+      "CLS": 0,
+      "TBT": 9,
+      "resources": {
+        "total": {
+          "bytes": 762116,
+          "requests": 38
+        },
+        "font": {
+          "bytes": 384414,
+          "requests": 16
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "image": {
+          "bytes": 118324,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 20968,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko/services",
+      "run": 3,
+      "performance": 75.0,
+      "FCP": 3156.9080000000004,
+      "LCP": 4956.907999999999,
+      "CLS": 0,
+      "TBT": 5,
+      "resources": {
+        "total": {
+          "bytes": 762116,
+          "requests": 38
+        },
+        "font": {
+          "bytes": 384414,
+          "requests": 16
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "image": {
+          "bytes": 118324,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 20968,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko/services",
+      "run": 1,
+      "performance": 86.0,
+      "FCP": 2256.87725,
+      "LCP": 3904.8772499999995,
+      "CLS": 0,
+      "TBT": 11.5,
+      "resources": {
+        "total": {
+          "bytes": 519313,
+          "requests": 44
+        },
+        "script": {
+          "bytes": 189135,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "image": {
+          "bytes": 60947,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "document": {
+          "bytes": 24277,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 15205,
+          "requests": 5
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko/services",
+      "run": 2,
+      "performance": 86.0,
+      "FCP": 2256.1107500000003,
+      "LCP": 3903.3329000000012,
+      "CLS": 0,
+      "TBT": 10.5,
+      "resources": {
+        "total": {
+          "bytes": 519313,
+          "requests": 44
+        },
+        "script": {
+          "bytes": 189135,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "image": {
+          "bytes": 60947,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "document": {
+          "bytes": 24277,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 15205,
+          "requests": 5
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko/services",
+      "run": 3,
+      "performance": 86.0,
+      "FCP": 2255.94375,
+      "LCP": 3899.94375,
+      "CLS": 0,
+      "TBT": 9.5,
+      "resources": {
+        "total": {
+          "bytes": 519313,
+          "requests": 44
+        },
+        "script": {
+          "bytes": 189135,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "image": {
+          "bytes": 60947,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "document": {
+          "bytes": 24277,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 15205,
+          "requests": 5
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en/services",
+      "run": 1,
+      "performance": 95.0,
+      "FCP": 1504.6919999999998,
+      "LCP": 2835.128,
+      "CLS": 0,
+      "TBT": 3.5,
+      "resources": {
+        "total": {
+          "bytes": 420523,
+          "requests": 23
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "image": {
+          "bytes": 131897,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 19223,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en/services",
+      "run": 2,
+      "performance": 95.0,
+      "FCP": 1503.15765,
+      "LCP": 2838.1050999999993,
+      "CLS": 0,
+      "TBT": 5.5,
+      "resources": {
+        "total": {
+          "bytes": 420523,
+          "requests": 23
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "image": {
+          "bytes": 131897,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 19223,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en/services",
+      "run": 3,
+      "performance": 95.0,
+      "FCP": 1503.76305,
+      "LCP": 2832.5086999999994,
+      "CLS": 0,
+      "TBT": 2.5,
+      "resources": {
+        "total": {
+          "bytes": 420523,
+          "requests": 23
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "image": {
+          "bytes": 131897,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 19223,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en/services",
+      "run": 1,
+      "performance": 95.0,
+      "FCP": 1503.4122,
+      "LCP": 2917.4122000000007,
+      "CLS": 0,
+      "TBT": 7,
+      "resources": {
+        "total": {
+          "bytes": 362517,
+          "requests": 27
+        },
+        "script": {
+          "bytes": 174690,
+          "requests": 9
+        },
+        "image": {
+          "bytes": 67530,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 22383,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 12022,
+          "requests": 4
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en/services",
+      "run": 2,
+      "performance": 95.0,
+      "FCP": 1504.0773,
+      "LCP": 2919.0773,
+      "CLS": 0,
+      "TBT": 7.5,
+      "resources": {
+        "total": {
+          "bytes": 362517,
+          "requests": 27
+        },
+        "script": {
+          "bytes": 174690,
+          "requests": 9
+        },
+        "image": {
+          "bytes": 67530,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 22383,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 12022,
+          "requests": 4
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en/services",
+      "run": 3,
+      "performance": 95.0,
+      "FCP": 1502.68845,
+      "LCP": 2914.68845,
+      "CLS": 0,
+      "TBT": 6,
+      "resources": {
+        "total": {
+          "bytes": 362517,
+          "requests": 27
+        },
+        "script": {
+          "bytes": 174690,
+          "requests": 9
+        },
+        "image": {
+          "bytes": 67530,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 22383,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 12022,
+          "requests": 4
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko/features/ai-todo",
+      "run": 1,
+      "performance": 78.0,
+      "FCP": 3005.396,
+      "LCP": 4580.396000000001,
+      "CLS": 0,
+      "TBT": 8,
+      "resources": {
+        "total": {
+          "bytes": 675580,
+          "requests": 33
+        },
+        "font": {
+          "bytes": 401638,
+          "requests": 17
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 23320,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 12212,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko/features/ai-todo",
+      "run": 2,
+      "performance": 78.0,
+      "FCP": 3006.46,
+      "LCP": 4581.459999999999,
+      "CLS": 0,
+      "TBT": 6,
+      "resources": {
+        "total": {
+          "bytes": 658356,
+          "requests": 32
+        },
+        "font": {
+          "bytes": 384414,
+          "requests": 16
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 23320,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 12212,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "ko/features/ai-todo",
+      "run": 3,
+      "performance": 78.0,
+      "FCP": 3005.4210000000003,
+      "LCP": 4580.421,
+      "CLS": 0,
+      "TBT": 7,
+      "resources": {
+        "total": {
+          "bytes": 675580,
+          "requests": 33
+        },
+        "font": {
+          "bytes": 401638,
+          "requests": 17
+        },
+        "script": {
+          "bytes": 151426,
+          "requests": 8
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 23320,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 12212,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko/features/ai-todo",
+      "run": 1,
+      "performance": 87.0,
+      "FCP": 2255.1279999999997,
+      "LCP": 3675.6920000000005,
+      "CLS": 0,
+      "TBT": 9,
+      "resources": {
+        "total": {
+          "bytes": 474367,
+          "requests": 38
+        },
+        "script": {
+          "bytes": 189075,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 187643,
+          "requests": 17
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "image": {
+          "bytes": 20530,
+          "requests": 2
+        },
+        "stylesheet": {
+          "bytes": 13924,
+          "requests": 4
+        },
+        "document": {
+          "bytes": 13238,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko/features/ai-todo",
+      "run": 2,
+      "performance": 89.0,
+      "FCP": 1956.5526000000002,
+      "LCP": 3598.4605000000006,
+      "CLS": 0,
+      "TBT": 9,
+      "resources": {
+        "total": {
+          "bytes": 466516,
+          "requests": 37
+        },
+        "script": {
+          "bytes": 189075,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "image": {
+          "bytes": 20530,
+          "requests": 2
+        },
+        "stylesheet": {
+          "bytes": 13924,
+          "requests": 4
+        },
+        "document": {
+          "bytes": 13238,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "ko/features/ai-todo",
+      "run": 3,
+      "performance": 89.0,
+      "FCP": 1956.4631999999995,
+      "LCP": 3598.3860000000004,
+      "CLS": 0,
+      "TBT": 8.999999999999773,
+      "resources": {
+        "total": {
+          "bytes": 466516,
+          "requests": 37
+        },
+        "script": {
+          "bytes": 189075,
+          "requests": 11
+        },
+        "font": {
+          "bytes": 179792,
+          "requests": 16
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "image": {
+          "bytes": 20530,
+          "requests": 2
+        },
+        "stylesheet": {
+          "bytes": 13924,
+          "requests": 4
+        },
+        "document": {
+          "bytes": 13238,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en/features/ai-todo",
+      "run": 1,
+      "performance": 98.0,
+      "FCP": 1353.3786000000002,
+      "LCP": 2380.2524000000003,
+      "CLS": 0,
+      "TBT": 1.5,
+      "resources": {
+        "total": {
+          "bytes": 305632,
+          "requests": 17
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 24916,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 11313,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en/features/ai-todo",
+      "run": 2,
+      "performance": 98.0,
+      "FCP": 1353.1281,
+      "LCP": 2382.0854,
+      "CLS": 0,
+      "TBT": 2.5,
+      "resources": {
+        "total": {
+          "bytes": 305632,
+          "requests": 17
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 24916,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 11313,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "before",
+      "route": "en/features/ai-todo",
+      "run": 3,
+      "performance": 98.0,
+      "FCP": 1353.20175,
+      "LCP": 2380.1345,
+      "CLS": 0,
+      "TBT": 1.5,
+      "resources": {
+        "total": {
+          "bytes": 305632,
+          "requests": 17
+        },
+        "script": {
+          "bytes": 146484,
+          "requests": 7
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "stylesheet": {
+          "bytes": 37027,
+          "requests": 2
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 24916,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 11313,
+          "requests": 1
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en/features/ai-todo",
+      "run": 1,
+      "performance": 97.0,
+      "FCP": 1353.13845,
+      "LCP": 2541.1384500000004,
+      "CLS": 0,
+      "TBT": 6.5,
+      "resources": {
+        "total": {
+          "bytes": 305306,
+          "requests": 20
+        },
+        "script": {
+          "bytes": 174630,
+          "requests": 9
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 21810,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 12233,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 10741,
+          "requests": 3
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en/features/ai-todo",
+      "run": 2,
+      "performance": 97.0,
+      "FCP": 1353.30765,
+      "LCP": 2542.30765,
+      "CLS": 0,
+      "TBT": 7,
+      "resources": {
+        "total": {
+          "bytes": 305306,
+          "requests": 20
+        },
+        "script": {
+          "bytes": 174630,
+          "requests": 9
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 21810,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 12233,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 10741,
+          "requests": 3
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    },
+    {
+      "version": "after",
+      "route": "en/features/ai-todo",
+      "run": 3,
+      "performance": 97.0,
+      "FCP": 1354.2161999999998,
+      "LCP": 2540.2162000000003,
+      "CLS": 0,
+      "TBT": 5.5,
+      "resources": {
+        "total": {
+          "bytes": 305306,
+          "requests": 20
+        },
+        "script": {
+          "bytes": 174630,
+          "requests": 9
+        },
+        "other": {
+          "bytes": 49957,
+          "requests": 3
+        },
+        "font": {
+          "bytes": 35935,
+          "requests": 2
+        },
+        "image": {
+          "bytes": 21810,
+          "requests": 2
+        },
+        "document": {
+          "bytes": 12233,
+          "requests": 1
+        },
+        "stylesheet": {
+          "bytes": 10741,
+          "requests": 3
+        },
+        "media": {
+          "bytes": 0,
+          "requests": 0
+        },
+        "third-party": {
+          "bytes": 0,
+          "requests": 0
+        }
+      }
+    }
+  ]
+}
