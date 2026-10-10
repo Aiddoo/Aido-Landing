@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
-import { SERVICE_CONTENT_UPDATED_AT } from "@/data/app-screenshots";
-import { featureGuides } from "@/data/feature-guides";
-import { patchNotesUpdatedAt, releaseNotes } from "@/data/patch-notes";
+import { SERVICE_CONTENT_UPDATED_AT } from "@/components/media/data/app-screenshots";
+import { featureGuides } from "@/features/feature-guides/data/feature-guides";
+import {
+  patchNotesUpdatedAt,
+  releaseNotes,
+} from "@/features/updates/data/patch-notes";
 import { defaultLocale, locales } from "@/i18n/config";
 import { SITE_URL } from "@/lib/seo";
 

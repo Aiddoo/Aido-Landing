@@ -1,6 +1,6 @@
-import type { AppScreenshotKey } from "../data/app-screenshots";
-import type { FeatureGuideSlug } from "../data/feature-guides";
-import type { ServiceFeatureId } from "../data/service-features";
+import type { AppScreenshotKey } from "@/components/media/data/app-screenshots";
+import type { FeatureGuideSlug } from "@/features/feature-guides/data/feature-guides";
+import type { ServiceFeatureId } from "@/features/services/data/service-features";
 import type { Locale } from "./config";
 
 type FeatureGuideContent = {
@@ -48,6 +48,7 @@ export type MessageCatalog = {
     reject: string;
     privacy: string;
     settings: string;
+    storageError: string;
     close: string;
   };
   featureGuides: {
@@ -396,6 +397,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       reject: "허용 안 함",
       privacy: "개인정보처리방침",
       settings: "웹사이트 분석 설정",
+      storageError: "선택을 저장하지 못했어요. 분석은 꺼진 상태로 유지됩니다.",
       close: "닫기",
     },
     featureGuides: {
@@ -1146,6 +1148,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       reject: "Decline",
       privacy: "Privacy policy",
       settings: "Website analytics settings",
+      storageError: "Your choice could not be saved. Analytics remains off.",
       close: "Close",
     },
     featureGuides: {

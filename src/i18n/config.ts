@@ -6,5 +6,5 @@ export const defaultLocale: Locale = "ko";
 export const localeCookieName = "NEXT_LOCALE";
 
 export function isLocale(value: string): value is Locale {
-  return locales.includes(value as Locale);
+  return locales.some((locale) => locale === value);
 }

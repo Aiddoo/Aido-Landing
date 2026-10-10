@@ -1,20 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { BreadcrumbData } from "@/components/BreadcrumbData";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { LegalMarkdown } from "@/components/LegalMarkdown";
+import { LegalPage } from "@/features/legal/pages/legal-page";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
-import { readLegalDocument } from "@/lib/legal-docs";
 import { buildPageMetadata } from "@/lib/seo";
 
-type LocalePrivacyPageProps = {
-  params: Promise<{ locale: string }>;
-};
+type Props = PageProps<"/[locale]/privacy">;
 
-export async function generateMetadata({
-  params,
-}: LocalePrivacyPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
 
@@ -26,55 +18,7 @@ export async function generateMetadata({
   });
 }
 
-export default async function LocalePrivacyPage({
-  params,
-}: LocalePrivacyPageProps) {
+export default async function Page({ params }: Props) {
   const locale = resolveLocale((await params).locale);
-  const messages = getMessages(locale);
-  const markdown = await readLegalDocument("privacy-policy", locale);
-
-  return (
-    <main className="px-4 py-12 sm:px-6 sm:py-16 lg:py-20" lang={locale}>
-      <BreadcrumbData
-        locale={locale}
-        path="/privacy"
-        title={messages.legal.privacyTitle}
-      />
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="mb-6 space-y-4 sm:mb-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="inline-flex items-center rounded-full border-2 border-foreground/20 bg-white px-3 py-1 text-xs font-bold tracking-wide text-foreground/70">
-              {messages.legal.badge}
-            </p>
-            <LanguageSwitcher
-              locale={locale}
-              labels={messages.languageSwitcher}
-            />
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {messages.legal.privacyTitle}
-          </h1>
-          <p className="max-w-3xl text-sm leading-7 text-foreground/70 sm:text-base sm:leading-8">
-            {messages.legal.privacyDescription}
-          </p>
-          <div className="flex flex-wrap items-center gap-3 text-sm font-semibold">
-            <Link
-              href={`/${locale}/terms`}
-              className="rounded-full border border-foreground/20 px-4 py-2 hover:bg-foreground/5"
-            >
-              {messages.legal.viewTermsLabel}
-            </Link>
-            <a
-              href={`/${locale}#top`}
-              className="text-brand-ink underline underline-offset-4"
-            >
-              {messages.legal.backHomeLabel}
-            </a>
-          </div>
-        </header>
-
-        <LegalMarkdown markdown={markdown} />
-      </div>
-    </main>
-  );
+  return <LegalPage locale={locale} document="privacy" />;
 }

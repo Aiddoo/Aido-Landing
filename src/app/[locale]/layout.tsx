@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { FontPreload } from "@/components/FontPreload";
-import { SiteAnalytics } from "@/components/SiteAnalytics";
-import { StructuredData } from "@/components/StructuredData";
+import type { Organization, WebSite, WithContext } from "schema-dts";
+import {
+  koreanFontStylesheet,
+  koreanHeadingFont,
+} from "@/components/fonts/font-assets";
+import { FontPreload } from "@/components/fonts/font-preload";
+import { StructuredData } from "@/components/seo/structured-data";
+import { AnalyticsProvider } from "@/features/analytics/components/analytics-provider";
+import { getAnalyticsConfig } from "@/features/analytics/config/analytics-config.server";
 import { locales } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { resolveLocale } from "@/i18n/resolve-locale";
@@ -32,10 +38,7 @@ const englishBody = localFont({
   variable: "--font-body-en",
 });
 
-type LocaleLayoutProps = {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-};
+type LocaleLayoutProps = LayoutProps<"/[locale]">;
 
 // ko/en만 정적 생성 — 그 외 로케일 세그먼트는 404 (요청시점 생성 금지 → 완전 정적)
 export const dynamicParams = false;
@@ -84,7 +87,8 @@ export default async function LocaleLayout({
   const locale = resolveLocale((await params).locale);
   const messages = getMessages(locale);
 
-  const organizationJsonLd = {
+  const analyticsConfig = getAnalyticsConfig();
+  const organizationJsonLd: WithContext<Organization> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
@@ -100,7 +104,7 @@ export default async function LocaleLayout({
     email: messages.footer.inquiryValue,
   };
 
-  const websiteJsonLd = {
+  const websiteJsonLd: WithContext<WebSite> = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
@@ -124,17 +128,23 @@ export default async function LocaleLayout({
     >
       <body className="antialiased">
         {locale === "ko" && (
-          <FontPreload href="/fonts/black-han-sans-full-c171859c92c5.woff2" />
+          <>
+            <link
+              rel="stylesheet"
+              href={koreanFontStylesheet}
+              precedence="fonts"
+            />
+            <FontPreload href={koreanHeadingFont} />
+          </>
         )}
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
         {children}
-        {process.env.VERCEL_ENV === "production" && (
-          <SiteAnalytics
+        {analyticsConfig.providers.length > 0 && (
+          <AnalyticsProvider
             locale={locale}
             labels={messages.analyticsConsent}
-            measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-            vercelAnalytics={process.env.VERCEL === "1"}
+            config={analyticsConfig}
           />
         )}
       </body>

@@ -15,7 +15,7 @@
 
 ## 폰트
 
-기존 Black Han Sans·Noto Sans KR를 로컬 WOFF2로 제공합니다. 한국어 제목 한 개만 preload하고 본문은 Unicode 서브셋을 사용합니다. 영어 파일이 공유 레이아웃을 통해 한국어 페이지에서도 미리 다운로드되지 않도록 영어 자동 preload는 끄고 CSS로 발견합니다. `optional`, 시스템 대체 글꼴, 내용 해시와 1년 immutable 캐시를 사용합니다. 출처·용량·라이선스·재생성은 [폰트 안내](../public/fonts/README.md)에 모읍니다.
+기존 Black Han Sans·Noto Sans KR를 로컬 WOFF2로 제공합니다. 한국어 제목 한 개만 preload하고 본문은 공개 문구에 필요한 Unicode 서브셋을 사용합니다. 원본은 보존하며 새 글자 추가 시 CI가 재생성 누락을 확인합니다. 영어 파일이 공유 레이아웃을 통해 한국어 페이지에서도 미리 다운로드되지 않도록 영어 자동 preload는 끄고 CSS로 발견합니다. `optional`, 시스템 대체 글꼴, 내용 해시와 1년 immutable 캐시를 사용합니다. 출처·용량·라이선스·재생성은 [폰트 안내](../public/fonts/README.md)에 모읍니다.
 
 ## 페이지 추가와 검색 메타데이터
 
@@ -24,10 +24,19 @@
 - Organization·WebSite JSON-LD는 로케일 레이아웃, MobileApplication은 홈, BreadcrumbList는 하위 페이지에서 제공합니다. 공식 채널 변경은 Organization의 sameAs에도 반영합니다.
 - `src/app/sitemap.ts`에 페이지와 실제 변경일을 추가합니다. 홈은 최신 앱 출시일, 패치노트는 기록일과 편집일 중 최신 날짜, 서비스·사용법은 콘텐츠 변경일, 법적 문서는 시행일을 사용합니다. 빌드할 때마다 현재 날짜로 갱신하지 않습니다.
 - Preview는 noindex·robots disallow, Production은 index를 유지합니다. Google/네이버 소유확인 HTML 파일은 보존합니다. 현재 파일 방식이므로 verification 환경변수가 비어 있어도 정상입니다.
-- 이미지 최적화 과금을 피하려고 `images.unoptimized: true`를 사용합니다. public 이미지 한 파일은 300KB 이하로 압축하며 OG 이미지도 같은 기준을 적용합니다.
+- Next Image의 공식 custom loaderFile로 미리 생성한 WebP srcset을 제공합니다. Vercel의 요청 시 이미지 최적화 API를 호출하지 않습니다. 화면용 원본 56개(로고 1개·고양이 9개·한영 스크린샷 46개)는 모두 WebP이며 재생성 입력으로 유지합니다. 카탈로그에서 사용하지 않는 이전 PNG/WebP 10개, 총 565,524바이트를 제거했습니다.
+- 이미지 변경 후 `pnpm images:generate`로 크기별 WebP와 내용 해시 manifest를 갱신합니다. `public/responsive/`는 생성기 전용이며 재생성 때 이전 manifest에서만 쓰던 WebP를 정리합니다. CI의 `pnpm images:check`는 카탈로그에 없는 앱 이미지·남은 파생 파일·원본/치수/해시 불일치를 확인합니다. OG·구조화 데이터 로고·favicon·Apple/PWA 아이콘 PNG는 화면용 이미지와 구분한 메타데이터 자원으로 유지합니다.
 
 ## 검증 범위
 
 렌더링·메타데이터·폰트를 바꿨다면 `pnpm build` 후 `pnpm seo:check`로 실제 생성 HTML과 manifest를 확인합니다. 검사는 16개 정규 페이지의 SSG·ISR 미사용, 미등록 경로의 동적 생성 차단, 본문·메타데이터·사이트맵·이미지·폰트를 다룹니다. 새 경로를 만들면 검사 대상도 함께 갱신합니다.
 
 정적 HTML 제공은 검색 접근성을 위한 조건이며 검색 순위나 AI 인용을 보장하지 않습니다. 성능 비교에서는 불필요한 리소스 제거처럼 확인한 사실과 실제 방문자 LCP/CLS 측정 결과를 구분합니다. 검색·방문 측정 운영은 [분석 안내](analytics.md)를 참고합니다.
+
+## Google AI 검색 / GEO
+
+Google의 [AI 기능 공식 지침](https://developers.google.com/search/docs/appearance/ai-features)에 따라 일반 검색의 기술 요건을 적용합니다. 공개 페이지는 robots.txt에서 크롤링을 허용하고, Googlebot의 snippet을 허용하며, 중요한 설명·사용 단계·FAQ는 초기 HTML의 텍스트입니다. 홈/서비스/관련 사용법 링크는 실제 a href로 연결하고 canonical/hreflang과 사이트맵은 16개 실제 페이지를 가리킵니다. 제목/설명/H1은 페이지 목적을 설명하며 키워드를 반복하기 위해 가짜 페이지를 만들지 않습니다.
+
+Organization/WebSite/MobileApplication/BreadcrumbList JSON-LD는 실제 공개 내용과 맞추고 schema-dts로 타입 검사합니다. 허위 별점·리뷰·AI 전용 스키마나 상업용 FAQ의 rich result 자격을 주장하지 않습니다. Google은 AI Overviews/AI Mode를 위해 llms.txt 등 새로운 AI 텍스트 파일이나 특수 스키마가 필요하지 않다고 명시합니다. robots.txt의 `User-Agent: * / Allow: /`가 Google 검색 크롤러 접근을 허용하며, 별도 Google-Extended 학습 제어는 검색 AI 노출 제어와 구분합니다.
+
+[robots.txt 지침](https://developers.google.com/search/docs/crawling-indexing/robots/intro)에 따라 robots는 접근 제어/비밀 보호 수단으로 사용하지 않습니다. Preview는 noindex와 robots disallow를 유지하지만 민감한 데이터가 있다면 인증으로 보호해야 합니다. Production의 CDN/WAF 차단과 실제 Google 색인은 배포 뒤 Search Console URL Inspection으로 확인합니다. 로컬 검사 통과가 색인·순위·AI 인용을 보장하지 않습니다.

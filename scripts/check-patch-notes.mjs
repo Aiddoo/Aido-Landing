@@ -6,7 +6,7 @@ import {
   releaseNotes,
   serviceUpdates,
   updateNotes,
-} from "../src/data/patch-notes.ts";
+} from "../src/features/updates/data/patch-notes.ts";
 
 const locales = ["ko", "en"];
 function checkDate(date) {

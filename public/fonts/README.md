@@ -1,25 +1,32 @@
 # Aido fonts
 
-Original Black Han Sans (Google Fonts v24, weight 400) and Noto Sans KR (Google Fonts v40, variable weights 400–700), served locally under the SIL Open Font License. See the two OFL files alongside these assets.
+Black Han Sans (Google Fonts v24, weight 400) and Noto Sans KR (Google Fonts v40, variable weights 400–700) are self-hosted under the SIL Open Font License. The original WOFF2 files and both OFL files are preserved byte for byte. Source: Google's official CSS2 API, `family=Black+Han+Sans&family=Noto+Sans+KR:wght@400..700&display=swap`.
 
-Source: Google's official CSS2 API, requested with `family=Black+Han+Sans&family=Noto+Sans+KR:wght@400..700&display=swap`. The original source WOFF2 bytes and Unicode coverage are unmodified; filenames include a SHA-256 content prefix. The merged heading asset is described below. `src/app/fonts.css` retains Google's `unicode-range` declarations for Noto Sans KR so browsers fetch only the body-text subsets required by the page.
+## Visitor assets
 
-This removes Google Fonts network calls from builds and visitor requests. When updating fonts, fetch the official CSS and fonts, preserve the license files, regenerate the content-based names, and update the CSS URLs together.
+Korean pages request the **site subsets**, generated with standard fontTools from the licensed originals. Glyph outlines, advances and variable weights stay intact; unused glyphs are removed. The heading subset is about 31KiB, compared with the original full merged heading's 109KiB. Noto Sans KR retains Unicode ranges, with each range reduced to the site's public text. The original `fonts-ko-1553ca02ef76.css` remains the source registry; visitors request the generated stylesheet referenced by `src/components/fonts/font-assets.ts`.
 
-English pages reuse the existing Latin subset files through `next/font/local`, with generated fallback metrics and `display: optional` to prevent late font swaps. The shared locale layout sets `preload: false` for both Latin files: Next's automatic layout-level preloads would otherwise download them on Korean pages too. On English pages the rendered font CSS discovers the small Latin assets (about 9KiB for headings and 25KiB for body text). Korean body text keeps Google's Unicode subsets with `font-display: optional`.
+The locale layout hoists this content-hashed stylesheet into the Korean HTML head using React 19's `precedence="fonts"`. English pages do not request it. English uses the original small Latin assets through `next/font/local`, generated fallback metrics and `preload: false` so the shared layout does not download unused Latin fonts on Korean pages.
 
-Korean headings use one merged Black Han Sans WOFF2 file (about 109KiB) instead of independently swapping 88 subsets. The merged file preserves all 2,733 Unicode mappings, outlines and advances from the original assets. The Korean layout uses the small `FontPreload` Client Component and React DOM's supported `preload()` method to emit one deduplicated resource hint into the initial server-rendered HTML, with `as="font"`, `type="font/woff2"`, and anonymous cross-origin mode. English pages do not request the Korean heading asset. `optional` keeps readable system text when a slow connection cannot deliver the font during the initial short block period; a cold visit may use the fallback font for that navigation. It does not promise identical typography on slow networks.
+All fonts use `display: optional`. A slow cold visit can keep the system fallback for that navigation, without a late font swap. This does not promise identical typography on slow networks. Body fallbacks include Apple SD Gothic Neo and Malgun Gothic. The application never hides content or waits for `document.fonts.ready`.
 
-Keep one Korean heading preload and zero English font preloads. Do not preload all Korean body subsets: the browser requests only the Unicode ranges needed for visible text. Body fallbacks include Apple SD Gothic Neo and Malgun Gothic, while `next/font/local` continues to generate Latin fallback metrics. Existing font outlines and weights remain unchanged.
+Keep **one Korean heading preload and zero English font preloads**. FontPreload uses React DOM's supported preload API with WOFF2 type and anonymous cross-origin mode. Do not preload every body subset. `/fonts/*` uses a one-year immutable cache. Never change the bytes of a hashed asset; generate a new filename instead.
 
-`next.config.ts` serves `/fonts/*` with `Cache-Control: public, max-age=31536000, immutable`. Never replace a hashed file with different bytes. `pnpm seo:check` checks the actual built pages' preload counts, same-origin URLs, cross-origin mode, WOFF2 signatures, SHA-256 filename prefixes, the 300KiB per-file limit, Unicode body subsets, `optional`, and OFL license files. The original source files stay in the repository for reproducible updates; they are not all downloaded by visitors.
+## Regeneration
 
-The original subset files remain the licensed source assets. Regenerate the merged heading font with the standard fontTools merger, outside the application runtime:
+The input registry is `src/components/fonts/data/font-subset-inputs.json`: messages, update records and both legal document pairs. The generator also includes Latin-1 characters. `font-subset-manifest.json` records the text codepoints. `pnpm seo:check` compares the current public text with that manifest and fails when new glyphs need regeneration. This prevents silently shipping missing characters after content changes.
+
+Regenerate outside the application runtime with the standard fontTools merger/subsetter:
 
 ```bash
-python3 -m venv /tmp/aido-heading-fonts
-/tmp/aido-heading-fonts/bin/pip install 'fonttools[woff]==4.66.1'
-/tmp/aido-heading-fonts/bin/python scripts/merge-heading-font.py
+python3 -m venv /tmp/aido-font-tools
+/tmp/aido-font-tools/bin/pip install 'fonttools[woff]==4.66.1'
+/tmp/aido-font-tools/bin/python scripts/generate-fonts.py
+pnpm format src/components/fonts/font-assets.ts
+pnpm build
+pnpm seo:check
 ```
 
-The script preserves source timestamps and names the generated asset with its SHA-256 prefix. After a source update, use the generated filename in `src/app/fonts.css` and `src/app/[locale]/layout.tsx`, then run the production build and `pnpm seo:check`. Font licenses and source glyphs stay unchanged.
+The generator replaces the previous merge-only script: it merges the original heading subsets, subsets both font families, writes new hashed WOFF2/CSS assets and updates the asset constants/manifest. Original source files and licenses remain unchanged. Python/fontTools are optional asset-authoring tools, not runtime or CI dependencies; CI validates the committed assets with Node.
+
+`seo:check` also checks the rendered locale preload counts, same-origin URLs, stylesheet hash, WOFF2 signatures/content hashes, the per-file 300KiB limit, Unicode ranges, optional display and OFL files. For new text sources, add their patterns to the input registry before regeneration. See [performance measurements](../../docs/performance.md) for actual page transfer costs.
