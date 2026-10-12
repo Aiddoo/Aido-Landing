@@ -14,6 +14,7 @@ import {
 import { getMessages } from "../src/i18n/messages.ts";
 import {
   APP_STORE_URL,
+  HOME_CONTENT_UPDATED_AT,
   IS_PREVIEW,
   PLAY_STORE_URL,
   SITE_URL,
@@ -176,7 +177,9 @@ for (const locale of ["ko", "en"]) {
         decode(html.match(/<title>(.+?)<\/title>/)?.[1]),
         messages.meta.title,
       );
-      assert.ok(visibleHtml.includes(messages.hero.functionalTitle));
+      assert.ok(visibleHtml.includes(messages.hero.headingLead));
+      assert.ok(visibleHtml.includes(messages.hero.headingHighlight));
+      assert.ok(visibleHtml.includes(messages.hero.description));
       for (const guide of featureGuides)
         assert.ok(
           tags(html, "a").some(
@@ -385,7 +388,8 @@ for (const locale of ["ko", "en"])
             : path === "/privacy"
               ? "2026-10-04"
               : (featureGuides.find((guide) => guide.path === path)
-                  ?.updatedAt ?? releaseNotes[0].date);
+                  ?.updatedAt ??
+                [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(

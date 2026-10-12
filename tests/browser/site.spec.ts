@@ -10,6 +10,90 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
+for (const locale of ["ko", "en"]) {
+  for (const path of [
+    "",
+    "/services",
+    "/features/shared-todo",
+    "/features/recurring-todo",
+    "/features/ai-todo",
+    "/privacy",
+    "/terms",
+    "/patch-notes",
+  ]) {
+    test(`${locale}${path || "/"} fits mobile, tablet and desktop widths`, async ({
+      page,
+    }) => {
+      await page.emulateMedia({ reducedMotion: "reduce" });
+      await page.goto(`/${locale}${path}`);
+      await page.evaluate(() => document.fonts.ready);
+      for (const width of [
+        320, 360, 390, 430, 640, 767, 768, 820, 1023, 1024, 1280, 1440,
+      ]) {
+        await page.setViewportSize({ width, height: 900 });
+        const geometry = await page.evaluate(() => {
+          const brand = document
+            .querySelector(".site-brand")
+            ?.getBoundingClientRect();
+          const controls = document
+            .querySelector(".site-header-actions")
+            ?.getBoundingClientRect();
+          return {
+            width: document.documentElement.clientWidth,
+            scrollWidth: document.documentElement.scrollWidth,
+            brandRight: brand?.right ?? 0,
+            controlsLeft: controls?.left ?? 0,
+            controlsRight: controls?.right ?? 0,
+          };
+        });
+        expect(
+          geometry.scrollWidth,
+          `${width}px page overflow`,
+        ).toBeLessThanOrEqual(geometry.width);
+        expect(
+          geometry.brandRight,
+          `${width}px header overlap`,
+        ).toBeLessThanOrEqual(geometry.controlsLeft);
+        expect(geometry.controlsRight).toBeLessThanOrEqual(geometry.width);
+      }
+    });
+  }
+
+  test(`${locale} hero copy and downloads share an alignment axis`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(`/${locale}`);
+    await page.evaluate(() => document.fonts.ready);
+    for (const width of [320, 390, 640, 768, 820, 1023, 1024, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      const title = await page.locator(".hero-title").boundingBox();
+      const description = await page.locator(".hero-description").boundingBox();
+      const buttons = await page
+        .locator(".hero-copy .store-buttons")
+        .boundingBox();
+      expect(title).not.toBeNull();
+      expect(description).not.toBeNull();
+      expect(buttons).not.toBeNull();
+      if (!title || !description || !buttons)
+        throw new Error("Missing hero content");
+      const axis = (box: { x: number; width: number }) =>
+        width < 1024 ? box.x + box.width / 2 : box.x;
+      expect(Math.abs(axis(title) - axis(description))).toBeLessThanOrEqual(1);
+      expect(Math.abs(axis(title) - axis(buttons))).toBeLessThanOrEqual(1);
+      const links = await page.locator(".hero-copy .store-button").all();
+      const first = await links[0]?.boundingBox();
+      const second = await links[1]?.boundingBox();
+      expect(first).not.toBeNull();
+      expect(second).not.toBeNull();
+      if (!first || !second) throw new Error("Missing store links");
+      expect(Math.abs(first.width - second.width)).toBeLessThanOrEqual(1);
+      if (width < 400) expect(first.y + first.height).toBeLessThan(second.y);
+      else expect(first.y).toBe(second.y);
+    }
+  });
+}
+
 test("mobile popover supports keyboard dismissal and restores focus", async ({
   page,
 }) => {

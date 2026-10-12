@@ -65,6 +65,14 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+  text-wrap: balance;
+}
+
+p,
+figcaption,
+li,
+dd {
+  text-wrap: pretty;
 }
 
 .wobbly {
@@ -149,6 +157,9 @@ html {
   margin-top: 20px;
   line-height: 1.9;
   color: #515151;
+  max-width: 36rem;
+  margin-inline: auto;
+  text-wrap: balance;
 }
 
 .section-title {
@@ -233,9 +244,16 @@ html {
 }
 
 .store-buttons {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  max-width: 25rem;
   gap: 16px;
+}
+
+.store-links {
+  display: flex;
+  min-width: 0;
 }
 
 .store-button {
@@ -243,7 +261,8 @@ html {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 13px 20px;
+  padding: 13px 12px;
+  min-width: 0;
   min-height: 64px;
   border: 2px solid var(--foreground);
   border-radius: 24px 8px 23px 8px;
@@ -357,7 +376,12 @@ summary::-webkit-details-marker {
 }
 
 .download-card .store-buttons {
-  justify-content: center;
+  margin-inline: auto;
+}
+
+.download-card > p {
+  max-width: 34rem;
+  margin-inline: auto;
 }
 
 .mobile-menu {
@@ -411,7 +435,7 @@ summary::-webkit-details-marker {
     margin-bottom: 32px;
   }
   .section-title {
-    font-size: 2rem;
+    font-size: clamp(1.7rem, 5.5vw, 2rem);
   }
   .store-buttons {
     gap: 12px;
@@ -481,8 +505,34 @@ summary::-webkit-details-marker {
 }
 
 @media (max-width: 359px) {
+  .site-header {
+    padding-inline: 8px;
+    gap: 6px;
+  }
+  .site-header-actions {
+    gap: 6px;
+  }
+  .site-brand {
+    gap: 5px;
+  }
   .feature-phones-dual .feature-phone {
     width: 136px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-copy .store-buttons {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 399px) {
+  .store-buttons {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 18rem;
+  }
+  .store-button {
+    min-height: 64px;
   }
 }
 
@@ -494,4 +544,33 @@ summary::-webkit-details-marker {
   position: absolute;
   right: 0;
   top: 54px;
+}
+
+.service-link-wrap {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.service-link {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  border: 2px solid var(--foreground);
+  border-radius: 12px 16px 10px 14px;
+  padding: 14px 22px;
+  background: #fff;
+  font-weight: 700;
+  box-shadow: 3px 3px 0 var(--foreground);
+}
+
+.value-card-0 {
+  background: #fff9de;
+}
+
+.value-card-1 {
+  background: #edf5ec;
+}
+
+.value-card-2 {
+  background: #eaf3fb;
 }

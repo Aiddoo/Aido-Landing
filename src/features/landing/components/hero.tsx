@@ -18,12 +18,11 @@ export function Hero({
         <div className="hero-copy">
           <p className="section-tag">{content.eyebrow}</p>
           <h1 className="hero-title">
-            {content.headingLead}
+            <span className="block">{content.headingLead}</span>
             <span className="block text-brand-ink sketch-underline">
               {content.headingHighlight}
             </span>
           </h1>
-          <p className="hero-functional-title">{content.functionalTitle}</p>
           <p className="hero-description">{content.description}</p>
           <StoreButtons content={storeButtons} placement="hero" />
           <p className="mt-5 text-sm font-medium text-foreground/75">
@@ -34,14 +33,14 @@ export function Hero({
           <div className="hero-artwork">
             <div className="hero-note hero-note-top">
               <div data-motion-ornament>
-                <span className="font-bold">✦ {content.memoLabel}</span>
-                <p>{content.memoText}</p>
+                <span className="font-bold">✦ {content.shareLabel}</span>
+                <p>{content.shareText}</p>
               </div>
             </div>
             <div className="hero-phone phone-frame">
               <AppScreenshot
                 locale={locale}
-                screenshot="week"
+                screenshot="friend"
                 alt={content.previewAlt}
                 sizes="(min-width:1024px) 240px, 210px"
                 loading="eager"

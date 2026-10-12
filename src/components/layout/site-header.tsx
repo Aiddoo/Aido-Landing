@@ -24,7 +24,7 @@ export function SiteHeader({
         <a
           href={`${prefix}#top`}
           aria-label={`Aido · ${messages.accessibility.home}`}
-          className="flex items-center gap-2"
+          className="site-brand flex shrink-0 items-center gap-2"
         >
           <div className="relative h-9 w-9 wobbly-md border-2 border-foreground bg-brand">
             <Image
@@ -37,7 +37,7 @@ export function SiteHeader({
           </div>
           <span className="text-xl font-bold">Aido</span>
         </a>
-        <div className="flex items-center gap-3">
+        <div className="site-header-actions flex shrink-0 items-center gap-3">
           <nav
             aria-label={messages.nav.label}
             className="desktop-nav hidden lg:flex"

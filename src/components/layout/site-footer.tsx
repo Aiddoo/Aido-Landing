@@ -15,7 +15,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
       <div className="w-full h-1 border-t-2 border-dashed border-foreground opacity-20 mb-12" />
 
       <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col items-center justify-between gap-12 sm:flex-row mb-12">
+        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row mb-12">
           <a href={`${prefix}#top`} className="flex items-center gap-4 group">
             <div className="relative h-8 w-8 wobbly-md border-2 border-foreground bg-foreground p-1 grayscale group-hover:grayscale-0 transition-all group-hover:bg-brand">
               <Image

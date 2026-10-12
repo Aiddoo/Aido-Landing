@@ -2,22 +2,22 @@
 // Update updatedAt only when the corresponding guide's content changes.
 export const featureGuides = [
   {
-    slug: "ai-todo",
-    path: "/features/ai-todo",
-    updatedAt: "2026-10-04",
-    screenshot: "add",
+    slug: "shared-todo",
+    path: "/features/shared-todo",
+    updatedAt: "2026-10-12",
+    screenshot: "friend",
   },
   {
     slug: "recurring-todo",
     path: "/features/recurring-todo",
-    updatedAt: "2026-10-04",
+    updatedAt: "2026-10-12",
     screenshot: "week",
   },
   {
-    slug: "shared-todo",
-    path: "/features/shared-todo",
-    updatedAt: "2026-10-04",
-    screenshot: "friend",
+    slug: "ai-todo",
+    path: "/features/ai-todo",
+    updatedAt: "2026-10-12",
+    screenshot: "add",
   },
 ] as const;
 

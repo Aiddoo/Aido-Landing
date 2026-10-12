@@ -6,6 +6,7 @@ import type { Locale } from "./config";
 type FeatureGuideContent = {
   title: string;
   summary: string;
+  cardDescription: string;
   steps: { title: string; body: string }[];
   example: { introduction: string; items: string[]; note: string };
   details: { title: string; body: string }[];
@@ -202,13 +203,12 @@ export type MessageCatalog = {
     eyebrow: string;
     headingLead: string;
     headingHighlight: string;
-    functionalTitle: string;
     description: string;
     note: string;
     previewAlt: string;
     previewCaption: string;
-    memoLabel: string;
-    memoText: string;
+    shareLabel: string;
+    shareText: string;
     doneLabel: string;
     doneText: string;
   };
@@ -230,14 +230,14 @@ export type MessageCatalog = {
 const catalogs: Record<Locale, MessageCatalog> = {
   ko: {
     services: {
-      title: "아이두의 하루를 둘러보세요",
+      title: "친구와 함께하는 하루를 둘러보세요",
       description:
-        "AI 할 일 정리부터 메모, 캘린더, 친구와 콕, 날씨, 위젯까지. 아이두의 실제 iOS·Android 화면으로 나에게 맞는 사용법을 찾아보세요.",
+        "친구와 할 일을 공유하고 콕으로 응원해요. 캘린더와 메모, AI 정리까지 아이두의 실제 iOS와 Android 화면으로 살펴보세요.",
       eyebrow: "서비스 둘러보기",
       introduction:
-        "해야 할 일을 떠올리는 순간부터, 하나를 끝내고 친구에게 마음을 전하는 순간까지. 아이두와 함께하는 하루를 보여드릴게요.",
+        "친구의 할 일을 보고 응원을 보내요. 하나를 끝내면 고마운 마음도 전해 보세요. 각자의 계획을 함께 이어 가는 방법을 보여드릴게요.",
       screenshotNote:
-        "실제 iOS·Android 앱을 예시 계정으로 촬영했어요. 이름과 할 일은 소개를 위한 예시예요.",
+        "실제 iOS와 Android 앱을 예시 계정으로 촬영했어요. 이름과 할 일은 소개를 위한 예시예요.",
       premiumLabel: "프리미엄",
       sampleLabel: "예시 화면",
       iosLabel: "iPhone",
@@ -246,7 +246,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       features: {
         planning: {
           navigationLabel: "캘린더",
-          title: "오늘은 가볍게, 한 달은 한눈에",
+          title: "오늘부터 한 달까지 한눈에",
           description: "주간·월간 캘린더에서 나의 속도로 계획을 세워요.",
           details: [
             "날짜를 눌러 할 일을 확인하고, 오늘 버튼으로 돌아와요.",
@@ -256,11 +256,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
         },
         todos: {
           navigationLabel: "할 일",
-          title: "큰 일도, 작은 단계부터",
-          description: "할 일 하나에 날짜·시간·반복과 체크리스트를 담아요.",
+          title: "큰일도 작은 단계부터",
+          description: "날짜와 시간을 정하고 반복 일정과 체크리스트를 더해요.",
           details: [
             "체크리스트로 해야 할 일을 차근차근 나눠요.",
-            "매일·주중·주말 또는 원하는 요일에 반복하도록 설정해요.",
+            "매일, 주중, 주말 또는 원하는 요일에 반복하도록 설정해요.",
             "할 일마다 공개 범위를 골라 나만의 계획도 간직해요.",
           ],
           captions: ["할 일 상세와 체크리스트", "반복할 요일과 기간 선택"],
@@ -268,7 +268,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         notes: {
           navigationLabel: "메모",
           title: "아직 계획이 아닌 생각도 괜찮아요",
-          description: "떠오른 생각을 메모해두고, 준비가 되면 할 일로 옮겨요.",
+          description: "떠오른 생각을 메모해 두고, 준비가 되면 할 일로 옮겨요.",
           details: [
             "자주 보는 메모는 고정하고, 원하는 순서로 정리해요.",
             "메모를 한 개의 할 일로 바꾸거나, AI로 여러 할 일로 나눠요.",
@@ -277,7 +277,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         },
         ai: {
           navigationLabel: "AI 입력",
-          title: "생각나는 대로, 말하는 대로",
+          title: "생각나는 대로 적거나 말해요",
           description: "자연스러운 문장과 음성으로 할 일을 입력해요.",
           details: [
             "날짜와 시간을 함께 적으면 AI가 계획으로 정리해요.",
@@ -285,25 +285,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "AI 입력의 이용 한도는 앱의 현재 요금제 안내에서 확인할 수 있어요.",
           ],
           captions: [
-            "날짜·시간·AI 입력이 있는 할 일 추가",
+            "날짜와 시간, AI 입력이 있는 할 일 추가",
             "메모에서 AI 할 일 정리 시작",
           ],
         },
         friends: {
           navigationLabel: "친구",
-          title: "서로의 하루에, 작은 응원 하나",
+          title: "친구와 할 일을 나누고 응원해요",
           description:
-            "다른 고양이 프로필을 가진 친구들과 공개한 할 일을 함께 봐요.",
+            "공개한 할 일을 친구와 나누고 콕과 댓글로 서로 응원해요.",
           details: [
             "이름이나 고유 해시태그로 친구를 찾고 연결해요.",
-            "친구의 할 일에 콕을 보내거나 댓글·답글로 이야기를 나눠요.",
+            "친구의 할 일에 콕을 보내거나 댓글과 답글로 이야기를 나눠요.",
             "보낸 콕은 따로 모아 확인할 수 있어요.",
           ],
           captions: ["친구의 캘린더와 할 일", "내가 보낸 콕 목록"],
         },
         nudges: {
           navigationLabel: "콕과 답장",
-          title: "응원에는 한마디, 해냈을 땐 고마움",
+          title: "콕에 답하고 완료 소식을 전해요",
           description:
             "받은 콕에 내 마음을 답하고, 할 일을 마친 뒤 고마움을 전해요.",
           details: [
@@ -332,7 +332,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         },
         weather: {
           navigationLabel: "날씨",
-          title: "나가기 전에, 오늘 하늘도 살펴요",
+          title: "나가기 전에 날씨도 살펴요",
           description: "할 일을 확인하면서 현재 위치의 날씨도 함께 봐요.",
           details: [
             "홈의 날씨 버튼에서 자세한 시간별·주간 예보를 열어요.",
@@ -343,11 +343,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
         },
         widgets: {
           navigationLabel: "위젯",
-          title: "앱을 열기 전에도, 오늘 한눈에",
+          title: "홈 화면에서 오늘 할 일을 봐요",
           description:
             "작은 진행 상황부터 주간 달력까지, 홈 화면 크기에 맞게 골라요.",
           details: [
-            "작은 위젯은 완료 수·진행률·연속 기록을 보여줘요.",
+            "작은 위젯은 완료 수, 진행률, 연속 기록을 보여줘요.",
             "중간 위젯은 오늘 할 일을, 큰 위젯은 주간 달력과 목록을 함께 보여줘요.",
             "할 일을 누르면 앱에서 확인하고, 만들기 버튼으로 새 할 일을 시작해요.",
             "위젯 갱신 시점은 기기와 운영체제에 따라 달라질 수 있어요.",
@@ -360,7 +360,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         },
         insights: {
           navigationLabel: "리포트와 제안",
-          title: "쌓인 하루에서, 다음 한 걸음으로",
+          title: "기록을 돌아보고 다음 계획을 세워요",
           description: "AI 리포트와 반복 제안으로 나에게 맞는 패턴을 돌아봐요.",
           details: [
             "주간·월간 리포트에서 달성률과 카테고리별 기록을 확인해요.",
@@ -378,8 +378,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
           description: "마이 페이지에서 프로필과 나에게 편한 화면을 고르세요.",
           details: [
             "아홉 가지 고양이 프로필 중 나를 닮은 친구를 골라요.",
-            "라이트·다크 모드와 글자 크기, 앱 언어를 편하게 설정해요.",
-            "프리미엄에서는 iOS·Android 앱 아이콘도 바꿀 수 있어요.",
+            "라이트 모드나 다크 모드를 고르고 글자 크기와 앱 언어를 설정해요.",
+            "프리미엄에서는 iOS와 Android 앱 아이콘도 바꿀 수 있어요.",
           ],
           captions: [
             "아홉 고양이 중 프로필 선택",
@@ -401,57 +401,57 @@ const catalogs: Record<Locale, MessageCatalog> = {
       close: "닫기",
     },
     featureGuides: {
-      title: "아이두로 할 일을 관리하는 방법",
+      title: "친구와 함께 시작하는 아이두",
       description:
-        "생각을 할 일로 바꾸고, 반복 일정을 챙기고, 친구와 함께 끝내는 과정을 알아봐요.",
+        "친구를 연결하고 할 일을 공유해 보세요. 반복 일정과 AI 정리도 차근차근 알아봐요.",
       readGuide: "사용법 알아보기",
       backToGuides: "모든 사용법 보기",
-      stepsTitle: "이렇게 시작해보세요",
-      exampleTitle: "내 하루에 이렇게 써봐요",
+      stepsTitle: "이렇게 시작해 보세요",
+      exampleTitle: "내 하루에 이렇게 써 봐요",
       plansTitle: "무료로 시작하고, 필요할 때 더 넉넉하게",
       freeLabel: "무료",
       premiumLabel: "프리미엄",
       plansNote: "구독 가격과 상세 이용 조건은 앱에서 확인할 수 있어요.",
       relatedTitle: "다음으로 알아볼 기능",
-      relatedDescription: "내 하루에 필요한 기능을 하나씩 더해보세요.",
+      relatedDescription: "내 하루에 필요한 기능을 하나씩 더해 보세요.",
       updatedLabel: "내용 확인일",
       guides: {
         "ai-todo": {
-          title: "메모·음성을 AI로 할 일로 정리하기",
+          title: "메모와 음성을 AI로 할 일로 정리하기",
           summary:
             "아이두는 떠오르는 생각을 메모로 남기고, AI로 여러 할 일과 체크리스트 항목으로 정리할 수 있는 투두 리스트 앱이에요. 문장을 입력하거나 말로 할 일을 만들 수도 있어요. 정리된 결과를 확인한 뒤 내 계획에 맞게 선택하고 수정해요.",
           steps: [
             {
               title: "생각나는 내용을 메모해요",
-              body: "하단의 메모 탭에서 새 메모를 만들어요. 여행 준비처럼 한 번에 정리하기 어려운 일도 떠오르는 순서대로 적어보세요.",
+              body: "하단의 메모 탭에서 새 메모를 만들어요. 여행 준비처럼 한 번에 정리하기 어려운 일도 떠오르는 순서대로 적어 보세요.",
             },
             {
               title: "메모 상단의 로봇 아이콘을 눌러요",
-              body: "AI 이용 횟수와 안내를 확인하고 시작하기를 눌러요. 결과가 나올 때까지 화면에서 기다려주세요.",
+              body: "AI 이용 횟수와 안내를 확인하고 시작하기를 눌러요. 결과가 나올 때까지 화면에서 기다려 주세요.",
             },
             {
               title: "필요한 할 일만 남기고 다듬어요",
-              body: "AI가 정리한 제목과 체크리스트 항목을 읽어봐요. 필요 없는 할 일은 닫기 버튼으로 제외하고, 제목·날짜·시간·카테고리를 내 계획에 맞게 수정해요.",
+              body: "AI가 정리한 제목과 체크리스트 항목을 읽어봐요. 필요 없는 할 일은 닫기 버튼으로 제외하고, 제목, 날짜, 시간, 카테고리를 내 계획에 맞게 수정해요.",
             },
             {
               title: "할 일로 만들고 하나씩 끝내요",
-              body: "남겨둔 할 일을 생성해요. 할 일 상세의 수정하기에서 내용을 다시 다듬을 수 있고, 끝낸 일은 완료로 표시해요.",
+              body: "남겨 둔 할 일을 생성해요. 할 일 상세의 수정하기에서 내용을 다시 다듬을 수 있고, 끝낸 일은 완료로 표시해요.",
             },
           ],
           example: {
             introduction:
-              "여행 전에 머릿속이 복잡하다면, 먼저 메모에 준비할 일을 모아보세요.",
+              "여행 전에 머릿속이 복잡하다면, 먼저 메모에 준비할 일을 모아 보세요.",
             items: [
               "메모 예시: 제주 여행 전에 항공권을 확인하고, 숙소를 예약하고, 짐을 챙겨야 해요.",
-              "정리 예시: 항공권 확인하기 · 숙소 예약하기 · 짐 챙기기.",
+              "정리 예시: 항공권 확인하기, 숙소 예약하기, 짐 챙기기.",
               "짐 챙기기에 충전기, 세면도구 같은 체크리스트 항목을 더해요.",
             ],
-            note: "사용 방법을 설명하기 위한 예시예요. AI 결과는 입력 내용에 따라 달라지므로 생성 전에 확인해주세요.",
+            note: "사용 방법을 설명하기 위한 예시예요. AI 결과는 입력 내용에 따라 달라지므로 생성 전에 확인해 주세요.",
           },
           details: [
             {
               title: "짧은 할 일은 마이크 버튼으로 말해요",
-              body: "할 일 추가 화면의 마이크 버튼을 눌러요. ‘이번 주 금요일 저녁 7시 약속’처럼 날짜와 시간을 함께 말해보세요. AI가 채운 내용은 저장 전에 확인해요. 음성 입력에는 기기의 마이크와 음성 인식 권한이 필요할 수 있어요.",
+              body: "할 일 추가 화면의 마이크 버튼을 눌러요. ‘이번 주 금요일 저녁 7시 약속’처럼 날짜와 시간을 함께 말해 보세요. AI가 채운 내용은 저장 전에 확인해요. 음성 입력에는 기기의 마이크와 음성 인식 권한이 필요할 수 있어요.",
             },
             {
               title: "AI 없이 직접 정리해도 괜찮아요",
@@ -467,27 +467,29 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "AI가 만든 할 일을 수정할 수 있나요?",
               answer:
-                "네. 생성 전에 필요 없는 할 일을 제외하고 제목·날짜·시간·카테고리를 수정할 수 있어요. 생성한 뒤에도 할 일 상세에서 수정하기를 눌러 내용을 바꿀 수 있어요.",
+                "네. 생성 전에 필요 없는 할 일을 제외하고 제목, 날짜, 시간, 카테고리를 수정할 수 있어요. 생성한 뒤에도 할 일 상세에서 수정하기를 눌러 내용을 바꿀 수 있어요.",
             },
             {
               question: "메모마다 AI를 꼭 사용해야 하나요?",
               answer:
-                "아니에요. 메모만 남겨두거나 직접 할 일을 만들 수 있어요. 메모 상세의 할 일로 변환으로 한 개의 할 일로 옮기는 방법도 있어요.",
+                "아니에요. 메모만 남겨 두거나 직접 할 일을 만들 수 있어요. 메모 상세의 할 일로 변환으로 한 개의 할 일로 옮기는 방법도 있어요.",
             },
             {
               question: "음성으로 날짜와 시간도 입력할 수 있나요?",
               answer:
-                "네. 할 일 추가 화면의 마이크 버튼을 눌러 날짜와 시간을 포함해 말할 수 있어요. 인식한 내용과 AI가 정리한 일정을 확인한 뒤 저장해주세요.",
+                "네. 할 일 추가 화면의 마이크 버튼을 눌러 날짜와 시간을 포함해 말할 수 있어요. 인식한 내용과 AI가 정리한 일정을 확인한 뒤 저장해 주세요.",
             },
           ],
           imageAlt: "직접 입력과 음성 입력을 지원하는 아이두 할 일 추가 화면",
           imageCaption:
             "할 일 추가 화면에서 직접 입력하거나 마이크 버튼으로 말할 수 있어요.",
+          cardDescription:
+            "메모를 여러 할 일로 나누거나 말로 입력해요. AI가 정리한 내용을 확인하고 내 계획에 더해요.",
         },
         "recurring-todo": {
-          title: "반복 할 일·캘린더·위젯으로 하루 관리하기",
+          title: "반복 일정과 위젯으로 하루 관리하기",
           summary:
-            "매일 공부하기나 주중 운동처럼 다시 챙겨야 하는 일은 아이두의 반복 할 일로 등록해요. 주간·월간 캘린더에서 계획을 살펴보고, iPhone·Android 홈 화면 위젯에서 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
+            "매일 공부하기나 주중 운동처럼 다시 챙겨야 하는 일은 아이두의 반복 할 일로 등록해요. 주간·월간 캘린더에서 계획을 살펴보고, iPhone과 Android 홈 화면 위젯에서 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
           steps: [
             {
               title: "반복할 할 일을 만들어요",
@@ -495,7 +497,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "반복할 요일과 기간을 골라요",
-              body: "반복을 눌러 매일·주중·주말 중 하나를 고르거나 원하는 요일을 선택해요. 캘린더에서 시작일과 종료일을 정한 뒤 선택을 완료해요.",
+              body: "반복을 눌러 매일, 주중, 주말 중 하나를 고르거나 원하는 요일을 선택해요. 캘린더에서 시작일과 종료일을 정한 뒤 선택을 완료해요.",
             },
             {
               title: "캘린더에서 계획을 확인해요",
@@ -508,7 +510,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           example: {
             introduction:
-              "퇴근 후 독서를 습관으로 만들고 싶다면, 부담 없는 분량부터 정해보세요.",
+              "퇴근 후 독서를 습관으로 만들고 싶다면, 부담 없는 분량부터 정해 보세요.",
             items: [
               "할 일: 저녁에 20분 책 읽기.",
               "반복: 주중. 시작일과 종료일을 정해 이번 달 계획을 만들어요.",
@@ -527,11 +529,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "위젯이 이전 내용을 보여준다면",
-              body: "아이두 앱을 열어 로그인 상태와 오늘의 할 일을 확인해요. 앱에서 변경한 내용이 위젯에 반영되는지 살펴보고, 새로운 하루 안내가 보이면 앱을 다시 열어 확인해주세요.",
+              body: "아이두 앱을 열어 로그인 상태와 오늘의 할 일을 확인해요. 앱에서 변경한 내용이 위젯에 반영되는지 살펴보고, 새로운 하루 안내가 보이면 앱을 다시 열어 확인해 주세요.",
             },
           ],
           plans: {
-            free: "반복 할 일은 직접 설정할 수 있고, 주간·월간 캘린더와 iOS·Android 홈 화면 위젯도 이용할 수 있어요.",
+            free: "반복 할 일을 직접 설정하고 주간·월간 캘린더에서 확인해요. iOS와 Android 홈 화면 위젯도 이용할 수 있어요.",
             premium:
               "AI 주간·월간 리포트로 달성 기록을 돌아보고, AI가 제안한 반복 할 일 중 나에게 맞는 제안을 수락할 수 있어요.",
           },
@@ -539,7 +541,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "월요일과 수요일에만 반복할 수 있나요?",
               answer:
-                "네. 반복 설정에서 월요일과 수요일을 선택하고 시작일과 종료일을 정해요. 매일·주중·주말을 한 번에 선택하는 방법도 있어요.",
+                "네. 반복 설정에서 월요일과 수요일을 선택하고 시작일과 종료일을 정해요. 매일, 주중, 주말을 한 번에 선택하는 방법도 있어요.",
             },
             {
               question: "반복 설정을 하려면 프리미엄이 필요한가요?",
@@ -554,11 +556,13 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           imageAlt: "날짜별 할 일과 완료 상태가 표시된 아이두 주간 캘린더",
           imageCaption: "주간 캘린더에서 날짜별 할 일과 완료 상태를 살펴봐요.",
+          cardDescription:
+            "반복할 요일을 정하고 캘린더에서 계획을 살펴봐요. 홈 화면 위젯에서도 오늘 할 일을 확인해요.",
         },
         "shared-todo": {
-          title: "친구와 할 일을 공유하고 함께 응원하기",
+          title: "친구와 할 일을 나누고 응원하기",
           summary:
-            "아이두에서는 친구가 공개한 할 일을 보고, 콕 찌르기와 댓글·답글로 응원할 수 있어요. 각자의 투두 리스트를 관리하면서 필요한 일만 공유해요. 개인적인 할 일은 비공개로 설정하고, 혼자서 사용하는 것도 괜찮아요.",
+            "아이두에서는 친구가 공개한 할 일을 보고, 콕 찌르기와 댓글과 답글로 응원할 수 있어요. 각자의 투두 리스트를 관리하면서 필요한 일만 공유해요. 개인적인 할 일은 비공개로 설정하고, 혼자서 사용하는 것도 괜찮아요.",
           steps: [
             {
               title: "이름이나 해시태그로 친구를 찾아요",
@@ -570,7 +574,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "공유할 할 일의 공개 범위를 정해요",
-              body: "할 일을 만들거나 수정할 때 공개·비공개를 선택해요. 친구는 공개한 할 일만 볼 수 있어요. 개인적인 메모를 할 일로 옮겼다면 생성한 할 일의 공개 설정도 확인해주세요.",
+              body: "할 일을 만들거나 수정할 때 공개·비공개를 선택해요. 친구는 공개한 할 일만 볼 수 있어요. 개인적인 메모를 할 일로 옮겼다면 생성한 할 일의 공개 설정도 확인해 주세요.",
             },
             {
               title: "친구의 하루에 작은 응원을 보내요",
@@ -579,13 +583,13 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           example: {
             introduction:
-              "친구와 각자 운동 목표를 지키고 싶다면, 공유할 일만 공개해보세요.",
+              "친구와 각자 운동 목표를 지키고 싶다면, 공유할 일만 공개해 보세요.",
             items: [
               "내 할 일: 퇴근 후 30분 걷기. 공개로 설정해 친구가 볼 수 있게 해요.",
               "친구의 공개된 운동 계획을 보고, 콕 찌르기나 ‘오늘도 같이 힘내자!’라는 댓글을 남겨요.",
               "개인적인 일정은 비공개로 설정하고, 완료한 운동 기록은 친구 캘린더에서 함께 살펴봐요.",
             ],
-            note: "댓글과 콕 찌르기는 실제 친구에게 전달돼요. 서로 편한 방식으로 응원해보세요.",
+            note: "댓글과 콕 찌르기는 실제 친구에게 전달돼요. 서로 편한 방식으로 응원해 보세요.",
           },
           details: [
             {
@@ -606,7 +610,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "친구를 추가하면 모든 할 일이 보이나요?",
               answer:
-                "아니에요. 친구는 공개한 할 일만 볼 수 있어요. 할 일을 만들거나 수정할 때 공개 범위를 확인해주세요.",
+                "아니에요. 친구는 공개한 할 일만 볼 수 있어요. 할 일을 만들거나 수정할 때 공개 범위를 확인해 주세요.",
             },
             {
               question: "친구 요청을 보냈는데 목록에 바로 보이지 않아요",
@@ -616,36 +620,38 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "친구 없이 혼자 사용해도 되나요?",
               answer:
-                "물론이에요. 메모, 할 일, 반복 설정과 캘린더로 혼자 하루를 관리할 수 있어요. 함께하고 싶을 때 친구를 추가해보세요.",
+                "물론이에요. 메모, 할 일, 반복 설정과 캘린더로 혼자 하루를 관리할 수 있어요. 함께하고 싶을 때 친구를 추가해 보세요.",
             },
           ],
           imageAlt: "친구의 할 일에 콕 찌르기 메시지를 보내는 아이두 화면",
           imageCaption: "친구가 공개한 할 일에 콕 찌르기로 응원을 보내요.",
+          cardDescription:
+            "친구를 연결하고 공개한 할 일을 함께 봐요. 콕과 댓글로 응원을 보내는 방법을 알아봐요.",
         },
       },
     },
     meta: {
-      title: "아이두(Aido) | AI 할 일 관리·투두 리스트 앱",
+      title: "아이두(Aido) | 친구와 함께하는 할 일 관리 앱",
       description:
-        "아이두는 메모와 음성을 할 일로 정리하는 AI 투두 리스트 앱이에요. 반복 일정·캘린더·홈 화면 위젯으로 하루를 관리하고, 친구와 공개한 할 일을 공유하며 응원해요. iOS·Android에서 무료로 시작하세요.",
-      openGraphTitle: "아이두 — 메모는 가볍게, 할 일은 함께",
+        "친구와 할 일을 공유하고 콕과 댓글로 서로 응원해요. 아이두에서 각자의 계획을 함께 실천해 보세요. 캘린더와 반복 일정, AI 할 일 정리도 이용할 수 있어요. iOS와 Android에서 무료로 시작해요.",
+      openGraphTitle: "아이두 | 친구와 함께, 할 일을 해내요",
       openGraphDescription:
-        "AI로 정리하고, 친구와 함께 끝내요. 메모부터 반복 일정까지, 아이두와 작은 성취를 쌓아보세요.",
+        "서로의 할 일을 나누고 콕과 댓글로 응원해요. 혼자 미루던 일도 친구와 함께 시작해 보세요.",
       keywords: [
         "아이두",
         "Aido",
-        "AI 투두",
+        "친구와 할 일",
+        "할 일 공유",
         "할 일 관리 앱",
-        "메모 앱",
-        "일정 관리",
+        "투두 리스트",
         "반복 할 일",
-        "투두 플래너",
+        "AI 할 일 정리",
       ],
     },
     nav: {
       label: "주요 메뉴",
       features: "앱 기능",
-      friends: "고양이 친구들",
+      friends: "고양이 프로필",
       guides: "사용법",
       services: "서비스 둘러보기",
       faq: "궁금한 점",
@@ -660,32 +666,22 @@ const catalogs: Record<Locale, MessageCatalog> = {
       footer: "하단 메뉴",
     },
     hero: {
-      eyebrow: "아이두 · AI 투두 플래너",
-      headingLead: "메모는 가볍게,",
-      headingHighlight: "할 일은 함께.",
-      functionalTitle: "메모와 음성을 할 일로 정리하는 AI 플래너",
+      eyebrow: "할 일 관리 앱 아이두",
+      headingLead: "친구와 함께,",
+      headingHighlight: "할 일을 해내요",
       description:
-        "반복 일정·캘린더·홈 화면 위젯으로 하루를 관리하고, 친구와 할 일을 공유하며 서로 응원해요.",
-      note: "iOS · Android에서 무료로 시작해요",
-      previewAlt: "아이두 앱의 주간 캘린더와 할 일 목록",
-      previewCaption: "오늘 하나부터, 같이 해봐요 🐾",
-      memoLabel: "생각을 할 일로",
-      memoText: "내일 장보기, 주말에 책 읽기…",
-      doneLabel: "하나씩 해내는 하루",
-      doneText: "작은 성취도 함께 기뻐해요",
+        "서로의 할 일을 나누고 콕과 댓글로 응원해요. 혼자 미루던 일도 친구와 함께 시작해 보세요.",
+      note: "iOS와 Android에서 무료로 시작해요",
+      previewAlt: "친구가 공개한 할 일과 콕 버튼이 보이는 아이두 화면",
+      previewCaption: "각자의 할 일도 친구와 함께해요",
+      doneLabel: "콕으로 응원해요",
+      doneText: "오늘도 같이 힘내자!",
+      shareLabel: "오늘 할 일을 나눠요",
+      shareText: "오늘은 20분 책 읽기",
     },
     values: {
-      title: "부담은 덜고, 성취는 하나씩",
+      title: "친구와 함께 하나씩 해내요",
       items: [
-        {
-          icon: "sparkles",
-          title: "생각을 할 일로",
-          description: [
-            "메모와 자연스러운 문장을",
-            "AI가 실행할 할 일로 정리해요.",
-          ],
-          rotate: -1,
-        },
         {
           icon: "users",
           title: "친구와 함께",
@@ -704,16 +700,49 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           rotate: -1,
         },
+        {
+          icon: "sparkles",
+          title: "생각을 할 일로",
+          description: [
+            "메모와 자연스러운 문장을",
+            "AI가 실행할 할 일로 정리해요.",
+          ],
+          rotate: -1,
+        },
       ],
     },
     appPreview: {
-      titleLead: "생각에서 실행까지,",
-      titleHighlight: "아이두가 같이 갈게요",
-      descriptionLead: "복잡하게 준비하지 않아도 괜찮아요.",
-      descriptionTail: "나에게 맞는 방식으로 하루를 정리해보세요.",
+      titleLead: "서로 응원하며,",
+      titleHighlight: "하나씩 해내요",
+      descriptionLead: "친구와 할 일을 나누고 응원을 보내요.",
+      descriptionTail: "일정 관리와 AI 정리가 계획을 도와줘요.",
       premiumLabel: "프리미엄",
       viewAll: "실제 화면으로 모든 기능 살펴보기",
       screens: [
+        {
+          title: "혼자 미루던 일도 같이 해봐요",
+          subtitle: "친구와 콕 찌르기",
+          description: [
+            "이름이나 고유 해시태그로 친구를 찾아요. 공개한 할 일을 서로 살펴보고 콕과 댓글로 응원을 보내요.",
+            "할 일을 마치면 응원해 준 친구에게 고마움을 전해요. 할 일마다 공개 범위를 직접 정할 수 있어요.",
+          ],
+          screenshot: "friend",
+          alt: "친구에게 콕 찌르기로 응원을 보내는 아이두 화면",
+          rotate: -2,
+        },
+        {
+          title: "오늘부터 한 달까지, 한눈에",
+          subtitle: "주간·월간 캘린더",
+          description: [
+            "오늘 할 일과 주간·월간 일정을 한눈에 살펴봐요. 반복 할 일과 알림으로 꾸준한 하루를 만들어가요.",
+            "iOS와 Android 홈 화면 위젯에서도 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
+          ],
+          screenshot: "month",
+          secondScreenshot: "week",
+          alt: "아이두 월간 캘린더의 날짜별 할 일",
+          secondAlt: "아이두 주간 캘린더의 일주일 일정",
+          rotate: 2,
+        },
         {
           title: "메모가 할 일이 되는 순간",
           subtitle: "AI 할 일 정리",
@@ -726,32 +755,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: -2,
         },
         {
-          title: "오늘부터 한 달까지, 한눈에",
-          subtitle: "주간·월간 캘린더",
-          description: [
-            "오늘 할 일과 주간·월간 일정을 한눈에 살펴봐요. 반복 할 일과 알림으로 꾸준한 하루를 만들어가요.",
-            "iOS·Android 홈 화면 위젯에서도 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
-          ],
-          screenshot: "month",
-          secondScreenshot: "week",
-          alt: "아이두 월간 캘린더의 날짜별 할 일",
-          secondAlt: "아이두 주간 캘린더의 일주일 일정",
-          rotate: 2,
-        },
-        {
-          title: "혼자 미루던 일도, 같이 해봐요",
-          subtitle: "친구와 콕 찌르기",
-          description: [
-            "이름이나 고유 해시태그로 친구를 찾고, 공개한 할 일을 서로 살펴봐요. 콕 찌르기와 댓글·답글로 작은 응원을 건네요.",
-            "혼자 사용하는 것도 좋아요. 할 일마다 공개 범위를 선택할 수 있어요.",
-          ],
-          screenshot: "friend",
-          alt: "친구에게 콕 찌르기로 응원을 보내는 아이두 화면",
-          rotate: -2,
-        },
-        {
           title: "쌓인 기록에서 다음 한 걸음으로",
-          subtitle: "AI 리포트·반복 제안",
+          subtitle: "AI 리포트와 반복 제안",
           description: [
             "AI 주간·월간 리포트로 달성률과 나의 패턴을 돌아봐요. 반복되는 할 일은 AI가 제안하고, 마음에 드는 제안을 수락해 일정에 더해요.",
             "AI 리포트와 반복 제안은 프리미엄에서 이용할 수 있어요.",
@@ -764,12 +769,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
       ],
     },
     friends: {
-      label: "함께할 고양이를 골라요",
-      title: "내 하루에 작은 귀여움을",
-      descriptionLead: "9가지 고양이 중 내 프로필과 함께할 친구를 골라보세요.",
+      label: "나만의 고양이 프로필",
+      title: "나를 닮은 고양이를 골라요",
+      descriptionLead: "9가지 고양이 중 내 프로필에 쓸 고양이를 골라 보세요.",
       descriptionTail:
         "프리미엄에서는 마음에 드는 고양이로 앱 아이콘도 바꿀 수 있어요.",
-      newLabel: "새 친구",
+      newLabel: "새 고양이",
       cards: [
         {
           name: "러시안 블루",
@@ -841,46 +846,51 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     faq: {
       title: "궁금한 점이 있나요?",
-      description: "시작하기 전에, 아이두를 조금 더 알아봐요.",
+      description: "시작하기 전에 아이두를 조금 더 알아봐요.",
       items: [
+        {
+          question: "친구와 어떻게 함께하나요?",
+          answer:
+            "이름이나 해시태그로 친구를 연결하고 공개한 할 일을 서로 살펴봐요. 콕 찌르기와 댓글로 응원하고, 할 일을 마치면 응원해 준 친구에게 고마움을 전해요.",
+        },
         {
           question: "아이두는 무료로 사용할 수 있나요?",
           answer:
-            "네, 무료로 시작할 수 있어요. 기본 할 일 관리와 캘린더, 친구 기능을 이용하고, AI 정리 등 일부 기능은 사용 한도가 있어요. 프리미엄에서는 AI 리포트·반복 제안·고양이 아이콘 변경과 더 넉넉한 사용 범위를 제공해요. 구독 가격과 상세 조건은 앱에서 확인할 수 있어요.",
+            "네, 무료로 시작할 수 있어요. 기본 할 일 관리와 캘린더, 친구 기능을 이용하고, AI 정리 등 일부 기능은 사용 한도가 있어요. 프리미엄에서는 AI 리포트와 반복 제안, 고양이 아이콘 변경과 더 넉넉한 사용 범위를 제공해요. 구독 가격과 상세 조건은 앱에서 확인할 수 있어요.",
         },
         {
           question: "AI가 메모와 음성을 어떻게 정리해주나요?",
           answer:
-            "자연스러운 문장으로 할 일을 적거나 음성으로 입력할 수 있어요. 메모 AI는 떠오르는 내용을 실행할 여러 할 일로 나눠줘요. 정리된 내용을 확인하고 나에게 맞게 수정해 사용해보세요.",
+            "자연스러운 문장으로 할 일을 적거나 음성으로 입력할 수 있어요. 메모 AI는 떠오르는 내용을 실행할 여러 할 일로 나눠줘요. 정리된 내용을 확인하고 나에게 맞게 수정해 사용해 보세요.",
         },
         {
           question: "매일 반복되는 할 일도 만들 수 있나요?",
           answer:
-            "네, 매일·주중·주말 또는 원하는 요일을 골라 반복 할 일을 만들 수 있어요. 시작일과 종료일을 정하고 주간·월간 캘린더에서 일정을 확인해요. AI 반복 제안은 프리미엄 기능이에요.",
+            "네. 매일, 주중, 주말 또는 원하는 요일을 골라 반복 할 일을 만들 수 있어요. 시작일과 종료일을 정하고 주간·월간 캘린더에서 일정을 확인해요. AI 반복 제안은 프리미엄 기능이에요.",
         },
         {
           question: "친구 없이 혼자 사용해도 괜찮나요?",
           answer:
-            "물론이에요. 혼자서도 메모, 할 일, 캘린더로 하루를 정리할 수 있어요. 함께하고 싶을 때 친구를 찾아 콕 찌르기와 댓글로 응원해보세요.",
+            "물론이에요. 혼자서도 메모, 할 일, 캘린더로 하루를 정리할 수 있어요. 함께하고 싶을 때 친구를 찾아 콕 찌르기와 댓글로 응원해 보세요.",
         },
         {
           question: "모든 할 일이 친구에게 보이나요?",
           answer:
-            "할 일마다 공개 범위를 선택할 수 있어요. 친구는 공개한 할 일을 볼 수 있고, 비공개로 설정한 할 일은 공유되지 않아요. 생성하거나 수정할 때 공개 설정을 확인해주세요.",
+            "할 일마다 공개 범위를 선택할 수 있어요. 친구는 공개한 할 일을 볼 수 있고, 비공개로 설정한 할 일은 공유되지 않아요. 생성하거나 수정할 때 공개 설정을 확인해 주세요.",
         },
         {
           question: "어떤 기기와 언어를 지원하나요?",
           answer:
-            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 앱과 이 웹사이트는 한국어·영어를 지원하고, 홈 화면 위젯도 iOS·Android에서 사용할 수 있어요.",
+            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원하고, 홈 화면 위젯도 iOS와 Android에서 사용할 수 있어요.",
         },
       ],
     },
     cta: {
       titleLineOne: "오늘 하나부터,",
-      titleLineTwo: "같이 시작해볼까요?",
+      titleLineTwo: "친구와 함께 시작해요",
       description:
-        "완벽한 계획보다 작은 시작. 아이두와 나만의 하루를 만들어가요.",
-      closingNote: "무료로 시작 · 일부 기능은 프리미엄 구독",
+        "서로의 할 일을 나누고 응원하며 오늘의 계획을 하나씩 해내요.",
+      closingNote: "무료로 시작해요. 일부 기능은 프리미엄 구독이 필요해요.",
     },
     storeButtons: {
       ariaLabel: "앱 다운로드 링크",
@@ -891,7 +901,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
-      tagline: "메모는 가볍게, 할 일은 함께.",
+      tagline: "친구와 함께, 할 일을 해내요.",
       contactBadge: "고객 문의",
       companyLabel: "상호",
       companyValue: "레드밴드",
@@ -960,12 +970,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
   },
   en: {
     services: {
-      title: "A day with Aido",
+      title: "A day with friends and Aido",
       description:
-        "Explore AI to-do planning, notes, calendars, friends, nudges, weather and widgets through real iOS and Android app screens. Find a rhythm that feels like you.",
+        "Share to-dos with friends and cheer each other on. Explore nudges, calendars, notes and AI planning through real iOS and Android app screens.",
       eyebrow: "Explore Aido",
       introduction:
-        "From a passing thought to a finished to-do—and a little thanks to a friend. Take a look at the small moments that make a day with Aido.",
+        "See what your friends are working on and send some encouragement. When you finish a to-do, share your thanks. Here’s how to keep going together.",
       screenshotNote:
         "Captured in the real iOS and Android apps with example accounts. Names and plans are sample data.",
       premiumLabel: "Premium",
@@ -1034,8 +1044,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         friends: {
           navigationLabel: "Friends",
           title: "A little company for your day",
-          description:
-            "See the to-dos friends share, each with a cat of their own.",
+          description: "Share to-dos with friends with nudges and comments.",
           details: [
             "Find friends by name or their unique hashtag.",
             "Send a nudge or leave comments and replies on a friend’s to-do.",
@@ -1152,9 +1161,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       close: "Close",
     },
     featureGuides: {
-      title: "How to manage your to-dos with Aido",
+      title: "Start using Aido with friends",
       description:
-        "Turn thoughts into to-dos, plan recurring activities and encourage friends along the way.",
+        "Connect with friends and share your plans. Learn how recurring to-dos and AI planning can help, too.",
       readGuide: "Read the guide",
       backToGuides: "All guides",
       stepsTitle: "Start with these steps",
@@ -1169,7 +1178,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       updatedLabel: "Content reviewed",
       guides: {
         "ai-todo": {
-          title: "Turn notes and voice into to-dos with AI",
+          title: "Turn notes into to-dos with AI",
           summary:
             "Aido is a to-do list app that can turn a note into several to-dos and checklist items with AI. You can also type a sentence or speak to create a to-do. Review the results, select what you need and adjust the plan before you get started.",
           steps: [
@@ -1234,11 +1243,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           imageAlt:
             "Aido Add to-do screen with text input and a microphone button",
-          imageCaption:
-            "Type a to-do or tap the microphone to speak. The app screen shown here is in Korean.",
+          imageCaption: "Type a to-do or tap the microphone to speak.",
+          cardDescription:
+            "Turn notes into to-dos or add them by voice. Review the AI results before adding them to your plans.",
         },
         "recurring-todo": {
-          title: "Plan with recurring to-dos, calendars and widgets",
+          title: "Plan recurring to-dos",
           summary:
             "Set up recurring to-dos in Aido for activities such as daily reading or weekday exercise. Review your plans in weekly and monthly calendars, and check today's to-dos and progress with home screen widgets on iPhone and Android.",
           steps: [
@@ -1307,11 +1317,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           imageAlt:
             "Aido weekly calendar showing daily to-dos and completion progress",
-          imageCaption:
-            "Review to-dos and progress in the weekly calendar. The app screen shown here is in Korean.",
+          imageCaption: "Review to-dos and progress in the weekly calendar.",
+          cardDescription:
+            "Set repeat days and check your calendar. See today’s to-dos from your home screen, too.",
         },
         "shared-todo": {
-          title: "Share to-dos with friends and encourage each other",
+          title: "Share to-dos with friends",
           summary:
             "In Aido, you can see friends' public to-dos and encourage them with nudges, comments and replies. Manage your own to-do list and choose what to share. Keep personal to-dos private, and use the app on your own whenever you prefer.",
           steps: [
@@ -1377,31 +1388,33 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           imageAlt:
             "Aido screen for sending a nudge message about a friend's to-do",
-          imageCaption:
-            "Encourage a friend with a nudge on a public to-do. The app screen shown here is in Korean.",
+          imageCaption: "Encourage a friend with a nudge on a public to-do.",
+          cardDescription:
+            "Connect with friends and share the to-dos you choose. Learn how to send nudges and leave comments.",
         },
       },
     },
     meta: {
-      title: "Aido | AI To-Do List & Task Planner",
+      title: "Aido | Get Things Done with Friends",
       description:
-        "Aido turns notes and voice input into to-dos with AI. Plan with recurring to-dos, calendars and home screen widgets. Share public to-dos with friends and encourage each other. Start free on iOS and Android.",
-      openGraphTitle: "Aido — Less on your mind. More done together.",
+        "Share to-dos with friends and cheer each other on with nudges and comments. Keep your plans on track with calendars, recurring tasks and AI planning. Start free on iOS and Android.",
+      openGraphTitle: "Aido | Get things done with friends",
       openGraphDescription:
-        "Turn thoughts into to-dos with AI. Plan your day, encourage friends, and celebrate small wins together.",
+        "Share your to-dos and cheer each other on with nudges and comments. Take the first step with a friend.",
       keywords: [
         "Aido",
-        "AI to-do planner",
+        "to-dos with friends",
+        "share to-dos",
         "task management app",
-        "notes to tasks",
-        "recurring tasks",
         "daily planner",
+        "recurring tasks",
+        "AI to-do planning",
       ],
     },
     nav: {
       label: "Main navigation",
       features: "Features",
-      friends: "Cat Friends",
+      friends: "Cat Profiles",
       guides: "Guides",
       services: "Explore Aido",
       faq: "FAQ",
@@ -1416,32 +1429,22 @@ const catalogs: Record<Locale, MessageCatalog> = {
       footer: "Footer navigation",
     },
     hero: {
-      eyebrow: "Aido · AI To-Do Planner",
-      headingLead: "Less on your mind.",
-      headingHighlight: "More done together.",
-      functionalTitle: "An AI planner that turns notes and voice into to-dos",
+      eyebrow: "Aido, your to-do app",
+      headingLead: "Get things done,",
+      headingHighlight: "with friends.",
       description:
-        "Plan your day with recurring to-dos, calendars and home screen widgets. Share to-dos with friends and encourage each other along the way.",
+        "Share your to-dos and cheer each other on with nudges and comments. Take the first step with a friend.",
       note: "Start free on iOS and Android",
-      previewAlt: "Weekly calendar and to-do list in Aido",
-      previewCaption: "One small step. A little company. 🐾",
-      memoLabel: "Thoughts into to-dos",
-      memoText: "Groceries tomorrow, a book this weekend…",
-      doneLabel: "A day of small wins",
-      doneText: "A little progress is worth celebrating",
+      previewAlt: "A friend’s shared to-dos and nudge button in Aido",
+      previewCaption: "Your own plans. A little encouragement from friends.",
+      doneLabel: "Send a nudge",
+      doneText: "You’ve got this!",
+      shareLabel: "Share today’s plan",
+      shareText: "Read for 20 minutes",
     },
     values: {
-      title: "A little less pressure. A little more progress.",
+      title: "Get things done with a little encouragement.",
       items: [
-        {
-          icon: "sparkles",
-          title: "Thoughts into tasks",
-          description: [
-            "Turn notes and everyday language",
-            "into actionable to-dos with AI.",
-          ],
-          rotate: -1,
-        },
         {
           icon: "users",
           title: "Better together",
@@ -1460,25 +1463,34 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           rotate: -1,
         },
+        {
+          icon: "sparkles",
+          title: "Thoughts into tasks",
+          description: [
+            "Turn notes and everyday language",
+            "into actionable to-dos with AI.",
+          ],
+          rotate: -1,
+        },
       ],
     },
     appPreview: {
-      titleLead: "From a thought to a small win,",
-      titleHighlight: "Aido is by your side",
-      descriptionLead: "You don't need a perfect plan to begin.",
-      descriptionTail: "Find a way of planning that feels like you.",
+      titleLead: "Cheer each other on.",
+      titleHighlight: "Get things done together.",
+      descriptionLead: "Share your to-dos and encourage your friends.",
+      descriptionTail: "Calendars and AI planning help you along the way.",
       premiumLabel: "Premium",
       viewAll: "Explore every feature in the app",
       screens: [
         {
-          title: "A note becomes your next step",
-          subtitle: "AI Task Planning",
+          title: "A little nudge goes a long way",
+          subtitle: "Plan with Friends",
           description: [
-            "Jot down a note and let AI turn it into multiple to-dos. Add tasks in everyday language or with voice input, too.",
-            "Set the date, time, repetition, and category to fit your day.",
+            "Find friends by name or their unique hashtag. See the to-dos they share and cheer them on with nudges and comments.",
+            "When you finish a to-do, thank the friends who encouraged you. You choose the visibility of each to-do.",
           ],
-          screenshot: "add",
-          alt: "Entering a task in everyday language with Aido AI",
+          screenshot: "friend",
+          alt: "Sending a friendly nudge in Aido",
           rotate: -2,
         },
         {
@@ -1495,14 +1507,14 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: 2,
         },
         {
-          title: "A little nudge goes a long way",
-          subtitle: "Plan with Friends",
+          title: "A note becomes your next step",
+          subtitle: "AI Task Planning",
           description: [
-            "Find friends by name or their unique hashtag, then follow the to-dos they choose to share. Send a nudge or encourage them with comments and replies.",
-            "Prefer to plan solo? That’s welcome, too. Choose the visibility of each task.",
+            "Jot down a note and let AI turn it into multiple to-dos. Add tasks in everyday language or with voice input, too.",
+            "Set the date, time, repetition, and category to fit your day.",
           ],
-          screenshot: "friend",
-          alt: "Sending a friendly nudge in Aido",
+          screenshot: "add",
+          alt: "Entering a task in everyday language with Aido AI",
           rotate: -2,
         },
         {
@@ -1520,8 +1532,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       ],
     },
     friends: {
-      label: "Pick your little companion",
-      title: "A little more cute in your day",
+      label: "Make your profile yours",
+      title: "Pick a cat for your profile",
       descriptionLead:
         "Choose from nine cats to make your profile feel like you.",
       descriptionTail:
@@ -1601,6 +1613,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
       description: "Get to know Aido before your first small step.",
       items: [
         {
+          question: "How do I use Aido with friends?",
+          answer:
+            "Find friends by name or hashtag and see the to-dos they choose to share. Send a nudge or leave a comment to cheer them on. When you finish a to-do, thank the friends who encouraged you.",
+        },
+        {
           question: "Can I use Aido for free?",
           answer:
             "Yes, you can start for free with task management, calendars, and friend features. Some features, including AI task planning, have usage limits. Premium adds AI reports, recurring suggestions, custom cat icons, and higher limits. Check the app for current subscription prices and details.",
@@ -1634,10 +1651,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     cta: {
       titleLineOne: "One small step.",
-      titleLineTwo: "Let’s start together.",
+      titleLineTwo: "Start with a friend.",
       description:
-        "A perfect plan can wait. Make a little room for your day with Aido.",
-      closingNote: "Start free · Some features require Premium",
+        "Share your plans, encourage each other and work through today’s to-dos.",
+      closingNote: "Start free. Some features require Premium.",
     },
     storeButtons: {
       ariaLabel: "App download links",
@@ -1648,7 +1665,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
-      tagline: "Less on your mind. More done together.",
+      tagline: "Get things done with friends.",
       contactBadge: "Contact",
       companyLabel: "Company",
       companyValue: "RedBand",
