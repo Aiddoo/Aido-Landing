@@ -27,7 +27,7 @@ export const screenshotFiles = {
 } as const;
 
 export type AppScreenshotKey = keyof typeof screenshotFiles;
-export const SERVICE_CONTENT_UPDATED_AT = "2026-10-05";
+export const SERVICE_CONTENT_UPDATED_AT = "2026-10-12";
 
 export function getAppScreenshot(locale: Locale, key: AppScreenshotKey) {
   const [platform, filename] = screenshotFiles[key];

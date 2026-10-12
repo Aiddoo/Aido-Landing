@@ -1,12 +1,12 @@
 import type { AppScreenshotKey } from "@/components/media/data/app-screenshots";
 
 export const serviceFeatures = [
+  { id: "friends", screenshots: ["friend", "sent"] },
+  { id: "nudges", screenshots: ["reply", "thanks"] },
   { id: "planning", screenshots: ["week", "month"] },
   { id: "todos", screenshots: ["todo", "repeat"] },
   { id: "notes", screenshots: ["notes", "note"] },
   { id: "ai", screenshots: ["add", "note"] },
-  { id: "friends", screenshots: ["friend", "sent"] },
-  { id: "nudges", screenshots: ["reply", "thanks"] },
   { id: "notifications", screenshots: ["inbox", "reminders"] },
   { id: "weather", screenshots: ["weather", "androidWeather"] },
   {

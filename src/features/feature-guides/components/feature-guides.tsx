@@ -61,7 +61,7 @@ export function FeatureGuides({
                 >
                   <Icon size={28} aria-hidden="true" />
                   <h3>{text.title}</h3>
-                  <p>{text.summary}</p>
+                  <p>{text.cardDescription}</p>
                   <span className="guide-card-link">
                     {content.readGuide}
                     <ArrowRight size={18} aria-hidden="true" />

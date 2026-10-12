@@ -6,7 +6,7 @@ import {
   releaseNotes,
 } from "@/features/updates/data/patch-notes";
 import { defaultLocale, locales } from "@/i18n/config";
-import { SITE_URL } from "@/lib/seo";
+import { HOME_CONTENT_UPDATED_AT, SITE_URL } from "@/lib/seo";
 
 type Route = {
   path: string;
@@ -15,7 +15,12 @@ type Route = {
   lastModified: Date;
 };
 
-const latestReleaseDate = new Date(releaseNotes[0].date);
+const homeLastModifiedDate = new Date(
+  Math.max(
+    Date.parse(HOME_CONTENT_UPDATED_AT),
+    Date.parse(releaseNotes[0].date),
+  ),
+);
 const termsEffectiveDate = new Date("2026-04-19");
 // Website analytics notice added; the app policy's effective date is unchanged.
 const privacyLastModifiedDate = new Date("2026-10-04");
@@ -39,7 +44,7 @@ const routes: Route[] = [
     path: "",
     changeFrequency: "weekly",
     priority: 1,
-    lastModified: latestReleaseDate,
+    lastModified: homeLastModifiedDate,
   },
   {
     path: "/patch-notes",

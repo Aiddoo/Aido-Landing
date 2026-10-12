@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  min-width: 0;
   padding: 28px;
   border: 2px solid var(--foreground);
   border-radius: 26px 12px 22px 10px;
@@ -108,6 +109,10 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
+}
+
+.guide-steps li > div {
+  min-width: 0;
 }
 
 .guide-step-number {
@@ -227,12 +232,22 @@
   color: #515151;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .guide-card-grid,
   .guide-card-grid-related,
   .guide-walkthrough,
   .guide-plans dl {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .guide-card-grid {
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+  .guide-card {
+    padding: 24px;
+  }
+  .guide-walkthrough {
+    max-width: 42rem;
   }
   .guide-intro {
     margin-block: 28px 48px;
