@@ -16,6 +16,11 @@ export function Hero({
     <section className="hero-section">
       <div className="page-width hero-grid">
         <div className="hero-copy">
+          <a className="hero-new" href="#foldable">
+            <span className="hero-new-label">{content.newLabel}</span>
+            {content.newRelease}
+            <span aria-hidden="true">→</span>
+          </a>
           <p className="section-tag">{content.eyebrow}</p>
           <h1 className="hero-title">
             <span className="block">{content.headingLead}</span>

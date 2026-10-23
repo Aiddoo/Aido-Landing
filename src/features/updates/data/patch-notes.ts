@@ -28,6 +28,83 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-08";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.12.0",
+    date: "2026-10-24",
+    summary: {
+      ko: "폴더블 폰과 iPhone Duo를 펼치면 목록과 상세를 나란히 볼 수 있어요.",
+      en: "Unfold a foldable phone or iPhone Duo to see lists and details side by side.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "폴더블 폰과 iPhone Duo를 펼치면 할 일, 친구의 할 일, 메모, 설정을 왼쪽 목록과 오른쪽 상세로 나눠 볼 수 있어요. 목록을 보면서 할 일의 댓글이나 메모 내용을 바로 확인해요.",
+            en: "On an unfolded foldable phone or iPhone Duo, to-dos, your friends’ to-dos, notes, and settings show a list on the left and details on the right. Read comments or notes while keeping your list in view.",
+          },
+          {
+            ko: "작성 중인 댓글과 메모는 화면을 접거나 펼쳐도 그대로 남아 있어요. 로그인이 만료돼도 다시 로그인하면 이어서 쓸 수 있어요.",
+            en: "Comments and notes you’re writing stay put when you fold or unfold your phone. If you’re signed out, pick up where you left off after signing back in.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "작성 중인 글은 이 기기에 암호화해 보관하고, 다른 계정으로 로그인하면 이전 계정의 글을 정리해요.",
+            en: "Unsent writing is encrypted on your device and cleared when a different account signs in.",
+          },
+          {
+            ko: "iPhone Duo의 세로 레일과 겹치지 않도록 화면 내용, 알림 메시지, 아래에서 올라오는 창과 하단 버튼의 위치를 다듬었어요.",
+            en: "Screen content, toasts, bottom sheets, and bottom buttons now stay clear of the iPhone Duo rail.",
+          },
+          {
+            ko: "넓은 화면에서는 로그인 화면이 가운데 알맞은 폭으로 보이고, 아래에서 올라오는 창도 너무 넓어지지 않아요.",
+            en: "On wide screens, sign-in screens sit at a comfortable width in the center, and bottom sheets no longer stretch too wide.",
+          },
+          {
+            ko: "펼친 화면에서 아직 선택한 항목이 없으면 상세 영역에 안내가 보여요. Android에서는 뒤로 가기로 열린 상세를 먼저 닫을 수 있어요.",
+            en: "When nothing is selected on an unfolded screen, the detail area shows a short guide. On Android, Back closes the open details first.",
+          },
+          {
+            ko: "답글 대상을 바꿔도 쓰던 글을 이어서 쓸 수 있어요. 할 일 변경이 실패하면 해당 할 일만 원래대로 되돌리도록 다듬었어요.",
+            en: "Switching who you reply to keeps your draft. If a to-do change fails, only that to-do is restored.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "화면을 접거나 펼칠 때 보던 내용이 처음부터 다시 그려지던 문제를 고쳤어요.",
+            en: "We fixed content redrawing from scratch when you fold or unfold your phone.",
+          },
+          {
+            ko: "펼친 화면에서 주간·월간 달력을 넘길 때 폭이 어긋나던 문제를 고쳤어요.",
+            en: "We fixed misaligned weekly and monthly calendars when swiping on an unfolded screen.",
+          },
+          {
+            ko: "펼친 화면에서 댓글을 쓸 때 입력창과 목록이 키보드보다 높게 떠오르던 문제를 고쳤어요.",
+            en: "We fixed the comment field and list rising too far above the keyboard on an unfolded screen.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "폴더블 폰과 iPhone Duo를 펼치면 할 일, 친구의 할 일, 메모, 설정을 목록과 상세로 나란히 볼 수 있어요.",
+        "작성 중인 댓글과 메모는 접고 펼치거나 다시 로그인해도 이어서 쓸 수 있어요.",
+        "iPhone Duo 화면 배치와 펼친 화면의 달력·키보드 동작을 다듬었어요.",
+      ],
+      en: [
+        "Unfold a foldable phone or iPhone Duo to see to-dos, friends’ to-dos, notes, and settings as a list beside details.",
+        "Keep writing comments and notes after folding, unfolding, or signing back in.",
+        "We refined iPhone Duo layouts and calendar and keyboard behavior on unfolded screens.",
+      ],
+    },
+  },
+  {
     version: "1.11.0",
     date: "2026-10-05",
     summary: {

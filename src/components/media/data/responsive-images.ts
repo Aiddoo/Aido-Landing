@@ -288,6 +288,234 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/foldable/friend-feed.webp": {
+    "sourceHash": "bcd65d4dd737",
+    "width": 1440,
+    "height": 1010,
+    "variants": [
+      {
+        "width": 48,
+        "height": 34,
+        "src": "/responsive/friend-feed-48-8b3319a6300e.webp"
+      },
+      {
+        "width": 96,
+        "height": 67,
+        "src": "/responsive/friend-feed-96-32f75e7d96f6.webp"
+      },
+      {
+        "width": 160,
+        "height": 112,
+        "src": "/responsive/friend-feed-160-d0577cf4c4ab.webp"
+      },
+      {
+        "width": 240,
+        "height": 168,
+        "src": "/responsive/friend-feed-240-5ee6e1a6deab.webp"
+      },
+      {
+        "width": 320,
+        "height": 224,
+        "src": "/responsive/friend-feed-320-636e86a3e26d.webp"
+      },
+      {
+        "width": 480,
+        "height": 337,
+        "src": "/responsive/friend-feed-480-8e3f061148c2.webp"
+      },
+      {
+        "width": 640,
+        "height": 449,
+        "src": "/responsive/friend-feed-640-5991cdcfc4c9.webp"
+      },
+      {
+        "width": 960,
+        "height": 673,
+        "src": "/responsive/friend-feed-960-21ee08fdfd22.webp"
+      },
+      {
+        "width": 1280,
+        "height": 898,
+        "src": "/responsive/friend-feed-1280-1ea320b9ff2c.webp"
+      },
+      {
+        "width": 1440,
+        "height": 1010,
+        "src": "/responsive/friend-feed-1440-23e3cf325724.webp"
+      }
+    ]
+  },
+  "/app-assets/foldable/notes.webp": {
+    "sourceHash": "2f6e235fb02f",
+    "width": 1440,
+    "height": 1010,
+    "variants": [
+      {
+        "width": 48,
+        "height": 34,
+        "src": "/responsive/notes-48-8a669aaea097.webp"
+      },
+      {
+        "width": 96,
+        "height": 67,
+        "src": "/responsive/notes-96-a3603dd2dc18.webp"
+      },
+      {
+        "width": 160,
+        "height": 112,
+        "src": "/responsive/notes-160-064a2d549274.webp"
+      },
+      {
+        "width": 240,
+        "height": 168,
+        "src": "/responsive/notes-240-56aaab6c3818.webp"
+      },
+      {
+        "width": 320,
+        "height": 224,
+        "src": "/responsive/notes-320-f308ff719de9.webp"
+      },
+      {
+        "width": 480,
+        "height": 337,
+        "src": "/responsive/notes-480-d30caf4419be.webp"
+      },
+      {
+        "width": 640,
+        "height": 449,
+        "src": "/responsive/notes-640-1221b2752e99.webp"
+      },
+      {
+        "width": 960,
+        "height": 673,
+        "src": "/responsive/notes-960-43ca3347f0df.webp"
+      },
+      {
+        "width": 1280,
+        "height": 898,
+        "src": "/responsive/notes-1280-d995576242bd.webp"
+      },
+      {
+        "width": 1440,
+        "height": 1010,
+        "src": "/responsive/notes-1440-f472b85dd46f.webp"
+      }
+    ]
+  },
+  "/app-assets/foldable/settings.webp": {
+    "sourceHash": "b72630c38a43",
+    "width": 1440,
+    "height": 1010,
+    "variants": [
+      {
+        "width": 48,
+        "height": 34,
+        "src": "/responsive/settings-48-60975d832068.webp"
+      },
+      {
+        "width": 96,
+        "height": 67,
+        "src": "/responsive/settings-96-552ab3a8262e.webp"
+      },
+      {
+        "width": 160,
+        "height": 112,
+        "src": "/responsive/settings-160-ef67af23feaa.webp"
+      },
+      {
+        "width": 240,
+        "height": 168,
+        "src": "/responsive/settings-240-8c176610caff.webp"
+      },
+      {
+        "width": 320,
+        "height": 224,
+        "src": "/responsive/settings-320-9581056a1dcc.webp"
+      },
+      {
+        "width": 480,
+        "height": 337,
+        "src": "/responsive/settings-480-dc91d0e33607.webp"
+      },
+      {
+        "width": 640,
+        "height": 449,
+        "src": "/responsive/settings-640-1187af323865.webp"
+      },
+      {
+        "width": 960,
+        "height": 673,
+        "src": "/responsive/settings-960-fa4dc153c113.webp"
+      },
+      {
+        "width": 1280,
+        "height": 898,
+        "src": "/responsive/settings-1280-b8ac0a18e0f8.webp"
+      },
+      {
+        "width": 1440,
+        "height": 1010,
+        "src": "/responsive/settings-1440-2de17c05a192.webp"
+      }
+    ]
+  },
+  "/app-assets/foldable/todo-detail.webp": {
+    "sourceHash": "ba90a1066178",
+    "width": 1440,
+    "height": 1010,
+    "variants": [
+      {
+        "width": 48,
+        "height": 34,
+        "src": "/responsive/todo-detail-48-37c69f22e4e6.webp"
+      },
+      {
+        "width": 96,
+        "height": 67,
+        "src": "/responsive/todo-detail-96-3822fee9b8ea.webp"
+      },
+      {
+        "width": 160,
+        "height": 112,
+        "src": "/responsive/todo-detail-160-9984d7e750b8.webp"
+      },
+      {
+        "width": 240,
+        "height": 168,
+        "src": "/responsive/todo-detail-240-8a519138741f.webp"
+      },
+      {
+        "width": 320,
+        "height": 224,
+        "src": "/responsive/todo-detail-320-dbe3d4b53ee4.webp"
+      },
+      {
+        "width": 480,
+        "height": 337,
+        "src": "/responsive/todo-detail-480-096b49e4ad4e.webp"
+      },
+      {
+        "width": 640,
+        "height": 449,
+        "src": "/responsive/todo-detail-640-6974b7983d02.webp"
+      },
+      {
+        "width": 960,
+        "height": 673,
+        "src": "/responsive/todo-detail-960-43844d70c938.webp"
+      },
+      {
+        "width": 1280,
+        "height": 898,
+        "src": "/responsive/todo-detail-1280-c8443bed6e38.webp"
+      },
+      {
+        "width": 1440,
+        "height": 1010,
+        "src": "/responsive/todo-detail-1440-2a0b1313f32a.webp"
+      }
+    ]
+  },
   "/app-assets/screenshots/en/android/app-icons.webp": {
     "sourceHash": "5efe95bc93cb",
     "width": 480,

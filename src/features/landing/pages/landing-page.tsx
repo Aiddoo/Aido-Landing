@@ -5,6 +5,7 @@ import { FAQ } from "@/components/marketing/faq";
 import { StructuredData } from "@/components/seo/structured-data";
 import { FeatureGuides } from "@/features/feature-guides/components/feature-guides";
 import { AppPreview } from "@/features/landing/components/app-preview";
+import { Foldable } from "@/features/landing/components/foldable";
 import { Friends } from "@/features/landing/components/friends";
 import { Hero } from "@/features/landing/components/hero";
 import { Values } from "@/features/landing/components/values";
@@ -28,6 +29,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
           storeButtons={messages.storeButtons}
         />
         <Values content={messages.values} />
+        <Foldable content={messages.foldable} />
         <AppPreview locale={locale} content={messages.appPreview} />
         <FeatureGuides locale={locale} />
         <Friends content={messages.friends} />
