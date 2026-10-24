@@ -46,7 +46,7 @@ CI는 frozen install → pnpm audit → lint → typecheck → unit tests → �
 
 현재 버전은 `package.json`/`pnpm-lock.yaml`에서 관리하고 별도의 버전 표를 중복 유지하지 않습니다. npm stable/공식 보안 공지/peer 범위를 확인한 뒤 정확한 버전을 적용하고 위 CI로 검증합니다. Node 타입은 런타임과 같은 24 major를 유지합니다. 2026-10-10 점검에서 Next 16.4.0·React 19.3.0은 latest stable이고 `pnpm audit --json`의 등록된 취약점은 전체 326개 의존성에서 0개였습니다. 등록 전 문제나 모든 환경의 안전성을 보장하는 결과는 아닙니다.
 
-Next.js는 [10월 14일 예정 보안 업데이트](https://nextjs.org/blog/upcoming-nextjs-security-update-october-2026)를 공지했습니다. 두 Critical·한 High upstream 취약점의 전체 영향 범위와 수정 버전은 그때 공개합니다. 현재 설치 가능한 후속 stable 패치는 없으므로 적용 완료로 기록하지 않습니다. 공개되면 npm dist-tags와 공식 advisory의 수정 버전을 대조하고 package/lockfile → CI → 리뷰 → Vercel Git 배포 순서로 처리합니다. 근거 없이 canary나 개별 transitive override로 대체하지 않습니다.
+Next.js [10월 14일 보안 업데이트](https://nextjs.org/blog/upcoming-nextjs-security-update-october-2026)의 Critical 2건(GHSA-2464-fhr4-w9xw, GHSA-673q-mjm6-r5xr)·High 1건(GHSA-p3m5-59mp-jv5r)은 16.4.1부터 수정됐습니다. 2026-10-24에 pnpm 최소 공개 기간을 충족한 16.4.2로 올렸고 `pnpm audit`의 등록된 취약점은 0개입니다. 이후 advisory도 npm dist-tags와 공식 수정 버전을 대조해 package/lockfile → CI → 리뷰 → Vercel Git 배포 순서로 처리하며, 근거 없이 canary나 개별 transitive override로 대체하지 않습니다.
 
 공식 GitHub Dependabot alerts/security updates로 공개된 취약점의 수정 PR을 받고, Secret scanning/Push protection으로 지원되는 인증 정보 패턴을 검사합니다. 저장소 설정은 GitHub에서 관리하며 같은 기능의 자체 scripts를 추가하지 않습니다. 자동 머지는 사용하지 않습니다. 아직 advisory에 없는 사전 공지는 별도 P1 이슈로 추적합니다.
 
