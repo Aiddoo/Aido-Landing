@@ -1,5 +1,6 @@
 import type { AppScreenshotKey } from "@/components/media/data/app-screenshots";
 import type { FeatureGuideSlug } from "@/features/feature-guides/data/feature-guides";
+import type { FoldableScreenKey } from "@/features/landing/data/foldable-screens";
 import type { ServiceFeatureId } from "@/features/services/data/service-features";
 import type { Locale } from "./config";
 
@@ -29,6 +30,11 @@ type ValueItem = {
   title: string;
   description: string[];
   rotate: number;
+};
+type FoldableScreen = {
+  screen: FoldableScreenKey;
+  title: string;
+  alt: string;
 };
 type PreviewScreen = {
   title: string;
@@ -98,6 +104,18 @@ export type MessageCatalog = {
     keywords: string[];
   };
   values: { title: string; items: ValueItem[] };
+  foldable: {
+    label: string;
+    titleLead: string;
+    titleHighlight: string;
+    description: string;
+    listLabel: string;
+    detailLabel: string;
+    main: FoldableScreen;
+    points: { title: string; description: string }[];
+    screens: FoldableScreen[];
+    screenshotNote: string;
+  };
   appPreview: {
     titleLead: string;
     titleHighlight: string;
@@ -200,6 +218,8 @@ export type MessageCatalog = {
     footer: string;
   };
   hero: {
+    newLabel: string;
+    newRelease: string;
     eyebrow: string;
     headingLead: string;
     headingHighlight: string;
@@ -666,6 +686,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       footer: "하단 메뉴",
     },
     hero: {
+      newLabel: "NEW",
+      newRelease: "1.12.0 · 폴더블·iPhone Duo 지원",
       eyebrow: "할 일 관리 앱 아이두",
       headingLead: "친구와 함께,",
       headingHighlight: "할 일을 해내요",
@@ -710,6 +732,56 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: -1,
         },
       ],
+    },
+    foldable: {
+      label: "1.12.0 새 소식",
+      titleLead: "펼치면 한눈에,",
+      titleHighlight: "목록과 상세를 나란히",
+      description:
+        "폴더블 폰과 iPhone Duo를 펼치면 왼쪽엔 목록, 오른쪽엔 상세가 함께 보여요. 화면을 오가지 않고 할 일과 댓글, 메모를 이어서 살펴봐요.",
+      listLabel: "목록",
+      detailLabel: "상세",
+      main: {
+        screen: "todo",
+        title: "이번 주 할 일을 보면서 친구와 나눈 댓글까지 한 화면에서",
+        alt: "펼친 iPhone Duo의 아이두 화면. 왼쪽에 주간 캘린더와 할 일 목록, 오른쪽에 필라테스 할 일의 상세와 친구 댓글이 보여요",
+      },
+      points: [
+        {
+          title: "네 곳에서 나란히",
+          description:
+            "내 할 일과 친구의 할 일, 메모, 설정을 목록과 상세로 나눠 보여줘요.",
+        },
+        {
+          title: "접고 펼쳐도 그대로",
+          description:
+            "쓰던 댓글과 메모는 화면을 접거나 펼쳐도 남아 있어요. 다시 로그인해도 이어서 써요.",
+        },
+        {
+          title: "넓은 화면에 알맞게",
+          description:
+            "iPhone Duo의 세로 레일을 피해 내용과 버튼이 놓이고, 로그인 화면은 가운데 알맞은 폭으로 보여요.",
+        },
+      ],
+      screens: [
+        {
+          screen: "feed",
+          title: "친구의 할 일과 응원 댓글을 함께",
+          alt: "펼친 화면 왼쪽에 친구의 주간 캘린더와 콕 응원 안내, 오른쪽에 친구가 완료한 아침 러닝과 댓글이 보이는 아이두 화면",
+        },
+        {
+          screen: "notes",
+          title: "메모 목록 옆에서 내용을 바로",
+          alt: "펼친 화면 왼쪽에 메모 목록, 오른쪽에 여행 준비 메모 내용이 보이는 아이두 화면",
+        },
+        {
+          screen: "settings",
+          title: "내 정보 메뉴와 설정을 나란히",
+          alt: "펼친 화면 왼쪽에 내 정보 메뉴, 오른쪽에 오전·오후 리마인드 알림 설정이 보이는 아이두 화면",
+        },
+      ],
+      screenshotNote:
+        "iPhone Duo를 펼친 실제 앱 화면이에요. 접은 화면과 일반 휴대폰에서는 지금처럼 한 화면씩 보여요.",
     },
     appPreview: {
       titleLead: "서로 응원하며,",
@@ -881,7 +953,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "어떤 기기와 언어를 지원하나요?",
           answer:
-            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원하고, 홈 화면 위젯도 iOS와 Android에서 사용할 수 있어요.",
+            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 폴더블 폰과 iPhone Duo를 펼치면 목록과 상세를 나란히 볼 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원하고, 홈 화면 위젯도 iOS와 Android에서 사용할 수 있어요.",
         },
       ],
     },
@@ -1429,6 +1501,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       footer: "Footer navigation",
     },
     hero: {
+      newLabel: "NEW",
+      newRelease: "1.12.0 · Now on foldables and iPhone Duo",
       eyebrow: "Aido, your to-do app",
       headingLead: "Get things done,",
       headingHighlight: "with friends.",
@@ -1473,6 +1547,56 @@ const catalogs: Record<Locale, MessageCatalog> = {
           rotate: -1,
         },
       ],
+    },
+    foldable: {
+      label: "New in 1.12.0",
+      titleLead: "Unfold to see more,",
+      titleHighlight: "lists and details side by side",
+      description:
+        "On foldable phones and iPhone Duo, your list stays on the left while details open on the right. Follow to-dos, comments, and notes without switching screens.",
+      listLabel: "List",
+      detailLabel: "Details",
+      main: {
+        screen: "todo",
+        title: "Browse your week while reading comments from friends",
+        alt: "Aido on an unfolded iPhone Duo, with a weekly calendar and to-do list on the left and a to-do’s details and friends’ comments on the right",
+      },
+      points: [
+        {
+          title: "Side by side in four places",
+          description:
+            "Your to-dos, friends’ to-dos, notes, and settings each show a list beside its details.",
+        },
+        {
+          title: "Fold or unfold, keep writing",
+          description:
+            "Comments and notes you’re writing stay put when you fold or unfold. Sign back in and pick up where you left off.",
+        },
+        {
+          title: "Made for wide screens",
+          description:
+            "Content and buttons stay clear of the iPhone Duo rail, and sign-in screens sit at a comfortable width.",
+        },
+      ],
+      screens: [
+        {
+          screen: "feed",
+          title: "A friend’s to-dos with cheering comments",
+          alt: "Aido on an unfolded screen, with a friend’s weekly calendar on the left and their finished morning run with comments on the right",
+        },
+        {
+          screen: "notes",
+          title: "Your notes list beside the open note",
+          alt: "Aido on an unfolded screen, with a notes list on the left and a trip-planning note on the right",
+        },
+        {
+          screen: "settings",
+          title: "My Page menu beside its settings",
+          alt: "Aido on an unfolded screen, with the My Page menu on the left and morning and evening reminder settings on the right",
+        },
+      ],
+      screenshotNote:
+        "Actual app screens on an unfolded iPhone Duo, shown in Korean. Folded screens and regular phones keep the familiar single view.",
     },
     appPreview: {
       titleLead: "Cheer each other on.",
@@ -1645,7 +1769,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "Which devices and languages are supported?",
           answer:
-            "Download the iOS app from the App Store or the Android app from Google Play. Both the app and this website support English and Korean. Home screen widgets are available on iOS and Android, too.",
+            "Download the iOS app from the App Store or the Android app from Google Play. On an unfolded foldable phone or iPhone Duo, lists and details appear side by side. Both the app and this website support English and Korean. Home screen widgets are available on iOS and Android, too.",
         },
       ],
     },

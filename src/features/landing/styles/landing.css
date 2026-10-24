@@ -100,6 +100,43 @@
   justify-content: flex-start;
 }
 
+.hero-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin-bottom: 20px;
+  padding: 5px 12px 5px 5px;
+  border: 2px solid var(--foreground);
+  border-radius: 18px 7px 17px 8px;
+  background: white;
+  box-shadow: 3px 3px 0 var(--foreground);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+  text-wrap: balance;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.hero-new:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--foreground);
+  background: #fff9c4;
+}
+
+.hero-new-label {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border: 1.5px solid var(--foreground);
+  border-radius: 10px 4px 9px 5px;
+  background: var(--brand);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+}
+
 .value-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -164,6 +201,151 @@
   line-height: 1.9;
   color: #515151;
   text-align: left;
+}
+
+.foldable-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #fff9c4;
+  border: 1.5px solid var(--foreground);
+  border-radius: 12px 5px 11px 6px;
+}
+
+.foldable-main {
+  display: grid;
+  gap: 24px;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.foldable-stage {
+  position: relative;
+}
+
+.foldable-frame {
+  overflow: hidden;
+  background: white;
+  border: 3px solid var(--foreground);
+  border-radius: 4.2% / 6%;
+  box-shadow: 6px 6px 0 var(--foreground);
+}
+
+.foldable-label {
+  position: absolute;
+  top: -18px;
+  z-index: 1;
+  padding: 6px 12px;
+  border: 2px solid var(--foreground);
+  border-radius: 14px 6px 13px 7px;
+  box-shadow: 3px 3px 0 var(--foreground);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.foldable-label-list {
+  left: 14%;
+  background: #fff9c4;
+  transform: rotate(-3deg);
+}
+
+.foldable-label-detail {
+  left: 58%;
+  background: #e8f5e9;
+  transform: rotate(3deg);
+}
+
+.foldable-caption {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.foldable-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 56rem;
+  margin: 56px auto 0;
+}
+
+.foldable-point {
+  padding: 22px;
+  border: 2px solid var(--foreground);
+  border-radius: 22px 9px 20px 10px;
+  box-shadow: 4px 4px 0 var(--foreground);
+}
+
+.foldable-point h3 {
+  margin: 16px 0 8px;
+  font-size: 1.25rem;
+}
+
+.foldable-point p {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: #515151;
+}
+
+.foldable-point-icon {
+  display: inline-flex;
+  padding: 9px;
+  background: white;
+  border: 2px solid var(--foreground);
+  border-radius: 12px 6px 10px 7px;
+}
+
+.foldable-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 72px;
+}
+
+.foldable-card {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.foldable-frame-sm {
+  border-width: 2px;
+  box-shadow: 4px 4px 0 var(--foreground);
+  transform: rotate(var(--foldable-rotation, 0deg));
+}
+
+.foldable-card:nth-child(1) {
+  --foldable-rotation: -1.5deg;
+}
+
+.foldable-card:nth-child(2) {
+  --foldable-rotation: 1deg;
+}
+
+.foldable-card:nth-child(3) {
+  --foldable-rotation: -1deg;
+}
+
+.foldable-note {
+  margin-top: 40px;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #666;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .foldable-frame-sm {
+    transition: transform 0.2s;
+  }
+  .foldable-card:hover .foldable-frame-sm {
+    transform: translateY(-4px) rotate(0deg);
+  }
 }
 
 .cat-grid {
@@ -269,6 +451,15 @@
     padding: 16px 8px;
     font-size: 0.875rem;
   }
+  .foldable-points {
+    gap: 16px;
+  }
+  .foldable-point {
+    padding: 18px;
+  }
+  .foldable-grid {
+    gap: 22px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -342,6 +533,33 @@
   }
   .cat-image {
     width: 96px;
+  }
+  .foldable-main {
+    gap: 20px;
+  }
+  .foldable-frame {
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--foreground);
+  }
+  .foldable-label {
+    top: -14px;
+    padding: 4px 9px;
+    font-size: 0.75rem;
+    box-shadow: 2px 2px 0 var(--foreground);
+  }
+  .foldable-points {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 30rem;
+    margin-top: 40px;
+  }
+  .foldable-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    max-width: 30rem;
+    margin: 48px auto 0;
+  }
+  .foldable-note {
+    margin-top: 32px;
   }
 }
 

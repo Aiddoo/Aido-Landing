@@ -169,9 +169,11 @@ test("copy failure provides an accessible selected manual textarea", async ({
     }),
   );
   await page.goto("/ko/patch-notes");
-  await page.locator(".archive-month > summary").first().click();
   const latest = page.locator('details[data-update-kind="app"]').first();
-  await latest.locator(":scope > summary").click();
+  if (!(await latest.evaluate((element: HTMLDetailsElement) => element.open))) {
+    await page.locator(".archive-month > summary").first().click();
+    await latest.locator(":scope > summary").click();
+  }
   await latest.locator(".release-copy-button").click();
   const textarea = latest.getByRole("textbox");
   await expect(textarea).toBeVisible();

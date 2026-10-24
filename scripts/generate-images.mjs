@@ -14,6 +14,7 @@ import {
   getAppScreenshot,
   screenshotFiles,
 } from "../src/components/media/data/app-screenshots.ts";
+import { foldableScreens } from "../src/features/landing/data/foldable-screens.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 
 const check = process.argv.includes("--check");
@@ -22,6 +23,7 @@ const sources = [
     "/logo-small.webp",
     "/app-assets/cat-scottish-fold.webp",
     ...getMessages("ko").friends.cards.map((card) => card.path),
+    ...Object.values(foldableScreens),
     ...["ko", "en"].flatMap((locale) =>
       Object.keys(screenshotFiles).map(
         (key) => getAppScreenshot(locale, key).src,
