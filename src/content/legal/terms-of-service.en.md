@@ -1,6 +1,6 @@
 # Aido Terms of Service
 
-**Effective Date: April 19, 2026** · **Last Revised: October 26, 2026** (Article 13-2 Friend Invite Rewards Program added)
+**Effective Date: April 19, 2026** · **Last Revised: October 26, 2026** (Article 13-2 Friend Invite Rewards Program and Article 13-3 Blocking and Reporting added)
 
 ---
 
@@ -67,7 +67,7 @@ The main features provided by the Company are as follows:
 1. **Task Management**: Creating, editing, deleting, completing to-dos, setting recurring tasks, and category organization
 2. **Calendar and Schedule Management**: Schedule management through weekly/monthly calendar views
 3. **AI Features**: AI-powered automatic to-do parsing, weekly and monthly AI reports (achievement analysis and personalized tips), recurring pattern detection and automatic suggestions, voice input for to-do creation
-4. **Social Features**: Adding friends (mutual follow-based), sharing to-dos, Nudge, Cheer, Social Digest (weekly summary of friends' activities), and weekly achievement badges
+4. **Social Features**: Adding friends (mutual follow-based), sharing to-dos, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, and blocking and reporting users
 5. **Streaks**: Tracking consecutive task completion records and displaying achievement status
 6. **Subscription Service**: Premium features through the Pro plan
 7. **Notification Service**: Automatic to-do reminders (1 hour and 10 minutes before scheduled time), morning and evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications (prompting users to send Nudges to inactive friends), Win-back notifications (encouraging inactive users to return to the Service)
@@ -82,6 +82,7 @@ The main features provided by the Company are as follows:
    - Stealing another person's account or registering false information
    - Interfering with the normal operation of the Service
    - Sharing inappropriate content such as profanity, hate speech, or illegal information
+   - Impersonating others, or sending unwanted advertising or spam
    - Infringing on the intellectual property of the Company or third parties
    - Using the Service in ways that violate laws or public order
    - Using automated programs (bots) or other means to improperly access the Service
@@ -151,6 +152,7 @@ The main features provided by the Company are as follows:
 3. Members must review AI results before using them for final decision-making.
 4. To provide AI features, certain data such as to-do text and task statistics may be transmitted to external AI services. Details are provided in the Privacy Policy.
 5. The Company is not liable for damages arising from the use of AI-generated results, except in cases of willful misconduct or gross negligence.
+6. From app version 1.13.0, Members must agree to AI data sharing (sending data to Google Gemini) to use AI features in the app. Members may decline, or withdraw consent at any time after agreeing; in that case only AI features become unavailable, and other features such as adding to-dos manually remain available. The data sent and how scheduled features are handled are described in the Privacy Policy.
 
 ---
 
@@ -163,7 +165,7 @@ The main features provided by the Company are as follows:
 5. Members must not engage in behavior that causes discomfort or harassment to other Members through social features.
 6. Nudge and Cheer are subject to a **24-hour cooldown** per recipient, and daily limits may apply based on the subscription plan (see Article 8).
 7. Members may decline friend requests from people they don't want to connect with, or remove a friend, so that they no longer exchange to-dos, comments, or messages with that person.
-8. Members who find inappropriate content or harassment may report it by the email in Article 22 or through Contact Us in the app. The Company reviews reports and takes necessary action without delay, such as removing the content or restricting use.
+8. Members who find inappropriate content or harassment may report it with Report in the app (Article 13-3), by the email in Article 22, or through Contact Us in the app. The Company reviews reports and takes necessary action without delay, such as removing the content or restricting use.
 
 ---
 
@@ -190,6 +192,18 @@ The main features provided by the Company are as follows:
 9. When an account is permanently deleted after the grace period under Article 16, remaining Reward Premium, friend slots, and invite records are deleted with it.
 10. **Changes and termination**: The Company may change the rewards, conditions, or limits of the Invite Program, or end the Invite Program, as operationally necessary. Changes unfavorable to Members are announced in advance under Article 3. Rewards already given before a change or termination remain in place, except in the cases under paragraph 8.
 11. Apple Inc. and Google LLC do not sponsor or operate the Invite Program. Please direct any questions about the Invite Program to the Company.
+
+---
+
+## Article 13-3 (Blocking and Reporting)
+
+1. **Blocking**: Members may block other Members. Blocking removes the friendship and any pending friend requests between the two Members, and neither can see the other's to-dos, comments, Nudges or Cheers. The blocked Member can't send the blocking Member friend requests, connect through their invite code, Nudge or Cheer them, or comment, reply or like toward them. The Company does not notify the other Member of the block.
+2. **Unblocking**: Members may unblock at any time in the app's settings under "Blocked users." Unblocking does not restore the removed friendship; to become friends again, a new friend request is needed.
+3. **Reporting**: Members may report another Member's profile, to-do, comment, Nudge message or Cheer message with a reason (spam or advertising, harassment or abuse, inappropriate content, impersonation, other) and may add details of up to 500 characters. The Company does not tell the reported Member about the report or who made it.
+4. **Handling reports**: The Company reviews reports and, if a violation of these Terms or operational policies is confirmed, may take necessary action such as removing the content, issuing a warning, or restricting use or terminating the agreement under Article 16. Review time and the action taken depend on the report and the facts, and the Company does not promise a specific action or an individual reply for every report.
+5. **No misuse of reporting**: Members must not file false reports or use the report feature to harass other Members. To prevent misuse, the Company may treat repeated reports of the same target within a short period as one report or limit the number of reports over a period, and may restrict use under Article 16 if misuse is confirmed.
+6. In an emergency, such as a threat to someone's life or safety or a crime, please contact the police or other authorities in addition to reporting in the app.
+7. The information processed for blocking and reporting and its retention periods are described in the Privacy Policy.
 
 ---
 
@@ -284,3 +298,4 @@ Inquiries regarding these Terms, subscriptions, and complaints may be submitted 
 1. These Terms of Service take effect on **April 19, 2026**.
 2. The previous Terms of Service (effective March 13, 2026) shall cease to have effect upon the implementation of these Terms.
 3. Article 2 items 3 and 4, Article 13 paragraphs 7 and 8, and Article 13-2 (Friend Invite Rewards Program) were revised or added on October 26, 2026. Article 13-2 applies from the day the friend invite feature becomes available in the Aido app (the release date of app version 1.13.0).
+4. Article 6 item 4, Article 7 paragraph 1, Article 12 paragraph 6, Article 13 paragraph 8, and Article 13-3 (Blocking and Reporting) were revised or added and published in advance on October 26, 2026. They apply from the day blocking, reporting and AI data sharing consent become available in the Aido app (the release date of app version 1.13.0).
