@@ -4,7 +4,9 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.aido.mobile",
-      "sha256_cert_fingerprints": ["85:E2:E7:BA:D4:C4:32:92:FF:D7:C3:20:01:01:3A:FF:78:FC:4D:A3:11:1B:41:69:78:0B:FC:A8:2E:07:AA:F8"]
+      "sha256_cert_fingerprints": [
+        "85:E2:E7:BA:D4:C4:32:92:FF:D7:C3:20:01:01:3A:FF:78:FC:4D:A3:11:1B:41:69:78:0B:FC:A8:2E:07:AA:F8"
+      ]
     }
   }
 ]
