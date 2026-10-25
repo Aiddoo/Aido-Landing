@@ -28,6 +28,93 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-08";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.12.1",
+    date: "2026-10-25",
+    summary: {
+      ko: "iPhone Duo와 폴더블 폰에서 접고 펼쳐도 더 안정적으로 쓸 수 있고, 할 일 순서 바꾸기가 부드러워졌어요.",
+      en: "Aido feels steadier as you fold and unfold iPhone Duo and foldable phones, and reordering to-dos is smoother.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "iPhone Duo나 폴더블 폰을 반쯤 접으면 목록과 상세가 접히는 선을 기준으로 나뉘어 보여요. 내용이 접히는 부분에 걸리지 않아요.",
+            en: "Half-fold your iPhone Duo or foldable phone, and the list and details split neatly along the fold, so nothing sits across the crease.",
+          },
+          {
+            ko: "보낸 콕을 알림의 친구 탭에서 받은 알림과 함께 확인할 수 있어요. ‘받은 알림’과 ‘보낸 콕’을 눌러 바로 오갈 수 있어요.",
+            en: "Find the nudges you sent in the Friends tab of your notifications. Switch between Received and Sent with a single tap.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "접은 iPhone Duo에서는 뒤로 가기, 저장, 검색 같은 화면 위쪽 버튼이 옆쪽 막대로 옮겨져 더 편하게 누를 수 있어요. 일반 iPhone에서도 버튼 모양이 기기와 자연스럽게 어울려요.",
+            en: "On a folded iPhone Duo, top buttons like Back, Save, and Search move to the side bar within easy reach. On other iPhones, they now match the look of your device.",
+          },
+          {
+            ko: "할 일 옵션, 날짜, 시간처럼 아래에서 올라오는 창이 화면 너비에 맞게 펼쳐지고, 시계 아래에서 열려 잘리지 않아요. 내용이 길면 창 안에서 스크롤할 수 있어요.",
+            en: "Sheets for to-do options, date, and time now fit the width of your screen and open below the clock without getting cut off. Longer content scrolls inside the sheet.",
+          },
+          {
+            ko: "할 일, 하위 할 일, 친구, 카테고리 순서를 끌어서 바꿀 때 더 부드럽게 움직이고, 자리를 옮길 때마다 가벼운 진동으로 알려줘요.",
+            en: "Dragging to reorder to-dos, checklist items, friends, and categories feels smoother, with a light tap of feedback each time an item moves.",
+          },
+          {
+            ko: "VoiceOver와 TalkBack에서 할 일 완료, 댓글 보기, 더보기를 바로 사용할 수 있어요.",
+            en: "With VoiceOver or TalkBack, you can complete a to-do, open its comments, or see more options right from the list.",
+          },
+          {
+            ko: "Mac에서는 창 크기와 관계없이 익숙한 휴대폰 화면으로 보여요.",
+            en: "On Mac, Aido keeps its familiar phone layout at any window size.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "끌어서 순서를 바꾼 뒤 줄이 겹치거나 빈칸이 남던 문제를 고쳤어요.",
+            en: "We fixed rows overlapping or leaving gaps after you dragged to reorder.",
+          },
+          {
+            ko: "할 일 옵션에서 날짜 변경을 누르면 창이 덜 열린 채 멈춰 있던 문제를 고쳤어요.",
+            en: "We fixed the date sheet getting stuck halfway open when chosen from to-do options.",
+          },
+          {
+            ko: "펼친 화면에서 메모를 보다가 다른 탭으로 옮긴 뒤 접으면 메모가 엉뚱하게 열리던 문제와, 펼친 직후 화면이 살짝 흔들리던 문제를 고쳤어요.",
+            en: "We fixed a note opening in the wrong tab after folding, and the screen shifting slightly right after unfolding.",
+          },
+          {
+            ko: "보낸 콕을 열 때 오류 화면이 보이던 문제를 고쳤어요.",
+            en: "We fixed an error screen that appeared when opening the nudges you sent.",
+          },
+          {
+            ko: "영어로 쓸 때 시간이 ‘PM 2:30’처럼 보이거나 24시간제 설정을 따르지 않던 문제, 자정이 지나도 날짜 선택의 ‘오늘·내일’이 바뀌지 않던 문제를 고쳤어요.",
+            en: "We fixed times showing as “PM 2:30” in English or ignoring your 24-hour setting, and Today and Tomorrow in the date picker not updating after midnight.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "iPhone Duo나 폴더블 폰을 반쯤 접으면 목록과 상세가 접히는 선을 기준으로 나뉘어 보여요.",
+        "접은 iPhone Duo에서는 화면 위쪽 버튼을 옆쪽 막대에서 편하게 누를 수 있어요.",
+        "할 일 옵션·날짜·시간 창이 잘리지 않고, 끌어서 순서를 바꿀 때 더 부드러워요.",
+        "보낸 콕을 알림의 친구 탭에서 확인할 수 있고, 날짜·시간 표시와 화면 읽기 기능을 다듬었어요.",
+      ],
+      en: [
+        "Half-fold your iPhone Duo or foldable phone to split the list and details along the fold.",
+        "On a folded iPhone Duo, top buttons sit in the side bar within easy reach.",
+        "To-do option, date, and time sheets no longer get cut off, and dragging to reorder is smoother.",
+        "Find sent nudges in the Friends tab of notifications. We also refined date and time display and screen reader support.",
+      ],
+    },
+  },
+  {
     version: "1.12.0",
     date: "2026-10-24",
     summary: {
