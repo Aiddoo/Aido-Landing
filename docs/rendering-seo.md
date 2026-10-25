@@ -13,6 +13,12 @@
 
 `[locale]/layout.tsx`의 `dynamic = "error"`는 요청 시 API나 캐시하지 않는 데이터가 공개 페이지에 들어오면 빌드를 실패시킵니다. `dynamicParams = false`는 등록하지 않은 언어·사용법 경로의 요청 시 생성을 막습니다. `pnpm seo:check`는 실제 빌드 결과에서 16개 페이지의 정적 생성·ISR 미사용, 본문의 초기 HTML 포함, canonical·hreflang·OG/Twitter·JSON-LD·실제 변경일의 사이트맵을 확인합니다. 패치노트와 FAQ는 브라우저 기본 `<details>`를 사용해 JavaScript 없이도 펼칠 수 있습니다.
 
+## 친구 초대 링크 (/i/{코드})
+
+`src/proxy.ts`가 `/i/{코드}`를 현재 언어(쿠키·Accept-Language)의 정적 `/{ko|en}/invite`로 rewrite합니다. 주소창은 `/i/{코드}`를 유지하고 코드는 rewrite 대상에 싣지 않습니다. 페이지는 SSG이며 서버 HTML은 로딩 상태입니다. 브라우저에서 `window.location`의 코드를 Zod로 검증한 뒤 공개 API `GET https://api.aido.kr/v1/invites/{code}`로 초대한 친구의 닉네임·태그를 불러옵니다. 초대 페이지는 `noindex`(metadata와 `X-Robots-Tag`)이며 사이트맵·canonical·hreflang에 넣지 않습니다. 16개 정규 페이지 검사와 별도로 `seo:check`가 ko/en 정적 생성·noindex·사이트맵 제외를 확인합니다.
+
+`/.well-known/apple-app-site-association`(iOS Universal Links, `/i/*`만)과 `/.well-known/assetlinks.json`(Android App Links)은 `public/.well-known/`에 두고 `next.config.ts`에서 `application/json`으로 응답합니다. proxy matcher는 `/.well-known`을 제외하므로 로케일 경로로 바뀌지 않습니다. `assetlinks.json`의 `__PLAY_APP_SIGNING_SHA256__`은 Play Console의 **앱 서명 키** SHA-256(업로드 키 아님)으로 바꿔야 Android 링크 검증이 동작합니다.
+
 ## 폰트
 
 기존 Black Han Sans·Noto Sans KR를 로컬 WOFF2로 제공합니다. 한국어 제목 한 개만 preload하고 본문은 공개 문구에 필요한 Unicode 서브셋을 사용합니다. 원본은 보존하며 새 글자 추가 시 CI가 재생성 누락을 확인합니다. 영어 파일이 공유 레이아웃을 통해 한국어 페이지에서도 미리 다운로드되지 않도록 영어 자동 preload는 끄고 CSS로 발견합니다. `optional`, 시스템 대체 글꼴, 내용 해시와 1년 immutable 캐시를 사용합니다. 출처·용량·라이선스·재생성은 [폰트 안내](../public/fonts/README.md)에 모읍니다.

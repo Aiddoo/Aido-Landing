@@ -23,6 +23,7 @@ src/
     feature-guides/{pages,components,data,styles}
     updates/{pages,components,data,hooks,styles}
     legal/{pages,components,data}
+    invite/{pages,components,hooks,api,models,schemas,utils,data,styles,tests}  # /i/{코드}, 필요한 블록만 클라이언트
     analytics/
       components/       # 동의 상태의 UI 소유자, 설정/배너
       hooks/            # React 구독·라우팅 수명 주기
