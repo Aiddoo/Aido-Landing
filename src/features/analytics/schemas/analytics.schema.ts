@@ -11,7 +11,7 @@ export const analyticsEventSchema = z.discriminatedUnion("name", [
   z.strictObject({
     name: z.literal("download_click"),
     store: z.enum(["app_store", "google_play"]),
-    placement: z.enum(["hero", "download"]),
+    placement: z.enum(["hero", "download", "invite"]),
   }),
   z.strictObject({
     name: z.literal("feature_guide_click"),
@@ -37,6 +37,8 @@ export const analyticsPageSchema = z.strictObject({
     "patch_notes",
     "terms",
     "privacy",
+    "account_deletion",
+    "invite",
   ]),
   locale: localeSchema,
   featureSlug: z.optional(featureSlugSchema),

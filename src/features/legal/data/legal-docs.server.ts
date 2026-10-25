@@ -9,6 +9,10 @@ const documents = {
     ko: "terms-of-service.md",
     en: "terms-of-service.en.md",
   },
+  "account-deletion": {
+    ko: "account-deletion.md",
+    en: "account-deletion.en.md",
+  },
 } as const satisfies Record<string, Record<Locale, string>>;
 export type LegalDocumentKey = keyof typeof documents;
 export function readLegalDocument(key: LegalDocumentKey, locale: Locale) {

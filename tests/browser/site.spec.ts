@@ -19,6 +19,7 @@ for (const locale of ["ko", "en"]) {
     "/features/ai-todo",
     "/privacy",
     "/terms",
+    "/account-deletion",
     "/patch-notes",
   ]) {
     test(`${locale}${path || "/"} fits mobile, tablet and desktop widths`, async ({

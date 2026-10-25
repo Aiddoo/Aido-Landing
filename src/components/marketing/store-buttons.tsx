@@ -7,13 +7,19 @@ import {
 
 type StoreButtonsProps = {
   content: MessageCatalog["storeButtons"];
-  placement: "hero" | "download";
+  placement: "hero" | "download" | "invite";
+  /** 초대 링크의 Install Referrer처럼 Google Play 링크를 바꿔야 할 때만 지정한다. */
+  playStoreUrl?: string;
 };
 
-const PLAY_STORE_URL = `${PLAY_STORE_BASE_URL}&pcampaignid=web_share`;
+const DEFAULT_PLAY_STORE_URL = `${PLAY_STORE_BASE_URL}&pcampaignid=web_share`;
 const storeButtonClass = "store-button";
 
-export function StoreButtons({ content, placement }: StoreButtonsProps) {
+export function StoreButtons({
+  content,
+  placement,
+  playStoreUrl = DEFAULT_PLAY_STORE_URL,
+}: StoreButtonsProps) {
   return (
     <nav aria-label={content.ariaLabel} className="store-links">
       <div className="store-buttons">
@@ -48,7 +54,7 @@ export function StoreButtons({ content, placement }: StoreButtonsProps) {
         </a>
 
         <a
-          href={PLAY_STORE_URL}
+          href={playStoreUrl}
           className={storeButtonClass}
           {...analyticsAttributes({
             name: "download_click",

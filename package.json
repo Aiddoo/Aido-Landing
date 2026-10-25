@@ -16,7 +16,8 @@
     "test": "vitest run",
     "test:browser": "playwright test",
     "images:generate": "node scripts/generate-images.mjs",
-    "images:check": "node scripts/generate-images.mjs --check"
+    "images:check": "node scripts/generate-images.mjs --check",
+    "images:invite-share": "node scripts/generate-invite-share-image.mjs"
   },
   "packageManager": "pnpm@12.10.1",
   "dependencies": {

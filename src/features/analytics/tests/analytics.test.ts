@@ -75,6 +75,7 @@ describe("public analytics boundary", () => {
       "/patch-notes",
       "/terms",
       "/privacy",
+      "/account-deletion",
     ]) {
       it(`sanitizes ${locale}${route}`, () => {
         expect(
@@ -386,5 +387,48 @@ describe("provider-independent runtime", () => {
         page_path: "/ko",
       }),
     );
+  });
+});
+
+describe("invite page analytics", () => {
+  it.each(["ko", "en"] as const)(
+    "집계 주소에서 초대 코드를 버린다 (%s)",
+    (locale) => {
+      const page = getAnalyticsPage(
+        "https://aido.kr/i/BCD234?token=secret#private",
+        locale,
+      );
+      expect(page).toMatchObject({
+        path: `/${locale}/invite`,
+        location: `https://aido.kr/${locale}/invite`,
+        type: "invite",
+        locale,
+      });
+      expect(JSON.stringify(page)).not.toContain("BCD234");
+    },
+  );
+  it("초대 주소가 아닌 /i 경로는 집계하지 않는다", () => {
+    expect(getAnalyticsPage("https://aido.kr/i", "ko")).toBeNull();
+    expect(getAnalyticsPage("https://aido.kr/i/a/b", "ko")).toBeNull();
+  });
+  it("invite 위치의 download_click을 data 속성으로 만들고 다시 읽는다", () => {
+    const event = {
+      name: "download_click",
+      store: "google_play",
+      placement: "invite",
+    } as const;
+    expect(analyticsEventSchema.safeParse(event).success).toBe(true);
+    expect(analyticsAttributes(event)).toEqual({
+      "data-analytics-event": "download_click",
+      "data-store": "google_play",
+      "data-placement": "invite",
+    });
+    expect(
+      parseAnalyticsAttributes({
+        analyticsEvent: "download_click",
+        store: "google_play",
+        placement: "invite",
+      }),
+    ).toEqual(event);
   });
 });

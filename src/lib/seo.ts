@@ -3,13 +3,15 @@ import type { Locale } from "@/i18n/config";
 
 export const SITE_URL = "https://aido.kr";
 export const SITE_NAME = "Aido";
-export const HOME_CONTENT_UPDATED_AT = "2026-10-12";
+export const HOME_CONTENT_UPDATED_AT = "2026-10-26";
 
 export const APP_STORE_URL =
   "https://apps.apple.com/kr/app/%EC%95%84%EC%9D%B4%EB%91%90-ai-%ED%88%AC%EB%91%90-%ED%94%8C%EB%9E%98%EB%84%88/id6757722325";
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.aido.mobile";
 export const INSTAGRAM_URL = "https://www.instagram.com/aiddoo_official/";
+/** 아이두 API 서버. 초대 미리보기처럼 공개된 읽기 전용 엔드포인트만 브라우저에서 호출한다. */
+export const API_URL = "https://api.aido.kr";
 
 const OG_IMAGE_PATH = "/og-image.png";
 

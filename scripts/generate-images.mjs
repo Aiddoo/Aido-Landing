@@ -88,6 +88,12 @@ if (check) {
       assert.ok(variant.width <= image.width && bytes.length <= 300 * 1024);
     }
   }
+  // 카카오톡 초대 피드 썸네일(pnpm images:invite-share). 앱이 고정 URL로 쓰므로 원본 그대로 제공한다.
+  const inviteShare = await readFile("public/images/invite-share.png");
+  const inviteShareMeta = await sharp(inviteShare).metadata();
+  assert.equal(inviteShareMeta.format, "png");
+  assert.equal(inviteShareMeta.width, 2 * inviteShareMeta.height, "2:1 feed");
+  assert.ok(inviteShareMeta.width >= 800 && inviteShare.length <= 1024 * 1024);
   console.log(`Checked static variants for ${sources.length} source images.`);
   process.exit(0);
 }

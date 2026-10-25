@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["6XKZSBB9HH.com.aido.mobile"],
+        "components": [{ "/": "/i/*", "comment": "friend invite" }]
+      }
+    ]
+  }
+}

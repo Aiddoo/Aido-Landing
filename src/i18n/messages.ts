@@ -156,6 +156,7 @@ export type MessageCatalog = {
     inquiryValue: string;
     termsLabel: string;
     privacyLabel: string;
+    accountDeletionLabel: string;
     instagramLabel: string;
   };
   legal: {
@@ -167,6 +168,8 @@ export type MessageCatalog = {
     privacyDescription: string;
     termsTitle: string;
     termsDescription: string;
+    accountDeletionTitle: string;
+    accountDeletionDescription: string;
   };
   patchNotes: {
     title: string;
@@ -244,6 +247,36 @@ export type MessageCatalog = {
     appStoreLabel: string;
     playStorePrefix: string;
     playStoreLabel: string;
+  };
+  invite: {
+    metaTitle: string;
+    metaDescription: string;
+    brandLabel: string;
+    loadingLabel: string;
+    /** `{name}`을 초대한 사람의 닉네임으로 바꾼다. */
+    titleTemplate: string;
+    titleFallback: string;
+    lead: string;
+    /** `{name}`을 초대한 사람의 닉네임으로 바꾼다. */
+    avatarAltTemplate: string;
+    avatarAltFallback: string;
+    receiptLabel: string;
+    rewardLabel: string;
+    rewardValue: string;
+    codeLabel: string;
+    codeCopy: string;
+    codeCopied: string;
+    codeCopyAria: string;
+    codeCopiedStatus: string;
+    codeManualStatus: string;
+    codeHint: string;
+    outdatedNote: string;
+    rewardTermsNote: string;
+    rewardTermsLink: string;
+    errors: Record<
+      "invalidCode" | "notFound" | "changed" | "unavailable" | "unknown",
+      { title: string; description: string }
+    >;
   };
 };
 
@@ -955,6 +988,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
           answer:
             "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 폴더블 폰과 iPhone Duo를 펼치면 목록과 상세를 나란히 볼 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원하고, 홈 화면 위젯도 iOS와 Android에서 사용할 수 있어요.",
         },
+        {
+          question: "친구를 초대하면 어떤 보상을 받나요?",
+          answer:
+            "가입한 지 7일 안의 친구가 초대를 수락하면 친구는 프리미엄 7일을 받아요. 친구가 가입하고 14일 안에 할 일을 끝낸 날이 2일이 되면 나도 프리미엄 7일과 친구 자리 1개를 받아요. 보상은 앱 안에서만 쓰는 프리미엄이라 현금으로 바꿀 수 없어요. 초대해서 내가 받는 프리미엄은 최근 30일 동안 30일, 모두 합쳐 90일까지예요. 자세한 조건은 이용약관 제13조의2에 있어요.",
+        },
+        {
+          question: "계정을 삭제하려면 어떻게 하나요?",
+          answer:
+            "앱의 마이 탭 가장 아래 탈퇴하기에서 바로 삭제할 수 있어요. 앱을 쓸 수 없다면 계정 삭제 요청 안내 페이지를 보고 이메일로 요청해 주세요. 구독은 계정을 지워도 자동으로 해지되지 않으니 스토어에서 먼저 해지해 주세요.",
+        },
       ],
     },
     cta: {
@@ -970,6 +1013,60 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+    },
+    invite: {
+      metaTitle: "친구 초대",
+      metaDescription:
+        "친구가 아이두에 초대했어요. 앱을 설치하고 가입하면 프리미엄 7일을 받아요.",
+      brandLabel: "아이두 친구 초대",
+      loadingLabel: "초대 정보를 불러오는 중이에요",
+      titleTemplate: "{name}님이 아이두에 초대했어요",
+      titleFallback: "친구가 아이두에 초대했어요",
+      lead: "함께 시작하면 서로의 할 일을 응원하며 하루를 끝낼 수 있어요.",
+      avatarAltTemplate: "{name}님의 고양이 프로필",
+      avatarAltFallback: "아이두 고양이 프로필",
+      receiptLabel: "초대 영수증",
+      rewardLabel: "가입하면",
+      rewardValue: "프리미엄 7일",
+      codeLabel: "초대 코드",
+      codeCopy: "복사",
+      codeCopied: "복사했어요",
+      codeCopyAria: "초대 코드 복사",
+      codeCopiedStatus: "초대 코드를 복사했어요",
+      codeManualStatus: "자동 복사가 막혔어요. 코드를 길게 눌러 복사해 주세요.",
+      codeHint:
+        "앱을 설치한 뒤 가입할 때 이 코드를 입력해요. 안드로이드는 자동으로 채워져요.",
+      outdatedNote:
+        "이미 아이두를 쓰고 있나요? 앱을 최신 버전으로 업데이트한 뒤 이 링크를 다시 열어 주세요.",
+      rewardTermsNote:
+        "가입한 지 7일 안에 초대를 수락하면 받아요. 앱 안에서만 쓰는 프리미엄이라 현금으로 바꿀 수 없고, 이미 보상을 받은 기기나 계정은 받을 수 없어요.",
+      rewardTermsLink: "초대 보상 조건 보기",
+      errors: {
+        invalidCode: {
+          title: "초대 링크를 확인해 주세요",
+          description:
+            "링크가 잘리거나 바뀐 것 같아요. 친구에게 링크를 다시 받아 보세요.",
+        },
+        notFound: {
+          title: "초대 코드를 찾을 수 없어요",
+          description: "코드를 다시 확인하거나 친구에게 새 링크를 받아 보세요.",
+        },
+        changed: {
+          title: "친구가 초대 링크를 새로 만들었어요",
+          description:
+            "이 링크는 더는 쓸 수 없어요. 친구에게 최신 링크를 받아 보세요.",
+        },
+        unavailable: {
+          title: "지금은 초대를 받을 수 없어요",
+          description:
+            "잠시 뒤에 다시 열어 주세요. 아이두는 먼저 설치해도 좋아요.",
+        },
+        unknown: {
+          title: "친구 정보를 불러오지 못했어요",
+          description:
+            "코드는 그대로 쓸 수 있어요. 잠시 뒤에 다시 열어도 좋아요.",
+        },
+      },
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
@@ -989,6 +1086,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       inquiryValue: "matthew@redband.co.kr",
       termsLabel: "이용약관",
       privacyLabel: "개인정보처리방침",
+      accountDeletionLabel: "계정 삭제",
       instagramLabel: "인스타그램",
     },
     legal: {
@@ -1002,6 +1100,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       termsTitle: "이용약관",
       termsDescription:
         "Aido 서비스 이용 조건, 결제 및 자동 갱신, 이용자 권리와 책임을 안내합니다.",
+      accountDeletionTitle: "계정 삭제 요청",
+      accountDeletionDescription:
+        "아이두 계정을 앱에서 삭제하는 방법과 앱 없이 이메일로 삭제를 요청하는 방법, 삭제·보관되는 정보를 안내합니다.",
     },
     patchNotes: {
       title: "패치노트",
@@ -1771,6 +1872,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
           answer:
             "Download the iOS app from the App Store or the Android app from Google Play. On an unfolded foldable phone or iPhone Duo, lists and details appear side by side. Both the app and this website support English and Korean. Home screen widgets are available on iOS and Android, too.",
         },
+        {
+          question: "What do I get for inviting friends?",
+          answer:
+            "When a friend who joined within the last 7 days accepts your invite, they get 7 days of Premium. When your friend finishes to-dos on 2 different days within 14 days of joining, you get 7 days of Premium and 1 friend slot. Rewards are in-app Premium only and have no cash value. Premium you earn by inviting is capped at 30 days in any 30-day period and 90 days in total. See Article 13-2 of the Terms of Service for details.",
+        },
+        {
+          question: "How do I delete my account?",
+          answer:
+            "Open the Me tab in the app and tap Delete Account at the bottom. If you can't use the app, follow the account deletion page to request it by email. Deleting your account doesn't cancel your subscription, so cancel it in the store first.",
+        },
       ],
     },
     cta: {
@@ -1786,6 +1897,61 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+    },
+    invite: {
+      metaTitle: "Friend invite",
+      metaDescription:
+        "A friend invited you to Aido. Install the app and join to get 7 days of Premium.",
+      brandLabel: "Aido friend invite",
+      loadingLabel: "Loading your invite",
+      titleTemplate: "{name} invited you to Aido",
+      titleFallback: "A friend invited you to Aido",
+      lead: "Start together and cheer each other on until today’s to-dos are done.",
+      avatarAltTemplate: "{name}’s cat profile",
+      avatarAltFallback: "Aido cat profile",
+      receiptLabel: "Invite receipt",
+      rewardLabel: "When you join",
+      rewardValue: "7 days of Premium",
+      codeLabel: "Invite code",
+      codeCopy: "Copy",
+      codeCopied: "Copied",
+      codeCopyAria: "Copy invite code",
+      codeCopiedStatus: "Invite code copied",
+      codeManualStatus: "Copy was blocked. Press and hold the code to copy it.",
+      codeHint:
+        "Enter this code when you join after installing. On Android it fills in automatically.",
+      outdatedNote:
+        "Already use Aido? Update the app to the latest version, then open this link again.",
+      rewardTermsNote:
+        "Accept the invite within 7 days of joining to get it. It's in-app Premium only, has no cash value, and can't be claimed again on a device or account that already got it.",
+      rewardTermsLink: "See invite reward terms",
+      errors: {
+        invalidCode: {
+          title: "Please check your invite link",
+          description:
+            "The link may be cut off or changed. Ask your friend to send it again.",
+        },
+        notFound: {
+          title: "We couldn’t find this invite code",
+          description:
+            "Check the code again or ask your friend for a new link.",
+        },
+        changed: {
+          title: "Your friend made a new invite link",
+          description:
+            "This link no longer works. Ask your friend for the latest one.",
+        },
+        unavailable: {
+          title: "Invites are unavailable right now",
+          description:
+            "Please try again in a bit. You can still install Aido first.",
+        },
+        unknown: {
+          title: "We couldn’t load your friend’s info",
+          description:
+            "Your code still works. You can also try again in a bit.",
+        },
+      },
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
@@ -1805,6 +1971,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       inquiryValue: "matthew@redband.co.kr",
       termsLabel: "Terms of Service",
       privacyLabel: "Privacy Policy",
+      accountDeletionLabel: "Account deletion",
       instagramLabel: "Instagram",
     },
     legal: {
@@ -1818,6 +1985,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       termsTitle: "Terms of Service",
       termsDescription:
         "Usage terms, subscription conditions, and user rights for Aido.",
+      accountDeletionTitle: "Account deletion",
+      accountDeletionDescription:
+        "How to delete your Aido account in the app or request deletion by email without the app, and what data is deleted or kept.",
     },
     patchNotes: {
       title: "Patch Notes",

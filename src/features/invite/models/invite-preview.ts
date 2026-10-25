@@ -1,0 +1,30 @@
+import type { InviteCode, InviteInviter } from "../schemas/invite.schema";
+
+/** 미리보기를 보여 줄 수 없는 이유. invalid_code는 주소의 코드가 형식부터 틀린 경우다. */
+export type InvitePreviewFailure =
+  | "invalid_code"
+  | "not_found"
+  | "changed"
+  | "unavailable"
+  | "unknown";
+
+export type InvitePreview =
+  | { status: "ready"; inviter: InviteInviter }
+  | { status: "failed"; failure: InvitePreviewFailure };
+
+/** pending은 주소를 읽기 전(정적 HTML·하이드레이션)이다. */
+export type InvitePreviewState = InvitePreview | { status: "pending" };
+
+/**
+ * 화면에 보여 주고 Play referrer로 넘겨도 되는 코드.
+ * 없거나 바뀐 링크의 코드는 쓸 수 없다. 네트워크 오류(unknown)는 코드가 여전히
+ * 유효할 수 있어 그대로 쓴다.
+ */
+export function usableInviteCode(
+  code: InviteCode | null,
+  preview: InvitePreviewState,
+) {
+  if (preview.status === "ready") return code;
+  if (preview.status === "pending") return null;
+  return preview.failure === "unknown" ? code : null;
+}

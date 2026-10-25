@@ -58,6 +58,7 @@ const paths = [
   "/patch-notes",
   "/terms",
   "/privacy",
+  "/account-deletion",
   ...featureGuides.map((guide) => guide.path),
 ];
 const decode = (text) =>
@@ -381,12 +382,12 @@ for (const locale of ["ko", "en"])
     const date =
       path === "/services"
         ? SERVICE_CONTENT_UPDATED_AT
-        : path === "/terms"
-          ? "2026-04-19"
+        : path === "/terms" || path === "/account-deletion"
+          ? "2026-10-26"
           : path === "/patch-notes"
             ? patchNotesUpdatedAt
             : path === "/privacy"
-              ? "2026-10-04"
+              ? "2026-10-26"
               : (featureGuides.find((guide) => guide.path === path)
                   ?.updatedAt ??
                 [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
@@ -435,6 +436,80 @@ for (const [, font] of fontCss.matchAll(
 }
 for (const license of ["blackhansans-OFL.txt", "notosanskr-OFL.txt"])
   assert.match(await read(`public/fonts/${license}`), /SIL OPEN FONT LICENSE/);
+// 친구 초대: /i/{코드}는 proxy가 정적 /{locale}/invite로 rewrite한다. 색인·사이트맵 제외.
+const sitemapXml = await read(`${app}/sitemap.xml.body`);
+for (const locale of ["ko", "en"]) {
+  const route = `/${locale}/invite`;
+  assert.ok(prerender.routes[route], `${route} must be statically generated`);
+  assert.equal(prerender.routes[route].initialRevalidateSeconds, false);
+  assert.equal(prerender.routes[route].compute, "static", `${route}: no SSR`);
+  const html = await read(`${app}${route}.html`);
+  assert.match(html, new RegExp(`<html[^>]*lang="${locale}"`));
+  // React가 큰 정적 셸의 Suspense 경계를 바깥으로 빼면 같은 내용이 숨은 <div hidden id="S:n">에
+  // 한 번 더 들어간다. 사용자에게 보이는 본문은 그 앞부분이다.
+  const visibleBody = html.split('<div hidden id="S:')[0] ?? html;
+  assert.equal(
+    [...visibleBody.matchAll(/<h1\b/g)].length,
+    1,
+    `${route}: single H1`,
+  );
+  assert.match(
+    tags(html, "meta").find((item) => item.name === "robots")?.content ?? "",
+    /noindex/,
+    `${route}: invite pages are not indexed`,
+  );
+  assert.ok(!sitemapXml.includes(route), `${route} must stay out of sitemap`);
+  assert.doesNotMatch(html, /rel="canonical"/, `${route}: no canonical`);
+  // 한국어는 카카오톡 공유와 같은 초대 썸네일, 영어는 기본 OG 이미지를 쓴다.
+  const inviteOgImage =
+    locale === "ko" ? "/images/invite-share.png" : "/og-image.png";
+  for (const [attribute, key] of [
+    ["property", "og:image"],
+    ["name", "twitter:image"],
+  ])
+    assert.equal(
+      tags(html, "meta").find((item) => item[attribute] === key)?.content,
+      `${SITE_URL}${inviteOgImage}`,
+      `${route}: ${key}`,
+    );
+  assert.ok(
+    tags(html, "link").some(
+      (link) =>
+        link.rel === "preconnect" && link.href === "https://api.aido.kr",
+    ),
+    `${route}: preconnects to the invite preview API`,
+  );
+  assert.equal(
+    tags(html, "link").filter((link) => link.as === "font").length,
+    locale === "ko" ? 1 : 0,
+    `${route}: keeps the single Korean heading preload`,
+  );
+}
+const appleAssociation = JSON.parse(
+  await read("public/.well-known/apple-app-site-association"),
+);
+assert.deepEqual(
+  appleAssociation.applinks.details[0].components.map((item) => item["/"]),
+  ["/i/*"],
+  "Universal Links only claim friend invite paths",
+);
+assert.match(
+  appleAssociation.applinks.details[0].appIDs[0],
+  /\.com\.aido\.mobile$/,
+);
+const assetLinks = JSON.parse(await read("public/.well-known/assetlinks.json"));
+assert.equal(assetLinks[0].target.package_name, "com.aido.mobile");
+assert.deepEqual(assetLinks[0].relation, [
+  "delegate_permission/common.handle_all_urls",
+]);
+// Play 앱 서명 키 SHA-256(콜론으로 구분한 32바이트 대문자 16진수). 자리표시자로 돌아가면 실패한다.
+assert.ok(assetLinks[0].target.sha256_cert_fingerprints.length > 0);
+for (const fingerprint of assetLinks[0].target.sha256_cert_fingerprints)
+  assert.match(
+    fingerprint,
+    /^[0-9A-F]{2}(?::[0-9A-F]{2}){31}$/,
+    "assetlinks.json needs the Play app signing SHA-256 fingerprint",
+  );
 console.log(
-  "SEO checks passed: 16 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
+  "SEO checks passed: 18 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
 );
