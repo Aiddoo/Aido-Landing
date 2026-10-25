@@ -1,6 +1,6 @@
 # Aido Terms of Service
 
-**Effective Date: April 19, 2026**
+**Effective Date: April 19, 2026** · **Last Revised: October 26, 2026** (Article 13-2 Friend Invite Rewards Program added)
 
 ---
 
@@ -16,8 +16,8 @@ The definitions of terms used in these Terms are as follows:
 
 1. **"Service"**: Refers to the Aido application and all associated features provided by the Company.
 2. **"Member"**: Refers to a person who has agreed to these Terms, completed registration, and uses the Service.
-3. **"Content"**: Refers to all information created by Members within the Service, including to-dos, memos, nudge messages, and Cheer messages.
-4. **"Paid Service"**: Refers to features offered by the Company on a paid basis, such as the Pro subscription.
+3. **"Content"**: Refers to all information created by Members within the Service, including to-dos, memos, to-do comments, nudge messages, Cheer messages, and names (nicknames) and profile images.
+4. **"Paid Service"**: Refers to features offered by the Company on a paid basis, such as the Pro subscription. In the app, the Pro subscription is shown as **"Aido Premium"** (Premium).
 5. **"Social Login"**: Refers to registration and login through third-party authentication services such as Google, Kakao, Naver, and Apple.
 6. **"Subscription"**: Refers to a paid service agreement that auto-renews on a periodic basis.
 7. **"AI Features"**: Refers to features utilizing artificial intelligence technology, such as automatic to-do parsing, weekly and monthly AI reports, recurring pattern analysis and suggestions.
@@ -162,6 +162,34 @@ The main features provided by the Company are as follows:
 4. To maintain a safe community, the Company may delete content or restrict service use for Members who violate operational policies.
 5. Members must not engage in behavior that causes discomfort or harassment to other Members through social features.
 6. Nudge and Cheer are subject to a **24-hour cooldown** per recipient, and daily limits may apply based on the subscription plan (see Article 8).
+7. Members may decline friend requests from people they don't want to connect with, or remove a friend, so that they no longer exchange to-dos, comments, or messages with that person.
+8. Members who find inappropriate content or harassment may report it by the email in Article 22 or through Contact Us in the app. The Company reviews reports and takes necessary action without delay, such as removing the content or restricting use.
+
+---
+
+## Article 13-2 (Friend Invite Rewards Program)
+
+1. The Company operates a friend invite rewards program (the "Invite Program") that gives the inviting Member and the invited Member Premium access time for use within the Service ("Reward Premium") and other benefits when a Member invites someone to the Service.
+2. **How to take part**: Members can share their invite link or 6-character invite code from the invite screen in the app. When the invited person accepts the invite, they become friends (mutual followers) with the inviting Member. If the inviting Member has no free friend slots, a friend request is sent instead.
+3. **Rewards and conditions**
+   - **Invited Member**: Receives **7 days** of Reward Premium for accepting an invite within **7 days** of signing up. Members who signed up more than 7 days earlier only become friends when they accept an invite.
+   - **Inviting Member**: Receives **7 days** of Reward Premium and **1** friend slot when the invited Member completes to-dos on **2 different days** within **14 days** of signing up. If this condition isn't met within 14 days, no reward is given for that invite.
+   - Progress and rewards received are shown in "Collect paw prints" and on the Subscription screen in the app.
+4. **Limits**: Reward Premium an inviting Member receives through the Invite Program is capped at **30 days** within any 30-day period and **90 days** in total. Once a limit is reached, further Reward Premium isn't given or is given only up to the remaining limit.
+5. **How rewards work with paid subscriptions**
+   - Reward Premium unlocks the same features as a paid subscription (Pro under Article 8).
+   - Reward Premium involves no payment and doesn't auto-renew. When it ends, the account returns to the free plan. No paid subscription starts automatically.
+   - Reward Premium received during a paid subscription starts after the subscription ends. If Reward Premium is already in use, a new reward starts after that period ends.
+   - If a Member starts a paid subscription while using Reward Premium, the remaining reward period can be used after the subscription ends. Reward Premium is unrelated to Apple or Google subscription billing and refunds.
+6. **Nature of rewards**: Reward Premium and friend slots are benefits for use only within the Service. They have **no cash value** and can't be exchanged for cash or other goods, refunded, or transferred to another Member. No purchase is required to invite or to receive a reward. The Company does not give rewards for rating or reviewing the app or for installing other apps, and inviting is optional and not required to use the Service's core features.
+7. **Abuse prevention**: The invited Member's reward can be received only once per device or per set of account details (verified email or social sign-in account). If an invite is accepted with a device or account details that have already received the reward, the two Members only become friends and neither the invited nor the inviting Member receives a reward. Information processed for this purpose is described in the Privacy Policy.
+8. **Prohibited conduct and measures**: If any of the following is found, the Company may refuse to give rewards, revoke rewards already given (remaining Reward Premium time and friend slots), or restrict use of the Service under Article 16.
+   - Receiving rewards by means that aren't normal use, such as creating fake or duplicate accounts or inviting oneself
+   - Using automated programs, or buying or selling invite codes or accounts
+   - Repeatedly or massively sending invite messages that recipients don't want
+9. When an account is permanently deleted after the grace period under Article 16, remaining Reward Premium, friend slots, and invite records are deleted with it.
+10. **Changes and termination**: The Company may change the rewards, conditions, or limits of the Invite Program, or end the Invite Program, as operationally necessary. Changes unfavorable to Members are announced in advance under Article 3. Rewards already given before a change or termination remain in place, except in the cases under paragraph 8.
+11. Apple Inc. and Google LLC do not sponsor or operate the Invite Program. Please direct any questions about the Invite Program to the Company.
 
 ---
 
@@ -255,3 +283,4 @@ Inquiries regarding these Terms, subscriptions, and complaints may be submitted 
 
 1. These Terms of Service take effect on **April 19, 2026**.
 2. The previous Terms of Service (effective March 13, 2026) shall cease to have effect upon the implementation of these Terms.
+3. Article 2 items 3 and 4, Article 13 paragraphs 7 and 8, and Article 13-2 (Friend Invite Rewards Program) were revised or added on October 26, 2026. Article 13-2 applies from the day the friend invite feature becomes available in the Aido app (the release date of app version 1.13.0).
