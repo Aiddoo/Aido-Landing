@@ -15,7 +15,7 @@
 
 ## 친구 초대 링크 (/i/{코드})
 
-`src/proxy.ts`가 `/i/{코드}`를 현재 언어(쿠키·Accept-Language)의 정적 `/{ko|en}/invite`로 rewrite합니다. 주소창은 `/i/{코드}`를 유지하고 코드는 rewrite 대상에 싣지 않습니다. 페이지는 SSG이며 서버 HTML은 로딩 상태입니다. 브라우저에서 `window.location`의 코드를 Zod로 검증한 뒤 공개 API `GET https://api.aido.kr/v1/invites/{code}`로 초대한 친구의 닉네임·태그를 불러옵니다. 초대 페이지는 `noindex`(metadata와 `X-Robots-Tag`)이며 사이트맵·canonical·hreflang에 넣지 않습니다. 16개 정규 페이지 검사와 별도로 `seo:check`가 ko/en 정적 생성·noindex·사이트맵 제외를 확인합니다.
+`src/proxy.ts`가 `/i/{코드}`를 현재 언어(쿠키·Accept-Language)의 정적 `/{ko|en}/invite`로 rewrite합니다. 주소창은 `/i/{코드}`를 유지하고 코드는 rewrite 대상에 싣지 않습니다. 페이지는 SSG이며 서버 HTML은 로딩 상태입니다. 브라우저에서 `window.location`의 코드를 Zod로 검증한 뒤 공개 API `GET https://api.aido.kr/v1/invites/{code}`로 초대한 친구의 닉네임을 불러옵니다. 초대 페이지는 `noindex`(metadata와 `X-Robots-Tag`)이며 사이트맵·canonical·hreflang에 넣지 않습니다. 16개 정규 페이지 검사와 별도로 `seo:check`가 ko/en 정적 생성·noindex·사이트맵 제외를 확인합니다.
 
 `/.well-known/apple-app-site-association`(iOS Universal Links, `/i/*`만)과 `/.well-known/assetlinks.json`(Android App Links)은 `public/.well-known/`에 두고 `next.config.ts`에서 `application/json`으로 응답합니다. proxy matcher는 `/.well-known`을 제외하므로 로케일 경로로 바뀌지 않습니다. `assetlinks.json`의 `__PLAY_APP_SIGNING_SHA256__`은 Play Console의 **앱 서명 키** SHA-256(업로드 키 아님)으로 바꿔야 Android 링크 검증이 동작합니다.
 

@@ -14,7 +14,6 @@ export const inviteCodeSchema = z
 // 서버 계약(invitePreviewInviterSchema)과 같다. 이름을 정하지 않은 사용자는 name이 null이다.
 const inviterSchema = z.object({
   name: z.nullable(z.string().check(z.maxLength(60))),
-  userTag: z.string().check(z.minLength(1), z.maxLength(24)),
   profileImage: z.nullable(z.string()),
 });
 // 서버의 공통 성공 봉투 { success, data, timestamp }.

@@ -73,8 +73,7 @@
   min-width: 0;
 }
 
-.invite-name,
-.invite-tag {
+.invite-name {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -87,14 +86,6 @@
   font-size: 1.25rem;
   font-weight: 800;
   line-height: 1.75rem;
-}
-
-.invite-tag {
-  height: 1.5rem;
-  font-size: 0.9375rem;
-  line-height: 1.5rem;
-  color: #515151;
-  font-variant-numeric: tabular-nums;
 }
 
 .invite-title {
@@ -134,11 +125,6 @@
 .invite-bar-name {
   width: 55%;
   height: 1.1rem;
-}
-
-.invite-bar-tag {
-  width: 32%;
-  height: 0.9rem;
 }
 
 .invite-bar-title {

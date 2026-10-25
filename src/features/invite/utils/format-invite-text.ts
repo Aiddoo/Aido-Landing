@@ -6,8 +6,3 @@ export function fillInviterName(
 ) {
   return name === null ? fallback : template.replace("{name}", name);
 }
-
-/** 서버가 `#`을 붙여 보내든 아니든 화면에는 한 번만 붙인다. */
-export function formatUserTag(userTag: string) {
-  return `#${userTag.replace(/^#+/, "")}`;
-}

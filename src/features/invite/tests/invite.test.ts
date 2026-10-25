@@ -8,7 +8,7 @@ import {
   parseInviteErrorCode,
   parseInvitePreview,
 } from "../schemas/invite.schema";
-import { fillInviterName, formatUserTag } from "../utils/format-invite-text";
+import { fillInviterName } from "../utils/format-invite-text";
 import {
   normalizeInviteCode,
   parseInviteCodeFromPathname,
@@ -55,21 +55,24 @@ describe("미리보기 응답", () => {
   it("서버 성공 봉투만 읽고 추가 필드는 허용한다", () => {
     const inviter = {
       name: "마루",
-      userTag: "MARU2026",
       profileImage: "siamese",
       extra: 1,
     };
-    expect(parseInvitePreview(envelope(inviter))?.userTag).toBe("MARU2026");
+    expect(parseInvitePreview(envelope(inviter))?.name).toBe("마루");
     expect(parseInvitePreview({ inviter })).toBeNull();
     expect(
-      parseInvitePreview(
-        envelope({ name: "", userTag: "", profileImage: null }),
-      ),
+      parseInvitePreview(envelope({ name: "마루", profileImage: 1 })),
     ).toBeNull();
     expect(parseInvitePreview(null)).toBeNull();
   });
+  it("서버가 더는 보내지 않는 userTag가 와도 결과에 싣지 않는다", () => {
+    const parsed = parseInvitePreview(
+      envelope({ name: "마루", userTag: "MARU2026", profileImage: null }),
+    );
+    expect(parsed).toEqual({ name: "마루", profileImage: null });
+  });
   it("이름이 없는 초대한 사람도 읽는다", () => {
-    const inviter = { name: null, userTag: "MARU2026", profileImage: null };
+    const inviter = { name: null, profileImage: null };
     expect(parseInvitePreview(envelope(inviter))?.name).toBeNull();
     expect(fillInviterName("{name}님", null, "친구")).toBe("친구");
     expect(fillInviterName("{name}님", "마루", "친구")).toBe("마루님");
@@ -87,10 +90,6 @@ describe("미리보기 응답", () => {
     );
     expect(getInviterCat(null)).toBe("/app-assets/cat-default.webp");
   });
-  it("userTag 앞의 #은 한 번만 붙인다", () => {
-    expect(formatUserTag("MARU2026")).toBe("#MARU2026");
-    expect(formatUserTag("#MARU2026")).toBe("#MARU2026");
-  });
 });
 
 describe("fetchInvitePreview", () => {
@@ -105,9 +104,7 @@ describe("fetchInvitePreview", () => {
   }
   it("성공하면 초대한 친구를 돌려주고 인증 정보 없이 요청한다", async () => {
     const mock = stubFetch(
-      Response.json(
-        envelope({ name: "마루", userTag: "MARU2026", profileImage: null }),
-      ),
+      Response.json(envelope({ name: "마루", profileImage: null })),
     );
     await expect(fetchInvitePreview("BCD234")).resolves.toMatchObject({
       status: "ready",
@@ -163,7 +160,7 @@ describe("fetchInvitePreview", () => {
 describe("usableInviteCode", () => {
   const ready = {
     status: "ready",
-    inviter: { name: "마루", userTag: "T", profileImage: null },
+    inviter: { name: "마루", profileImage: null },
   } as const;
   it("없거나 바뀐 링크의 코드는 숨기고 네트워크 오류는 유지한다", () => {
     expect(usableInviteCode("BCD234", ready)).toBe("BCD234");
