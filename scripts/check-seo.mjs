@@ -501,15 +501,14 @@ assert.equal(assetLinks[0].target.package_name, "com.aido.mobile");
 assert.deepEqual(assetLinks[0].relation, [
   "delegate_permission/common.handle_all_urls",
 ]);
-if (
-  assetLinks[0].target.sha256_cert_fingerprints.includes(
-    "__PLAY_APP_SIGNING_SHA256__",
-  )
-) {
-  console.warn(
-    "WARNING: public/.well-known/assetlinks.json still has the __PLAY_APP_SIGNING_SHA256__ placeholder. Replace it with the Play Console app signing SHA-256 before merging to main; Android App Links will not verify otherwise.",
+// Play 앱 서명 키 SHA-256(콜론으로 구분한 32바이트 대문자 16진수). 자리표시자로 돌아가면 실패한다.
+assert.ok(assetLinks[0].target.sha256_cert_fingerprints.length > 0);
+for (const fingerprint of assetLinks[0].target.sha256_cert_fingerprints)
+  assert.match(
+    fingerprint,
+    /^[0-9A-F]{2}(?::[0-9A-F]{2}){31}$/,
+    "assetlinks.json needs the Play app signing SHA-256 fingerprint",
   );
-}
 console.log(
   "SEO checks passed: 16 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
 );
