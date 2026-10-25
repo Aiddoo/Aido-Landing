@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { match } from "ts-pattern";
 import { LanguageSwitcher } from "@/components/navigation/language-switcher";
 import { BreadcrumbData } from "@/components/seo/breadcrumb-data";
 import { LegalMarkdown } from "@/features/legal/components/legal-markdown";
@@ -10,25 +11,32 @@ export async function LegalPage({
   document,
 }: {
   locale: Locale;
-  document: "privacy" | "terms";
+  document: "privacy" | "terms" | "account-deletion";
 }) {
   const messages = getMessages(locale);
-  const content =
-    document === "privacy"
-      ? {
-          title: messages.legal.privacyTitle,
-          description: messages.legal.privacyDescription,
-          key: "privacy-policy" as const,
-          relatedPath: "/terms" as const,
-          relatedLabel: messages.legal.viewTermsLabel,
-        }
-      : {
-          title: messages.legal.termsTitle,
-          description: messages.legal.termsDescription,
-          key: "terms-of-service" as const,
-          relatedPath: "/privacy" as const,
-          relatedLabel: messages.legal.viewPrivacyLabel,
-        };
+  const content = match(document)
+    .with("privacy", () => ({
+      title: messages.legal.privacyTitle,
+      description: messages.legal.privacyDescription,
+      key: "privacy-policy" as const,
+      relatedPath: "/terms" as const,
+      relatedLabel: messages.legal.viewTermsLabel,
+    }))
+    .with("terms", () => ({
+      title: messages.legal.termsTitle,
+      description: messages.legal.termsDescription,
+      key: "terms-of-service" as const,
+      relatedPath: "/privacy" as const,
+      relatedLabel: messages.legal.viewPrivacyLabel,
+    }))
+    .with("account-deletion", () => ({
+      title: messages.legal.accountDeletionTitle,
+      description: messages.legal.accountDeletionDescription,
+      key: "account-deletion" as const,
+      relatedPath: "/privacy" as const,
+      relatedLabel: messages.legal.viewPrivacyLabel,
+    }))
+    .exhaustive();
   const markdown = await readLegalDocument(content.key, locale);
 
   return (

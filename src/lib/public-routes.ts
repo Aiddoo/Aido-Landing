@@ -7,6 +7,7 @@ export const publicPaths = [
   "/patch-notes",
   "/terms",
   "/privacy",
+  "/account-deletion",
   "/invite",
   ...featureGuides.map((guide) => guide.path),
 ] as const;

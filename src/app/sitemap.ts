@@ -21,9 +21,11 @@ const homeLastModifiedDate = new Date(
     Date.parse(releaseNotes[0].date),
   ),
 );
-const termsEffectiveDate = new Date("2026-04-19");
-// Website analytics notice added; the app policy's effective date is unchanged.
-const privacyLastModifiedDate = new Date("2026-10-04");
+// Effective date stays 2026-04-19; Article 13-2 (invite rewards) was added on 2026-10-26.
+const termsLastModifiedDate = new Date("2026-10-26");
+// Invite abuse-prevention, location and deletion notes added; the effective date is unchanged.
+const privacyLastModifiedDate = new Date("2026-10-26");
+const accountDeletionLastModifiedDate = new Date("2026-10-26");
 
 // 정규 URL은 로케일 세그먼트가 붙은 /{locale}{path} 뿐이다. bare "/"는
 // 로케일로 리다이렉트되는 비정규 스텁이라 사이트맵에 넣지 않는다.
@@ -56,13 +58,19 @@ const routes: Route[] = [
     path: "/terms",
     changeFrequency: "monthly",
     priority: 0.5,
-    lastModified: termsEffectiveDate,
+    lastModified: termsLastModifiedDate,
   },
   {
     path: "/privacy",
     changeFrequency: "monthly",
     priority: 0.5,
     lastModified: privacyLastModifiedDate,
+  },
+  {
+    path: "/account-deletion",
+    changeFrequency: "monthly",
+    priority: 0.4,
+    lastModified: accountDeletionLastModifiedDate,
   },
 ];
 

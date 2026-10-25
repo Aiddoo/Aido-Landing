@@ -112,6 +112,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             >
               {messages.footer.privacyLabel}
             </Link>
+            <Link
+              href={`${prefix}/account-deletion`}
+              className="hover:text-brand-ink transition-colors"
+            >
+              {messages.footer.accountDeletionLabel}
+            </Link>
             <a
               href={INSTAGRAM_URL}
               target="_blank"

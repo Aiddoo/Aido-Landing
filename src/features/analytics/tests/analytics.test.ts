@@ -75,6 +75,7 @@ describe("public analytics boundary", () => {
       "/patch-notes",
       "/terms",
       "/privacy",
+      "/account-deletion",
     ]) {
       it(`sanitizes ${locale}${route}`, () => {
         expect(

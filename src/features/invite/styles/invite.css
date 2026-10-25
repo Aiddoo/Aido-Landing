@@ -207,6 +207,20 @@
   white-space: nowrap;
 }
 
+.invite-reward-terms {
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #515151;
+  overflow-wrap: anywhere;
+}
+
+.invite-reward-terms a {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .invite-code-label {
   height: 1.25rem;
   font-size: 0.8125rem;

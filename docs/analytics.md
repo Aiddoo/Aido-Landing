@@ -17,7 +17,7 @@
 | `select_content` | 기능 사용법 카드 선택 | `content_type`: `feature_guide`, `item_id`, `cta_placement`: `home_guides`/`related_guides` |
 | `language_switch` | 다른 언어로 전환 | `target_locale`, 현재 `site_locale` |
 
-페이지 종류는 `home`, `services`, `feature_guide`, `patch_notes`, `terms`, `privacy`, `invite`이다. 초대 링크 `/i/{코드}`는 코드를 버리고 `/{locale}/invite`로만 집계한다(`getPublicPath`). `feature_slug`는 현재 보고 있는 사용법이며, `select_content.item_id`는 이동할 사용법이다. 사용법 화면의 하단 CTA는 `cta_placement=download`이고 `page_type=feature_guide`로 홈 하단과 구분한다.
+페이지 종류는 `home`, `services`, `feature_guide`, `patch_notes`, `terms`, `privacy`, `account_deletion`, `invite`이다. 초대 링크 `/i/{코드}`는 코드를 버리고 `/{locale}/invite`로만 집계한다(`getPublicPath`). `feature_slug`는 현재 보고 있는 사용법이며, `select_content.item_id`는 이동할 사용법이다. 사용법 화면의 하단 CTA는 `cta_placement=download`이고 `page_type=feature_guide`로 홈 하단과 구분한다.
 
 `download_click`은 웹사이트의 주요 이벤트로 등록하며 주요 이벤트 수는 세션당 1회 집계한다. 원시 이벤트 수는 모든 클릭을 포함한다. 기본 금액은 지정하지 않는다. **실제 설치·가입·구매가 아니다.** 실제 설치는 기존 앱의 `first_open`, 가입·구매는 앱에서 확인한다. iOS/Android 스토어 경계를 넘는 동일 사용자 연결이나 광고 설치 귀속은 이 구현에서 보장하지 않는다. URL 쿼리나 사용자 ID로 임의 연결하지 않는다.
 
@@ -32,7 +32,7 @@ GA4 웹 스트림의 **Enhanced measurement는 OFF**다. 태그에 `send_page_vi
 - 방문자가 분석을 허용하기 전에는 Google/Vercel 분석 태그를 로드하지 않는다. 거절 후에도 콘텐츠·스토어 링크는 모두 사용할 수 있다.
 - 브라우저에 선택을 180일간 저장한다. 하단 설정에서 변경 가능하다. 철회하면 GA 쿠키를 삭제하고 페이지를 새로고침해 이미 로드된 태그도 종료한다. Do Not Track/Global Privacy Control을 존중한다.
 - Google Consent Mode는 기본 차단 방식이다. 광고 관련 동의 3종은 항상 denied이고 Google Signals/광고 개인화는 태그에서 끈다.
-- 알려진 16개 경로만 집계한다. URL 해시·임의 쿼리·회원 ID·이메일·메모·할 일 텍스트를 이벤트에 추가하지 않는다. 외부 referrer는 origin만 유지한다.
+- 알려진 20개 경로(10개 공개 경로 × 한영)만 집계한다. URL 해시·임의 쿼리·회원 ID·이메일·메모·할 일 텍스트를 이벤트에 추가하지 않는다. 외부 referrer는 origin만 유지한다.
 - UTM 5종은 영문/숫자/밑줄/하이픈, 1~100자만 허용한다. 민감한 정보나 사람 이름을 캠페인 값에 넣지 않는다. 캠페인 URL에는 일반적인 슬러그를 사용한다.
 
 예: `https://aido.kr/ko?utm_source=instagram&utm_medium=social&utm_campaign=launch_202610&utm_content=bio`

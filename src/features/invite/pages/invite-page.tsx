@@ -75,6 +75,10 @@ export function InvitePage({ locale }: { locale: Locale }) {
                   {invite.rewardValue}
                 </strong>
               </p>
+              <p className="invite-reward-terms">
+                {invite.rewardTermsNote}{" "}
+                <a href={`/${locale}/terms`}>{invite.rewardTermsLink}</a>
+              </p>
               <hr className="invite-divider" />
               <Suspense fallback={<InviteCodeCopyLoading labels={invite} />}>
                 <InviteCodeCopy labels={invite} />

@@ -37,6 +37,7 @@ export const analyticsPageSchema = z.strictObject({
     "patch_notes",
     "terms",
     "privacy",
+    "account_deletion",
     "invite",
   ]),
   locale: localeSchema,

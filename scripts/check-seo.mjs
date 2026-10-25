@@ -58,6 +58,7 @@ const paths = [
   "/patch-notes",
   "/terms",
   "/privacy",
+  "/account-deletion",
   ...featureGuides.map((guide) => guide.path),
 ];
 const decode = (text) =>
@@ -381,12 +382,12 @@ for (const locale of ["ko", "en"])
     const date =
       path === "/services"
         ? SERVICE_CONTENT_UPDATED_AT
-        : path === "/terms"
-          ? "2026-04-19"
+        : path === "/terms" || path === "/account-deletion"
+          ? "2026-10-26"
           : path === "/patch-notes"
             ? patchNotesUpdatedAt
             : path === "/privacy"
-              ? "2026-10-04"
+              ? "2026-10-26"
               : (featureGuides.find((guide) => guide.path === path)
                   ?.updatedAt ??
                 [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
@@ -510,5 +511,5 @@ for (const fingerprint of assetLinks[0].target.sha256_cert_fingerprints)
     "assetlinks.json needs the Play app signing SHA-256 fingerprint",
   );
 console.log(
-  "SEO checks passed: 16 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
+  "SEO checks passed: 18 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
 );
