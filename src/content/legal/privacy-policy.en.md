@@ -37,6 +37,7 @@ This Privacy Policy is intended to inform users about the processing of personal
 | Push Token (Expo Push Token) | Notification delivery |
 | Error and Crash Information (Crashlytics) | App stability improvement |
 | Timezone Information (IANA format) | Notification and reminder timezone settings |
+| Location (latitude and longitude, only if location permission is granted) | Providing weather, air quality, and sunrise/sunset information for the current location |
 | Last Login Timestamp | Fraudulent use detection, account management |
 | Last Active Timestamp | Inactive user detection, service improvement |
 | Device Fingerprint (User-Agent + IP hash) | Session security, unauthorized access detection |
@@ -51,7 +52,7 @@ The following items are accessed with the user's consent and are **processed onl
 |-------------|---------|
 | Camera | Taking profile photos |
 | Photo Library | Selecting profile images |
-| Microphone and Speech Recognition | Voice input for to-do creation (voice data is processed on-device, not transmitted to server) |
+| Microphone and Speech Recognition | Voice input for to-do creation (speech is converted to text by the device's speech recognition (Apple or Google); only the resulting text, not voice recordings, is sent to and stored on the Company's servers) |
 
 - Users may change or revoke access permissions at any time through their device settings.
 
@@ -75,7 +76,7 @@ The Company processes collected personal information only for the following purp
 | Purpose | Details |
 |---------|---------|
 | Member Management | Member identification, registration/withdrawal processing, identity verification, prevention of fraudulent use |
-| Service Provision | Core features including task management, calendar (weekly/monthly), friend sharing, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, and streaks. Publicly shared to-dos are visible to mutual followers, and Nudge and Cheer messages are delivered to the recipient. |
+| Service Provision | Core features including task management, calendar (weekly/monthly), friend sharing, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, streaks, and weather for the current location. Publicly shared to-dos are visible to mutual followers, and Nudge and Cheer messages are delivered to the recipient. |
 | AI Feature Provision | AI-powered automatic to-do parsing, weekly & monthly AI report generation (task statistics analysis and achievement summaries), recurring pattern analysis and automatic suggestions |
 | Subscription and Payment Management | Paid subscription processing, payment status management, receipt verification |
 | Notification Delivery | To-do reminders (1 hour and 10 minutes before scheduled time), morning & evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications, Win-back notifications, service announcements |
@@ -110,6 +111,7 @@ The Company destroys personal information without delay once the purpose of coll
 | Daily Completion Records (DailyCompletion) | **Until Member withdrawal** | Core service provision (streaks, statistics) |
 | Weekly Achievement Records (WeeklyAchievement) | **Until Member withdrawal** | Weekly achievement badges and statistics |
 | AI Reports (AiReport) | **Until Member withdrawal** | AI report viewing service provision |
+| Location (UserLocation, last received latitude and longitude) | **Until Member withdrawal** (overwritten when a new location is received) | Providing weather information for the current location |
 | Invite relationships, acceptance, active-day and reward records | **Until Member withdrawal** | Friend invite and reward service provision |
 | Hash values for preventing duplicate reward claims (RewardClaim) | **For as long as the abuse-prevention purpose continues (kept after Member withdrawal)** | Preventing repeated claims of friend invite rewards |
 
@@ -135,10 +137,10 @@ The Company entrusts personal information processing to the following parties fo
 |----------------|-----------------|-----------------|
 | **RevenueCat, Inc.** | Subscription payment management, receipt verification | Subscription status, product ID, purchase history, user identifier mapping (revenueCatUserId) |
 | **Apple Inc.** | In-app payment processing, social login | Payment information, authentication information |
-| **Google LLC** | In-app payment processing, social login, AI features (Gemini API), Firebase services | Payment information, authentication information, to-do text (AI), analytics data |
+| **Google LLC** | In-app payment processing, social login, AI features (Gemini API), Firebase services | Payment information, authentication information, to-do and memo text (AI), analytics data |
 | **Kakao Corp.** | Social login | Authentication information |
 | **Naver Corp.** | Social login | Authentication information |
-| **Functional Software, Inc. (Sentry)** | Server error tracking, stability monitoring | Error logs, request information, IP address |
+| **Functional Software, Inc. (Sentry)** | App and server error tracking, stability monitoring | Error logs, request information, IP address, device information |
 | **Resend, Inc.** | Email delivery (verification, notification emails) | Email address |
 | **650 Industries, Inc. (Expo)** | Push notification delivery | Push tokens, device information |
 
@@ -154,10 +156,10 @@ The Company transfers personal information overseas for service provision as fol
 |-----------|---------|------------------|---------|-----------------|
 | **Google LLC** (Firebase Analytics) | United States | App usage records, device information | Service usage statistical analysis | Until Member withdrawal or purpose fulfillment |
 | **Google LLC** (Firebase Crashlytics) | United States | Error information, device information | App stability improvement | 180 days |
-| **Google LLC** (Gemini API) | United States | To-do text | AI feature provision (to-do parsing) | Deleted immediately upon API processing completion (per Google's policy) |
+| **Google LLC** (Gemini API) | United States | To-do and memo text | AI feature provision (to-do parsing, memo organizing) | Deleted immediately upon API processing completion (per Google's policy) |
 | **RevenueCat, Inc.** | United States | Subscription status, purchase history, user identifier mapping (revenueCatUserId) | Subscription payment management | Service use period + legally mandated retention period |
 | **Apple Inc.** | United States | Authentication information, payment information | Social login, in-app payment | Per each service's policy |
-| **Functional Software, Inc. (Sentry)** | United States | Error logs, request information, IP address | Server error tracking, stability monitoring | 90 days |
+| **Functional Software, Inc. (Sentry)** | United States | Error logs, request information, IP address, device information | App and server error tracking, stability monitoring | 90 days |
 | **650 Industries, Inc. (Expo)** | United States | Push tokens, device information | Push notification delivery | Duration of service use |
 | **Resend, Inc.** | United States | Email address | Email delivery (verification, notification) | Duration of service use |
 
@@ -169,7 +171,8 @@ The Company transfers personal information overseas for service provision as fol
 ## Article 8 (Data Processing for AI Features)
 
 1. The Service transmits Members' data to an external AI service (Google Gemini API) to provide the following AI features:
-   - **Automatic To-Do Parsing**: Transmits to-do text to automatically extract title, date, category, and other details
+   - **Automatic To-Do Parsing**: Transmits to-do text, typed or converted from voice input, to automatically extract title, date, category, and other details
+   - **Memo Organizing**: Transmits memo text to organize it into several to-dos
    - **Weekly & Monthly AI Reports**: Transmits task statistics (total completions, per-category completions, day-of-week and time-of-day completion distributions, streak status, week-over-week/month-over-month changes, and other aggregated data) to generate achievement summaries and personalized tips
    - **Recurring Pattern Analysis**: Transmits task titles, scheduled times, and category information to detect recurring patterns and generate suggestions
 2. Only the data items specified above are transmitted; personally identifiable information such as email addresses and names is not transmitted.
@@ -202,7 +205,7 @@ The Company transfers personal information overseas for service provision as fol
    |-----|---------|----------------|
    | **Firebase Analytics** | Service usage statistics, user behavior analysis | Screen views, event logs, device information, session information |
    | **Firebase Crashlytics** | App error tracking, stability improvement | Error/crash logs, device information, OS version |
-   | **Sentry** | Server error tracking, stability monitoring | Error logs, request information, device information |
+   | **Sentry** | App and server error tracking, stability monitoring | Error logs, request information, device information, replays of the screen where an error occurred (text and images are masked) |
 
 2. **Behavioral Information Collection Notice**: The Company collects Members' in-app behavioral information (screen views, feature usage patterns, etc.) through Firebase Analytics for service improvement.
 3. **How to Opt Out**: Users may restrict analytics data sharing through device settings or opt out by uninstalling the app. However, opting out may limit service quality improvements.
@@ -229,6 +232,7 @@ The Company transfers personal information overseas for service provision as fol
    - Request **personal information transfer** (right to data portability under Article 35-2 of the Personal Information Protection Act)
 2. **Data Portability Notice**: Users may request that their personal information be transferred to themselves or a third party. The Company shall inform users of the scope of transferable personal information and transfer formats in accordance with the Personal Information Protection Act and related enforcement decrees.
 3. Rights may be exercised in writing, via email (matthew@redband.co.kr), or through in-app settings. The Company shall take action without delay.
+   - **Account withdrawal (account deletion)**: Available directly in the app: open the **Me** tab and tap **Delete Account** at the bottom. If you can't use the app, you can request deletion by email by following [How to request account deletion](/en/account-deletion).
 4. If a user requests correction of errors in personal information, the Company shall not use or provide the information until the correction is completed.
 5. Users may exercise their rights through a legal representative or authorized agent, in which case a power of attorney must be submitted in accordance with the Enforcement Rules of the Personal Information Protection Act.
 
