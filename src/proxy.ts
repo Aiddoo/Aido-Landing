@@ -1,9 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { isLocale, type Locale, localeCookieName } from "@/i18n/config";
 import { getPreferredLocale } from "@/i18n/request-locale";
+import { INVITE_LINK_PATTERN } from "@/lib/invite-link";
 
 // 친구 초대 링크 /i/{코드}. 코드 검증은 브라우저에서 하므로 형태만 확인한다.
-const INVITE_LINK_PATTERN = /^\/i\/[^/]+\/?$/;
 const INVITE_PAGE_PATH = "/invite";
 
 function isPublicFile(pathname: string): boolean {

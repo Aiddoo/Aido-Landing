@@ -8,7 +8,7 @@ import {
   parseInviteErrorCode,
   parseInvitePreview,
 } from "../schemas/invite.schema";
-import { formatUserTag } from "../utils/format-invite-text";
+import { fillInviterName, formatUserTag } from "../utils/format-invite-text";
 import {
   normalizeInviteCode,
   parseInviteCodeFromPathname,
@@ -47,23 +47,32 @@ describe("Google Play 링크", () => {
   });
 });
 
+function envelope(inviter: unknown) {
+  return { success: true, data: { inviter }, timestamp: 1 };
+}
+
 describe("미리보기 응답", () => {
-  it("추가 필드를 허용하고 단일/봉투 형태를 모두 읽는다", () => {
+  it("서버 성공 봉투만 읽고 추가 필드는 허용한다", () => {
     const inviter = {
       name: "마루",
       userTag: "MARU2026",
       profileImage: "siamese",
       extra: 1,
     };
-    expect(parseInvitePreview({ inviter })?.name).toBe("마루");
+    expect(parseInvitePreview(envelope(inviter))?.userTag).toBe("MARU2026");
+    expect(parseInvitePreview({ inviter })).toBeNull();
     expect(
-      parseInvitePreview({ success: true, data: { inviter }, timestamp: 1 })
-        ?.userTag,
-    ).toBe("MARU2026");
-    expect(
-      parseInvitePreview({ inviter: { name: "", userTag: "X" } }),
+      parseInvitePreview(
+        envelope({ name: "", userTag: "", profileImage: null }),
+      ),
     ).toBeNull();
     expect(parseInvitePreview(null)).toBeNull();
+  });
+  it("이름이 없는 초대한 사람도 읽는다", () => {
+    const inviter = { name: null, userTag: "MARU2026", profileImage: null };
+    expect(parseInvitePreview(envelope(inviter))?.name).toBeNull();
+    expect(fillInviterName("{name}님", null, "친구")).toBe("친구");
+    expect(fillInviterName("{name}님", "마루", "친구")).toBe("마루님");
   });
   it("오류 코드는 알려진 INVITE 코드만 읽는다", () => {
     expect(parseInviteErrorCode({ error: { code: "INVITE_2102" } })).toBe(
@@ -96,7 +105,9 @@ describe("fetchInvitePreview", () => {
   }
   it("성공하면 초대한 친구를 돌려주고 인증 정보 없이 요청한다", async () => {
     const mock = stubFetch(
-      Response.json({ inviter: { name: "마루", userTag: "MARU2026" } }),
+      Response.json(
+        envelope({ name: "마루", userTag: "MARU2026", profileImage: null }),
+      ),
     );
     await expect(fetchInvitePreview("BCD234")).resolves.toMatchObject({
       status: "ready",
@@ -141,7 +152,7 @@ describe("fetchInvitePreview", () => {
       status: "failed",
       failure: "unknown",
     });
-    stubFetch(Response.json({ inviter: {} }));
+    stubFetch(Response.json(envelope({})));
     await expect(fetchInvitePreview("BCD234")).resolves.toEqual({
       status: "failed",
       failure: "unknown",
@@ -152,7 +163,7 @@ describe("fetchInvitePreview", () => {
 describe("usableInviteCode", () => {
   const ready = {
     status: "ready",
-    inviter: { name: "마루", userTag: "T" },
+    inviter: { name: "마루", userTag: "T", profileImage: null },
   } as const;
   it("없거나 바뀐 링크의 코드는 숨기고 네트워크 오류는 유지한다", () => {
     expect(usableInviteCode("BCD234", ready)).toBe("BCD234");

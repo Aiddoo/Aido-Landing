@@ -486,6 +486,15 @@ assert.equal(assetLinks[0].target.package_name, "com.aido.mobile");
 assert.deepEqual(assetLinks[0].relation, [
   "delegate_permission/common.handle_all_urls",
 ]);
+if (
+  assetLinks[0].target.sha256_cert_fingerprints.includes(
+    "__PLAY_APP_SIGNING_SHA256__",
+  )
+) {
+  console.warn(
+    "WARNING: public/.well-known/assetlinks.json still has the __PLAY_APP_SIGNING_SHA256__ placeholder. Replace it with the Play Console app signing SHA-256 before merging to main; Android App Links will not verify otherwise.",
+  );
+}
 console.log(
   "SEO checks passed: 16 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
 );

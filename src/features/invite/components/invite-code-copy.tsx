@@ -1,4 +1,5 @@
 "use client";
+import { match } from "ts-pattern";
 import type { MessageCatalog } from "@/i18n/messages";
 import { useCopyInviteCode } from "../hooks/use-copy-invite-code";
 import { useInviteCode } from "../hooks/use-invite-code";
@@ -28,12 +29,11 @@ function CodeField({
   code,
 }: InviteCodeCopyProps & { code: InviteCode | null }) {
   const copy = useCopyInviteCode(code);
-  const hint =
-    copy.status === "manual"
-      ? labels.codeManualStatus
-      : copy.status === "copied"
-        ? labels.codeCopiedStatus
-        : labels.codeHint;
+  const hint = match(copy.status)
+    .with("manual", () => labels.codeManualStatus)
+    .with("copied", () => labels.codeCopiedStatus)
+    .with("idle", () => labels.codeHint)
+    .exhaustive();
   return (
     <>
       <p className="invite-code-label">{labels.codeLabel}</p>

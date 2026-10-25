@@ -13,14 +13,14 @@ type InviterProfileProps = {
   >;
   /** null이면 이름·태그 자리는 스켈레톤이거나 비어 있다. */
   inviter: InviteInviter | null;
-  loading: boolean;
+  isLoading: boolean;
 };
 
 // 로딩·오류·완료가 같은 박스를 쓴다. 이름·태그는 줄 높이를 고정해 교체해도 움직이지 않는다.
 export function InviterProfile({
   labels,
   inviter,
-  loading,
+  isLoading,
 }: InviterProfileProps) {
   const cat = inviter ? getInviterCat(inviter.profileImage) : defaultInviterCat;
   return (
@@ -31,7 +31,11 @@ export function InviterProfile({
           src={cat}
           alt={
             inviter
-              ? fillInviterName(labels.avatarAltTemplate, inviter.name)
+              ? fillInviterName(
+                  labels.avatarAltTemplate,
+                  inviter.name,
+                  labels.avatarAltFallback,
+                )
               : labels.avatarAltFallback
           }
           width={AVATAR_SIZE}
@@ -44,13 +48,15 @@ export function InviterProfile({
       </div>
       <div className="invite-inviter-text">
         <p className="invite-name">
-          {loading ? (
+          {isLoading ? (
             <span className="invite-skeleton invite-bar-name" />
           ) : null}
           {inviter ? inviter.name : null}
         </p>
         <p className="invite-tag">
-          {loading ? <span className="invite-skeleton invite-bar-tag" /> : null}
+          {isLoading ? (
+            <span className="invite-skeleton invite-bar-tag" />
+          ) : null}
           {inviter ? formatUserTag(inviter.userTag) : null}
         </p>
       </div>

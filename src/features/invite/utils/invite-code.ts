@@ -1,6 +1,5 @@
+import { INVITE_LINK_PATTERN } from "@/lib/invite-link";
 import { type InviteCode, inviteCodeSchema } from "../schemas/invite.schema";
-
-const inviteLinkPattern = /^\/i\/([^/]+)\/?$/;
 
 /** 입력의 공백·하이픈을 제거하고 대문자로 맞춘다. 유효성은 검사하지 않는다. */
 export function normalizeInviteCode(raw: string) {
@@ -11,7 +10,7 @@ export function normalizeInviteCode(raw: string) {
 export function parseInviteCodeFromPathname(
   pathname: string,
 ): InviteCode | null {
-  const segment = inviteLinkPattern.exec(pathname)?.[1];
+  const segment = INVITE_LINK_PATTERN.exec(pathname)?.[1];
   if (segment === undefined) return null;
   let decoded: string;
   try {

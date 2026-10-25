@@ -1,4 +1,4 @@
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/seo";
+import { PLAY_STORE_URL } from "@/lib/seo";
 import type { InviteCode } from "../schemas/invite.schema";
 
 const PLAY_CAMPAIGN_PARAM = "pcampaignid=web_share";
@@ -9,5 +9,3 @@ export function buildPlayStoreInviteUrl(code: InviteCode | null) {
   if (!code) return base;
   return `${base}&referrer=${encodeURIComponent(`invite_code=${code}`)}`;
 }
-
-export const inviteAppStoreUrl = APP_STORE_URL;

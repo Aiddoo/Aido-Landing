@@ -11,14 +11,18 @@ export const inviteCodeSchema = z
     z.regex(new RegExp(`^[${INVITE_CODE_ALPHABET}]{${INVITE_CODE_LENGTH}}$`)),
   );
 
-// 응답 형식은 아직 확정 중이다. 필요한 필드만 검증하고 나머지는 허용한다.
+// 서버 계약(invitePreviewInviterSchema)과 같다. 이름을 정하지 않은 사용자는 name이 null이다.
 const inviterSchema = z.object({
-  name: z.string().check(z.minLength(1), z.maxLength(60)),
+  name: z.nullable(z.string().check(z.maxLength(60))),
   userTag: z.string().check(z.minLength(1), z.maxLength(24)),
-  profileImage: z.optional(z.nullable(z.string())),
+  profileImage: z.nullable(z.string()),
 });
-const previewBodySchema = z.object({ inviter: inviterSchema });
-const previewEnvelopeSchema = z.object({ data: previewBodySchema });
+// 서버의 공통 성공 봉투 { success, data, timestamp }.
+const previewEnvelopeSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ inviter: inviterSchema }),
+  timestamp: z.number(),
+});
 
 export const inviteErrorCodeSchema = z.enum([
   "INVITE_2101",
@@ -26,15 +30,14 @@ export const inviteErrorCodeSchema = z.enum([
   "INVITE_2105",
 ]);
 
+export type InviteErrorCode = z.infer<typeof inviteErrorCodeSchema>;
 export type InviteCode = z.infer<typeof inviteCodeSchema>;
 export type InviteInviter = z.infer<typeof inviterSchema>;
 
-/** `{ inviter }` 또는 공통 성공 봉투 `{ success, data: { inviter } }`를 모두 받는다. */
+/** 서버 성공 봉투에서 초대한 사람을 꺼낸다. 형식이 다르면 null이다. */
 export function parseInvitePreview(body: unknown): InviteInviter | null {
-  const bare = previewBodySchema.safeParse(body);
-  if (bare.success) return bare.data.inviter;
-  const wrapped = previewEnvelopeSchema.safeParse(body);
-  return wrapped.success ? wrapped.data.data.inviter : null;
+  const envelope = previewEnvelopeSchema.safeParse(body);
+  return envelope.success ? envelope.data.data.inviter : null;
 }
 
 const errorEnvelopeSchema = z.object({

@@ -15,7 +15,7 @@ export function InviterCard({ labels }: InviterCardProps) {
   if (preview.status === "failed") {
     return (
       <>
-        <InviterProfile labels={labels} inviter={null} loading={false} />
+        <InviterProfile labels={labels} inviter={null} isLoading={false} />
         <h1 id="invite-title" className="invite-title">
           {inviteErrorCopy(labels, preview.failure).title}
         </h1>
@@ -27,10 +27,14 @@ export function InviterCard({ labels }: InviterCardProps) {
       <InviterProfile
         labels={labels}
         inviter={preview.inviter}
-        loading={false}
+        isLoading={false}
       />
       <h1 id="invite-title" className="invite-title">
-        {fillInviterName(labels.titleTemplate, preview.inviter.name)}
+        {fillInviterName(
+          labels.titleTemplate,
+          preview.inviter.name,
+          labels.titleFallback,
+        )}
       </h1>
     </>
   );
@@ -40,7 +44,7 @@ export function InviterCard({ labels }: InviterCardProps) {
 export function InviterCardLoading({ labels }: InviterCardProps) {
   return (
     <>
-      <InviterProfile labels={labels} inviter={null} loading />
+      <InviterProfile labels={labels} inviter={null} isLoading />
       <h1 id="invite-title" className="invite-title" data-loading>
         <span className="sr-only">{labels.loadingLabel}</span>
         <span className="invite-skeleton invite-bar-title" aria-hidden="true" />
