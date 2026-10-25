@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!-- 카카오톡 초대 피드 썸네일(800×400, 2:1). scripts/generate-invite-share-image.mjs가 문구를 넣고 캡처한다. -->
+<style>
+  @font-face { font-family: "Jua Subset"; src: url(fonts/jua-subset.woff2) format("woff2"); }
+  @font-face { font-family: "Aido Hand Subset"; src: url(fonts/aido-hand-subset.woff2) format("woff2"); }
+  @font-face { font-family: "Wanted Sans Subset"; font-weight: 600; src: url(fonts/wanted-sans-semibold-subset.woff2) format("woff2"); }
+  @font-face { font-family: "Wanted Sans Subset"; font-weight: 700; src: url(fonts/wanted-sans-bold-subset.woff2) format("woff2"); }
+
+  /* 앱 라이트 테마 토큰(apps/mobile/global.css) */
+  :root {
+    --main: oklch(0.702 0.1919 35);
+    --main-soft: oklch(0.702 0.1919 35 / 0.1);
+    --foreground: oklch(0.32 0 0);
+    --ink: #222;
+    --gray-2: oklch(0.97 0 0);
+    --gray-4: oklch(0.9 0 0);
+    --gray-6: oklch(0.699 0 0);
+    --fish: #23a2ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 800px; height: 400px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(420px 300px at 8% 0%, #ffe9dc 0%, transparent 70%),
+      radial-gradient(360px 260px at 100% 100%, #fff1d6 0%, transparent 70%),
+      #fffaf5;
+    font-family: "Wanted Sans Subset", sans-serif;
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(oklch(0.702 0.1919 35 / 0.12) 1.2px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+
+  .copy { position: absolute; left: 56px; top: 74px; width: 400px; }
+  .tagline {
+    position: relative;
+    display: inline-block;
+    font-family: "Aido Hand Subset", cursive;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--main);
+    /* 손글씨 마커 굵기: 같은 색 얇은 외곽선 */
+    -webkit-text-stroke: 0.6px var(--main);
+    transform: rotate(-2deg);
+    transform-origin: left center;
+  }
+  .tagline::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    right: -6px;
+    bottom: -8px;
+    height: 10px;
+    background: no-repeat center / 100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M2 7 C 50 2, 120 2, 198 5' fill='none' stroke='%23ff6a45' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .headline {
+    margin-top: 26px;
+    font-family: "Jua Subset", sans-serif;
+    font-size: 54px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+    white-space: pre-line;
+  }
+  .headline em { font-style: normal; color: var(--main); }
+
+  .brand {
+    position: absolute;
+    left: 56px;
+    bottom: 34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--ink);
+  }
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--main);
+  }
+
+  .paw-trail { position: absolute; color: var(--main); }
+  .paw-trail svg { position: absolute; width: 22px; height: 22px; }
+
+  .cat {
+    position: absolute;
+    left: 516px;
+    top: -30px;
+    width: 244px;
+    height: 244px;
+    filter: drop-shadow(0 10px 18px rgb(120 60 20 / 0.12));
+  }
+
+  .card {
+    position: absolute;
+    left: 470px;
+    top: 150px;
+    width: 292px;
+    padding: 16px 18px 18px;
+    border-radius: 26px;
+    background: #fff;
+    box-shadow:
+      0 1px 0 rgb(0 0 0 / 0.03),
+      0 18px 40px -12px rgb(255 104 67 / 0.28),
+      0 4px 14px rgb(0 0 0 / 0.05);
+  }
+  .row { display: flex; align-items: center; gap: 10px; height: 42px; }
+  .row + .row { margin-top: 6px; }
+  .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex: none; }
+  .todo { font-weight: 600; font-size: 16px; letter-spacing: -0.2px; }
+  .todo.done { flex: 1; color: var(--gray-6); text-decoration: line-through; text-decoration-color: var(--gray-6); }
+  .check {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 2px solid var(--main);
+    flex: none;
+  }
+  .check.done { background: var(--main); }
+  .poke {
+    margin-right: auto;
+    padding: 5px 11px 5px 9px;
+    border-radius: 999px;
+    background: var(--main);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transform: rotate(-5deg);
+    box-shadow: 0 6px 14px -4px rgb(255 104 67 / 0.55);
+  }
+  .divider { height: 1px; margin: 12px 0; background: var(--gray-4); }
+  .board { display: flex; gap: 10px; align-items: center; }
+  .stamp {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .stamp svg { width: 22px; height: 22px; }
+  .stamp.stamped { background: var(--main); color: #fff; transform: rotate(-6deg); }
+  .stamp.waiting { border: 1.5px dashed var(--main); background: var(--main-soft); color: var(--main); }
+  .stamp.waiting svg { opacity: 0.4; }
+  .stamp.milestone { border: 1px solid var(--fish); background: rgb(35 162 255 / 0.1); color: var(--fish); }
+  .stamp.milestone svg { width: 24px; height: 15px; }
+</style>
+</head>
+<body>
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <defs>
+      <!-- apps/mobile/assets/icons/ic_paw.svg, ic_fish.svg -->
+      <path id="paw" d="M19.3629 7.76445C19.1461 7.24922 18.7859 6.87773 18.3211 6.69062L18.3148 6.68828C18.1033 6.60545 17.878 6.56305 17.6508 6.56328H17.6258C16.5617 6.5793 15.4754 7.48359 14.923 8.81367C14.518 9.78633 14.4715 10.8324 14.7988 11.6121C15.0152 12.1277 15.3762 12.4992 15.843 12.6863L15.848 12.6883C16.0596 12.7711 16.2849 12.8135 16.5121 12.8133C17.5863 12.8133 18.684 11.909 19.2465 10.5613C19.6465 9.58984 19.6906 8.54453 19.3629 7.76445ZM15.1113 13.5012C14.4977 13.1324 13.9176 12.7836 13.5387 12.157C12.4934 10.4227 11.8621 9.37578 10.207 9.37578C8.55195 9.37578 7.91914 10.4227 6.87148 12.157C6.4918 12.7844 5.91055 13.1336 5.29492 13.5039C4.58906 13.9281 3.85977 14.3664 3.54492 15.2289C3.4225 15.5398 3.36084 15.8713 3.36328 16.2055C3.36328 17.6098 4.45703 18.7523 5.80078 18.7523C6.49414 18.7523 7.23203 18.5121 8.01289 18.2578C8.76367 18.0133 9.53984 17.7605 10.2109 17.7605C10.882 17.7605 11.6562 18.0133 12.4043 18.2578C13.1836 18.5105 13.918 18.7508 14.6133 18.7508C15.9551 18.7508 17.0469 17.6082 17.0469 16.2039C17.048 15.8695 16.985 15.538 16.8613 15.2273C16.5465 14.3641 15.8168 13.9254 15.1113 13.5012ZM6.06641 8.00273C6.53125 8.58594 7.12109 8.90703 7.72734 8.90703C7.81011 8.90701 7.89275 8.90088 7.97461 8.88867C9.23906 8.70273 10.027 7.15977 9.76836 5.37305C9.66016 4.62188 9.37109 3.92227 8.95703 3.40352C8.49297 2.82148 7.90234 2.50078 7.29648 2.50078C7.21372 2.5008 7.13108 2.50694 7.04922 2.51914C5.78477 2.70508 4.99688 4.24805 5.25547 6.03477C5.36328 6.78477 5.65234 7.48359 6.06641 8.00273ZM12.4398 8.88867C12.5217 8.90088 12.6043 8.90701 12.6871 8.90703C13.2937 8.90703 13.8832 8.58594 14.348 8.00273C14.7617 7.48359 15.0492 6.78477 15.1586 6.03398C15.4172 4.24805 14.6293 2.70508 13.3648 2.51836C13.283 2.50616 13.2003 2.50002 13.1176 2.5C12.5117 2.50078 11.9211 2.82148 11.457 3.40352C11.043 3.92227 10.7539 4.62188 10.6461 5.37383C10.3875 7.15977 11.1754 8.70273 12.4398 8.88867ZM4.56602 12.6883L4.57148 12.6863C5.0375 12.4992 5.39805 12.1281 5.61406 11.6129C5.94141 10.8316 5.89531 9.78672 5.49102 8.81406C4.93125 7.46797 3.83398 6.56328 2.76094 6.56328C2.53371 6.56295 2.30844 6.60536 2.09688 6.68828L2.09141 6.69023C1.62656 6.87578 1.26602 7.24844 1.05 7.76367C0.722657 8.54492 0.768751 9.58984 1.17305 10.5625C1.73281 11.9086 2.83008 12.8133 3.90313 12.8133C4.12996 12.8135 4.35482 12.7711 4.56602 12.6883Z" fill="currentColor"/>
+      <path id="fish" d="M9.73828 0C13.5125 6.56547e-06 17.1946 2.30511 18.5498 4.99414C19.8313 3.14895 22.2853 1.40268 23.417 1.40234C24.9865 1.40234 22.8867 4.76299 22.8867 7.08594C22.8867 9.40889 24.9866 12.6943 23.417 12.6943C22.2918 12.694 19.8597 11.0058 18.5723 9.19434C17.2364 11.8742 13.5343 14.1338 9.73828 14.1338C4.98784 14.1338 0.000215724 10.5979 0 7.12402C0 3.65006 4.98774 0 9.73828 0Z" fill="currentColor"/>
+      <path id="check" d="M5 10.5l3.2 3.2L15 6.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </defs>
+  </svg>
+
+  <!-- 왼쪽 아래에서 카드 쪽으로 걸어가는 발자국 -->
+  <div class="paw-trail" aria-hidden="true">
+    <svg aria-hidden="true" viewBox="0 0 20 20" style="left:196px;top:354px;opacity:.14;transform:rotate(74deg)"><use href="#paw"/></svg>
+    <svg aria-hidden="true" viewBox="0 0 20 20" style="left:240px;top:332px;opacity:.2;transform:rotate(66deg)"><use href="#paw"/></svg>
+    <svg aria-hidden="true" viewBox="0 0 20 20" style="left:286px;top:350px;opacity:.26;transform:rotate(70deg)"><use href="#paw"/></svg>
+    <svg aria-hidden="true" viewBox="0 0 20 20" style="left:332px;top:322px;opacity:.32;transform:rotate(60deg)"><use href="#paw"/></svg>
+    <svg aria-hidden="true" viewBox="0 0 20 20" style="left:378px;top:334px;opacity:.4;transform:rotate(64deg)"><use href="#paw"/></svg>
+    <svg aria-hidden="true" viewBox="0 0 20 20" style="left:422px;top:304px;opacity:.5;transform:rotate(54deg)"><use href="#paw"/></svg>
+  </div>
+
+  <div class="copy">
+    <p class="tagline" data-slot="tagline"></p>
+    <p class="headline" data-slot="headline"></p>
+  </div>
+
+  <div class="brand">
+    <span class="brand-mark"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 20 20" style="color:#fff"><use href="#check"/></svg></span>
+    아이두
+  </div>
+
+  <img class="cat" src="ido-cat-hi.webp" alt="">
+
+  <div class="card">
+    <div class="row">
+      <img class="avatar" src="../../public/app-assets/cat-orange-tabby.webp" alt="">
+      <span class="todo done">아침 운동</span>
+      <span class="check done"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" style="color:#fff"><use href="#check"/></svg></span>
+    </div>
+    <div class="row">
+      <img class="avatar" src="../../public/app-assets/cat-default.webp" alt="">
+      <span class="todo">책 읽기</span>
+      <span class="poke"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 20 20" style="color:#fff"><use href="#paw"/></svg>콕</span>
+      <span class="check"></span>
+    </div>
+    <div class="divider"></div>
+    <div class="board">
+      <span class="stamp stamped"><svg aria-hidden="true" viewBox="0 0 20 20"><use href="#paw"/></svg></span>
+      <span class="stamp stamped" style="transform:rotate(8deg)"><svg aria-hidden="true" viewBox="0 0 20 20"><use href="#paw"/></svg></span>
+      <span class="stamp waiting"><svg aria-hidden="true" viewBox="0 0 20 20"><use href="#paw"/></svg></span>
+      <span class="stamp milestone"><svg aria-hidden="true" viewBox="0 0 24 15"><use href="#fish"/></svg></span>
+    </div>
+  </div>
+</body>
+</html>
