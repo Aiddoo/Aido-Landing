@@ -245,6 +245,34 @@ export type MessageCatalog = {
     playStorePrefix: string;
     playStoreLabel: string;
   };
+  invite: {
+    metaTitle: string;
+    metaDescription: string;
+    brandLabel: string;
+    loadingLabel: string;
+    /** `{name}`을 초대한 사람의 닉네임으로 바꾼다. */
+    titleTemplate: string;
+    titleFallback: string;
+    lead: string;
+    /** `{name}`을 초대한 사람의 닉네임으로 바꾼다. */
+    avatarAltTemplate: string;
+    avatarAltFallback: string;
+    receiptLabel: string;
+    rewardLabel: string;
+    rewardValue: string;
+    codeLabel: string;
+    codeCopy: string;
+    codeCopied: string;
+    codeCopyAria: string;
+    codeCopiedStatus: string;
+    codeManualStatus: string;
+    codeHint: string;
+    outdatedNote: string;
+    errors: Record<
+      "invalidCode" | "notFound" | "changed" | "unavailable" | "unknown",
+      { title: string; description: string }
+    >;
+  };
 };
 
 const catalogs: Record<Locale, MessageCatalog> = {
@@ -970,6 +998,57 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+    },
+    invite: {
+      metaTitle: "친구 초대",
+      metaDescription:
+        "친구가 아이두에 초대했어요. 앱을 설치하고 가입하면 프리미엄 7일을 받아요.",
+      brandLabel: "아이두 친구 초대",
+      loadingLabel: "초대 정보를 불러오는 중이에요",
+      titleTemplate: "{name}님이 아이두에 초대했어요",
+      titleFallback: "친구가 아이두에 초대했어요",
+      lead: "함께 시작하면 서로의 할 일을 응원하며 하루를 끝낼 수 있어요.",
+      avatarAltTemplate: "{name}님의 고양이 프로필",
+      avatarAltFallback: "아이두 고양이 프로필",
+      receiptLabel: "초대 영수증",
+      rewardLabel: "가입하면",
+      rewardValue: "프리미엄 7일",
+      codeLabel: "초대 코드",
+      codeCopy: "복사",
+      codeCopied: "복사했어요",
+      codeCopyAria: "초대 코드 복사",
+      codeCopiedStatus: "초대 코드를 복사했어요",
+      codeManualStatus: "자동 복사가 막혔어요. 코드를 길게 눌러 복사해 주세요.",
+      codeHint:
+        "앱을 설치한 뒤 가입할 때 이 코드를 입력해요. 안드로이드는 자동으로 채워져요.",
+      outdatedNote:
+        "이미 아이두를 쓰고 있나요? 앱을 최신 버전으로 업데이트한 뒤 이 링크를 다시 열어 주세요.",
+      errors: {
+        invalidCode: {
+          title: "초대 링크를 확인해 주세요",
+          description:
+            "링크가 잘리거나 바뀐 것 같아요. 친구에게 링크를 다시 받아 보세요.",
+        },
+        notFound: {
+          title: "초대 링크를 찾을 수 없어요",
+          description: "코드를 다시 확인하거나 친구에게 새 링크를 받아 보세요.",
+        },
+        changed: {
+          title: "친구가 초대 링크를 새로 만들었어요",
+          description:
+            "이 링크는 더 쓸 수 없어요. 친구에게 최신 링크를 받아 보세요.",
+        },
+        unavailable: {
+          title: "지금은 초대를 받을 수 없어요",
+          description:
+            "잠시 뒤에 다시 열어 주세요. 아이두는 먼저 설치해도 좋아요.",
+        },
+        unknown: {
+          title: "친구 정보를 불러오지 못했어요",
+          description:
+            "코드는 그대로 쓸 수 있어요. 잠시 뒤에 다시 열어도 좋아요.",
+        },
+      },
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
@@ -1786,6 +1865,58 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+    },
+    invite: {
+      metaTitle: "Friend invite",
+      metaDescription:
+        "A friend invited you to Aido. Install the app and sign up to get 7 days of Premium.",
+      brandLabel: "Aido friend invite",
+      loadingLabel: "Loading your invite",
+      titleTemplate: "{name} invited you to Aido",
+      titleFallback: "A friend invited you to Aido",
+      lead: "Start together and cheer each other on until today’s to-dos are done.",
+      avatarAltTemplate: "{name}’s cat profile",
+      avatarAltFallback: "Aido cat profile",
+      receiptLabel: "Invite receipt",
+      rewardLabel: "When you sign up",
+      rewardValue: "7 days of Premium",
+      codeLabel: "Invite code",
+      codeCopy: "Copy",
+      codeCopied: "Copied",
+      codeCopyAria: "Copy invite code",
+      codeCopiedStatus: "Invite code copied",
+      codeManualStatus: "Copy was blocked. Press and hold the code to copy it.",
+      codeHint:
+        "Enter this code when you sign up after installing. On Android it fills in automatically.",
+      outdatedNote:
+        "Already use Aido? Update the app to the latest version, then open this link again.",
+      errors: {
+        invalidCode: {
+          title: "Please check your invite link",
+          description:
+            "The link may be cut off or changed. Ask your friend to send it again.",
+        },
+        notFound: {
+          title: "We can’t find this invite link",
+          description:
+            "Check the code again or ask your friend for a new link.",
+        },
+        changed: {
+          title: "Your friend made a new invite link",
+          description:
+            "This link no longer works. Ask your friend for the latest one.",
+        },
+        unavailable: {
+          title: "Invites are unavailable right now",
+          description:
+            "Please try again in a bit. You can still install Aido first.",
+        },
+        unknown: {
+          title: "We couldn’t load your friend’s info",
+          description:
+            "Your code still works. You can also try again in a bit.",
+        },
+      },
     },
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",

@@ -6,10 +6,14 @@ export const publicPaths = [
   "/patch-notes",
   "/terms",
   "/privacy",
+  "/invite",
   ...featureGuides.map((guide) => guide.path),
 ] as const;
 export type PublicPath = (typeof publicPaths)[number];
+// 초대 링크 /i/{코드}는 코드를 버리고 /invite 한 경로로만 집계한다.
+const invitePathPattern = /^\/i\/[^/]+\/?$/;
 export function getPublicPath(pathname: string): PublicPath | null {
+  if (invitePathPattern.test(pathname)) return "/invite";
   const path = pathname.replace(/^\/(ko|en)(?=\/|$)/, "").replace(/\/$/, "");
   return publicPaths.find((item) => item === path) ?? null;
 }

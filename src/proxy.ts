@@ -2,6 +2,10 @@ import { type NextRequest, NextResponse } from "next/server";
 import { isLocale, type Locale, localeCookieName } from "@/i18n/config";
 import { getPreferredLocale } from "@/i18n/request-locale";
 
+// 친구 초대 링크 /i/{코드}. 코드 검증은 브라우저에서 하므로 형태만 확인한다.
+const INVITE_LINK_PATTERN = /^\/i\/[^/]+\/?$/;
+const INVITE_PAGE_PATH = "/invite";
+
 function isPublicFile(pathname: string): boolean {
   return /\.[a-zA-Z0-9]+$/.test(pathname);
 }
@@ -25,6 +29,7 @@ export function proxy(request: NextRequest) {
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
+    pathname.startsWith("/.well-known") ||
     isPublicFile(pathname)
   ) {
     return NextResponse.next();
@@ -53,8 +58,14 @@ export function proxy(request: NextRequest) {
 
   const targetLocale = preferredLocale;
   const targetUrl = request.nextUrl.clone();
-  targetUrl.pathname =
-    pathname === "/" ? `/${targetLocale}` : `/${targetLocale}${pathname}`;
+  if (INVITE_LINK_PATTERN.test(pathname)) {
+    // 주소창은 /i/{코드}로 두고 정적 /{locale}/invite를 보여 준다. 코드는 rewrite 대상에 싣지 않는다.
+    targetUrl.pathname = `/${targetLocale}${INVITE_PAGE_PATH}`;
+    targetUrl.search = "";
+  } else {
+    targetUrl.pathname =
+      pathname === "/" ? `/${targetLocale}` : `/${targetLocale}${pathname}`;
+  }
 
   const response = NextResponse.rewrite(targetUrl);
   applyLocaleCookie(response, targetLocale);
@@ -62,5 +73,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|\\.well-known|.*\\..*).*)"],
 };

@@ -1,0 +1,340 @@
+/* 초대 페이지. 로딩·오류·완료가 같은 박스를 쓰도록 동적 영역의 높이를 고정한다. */
+.invite-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: calc(100% - 2.5rem);
+  max-width: 72rem;
+  height: 76px;
+  margin-inline: auto;
+}
+
+.invite-brand-mark {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--foreground);
+  background: var(--brand);
+}
+
+.invite-brand-label {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--brand-ink);
+}
+
+.invite-main {
+  padding: 8px 0 56px;
+}
+
+.invite-layout {
+  display: grid;
+  gap: 28px;
+  width: calc(100% - 2.5rem);
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+.invite-card {
+  padding: 24px 22px;
+  background: #fff9de;
+  border: 3px solid var(--foreground);
+  border-radius: 42px 15px 38px 14px;
+  box-shadow: 6px 6px 0 var(--foreground);
+}
+
+.invite-inviter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 88px;
+}
+
+.invite-avatar {
+  flex: none;
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  border: 3px solid var(--foreground);
+  background: #fff;
+}
+
+.invite-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.invite-inviter-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.invite-name,
+.invite-tag {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.invite-name {
+  height: 1.75rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.75rem;
+}
+
+.invite-tag {
+  height: 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+  color: #515151;
+  font-variant-numeric: tabular-nums;
+}
+
+.invite-title {
+  margin-top: 20px;
+  height: 2.8em;
+  overflow: hidden;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.invite-title[data-loading] {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.invite-lead {
+  margin-top: 14px;
+  height: calc(3 * 1.7em);
+  overflow: hidden;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #515151;
+}
+
+.invite-skeleton {
+  display: block;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.invite-bar-name {
+  width: 55%;
+  height: 1.1rem;
+}
+
+.invite-bar-tag {
+  width: 32%;
+  height: 0.9rem;
+}
+
+.invite-bar-title {
+  width: 100%;
+  height: 0.9em;
+}
+
+.invite-bar-short {
+  width: 62%;
+}
+
+@keyframes invite-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .invite-skeleton {
+    animation: invite-pulse 1.4s ease-in-out infinite;
+  }
+}
+
+/* 영수증: 위·아래 톱니는 mask, 윤곽·그림자는 filter(레이아웃 영향 없음). */
+.invite-ticket {
+  filter: drop-shadow(1.5px 0 0 var(--foreground))
+    drop-shadow(-1.5px 0 0 var(--foreground))
+    drop-shadow(0 1.5px 0 var(--foreground))
+    drop-shadow(0 -1.5px 0 var(--foreground))
+    drop-shadow(5px 5px 0 var(--foreground));
+}
+
+.invite-ticket-paper {
+  padding: 34px 22px 36px;
+  background: #fffdf6;
+  -webkit-mask:
+    radial-gradient(circle at 11px 0, #0000 9px, #000 9.5px) top / 22px 51%
+    round no-repeat,
+    radial-gradient(circle at 11px 100%, #0000 9px, #000 9.5px) bottom / 22px
+    51% round no-repeat;
+  mask:
+    radial-gradient(circle at 11px 0, #0000 9px, #000 9.5px) top / 22px 51%
+    round no-repeat,
+    radial-gradient(circle at 11px 100%, #0000 9px, #000 9.5px) bottom / 22px
+    51% round no-repeat;
+}
+
+.invite-receipt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.5rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.invite-divider {
+  margin-block: 14px;
+  border: 0;
+  border-top: 2px dashed color-mix(in oklch, var(--foreground) 38%, transparent);
+}
+
+.invite-reward {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 2.5rem;
+  font-weight: 700;
+}
+
+.invite-reward-value {
+  padding: 3px 12px;
+  border: 2px solid var(--foreground);
+  border-radius: 14px 6px 12px 6px;
+  background: var(--brand);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.invite-code-label {
+  height: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  color: #515151;
+}
+
+.invite-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 3.25rem;
+}
+
+.invite-code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.875rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  user-select: all;
+}
+
+.invite-code[data-empty] {
+  color: var(--muted-foreground);
+  user-select: none;
+}
+
+.invite-copy {
+  flex: none;
+  min-width: 5.5rem;
+  height: 2.75rem;
+  padding-inline: 14px;
+  border: 2px solid var(--foreground);
+  border-radius: 16px 7px 14px 7px;
+  background: var(--brand);
+  box-shadow: 3px 3px 0 var(--foreground);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.invite-copy:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--foreground);
+}
+
+.invite-copy:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.invite-hint {
+  margin-top: 8px;
+  min-height: calc(3 * 1.6em);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #515151;
+}
+
+.invite-ticket .store-buttons {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: none;
+  gap: 12px;
+}
+
+.invite-ticket .store-links {
+  display: block;
+}
+
+.invite-outdated {
+  padding: 14px 16px;
+  border: 2px dashed var(--foreground);
+  border-radius: 18px 8px 16px 8px;
+  background: #eaf3fb;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+@media (min-width: 900px) {
+  .invite-header {
+    height: 88px;
+  }
+  .invite-main {
+    padding: 24px 0 88px;
+  }
+  .invite-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    grid-template-rows: auto 1fr;
+    column-gap: 56px;
+    align-items: start;
+  }
+  .invite-card {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 36px 34px;
+  }
+  .invite-ticket {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .invite-outdated {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .invite-title {
+    font-size: 2.125rem;
+  }
+  .invite-lead {
+    font-size: 1.0625rem;
+  }
+}

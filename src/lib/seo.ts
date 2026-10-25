@@ -10,6 +10,8 @@ export const APP_STORE_URL =
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.aido.mobile";
 export const INSTAGRAM_URL = "https://www.instagram.com/aiddoo_official/";
+/** 아이두 API 서버. 초대 미리보기처럼 공개된 읽기 전용 엔드포인트만 브라우저에서 호출한다. */
+export const API_URL = "https://api.aido.kr";
 
 const OG_IMAGE_PATH = "/og-image.png";
 
