@@ -459,10 +459,18 @@ for (const locale of ["ko", "en"]) {
   );
   assert.ok(!sitemapXml.includes(route), `${route} must stay out of sitemap`);
   assert.doesNotMatch(html, /rel="canonical"/, `${route}: no canonical`);
-  assert.ok(
-    tags(html, "meta").find((item) => item.property === "og:image")?.content ===
-      `${SITE_URL}/og-image.png`,
-  );
+  // 한국어는 카카오톡 공유와 같은 초대 썸네일, 영어는 기본 OG 이미지를 쓴다.
+  const inviteOgImage =
+    locale === "ko" ? "/images/invite-share.png" : "/og-image.png";
+  for (const [attribute, key] of [
+    ["property", "og:image"],
+    ["name", "twitter:image"],
+  ])
+    assert.equal(
+      tags(html, "meta").find((item) => item[attribute] === key)?.content,
+      `${SITE_URL}${inviteOgImage}`,
+      `${route}: ${key}`,
+    );
   assert.equal(
     tags(html, "link").filter((link) => link.as === "font").length,
     locale === "ko" ? 1 : 0,
