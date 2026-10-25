@@ -325,3 +325,5 @@ See [Google's Privacy Policy](https://policies.google.com/privacy) and [Vercel W
 ## Friend invite reward abuse prevention notice (added October 26, 2026)
 
 To prevent the same device or account details from claiming friend invite rewards more than once, when you accept an invite we store only an irreversible hash (HMAC-SHA256) of your device identifier (iOS IDFV or Android ID) and your verified email or social sign-in account ID. This value isn't linked to your account and is kept after account deletion to prevent abuse.
+
+This notice applies from the day the friend invite feature becomes available in the Aido app (the release date of app version 1.13.0).
