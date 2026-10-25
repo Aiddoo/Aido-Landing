@@ -22,6 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: { absolute: title },
     description: invite.metaDescription,
+    // 레이아웃의 홈 canonical/hreflang을 물려받지 않는다. 코드별 주소는 정규 주소가 없다.
+    alternates: {},
     robots: { index: false, follow: false },
     openGraph: { ...social.openGraph, url: undefined },
     twitter: social.twitter,

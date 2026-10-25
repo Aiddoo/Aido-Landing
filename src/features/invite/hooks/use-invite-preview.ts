@@ -1,35 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
-import {
-  fetchInvitePreview,
-  type InviteFailure,
-  type InvitePreviewResult,
-} from "../api/fetch-invite-preview";
-import type { InviteCode } from "../schemas/invite.schema";
+import { use } from "react";
+import { getInvitePreview } from "../api/get-invite-preview";
+import type { InvitePreviewState } from "../models/invite-preview";
+import { useInviteCode } from "./use-invite-code";
 
-type Settled = { code: InviteCode; result: InvitePreviewResult };
-
-export type InviteViewFailure = InviteFailure | "invalid_code";
-export type InvitePreviewState =
-  | { status: "loading" }
-  | Extract<InvitePreviewResult, { status: "ready" }>
-  | { status: "failed"; failure: InviteViewFailure };
-
-/** 코드가 바뀌면 이전 결과는 버리고 다시 불러온다. 결과는 코드에 묶어 저장한다. */
-export function useInvitePreview(
-  code: InviteCode | null,
-  resolved: boolean,
-): InvitePreviewState {
-  const [settled, setSettled] = useState<Settled | null>(null);
-  useEffect(() => {
-    if (!code) return;
-    const controller = new AbortController();
-    void fetchInvitePreview(code, controller.signal).then((result) => {
-      if (!controller.signal.aborted) setSettled({ code, result });
-    });
-    return () => controller.abort();
-  }, [code]);
-  if (!resolved) return { status: "loading" };
+/**
+ * 주소의 코드로 초대한 친구 미리보기를 읽는다. 코드가 있으면 요청이 끝날 때까지
+ * 가장 가까운 Suspense가 Loading을 보여 준다. 같은 코드는 요청 하나를 나눠 쓴다.
+ */
+export function useInvitePreview(): InvitePreviewState {
+  const { resolved, code } = useInviteCode();
+  if (!resolved) return { status: "pending" };
   if (!code) return { status: "failed", failure: "invalid_code" };
-  return settled?.code === code ? settled.result : { status: "loading" };
+  return use(getInvitePreview(code));
 }
