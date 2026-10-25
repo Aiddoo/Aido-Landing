@@ -39,8 +39,13 @@ describe("Google Play 링크", () => {
   it("Install Referrer에 초대 코드를 인코딩해 싣는다", () => {
     const url = new URL(buildPlayStoreInviteUrl("BCD234"));
     expect(url.searchParams.get("id")).toBe("com.aido.mobile");
-    expect(url.searchParams.get("referrer")).toBe("invite_code=BCD234");
-    expect(url.search).toContain("referrer=invite_code%3DBCD234");
+    // 앱의 install referrer 파서가 읽는 키(inviteCode)와 같아야 한다.
+    const referrer = url.searchParams.get("referrer") ?? "";
+    expect(new URLSearchParams(referrer).get("inviteCode")).toBe("BCD234");
+    expect(referrer).toBe("inviteCode=BCD234&utm_source=aido_landing");
+    expect(url.search).toContain(
+      "referrer=inviteCode%3DBCD234%26utm_source%3Daido_landing",
+    );
   });
   it("코드가 없으면 referrer 없이 스토어로 보낸다", () => {
     expect(buildPlayStoreInviteUrl(null)).not.toContain("referrer");
