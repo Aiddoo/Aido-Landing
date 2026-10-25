@@ -73,15 +73,12 @@
   min-width: 0;
 }
 
+/* flex 컨테이너의 텍스트에는 말줄임표가 붙지 않아 block으로 두고 줄 높이로 가운데 맞춘다. */
 .invite-name {
-  display: flex;
-  align-items: center;
+  display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.invite-name {
   height: 1.75rem;
   font-size: 1.25rem;
   font-weight: 800;
@@ -90,6 +87,7 @@
 
 .invite-title {
   margin-top: 20px;
+  overflow-wrap: anywhere;
   height: 2.8em;
   overflow: hidden;
   font-size: 1.5rem;
@@ -125,6 +123,7 @@
 .invite-bar-name {
   width: 55%;
   height: 1.1rem;
+  margin-top: 0.325rem;
 }
 
 .invite-bar-title {

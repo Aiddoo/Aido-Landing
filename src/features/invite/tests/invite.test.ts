@@ -76,6 +76,12 @@ describe("미리보기 응답", () => {
     );
     expect(parsed).toEqual({ name: "마루", profileImage: null });
   });
+  it("서버가 길이를 제한하지 않는 긴 이름도 읽는다", () => {
+    const name = "가".repeat(80);
+    expect(
+      parseInvitePreview(envelope({ name, profileImage: null }))?.name,
+    ).toBe(name);
+  });
   it("이름이 없는 초대한 사람도 읽는다", () => {
     const inviter = { name: null, profileImage: null };
     expect(parseInvitePreview(envelope(inviter))?.name).toBeNull();

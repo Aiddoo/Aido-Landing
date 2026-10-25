@@ -12,8 +12,9 @@ export const inviteCodeSchema = z
   );
 
 // 서버 계약(invitePreviewInviterSchema)과 같다. 이름을 정하지 않은 사용자는 name이 null이다.
+// 서버는 이름 길이를 제한하지 않으므로 여기서도 제한하지 않는다. 긴 이름은 CSS가 줄인다.
 const inviterSchema = z.object({
-  name: z.nullable(z.string().check(z.maxLength(60))),
+  name: z.nullable(z.string()),
   profileImage: z.nullable(z.string()),
 });
 // 서버의 공통 성공 봉투 { success, data, timestamp }.

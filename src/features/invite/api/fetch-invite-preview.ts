@@ -32,7 +32,7 @@ function failureFromCode(
     .exhaustive();
 }
 
-/** 공개 미리보기 API. 쿠키·인증 없이 닉네임과 태그만 읽으며, 절대 reject하지 않는다. */
+/** 공개 미리보기 API. 쿠키·인증 없이 닉네임과 프로필 이미지만 읽으며, 절대 reject하지 않는다. */
 export async function fetchInvitePreview(
   code: InviteCode,
 ): Promise<InvitePreview> {
