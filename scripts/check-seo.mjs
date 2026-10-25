@@ -471,6 +471,13 @@ for (const locale of ["ko", "en"]) {
       `${SITE_URL}${inviteOgImage}`,
       `${route}: ${key}`,
     );
+  assert.ok(
+    tags(html, "link").some(
+      (link) =>
+        link.rel === "preconnect" && link.href === "https://api.aido.kr",
+    ),
+    `${route}: preconnects to the invite preview API`,
+  );
   assert.equal(
     tags(html, "link").filter((link) => link.as === "font").length,
     locale === "ko" ? 1 : 0,

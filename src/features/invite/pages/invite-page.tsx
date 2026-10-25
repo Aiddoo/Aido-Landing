@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { Suspense } from "react";
+import { preconnect } from "react-dom";
 import { SiteFooter } from "@/components/layout/site-footer";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
+import { API_URL } from "@/lib/seo";
 import {
   InviteCodeCopy,
   InviteCodeCopyLoading,
@@ -23,6 +25,9 @@ import "../styles/invite.css";
 // 언어 전환은 코드를 잃으므로 제공하지 않는다(언어는 프록시가 정한다).
 export function InvitePage({ locale }: { locale: Locale }) {
   const { invite, storeButtons, accessibility } = getMessages(locale);
+  // 하이드레이션 직후 미리보기를 요청하므로 API 연결을 HTML 단계에서 미리 연다.
+  // 요청은 credentials: "omit"이라 익명 CORS 연결을 준비한다.
+  preconnect(API_URL, { crossOrigin: "anonymous" });
   return (
     <>
       <a href="#content" className="skip-link">
