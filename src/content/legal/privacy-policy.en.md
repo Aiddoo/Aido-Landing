@@ -41,6 +41,7 @@ This Privacy Policy is intended to inform users about the processing of personal
 | Last Active Timestamp | Inactive user detection, service improvement |
 | Device Fingerprint (User-Agent + IP hash) | Session security, unauthorized access detection |
 | Daily AI Usage Count | Usage limit management per subscription plan |
+| Hash of device identifier (iOS IDFV or Android ID) and of verified email or social sign-in account ID, collected when accepting an invite (HMAC-SHA256; original values are not stored) | Preventing duplicate claims of friend invite rewards (abuse prevention) |
 
 ### 2-3. Device Permission Access (On-Device Processing)
 
@@ -79,6 +80,7 @@ The Company processes collected personal information only for the following purp
 | Subscription and Payment Management | Paid subscription processing, payment status management, receipt verification |
 | Notification Delivery | To-do reminders (1 hour and 10 minutes before scheduled time), morning & evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications, Win-back notifications, service announcements |
 | Service Improvement | Usage statistics analysis, error response, service quality enhancement |
+| Abuse Prevention | Preventing friend invite rewards from being claimed repeatedly with the same device or account details |
 | Customer Support | Inquiry response, complaint handling, notice delivery |
 | Marketing (Optional) | Providing event and promotional information (only to consenting Members) |
 
@@ -108,8 +110,11 @@ The Company destroys personal information without delay once the purpose of coll
 | Daily Completion Records (DailyCompletion) | **Until Member withdrawal** | Core service provision (streaks, statistics) |
 | Weekly Achievement Records (WeeklyAchievement) | **Until Member withdrawal** | Weekly achievement badges and statistics |
 | AI Reports (AiReport) | **Until Member withdrawal** | AI report viewing service provision |
+| Invite relationships, acceptance, active-day and reward records | **Until Member withdrawal** | Friend invite and reward service provision |
+| Hash values for preventing duplicate reward claims (RewardClaim) | **For as long as the abuse-prevention purpose continues (kept after Member withdrawal)** | Preventing repeated claims of friend invite rewards |
 
 - Upon Member withdrawal, the Company applies a **30-day grace period** before destroying personal information. If the Member logs in again within the grace period, the account is restored. After the grace period, personal information is permanently deleted except for information that must be retained under the legally mandated retention periods above.
+- Invite relationships and reward records are deleted together with the account upon Member withdrawal. However, the hash values used to prevent duplicate reward claims are not linked to any user information and cannot identify an individual, and are kept after Member withdrawal to prevent abuse.
 
 ---
 
@@ -310,3 +315,9 @@ This notice applies to analytics on the official aido.kr website. Use **Website 
 - Selecting **Decline** stops tracking and clears this site's Google Analytics cookies. Previously collected data is handled according to each analytics service's retention settings. Changing your choice does not delete historical data.
 
 See [Google's Privacy Policy](https://policies.google.com/privacy) and [Vercel Web Analytics privacy information](https://vercel.com/docs/analytics/privacy-policy) for information about processing by these services. For website analytics questions, contact matthew@redband.co.kr.
+
+---
+
+## Friend invite reward abuse prevention notice (added October 26, 2026)
+
+To prevent the same device or account details from claiming friend invite rewards more than once, when you accept an invite we store only an irreversible hash (HMAC-SHA256) of your device identifier (iOS IDFV or Android ID) and your verified email or social sign-in account ID. This value isn't linked to your account and is kept after account deletion to prevent abuse.
