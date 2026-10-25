@@ -1030,13 +1030,13 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "링크가 잘리거나 바뀐 것 같아요. 친구에게 링크를 다시 받아 보세요.",
         },
         notFound: {
-          title: "초대 링크를 찾을 수 없어요",
+          title: "초대 코드를 찾을 수 없어요",
           description: "코드를 다시 확인하거나 친구에게 새 링크를 받아 보세요.",
         },
         changed: {
           title: "친구가 초대 링크를 새로 만들었어요",
           description:
-            "이 링크는 더 쓸 수 없어요. 친구에게 최신 링크를 받아 보세요.",
+            "이 링크는 더는 쓸 수 없어요. 친구에게 최신 링크를 받아 보세요.",
         },
         unavailable: {
           title: "지금은 초대를 받을 수 없어요",
@@ -1869,7 +1869,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     invite: {
       metaTitle: "Friend invite",
       metaDescription:
-        "A friend invited you to Aido. Install the app and sign up to get 7 days of Premium.",
+        "A friend invited you to Aido. Install the app and join to get 7 days of Premium.",
       brandLabel: "Aido friend invite",
       loadingLabel: "Loading your invite",
       titleTemplate: "{name} invited you to Aido",
@@ -1878,7 +1878,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       avatarAltTemplate: "{name}’s cat profile",
       avatarAltFallback: "Aido cat profile",
       receiptLabel: "Invite receipt",
-      rewardLabel: "When you sign up",
+      rewardLabel: "When you join",
       rewardValue: "7 days of Premium",
       codeLabel: "Invite code",
       codeCopy: "Copy",
@@ -1887,7 +1887,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       codeCopiedStatus: "Invite code copied",
       codeManualStatus: "Copy was blocked. Press and hold the code to copy it.",
       codeHint:
-        "Enter this code when you sign up after installing. On Android it fills in automatically.",
+        "Enter this code when you join after installing. On Android it fills in automatically.",
       outdatedNote:
         "Already use Aido? Update the app to the latest version, then open this link again.",
       errors: {
@@ -1897,7 +1897,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "The link may be cut off or changed. Ask your friend to send it again.",
         },
         notFound: {
-          title: "We can’t find this invite link",
+          title: "We couldn’t find this invite code",
           description:
             "Check the code again or ask your friend for a new link.",
         },
