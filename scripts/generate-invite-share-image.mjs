@@ -23,8 +23,8 @@ const MAX_BYTES = 1024 * 1024;
 const { values } = parseArgs({
   options: {
     out: { type: "string", default: "public/images/invite-share.png" },
-    tagline: { type: "string", default: "친구가 하면 나도 하게 돼요" },
-    headline: { type: "string", default: "친구랑 같이/할 일 해치우자[냥]" },
+    tagline: { type: "string", default: "혼자 하면 미루고, 같이 하면 끝내요" },
+    headline: { type: "string", default: "서로 [콕콕],/오늘 할 일 끝!" },
   },
 });
 
