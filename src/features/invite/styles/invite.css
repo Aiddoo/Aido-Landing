@@ -29,8 +29,10 @@
   padding: 8px 0 56px;
 }
 
+/* auto 트랙은 줄바꿈하지 않는 긴 닉네임 폭까지 늘어나 모바일에서 가로 스크롤이 생긴다. */
 .invite-layout {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
   width: calc(100% - 2.5rem);
   max-width: 62rem;
