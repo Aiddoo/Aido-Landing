@@ -31,8 +31,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
     version: "1.13.0",
     date: "2026-10-26",
     summary: {
-      ko: "초대 링크로 친구를 부르고 함께 프리미엄을 받아요. 신고·차단이 생겼고, AI와 위젯이 더 정확해졌어요.",
-      en: "Invite friends with a link and earn Premium together. You can now report and block, and AI and widgets are more accurate.",
+      ko: "초대 링크로 친구를 불러요. 친구는 가입하면 바로, 나는 친구가 2일 동안 할 일을 끝내면 프리미엄 7일을 받아요. 신고·차단이 생겼고, AI와 위젯이 더 정확해졌어요.",
+      en: "Invite friends with a link: your friend gets 7 days of Premium on joining, you get 7 days once they complete to-dos on 2 days. You can now report and block, and AI and widgets are more accurate.",
     },
     categories: [
       {
@@ -43,7 +43,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Send an invite link on KakaoTalk or any app. A friend who just signed up becomes your friend right away and gets 7 days of Premium.",
           },
           {
-            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요. ‘발자국 모으기’에서 초대 현황을 볼 수 있어요.",
+            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나는 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요. ‘발자국 모으기’에서 초대 현황을 볼 수 있어요.",
             en: "When a friend you invited completes to-dos on 2 days, you get 7 days of Premium and can add 1 more friend. Track it in “Collect paw prints.”",
           },
           {
@@ -101,14 +101,14 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
     ],
     storeNotes: {
       ko: [
-        "새로 가입한 친구에게 초대 링크를 보내면 친구는 프리미엄 7일을 받아요.",
-        "친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요.",
+        "초대 링크로 가입한 친구는 바로 프리미엄 7일을 받아요.",
+        "친구가 2일 동안 할 일을 끝내면 나는 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요.",
         "신고·차단이 생겼고, AI에 보내기 전에 동의를 받아요.",
         "AI가 날짜를 더 정확하게 알아듣고, 위젯은 자정이 지나면 새 날짜로 바뀌어요.",
       ],
       en: [
-        "Invite a friend with a link. New members get 7 days of Premium.",
-        "When they complete to-dos on 2 days, you get 7 days of Premium and can add 1 more friend.",
+        "Friends you invite get 7 days of Premium when they join.",
+        "You get 7 days of Premium + 1 more friend once they complete to-dos on 2 days.",
         "Report or block people, and we ask for consent before sending data to AI.",
         "AI reads dates more accurately, and widgets switch to the new day after midnight.",
       ],
