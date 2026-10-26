@@ -29,7 +29,7 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-08";
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
     version: "1.13.0",
-    date: "2026-11-02",
+    date: "2026-10-26",
     summary: {
       ko: "초대 링크로 친구를 부르고 함께 프리미엄을 받아요. 신고·차단이 생겼고, AI와 위젯이 더 정확해졌어요.",
       en: "Invite friends with a link and earn Premium together. You can now report and block, and AI and widgets are more accurate.",
