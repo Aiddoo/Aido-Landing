@@ -991,7 +991,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "친구를 초대하면 어떤 보상을 받나요?",
           answer:
-            "가입한 지 7일 안의 친구가 초대를 수락하면 친구는 프리미엄 7일을 받아요. 친구가 가입하고 14일 안에 서로 다른 이틀 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요. 보상은 앱 안에서만 쓰는 프리미엄이라 현금으로 바꿀 수 없어요. 초대해서 내가 받는 프리미엄은 최근 30일 동안 30일, 모두 합쳐 90일까지예요. 자세한 조건은 이용약관 제13조의2에 있어요.",
+            "가입한 지 7일 안의 친구가 초대를 수락하면 친구는 프리미엄 7일을 받아요. 친구가 가입하고 14일 안에 2일 동안 할 일을 끝내면(하루에 여러 개를 끝내도 1일로 세요) 나도 프리미엄 7일과 친구 자리 1개를 받아요. 보상은 앱 안에서만 쓰는 프리미엄이라 현금으로 바꿀 수 없어요. 초대해서 내가 받는 프리미엄은 30일 동안 최대 30일, 전체 최대 90일까지예요. 자세한 조건은 이용약관 제13조의2에 있어요.",
         },
         {
           question: "계정을 삭제하려면 어떻게 하나요?",
@@ -1875,7 +1875,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "What do I get for inviting friends?",
           answer:
-            "When a friend who joined within the last 7 days accepts your invite, they get 7 days of Premium. When your friend finishes to-dos on 2 different days within 14 days of joining, you get 7 days of Premium and 1 friend slot. Rewards are in-app Premium only and have no cash value. Premium you earn by inviting is capped at 30 days in any 30-day period and 90 days in total. See Article 13-2 of the Terms of Service for details.",
+            "When a friend who joined within the last 7 days accepts your invite, they get 7 days of Premium. When your friend completes to-dos on 2 days within 14 days of joining (several on the same day count as 1 day), you get 7 days of Premium and 1 more friend slot. Rewards are in-app Premium only and have no cash value. You can earn up to 30 days of Premium every 30 days, and up to 90 days in total. See Article 13-2 of the Terms of Service for details.",
         },
         {
           question: "How do I delete my account?",
