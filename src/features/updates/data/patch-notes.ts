@@ -24,15 +24,15 @@ export type UpdateNote =
   | (ServiceUpdate & { kind: "service" });
 
 // Change this only when existing copy is edited, not on every build.
-export const PATCH_NOTES_EDITED_AT = "2026-10-08";
+export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
     version: "1.13.0",
-    date: "2026-10-26",
+    date: "2026-10-27",
     summary: {
-      ko: "초대 링크로 친구를 부르고 함께 프리미엄을 받아요. 신고·차단이 생겼고, AI와 위젯이 더 정확해졌어요.",
-      en: "Invite friends with a link and earn Premium together. You can now report and block, and AI and widgets are more accurate.",
+      ko: "초대 링크로 친구를 불러요. 친구는 가입하면 바로, 나는 친구가 2일 동안 할 일을 끝내면 프리미엄 7일을 받아요. 신고·차단이 생겼고, AI와 위젯이 더 정확해졌어요.",
+      en: "Invite friends with a link: your friend gets 7 days of Premium on joining, you get 7 days once they complete to-dos on 2 days. You can now report and block, and AI and widgets are more accurate.",
     },
     categories: [
       {
@@ -43,8 +43,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Send an invite link on KakaoTalk or any app. A friend who just signed up becomes your friend right away and gets 7 days of Premium.",
           },
           {
-            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요. ‘발자국 모으기’에서 초대 현황을 볼 수 있어요.",
-            en: "When a friend you invited completes to-dos on 2 days, you get 7 days of Premium and 1 more friend slot. Track it in “Collect paw prints.”",
+            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나는 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요. ‘발자국 모으기’에서 초대 현황을 보고, 기다리는 친구에게 콕을 보내 응원할 수 있어요.",
+            en: "When a friend you invited completes to-dos on 2 days, you get 7 days of Premium and can add 1 more friend. Track it in “Collect paw prints” and send a nudge to friends who are still on their way.",
           },
           {
             ko: "불편한 할 일·댓글·콕·응원은 신고하고, 그 사람을 차단할 수 있어요. 내 할 일에 달린 댓글은 직접 지울 수 있어요.",
@@ -79,6 +79,10 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             ko: "콕 고마움 카드, 친구 목록, 댓글 화면을 더 편하게 다듬었고, 키보드가 버튼을 가리지 않아요. 탭 아이콘은 고양이 귀 모양이 됐어요.",
             en: "We polished the nudge thank-you card, friends list, and comments, and the keyboard no longer covers buttons. Tab icons now have cat ears.",
           },
+          {
+            ko: "초대한 친구가 첫날 할 일을 끝내면 알림으로 알려 줘요. 홈의 새 기능 카드는 닫을 수 있어요.",
+            en: "We let you know when a friend you invited finishes their first day. You can now dismiss the what's-new card on Home.",
+          },
         ],
       },
       {
@@ -101,14 +105,14 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
     ],
     storeNotes: {
       ko: [
-        "새로 가입한 친구에게 초대 링크를 보내면 친구는 프리미엄 7일을 받아요.",
-        "친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요.",
+        "초대 링크로 가입한 친구는 바로 프리미엄 7일을 받아요.",
+        "친구가 2일 동안 할 일을 끝내면 나는 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요.",
         "신고·차단이 생겼고, AI에 보내기 전에 동의를 받아요.",
         "AI가 날짜를 더 정확하게 알아듣고, 위젯은 자정이 지나면 새 날짜로 바뀌어요.",
       ],
       en: [
-        "Invite a friend with a link. New members get 7 days of Premium.",
-        "When they finish to-dos on 2 days, you get 7 days of Premium and 1 more friend slot.",
+        "Friends you invite get 7 days of Premium when they join.",
+        "You get 7 days of Premium + 1 more friend once they complete to-dos on 2 days.",
         "Report or block people, and we ask for consent before sending data to AI.",
         "AI reads dates more accurately, and widgets switch to the new day after midnight.",
       ],

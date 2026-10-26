@@ -4,7 +4,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: optional;
-  src: url(/fonts/black-han-sans-site-08fbebb0dcbc.woff2) format("woff2");
+  src: url(/fonts/black-han-sans-site-eb57b36eb23a.woff2) format("woff2");
 }
 @font-face {
   font-family: "Noto Sans KR";
@@ -123,8 +123,8 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: optional;
-  src: url(/fonts/noto-sans-kr-site-34975026fbda.woff2) format("woff2");
-  unicode-range: U+AC12, U+AC14, U+AD34, U+ADE0, U+AE54, U+AEBC, U+AFC0, U+AFC8, U+B04C, U+B0B8, U+B179, U+B6F0, U+B728, U+B73B, U+B864, U+B86D, U+B9BF, U+BA87, U+BBC0, U+BC16, U+BC34, U+BD07, U+BD99, U+C228, U+C529, U+C635, U+C77D, U+C8C4, U+C989, U+C9D0, U+C9D3, U+CC0C, U+CD2C, U+CD98, U+CDA4, U+CE59, U+CE60, U+CE6D, U+CEA0, U+D0D0, U+D14D, U+D301, U+D3BC, U+D640, U+D750;
+  src: url(/fonts/noto-sans-kr-site-dcfb38fce68c.woff2) format("woff2");
+  unicode-range: U+AC12, U+AC14, U+AD34, U+ADE0, U+AE54, U+AEBC, U+AFC0, U+AFC8, U+B04C, U+B0A9, U+B0B8, U+B179, U+B6F0, U+B728, U+B73B, U+B864, U+B86D, U+B9BF, U+BA87, U+BBC0, U+BC16, U+BC34, U+BD07, U+BD99, U+C228, U+C529, U+C635, U+C77D, U+C8C4, U+C989, U+C9D0, U+C9D3, U+CC0C, U+CD2C, U+CD98, U+CDA4, U+CE59, U+CE60, U+CE6D, U+CEA0, U+D0D0, U+D14D, U+D301, U+D3BC, U+D640, U+D750;
 }
 @font-face {
   font-family: "Noto Sans KR";
