@@ -28,6 +28,133 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-08";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.13.0",
+    date: "2026-11-02",
+    summary: {
+      ko: "초대 링크로 친구를 부르고 함께 프리미엄을 받을 수 있어요. 친구를 신고·차단할 수 있고, AI 정리와 날짜 표시도 더 정확해졌어요.",
+      en: "Invite friends with a link and earn Premium together. You can also report or block people, and AI and dates are more accurate.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "초대 링크를 카카오톡이나 다른 앱으로 보낼 수 있어요. 가입한 지 7일 안의 친구가 초대를 수락하면 바로 친구가 되고 프리미엄 7일을 받아요.",
+            en: "Share an invite link on KakaoTalk or other apps. A friend who joined within the past 7 days becomes your friend as soon as they accept, and gets 7 days of Premium.",
+          },
+          {
+            ko: "초대한 친구가 가입하고 14일 안에 서로 다른 이틀 동안 할 일을 끝내면, 나도 프리미엄 7일과 친구 자리 1개를 받아요. ‘발자국 모으기’에서 초대 현황을 확인할 수 있어요.",
+            en: "When a friend you invited completes to-dos on 2 different days within 14 days of joining, you get 7 days of Premium and 1 more friend slot. Track your invites in “Collect paw prints.”",
+          },
+          {
+            ko: "친구의 할 일, 댓글, 콕, 응원을 신고하거나 그 친구를 차단할 수 있어요. 차단한 사용자는 설정에서 관리하고, 차단하면 그 사람의 댓글이 보이지 않아요.",
+            en: "Report a friend’s to-dos, comments, nudges, or cheers, or block the person. Manage blocked people in Settings, and their comments are hidden once you block them.",
+          },
+          {
+            ko: "내 할 일에 달린 다른 사람의 댓글을 직접 지울 수 있어요. 지우면 모두에게서 사라진다고 먼저 알려드려요.",
+            en: "You can delete other people’s comments on your own to-dos. We confirm first that the comment will disappear for everyone.",
+          },
+          {
+            ko: "AI에 메모나 할 일을 보내기 전에 데이터 제공 동의를 받아요. 설정에서 언제든 철회할 수 있어요.",
+            en: "Before your notes or to-dos are sent to AI, we ask for your consent to share data. You can withdraw it anytime in Settings.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "메모를 AI로 정리할 때 할 일이 많으면 하나로 합치지 않고 앞에서부터 5개를 만들어요. 만들지 못한 개수는 알려주고, 메모는 그대로 남아 있어요.",
+            en: "When AI organizes a long note, it creates the first 5 to-dos instead of merging them. We tell you how many were left out, and your note stays as it was.",
+          },
+          {
+            ko: "‘내일 오후 3시’, ‘다음 주 금요일’ 같은 날짜와 시간 표현을 더 정확하게 알아듣고, AI 리포트와 반복 제안도 실제 기록을 바탕으로 더 자연스럽게 만들어요.",
+            en: "AI understands phrases like “tomorrow at 3 PM” or “next Friday” more accurately, and reports and recurring suggestions are more natural and based on your real records.",
+          },
+          {
+            ko: "친구에게 고마움을 전하는 버튼이 요약 카드로 바뀌었어요. 콕을 보낸 친구가 몇 명인지, 고마움을 전했는지 한눈에 보여요.",
+            en: "The button for thanking friends is now a summary card. See at a glance how many friends nudged you and whether you’ve thanked them.",
+          },
+          {
+            ko: "댓글 화면에서 대화를 열고 뒤로 가면 보던 자리로 돌아와요. 알림으로 들어온 댓글이 화면에 밀리지 않고 보이고, 이미 지워진 댓글은 찾을 수 없다고 알려줘요.",
+            en: "Open a conversation from the comments screen and go back, and you return to where you were. A comment opened from a notification stays in view, and a deleted one tells you it can’t be found.",
+          },
+          {
+            ko: "친구가 많아도 친구 목록을 끝까지 넘겨 볼 수 있고, 고른 친구는 항상 목록에 보여요.",
+            en: "Even with many friends, you can scroll through your whole friends list, and the friend you picked always stays in view.",
+          },
+          {
+            ko: "홈 화면 위젯의 이름과 설명이 기기 언어에 맞게 보이고, 위젯에서 로그인을 안내하는 문구도 기기 언어로 보여요.",
+            en: "Home screen widget names and descriptions follow your device language, including the sign-in prompt on a widget.",
+          },
+          {
+            ko: "자정이 지나면 앱을 열지 않아도 위젯이 새 날짜의 할 일로 바뀌고, 언어나 시간대를 바꾸면 위젯에도 바로 반영돼요.",
+            en: "Widgets switch to the new day’s to-dos after midnight without opening the app, and follow language and time zone changes right away.",
+          },
+          {
+            ko: "주간 성취와 AI 리포트에 ‘10월 19일 ~ 10월 25일’처럼 실제 날짜 범위를 함께 보여줘요. 올해가 아닌 주의 달력에는 연도도 표시돼요.",
+            en: "Weekly achievements and AI reports now show the actual date range, like “Oct 19 – Oct 25.” Calendar weeks outside this year also show the year.",
+          },
+          {
+            ko: "구독 화면에서 초대 보상으로 이용 중인 프리미엄의 이용 기간을 확인할 수 있어요. 구독 중에 받은 보상 기간은 구독이 끝난 뒤 이어서 시작해요. 결제 화면에는 자동 갱신과 스토어별 해지 방법도 안내해요.",
+            en: "On the Subscription screen, see how long your reward Premium lasts. Reward time earned while subscribed starts after your subscription ends. The paywall also explains auto-renewal and how to cancel in each store.",
+          },
+          {
+            ko: "iPhone Duo와 폴더블 폰을 펼쳤을 때 오른쪽 상세 화면의 위쪽에서 필요 없는 뒤로 가기 버튼을 없애 깔끔해졌어요.",
+            en: "On an unfolded iPhone Duo or foldable phone, the detail pane no longer shows an unneeded Back button at the top.",
+          },
+          {
+            ko: "탭 아이콘이 고양이 귀 모양으로 바뀌었고, 선택한 탭은 색이 채워져 구분하기 쉬워요.",
+            en: "Tab icons now have cat ears, and the selected tab is filled in so it’s easier to spot.",
+          },
+          {
+            ko: "AI 정리 결과를 고칠 때 제목과 생성 버튼이 키보드에 가려지지 않고, 친구 검색 결과는 키보드가 열려 있어도 한 번에 눌러져요. 친구 태그는 영문 자판으로, 초대 코드는 완료 키로 바로 입력할 수 있어요.",
+            en: "When editing AI results, the title and Create button no longer hide behind the keyboard, and friend search results respond to a single tap even with the keyboard open. Friend tags open the English keyboard, and invite codes submit with the Done key.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "달력을 넘길 때 화면 너비가 바뀌면 5년 뒤 주로 튀어 버리던 문제를 고쳤어요. 서머타임이 시작되는 날 반복 할 일의 마지막 날이 빠지던 문제도 고쳤어요.",
+            en: "We fixed the calendar jumping years ahead when the screen width changed, and the last day of a recurring to-do going missing when daylight saving time begins.",
+          },
+          {
+            ko: "고양이 프로필이 빈 원으로 보이던 문제와 위젯 날짜가 잘리던 문제를 고쳤어요.",
+            en: "We fixed blank cat profiles and cut-off widget dates.",
+          },
+          {
+            ko: "공지 알림을 눌러도 알맞은 화면이 열리지 않던 문제를 고쳤어요. 온보딩 알림 시간 안내는 알림 설정으로, 펼친 화면에서 할 일 알림은 그 할 일의 날짜와 친구 목록으로 열려요.",
+            en: "We fixed notices that didn’t open the right screen. The onboarding reminder notice opens notification settings, and on an unfolded screen a to-do notification opens that day’s list for the right person.",
+          },
+          {
+            ko: "지워졌거나 볼 수 없는 할 일을 열면 오류가 보이던 문제를 고쳐 안내 문구로 알려줘요. 약관·공지 링크를 연달아 눌러도 한 번만 열려요.",
+            en: "Opening a to-do that was deleted or isn’t visible now shows a clear message instead of an error. Tapping terms or notice links repeatedly opens them only once.",
+          },
+          {
+            ko: "구독 관리 링크가 열리지 않을 때 안내가 보이고, Android에서는 구독 화면이 바로 열려요.",
+            en: "When the subscription management link can’t open, you now see a message, and on Android it opens the subscription page directly.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "초대 링크를 카카오톡 등으로 보내요. 가입한 지 7일 안의 친구는 수락하면 프리미엄 7일을 받아요.",
+        "친구가 가입하고 14일 안에 이틀 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요.",
+        "친구를 신고·차단할 수 있고, AI에 보내기 전 데이터 제공 동의를 받아요.",
+        "AI가 메모 속 할 일과 날짜를 더 정확하게 알아듣고, 위젯은 자정이 지나면 새 날짜로 바뀌어요.",
+      ],
+      en: [
+        "Share invites on KakaoTalk and more. Friends who joined within 7 days get 7 days of Premium.",
+        "You get 7 days and 1 friend slot when they finish to-dos on 2 days within 14 days of joining.",
+        "Report or block people. We ask for your consent before sending data to AI.",
+        "AI reads to-dos and dates in notes more accurately, and widgets roll over after midnight.",
+      ],
+    },
+  },
+  {
     version: "1.12.1",
     date: "2026-10-25",
     summary: {

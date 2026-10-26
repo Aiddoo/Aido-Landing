@@ -1,3 +1,3 @@
-export const koreanFontStylesheet = "/fonts/fonts-ko-ba6a2f778466.css";
+export const koreanFontStylesheet = "/fonts/fonts-ko-c1ce158e36cc.css";
 export const koreanHeadingFont =
-  "/fonts/black-han-sans-site-7995e6519a58.woff2";
+  "/fonts/black-han-sans-site-e40c1804184f.woff2";
