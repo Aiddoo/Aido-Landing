@@ -28,6 +28,93 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-08";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.13.0",
+    date: "2026-10-26",
+    summary: {
+      ko: "초대 링크로 친구를 부르고 함께 프리미엄을 받아요. 신고·차단이 생겼고, AI와 위젯이 더 정확해졌어요.",
+      en: "Invite friends with a link and earn Premium together. You can now report and block, and AI and widgets are more accurate.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "초대 링크를 카카오톡이나 다른 앱으로 보내 친구를 불러요. 새로 가입한 친구는 바로 친구가 되고 프리미엄 7일을 받아요.",
+            en: "Send an invite link on KakaoTalk or any app. A friend who just signed up becomes your friend right away and gets 7 days of Premium.",
+          },
+          {
+            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요. ‘발자국 모으기’에서 초대 현황을 볼 수 있어요.",
+            en: "When a friend you invited completes to-dos on 2 days, you get 7 days of Premium and 1 more friend slot. Track it in “Collect paw prints.”",
+          },
+          {
+            ko: "불편한 할 일·댓글·콕·응원은 신고하고, 그 사람을 차단할 수 있어요. 내 할 일에 달린 댓글은 직접 지울 수 있어요.",
+            en: "Report to-dos, comments, nudges, or cheers that bother you, and block the person. You can also delete comments on your own to-dos.",
+          },
+          {
+            ko: "AI에 메모나 할 일을 보내기 전에 동의를 받아요. 설정에서 언제든 바꿀 수 있어요.",
+            en: "We ask for your consent before sending notes or to-dos to AI. You can change it anytime in Settings.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "AI가 ‘내일 오후 3시’, ‘다음 주 금요일’ 같은 날짜를 더 정확하게 알아듣고, 긴 메모는 할 일 5개까지 나눠 만들어요.",
+            en: "AI understands dates like “tomorrow at 3 PM” or “next Friday” more accurately, and turns long notes into up to 5 to-dos.",
+          },
+          {
+            ko: "위젯이 자정이 지나면 앱을 열지 않아도 새 날짜로 바뀌고, 기기 언어로 보여요.",
+            en: "Widgets switch to the new day after midnight without opening the app, and follow your device language.",
+          },
+          {
+            ko: "주간 성취와 AI 리포트에 ‘10월 19일 ~ 10월 25일’처럼 날짜 범위를 함께 보여줘요.",
+            en: "Weekly achievements and AI reports now show the date range, like “Oct 19 – Oct 25.”",
+          },
+          {
+            ko: "구독 화면에서 초대 보상으로 받은 프리미엄 기간을 확인할 수 있어요. 구독 중에 받은 보상은 구독이 끝난 뒤 이어서 시작해요.",
+            en: "See your reward Premium period on the Subscription screen. Rewards earned while subscribed start after your subscription ends.",
+          },
+          {
+            ko: "콕 고마움 카드, 친구 목록, 댓글 화면을 더 편하게 다듬었고, 키보드가 버튼을 가리지 않아요. 탭 아이콘은 고양이 귀 모양이 됐어요.",
+            en: "We polished the nudge thank-you card, friends list, and comments, and the keyboard no longer covers buttons. Tab icons now have cat ears.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "달력이 몇 년 뒤로 넘어가거나 서머타임에 반복 할 일이 빠지던 문제를 고쳤어요.",
+            en: "Fixed the calendar jumping years ahead and recurring to-dos going missing when daylight saving time begins.",
+          },
+          {
+            ko: "고양이 프로필이 비어 보이거나 위젯 날짜가 잘리던 문제를 고쳤어요.",
+            en: "Fixed blank cat profiles and cut-off widget dates.",
+          },
+          {
+            ko: "알림이나 링크를 눌렀을 때 엉뚱한 화면이 열리거나 오류가 보이던 문제를 고쳤어요.",
+            en: "Fixed notifications and links that opened the wrong screen or showed an error.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "새로 가입한 친구에게 초대 링크를 보내면 친구는 프리미엄 7일을 받아요.",
+        "친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요.",
+        "신고·차단이 생겼고, AI에 보내기 전에 동의를 받아요.",
+        "AI가 날짜를 더 정확하게 알아듣고, 위젯은 자정이 지나면 새 날짜로 바뀌어요.",
+      ],
+      en: [
+        "Invite a friend with a link. New members get 7 days of Premium.",
+        "When they finish to-dos on 2 days, you get 7 days of Premium and 1 more friend slot.",
+        "Report or block people, and we ask for consent before sending data to AI.",
+        "AI reads dates more accurately, and widgets switch to the new day after midnight.",
+      ],
+    },
+  },
+  {
     version: "1.12.1",
     date: "2026-10-25",
     summary: {
