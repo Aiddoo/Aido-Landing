@@ -23,7 +23,7 @@ const homeLastModifiedDate = new Date(
 );
 // Effective date stays 2026-04-19; Articles 13-2 (invite rewards) and 13-3 (block/report) were added on 2026-10-26.
 const termsLastModifiedDate = new Date("2026-10-26");
-// Invite abuse-prevention, block/report and AI data sharing consent notes added on 2026-10-26; the effective date is unchanged.
+// Invite abuse-prevention (Keychain installation id), block/report and final AI data sharing consent notes added on 2026-10-26; the effective date is unchanged.
 const privacyLastModifiedDate = new Date("2026-10-26");
 const accountDeletionLastModifiedDate = new Date("2026-10-26");
 
