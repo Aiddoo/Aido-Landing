@@ -46,7 +46,8 @@ This Privacy Policy is intended to inform users about the processing of personal
 | Daily AI Usage Count | Usage limit management per subscription plan |
 | Block records (the blocking Member, the blocked Member, time of blocking) | Restricting friend connections and interactions with blocked Members, hiding each other's content |
 | Report status, time of reporting | Reviewing and handling reports, limiting repeated or duplicate reports |
-| Hash of device identifier (iOS IDFV or Android ID) and of verified email or social sign-in account ID, collected when accepting an invite (HMAC-SHA256; original values are not stored) | Preventing duplicate claims of friend invite rewards (abuse prevention) |
+| Hash of app installation identifier (on iOS, the first IDFV value kept in the device Keychain; on Android, the Android ID) and of verified email or social sign-in account ID, collected when accepting an invite (HMAC-SHA256; original values are not stored) | Preventing duplicate claims of friend invite rewards (abuse prevention) |
+| App installation identifier (iOS: stored in the device Keychain under `aido_installation_id`; only a hash is stored on our server) | Preventing duplicate claims of friend invite rewards. It may remain after you delete the app until the device is reset |
 
 ### 2-3. Device Permission Access (On-Device Processing)
 
@@ -338,7 +339,9 @@ See [Google's Privacy Policy](https://policies.google.com/privacy) and [Vercel W
 
 ## Friend invite reward abuse prevention notice (added October 26, 2026)
 
-To prevent the same device or account details from claiming friend invite rewards more than once, when you accept an invite we store only an irreversible hash (HMAC-SHA256) of your device identifier (iOS IDFV or Android ID) and your verified email or social sign-in account ID. This value isn't linked to your account and is kept after account deletion to prevent abuse.
+To prevent the same device or account details from claiming friend invite rewards more than once, when you accept an invite we store only an irreversible hash (HMAC-SHA256) of your app installation identifier (iOS IDFV or Android ID) and your verified email or social sign-in account ID. This value isn't linked to your account and is kept after account deletion to prevent abuse.
+
+To prevent duplicate rewards, we store the app installation identifier in your device's Keychain. It may remain after you delete the app until you reset the device. Our server stores only an irreversible hash of this value.
 
 This notice applies from the day the friend invite feature becomes available in the Aido app (the release date of app version 1.13.0).
 
@@ -371,8 +374,10 @@ From app version 1.13.0, before you first use an AI feature, such as turning a m
 | Retention | Processed under Articles 7 and 8; Google deletes it as soon as API processing is complete (per Google's policy) |
 
 - **Consent record**: When you agree or withdraw, we store your choice, the notice version and when you agreed. If the notice changes, we ask you to agree to the new version. A withdrawal stays in place even if the notice changes.
-- **Not now and withdrawal**: If you tap **Not now**, nothing is saved, only that AI feature doesn't run, and we'll ask again the next time you use an AI feature. Even without consent you can sign up, add to-dos yourself and use every other feature. After agreeing, you can withdraw at any time in the app's settings under **Terms & Policies**; to-dos you've already created stay as they are.
-- **AI features you request**: In app version 1.13.0 or later, memo organizing, to-do organizing and viewing AI reports and suggestions are available only to Members who have agreed. Requests from older app versions, which have no consent screen, are processed as before unless you have withdrawn consent.
-- **Scheduled features**: Weekly and monthly AI reports and recurring to-do suggestions for Premium Members are prepared by our server on a schedule. For Members who have withdrawn consent, nothing is sent to Google Gemini: reports are built from to-do statistics alone and recurring suggestions aren't created. For Members who haven't made a choice yet, these are processed as before; if you don't want this, you can ask us to stop processing under Article 12 by emailing matthew@redband.co.kr.
+- **Not now, declining and withdrawal**: If you tap **Not now**, nothing is saved, only that AI feature doesn't run, and we'll ask again the next time you use an AI feature. Even without consent you can sign up, add to-dos yourself and use everything else. Even if you have never agreed, you can choose not to agree at any time in the app's settings under **Terms & Policies**, and after agreeing you can withdraw at any time. To-dos you've already created stay as they are.
+- **App version 1.13.0 or later**: AI parsing of to-dos and memos, and scheduled AI reports and suggestions, send data to Google Gemini only for Members who have **agreed (AGREED)**. Nothing is sent if you haven't agreed, haven't chosen yet, or have withdrawn.
+- **Scheduled features**: Weekly and monthly AI reports and recurring to-do suggestions for Premium Members are prepared by our server on a schedule. For Members who haven't agreed, reports are built from to-do statistics alone without Google Gemini, and recurring suggestions aren't created. Reports and suggestions that were already generated remain viewable.
+- **How the app version is determined**: For features you request, we use the app version in the app's request header; for scheduled features, we use the latest app version recorded for your account and devices.
+- **App versions below 1.13.0**: Members who only use an older app, which has no consent screen, are processed as before unless they have chosen not to agree. If you don't want this, you can choose not to agree in the app's settings or ask us to stop processing under Article 12 by emailing matthew@redband.co.kr.
 
 This notice is published in advance on October 26, 2026 and applies from the day the app starts asking for AI data sharing consent (the release date of app version 1.13.0).
