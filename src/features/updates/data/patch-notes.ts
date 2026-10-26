@@ -24,7 +24,7 @@ export type UpdateNote =
   | (ServiceUpdate & { kind: "service" });
 
 // Change this only when existing copy is edited, not on every build.
-export const PATCH_NOTES_EDITED_AT = "2026-10-08";
+export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
@@ -43,8 +43,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Send an invite link on KakaoTalk or any app. A friend who just signed up becomes your friend right away and gets 7 days of Premium.",
           },
           {
-            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요. ‘발자국 모으기’에서 초대 현황을 볼 수 있어요.",
-            en: "When a friend you invited completes to-dos on 2 days, you get 7 days of Premium and 1 more friend slot. Track it in “Collect paw prints.”",
+            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요. ‘발자국 모으기’에서 초대 현황을 볼 수 있어요.",
+            en: "When a friend you invited completes to-dos on 2 days, you get 7 days of Premium and can add 1 more friend. Track it in “Collect paw prints.”",
           },
           {
             ko: "불편한 할 일·댓글·콕·응원은 신고하고, 그 사람을 차단할 수 있어요. 내 할 일에 달린 댓글은 직접 지울 수 있어요.",
@@ -102,13 +102,13 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
     storeNotes: {
       ko: [
         "새로 가입한 친구에게 초대 링크를 보내면 친구는 프리미엄 7일을 받아요.",
-        "친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일과 친구 자리 1개를 받아요.",
+        "친구가 2일 동안 할 일을 끝내면 나도 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요.",
         "신고·차단이 생겼고, AI에 보내기 전에 동의를 받아요.",
         "AI가 날짜를 더 정확하게 알아듣고, 위젯은 자정이 지나면 새 날짜로 바뀌어요.",
       ],
       en: [
         "Invite a friend with a link. New members get 7 days of Premium.",
-        "When they finish to-dos on 2 days, you get 7 days of Premium and 1 more friend slot.",
+        "When they complete to-dos on 2 days, you get 7 days of Premium and can add 1 more friend.",
         "Report or block people, and we ask for consent before sending data to AI.",
         "AI reads dates more accurately, and widgets switch to the new day after midnight.",
       ],
