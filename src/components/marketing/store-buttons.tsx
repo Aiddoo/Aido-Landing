@@ -8,6 +8,8 @@ import {
 type StoreButtonsProps = {
   content: MessageCatalog["storeButtons"];
   placement: "hero" | "download" | "invite";
+  /** 초대 링크의 맞춤형 제품 페이지처럼 App Store 링크를 바꿔야 할 때만 지정한다. */
+  appStoreUrl?: string;
   /** 초대 링크의 Install Referrer처럼 Google Play 링크를 바꿔야 할 때만 지정한다. */
   playStoreUrl?: string;
 };
@@ -18,13 +20,14 @@ const storeButtonClass = "store-button";
 export function StoreButtons({
   content,
   placement,
+  appStoreUrl = APP_STORE_URL,
   playStoreUrl = DEFAULT_PLAY_STORE_URL,
 }: StoreButtonsProps) {
   return (
     <nav aria-label={content.ariaLabel} className="store-links">
       <div className="store-buttons">
         <a
-          href={APP_STORE_URL}
+          href={appStoreUrl}
           className={storeButtonClass}
           {...analyticsAttributes({
             name: "download_click",

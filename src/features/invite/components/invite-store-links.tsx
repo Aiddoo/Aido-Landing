@@ -4,11 +4,14 @@ import type { MessageCatalog } from "@/i18n/messages";
 import { useInviteCode } from "../hooks/use-invite-code";
 import { useInvitePreview } from "../hooks/use-invite-preview";
 import { usableInviteCode } from "../models/invite-preview";
-import { buildPlayStoreInviteUrl } from "../utils/invite-store-links";
+import {
+  APP_STORE_INVITE_URL,
+  buildPlayStoreInviteUrl,
+} from "../utils/invite-store-links";
 
 type InviteStoreLinksProps = { content: MessageCatalog["storeButtons"] };
 
-// Google Play 링크에 Install Referrer로 초대 코드를 싣는다. 쓸 수 없는 코드는 싣지 않는다.
+// 두 스토어 모두 초대 전용 페이지로 보내고, Google Play 링크에는 Install Referrer로 초대 코드를 싣는다. 쓸 수 없는 코드는 싣지 않는다.
 export function InviteStoreLinks({ content }: InviteStoreLinksProps) {
   const { code } = useInviteCode();
   const preview = useInvitePreview();
@@ -16,6 +19,7 @@ export function InviteStoreLinks({ content }: InviteStoreLinksProps) {
     <StoreButtons
       content={content}
       placement="invite"
+      appStoreUrl={APP_STORE_INVITE_URL}
       playStoreUrl={buildPlayStoreInviteUrl(usableInviteCode(code, preview))}
     />
   );
@@ -27,6 +31,7 @@ export function InviteStoreLinksLoading({ content }: InviteStoreLinksProps) {
     <StoreButtons
       content={content}
       placement="invite"
+      appStoreUrl={APP_STORE_INVITE_URL}
       playStoreUrl={buildPlayStoreInviteUrl(code)}
     />
   );
