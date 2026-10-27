@@ -414,7 +414,7 @@ for (const locale of ["ko", "en"])
           : path === "/patch-notes"
             ? patchNotesUpdatedAt
             : path === "/privacy"
-              ? "2026-10-26"
+              ? "2026-10-27"
               : (featureGuides.find((guide) => guide.path === path)
                   ?.updatedAt ??
                 [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
