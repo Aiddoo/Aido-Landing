@@ -15,20 +15,25 @@ import {
   screenshotFiles,
 } from "../src/components/media/data/app-screenshots.ts";
 import {
+  getHomeScreen,
+  homeCatImages,
+  homeScreenFiles,
+} from "../src/components/media/data/home-screens.ts";
+import {
   getGuideScreen,
   guideScreenFiles,
 } from "../src/features/feature-guides/data/guide-screens.ts";
-import { foldableScreens } from "../src/features/landing/data/foldable-screens.ts";
-import { getMessages } from "../src/i18n/messages.ts";
+import { catByIconKey } from "../src/features/invite/data/inviter-cats.ts";
 
 const check = process.argv.includes("--check");
 const sources = [
   ...new Set([
     "/logo-small.webp",
-    "/app-assets/cat-scottish-fold.webp",
-    "/app-assets/cat-hi.webp",
-    ...getMessages("ko").friends.cards.map((card) => card.path),
-    ...Object.values(foldableScreens),
+    ...Object.values(catByIconKey),
+    ...Object.values(homeCatImages),
+    ...["ko", "en"].flatMap((locale) =>
+      Object.keys(homeScreenFiles).map((key) => getHomeScreen(locale, key).src),
+    ),
     ...["ko", "en"].flatMap((locale) =>
       Object.keys(screenshotFiles).map(
         (key) => getAppScreenshot(locale, key).src,
@@ -51,7 +56,7 @@ for await (const filename of glob("public/app-assets/**/*")) {
 assert.deepEqual(
   appAssets.sort(),
   sources.filter((src) => src.startsWith("/app-assets/")),
-  "App assets must match the screenshot/guide/friend catalogs; remove unused images.",
+  "App assets must match the screenshot/guide/home/invite catalogs; remove unused images.",
 );
 if (check) {
   const { responsiveImages } = await import(
