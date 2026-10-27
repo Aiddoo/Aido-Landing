@@ -39,7 +39,7 @@ GA4 웹 스트림의 **Enhanced measurement는 OFF**다. 태그에 `send_page_vi
 - **Vercel Web Analytics는 항상 켠다.** 쿠키 없이 집계만 하며, `beforeSend`가 모든 페이지뷰·이벤트 URL을 정리된 공개 경로로 바꾸고 알 수 없는 경로는 버린다.
 - **GA4는 Consent Mode v2(고급)로 항상 로드한다.** gtag.js를 그리기 전에 `consent default`로 `ad_storage`·`ad_user_data`·`ad_personalization`·`analytics_storage`를 모두 `denied`, `wait_for_update: 500`으로 넣는다. 동의 전·거부 시에는 쿠키 없는 ping만 간다. 저장된 수락이 있으면 `config`보다 먼저 `consent update`로 `analytics_storage: granted`를 넣는다. 광고 3종은 수락해도 `denied`이며 Google Signals/광고 개인화 신호는 태그에서 끈다. gtag.js는 `next/script` `lazyOnload`로 유휴 시간에 읽는다.
 - 첫 방문에는 하단 카드(모바일 하단 고정, 데스크톱 좌하단)로 허용/거부를 받는다. 카드는 하이드레이션 뒤 fixed로만 그려 레이아웃·첫 페인트에 영향이 없다. 선택은 `localStorage`(`aido.analytics-consent.v1`)에 180일 저장하고 저장 실패 시 오류를 표시하며 denied를 유지한다. 푸터의 **쿠키 설정**으로 다시 열 수 있고(포커스 이동, Esc로 닫기, 닫으면 포커스 복귀), 거부로 바꾸면 `analytics_storage: denied`로 갱신하고 `_ga` 쿠키를 지운다. 다른 탭의 변경·만료도 구독한다.
-- Do Not Track/Global Privacy Control이 켜져 있으면 저장된 수락보다 우선해 거부로 처리하고 카드를 띄우지 않는다(쿠키 설정에서 허용 버튼 비활성). 이때도 GA4는 쿠키 없는 ping을, Vercel은 집계를 보낸다.
+- Do Not Track/Global Privacy Control이 켜져 있으면 저장된 수락보다 우선해 거부로 처리하고 카드를 띄우지 않는다(쿠키 설정에서 허용 버튼 비활성). 이때는 gtag.js를 아예 읽지 않아 GA4로는 아무것도 보내지 않고, Vercel의 쿠키 없는 집계만 남는다.
 - 알려진 공개 경로(ko/en)만 집계한다. URL 해시·임의 쿼리·초대 코드·회원 ID·이메일·메모·할 일 텍스트를 이벤트에 추가하지 않는다. GA의 외부 referrer는 origin만 유지한다. Vercel의 referrer는 SDK가 브라우저 값으로 보낸다.
 - UTM 5종은 영문/숫자/밑줄/하이픈, 1~100자만 허용한다. 민감한 정보나 사람 이름을 캠페인 값에 넣지 않는다. 캠페인 URL에는 일반적인 슬러그를 사용한다.
 
