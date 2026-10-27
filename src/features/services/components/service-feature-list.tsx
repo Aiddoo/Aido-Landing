@@ -1,7 +1,7 @@
 import { zip } from "es-toolkit";
 import { Check } from "lucide-react";
 import { getAppScreenshot } from "@/components/media/data/app-screenshots";
-import { PhoneScreenshot } from "@/components/media/phone-screenshot";
+import { DeviceScreen } from "@/components/media/device-screen";
 import { badgeVariants } from "@/components/ui/badge";
 import {
   Box,
@@ -112,13 +112,13 @@ export function ServiceFeatureList({
                   return (
                     <Box key={screenshot} render={<li />} className="min-w-0">
                       <VStack render={<figure />} gap={3}>
-                        <PhoneScreenshot
+                        <DeviceScreen
+                          device={image.device}
                           src={image.src}
                           width={image.width}
                           height={image.height}
                           alt={`${platformLabel} · ${caption}`}
                           sizes="(min-width: 1024px) 220px, (min-width: 768px) 30vw, 45vw"
-                          className="rounded-[1.75rem] p-1"
                         />
                         <figcaption className="text-center text-micro text-gray-8">
                           <span className="block font-semibold text-gray-9">

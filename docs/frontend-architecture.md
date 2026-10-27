@@ -41,7 +41,7 @@ src/
     navigation/         # 언어 전환·모바일 메뉴(Sheet)·PageBreadcrumb
     theme/              # next-themes ThemeProvider·ThemeToggle
     marketing/          # BrandLogo·StoreButtons·DownloadCard·FaqList(details)·BrandMotif
-    media/              # PhoneScreenshot(AspectRatio+fill)·AppScreenshot·정적 loader/data
+    media/              # DeviceScreen(CSS 기기 틀+AspectRatio+fill)·AppScreenshot·정적 loader/data
     motion/             # 지연 로드 GSAP 경계/정리
     seo/                # schema-dts JSON-LD·Breadcrumb
     fonts/              # locale 자원 목록·preload

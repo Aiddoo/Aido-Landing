@@ -34,7 +34,7 @@
 - `src/app/sitemap.ts`에 페이지와 실제 변경일을 추가합니다. 홈은 최신 앱 출시일, 패치노트는 기록일과 편집일 중 최신 날짜, 서비스·사용법은 콘텐츠 변경일, 법적 문서는 시행일을 사용합니다. 빌드할 때마다 현재 날짜로 갱신하지 않습니다.
 - Preview는 noindex·robots disallow, Production은 index를 유지합니다. Google/네이버 소유확인 HTML 파일은 보존합니다. 현재 파일 방식이므로 verification 환경변수가 비어 있어도 정상입니다.
 - Next Image의 공식 custom loaderFile로 미리 생성한 WebP srcset을 제공합니다. Vercel의 요청 시 이미지 최적화 API를 호출하지 않습니다. 화면용 원본 79개(로고 1개·고양이 10개·폴더블 4개·한영 스크린샷 46개·한영 기능 가이드 실제 화면 18개)는 모두 WebP이며 재생성 입력으로 유지합니다. 카탈로그에서 사용하지 않는 이전 PNG/WebP 10개, 총 565,524바이트를 제거했습니다.
-- 이미지 변경 후 `pnpm images:generate`로 크기별 WebP와 내용 해시 manifest를 갱신합니다. `public/responsive/`는 생성기 전용이며 재생성 때 이전 manifest에서만 쓰던 WebP를 정리합니다. CI의 `pnpm images:check`는 카탈로그에 없는 앱 이미지·남은 파생 파일·원본/치수/해시 불일치를 확인합니다. OG·구조화 데이터 로고·favicon·Apple/PWA 아이콘 PNG는 화면용 이미지와 구분한 메타데이터 자원으로 유지합니다.
+- 이미지 변경 후 `pnpm images:generate`로 크기별 WebP와 내용 해시 manifest를 갱신합니다. `public/responsive/`는 생성기 전용이며 재생성 때 이전 manifest에서만 쓰던 WebP를 정리합니다. CI의 `pnpm images:check`는 카탈로그에 없는 앱 이미지·남은 파생 파일·원본/치수/해시 불일치를 확인합니다. OG·구조화 데이터 로고·favicon·Apple/PWA 아이콘 PNG는 화면용 이미지와 구분한 메타데이터 자원으로 유지합니다. 홈 OG 이미지는 언어별 `public/og-image-{ko,en}.png`(1200×630)이며 `pnpm images:og`로 다시 만들고, 초대 공유 이미지는 `pnpm images:invite-share`로 만듭니다. 둘 다 `images:check`가 규격·용량을 확인합니다.
 
 ## 검증 범위
 
