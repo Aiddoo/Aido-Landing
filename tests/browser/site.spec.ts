@@ -69,10 +69,12 @@ for (const locale of ["ko", "en"]) {
     await page.evaluate(() => document.fonts.ready);
     for (const width of [320, 390, 640, 768, 820, 1023, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
-      const title = await page.locator(".hero-title").boundingBox();
-      const description = await page.locator(".hero-description").boundingBox();
+      const title = await page.locator('[data-hero="title"]').boundingBox();
+      const description = await page
+        .locator('[data-hero="description"]')
+        .boundingBox();
       const buttons = await page
-        .locator(".hero-copy [data-slot=store-buttons]")
+        .locator('[data-hero="downloads"] [data-slot="store-buttons"]')
         .boundingBox();
       expect(title).not.toBeNull();
       expect(description).not.toBeNull();
@@ -84,7 +86,7 @@ for (const locale of ["ko", "en"]) {
       expect(Math.abs(axis(title) - axis(description))).toBeLessThanOrEqual(1);
       expect(Math.abs(axis(title) - axis(buttons))).toBeLessThanOrEqual(1);
       const links = await page
-        .locator(".hero-copy [data-slot=store-button]")
+        .locator('[data-hero="downloads"] [data-slot="store-button"]')
         .all();
       const first = await links[0]?.boundingBox();
       const second = await links[1]?.boundingBox();
@@ -209,10 +211,13 @@ test("blocked fonts keep content visible and the landing geometry stable", async
   await page.route("**/*.woff2", (route) => route.abort());
   await page.goto("/ko");
   await expect(page.locator("h1")).toBeVisible();
-  await expect(page.locator(".hero-phone img")).toBeVisible();
   await expect(
-    page.locator("[data-motion-section]").first(),
-  ).not.toHaveAttribute("style", /transform/);
+    page.locator('[data-device="iphone"] img').first(),
+  ).toBeVisible();
+  await expect(page.locator("[data-motion-group]").first()).not.toHaveAttribute(
+    "style",
+    /transform/,
+  );
   expect(
     await page.evaluate(() => Number(Reflect.get(window, "__cls") ?? 0)),
   ).toBeLessThanOrEqual(0.1);
@@ -231,10 +236,9 @@ test("no JavaScript retains legal content, FAQ, archives, language links and mob
   await page.goto("/ko");
   await expect(page.locator("h1")).toBeVisible();
   await page.locator("#faq summary").first().click();
-  await expect(page.locator("#faq details").first()).toHaveAttribute(
-    "open",
-    "",
-  );
+  await expect(
+    page.locator('#faq [data-slot="faq-item"]').first(),
+  ).toHaveAttribute("open", "");
   await page.locator("noscript summary").click();
   await expect(
     page.locator("[data-slot=mobile-menu-static] nav"),
@@ -324,4 +328,57 @@ test("client navigation and repeated menu use leave no stray dialogs or warnings
       (text) => !text.includes("was preloaded using link preload"),
     ),
   ).toEqual([]);
+});
+
+test("home motion keeps global listeners stable across client navigations", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const cdp = await page.context().newCDPSession(page);
+  const globalListenerCount = async () => {
+    let total = 0;
+    for (const expression of ["window", "document"]) {
+      const { result } = await cdp.send("Runtime.evaluate", { expression });
+      if (!result.objectId) throw new Error(`Missing ${expression}`);
+      const { listeners } = await cdp.send("DOMDebugger.getEventListeners", {
+        objectId: result.objectId,
+      });
+      total += listeners.length;
+    }
+    return total;
+  };
+  const visitHomeWithMotion = async () => {
+    await page.mouse.wheel(0, 400);
+    await expect(page.locator('[data-duo="device"]')).toHaveAttribute(
+      "style",
+      /transform/,
+    );
+  };
+  await page.goto("/ko");
+  await visitHomeWithMotion();
+  const baseline = await globalListenerCount();
+  for (let round = 0; round < 3; round += 1) {
+    await page
+      .getByRole("link", { name: "패치노트", exact: true })
+      .first()
+      .click();
+    await page.waitForURL(/\/ko\/patch-notes$/);
+    await page.goBack();
+    await page.waitForURL(/\/ko$/);
+    await visitHomeWithMotion();
+  }
+  expect(await globalListenerCount()).toBe(baseline);
+});
+
+test("reduced motion shows the iPhone Duo unfolded without inline transforms", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/ko");
+  await page.mouse.wheel(0, 4000);
+  for (const part of ["cover", "device", "sheen", "companion"])
+    await expect(page.locator(`[data-duo="${part}"]`)).not.toHaveAttribute(
+      "style",
+      /transform|opacity/,
+    );
 });

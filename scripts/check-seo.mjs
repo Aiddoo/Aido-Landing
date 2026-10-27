@@ -183,9 +183,9 @@ for (const locale of ["ko", "en"]) {
         decode(html.match(/<title>(.+?)<\/title>/)?.[1]),
         messages.meta.title,
       );
-      assert.ok(visibleHtml.includes(messages.hero.headingLead));
-      assert.ok(visibleHtml.includes(messages.hero.headingHighlight));
-      assert.ok(visibleHtml.includes(messages.hero.description));
+      assert.ok(visibleHtml.includes(messages.home.hero.titleLead));
+      assert.ok(visibleHtml.includes(messages.home.hero.titleTail));
+      assert.ok(visibleHtml.includes(messages.home.hero.description));
       for (const guide of featureGuides)
         assert.ok(
           tags(html, "a").some(
@@ -209,10 +209,19 @@ for (const locale of ["ko", "en"]) {
           `${route}: FAQ answer in HTML`,
         );
       }
+      // 기본 details라 닫힌 답도 HTML에 남아 자바스크립트 없이 열리고 색인된다.
       assert.equal(
-        [...html.matchAll(/<details class="disclosure"/g)].length,
+        [...html.matchAll(/data-slot="faq-item"/g)].length,
         messages.faq.items.length,
+        `${route}: every FAQ answer stays in HTML`,
       );
+      const faqPage = jsonLd.find((data) => data["@type"] === "FAQPage");
+      assert.deepEqual(
+        faqPage.mainEntity.map((item) => [item.name, item.acceptedAnswer.text]),
+        messages.faq.items.map((item) => [item.question, item.answer]),
+        `${route}: FAQPage matches the visible FAQ`,
+      );
+      assert.deepEqual(application.featureList, messages.home.appFeatures);
     } else {
       const breadcrumb = jsonLd.find(
         (data) => data["@type"] === "BreadcrumbList",

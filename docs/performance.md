@@ -38,6 +38,15 @@ Playwright로 한영 화면/언어 전환, 키보드 메뉴, 팝오버 chunk 차
 
 이 표는 로컬 실험실 결과입니다. TBT는 INP 측정값이 아니며, 실제 사용자 Core Web Vitals의 75번째 백분위 LCP≤2.5초 / INP≤200ms / CLS≤0.1 통과를 보장하지 않습니다. 특히 한국어 LCP는 이번 개선 후에도 느린 모바일 실험 조건에서 2.5초를 넘습니다. 배포 뒤 Search Console/CrUX의 실제 지표와 오류를 확인해야 합니다. 실제 Search Console 검색어·순위 데이터를 가져와 분석한 작업은 포함하지 않습니다.
 
+## 2026-10-27 홈 개편 (Lighthouse 13.5 모바일, ANALYTICS_PROVIDERS=none, 3회 중앙값)
+
+| 경로 | 성능 | FCP (초) | LCP (초) | TBT (ms) | CLS | 전체 KiB (폰트) |
+|---|---:|---:|---:|---:|---:|---:|
+| /ko | 71 | 3.46 | 5.78 | 13 | 0.001 | 921 (426) |
+| /en | 88 | 1.95 | 3.67 | 9 | 0.015 | 574 (84) |
+
+같은 빌드의 /ko/services 73, /ko/features/ai-todo 74로, 한국어 페이지는 모든 경로가 받는 폰트 426KiB(Wanted Sans 4굵기 + Jua + 나눔손글씨 펜 전체 문구 서브셋)가 FCP·LCP를 좌우합니다. 홈의 LCP는 히어로 휴대폰 화면(`fetchPriority="high"` + preload)이며, 다음 개선은 unicode-range 분할 또는 굵기·손글씨 서브셋 축소입니다. 접근성·권장사항·SEO는 100입니다.
+
 ## 재측정
 
 별도 깨끗한 checkout에서 frozen install → pnpm build → pnpm start로 변경 전후 Production 서버를 준비합니다. 동일 Chrome/Lighthouse 버전, cold cache, 동의 상태, 기기/네트워크 조건으로 각 URL을 3회 이상 순차 실행하고 중앙값을 비교합니다. 단일 실행의 점수만 골라 비교하지 않습니다.

@@ -114,7 +114,7 @@ test("one initialization, sanitized views, typed clicks, navigation and withdraw
   await expect
     .poll(async () => (await gaEvents(page, "download_click")).length)
     .toBe(1);
-  await page.locator('a[href="/ko/features/ai-todo"]').click();
+  await page.locator('a[href="/ko/features/ai-todo"]').first().click();
   await expect(page).toHaveURL(/\/ko\/features\/ai-todo$/);
   await expect
     .poll(async () => (await gaEvents(page, "page_view")).length)
@@ -254,7 +254,7 @@ test("repeated navigation keeps one script and one click handler per provider", 
     "recurring-todo",
     "shared-todo",
   ].entries()) {
-    await page.locator(`a[href="/ko/features/${slug}"]`).click();
+    await page.locator(`a[href="/ko/features/${slug}"]`).first().click();
     await expect
       .poll(async () => (await gaEvents(page, "page_view")).length)
       .toBe(index + 2);
