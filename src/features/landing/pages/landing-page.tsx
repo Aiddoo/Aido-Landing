@@ -34,7 +34,7 @@ import {
 import { InviteRewardReceipt } from "@/features/landing/components/invite-reward-receipt";
 import { NudgeBubble } from "@/features/landing/components/nudge-bubble";
 import { PawBoardCard } from "@/features/landing/components/paw-board-card";
-import { PawTrail } from "@/features/landing/components/paw-trail";
+import { PawOrbitBackdrop } from "@/features/landing/components/paw-orbit-backdrop";
 import { PhoneFan } from "@/features/landing/components/phone-fan";
 import { PremiumBenefitList } from "@/features/landing/components/premium-benefit-list";
 import { SectionKicker } from "@/features/landing/components/section-kicker";
@@ -106,11 +106,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
             </p>
           </VStack>
           <Centered className="relative py-6">
-            <Box
-              aria-hidden="true"
-              className="absolute top-1/2 left-1/2 aspect-square w-[min(110%,34rem)] -translate-1/2 rounded-full bg-brand-soft"
-            />
-            <PawTrail className="absolute inset-0" />
+            <PawOrbitBackdrop className="absolute top-1/2 left-1/2 aspect-square w-[min(100%,34rem)] -translate-1/2 lg:w-[min(124%,38rem)]" />
             <DeviceScreen
               locale={locale}
               screen="today"
