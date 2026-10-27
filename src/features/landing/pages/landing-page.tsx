@@ -1,9 +1,12 @@
+import { Crown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
+import { SentenceFlow } from "@/components/layout/sentence-flow";
 import { BrandMotif } from "@/components/marketing/brand-motif";
 import { DownloadCard } from "@/components/marketing/download-card";
 import { FaqList } from "@/components/marketing/faq-list";
+import { PawPrintTrail } from "@/components/marketing/paw-print-trail";
 import { StoreButtons } from "@/components/marketing/store-buttons";
 import {
   HOME_CAT_SIZE,
@@ -21,6 +24,8 @@ import {
 } from "@/components/ui/layout";
 import { FeatureGuideList } from "@/features/feature-guides/components/feature-guide-list";
 import { AiTodoExample } from "@/features/landing/components/ai-todo-example";
+import { CatPicker } from "@/features/landing/components/cat-picker";
+import { DeviceShowcase } from "@/features/landing/components/device-showcase";
 import { DoneSticker } from "@/features/landing/components/done-sticker";
 import { DuoUnfold } from "@/features/landing/components/duo-unfold";
 import { GuideLink } from "@/features/landing/components/guide-link";
@@ -31,14 +36,16 @@ import {
 import { InviteRewardReceipt } from "@/features/landing/components/invite-reward-receipt";
 import { NudgeBubble } from "@/features/landing/components/nudge-bubble";
 import { PawBoardCard } from "@/features/landing/components/paw-board-card";
-import { PawTrail } from "@/features/landing/components/paw-trail";
+import { PawOrbitBackdrop } from "@/features/landing/components/paw-orbit-backdrop";
 import { PhoneFan } from "@/features/landing/components/phone-fan";
 import { PremiumBenefitList } from "@/features/landing/components/premium-benefit-list";
 import { SectionKicker } from "@/features/landing/components/section-kicker";
+import { SupportedDeviceList } from "@/features/landing/components/supported-device-list";
 import { nudgeCats } from "@/features/landing/data/home-cats";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { localizedPath } from "@/lib/public-routes";
+import { cn } from "@/lib/utils";
 
 const PHONE_SIZES = "(min-width: 1024px) 288px, min(72vw, 288px)";
 const SIDE_PHONE_SIZES = "(min-width: 1024px) 220px, 0px";
@@ -57,7 +64,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
       >
         <ReadableContent
           render={<section id="top" aria-labelledby="hero-title" />}
-          className="grid items-center gap-14 pt-32 pb-section-sm lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:pt-40"
+          className="grid items-center gap-14 pt-32 pb-section-sm lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8 lg:pt-40"
         >
           <VStack
             align="center"
@@ -80,14 +87,18 @@ export function LandingPage({ locale }: { locale: Locale }) {
               data-hero="title"
               className="w-full text-display-xl max-md:[&:lang(en)]:min-h-[3.36em]"
             >
-              <span className="block">{home.hero.titleLead}</span>
-              <span className="block">{home.hero.titleTail}</span>
+              <span className="block sm:text-nowrap">
+                {home.hero.titleLead}
+              </span>
+              <span className="block sm:text-nowrap">
+                {home.hero.titleTail}
+              </span>
             </h1>
             <p
               data-hero="description"
-              className="max-w-[34rem] text-body-lg text-gray-9"
+              className="max-w-[34rem] text-body-lg text-balance text-gray-9"
             >
-              {home.hero.description}
+              <SentenceFlow text={home.hero.description} />
             </p>
             <Box data-hero="downloads" className="w-full">
               <StoreButtons
@@ -101,11 +112,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
             </p>
           </VStack>
           <Centered className="relative py-6">
-            <Box
-              aria-hidden="true"
-              className="absolute top-1/2 left-1/2 aspect-square w-[min(110%,34rem)] -translate-1/2 rounded-full bg-brand-soft"
-            />
-            <PawTrail className="absolute inset-0" />
+            <PawOrbitBackdrop className="absolute top-1/2 left-1/2 aspect-square w-[min(100%,34rem)] -translate-1/2 lg:w-[min(124%,38rem)]" />
             <DeviceScreen
               locale={locale}
               screen="today"
@@ -339,6 +346,43 @@ export function LandingPage({ locale }: { locale: Locale }) {
         </ReadableContent>
 
         <ReadableContent
+          render={<section id="cats" aria-labelledby="cats-title" />}
+          data-motion-group
+          className="relative py-section"
+        >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <PawPrintTrail className="absolute top-[9%] left-[6%] rotate-[28deg] [&_svg]:size-6" />
+            <BrandMotif
+              motif="bone"
+              className="absolute top-[15%] right-[7%] h-7 w-14 -rotate-[16deg]"
+            />
+          </Box>
+          <VStack align="center" gap={5} className="text-center">
+            <SectionKicker className="-mb-2">{home.cats.kicker}</SectionKicker>
+            <h2 id="cats-title" data-motion="title" className="text-display-lg">
+              {home.cats.title}
+            </h2>
+            <p className="max-w-[34em] text-body-lg text-balance text-gray-9 [&:lang(en)]:max-w-[40ch]">
+              {home.cats.description}
+            </p>
+          </VStack>
+          <CatPicker
+            content={home.cats.picker}
+            className="mx-auto mt-12 max-w-[60rem]"
+          />
+          <p className="mx-auto mt-6 max-w-[34em] text-center text-caption text-balance text-muted-foreground">
+            <Crown
+              aria-hidden="true"
+              className="mr-1.5 inline-block size-4 -translate-y-px align-middle text-brand-deep"
+            />
+            {home.cats.premiumNote}
+          </p>
+        </ReadableContent>
+
+        <ReadableContent
           render={
             <section id="large-screen" aria-labelledby="large-screen-title" />
           }
@@ -347,6 +391,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
         >
           <VStack
             gap={16}
+            data-surface="inverse"
             className="rounded-[2.5rem] bg-ink px-5 py-section-sm text-cream sm:px-10 lg:px-14"
           >
             <VStack align="center" gap={5} className="text-center">
@@ -359,17 +404,22 @@ export function LandingPage({ locale }: { locale: Locale }) {
               <h2
                 id="large-screen-title"
                 data-motion="title"
-                className="text-display-lg text-cream"
+                className="text-balance text-display-lg text-cream"
               >
                 {home.largeScreen.title}
               </h2>
-              <p className="max-w-[36rem] text-body-lg text-cream/75">
+              <p
+                className={cn(
+                  "text-balance text-body-lg text-cream/75",
+                  locale === "ko" ? "max-w-[34em]" : "max-w-[40ch]",
+                )}
+              >
                 {home.largeScreen.description}
               </p>
             </VStack>
             <DuoUnfold
               locale={locale}
-              className="mx-auto w-full max-w-[660px]"
+              className="mx-auto w-full max-w-[720px]"
             />
             <Grid columns={2} gap={6}>
               <HStack
@@ -423,10 +473,57 @@ export function LandingPage({ locale }: { locale: Locale }) {
         </ReadableContent>
 
         <ReadableContent
-          render={<section id="reports" aria-labelledby="routine-title" />}
+          render={<section id="devices" aria-labelledby="devices-title" />}
           data-motion-group
           className="py-section"
         >
+          <VStack align="center" gap={5} className="text-center">
+            <SectionKicker className="-mb-3">
+              {home.devices.kicker}
+            </SectionKicker>
+            <h2
+              id="devices-title"
+              data-motion="title"
+              className="text-display-lg"
+            >
+              {home.devices.title}
+            </h2>
+            <p className="max-w-[34em] text-body-lg text-balance text-gray-9 [&:lang(en)]:max-w-[40ch]">
+              {home.devices.description}
+            </p>
+          </VStack>
+          <DeviceShowcase
+            locale={locale}
+            className="mx-auto mt-14 max-w-[64rem]"
+          />
+          <SupportedDeviceList locale={locale} className="mt-14" />
+          <p className="mt-8 text-center text-caption text-muted-foreground">
+            {home.devices.note}
+          </p>
+        </ReadableContent>
+
+        <ReadableContent
+          render={<section id="reports" aria-labelledby="routine-title" />}
+          data-motion-group
+          className="relative py-section"
+        >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute top-[36%] left-[4%] h-8 w-16 -rotate-[18deg]"
+            />
+            <PawPrintTrail
+              steps={4}
+              className="absolute top-[40%] left-1/2 -translate-x-1/2 rotate-[10deg] [&_svg]:size-6"
+            />
+            <BrandMotif
+              motif="bone"
+              className="absolute top-[64%] right-[5%] h-6 w-12 rotate-[24deg]"
+            />
+          </Box>
           <SectionKicker className="mb-3 justify-center">
             {home.routine.kicker}
           </SectionKicker>
@@ -477,8 +574,21 @@ export function LandingPage({ locale }: { locale: Locale }) {
         <ReadableContent
           render={<section id="premium" aria-labelledby="premium-title" />}
           data-motion-group
-          className="grid gap-10 py-section-sm lg:grid-cols-[0.8fr_1.2fr] lg:gap-16"
+          className="relative grid gap-10 py-section-sm lg:grid-cols-[0.8fr_1.2fr] lg:gap-16"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute bottom-[16%] left-[22%] h-7 w-14 rotate-[14deg]"
+            />
+            <PawPrintTrail
+              steps={2}
+              className="absolute right-[2%] bottom-0 -rotate-[70deg]"
+            />
+          </Box>
           <VStack
             gap={5}
             className="items-center text-center lg:items-start lg:text-left"
@@ -516,8 +626,25 @@ export function LandingPage({ locale }: { locale: Locale }) {
         <ReadableContent
           render={<section id="faq" aria-labelledby="faq-title" />}
           size="narrow"
-          className="py-section"
+          className="relative py-section"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif xl:block"
+          >
+            <PawPrintTrail
+              steps={4}
+              className="absolute top-[24%] -left-36 -rotate-[12deg] [&_svg]:size-6"
+            />
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute top-[48%] -right-44 h-8 w-16 rotate-[16deg]"
+            />
+            <BrandMotif
+              motif="bone"
+              className="absolute bottom-[18%] -left-32 h-6 w-12 -rotate-[22deg]"
+            />
+          </Box>
           <VStack align="center" gap={4} className="text-center">
             <h2 id="faq-title" className="text-display-lg">
               {messages.faq.title}
@@ -531,8 +658,18 @@ export function LandingPage({ locale }: { locale: Locale }) {
 
         <ReadableContent
           render={<section id="guides" aria-labelledby="guides-title" />}
-          className="pb-section"
+          className="relative pb-section"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <PawPrintTrail className="absolute -top-3 left-[16%] rotate-[78deg]" />
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute top-0 right-[17%] h-6 w-12 -rotate-[10deg]"
+            />
+          </Box>
           <h2 id="guides-title" className="text-center text-display-md">
             {messages.featureGuides.title}
           </h2>

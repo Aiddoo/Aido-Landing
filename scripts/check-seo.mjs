@@ -20,16 +20,17 @@ import {
   SITE_URL,
 } from "../src/lib/seo.ts";
 
+const withPlainSpaces = (text) => text.replaceAll("\u00a0", " ");
 const originalSource = (src) =>
   Object.entries(responsiveImages).find(([, image]) =>
     image.variants.some((variant) => variant.src === src),
   )?.[0] ?? src;
 const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
-const { koreanFontStylesheet, koreanDisplayFont } = await import(
+const { koreanDisplayFont, englishDisplayFont } = await import(
   "../src/components/fonts/font-assets.ts"
 );
-const fontCss = await read(`public${koreanFontStylesheet}`);
+const fontCss = await read("src/components/fonts/web-fonts.css");
 assert.ok(
   fontCss.includes(koreanDisplayFont),
   "Korean display font asset is declared",
@@ -41,15 +42,15 @@ const fontManifest = JSON.parse(
   await read("src/components/fonts/data/font-subset-manifest.json"),
 );
 const characters = new Set(
-  Array.from({ length: 224 }, (_, index) => index + 32),
+  Array.from({ length: 95 }, (_, index) => String.fromCodePoint(index + 32)),
 );
 for await (const path of glob(fontInputs.patterns)) {
   for (const character of await read(path))
-    characters.add(character.codePointAt(0));
+    if (character >= " ") characters.add(character);
 }
-assert.deepEqual(
-  [...characters].sort((a, b) => a - b),
-  fontManifest.codepoints,
+assert.equal(
+  [...characters].sort((a, b) => a.codePointAt(0) - b.codePointAt(0)).join(""),
+  fontManifest.text,
   "Public text glyphs changed. Run scripts/generate-fonts.py before building.",
 );
 const paths = [
@@ -109,19 +110,17 @@ for (const locale of ["ko", "en"]) {
     const visibleHtml = decode(
       html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""),
     );
+    // 문장 단위 묶음(span)·줄바꿈 없는 공백을 걷어 낸, 사람이 읽는 글자.
+    const visibleText = withPlainSpaces(visibleHtml.replace(/<[^>]+>/g, ""));
     const links = tags(html, "link");
-    assert.equal(
-      links.filter(
-        (link) => link.rel === "preload" && link.href === koreanDisplayFont,
-      ).length,
-      locale === "ko" ? 1 : 0,
-      `${route}: only Korean pages preload the Korean display font`,
-    );
-    assert.equal(
-      links.filter((link) => link.rel === "preload" && link.as === "font")
-        .length,
-      locale === "ko" ? 1 : 0,
-      `${route}: no unused Latin preloads or bulk Korean subset preloads`,
+    const displayFont =
+      locale === "ko" ? koreanDisplayFont : englishDisplayFont;
+    assert.deepEqual(
+      links
+        .filter((link) => link.rel === "preload" && link.as === "font")
+        .map((link) => link.href),
+      [displayFont],
+      `${route}: only the heading slice of this locale is preloaded`,
     );
     for (const link of links.filter((link) => link.as === "font")) {
       assert.equal(link.type, "font/woff2");
@@ -145,7 +144,7 @@ for (const locale of ["ko", "en"]) {
       );
     }
     assert.equal(value("og:url"), `${SITE_URL}${route}`);
-    assert.equal(value("og:image"), `${SITE_URL}/og-image.png`);
+    assert.equal(value("og:image"), `${SITE_URL}/og-image-${locale}.png`);
     for (const key of [
       "og:title",
       "og:description",
@@ -185,7 +184,9 @@ for (const locale of ["ko", "en"]) {
       );
       assert.ok(visibleHtml.includes(messages.home.hero.titleLead));
       assert.ok(visibleHtml.includes(messages.home.hero.titleTail));
-      assert.ok(visibleHtml.includes(messages.home.hero.description));
+      assert.ok(
+        visibleText.includes(withPlainSpaces(messages.home.hero.description)),
+      );
       for (const guide of featureGuides)
         assert.ok(
           tags(html, "a").some(
@@ -347,7 +348,7 @@ for (const locale of ["ko", "en"]) {
           `${route}: ${release.id} anchor`,
         );
         assert.ok(
-          visibleHtml.includes(release.summary[locale]),
+          visibleText.includes(withPlainSpaces(release.summary[locale])),
           `${route}: ${release.id} summary`,
         );
         for (const category of release.categories)
@@ -360,7 +361,7 @@ for (const locale of ["ko", "en"]) {
           for (const text of formatStoreNotes(release, locale).split("\n"))
             if (text)
               assert.ok(
-                visibleHtml.includes(text.replace(/^- /, "")),
+                visibleText.includes(withPlainSpaces(text.replace(/^- /, ""))),
                 `${route}: ${release.version} store summary in SSR HTML`,
               );
         } else {
@@ -378,13 +379,12 @@ for (const locale of ["ko", "en"]) {
       );
     }
     assert.equal(tags(html, "h1").length, 1, `${route}: a single page title`);
-    assert.equal(
-      links.filter(
+    assert.ok(
+      links.every(
         (link) =>
-          link.href === koreanFontStylesheet && link.rel === "stylesheet",
-      ).length,
-      locale === "ko" ? 1 : 0,
-      `${route}: Korean font CSS only on Korean pages`,
+          link.rel !== "stylesheet" || link.href.startsWith("/_next/static/"),
+      ),
+      `${route}: web font faces ship inside the bundled stylesheet`,
     );
     for (const { src, srcset } of tags(html, "img")) {
       assert.ok(srcset, `${route}: responsive images have a srcset`);
@@ -400,12 +400,6 @@ const robotsText = await read(`${app}/robots.txt.body`);
 assert.match(robotsText, /User-Agent: \*/);
 assert.match(robotsText, IS_PREVIEW ? /Disallow: \// : /Allow: \//);
 if (!IS_PREVIEW) assert.doesNotMatch(robotsText, /Disallow:/);
-const stylesheetBytes = await readFile(`public${koreanFontStylesheet}`);
-assert.ok(
-  koreanFontStylesheet.endsWith(
-    `-${createHash("sha256").update(stylesheetBytes).digest("hex").slice(0, 12)}.css`,
-  ),
-);
 const xml = await read(`${app}/sitemap.xml.body`);
 const entries = [...xml.matchAll(/<url>(.*?)<\/url>/gs)].map(
   ([, entry]) => entry,
@@ -425,7 +419,7 @@ for (const locale of ["ko", "en"])
           : path === "/patch-notes"
             ? patchNotesUpdatedAt
             : path === "/privacy"
-              ? "2026-10-26"
+              ? "2026-10-27"
               : (featureGuides.find((guide) => guide.path === path)
                   ?.updatedAt ??
                 [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
@@ -455,17 +449,45 @@ assert.doesNotMatch(fontCss, /https?:\/\/|fonts\.googleapis|fonts\.gstatic/);
 // 본문·제목은 swap(제목만 preload), 장식 손글씨는 optional. 폴백은 로컬 글꼴 + 메트릭 보정.
 const fontDisplay = {
   Jua: "swap",
+  "Jua Latin": "swap",
   "Nanum Pen Script": "optional",
+  "Nanum Pen Script Latin": "optional",
   "Wanted Sans": "swap",
+  "Wanted Sans Latin": "swap",
 };
+const bundledCss = await Promise.all(
+  (await readdir(".next/static/css")).map((file) =>
+    read(`.next/static/css/${file}`),
+  ),
+);
+assert.ok(
+  bundledCss.some(
+    (css) => css.includes(koreanDisplayFont) && css.includes("unicode-range"),
+  ),
+  "web-fonts.css is bundled into the site stylesheet",
+);
 const declaredFamilies = new Set();
+const webFaces = new Map();
+const rangeIncludes = (range, character) =>
+  range.split(",").some((item) => {
+    const [start, end = start] = item.trim().slice(2).split("-");
+    const codePoint = character.codePointAt(0);
+    return (
+      codePoint >= Number.parseInt(start, 16) &&
+      codePoint <= Number.parseInt(end, 16)
+    );
+  });
 for (const [, face] of fontCss.matchAll(/@font-face\s*\{([^}]+)\}/g)) {
   const family = face.match(/font-family:\s*"([^"]+)"/)?.[1];
   assert.ok(family, "Every @font-face names its family");
   declaredFamilies.add(family);
   if (family in fontDisplay) {
     assert.match(face, new RegExp(`font-display:\\s*${fontDisplay[family]}`));
-    assert.match(face, /url\(\/fonts\//, `${family}: same-origin WOFF2`);
+    const file = face.match(/url\(\/fonts\/([^)]+)\)/)?.[1];
+    const range = face.match(/unicode-range:\s*([^;]+);/)?.[1];
+    const weight = face.match(/font-weight:\s*(\d+)/)?.[1];
+    assert.ok(file && range && weight, `${family}: same-origin WOFF2 slice`);
+    webFaces.set(file, { key: `${family} ${weight}`, range });
   } else {
     assert.match(face, / Fallback /, `${family}: only metric fallbacks`);
     assert.match(face, /src:\s*local\(/, `${family}: local system font`);
@@ -484,19 +506,52 @@ for (const [, face] of fontCss.matchAll(/@font-face\s*\{([^}]+)\}/g)) {
 }
 for (const family of Object.keys(fontDisplay))
   assert.ok(declaredFamilies.has(family), `${family} is declared`);
-for (const [, font] of fontCss.matchAll(
-  /url\(["']?(\/fonts\/[^"') ]+)["']?\)/g,
-)) {
-  const bytes = await readFile(`public${font}`);
-  assert.equal(bytes.toString("ascii", 0, 4), "wOF2", `${font}: WOFF2 asset`);
-  assert.ok(bytes.length > 0 && bytes.length <= 300 * 1024);
-  assert.ok(
-    font.endsWith(
-      `-${createHash("sha256").update(bytes).digest("hex").slice(0, 12)}.woff2`,
-    ),
-    `${font}: content hash must change when cached font bytes change`,
+// 글꼴마다 조각을 합치면 공개 문구 전체(원본에 없는 글자 제외)이고, 조각의 unicode-range는 겹치지 않는다.
+for (const [key, face] of Object.entries(fontManifest.faces)) {
+  const slices = Object.entries(face.slices);
+  assert.equal(
+    [...slices.map(([, text]) => text).join(""), ...face.missing]
+      .sort((a, b) => a.codePointAt(0) - b.codePointAt(0))
+      .join(""),
+    fontManifest.text,
+    `${key}: slices cover the public text once`,
   );
+  for (const [file] of slices) {
+    const declared = webFaces.get(file);
+    assert.equal(declared?.key, key, `${file}: declared for ${key}`);
+    for (const [other, otherText] of slices)
+      for (const character of otherText)
+        assert.equal(
+          rangeIncludes(declared.range, character),
+          other === file,
+          `${file}: unicode-range selects only its own glyphs (${character})`,
+        );
+    const bytes = await readFile(`public/fonts/${file}`);
+    assert.equal(bytes.toString("ascii", 0, 4), "wOF2", `${file}: WOFF2 asset`);
+    assert.ok(bytes.length > 0 && bytes.length <= 300 * 1024);
+    assert.ok(
+      file.endsWith(
+        `-${createHash("sha256").update(bytes).digest("hex").slice(0, 12)}.woff2`,
+      ),
+      `${file}: content hash must change when cached font bytes change`,
+    );
+  }
 }
+assert.equal(
+  webFaces.size,
+  Object.values(fontManifest.faces).reduce(
+    (count, face) => count + Object.keys(face.slices).length,
+    0,
+  ),
+  "Every declared slice is in the manifest",
+);
+assert.deepEqual(
+  (await readdir("public/fonts"))
+    .filter((file) => file.endsWith(".woff2"))
+    .sort(),
+  [...webFaces.keys()].sort(),
+  "public/fonts holds only the declared slices",
+);
 for (const license of [
   "jua-OFL.txt",
   "nanum-pen-script-OFL.txt",
@@ -561,7 +616,7 @@ for (const locale of ["ko", "en"]) {
   assert.doesNotMatch(html, /rel="canonical"/, `${route}: no canonical`);
   // 한국어는 카카오톡 공유와 같은 초대 썸네일, 영어는 기본 OG 이미지를 쓴다.
   const inviteOgImage =
-    locale === "ko" ? "/images/invite-share.png" : "/og-image.png";
+    locale === "ko" ? "/images/invite-share.png" : "/og-image-en.png";
   for (const [attribute, key] of [
     ["property", "og:image"],
     ["name", "twitter:image"],
@@ -580,8 +635,8 @@ for (const locale of ["ko", "en"]) {
   );
   assert.equal(
     tags(html, "link").filter((link) => link.as === "font").length,
-    locale === "ko" ? 1 : 0,
-    `${route}: keeps the single Korean display preload`,
+    1,
+    `${route}: keeps the single display font preload`,
   );
 }
 const appleAssociation = JSON.parse(

@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { blockAnalyticsVendors } from "./block-analytics-vendors";
 
 // These tests deliberately keep analytics rejected and never contact marketing services.
 test.beforeEach(async ({ page }) => {
+  await blockAnalyticsVendors(page);
   await page.addInitScript(() =>
     localStorage.setItem(
       "aido.analytics-consent.v1",
@@ -347,6 +349,17 @@ test("home motion keeps global listeners stable across client navigations", asyn
     }
     return total;
   };
+  // 첫 스크롤 뒤 지연 로드되는 모션·메뉴 코드가 리스너를 다 붙일 때까지 기다린 뒤의 개수.
+  const settledListenerCount = async () => {
+    let previous = await globalListenerCount();
+    for (let attempt = 0; attempt < 20; attempt += 1) {
+      await page.waitForTimeout(150);
+      const current = await globalListenerCount();
+      if (current === previous) return current;
+      previous = current;
+    }
+    throw new Error("Global listener count never settled");
+  };
   const visitHomeWithMotion = async () => {
     await page.mouse.wheel(0, 400);
     await expect(page.locator('[data-duo="device"]')).toHaveAttribute(
@@ -356,7 +369,7 @@ test("home motion keeps global listeners stable across client navigations", asyn
   };
   await page.goto("/ko");
   await visitHomeWithMotion();
-  const baseline = await globalListenerCount();
+  const baseline = await settledListenerCount();
   for (let round = 0; round < 3; round += 1) {
     await page
       .getByRole("link", { name: "패치노트", exact: true })
@@ -367,7 +380,7 @@ test("home motion keeps global listeners stable across client navigations", asyn
     await page.waitForURL(/\/ko$/);
     await visitHomeWithMotion();
   }
-  expect(await globalListenerCount()).toBe(baseline);
+  expect(await settledListenerCount()).toBe(baseline);
 });
 
 test("reduced motion shows the iPhone Duo unfolded without inline transforms", async ({
@@ -376,11 +389,9 @@ test("reduced motion shows the iPhone Duo unfolded without inline transforms", a
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/ko");
   await page.mouse.wheel(0, 4000);
-  for (const part of ["cover", "device", "sheen", "companion"])
-    await expect(page.locator(`[data-duo="${part}"]`)).not.toHaveAttribute(
-      "style",
-      /transform|opacity/,
-    );
+  for (const part of ["device", "flat", "leaf", "shade", "sheen", "companion"])
+    for (const element of await page.locator(`[data-duo="${part}"]`).all())
+      await expect(element).not.toHaveAttribute("style", /transform|opacity/);
 });
 
 test("a malformed invite link renders the invalid state on the server without hydration errors", async ({
@@ -399,7 +410,7 @@ test("a malformed invite link renders the invalid state on the server without hy
     /초대 링크를 확인해 주세요|Please check your invite link/,
   );
   const playLink = page.locator(
-    'a[data-placement="invite"][data-store="google_play"]',
+    'a[data-analytics*="google_play"][data-analytics*=\'"cta_placement":"invite"\']',
   );
   await expect(playLink).toHaveAttribute("href", /listing=invite/);
   await expect(playLink).not.toHaveAttribute("href", /referrer=/);

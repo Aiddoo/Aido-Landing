@@ -1,0 +1,111 @@
+"use client";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+
+const MAX_WAIT_FRAMES = 90;
+const RESTORE_INSTANT_MS = 1500;
+
+function findFocusTarget(target: Element) {
+  const labelledBy = target.getAttribute("aria-labelledby");
+  const heading =
+    (labelledBy == null ? null : document.getElementById(labelledBy)) ??
+    target.querySelector("h1, h2, h3");
+  return heading ?? target;
+}
+
+function focusHashTarget(hash: string) {
+  if (hash.length < 2) return;
+  const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+  if (target == null) return;
+  const focusable = findFocusTarget(target);
+  if (focusable.getAttribute("tabindex") == null) {
+    focusable.setAttribute("tabindex", "-1");
+  }
+  if (focusable instanceof HTMLElement) {
+    focusable.focus({ preventScroll: true });
+  }
+}
+
+function focusWhenSettled(hash: string, frame = 0) {
+  const arrived = window.location.hash === hash;
+  const menuClosed = isMenuClosed();
+  if ((arrived && menuClosed) || frame >= MAX_WAIT_FRAMES) {
+    if (arrived) focusHashTarget(hash);
+    return;
+  }
+  requestAnimationFrame(() => focusWhenSettled(hash, frame + 1));
+}
+
+function isMenuClosed() {
+  return document.querySelector("[data-slot=sheet-content]") == null;
+}
+
+function scrollToTopWhenMenuClosed(frame = 0) {
+  if (!isMenuClosed() && frame < MAX_WAIT_FRAMES) {
+    requestAnimationFrame(() => scrollToTopWhenMenuClosed(frame + 1));
+    return;
+  }
+  window.scrollTo({ top: 0 });
+  const heading = document.querySelector("main h1");
+  if (heading instanceof HTMLElement) {
+    if (heading.getAttribute("tabindex") == null) {
+      heading.setAttribute("tabindex", "-1");
+    }
+    heading.focus({ preventScroll: true });
+  }
+}
+
+/** 해시 링크로 도착한 섹션 제목으로 포커스를 옮겨 스크린리더와 키보드 흐름이 이어지게 한다. */
+export function HashFocus() {
+  const pathname = usePathname();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: 쪽이 바뀔 때마다 도착한 해시를 다시 확인한다.
+  useEffect(() => {
+    focusHashTarget(window.location.hash);
+  }, [pathname]);
+
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      if (event.button !== 0) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      const anchor =
+        event.target instanceof Element
+          ? event.target.closest("a[href]")
+          : null;
+      if (
+        !(anchor instanceof HTMLAnchorElement) ||
+        anchor.target === "_blank"
+      ) {
+        return;
+      }
+      const url = new URL(anchor.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname !== window.location.pathname) return;
+      if (url.hash !== "") {
+        focusWhenSettled(url.hash);
+      } else if (url.search === window.location.search) {
+        scrollToTopWhenMenuClosed();
+      }
+    };
+    // 뒤로·앞으로 가기의 스크롤 복원이 부드럽게 굴러가면 중간 위치에서 멈춘 것처럼 보인다.
+    let restoreTimer = 0;
+    const onPopState = () => {
+      document.documentElement.dataset.restoringScroll = "";
+      window.clearTimeout(restoreTimer);
+      restoreTimer = window.setTimeout(() => {
+        delete document.documentElement.dataset.restoringScroll;
+      }, RESTORE_INSTANT_MS);
+    };
+    document.addEventListener("click", onClick);
+    window.addEventListener("popstate", onPopState);
+    return () => {
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("popstate", onPopState);
+      window.clearTimeout(restoreTimer);
+    };
+  }, []);
+
+  return null;
+}

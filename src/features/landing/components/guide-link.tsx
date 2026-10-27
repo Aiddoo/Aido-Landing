@@ -21,9 +21,10 @@ export function GuideLink<T extends string>({
     <Link
       href={href}
       {...analyticsAttributes({
-        name: "feature_guide_click",
-        slug,
-        placement: "home_guides",
+        name: "select_content",
+        content_type: "feature_guide",
+        item_id: slug,
+        cta_placement: "home_guides",
       })}
       className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-4 text-caption font-semibold text-brand-deep shadow-card transition-[background-color,translate] duration-150 hover:-translate-y-0.5 hover:bg-brand-soft active:translate-y-0"
     >

@@ -19,6 +19,7 @@ export const GUIDE_SCREEN_SIZE = { width: 640, height: 1391 } as const;
 
 export function getGuideScreen(locale: Locale, key: GuideScreenKey) {
   return {
+    device: "iphone" as const,
     src: `/app-assets/guides/${locale}/${key}.webp`,
     ...GUIDE_SCREEN_SIZE,
   };

@@ -41,12 +41,14 @@ export function StoreButtons({
     >
       <a
         href={appStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         data-slot="store-button"
         className={storeButtonClass}
         {...analyticsAttributes({
           name: "download_click",
           store: "app_store",
-          placement,
+          cta_placement: placement,
         })}
       >
         <svg
@@ -60,15 +62,18 @@ export function StoreButtons({
           prefix={content.appStorePrefix}
           label={content.appStoreLabel}
         />
+        <NewTabNotice label={content.newTabLabel} />
       </a>
       <a
         href={playStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         data-slot="store-button"
         className={storeButtonClass}
         {...analyticsAttributes({
           name: "download_click",
           store: "google_play",
-          placement,
+          cta_placement: placement,
         })}
       >
         <svg
@@ -82,15 +87,20 @@ export function StoreButtons({
           prefix={content.playStorePrefix}
           label={content.playStoreLabel}
         />
+        <NewTabNotice label={content.newTabLabel} />
       </a>
     </Grid>
   );
 }
 
+function NewTabNotice({ label }: { label: string }) {
+  return <span className="sr-only">({label})</span>;
+}
+
 function StoreLabel({ prefix, label }: { prefix: string; label: string }) {
   return (
     <VStack align="start" className="leading-none">
-      <span className="text-[0.6875rem] font-medium opacity-75">{prefix}</span>
+      <span className="text-[0.6875rem] opacity-75">{prefix}</span>
       <span className="text-title font-bold whitespace-nowrap">{label}</span>
     </VStack>
   );

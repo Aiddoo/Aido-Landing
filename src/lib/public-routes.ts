@@ -31,6 +31,16 @@ export function localizedPath(
 ): `/${Locale}${PublicPath}` {
   return `/${locale}${path}`;
 }
+export const homeAnchors = ["guides", "download"] as const;
+export type HomeAnchor = (typeof homeAnchors)[number];
+
+export function localizedHomeAnchor(
+  locale: Locale,
+  anchor: HomeAnchor,
+): `/${Locale}#${HomeAnchor}` {
+  return `/${locale}#${anchor}`;
+}
+
 export function sanitizeAnchor(hash: string) {
   return /^#[a-zA-Z][a-zA-Z0-9_-]{0,100}$/.test(hash) ? hash : "";
 }

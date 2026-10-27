@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SentenceFlow } from "@/components/layout/sentence-flow";
 import {
   PageBreadcrumb,
   type PageBreadcrumbItem,
@@ -11,6 +12,8 @@ export type PageHeaderProps = Omit<VStackProps, "children" | "title"> & {
   locale: Locale;
   title: string;
   description: string;
+  /** sentences: 문장마다 한 덩어리로 묶어, 줄이 바뀔 때 문장 경계에서 먼저 끊는다. */
+  descriptionLayout?: "flow" | "sentences";
   /** 제목 위 손글씨 한 줄(앱·SNS 이미지의 주황 손글씨와 같은 역할) */
   kicker?: string;
   breadcrumbs?: readonly PageBreadcrumbItem[];
@@ -23,6 +26,7 @@ export function PageHeader({
   locale,
   title,
   description,
+  descriptionLayout = "flow",
   kicker,
   breadcrumbs,
   children,
@@ -47,7 +51,19 @@ export function PageHeader({
         )}
         <h1 className="text-display-lg text-ink">{title}</h1>
       </VStack>
-      <p className="max-w-reading text-body-lg text-gray-9">{description}</p>
+      <p
+        className={cn(
+          "max-w-reading text-body-lg text-gray-9",
+          descriptionLayout === "sentences" &&
+            "max-w-[36em] text-balance [&:lang(en)]:max-w-[46ch]",
+        )}
+      >
+        {descriptionLayout === "sentences" ? (
+          <SentenceFlow text={description} />
+        ) : (
+          description
+        )}
+      </p>
       {children}
     </VStack>
   );

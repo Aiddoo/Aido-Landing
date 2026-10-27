@@ -29,11 +29,7 @@ export function InviteHeader({
         render={<header />}
         className="flex h-16 items-center justify-between gap-3 md:h-20"
       >
-        <Link
-          href={localizedPath(locale, "")}
-          aria-label={`${accessibility.home} · Aido`}
-          className="-ml-1 rounded-xl p-1"
-        >
+        <Link href={localizedPath(locale, "")} className="-ml-1 rounded-xl p-1">
           <BrandLogo locale={locale} />
         </Link>
         <p className="text-caption font-semibold text-brand-deep">

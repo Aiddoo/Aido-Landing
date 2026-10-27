@@ -113,7 +113,8 @@ describe("미리보기 응답", () => {
     expect(parseInviteErrorCode({ error: { code: "AUTH_0101" } })).toBeNull();
   });
   it("프로필 이미지는 알려진 키만 고양이로 바꾸고 나머지는 기본 고양이다", () => {
-    expect(getInviterCat("siamese")).toBe("/app-assets/cat-shyam.webp");
+    expect(getInviterCat("siamese")).toBe("/app-assets/cat-siamese.webp");
+    expect(getInviterCat("white_cat")).toBe("/app-assets/cat-white.webp");
     expect(getInviterCat("https://example.com/a.jpg")).toBe(
       "/app-assets/cat-default.webp",
     );

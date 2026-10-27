@@ -23,6 +23,7 @@ import {
   type UpdateNote,
   updateNotes,
 } from "@/features/updates/data/patch-notes";
+import { keepPhrasesTogether } from "@/features/updates/utils/keep-phrases-together";
 import type { Locale } from "@/i18n/config";
 import { getMessages, type MessageCatalog } from "@/i18n/messages";
 import { formatContentDate } from "@/lib/format-content-date";
@@ -59,6 +60,7 @@ export function PatchNotesPage({ locale }: { locale: Locale }) {
             kicker={labels.kicker}
             title={labels.title}
             description={labels.description}
+            descriptionLayout="sentences"
           />
           <UpdateCard
             release={latest}
@@ -186,7 +188,7 @@ function UpdateCard({
           <HStack align="center" wrap="wrap" gap={2}>
             <VersionHeading
               className={cn(
-                "font-display text-ink",
+                "font-display font-normal text-ink",
                 latest ? "text-display-md" : "text-title-lg",
               )}
             >
@@ -215,7 +217,9 @@ function UpdateCard({
             />
           </HStack>
         </HStack>
-        <p className="mt-3 text-gray-9">{release.summary[locale]}</p>
+        <p className="mt-3 text-gray-9">
+          {keepPhrasesTogether(release.summary[locale])}
+        </p>
         {release.kind === "service" && (
           <p className="mt-2 text-caption text-gray-8">
             {labels.noAppUpdateNeeded}
@@ -243,7 +247,9 @@ function UpdateCard({
             </CategoryHeading>
             <VStack render={<ul />} gap={2}>
               {release.storeNotes[locale].map((item) => (
-                <ReleaseItem key={item}>{item}</ReleaseItem>
+                <ReleaseItem key={item}>
+                  {keepPhrasesTogether(item)}
+                </ReleaseItem>
               ))}
             </VStack>
             <CopyUpdateSummary

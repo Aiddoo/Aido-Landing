@@ -20,12 +20,22 @@ const entrances = {
       ease: "back.out(3)",
     },
   },
+  // 고양이가 하나씩 "퐁" 하고 나타난다.
+  pop: {
+    from: { scale: 0.6, y: 10, opacity: 0 },
+    to: { scale: 1, y: 0, opacity: 1, duration: 0.42, ease: "back.out(2.6)" },
+  },
 } as const;
 
 type EntranceName = keyof typeof entrances;
 
 function isEntranceName(value: string | undefined): value is EntranceName {
-  return value === "float" || value === "title" || value === "stamp";
+  return (
+    value === "float" ||
+    value === "title" ||
+    value === "stamp" ||
+    value === "pop"
+  );
 }
 
 // 발자국 판(data-motion="stamp-board")은 찍힌 칸만 하나씩 "쿵" 찍는다.
@@ -40,7 +50,7 @@ function toEntranceTargets(elements: HTMLElement[]) {
   });
 }
 
-/** data-motion 이름(float·title·stamp·stamp-board)에 맞춰 차례로 등장시킨다. */
+/** data-motion 이름(float·title·stamp·stamp-board·pop)에 맞춰 차례로 등장시킨다. */
 export function animateEntrances(elements: HTMLElement[]) {
   toEntranceTargets(elements).forEach(([element, name], index) => {
     const { from, to } = entrances[name];
