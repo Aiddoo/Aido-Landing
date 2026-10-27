@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const MAX_WAIT_FRAMES = 90;
+const RESTORE_INSTANT_MS = 1500;
 
 function findFocusTarget(target: Element) {
   const labelledBy = target.getAttribute("aria-labelledby");
@@ -66,8 +67,22 @@ export function HashFocus() {
       if (url.pathname !== window.location.pathname) return;
       focusWhenSettled(url.hash);
     };
+    // 뒤로·앞으로 가기의 스크롤 복원이 부드럽게 굴러가면 중간 위치에서 멈춘 것처럼 보인다.
+    let restoreTimer = 0;
+    const onPopState = () => {
+      document.documentElement.dataset.restoringScroll = "";
+      window.clearTimeout(restoreTimer);
+      restoreTimer = window.setTimeout(() => {
+        delete document.documentElement.dataset.restoringScroll;
+      }, RESTORE_INSTANT_MS);
+    };
     document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    window.addEventListener("popstate", onPopState);
+    return () => {
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("popstate", onPopState);
+      window.clearTimeout(restoreTimer);
+    };
   }, []);
 
   return null;

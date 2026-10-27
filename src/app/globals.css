@@ -289,6 +289,10 @@
     scroll-padding-top: 4rem;
   }
 
+  html[data-restoring-scroll] {
+    scroll-behavior: auto;
+  }
+
   @media (min-width: 48rem) {
     html {
       scroll-padding-top: 4.5rem;

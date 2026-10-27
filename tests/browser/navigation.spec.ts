@@ -192,3 +192,27 @@ test("언어 전환은 같은 가이드를 열고 맨 위로 되돌리지 않아
   await expect(page).toHaveURL(/\/en\/features\/ai-todo$/);
   expect(await page.evaluate(() => scrollY)).toBeGreaterThan(0);
 });
+
+test("뒤로 가면 스크롤한 이전 위치로 바로 돌아와요", async ({ page }) => {
+  await page.goto("/ko");
+  await page.mouse.move(640, 450);
+  for (let step = 0; step < 12; step += 1) {
+    await page.mouse.wheel(0, 250);
+    await page.waitForTimeout(60);
+  }
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(2000);
+  await page.waitForTimeout(1200);
+  const before = await page.evaluate(() => scrollY);
+  const link = page
+    .locator("a[href*='/features/']")
+    .filter({ visible: true })
+    .first();
+  await link.evaluate((element) => element.click());
+  await expect(page).toHaveURL(/\/ko\/features\//);
+  await page.goBack();
+  await expect(page).toHaveURL(/\/ko$/);
+  await expect
+    .poll(() => page.evaluate(() => scrollY), { intervals: [50], timeout: 400 })
+    .toBeGreaterThan(before - 100);
+  expect(await page.evaluate(() => scrollY)).toBeLessThan(before + 100);
+});
