@@ -53,9 +53,10 @@ export function FeatureGuideList({
                 <Link
                   href={localizedPath(locale, guide.path)}
                   {...analyticsAttributes({
-                    name: "feature_guide_click",
-                    slug: guide.slug,
-                    placement,
+                    name: "select_content",
+                    content_type: "feature_guide",
+                    item_id: guide.slug,
+                    cta_placement: placement,
                   })}
                 />
               }

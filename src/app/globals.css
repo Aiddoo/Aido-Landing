@@ -1,13 +1,8 @@
 @import "tailwindcss";
+@import "../components/fonts/web-fonts.css";
 
-/* shadcn의 dark: 변형도 아래 다크 토큰과 같은 조건에서만 켠다. */
-@custom-variant dark {
-  @media (prefers-color-scheme: dark) {
-    &:where([data-color-scheme="system"], [data-color-scheme="system"] *) {
-      @slot;
-    }
-  }
-}
+/* shadcn 규약: next-themes가 <html>에 붙이는 .dark 클래스 아래에서 dark: 변형을 켠다. */
+@custom-variant dark (&:is(.dark *));
 
 /*
  * 아이두 디자인 토큰. 색·회색 단계는 앱(apps/mobile/global.css)과 같은 값이다.
@@ -25,6 +20,8 @@
   --cream: #fff8f2;
   --paper: #ffffff;
   --ink: #222222;
+  /* 여백 장식(발자국·생선 뼈·뼈다귀): 바탕에 스며드는 옅은 주황 */
+  --motif: color-mix(in oklab, var(--brand) 26%, var(--cream));
 
   --gray-1: oklch(0.98 0 0);
   --gray-2: oklch(0.97 0 0);
@@ -74,48 +71,63 @@
     system-ui, sans-serif;
 }
 
-/* 영어 페이지는 next/font/local이 만든 라틴 서브셋과 Arial 메트릭 폴백을 쓴다. */
+/* 영어 페이지는 한국어 조각과 나뉜 라틴 조각(글꼴당 1개)만 받고, 대체 글꼴은 Arial 메트릭으로 맞춘다. */
 [lang="en"] {
-  --font-display-stack: var(--font-jua-latin), sans-serif;
-  --font-hand-stack: var(--font-nanum-pen-latin), sans-serif;
-  --font-body-stack: var(--font-wanted-sans-latin), system-ui, sans-serif;
+  --font-display-stack: "Jua Latin", "Jua Fallback Arial", sans-serif;
+  --font-hand-stack:
+    "Nanum Pen Script Latin", "Nanum Pen Script Fallback Arial", sans-serif;
+  --font-body-stack:
+    "Wanted Sans Latin", "Wanted Sans Fallback Arial", system-ui, sans-serif;
 }
 
 /*
- * 다크 모드는 모든 페이지가 새 토큰으로 옮겨진 뒤 <html data-color-scheme="system">으로 켠다.
- * 기존 페이지 CSS가 흰 배경을 직접 쓰므로 그전에는 밝은 모드로 고정한다.
+ * 다크 모드(next-themes, 기본은 기기 설정). 앱 다크 모드처럼 따뜻한 짙은 회색 바탕에
+ * 주황(#ff6b43) 강조를 그대로 쓰고, 크림·종이는 웜 그레이로 바꾼다.
  */
-@media (prefers-color-scheme: dark) {
-  :root[data-color-scheme="system"] {
-    color-scheme: dark;
+.dark {
+  color-scheme: dark;
 
-    --brand-deep: #ff9b7a;
-    --brand-soft: oklch(0.3 0.06 40);
-    --fish-deep: #7cc6ff;
-    --cream: oklch(0.19 0.006 50);
-    --paper: oklch(0.24 0.006 50);
-    --ink: oklch(0.97 0 0);
+  --brand-deep: #ff9b7a;
+  --brand-soft: oklch(0.3 0.06 40);
+  --fish-deep: #7cc6ff;
+  --cream: oklch(0.185 0.006 50);
+  --paper: oklch(0.245 0.008 50);
+  --ink: oklch(0.97 0 0);
+  --motif: oklch(0.33 0.055 45);
 
-    --gray-1: oklch(0.248 0 0);
-    --gray-2: oklch(0.379 0 0);
-    --gray-3: oklch(0.493 0 0);
-    --gray-4: oklch(0.566 0 0);
-    --gray-5: oklch(0.699 0 0);
-    --gray-6: oklch(0.798 0 0);
-    --gray-7: oklch(0.9 0 0);
-    --gray-8: oklch(0.94 0 0);
-    --gray-9: oklch(0.97 0 0);
-    --gray-10: oklch(0.98 0 0);
+  --gray-1: oklch(0.248 0 0);
+  --gray-2: oklch(0.379 0 0);
+  --gray-3: oklch(0.493 0 0);
+  --gray-4: oklch(0.566 0 0);
+  --gray-5: oklch(0.699 0 0);
+  --gray-6: oklch(0.798 0 0);
+  --gray-7: oklch(0.9 0 0);
+  --gray-8: oklch(0.94 0 0);
+  --gray-9: oklch(0.97 0 0);
+  --gray-10: oklch(0.98 0 0);
 
-    --primary-foreground: #222222;
-    --secondary: oklch(0.3 0.004 50);
-    --muted: oklch(0.3 0.004 50);
-    --muted-foreground: oklch(0.78 0 0);
-    --destructive: oklch(0.704 0.191 22);
-    --border: color-mix(in oklab, var(--ink) 12%, transparent);
-    --input: color-mix(in oklab, var(--ink) 18%, transparent);
-    --shadow-color: 0 0% 0%;
-  }
+  --primary-foreground: #222222;
+  --secondary: oklch(0.3 0.004 50);
+  --muted: oklch(0.3 0.004 50);
+  --muted-foreground: oklch(0.78 0 0);
+  --destructive: oklch(0.704 0.191 22);
+  --border: color-mix(in oklab, var(--ink) 12%, transparent);
+  --input: color-mix(in oklab, var(--ink) 18%, transparent);
+  --shadow-color: 0 0% 0%;
+}
+
+/* 반전 패널(bg-ink 위 text-cream)은 흰 판 대신 한 단계 떠 있는 어두운 판이 된다. */
+.dark [data-surface="inverse"] {
+  --ink: oklch(0.29 0.012 50);
+  --cream: oklch(0.97 0 0);
+}
+
+/* 기기 틀은 실제 기기처럼 어느 모드에서도 어둡고, 화면 바탕은 밝은 앱 화면 그대로다. */
+.dark [data-device] {
+  --ink: #222222;
+  --paper: #ffffff;
+  --gray-8: oklch(0.493 0 0);
+  --gray-9: oklch(0.379 0 0);
 }
 
 @theme inline {
@@ -125,6 +137,7 @@
   --color-fish: var(--fish);
   --color-fish-deep: var(--fish-deep);
   --color-bone: var(--bone);
+  --color-motif: var(--motif);
   --color-cream: var(--cream);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
@@ -187,6 +200,9 @@
 }
 
 @theme {
+  /* Wanted Sans는 400·600·700만 제공한다. shadcn 생성물의 font-medium도 있는 굵기(600)로 그린다. */
+  --font-weight-medium: 600;
+
   /* 타입 스케일: 제목은 Jua(유체 크기), 본문·UI는 Wanted Sans, 손글씨는 메모에만. */
   --text-display-xl: clamp(2.5rem, 1.55rem + 4.2vw, 4.5rem);
   --text-display-xl--line-height: 1.12;
@@ -231,6 +247,17 @@
 
   --animate-accordion-down: accordion-down 220ms var(--ease-out-soft);
   --animate-accordion-up: accordion-up 180ms var(--ease-out-soft);
+  --animate-cat-pop: cat-pop 420ms var(--ease-spring);
+
+  /* 고른 고양이가 통통 튀어 들어온다. translate·rotate 속성과 겹치지 않게 scale만 쓴다. */
+  @keyframes cat-pop {
+    from {
+      scale: 0.82;
+    }
+    to {
+      scale: 1;
+    }
+  }
 
   @keyframes accordion-down {
     from {
@@ -258,6 +285,18 @@
 
   html {
     scroll-behavior: smooth;
+    /* sticky 헤더 높이(h-16, md:h-18). 해시 도착 위치와 Next의 페이지 맨 위 이동 판단이 이 값을 쓴다. */
+    scroll-padding-top: 4rem;
+  }
+
+  html[data-restoring-scroll] {
+    scroll-behavior: auto;
+  }
+
+  @media (min-width: 48rem) {
+    html {
+      scroll-padding-top: 4.5rem;
+    }
   }
 
   body {
@@ -382,249 +421,8 @@
   }
 }
 
-/*
- * 기존 홈 화면 전용 스타일. 홈 개편(feat/landing-2-home)에서 함께 지운다.
- * 분석 동의 배너도 .page-width를 쓴다.
- */
-.page-width {
-  width: calc(100% - 2.5rem);
-  max-width: 72rem;
-  margin-inline: auto;
-}
-
-.section-space {
-  padding-block: 72px;
-}
-
-.section-space.pt-0 {
-  padding-top: 0;
-}
-
-.section-heading {
-  text-align: center;
-  max-width: 48rem;
-  margin: 0 auto 48px;
-}
-
-.section-heading > p:not(.section-tag) {
-  margin-top: 20px;
-  line-height: 1.9;
-  color: #515151;
-  max-width: 36rem;
-  margin-inline: auto;
-  text-wrap: balance;
-}
-
-.section-title {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  line-height: 1.3;
-  letter-spacing: -0.035em;
-}
-
-.section-tag {
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.035em;
-  margin-bottom: 18px;
-}
-
-.sketch-underline {
-  text-decoration: underline;
-  text-decoration-color: #ff6b4333;
-  text-decoration-thickness: 9px;
-  text-underline-offset: 8px;
-}
-
-.phone-frame {
-  border: 3px solid var(--foreground);
-  border-radius: 32px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 5px 5px 0 var(--foreground);
-}
-
-.feature-title {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  line-height: 1.35;
-  margin-bottom: 22px;
-  letter-spacing: -0.025em;
-}
-
-.feature-phones {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 12px 10px;
-}
-
-.feature-phone {
-  width: 220px;
-  flex-shrink: 0;
-  transform: rotate(var(--phone-rotation, 0deg));
-}
-
-.feature-phones-dual .feature-phone {
-  width: 200px;
-}
-
-.second-phone {
-  margin-left: -30px;
-  margin-top: 42px;
-}
-
-.premium-tag {
-  display: inline-block;
-  padding: 4px 10px;
-  margin-bottom: 18px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  background: #fff9c4;
-  border: 1.5px solid var(--foreground);
-  border-radius: 9px 4px 8px 5px;
-}
-
-.disclosure {
-  background: white;
-  border: 2px solid var(--foreground);
-  border-radius: 20px 8px 18px 9px;
-  box-shadow: 3px 3px 0 var(--foreground);
-}
-
-summary {
-  cursor: pointer;
-  list-style: none;
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-
-.disclosure-summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  font-weight: 700;
-  line-height: 1.7;
-}
-
-.disclosure-chevron {
-  flex-shrink: 0;
-  transition: transform 0.2s;
-}
-
-.disclosure[open] > summary .disclosure-chevron {
-  transform: rotate(180deg);
-}
-
-.disclosure-content {
-  padding: 0 24px 24px;
-  line-height: 1.9;
-  color: #515151;
-}
-
-.download-card {
-  max-width: 58rem;
-  padding: 48px 30px;
-  text-align: center;
-  background: #fff9de;
-  border: 3px solid var(--foreground);
-  border-radius: 42px 15px 38px 14px;
-  box-shadow: 6px 6px 0 var(--foreground);
-}
-
-.download-card [data-slot="store-buttons"] {
-  margin-inline: auto;
-}
-
-.download-card > p {
-  max-width: 34rem;
-  margin-inline: auto;
-}
-
-.service-link-wrap {
-  text-align: center;
-  margin-top: 48px;
-}
-
-.service-link {
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  border: 2px solid var(--foreground);
-  border-radius: 12px 16px 10px 14px;
-  padding: 14px 22px;
-  background: #fff;
-  font-weight: 700;
-  box-shadow: 3px 3px 0 var(--foreground);
-}
-
-.value-card-0 {
-  background: #fff9de;
-}
-
-.value-card-1 {
-  background: #edf5ec;
-}
-
-.value-card-2 {
-  background: #eaf3fb;
-}
-
-@media (max-width: 767px) {
-  .section-space {
-    padding-block: 48px;
-  }
-  .section-heading {
-    margin-bottom: 32px;
-  }
-  .section-title {
-    font-size: clamp(1.7rem, 5.5vw, 2rem);
-  }
-  .feature-phone {
-    width: 190px;
-  }
-  .feature-phones-dual .feature-phone {
-    width: 160px;
-  }
-  .second-phone {
-    margin-left: -25px;
-  }
-  .disclosure-summary {
-    padding: 18px;
-  }
-  .disclosure-content {
-    padding: 0 18px 20px;
-  }
-  .download-card {
-    padding: 32px 18px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .feature-phones-dual .feature-phone {
-    width: 160px;
-  }
-}
-
-@media (max-width: 359px) {
-  .feature-phones-dual .feature-phone {
-    width: 136px;
-  }
-}
-
-@media (max-width: 1023px) {
-  .hero-copy [data-slot="store-buttons"] {
-    margin-inline: auto;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .feature-phone {
-    transition: transform 0.2s;
-  }
-  .feature-phone:hover {
-    transform: translateY(-5px) rotate(0deg);
+@layer base {
+  [tabindex="-1"]:focus-visible {
+    outline: none;
   }
 }

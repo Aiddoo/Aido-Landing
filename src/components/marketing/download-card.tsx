@@ -23,17 +23,17 @@ export function DownloadCard({
     <Stack
       render={<section aria-labelledby={titleId} />}
       direction="column-to-row"
-      align="end"
+      align="stretch"
       justify="between"
       className={cn(
-        "relative overflow-hidden rounded-3xl bg-linear-to-br from-brand-soft to-cream ring-1 ring-brand/15",
+        "relative overflow-hidden rounded-3xl md:items-end bg-linear-to-br from-brand-soft to-cream ring-1 ring-brand/15",
         className,
       )}
       {...props}
     >
       <BrandMotif
         motif="paw"
-        className="absolute top-6 right-8 size-20 rotate-12 text-brand/10 md:right-auto md:left-[46%]"
+        className="absolute top-3 right-3 size-14 rotate-12 text-brand/10 sm:top-6 sm:right-8 sm:size-20 md:right-auto md:left-[46%]"
       />
       <BrandMotif
         motif="fish-bone"
@@ -50,8 +50,13 @@ export function DownloadCard({
           {cta.titleLineTwo}
         </h2>
         <p className="max-w-reading text-gray-9">{cta.description}</p>
-        <StoreButtons content={storeButtons} placement="download" />
-        <p className="text-caption text-gray-8">{cta.closingNote}</p>
+        <StoreButtons
+          content={storeButtons}
+          placement="download"
+          className="mx-auto md:mx-0"
+        />
+        <p className="text-caption font-semibold text-gray-9">{cta.devices}</p>
+        <p className="-mt-3 text-caption text-gray-8">{cta.closingNote}</p>
       </VStack>
       <Box className="relative mx-auto -mb-2 w-44 shrink-0 md:mx-0 md:mr-10 md:w-64">
         <Image

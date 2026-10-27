@@ -29,8 +29,8 @@ The definitions of terms used in these Terms are as follows:
 1. The Company shall post these Terms on the initial screen of the Service or a separately linked page.
 2. The Company may revise these Terms within the scope permitted by applicable laws.
 3. When revising the Terms, the Company shall announce the effective date and reason for revision through in-app notices or push notifications.
-4. **For changes unfavorable to Members**, the Company shall provide at least **30 days' prior notice** before the effective date and individually notify Members via email or push notification.
-5. Other changes to the Terms shall be announced at least **7 days** before the effective date.
+4. **For changes unfavorable to Members**, the Company shall provide at least **30&nbsp;days' prior notice** before the effective date and individually notify Members via email or push notification.
+5. Other changes to the Terms shall be announced at least **7&nbsp;days** before the effective date.
 6. Members who do not agree to the revised Terms may express their objection before the effective date and may terminate their service agreement.
 7. **For changes that are not unfavorable to Members**, if a Member does not explicitly express objection by the announced effective date, the Member shall be deemed to have agreed to the revised Terms.
 8. **For changes unfavorable to Members**, if a Member does not explicitly express consent by the effective date of the change, the Member shall be deemed to have not agreed. In such cases, either the Company or the Member may terminate the service agreement.
@@ -70,7 +70,7 @@ The main features provided by the Company are as follows:
 4. **Social Features**: Adding friends (mutual follow-based), sharing to-dos, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, and blocking and reporting users
 5. **Streaks**: Tracking consecutive task completion records and displaying achievement status
 6. **Subscription Service**: Premium features through the Pro plan
-7. **Notification Service**: Automatic to-do reminders (1 hour and 10 minutes before scheduled time), morning and evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications (prompting users to send Nudges to inactive friends), Win-back notifications (encouraging inactive users to return to the Service)
+7. **Notification Service**: Automatic to-do reminders (1&nbsp;hour and 10 minutes before scheduled time), morning and evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications (prompting users to send Nudges to inactive friends), Win-back notifications (encouraging inactive users to return to the Service)
 8. **Personalization Settings**: App icon customization (premium), dark mode, light mode, and system theme selection
 9. Other features developed or provided through partnerships by the Company
 
@@ -102,8 +102,8 @@ The main features provided by the Company are as follows:
    | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly |
 
 2. The above prices include VAT. Actual charges may vary due to exchange rates, taxes, or fees depending on the country and store policies.
-3. Payments for Paid Services are processed through in-app purchases on the Apple App Store or Google Play Store, and charges are billed to the payment method registered with the Member's Apple ID or Google account.
-4. **When prices change**, the Company shall provide at least **30 days' prior notice** through in-app announcements and individual notifications. Members who do not agree may cancel their subscription before the next renewal.
+3. Payments for Paid Services are processed through in-app purchases on the Apple App&nbsp;Store or Google&nbsp;Play Store, and charges are billed to the payment method registered with the Member's Apple&nbsp;ID or Google account.
+4. **When prices change**, the Company shall provide at least **30&nbsp;days' prior notice** through in-app announcements and individual notifications. Members who do not agree may cancel their subscription before the next renewal.
 5. Minors who wish to use Paid Services require **consent from a legal guardian**, and contracts made without such consent may be canceled by the legal guardian.
 
 ---
@@ -111,11 +111,11 @@ The main features provided by the Company are as follows:
 ## Article 9 (Auto-Renewable Subscription)
 
 1. Pro subscriptions are provided on an **auto-renewable basis**.
-2. **Pro Monthly** (KRW 3,900/month) and **Pro Annual** (KRW 29,900/year) subscriptions will automatically renew at the same price and duration unless canceled at least **24 hours before** the end of the current subscription period.
-3. Renewal charges will be billed to the payment method registered with the Member's Apple ID or Google account within 24 hours before the end of the subscription period.
+2. **Pro Monthly** (KRW 3,900/month) and **Pro Annual** (KRW 29,900/year) subscriptions will automatically renew at the same price and duration unless canceled at least **24&nbsp;hours before** the end of the current subscription period.
+3. Renewal charges will be billed to the payment method registered with the Member's Apple&nbsp;ID or Google account within 24&nbsp;hours before the end of the subscription period.
 4. Subscription management and auto-renewal cancellation can be done through the following paths:
-   - **iOS**: Device Settings > Apple ID > Subscriptions
-   - **Android**: Google Play app > Menu > Subscriptions
+   - **iOS**: Device Settings > Apple&nbsp;ID > Subscriptions
+   - **Android**: Google&nbsp;Play app > Menu > Subscriptions
 5. Even after cancellation, Pro features remain available until the end of the already-paid subscription period.
 
 ---
@@ -123,20 +123,20 @@ The main features provided by the Company are as follows:
 ## Article 10 (Free Trial)
 
 1. The Company may offer a free trial period for Paid Services.
-2. If the subscription is not canceled at least 24 hours before the end of the free trial period, it will **automatically convert to a paid subscription** and charges will apply.
-3. During the free trial period, the subscription may be canceled at any time through the device's App Store or Google Play account settings. Upon cancellation, the Service remains available until the end of the trial period.
+2. If the subscription is not canceled at least 24&nbsp;hours before the end of the free trial period, it will **automatically convert to a paid subscription** and charges will apply.
+3. During the free trial period, the subscription may be canceled at any time through the device's App&nbsp;Store or Google&nbsp;Play account settings. Upon cancellation, the Service remains available until the end of the trial period.
 4. The free trial is available only once per account.
 
 ---
 
 ## Article 11 (Cancellation and Refund)
 
-1. Members may withdraw from a Paid Service within **7 days** of the payment date. However, withdrawal is restricted in the following cases:
+1. Members may withdraw from a Paid Service within **7&nbsp;days** of the payment date. However, withdrawal is restricted in the following cases:
    - Digital content for which service use has already commenced, where the restriction on withdrawal was communicated and consented to at the time of payment
    - Cases where service use becomes impossible due to reasons attributable to the Member
-2. Refunds for in-app purchases are subject to the refund policies of the payment platform (Apple App Store or Google Play Store).
+2. Refunds for in-app purchases are subject to the refund policies of the payment platform (Apple App&nbsp;Store or Google&nbsp;Play Store).
    - **Apple**: Request a refund through Apple Support (reportaproblem.apple.com)
-   - **Google**: Request a refund through Google Play Customer Service
+   - **Google**: Request a refund through Google&nbsp;Play Customer Service
 3. When canceling a subscription, no pro-rated refund is provided for the current paid subscription period. The Service remains available until the end of that period.
 4. If the Service is unavailable due to reasons attributable to the Company, the Company shall provide refunds or compensation in accordance with applicable laws.
 
@@ -144,7 +144,7 @@ The main features provided by the Company are as follows:
 
 ## Article 12 (AI Features and Disclaimer)
 
-1. The Service utilizes external AI models such as Google Gemini to provide the following features:
+1. The Service utilizes external AI models such as Google&nbsp;Gemini to provide the following features:
    - **Automatic To-Do Parsing**: Automatically extracts title, date, category, and other details from text input
    - **Weekly & Monthly AI Reports**: Provides task completion rates, category-based analysis, day-of-week and time-of-day pattern analysis, and personalized tips
    - **Recurring Pattern Suggestions**: Analyzes the user's task history and automatically suggests recurring tasks
@@ -152,7 +152,7 @@ The main features provided by the Company are as follows:
 3. Members must review AI results before using them for final decision-making.
 4. To provide AI features, certain data such as to-do text and task statistics may be transmitted to external AI services. Details are provided in the Privacy Policy.
 5. The Company is not liable for damages arising from the use of AI-generated results, except in cases of willful misconduct or gross negligence.
-6. From app version 1.13.0, Members must agree to AI data sharing (sending data to Google Gemini) to use AI features in the app. Members may decline, or withdraw consent at any time after agreeing; in that case only AI features become unavailable, and other features such as adding to-dos manually remain available. The data sent and how scheduled features are handled are described in the Privacy Policy.
+6. From app version 1.13.0, Members must agree to AI data sharing (sending data to Google&nbsp;Gemini) to use AI features in the app. Members may decline, or withdraw consent at any time after agreeing; in that case only AI features become unavailable, and other features such as adding to-dos manually remain available. The data sent and how scheduled features are handled are described in the Privacy Policy.
 
 ---
 
@@ -174,10 +174,10 @@ The main features provided by the Company are as follows:
 1. The Company operates a friend invite rewards program (the "Invite Program") that gives the inviting Member and the invited Member Premium access time for use within the Service ("Reward Premium") and other benefits when a Member invites someone to the Service.
 2. **How to take part**: Members can share their invite link or 6-character invite code from the invite screen in the app. When the invited person accepts the invite, they become friends (mutual followers) with the inviting Member. If the inviting Member has reached their friend limit, a friend request is sent instead.
 3. **Rewards and conditions**
-   - **Invited Member**: Receives **7 days** of Reward Premium for accepting an invite within **7 days** of signing up. Members who signed up more than 7 days earlier only become friends when they accept an invite.
-   - **Inviting Member**: Receives **7 days** of Reward Premium and a friend limit increase of **1** when the invited Member completes to-dos on **2 different days** within **14 days** of signing up. If this condition isn't met within 14 days, no reward is given for that invite.
+   - **Invited Member**: Receives **7&nbsp;days** of Reward Premium for accepting an invite within **7&nbsp;days** of signing up. Members who signed up more than 7&nbsp;days earlier only become friends when they accept an invite.
+   - **Inviting Member**: Receives **7&nbsp;days** of Reward Premium and a friend limit increase of **1** when the invited Member completes to-dos on **2 different days** within **14&nbsp;days** of signing up. If this condition isn't met within 14&nbsp;days, no reward is given for that invite.
    - Progress and rewards received are shown in "Collect paw prints" and on the Subscription screen in the app.
-4. **Limits**: Reward Premium an inviting Member receives through the Invite Program is capped at **30 days** within any 30-day period and **90 days** in total. Once a limit is reached, further Reward Premium isn't given or is given only up to the remaining limit.
+4. **Limits**: Reward Premium an inviting Member receives through the Invite Program is capped at **30&nbsp;days** within any 30-day period and **90&nbsp;days** in total. Once a limit is reached, further Reward Premium isn't given or is given only up to the remaining limit.
 5. **How rewards work with paid subscriptions**
    - Reward Premium unlocks the same features as a paid subscription (Pro under Article 8).
    - Reward Premium involves no payment and doesn't auto-renew. When it ends, the account returns to the free plan. No paid subscription starts automatically.
@@ -222,7 +222,7 @@ The main features provided by the Company are as follows:
    - Regular system maintenance, replacement, or malfunction
    - Force majeure such as natural disasters or national emergencies
    - Other unavoidable circumstances as reasonably determined by the Company
-3. If the Service is permanently discontinued, the Company shall provide at least **30 days' prior notice** to Members, and appropriate measures such as refunds shall be taken for Members using Paid Services in accordance with applicable laws.
+3. If the Service is permanently discontinued, the Company shall provide at least **30&nbsp;days' prior notice** to Members, and appropriate measures such as refunds shall be taken for Members using Paid Services in accordance with applicable laws.
 
 ---
 

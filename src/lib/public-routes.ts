@@ -1,6 +1,9 @@
 import { featureGuides } from "@/features/feature-guides/data/feature-guides";
 import type { Locale } from "@/i18n/config";
-import { INVITE_LINK_PATTERN } from "./invite-link";
+import {
+  INVITE_LINK_PATTERN,
+  LOCALIZED_INVITE_CODE_PATTERN,
+} from "./invite-link";
 export const publicPaths = [
   "",
   "/services",
@@ -12,9 +15,13 @@ export const publicPaths = [
   ...featureGuides.map((guide) => guide.path),
 ] as const;
 export type PublicPath = (typeof publicPaths)[number];
-// 초대 링크 /i/{코드}는 코드를 버리고 /invite 한 경로로만 집계한다.
+// 초대 링크 /i/{코드}와 그 실제 경로 /{locale}/invite/{코드}는 코드를 버리고 /invite 한 경로로만 집계한다.
 export function getPublicPath(pathname: string): PublicPath | null {
-  if (INVITE_LINK_PATTERN.test(pathname)) return "/invite";
+  if (
+    INVITE_LINK_PATTERN.test(pathname) ||
+    LOCALIZED_INVITE_CODE_PATTERN.test(pathname)
+  )
+    return "/invite";
   const path = pathname.replace(/^\/(ko|en)(?=\/|$)/, "").replace(/\/$/, "");
   return publicPaths.find((item) => item === path) ?? null;
 }
@@ -24,6 +31,16 @@ export function localizedPath(
 ): `/${Locale}${PublicPath}` {
   return `/${locale}${path}`;
 }
+export const homeAnchors = ["guides", "download"] as const;
+export type HomeAnchor = (typeof homeAnchors)[number];
+
+export function localizedHomeAnchor(
+  locale: Locale,
+  anchor: HomeAnchor,
+): `/${Locale}#${HomeAnchor}` {
+  return `/${locale}#${anchor}`;
+}
+
 export function sanitizeAnchor(hash: string) {
   return /^#[a-zA-Z][a-zA-Z0-9_-]{0,100}$/.test(hash) ? hash : "";
 }

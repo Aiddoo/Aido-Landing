@@ -1,10 +1,5 @@
-import { describe, expect, it, vi } from "vitest";
-import {
-  createGa4Adapter,
-  type GoogleTransport,
-} from "../adapters/ga4-adapter";
-import type { AnalyticsAdapter } from "../models/analytics-adapter";
-import { createAnalyticsClient } from "../runtime/create-analytics-client";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { privacyOptOut } from "../browser/browser-consent-platform";
 import {
   CONSENT_MAX_AGE,
   type ConsentPlatform,
@@ -12,45 +7,21 @@ import {
   readAnalyticsConsent,
 } from "../runtime/create-consent-store";
 import {
-  type AnalyticsConsent,
-  type AnalyticsPage,
+  getGoogleConsentUpdate,
+  googleConsentDefault,
+} from "../runtime/google-consent";
+import {
   analyticsConfigSchema,
   analyticsEventSchema,
 } from "../schemas/analytics.schema";
 import { analyticsAttributes } from "../utils/analytics-attributes";
 import { parseAnalyticsAttributes } from "../utils/parse-analytics-attributes";
 import {
+  createVercelBeforeSend,
   getAnalyticsPage,
   getAnalyticsReferrer,
 } from "../utils/sanitize-analytics-page";
 
-const home: AnalyticsPage = {
-  location: "https://aido.kr/ko",
-  path: "/ko",
-  type: "home",
-  locale: "ko",
-};
-const services: AnalyticsPage = {
-  location: "https://aido.kr/ko/services",
-  path: "/ko/services",
-  type: "services",
-  locale: "ko",
-};
-function fakeAdapter(id = "replacement"): AnalyticsAdapter {
-  return {
-    id,
-    supportedEvents: [
-      "download_click",
-      "feature_guide_click",
-      "language_switch",
-    ],
-    initialize: vi.fn(async () => {}),
-    pageView: vi.fn(),
-    track: vi.fn(),
-    revoke: vi.fn(() => ({ requiresReload: false })),
-    dispose: vi.fn(),
-  };
-}
 function consentPlatform(): ConsentPlatform {
   let value: string | null = null;
   return {
@@ -64,16 +35,67 @@ function consentPlatform(): ConsentPlatform {
   };
 }
 
-describe("public analytics boundary", () => {
+describe("event schema", () => {
+  it.each([
+    { name: "download_click", store: "app_store", cta_placement: "invite" },
+    {
+      name: "select_content",
+      content_type: "feature_guide",
+      item_id: "ai-todo",
+      cta_placement: "related_guides",
+    },
+    { name: "language_switch", target_locale: "en" },
+    { name: "invite_code_copy", copy_result: "manual" },
+  ])("accepts $name", (event) => {
+    expect(analyticsEventSchema.safeParse(event).success).toBe(true);
+  });
+  it.each([
+    { name: "download_click", store: "app_store", placement: "hero" },
+    {
+      name: "select_content",
+      content_type: "feature_guide",
+      item_id: "private-id",
+      cta_placement: "home_guides",
+    },
+    { name: "language_switch", target_locale: "ko", email: "private" },
+    { name: "invite_code_copy", copy_result: "copied", code: "BCD234" },
+    { name: "feature_guide_click", slug: "ai-todo" },
+  ])(
+    "rejects unknown names, legacy keys and extra parameters (%#)",
+    (event) => {
+      expect(analyticsEventSchema.safeParse(event).success).toBe(false);
+    },
+  );
+  it("round-trips the data attribute through the schema", () => {
+    const event = {
+      name: "download_click",
+      store: "google_play",
+      cta_placement: "download",
+    } as const;
+    expect(
+      parseAnalyticsAttributes({
+        analytics: analyticsAttributes(event)["data-analytics"],
+      }),
+    ).toEqual(event);
+    expect(parseAnalyticsAttributes({ analytics: "{bad json" })).toBeNull();
+    expect(parseAnalyticsAttributes({})).toBeNull();
+  });
+  it("requires a valid public GA measurement ID", () => {
+    expect(
+      analyticsConfigSchema.safeParse({
+        providers: [{ id: "ga4", measurementId: "secret" }],
+      }).success,
+    ).toBe(false);
+  });
+});
+
+describe("public path normalization", () => {
   for (const locale of ["ko", "en"] as const) {
     for (const route of [
       "",
       "/services",
       "/features/ai-todo",
-      "/features/recurring-todo",
-      "/features/shared-todo",
       "/patch-notes",
-      "/terms",
       "/privacy",
       "/account-deletion",
     ]) {
@@ -91,6 +113,10 @@ describe("public analytics boundary", () => {
       });
     }
   }
+  it("takes the locale from the path and falls back for unprefixed paths", () => {
+    expect(getAnalyticsPage("/en/services", "ko")?.path).toBe("/en/services");
+    expect(getAnalyticsPage("/", "en")?.path).toBe("/en");
+  });
   it("keeps valid campaign slugs only", () => {
     expect(
       getAnalyticsPage(
@@ -98,9 +124,6 @@ describe("public analytics boundary", () => {
         "ko",
       )?.location,
     ).toBe("https://aido.kr/ko?utm_source=instagram");
-    expect(
-      getAnalyticsPage(`/ko?utm_content=${"a".repeat(101)}`, "ko")?.location,
-    ).toBe(home.location);
   });
   it.each([
     "/ko/unknown-private-id",
@@ -116,46 +139,83 @@ describe("public analytics boundary", () => {
     ).toBe("https://google.com");
     expect(getAnalyticsReferrer("javascript:secret")).toBe("");
   });
-  it("validates delegated event attributes and rejects arbitrary payloads", () => {
+});
+
+describe("Vercel beforeSend", () => {
+  it("drops invite codes from page views and custom events", () => {
+    const beforeSend = createVercelBeforeSend("ko");
     expect(
-      parseAnalyticsAttributes({
-        analyticsEvent: "download_click",
-        store: "app_store",
-        placement: "hero",
-      }),
-    ).toEqual({
-      name: "download_click",
-      store: "app_store",
-      placement: "hero",
-    });
+      beforeSend({ type: "pageview", url: "https://aido.kr/i/BCD234?x=1" }),
+    ).toEqual({ type: "pageview", url: "https://aido.kr/ko/invite" });
     expect(
-      parseAnalyticsAttributes({
-        analyticsEvent: "feature_guide_click",
-        featureSlug: "private-id",
-        placement: "home_guides",
-      }),
-    ).toBeNull();
-    expect(
-      analyticsEventSchema.safeParse({
-        name: "language_switch",
-        targetLocale: "ko",
-        email: "private",
-      }).success,
-    ).toBe(false);
-    expect(
-      analyticsAttributes({
-        name: "feature_guide_click",
-        slug: "ai-todo",
-        placement: "related_guides",
-      })["data-analytics-event"],
-    ).toBe("feature_guide_click");
+      beforeSend({ type: "event", url: "https://aido.kr/en/invite/BCD234" }),
+    ).toEqual({ type: "event", url: "https://aido.kr/en/invite" });
   });
-  it("requires a valid public GA measurement ID", () => {
+  it("drops unknown paths and consecutive duplicate page views", () => {
+    const beforeSend = createVercelBeforeSend("ko");
     expect(
-      analyticsConfigSchema.safeParse({
-        providers: [{ id: "ga4", measurementId: "secret" }],
-      }).success,
-    ).toBe(false);
+      beforeSend({ type: "pageview", url: "https://aido.kr/ko/private-id" }),
+    ).toBeNull();
+    const home = { type: "pageview", url: "https://aido.kr/ko" } as const;
+    expect(beforeSend(home)).toEqual(home);
+    expect(beforeSend(home)).toBeNull();
+    expect(beforeSend({ type: "event", url: home.url })).toEqual({
+      type: "event",
+      url: home.url,
+    });
+  });
+});
+
+describe("Google consent mode", () => {
+  it("denies every storage by default and waits for a stored choice", () => {
+    expect(googleConsentDefault).toEqual({
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      wait_for_update: 500,
+    });
+  });
+  it("grants analytics storage only for an accepted choice", () => {
+    expect(getGoogleConsentUpdate("accepted")).toEqual({
+      analytics_storage: "granted",
+    });
+    expect(getGoogleConsentUpdate("rejected")).toEqual({
+      analytics_storage: "denied",
+    });
+    expect(getGoogleConsentUpdate("pending")).toEqual({
+      analytics_storage: "denied",
+    });
+  });
+  afterEach(() => vi.unstubAllGlobals());
+  it.each([
+    [{ doNotTrack: "1" }, true],
+    [{ globalPrivacyControl: true }, true],
+    [{ doNotTrack: "0", globalPrivacyControl: false }, false],
+  ])("treats DNT/GPC %o as an opt-out: %s", (signals, expected) => {
+    vi.stubGlobal("navigator", signals);
+    expect(privacyOptOut()).toBe(expected);
+  });
+  it("keeps DNT/GPC visitors denied even with a saved acceptance", () => {
+    const platform = consentPlatform();
+    const store = createConsentStore(platform);
+    store.choose("accepted");
+    platform.privacyOptOut = () => true;
+    expect(getGoogleConsentUpdate(store.getSnapshot())).toEqual({
+      analytics_storage: "denied",
+    });
+  });
+  it("moves from pending to accepted and back to rejected", () => {
+    const store = createConsentStore(consentPlatform());
+    expect(store.getSnapshot()).toBe("pending");
+    store.choose("accepted");
+    expect(getGoogleConsentUpdate(store.getSnapshot())).toEqual({
+      analytics_storage: "granted",
+    });
+    store.choose("rejected");
+    expect(getGoogleConsentUpdate(store.getSnapshot())).toEqual({
+      analytics_storage: "denied",
+    });
   });
 });
 
@@ -236,160 +296,6 @@ describe("consent persistence", () => {
   });
 });
 
-describe("provider-independent runtime", () => {
-  it("discards clicks before consent and sends one initial page view", async () => {
-    let consent: AnalyticsConsent = "pending";
-    const adapter = fakeAdapter();
-    const client = createAnalyticsClient({
-      adapters: [adapter],
-      getConsent: () => consent,
-    });
-    await client.start(home);
-    client.track({
-      name: "download_click",
-      store: "app_store",
-      placement: "hero",
-    });
-    expect(adapter.initialize).not.toHaveBeenCalled();
-    expect(adapter.track).not.toHaveBeenCalled();
-    consent = "accepted";
-    await client.start(home);
-    client.pageView(home);
-    await client.start(home);
-    expect(adapter.initialize).toHaveBeenCalledTimes(1);
-    expect(adapter.pageView).toHaveBeenCalledTimes(1);
-    expect(adapter.track).not.toHaveBeenCalled();
-    client.pageView(services);
-    client.pageView(home);
-    expect(adapter.pageView).toHaveBeenCalledTimes(3);
-  });
-  it("supports replacement providers without changing the feature event", async () => {
-    const replacement = fakeAdapter();
-    const client = createAnalyticsClient({
-      adapters: [replacement],
-      getConsent: () => "accepted",
-    });
-    await client.start(home);
-    const event = {
-      name: "download_click",
-      store: "google_play",
-      placement: "download",
-    } as const;
-    client.track(event);
-    expect(replacement.track).toHaveBeenCalledWith(event, home);
-    client.track({ name: "language_switch", targetLocale: "ko" });
-    expect(replacement.track).toHaveBeenCalledTimes(1);
-  });
-  it("uses the current page when initialization finishes after navigation", async () => {
-    let finish: () => void = () => {};
-    const adapter = fakeAdapter();
-    adapter.initialize = () =>
-      new Promise<void>((resolve) => {
-        finish = resolve;
-      });
-    const client = createAnalyticsClient({
-      adapters: [adapter],
-      getConsent: () => "accepted",
-    });
-    const started = client.start(home);
-    client.pageView(services);
-    finish();
-    await started;
-    expect(adapter.pageView).toHaveBeenCalledWith(services);
-    expect(adapter.pageView).toHaveBeenCalledTimes(1);
-  });
-  it("isolates failed providers and unsupported events", async () => {
-    const broken = fakeAdapter("broken");
-    broken.initialize = async () => {
-      throw new Error("script failed");
-    };
-    const basic: AnalyticsAdapter = {
-      ...fakeAdapter("basic"),
-      supportedEvents: [],
-    };
-    const client = createAnalyticsClient({
-      adapters: [broken, basic],
-      getConsent: () => "accepted",
-    });
-    await client.start(home);
-    client.track({
-      name: "download_click",
-      store: "app_store",
-      placement: "hero",
-    });
-    expect(basic.pageView).toHaveBeenCalledTimes(1);
-    expect(basic.track).not.toHaveBeenCalled();
-    expect(broken.pageView).not.toHaveBeenCalled();
-  });
-  it("aborts initialization and disables every provider on withdrawal", async () => {
-    let consent: AnalyticsConsent = "accepted";
-    const adapter = fakeAdapter();
-    const client = createAnalyticsClient({
-      adapters: [adapter],
-      getConsent: () => consent,
-    });
-    await client.start(home);
-    consent = "rejected";
-    client.revoke();
-    client.pageView(services);
-    client.track({
-      name: "download_click",
-      store: "app_store",
-      placement: "hero",
-    });
-    client.dispose();
-    expect(adapter.pageView).toHaveBeenCalledTimes(1);
-    expect(adapter.track).not.toHaveBeenCalled();
-    expect(adapter.revoke).toHaveBeenCalledOnce();
-    expect(adapter.dispose).toHaveBeenCalledOnce();
-  });
-  it("never publishes a late initialization after disposal", async () => {
-    let finish: () => void = () => {};
-    const adapter = fakeAdapter();
-    adapter.initialize = () =>
-      new Promise<void>((resolve) => {
-        finish = resolve;
-      });
-    const client = createAnalyticsClient({
-      adapters: [adapter],
-      getConsent: () => "accepted",
-    });
-    const started = client.start(home);
-    client.dispose();
-    finish();
-    await started;
-    expect(adapter.pageView).not.toHaveBeenCalled();
-  });
-  it("preserves the GA select_content contract inside its adapter", async () => {
-    const transport: GoogleTransport = {
-      pageView: vi.fn(),
-      event: vi.fn(),
-      revoke: vi.fn(),
-    };
-    const adapter = createGa4Adapter("G-TEST", {
-      initialize: async () => transport,
-    });
-    await adapter.initialize(home, new AbortController().signal);
-    adapter.track(
-      {
-        name: "feature_guide_click",
-        slug: "ai-todo",
-        placement: "home_guides",
-      },
-      home,
-    );
-    expect(transport.event).toHaveBeenCalledWith(
-      "select_content",
-      expect.objectContaining({
-        content_type: "feature_guide",
-        item_id: "ai-todo",
-        cta_placement: "home_guides",
-        page_path: "/ko",
-      }),
-    );
-  });
-});
-
 describe("invite page analytics", () => {
   it.each(["ko", "en"] as const)(
     "집계 주소에서 초대 코드를 버린다 (%s)",
@@ -407,28 +313,25 @@ describe("invite page analytics", () => {
       expect(JSON.stringify(page)).not.toContain("BCD234");
     },
   );
+  it.each(["ko", "en"] as const)(
+    "rewrite된 실제 경로도 같은 /invite로 집계하고 코드를 버린다 (%s)",
+    (locale) => {
+      const page = getAnalyticsPage(
+        `https://aido.kr/${locale}/invite/BCD234?token=secret`,
+        locale,
+      );
+      expect(page).toMatchObject({
+        path: `/${locale}/invite`,
+        location: `https://aido.kr/${locale}/invite`,
+        type: "invite",
+        locale,
+      });
+      expect(JSON.stringify(page)).not.toContain("BCD234");
+    },
+  );
   it("초대 주소가 아닌 /i 경로는 집계하지 않는다", () => {
     expect(getAnalyticsPage("https://aido.kr/i", "ko")).toBeNull();
     expect(getAnalyticsPage("https://aido.kr/i/a/b", "ko")).toBeNull();
-  });
-  it("invite 위치의 download_click을 data 속성으로 만들고 다시 읽는다", () => {
-    const event = {
-      name: "download_click",
-      store: "google_play",
-      placement: "invite",
-    } as const;
-    expect(analyticsEventSchema.safeParse(event).success).toBe(true);
-    expect(analyticsAttributes(event)).toEqual({
-      "data-analytics-event": "download_click",
-      "data-store": "google_play",
-      "data-placement": "invite",
-    });
-    expect(
-      parseAnalyticsAttributes({
-        analyticsEvent: "download_click",
-        store: "google_play",
-        placement: "invite",
-      }),
-    ).toEqual(event);
+    expect(getAnalyticsPage("https://aido.kr/ko/invite/a/b", "ko")).toBeNull();
   });
 });

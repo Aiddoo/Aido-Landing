@@ -32,6 +32,7 @@ export const SERVICE_CONTENT_UPDATED_AT = "2026-10-12";
 export function getAppScreenshot(locale: Locale, key: AppScreenshotKey) {
   const [platform, filename] = screenshotFiles[key];
   return {
+    device: platform === "ios" ? ("iphone" as const) : ("android" as const),
     src: `/app-assets/screenshots/${locale}/${platform}/${filename}.webp`,
     width: 480,
     height: platform === "ios" ? 1044 : 1067,

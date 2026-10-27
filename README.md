@@ -22,15 +22,17 @@ pnpm dev        # http://localhost:3000
 |---|---|
 | `pnpm dev` | 개발 서버 |
 | `pnpm build` | 프로덕션 빌드 |
-| `pnpm lint` | Biome 린트 |
+| `pnpm lint` / `pnpm lint:fix` | Biome 검사 / 자동 수정 |
 | `pnpm typecheck` | TypeScript 타입 검사 |
 | `pnpm audit` | 전체 의존성의 등록된 보안 취약점 검사 |
-| `pnpm test` / `pnpm analytics:check` | Vitest 분석 경계·동의·공급자 DI 계약 검증 |
+| `pnpm check` | CI 검사 + Playwright까지 로컬 전체 검사(PR 전 필수, 포트 3217 사용) |
+| `pnpm test` / `pnpm test:watch` / `pnpm analytics:check` | Vitest 분석 경계·동의·공급자 DI 계약 검증 |
 | `pnpm test:browser` | Playwright 상호작용·동의·폰트 차단 검증 |
 | `pnpm images:generate` / `pnpm images:check` | 정적 반응형 이미지 생성 / 해시·치수 검사 |
 | `pnpm patch-notes:check` | 업데이트 기록·한영 문안·스토어 요약 500자 제한 검증 |
 | `pnpm seo:check` | 빌드 후 HTML·메타데이터·SSG·사이트맵 검증 |
 | `pnpm format` | 코드 포맷팅 |
+| `pnpm fonts:generate` | 폰트 서브셋 재생성(선택). `fonttools[woff]` 설치된 python3 필요 — [폰트 안내](public/fonts/README.md) |
 
 ## 프로젝트 구조
 

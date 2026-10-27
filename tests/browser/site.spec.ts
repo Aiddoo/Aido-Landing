@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { blockAnalyticsVendors } from "./block-analytics-vendors";
 
 // These tests deliberately keep analytics rejected and never contact marketing services.
 test.beforeEach(async ({ page }) => {
+  await blockAnalyticsVendors(page);
   await page.addInitScript(() =>
     localStorage.setItem(
       "aido.analytics-consent.v1",
@@ -69,10 +71,12 @@ for (const locale of ["ko", "en"]) {
     await page.evaluate(() => document.fonts.ready);
     for (const width of [320, 390, 640, 768, 820, 1023, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
-      const title = await page.locator(".hero-title").boundingBox();
-      const description = await page.locator(".hero-description").boundingBox();
+      const title = await page.locator('[data-hero="title"]').boundingBox();
+      const description = await page
+        .locator('[data-hero="description"]')
+        .boundingBox();
       const buttons = await page
-        .locator(".hero-copy [data-slot=store-buttons]")
+        .locator('[data-hero="downloads"] [data-slot="store-buttons"]')
         .boundingBox();
       expect(title).not.toBeNull();
       expect(description).not.toBeNull();
@@ -84,7 +88,7 @@ for (const locale of ["ko", "en"]) {
       expect(Math.abs(axis(title) - axis(description))).toBeLessThanOrEqual(1);
       expect(Math.abs(axis(title) - axis(buttons))).toBeLessThanOrEqual(1);
       const links = await page
-        .locator(".hero-copy [data-slot=store-button]")
+        .locator('[data-hero="downloads"] [data-slot="store-button"]')
         .all();
       const first = await links[0]?.boundingBox();
       const second = await links[1]?.boundingBox();
@@ -209,10 +213,13 @@ test("blocked fonts keep content visible and the landing geometry stable", async
   await page.route("**/*.woff2", (route) => route.abort());
   await page.goto("/ko");
   await expect(page.locator("h1")).toBeVisible();
-  await expect(page.locator(".hero-phone img")).toBeVisible();
   await expect(
-    page.locator("[data-motion-section]").first(),
-  ).not.toHaveAttribute("style", /transform/);
+    page.locator('[data-device="iphone"] img').first(),
+  ).toBeVisible();
+  await expect(page.locator("[data-motion-group]").first()).not.toHaveAttribute(
+    "style",
+    /transform/,
+  );
   expect(
     await page.evaluate(() => Number(Reflect.get(window, "__cls") ?? 0)),
   ).toBeLessThanOrEqual(0.1);
@@ -231,10 +238,9 @@ test("no JavaScript retains legal content, FAQ, archives, language links and mob
   await page.goto("/ko");
   await expect(page.locator("h1")).toBeVisible();
   await page.locator("#faq summary").first().click();
-  await expect(page.locator("#faq details").first()).toHaveAttribute(
-    "open",
-    "",
-  );
+  await expect(
+    page.locator('#faq [data-slot="faq-item"]').first(),
+  ).toHaveAttribute("open", "");
   await page.locator("noscript summary").click();
   await expect(
     page.locator("[data-slot=mobile-menu-static] nav"),
@@ -324,4 +330,92 @@ test("client navigation and repeated menu use leave no stray dialogs or warnings
       (text) => !text.includes("was preloaded using link preload"),
     ),
   ).toEqual([]);
+});
+
+test("home motion keeps global listeners stable across client navigations", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const cdp = await page.context().newCDPSession(page);
+  const globalListenerCount = async () => {
+    let total = 0;
+    for (const expression of ["window", "document"]) {
+      const { result } = await cdp.send("Runtime.evaluate", { expression });
+      if (!result.objectId) throw new Error(`Missing ${expression}`);
+      const { listeners } = await cdp.send("DOMDebugger.getEventListeners", {
+        objectId: result.objectId,
+      });
+      total += listeners.length;
+    }
+    return total;
+  };
+  // 첫 스크롤 뒤 지연 로드되는 모션·메뉴 코드가 리스너를 다 붙일 때까지 기다린 뒤의 개수.
+  const settledListenerCount = async () => {
+    let previous = await globalListenerCount();
+    for (let attempt = 0; attempt < 20; attempt += 1) {
+      await page.waitForTimeout(150);
+      const current = await globalListenerCount();
+      if (current === previous) return current;
+      previous = current;
+    }
+    throw new Error("Global listener count never settled");
+  };
+  const visitHomeWithMotion = async () => {
+    await page.mouse.wheel(0, 400);
+    await expect(page.locator('[data-duo="device"]')).toHaveAttribute(
+      "style",
+      /transform/,
+    );
+  };
+  await page.goto("/ko");
+  await visitHomeWithMotion();
+  const baseline = await settledListenerCount();
+  for (let round = 0; round < 3; round += 1) {
+    await page
+      .getByRole("link", { name: "패치노트", exact: true })
+      .first()
+      .click();
+    await page.waitForURL(/\/ko\/patch-notes$/);
+    await page.goBack();
+    await page.waitForURL(/\/ko$/);
+    await visitHomeWithMotion();
+  }
+  expect(await settledListenerCount()).toBe(baseline);
+});
+
+test("reduced motion shows the iPhone Duo unfolded without inline transforms", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/ko");
+  await page.mouse.wheel(0, 4000);
+  for (const part of ["device", "flat", "leaf", "shade", "sheen", "companion"])
+    for (const element of await page.locator(`[data-duo="${part}"]`).all())
+      await expect(element).not.toHaveAttribute("style", /transform|opacity/);
+});
+
+test("a malformed invite link renders the invalid state on the server without hydration errors", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(String(error)));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  const response = await page.goto("/i/AEIOU2");
+  expect(response?.headers()["x-robots-tag"]).toBe("noindex, nofollow");
+  const html = (await response?.text()) ?? "";
+  expect(html).toContain('<meta name="robots" content="noindex, nofollow"/>');
+  await expect(page.locator("h1")).toHaveText(
+    /초대 링크를 확인해 주세요|Please check your invite link/,
+  );
+  const playLink = page.locator(
+    'a[data-analytics*="google_play"][data-analytics*=\'"cta_placement":"invite"\']',
+  );
+  await expect(playLink).toHaveAttribute("href", /listing=invite/);
+  await expect(playLink).not.toHaveAttribute("href", /referrer=/);
+  await expect(
+    page.getByRole("button", { name: /초대 코드 복사|Copy invite code/ }),
+  ).toBeDisabled();
+  expect(errors).toEqual([]);
 });

@@ -1,5 +1,5 @@
 import { zip } from "es-toolkit";
-import { PhoneScreenshot } from "@/components/media/phone-screenshot";
+import { DeviceScreen } from "@/components/media/device-screen";
 import { Box, Stack, type StackProps, VStack } from "@/components/ui/layout";
 import type { FeatureGuide } from "@/features/feature-guides/data/feature-guides";
 import { getGuideScreen } from "@/features/feature-guides/data/guide-screens";
@@ -38,7 +38,7 @@ export function GuideScreens({
           className="w-[62%] shrink-0 snap-center sm:w-60 lg:w-full"
         >
           <VStack render={<figure />} gap={3}>
-            <PhoneScreenshot
+            <DeviceScreen
               {...getGuideScreen(locale, screen)}
               alt={text.alt}
               sizes="(min-width: 640px) 288px, 62vw"
