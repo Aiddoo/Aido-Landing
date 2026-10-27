@@ -1,32 +1,81 @@
 # Aido fonts
 
-Black Han Sans (Google Fonts v24, weight 400) and Noto Sans KR (Google Fonts v40, variable weights 400–700) are self-hosted under the SIL Open Font License. The original WOFF2 files and both OFL files are preserved byte for byte. Source: Google's official CSS2 API, `family=Black+Han+Sans&family=Noto+Sans+KR:wght@400..700&display=swap`.
+Three SIL Open Font License families, matching the app, store art and SNS:
 
-## Visitor assets
+| Role | Family | Weights | Source |
+|---|---|---|---|
+| Display (h1/h2, `font-display`, shadcn `font-heading`) | Jua 1.001 | 400 | The Jua Project Authors (Google Fonts) |
+| Hand-written accent (`font-hand`) | Nanum Pen Script 1.10 | 400 | NHN Corporation (Naver Nanum) |
+| Body and UI (`font-sans`) | Wanted Sans 1.003 | 400, 600, 700 | The Wanted Sans Project Authors |
 
-Korean pages request the **site subsets**, generated with standard fontTools from the licensed originals. Glyph outlines, advances and variable weights stay intact; unused glyphs are removed. The heading subset is about 31KiB, compared with the original full merged heading's 109KiB. Noto Sans KR retains Unicode ranges, with each range reduced to the site's public text. The original `fonts-ko-1553ca02ef76.css` remains the source registry; visitors request the generated stylesheet referenced by `src/components/fonts/font-assets.ts`.
+The licensed originals live in `scripts/fonts/source/` (not served; Wanted Sans Medium is kept as an
+original but not shipped). License texts: `jua-OFL.txt`, `nanum-pen-script-OFL.txt`,
+`wanted-sans-OFL.txt`.
 
-The locale layout hoists this content-hashed stylesheet into the Korean HTML head using React 19's `precedence="fonts"`. English pages do not request it. English uses the original small Latin assets through `next/font/local`, generated fallback metrics and `preload: false` so the shared layout does not download unused Latin fonts on Korean pages.
+## Visitor assets: unicode-range slices
 
-All fonts use `display: optional`. A slow cold visit can keep the system fallback for that navigation, without a late font swap. This does not promise identical typography on slow networks. Body fallbacks include Apple SD Gothic Neo and Malgun Gothic. The application never hides content or waits for `document.fonts.ready`.
+`src/components/fonts/web-fonts.css` (generated) is imported by `globals.css`, so the faces ship
+inside the one bundled stylesheet; there is no separate font CSS request. Korean pages use the
+families below, split into slices that the browser downloads only when the page renders one of
+their characters. English pages use `"<Family> Latin"`, one slice per face, so they never touch
+the Korean slices.
 
-Keep **one Korean heading preload and zero English font preloads**. FontPreload uses React DOM's supported preload API with WOFF2 type and anonymous cross-origin mode. Do not preload every body subset. `/fonts/*` uses a one-year immutable cache. Never change the bytes of a hashed asset; generate a new filename instead.
+| Slice | Contents | Who downloads it |
+|---|---|---|
+| `home` | everything `/ko` renders in this face (Hangul, Latin, digits, punctuation) | Korean home, and most Korean pages |
+| `ascii` | the rest of printable ASCII (list markers are not text nodes) | Korean pages that render one of them |
+| `pages` | further characters from guides, services and the invite pages | those pages |
+| `updates` | further characters from patch notes | patch notes |
+| `legal` | further characters from terms, privacy and account deletion | legal pages |
+| `rest` | the remaining public text, so every glyph stays available | only a page that renders one of them |
+| `latin` (`"<Family> Latin"`) | ASCII and what the English pages render (`한국어` included) | English pages |
+
+Measured on the 2026-10-27 build: `/ko` downloads 5 files, about 80KiB (was 426KiB), `/en` 5
+files, about 57KiB (was 84KiB). Wanted Sans ships 400/600/700 only; `globals.css` maps
+`font-medium` to 600 so generated shadcn components keep a real face. Jua and Nanum Pen Script
+have one weight; do not combine `font-display` with bold utilities (that synthesizes a faux bold).
+
+## Loading policy (CLS 0, no FOIT)
+
+- **Exactly one preload per page**: the Jua slice of the above-the-fold heading,
+  `koreanDisplayFont` (`home`) on Korean pages and `englishDisplayFont` (`latin`) on English pages.
+  Without it the English heading swaps after the first paint and shifts (CLS 0.015). Never preload
+  body weights.
+- `font-display: swap` for Jua and Wanted Sans, `optional` for the decorative Nanum Pen Script.
+- Every family has metric-adjusted fallbacks with `size-adjust`, `ascent-override`,
+  `descent-override` and `line-gap-override` computed from the real font: Korean pages use
+  `"<Family> Fallback Apple"` (Apple SD Gothic Neo) and `"<Family> Fallback Noto"` (Noto Sans CJK KR)
+  weighted by the Korean public text; English pages use `"<Family> Fallback Arial"` weighted by the
+  English text. The stacks in `globals.css` list them right after the web font.
+- `/fonts/*` uses a one-year immutable cache. Never change the bytes of a hashed asset; the
+  generator writes a new filename instead.
 
 ## Regeneration
 
-The input registry is `src/components/fonts/data/font-subset-inputs.json`: messages, update records and both legal document pairs. The generator also includes Latin-1 characters. `font-subset-manifest.json` records the text codepoints. `pnpm seo:check` compares the current public text with that manifest and fails when new glyphs need regeneration. This prevents silently shipping missing characters after content changes.
-
-Regenerate outside the application runtime with the standard fontTools merger/subsetter:
+Inputs: `src/components/fonts/data/font-subset-inputs.json` (text sources, page groups, families)
+and `font-usage.json` (characters each built page renders per face, recorded in light and dark,
+with the analytics consent card visible).
 
 ```bash
+# 1. Record what every page renders (needs a production build with the consent card).
+VERCEL_ENV=production VERCEL=1 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST123 pnpm build
+VERCEL_ENV=production VERCEL=1 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST123 pnpm start --port 3217 &
+pnpm fonts:usage
+# 2. Generate slices, then rebuild and check.
 python3 -m venv /tmp/aido-font-tools
 /tmp/aido-font-tools/bin/pip install 'fonttools[woff]==4.66.1'
+rm public/fonts/*.woff2
 /tmp/aido-font-tools/bin/python scripts/generate-fonts.py
-pnpm format src/components/fonts/font-assets.ts
-pnpm build
-pnpm seo:check
+pnpm build && pnpm seo:check
 ```
 
-The generator replaces the previous merge-only script: it merges the original heading subsets, subsets both font families, writes new hashed WOFF2/CSS assets and updates the asset constants/manifest. Original source files and licenses remain unchanged. Python/fontTools are optional asset-authoring tools, not runtime or CI dependencies; CI validates the committed assets with Node.
+When only text changes, step 2 alone keeps every glyph available (new characters fall into
+`rest`); re-run step 1 when a page's copy changes noticeably, so that page does not download
+`rest`. The generator refuses files over 300KiB and hash collisions. Python/fontTools and
+Playwright are authoring tools only; CI validates committed assets with Node.
 
-`seo:check` also checks the rendered locale preload counts, same-origin URLs, stylesheet hash, WOFF2 signatures/content hashes, the per-file 300KiB limit, Unicode ranges, optional display and OFL files. For new text sources, add their patterns to the input registry before regeneration. See [performance measurements](../../docs/performance.md) for actual page transfer costs.
+`seo:check` compares the public text with the manifest, checks that each face's slices cover it
+exactly once with non-overlapping `unicode-range`s, that only declared slices remain in
+`public/fonts`, WOFF2 signatures/content hashes, the 300KiB limit, display policy per family,
+fallback metric overrides, the single Korean preload and that the faces are in the bundled
+stylesheet. See [performance measurements](../../docs/performance.md) for page transfer costs.

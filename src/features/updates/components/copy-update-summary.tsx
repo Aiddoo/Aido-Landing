@@ -3,6 +3,7 @@
 import { Check, Copy } from "lucide-react";
 import { useId, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { VStack } from "@/components/ui/layout";
 import { Textarea } from "@/components/ui/textarea";
 import type { MessageCatalog } from "@/i18n/messages";
 import { useCopyText } from "../hooks/use-copy-text";
@@ -23,11 +24,12 @@ export function CopyUpdateSummary({ text, labels }: Props) {
   const textarea = useRef<HTMLTextAreaElement>(null);
 
   return (
-    <div className="release-copy">
+    <VStack gap={2} className="items-start">
       <Button
         type="button"
         variant="outline"
-        className="release-copy-button"
+        data-slot="copy-update-summary"
+        className="h-11 rounded-full bg-card px-4 font-semibold"
         onClick={copy}
         disabled={status === "copying"}
       >
@@ -38,7 +40,7 @@ export function CopyUpdateSummary({ text, labels }: Props) {
         )}
         {labels.copySummary}
       </Button>
-      <p role="status" className="min-h-6 text-sm leading-6 text-foreground/75">
+      <p role="status" className="min-h-6 text-caption text-gray-8">
         {status === "copied" && labels.summaryCopied}
         {status === "manual" && labels.copySummaryFallback}
       </p>
@@ -60,10 +62,10 @@ export function CopyUpdateSummary({ text, labels }: Props) {
             readOnly
             rows={8}
             onFocus={() => textarea.current?.select()}
-            className="release-copy-text"
+            className="w-full bg-card"
           />
         </>
       )}
-    </div>
+    </VStack>
   );
 }

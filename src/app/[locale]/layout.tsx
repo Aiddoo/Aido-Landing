@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import type { Organization, WebSite, WithContext } from "schema-dts";
 import {
-  koreanFontStylesheet,
-  koreanHeadingFont,
+  englishDisplayFont,
+  koreanDisplayFont,
 } from "@/components/fonts/font-assets";
 import { FontPreload } from "@/components/fonts/font-preload";
+import { BrandMotifSprite } from "@/components/marketing/brand-motif";
+import { HashFocus } from "@/components/navigation/hash-focus";
 import { StructuredData } from "@/components/seo/structured-data";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { AnalyticsProvider } from "@/features/analytics/components/analytics-provider";
 import { getAnalyticsConfig } from "@/features/analytics/config/analytics-config.server";
 import { locales } from "@/i18n/config";
@@ -16,35 +18,16 @@ import {
   APP_STORE_URL,
   buildSocialMetadata,
   INSTAGRAM_URL,
+  LINK_HUB_URL,
   PLAY_STORE_URL,
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
 
-const englishHeading = localFont({
-  src: "../../../public/fonts/black-han-sans-f4cb9b35097d.woff2",
-  weight: "400",
-  display: "optional",
-  // Shared locale layout: unconditional preloads also download Latin fonts on ko.
-  preload: false,
-  variable: "--font-heading-en",
-});
-
-const englishBody = localFont({
-  src: "../../../public/fonts/noto-sans-kr-6ecf7205a09a.woff2",
-  weight: "400 700",
-  display: "optional",
-  preload: false,
-  variable: "--font-body-en",
-});
-
 type LocaleLayoutProps = LayoutProps<"/[locale]">;
 
-// ko/en만 정적 생성 — 그 외 로케일 세그먼트는 404 (요청시점 생성 금지 → 완전 정적)
-export const dynamicParams = false;
-// Public content changes with deployments. Fail the build on request-time reads.
-export const dynamic = "error";
-
+// ko/en만 생성한다. 정적 페이지의 렌더링 제약(dynamic·dynamicParams)은 (static)/layout.tsx가,
+// 요청마다 그리는 초대 코드 페이지는 (dynamic) 그룹이 각자 정한다.
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -96,7 +79,7 @@ export default async function LocaleLayout({
     alternateName: locale === "ko" ? "RedBand" : "레드밴드",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    sameAs: [INSTAGRAM_URL, APP_STORE_URL, PLAY_STORE_URL],
+    sameAs: [INSTAGRAM_URL, LINK_HUB_URL, APP_STORE_URL, PLAY_STORE_URL],
     founder: {
       "@type": "Person",
       name: messages.footer.representativeValue,
@@ -117,29 +100,23 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html
-      lang={locale}
-      data-scroll-behavior="smooth"
-      className={
-        locale === "en"
-          ? `${englishHeading.variable} ${englishBody.variable}`
-          : undefined
-      }
-    >
+    <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="antialiased">
-        {locale === "ko" && (
-          <>
-            <link
-              rel="stylesheet"
-              href={koreanFontStylesheet}
-              precedence="fonts"
-            />
-            <FontPreload href={koreanHeadingFont} />
-          </>
-        )}
+        <FontPreload
+          href={locale === "ko" ? koreanDisplayFont : englishDisplayFont}
+        />
+        <BrandMotifSprite />
+        <HashFocus />
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         {analyticsConfig.providers.length > 0 && (
           <AnalyticsProvider
             locale={locale}

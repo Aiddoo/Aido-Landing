@@ -3,17 +3,22 @@ import type { Locale } from "@/i18n/config";
 
 export const SITE_URL = "https://aido.kr";
 export const SITE_NAME = "Aido";
-export const HOME_CONTENT_UPDATED_AT = "2026-10-26";
+export const HOME_CONTENT_UPDATED_AT = "2026-10-27";
 
 export const APP_STORE_URL =
   "https://apps.apple.com/kr/app/%EC%95%84%EC%9D%B4%EB%91%90-ai-%ED%88%AC%EB%91%90-%ED%94%8C%EB%9E%98%EB%84%88/id6757722325";
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.aido.mobile";
 export const INSTAGRAM_URL = "https://www.instagram.com/aiddoo_official/";
+/** 공식 링크 모음(moyeo). 푸터 링크와 JSON-LD sameAs가 함께 쓴다. */
+export const LINK_HUB_URL = "https://moyeo.io/@aido.app";
 /** 아이두 API 서버. 초대 미리보기처럼 공개된 읽기 전용 엔드포인트만 브라우저에서 호출한다. */
 export const API_URL = "https://api.aido.kr";
 
-const OG_IMAGE_PATH = "/og-image.png";
+const OG_IMAGE_PATHS = {
+  ko: "/og-image-ko.png",
+  en: "/og-image-en.png",
+} as const satisfies Record<Locale, string>;
 
 type SocialMetadataInput = {
   locale: Locale;
@@ -32,6 +37,7 @@ export function buildSocialMetadata({
   description,
   path,
 }: SocialMetadataInput): Pick<Metadata, "openGraph" | "twitter"> {
+  const imagePath = OG_IMAGE_PATHS[locale];
   return {
     openGraph: {
       title,
@@ -43,7 +49,7 @@ export function buildSocialMetadata({
       alternateLocale: locale === "ko" ? "en_US" : "ko_KR",
       images: [
         {
-          url: OG_IMAGE_PATH,
+          url: imagePath,
           width: 1200,
           height: 630,
           alt: title,
@@ -55,7 +61,7 @@ export function buildSocialMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [{ url: OG_IMAGE_PATH, alt: title }],
+      images: [{ url: imagePath, alt: title }],
     },
   };
 }

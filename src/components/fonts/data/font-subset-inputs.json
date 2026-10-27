@@ -1,8 +1,77 @@
 {
-  "stylesheet": "public/fonts/fonts-ko-1553ca02ef76.css",
   "patterns": [
     "src/i18n/messages.ts",
     "src/features/updates/data/patch-notes.ts",
     "src/content/legal/*.md"
+  ],
+  "slices": [
+    {
+      "name": "home",
+      "pages": ["/ko"]
+    },
+    {
+      "name": "pages",
+      "pages": ["/ko/features/*", "/ko/services", "/ko/invite*"]
+    },
+    {
+      "name": "updates",
+      "pages": ["/ko/patch-notes"]
+    },
+    {
+      "name": "legal",
+      "pages": ["/ko/terms", "/ko/privacy", "/ko/account-deletion"]
+    }
+  ],
+  "families": [
+    {
+      "family": "Jua",
+      "slug": "jua",
+      "display": "swap",
+      "preload": {
+        "ko": "home",
+        "en": "latin"
+      },
+      "faces": [
+        {
+          "weight": 400,
+          "source": "Jua-Regular.woff2"
+        }
+      ],
+      "hinting": false
+    },
+    {
+      "family": "Nanum Pen Script",
+      "slug": "nanum-pen-script",
+      "display": "optional",
+      "preload": {},
+      "faces": [
+        {
+          "weight": 400,
+          "source": "NanumPenScript-Regular.woff2"
+        }
+      ],
+      "hinting": false
+    },
+    {
+      "family": "Wanted Sans",
+      "slug": "wanted-sans",
+      "display": "swap",
+      "preload": {},
+      "faces": [
+        {
+          "weight": 400,
+          "source": "WantedSans-Regular.woff2"
+        },
+        {
+          "weight": 600,
+          "source": "WantedSans-SemiBold.woff2"
+        },
+        {
+          "weight": 700,
+          "source": "WantedSans-Bold.woff2"
+        }
+      ],
+      "hinting": true
+    }
   ]
 }

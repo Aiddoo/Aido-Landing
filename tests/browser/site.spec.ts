@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { blockAnalyticsVendors } from "./block-analytics-vendors";
 
 // These tests deliberately keep analytics rejected and never contact marketing services.
 test.beforeEach(async ({ page }) => {
+  await blockAnalyticsVendors(page);
   await page.addInitScript(() =>
     localStorage.setItem(
       "aido.analytics-consent.v1",
@@ -17,6 +19,7 @@ for (const locale of ["ko", "en"]) {
     "/features/shared-todo",
     "/features/recurring-todo",
     "/features/ai-todo",
+    "/features/friend-invite",
     "/privacy",
     "/terms",
     "/account-deletion",
@@ -34,10 +37,10 @@ for (const locale of ["ko", "en"]) {
         await page.setViewportSize({ width, height: 900 });
         const geometry = await page.evaluate(() => {
           const brand = document
-            .querySelector(".site-brand")
+            .querySelector("[data-slot=site-brand]")
             ?.getBoundingClientRect();
           const controls = document
-            .querySelector(".site-header-actions")
+            .querySelector("[data-slot=site-header-actions]")
             ?.getBoundingClientRect();
           return {
             width: document.documentElement.clientWidth,
@@ -68,10 +71,12 @@ for (const locale of ["ko", "en"]) {
     await page.evaluate(() => document.fonts.ready);
     for (const width of [320, 390, 640, 768, 820, 1023, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
-      const title = await page.locator(".hero-title").boundingBox();
-      const description = await page.locator(".hero-description").boundingBox();
+      const title = await page.locator('[data-hero="title"]').boundingBox();
+      const description = await page
+        .locator('[data-hero="description"]')
+        .boundingBox();
       const buttons = await page
-        .locator(".hero-copy .store-buttons")
+        .locator('[data-hero="downloads"] [data-slot="store-buttons"]')
         .boundingBox();
       expect(title).not.toBeNull();
       expect(description).not.toBeNull();
@@ -82,7 +87,9 @@ for (const locale of ["ko", "en"]) {
         width < 1024 ? box.x + box.width / 2 : box.x;
       expect(Math.abs(axis(title) - axis(description))).toBeLessThanOrEqual(1);
       expect(Math.abs(axis(title) - axis(buttons))).toBeLessThanOrEqual(1);
-      const links = await page.locator(".hero-copy .store-button").all();
+      const links = await page
+        .locator('[data-hero="downloads"] [data-slot="store-button"]')
+        .all();
       const first = await links[0]?.boundingBox();
       const second = await links[1]?.boundingBox();
       expect(first).not.toBeNull();
@@ -95,7 +102,7 @@ for (const locale of ["ko", "en"]) {
   });
 }
 
-test("mobile popover supports keyboard dismissal and restores focus", async ({
+test("mobile menu sheet supports keyboard dismissal and restores focus", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -103,13 +110,20 @@ test("mobile popover supports keyboard dismissal and restores focus", async ({
   const trigger = page.getByRole("button", { name: "메뉴 열기" });
   await trigger.focus();
   await page.keyboard.press("Enter");
-  await expect(trigger).toHaveAttribute("aria-expanded", "true");
+  const dialog = page.getByRole("dialog", { name: "메뉴" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole("button", { name: "메뉴 닫기" })).toBeVisible();
   await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
   await expect(trigger).toHaveAttribute("aria-expanded", "false");
   await expect(trigger).toBeFocused();
   await trigger.click();
-  await page.locator('.mobile-menu-panel a[href="/ko#faq"]').click();
-  await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  await page
+    .getByRole("dialog")
+    .getByRole("link", { name: "패치노트" })
+    .click();
+  await expect(page).toHaveURL(/\/ko\/patch-notes$/);
+  await expect(page.getByRole("dialog")).toHaveCount(0);
 });
 
 test("a failed menu chunk retains usable native navigation", async ({
@@ -122,7 +136,7 @@ test("a failed menu chunk retains usable native navigation", async ({
   await page.waitForLoadState("networkidle");
   await page.route("**/_next/static/chunks/**", (route) => route.abort());
   await trigger.click();
-  const fallback = page.locator(".mobile-menu-enhanced details");
+  const fallback = page.locator("[data-slot=mobile-menu-enhanced] details");
   await expect(fallback).toHaveAttribute("open", "");
   await expect(fallback.getByRole("navigation")).toBeVisible();
   await fallback.locator("summary").click();
@@ -172,10 +186,10 @@ test("copy failure provides an accessible selected manual textarea", async ({
   await page.goto("/ko/patch-notes");
   const latest = page.locator('details[data-update-kind="app"]').first();
   if (!(await latest.evaluate((element: HTMLDetailsElement) => element.open))) {
-    await page.locator(".archive-month > summary").first().click();
+    await page.locator("[data-slot=archive-month] > summary").first().click();
     await latest.locator(":scope > summary").click();
   }
-  await latest.locator(".release-copy-button").click();
+  await latest.locator("[data-slot=copy-update-summary]").click();
   const textarea = latest.getByRole("textbox");
   await expect(textarea).toBeVisible();
   await expect(textarea).toBeFocused();
@@ -199,10 +213,13 @@ test("blocked fonts keep content visible and the landing geometry stable", async
   await page.route("**/*.woff2", (route) => route.abort());
   await page.goto("/ko");
   await expect(page.locator("h1")).toBeVisible();
-  await expect(page.locator(".hero-phone img")).toBeVisible();
   await expect(
-    page.locator("[data-motion-section]").first(),
-  ).not.toHaveAttribute("style", /transform/);
+    page.locator('[data-device="iphone"] img').first(),
+  ).toBeVisible();
+  await expect(page.locator("[data-motion-group]").first()).not.toHaveAttribute(
+    "style",
+    /transform/,
+  );
   expect(
     await page.evaluate(() => Number(Reflect.get(window, "__cls") ?? 0)),
   ).toBeLessThanOrEqual(0.1);
@@ -210,28 +227,30 @@ test("blocked fonts keep content visible and the landing geometry stable", async
 
 test("no JavaScript retains legal content, FAQ, archives, language links and mobile navigation", async ({
   browser,
+  baseURL,
 }) => {
   const context = await browser.newContext({
+    ...(baseURL ? { baseURL } : {}),
     javaScriptEnabled: false,
     viewport: { width: 390, height: 844 },
   });
   const page = await context.newPage();
-  await page.goto("http://127.0.0.1:3217/ko");
+  await page.goto("/ko");
   await expect(page.locator("h1")).toBeVisible();
   await page.locator("#faq summary").first().click();
-  await expect(page.locator("#faq details").first()).toHaveAttribute(
-    "open",
-    "",
-  );
+  await expect(
+    page.locator('#faq [data-slot="faq-item"]').first(),
+  ).toHaveAttribute("open", "");
   await page.locator("noscript summary").click();
-  await expect(page.locator(".mobile-menu-static")).toBeVisible();
-  await page.goto("http://127.0.0.1:3217/ko/patch-notes");
-  await page.locator(".archive-month summary").first().click();
-  await expect(page.locator(".archive-month").first()).toHaveAttribute(
-    "open",
-    "",
-  );
-  await page.goto("http://127.0.0.1:3217/ko/privacy");
+  await expect(
+    page.locator("[data-slot=mobile-menu-static] nav"),
+  ).toBeVisible();
+  await page.goto("/ko/patch-notes");
+  await page.locator("[data-slot=archive-month] summary").first().click();
+  await expect(
+    page.locator("[data-slot=archive-month]").first(),
+  ).toHaveAttribute("open", "");
+  await page.goto("/ko/privacy");
   await expect(page.locator("h1")).toHaveCount(1);
   await expect(page.locator("article table").first()).toBeVisible();
   await expect(
@@ -272,4 +291,131 @@ test("delayed fonts do not cause a late layout shift, on cold and warm visits", 
   expect(
     await page.evaluate(() => Number(Reflect.get(window, "__cls") ?? 0)),
   ).toBeLessThanOrEqual(0.1);
+});
+
+test("client navigation and repeated menu use leave no stray dialogs or warnings", async ({
+  page,
+}) => {
+  const problems: string[] = [];
+  page.on("console", (message) => {
+    if (["error", "warning"].includes(message.type()))
+      problems.push(message.text());
+  });
+  page.on("pageerror", (error) => problems.push(error.message));
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/ko/features/friend-invite");
+  const trigger = page.getByRole("button", { name: "메뉴 열기" });
+  for (const name of ["서비스 둘러보기", "패치노트"]) {
+    await trigger.click();
+    await page.getByRole("dialog").getByRole("link", { name }).click();
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+  }
+  for (let index = 0; index < 3; index += 1) {
+    await trigger.click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page
+    .getByRole("navigation", { name: "주요 메뉴" })
+    .getByRole("link", { name: "친구 초대" })
+    .click();
+  await expect(page).toHaveURL(/\/ko\/features\/friend-invite$/);
+  await page.getByRole("link", { name: "EN", exact: true }).click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.locator("[data-slot=sheet-content]")).toHaveCount(0);
+  expect(
+    problems.filter(
+      (text) => !text.includes("was preloaded using link preload"),
+    ),
+  ).toEqual([]);
+});
+
+test("home motion keeps global listeners stable across client navigations", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const cdp = await page.context().newCDPSession(page);
+  const globalListenerCount = async () => {
+    let total = 0;
+    for (const expression of ["window", "document"]) {
+      const { result } = await cdp.send("Runtime.evaluate", { expression });
+      if (!result.objectId) throw new Error(`Missing ${expression}`);
+      const { listeners } = await cdp.send("DOMDebugger.getEventListeners", {
+        objectId: result.objectId,
+      });
+      total += listeners.length;
+    }
+    return total;
+  };
+  // 첫 스크롤 뒤 지연 로드되는 모션·메뉴 코드가 리스너를 다 붙일 때까지 기다린 뒤의 개수.
+  const settledListenerCount = async () => {
+    let previous = await globalListenerCount();
+    for (let attempt = 0; attempt < 20; attempt += 1) {
+      await page.waitForTimeout(150);
+      const current = await globalListenerCount();
+      if (current === previous) return current;
+      previous = current;
+    }
+    throw new Error("Global listener count never settled");
+  };
+  const visitHomeWithMotion = async () => {
+    await page.mouse.wheel(0, 400);
+    await expect(page.locator('[data-duo="device"]')).toHaveAttribute(
+      "style",
+      /transform/,
+    );
+  };
+  await page.goto("/ko");
+  await visitHomeWithMotion();
+  const baseline = await settledListenerCount();
+  for (let round = 0; round < 3; round += 1) {
+    await page
+      .getByRole("link", { name: "패치노트", exact: true })
+      .first()
+      .click();
+    await page.waitForURL(/\/ko\/patch-notes$/);
+    await page.goBack();
+    await page.waitForURL(/\/ko$/);
+    await visitHomeWithMotion();
+  }
+  expect(await settledListenerCount()).toBe(baseline);
+});
+
+test("reduced motion shows the iPhone Duo unfolded without inline transforms", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/ko");
+  await page.mouse.wheel(0, 4000);
+  for (const part of ["device", "flat", "leaf", "shade", "sheen", "companion"])
+    for (const element of await page.locator(`[data-duo="${part}"]`).all())
+      await expect(element).not.toHaveAttribute("style", /transform|opacity/);
+});
+
+test("a malformed invite link renders the invalid state on the server without hydration errors", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(String(error)));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  const response = await page.goto("/i/AEIOU2");
+  expect(response?.headers()["x-robots-tag"]).toBe("noindex, nofollow");
+  const html = (await response?.text()) ?? "";
+  expect(html).toContain('<meta name="robots" content="noindex, nofollow"/>');
+  await expect(page.locator("h1")).toHaveText(
+    /초대 링크를 확인해 주세요|Please check your invite link/,
+  );
+  const playLink = page.locator(
+    'a[data-analytics*="google_play"][data-analytics*=\'"cta_placement":"invite"\']',
+  );
+  await expect(playLink).toHaveAttribute("href", /listing=invite/);
+  await expect(playLink).not.toHaveAttribute("href", /referrer=/);
+  await expect(
+    page.getByRole("button", { name: /초대 코드 복사|Copy invite code/ }),
+  ).toBeDisabled();
+  expect(errors).toEqual([]);
 });

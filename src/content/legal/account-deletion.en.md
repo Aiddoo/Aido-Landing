@@ -27,8 +27,8 @@ You can request deletion without reinstalling the app, even if you've deleted it
 
 Deleting your account doesn't stop Apple or Google subscription billing. To avoid the next charge, cancel before deleting your account.
 
-- **iPhone or iPad**: Settings > your Apple Account (name) > Subscriptions > Aido
-- **Android**: Google Play app > Profile > Payments & subscriptions > Subscriptions > Aido
+- **iPhone or iPad**: Settings > your Apple&nbsp;Account (name) > Subscriptions > Aido
+- **Android**: Google&nbsp;Play app > Profile > Payments & subscriptions > Subscriptions > Aido
 
 ---
 
@@ -36,7 +36,7 @@ Deleting your account doesn't stop Apple or Google subscription billing. To avoi
 
 - Once you request deletion, your account can no longer be used, and the data below is permanently deleted after a **30-day grace period**. If you sign in again with the same account during the grace period, your account is restored.
 - **Deleted**: account information such as email, name (nickname), profile image, and user tag; to-dos, subtasks, memos, comments, and categories; friends, nudges, and cheers; daily completion and weekly achievement records; AI reports; location; notification settings and push tokens; and friend invite and reward records, including remaining reward Premium
-- **Kept as required by law**: records such as payment and order cancellation records (5 years), consumer complaint and dispute records (3 years), and service access logs (3 months) are stored separately for the legally required period and then deleted.
+- **Kept as required by law**: records such as payment and order cancellation records (5&nbsp;years), consumer complaint and dispute records (3&nbsp;years), and service access logs (3&nbsp;months) are stored separately for the legally required period and then deleted.
 - **Kept to prevent abuse**: hash values that stop friend invite rewards from being claimed repeatedly aren't linked to your account, can't identify you, and are kept after account deletion.
 - For details, see our [Privacy Policy](/en/privacy).
 

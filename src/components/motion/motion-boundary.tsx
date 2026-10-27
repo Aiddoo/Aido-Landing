@@ -41,7 +41,7 @@ export function MotionBoundary({ children }: { children: ReactNode }) {
     };
   }, []);
   return (
-    <div ref={scope} className="motion-boundary">
+    <div ref={scope} className="contents">
       {children}
       {Controller && <Controller scope={scope} />}
     </div>

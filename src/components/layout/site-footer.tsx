@@ -1,150 +1,224 @@
-import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import { BrandLogo } from "@/components/marketing/brand-logo";
+import { BrandMotif } from "@/components/marketing/brand-motif";
+import { StoreButtons } from "@/components/marketing/store-buttons";
+import {
+  Grid,
+  HStack,
+  ReadableContent,
+  Stack,
+  VStack,
+} from "@/components/ui/layout";
+import { AnalyticsSettingsButton } from "@/features/analytics/components/analytics-settings-button";
+import { getAnalyticsConfig } from "@/features/analytics/config/analytics-config.server";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
-import { INSTAGRAM_URL } from "@/lib/seo";
+import { localizedHomeAnchor, localizedPath } from "@/lib/public-routes";
+import { INSTAGRAM_URL, LINK_HUB_URL } from "@/lib/seo";
+
+const linkClass =
+  "inline-flex min-h-11 items-center gap-1 text-caption font-medium text-gray-9 transition-colors hover:text-brand-deep";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const messages = getMessages(locale);
-  const prefix = `/${locale}` as const;
+  const { footer, nav } = messages;
+  const hasCookieConsent = getAnalyticsConfig().providers.some(
+    (provider) => provider.id === "ga4",
+  );
   return (
     <footer
-      className="px-6 py-12 sm:py-16 relative overflow-hidden"
       lang={locale}
+      data-slot="site-footer"
+      className="mt-section-sm rounded-t-4xl bg-paper pt-14 pb-10 shadow-[0_-1px_0_var(--border)]"
     >
-      <div className="w-full h-1 border-t-2 border-dashed border-foreground opacity-20 mb-12" />
-
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row mb-12">
-          <a href={`${prefix}#top`} className="flex items-center gap-4 group">
-            <div className="relative h-8 w-8 wobbly-md border-2 border-foreground bg-foreground p-1 grayscale group-hover:grayscale-0 transition-all group-hover:bg-brand">
-              <Image
-                src="/logo-small.webp"
-                alt="Aido"
-                fill
-                sizes="32px"
-                className="object-contain p-1"
-              />
-            </div>
-            <span className="text-xl font-bold tracking-tight">Aido</span>
-          </a>
-
-          <div className="text-center sm:text-left space-y-2">
-            <p className="text-lg font-bold opacity-80">
-              {messages.footer.copyright}
-            </p>
-            <p className="text-sm font-medium text-foreground/70">
-              {messages.footer.tagline}
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center sm:items-end gap-1 text-xs font-bold tracking-wider relative">
-            <span className="bg-brand text-foreground px-2 py-0.5 wobbly-sm -rotate-2 mb-2 inline-block">
-              {messages.footer.contactBadge}
-            </span>
-            <a
-              href={`mailto:${messages.footer.inquiryValue}`}
-              className="hover:text-brand-ink transition-colors decoration-dashed underline underline-offset-4"
-            >
-              {messages.footer.inquiryValue}
-            </a>
-          </div>
-        </div>
-
-        <div className="pt-12 border-t-2 border-dashed border-foreground/10 flex flex-col items-center sm:items-start gap-8">
-          <address className="space-y-2 text-center sm:text-left text-sm font-medium text-foreground/70 not-italic">
-            <p>
-              <span className="font-bold text-foreground">
-                {messages.footer.companyLabel}
-              </span>{" "}
-              {messages.footer.companyValue}
-            </p>
-            <p>
-              <span className="font-bold text-foreground">
-                {messages.footer.representativeLabel}
-              </span>{" "}
-              {messages.footer.representativeValue}
-            </p>
-            <p>
-              <span className="font-bold text-foreground">
-                {messages.footer.businessNumberLabel}
-              </span>{" "}
-              {messages.footer.businessNumberValue}
-            </p>
-            <p>
-              <span className="font-bold text-foreground">
-                {messages.footer.ecommerceLabel}
-              </span>{" "}
-              {messages.footer.ecommerceValue}
-            </p>
-            <p>
-              <span className="font-bold text-foreground">
-                {messages.footer.hostingLabel}
-              </span>{" "}
-              {messages.footer.hostingValue}
-            </p>
-            <p>
-              <span className="font-bold text-foreground">
-                {messages.footer.inquiryLabel}
-              </span>{" "}
-              <a
-                href={`mailto:${messages.footer.inquiryValue}`}
-                className="underline decoration-dashed underline-offset-4 hover:text-brand-ink"
-              >
-                {messages.footer.inquiryValue}
-              </a>
-            </p>
-          </address>
-
-          <nav
-            aria-label={messages.accessibility.footer}
-            className="flex items-center gap-4 sm:gap-8 text-sm font-bold flex-wrap justify-center"
+      <ReadableContent render={<VStack gap={12} />}>
+        <Stack direction="column-to-row" gap={10} justify="between">
+          <VStack gap={4} className="max-w-xs">
+            <BrandLogo locale={locale} />
+            <p className="font-hand text-hand text-gray-8">{footer.tagline}</p>
+            <HStack gap={2} aria-hidden="true" className="text-bone">
+              <BrandMotif motif="paw" className="size-4" />
+              <BrandMotif motif="paw" className="size-4 translate-y-1" />
+              <BrandMotif motif="paw" className="size-4" />
+            </HStack>
+          </VStack>
+          <Grid
+            gap={8}
+            className="flex-1 grid-cols-2 md:max-w-2xl md:grid-cols-3"
           >
-            <Link
-              href={`${prefix}/terms`}
-              className="hover:text-brand-ink transition-colors"
-            >
-              {messages.footer.termsLabel}
-            </Link>
-            <Link
-              href={`${prefix}/privacy`}
-              className="hover:text-brand-ink transition-colors"
-            >
-              {messages.footer.privacyLabel}
-            </Link>
-            <Link
-              href={`${prefix}/account-deletion`}
-              className="hover:text-brand-ink transition-colors"
-            >
-              {messages.footer.accountDeletionLabel}
-            </Link>
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={messages.footer.instagramLabel}
-              className="inline-flex items-center justify-center w-9 h-9 wobbly-sm border-2 border-foreground rotate-1 hover:bg-brand hover:text-foreground hover:scale-110 active:scale-95 transition-all"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
+            <FooterColumn title={footer.serviceTitle}>
+              <li>
+                <Link
+                  href={localizedPath(locale, "/services")}
+                  className={linkClass}
+                >
+                  {nav.services}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localizedHomeAnchor(locale, "guides")}
+                  className={linkClass}
+                >
+                  {nav.guides}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localizedPath(locale, "/features/friend-invite")}
+                  className={linkClass}
+                >
+                  {nav.invite}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localizedPath(locale, "/patch-notes")}
+                  className={linkClass}
+                >
+                  {nav.patchNotes}
+                </Link>
+              </li>
+            </FooterColumn>
+            <FooterColumn title={footer.policyTitle}>
+              <li>
+                <Link
+                  href={localizedPath(locale, "/terms")}
+                  className={linkClass}
+                >
+                  {footer.termsLabel}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localizedPath(locale, "/privacy")}
+                  className={linkClass}
+                >
+                  {footer.privacyLabel}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localizedPath(locale, "/account-deletion")}
+                  className={linkClass}
+                >
+                  {footer.accountDeletionLabel}
+                </Link>
+              </li>
+              {hasCookieConsent && (
+                <li>
+                  <AnalyticsSettingsButton
+                    variant="link"
+                    className={`${linkClass} h-auto rounded-none px-0 font-medium no-underline`}
+                  >
+                    {messages.analyticsConsent.settings}
+                  </AnalyticsSettingsButton>
+                </li>
+              )}
+              <li>
+                <a href={`mailto:${footer.inquiryValue}`} className={linkClass}>
+                  {footer.inquiryLabel}
+                </a>
+              </li>
+            </FooterColumn>
+            <FooterColumn title={footer.linkHubTitle}>
+              <li>
+                <ExternalLink
+                  href={INSTAGRAM_URL}
+                  newTabLabel={footer.externalLinkLabel}
+                >
+                  {footer.instagramLabel}
+                </ExternalLink>
+              </li>
+              <li>
+                <ExternalLink
+                  href={LINK_HUB_URL}
+                  newTabLabel={footer.externalLinkLabel}
+                >
+                  {footer.linkHubLabel}
+                </ExternalLink>
+              </li>
+            </FooterColumn>
+          </Grid>
+        </Stack>
+        <StoreButtons content={messages.storeButtons} placement="download" />
+        <VStack
+          gap={3}
+          className="border-t pt-8 text-micro text-muted-foreground"
+        >
+          <HStack
+            render={<address aria-label={footer.businessLabel} />}
+            wrap="wrap"
+            className="gap-x-4 gap-y-1 not-italic"
+          >
+            <span>
+              {footer.companyLabel} {footer.companyValue}
+            </span>
+            <span>
+              {footer.representativeLabel} {footer.representativeValue}
+            </span>
+            <span>
+              {footer.businessNumberLabel} {footer.businessNumberValue}
+            </span>
+            <span>
+              {footer.ecommerceLabel} {footer.ecommerceValue}
+            </span>
+            <span>
+              {footer.hostingLabel} {footer.hostingValue}
+            </span>
+            <span>
+              {footer.inquiryLabel}{" "}
+              <a
+                href={`mailto:${footer.inquiryValue}`}
+                className="underline underline-offset-2 hover:text-brand-deep"
               >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
-              <span className="sr-only">{messages.footer.instagramLabel}</span>
-            </a>
-          </nav>
-        </div>
-      </div>
+                {footer.inquiryValue}
+              </a>
+            </span>
+          </HStack>
+          <p>{footer.copyright}</p>
+        </VStack>
+      </ReadableContent>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <VStack render={<nav aria-label={title} />} gap={2}>
+      <p className="text-caption font-bold text-ink">{title}</p>
+      <VStack render={<ul />}>{children}</VStack>
+    </VStack>
+  );
+}
+
+function ExternalLink({
+  href,
+  newTabLabel,
+  children,
+}: {
+  href: string;
+  newTabLabel: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={linkClass}
+    >
+      {children}
+      <ArrowUpRight className="size-3.5" aria-hidden="true" />
+      <span className="sr-only">({newTabLabel})</span>
+    </a>
   );
 }

@@ -1,9 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { parseInviteCodeFromPathname } from "@/features/invite/utils/invite-code";
 import { isLocale, type Locale, localeCookieName } from "@/i18n/config";
 import { getPreferredLocale } from "@/i18n/request-locale";
 import { INVITE_LINK_PATTERN } from "@/lib/invite-link";
 
-// 친구 초대 링크 /i/{코드}. 코드 검증은 브라우저에서 하므로 형태만 확인한다.
+// 친구 초대 링크 /i/{코드}. 유효한 코드는 요청마다 그리는 /{locale}/invite/{코드}로,
+// 형식이 틀린 코드는 정적 /{locale}/invite("잘못된 링크")로 보낸다.
 const INVITE_PAGE_PATH = "/invite";
 
 function isPublicFile(pathname: string): boolean {
@@ -59,8 +61,12 @@ export function proxy(request: NextRequest) {
   const targetLocale = preferredLocale;
   const targetUrl = request.nextUrl.clone();
   if (INVITE_LINK_PATTERN.test(pathname)) {
-    // 주소창은 /i/{코드}로 두고 정적 /{locale}/invite를 보여 준다. 코드는 rewrite 대상에 싣지 않는다.
-    targetUrl.pathname = `/${targetLocale}${INVITE_PAGE_PATH}`;
+    // 주소창은 /i/{코드}로 둔다. 코드는 정규화(대문자·하이픈 제거)한 값만 rewrite 대상에 싣는다.
+    const code = parseInviteCodeFromPathname(pathname);
+    targetUrl.pathname =
+      code == null
+        ? `/${targetLocale}${INVITE_PAGE_PATH}`
+        : `/${targetLocale}${INVITE_PAGE_PATH}/${code}`;
     targetUrl.search = "";
   } else {
     targetUrl.pathname =
