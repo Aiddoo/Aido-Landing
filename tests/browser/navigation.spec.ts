@@ -218,3 +218,41 @@ test("뒤로 가면 스크롤한 이전 위치로 바로 돌아와요", async ({
     .toBeGreaterThan(before - 100);
   expect(await page.evaluate(() => scrollY)).toBeLessThan(before + 100);
 });
+
+for (const reducedMotion of ["no-preference", "reduce"] as const) {
+  test(`지금 보는 페이지의 링크는 맨 위로 올라가고 본문 제목에 포커스를 줘요 (${reducedMotion})`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/ko/patch-notes");
+    await scrollInstantly(page, 1500);
+    await page.getByRole("button", { name: "메뉴 열기" }).click();
+    await page
+      .getByRole("dialog")
+      .getByRole("link", { name: "패치노트" })
+      .click();
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+    await expect(page.locator("main h1")).toBeFocused();
+  });
+}
+
+test("데스크톱 헤더 링크와 홈 로고도 같은 페이지면 맨 위로 올라가요", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/en/patch-notes");
+  await scrollInstantly(page, 1500);
+  await page
+    .getByRole("navigation", { name: "Main navigation" })
+    .getByRole("link", { name: "Patch notes" })
+    .click();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+  await expect(page.locator("main h1")).toBeFocused();
+  await page.goto("/en");
+  await scrollInstantly(page, 1500);
+  await page.locator("[data-slot=site-brand]").click();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+  await expect(page.locator("main h1")).toBeFocused();
+});
