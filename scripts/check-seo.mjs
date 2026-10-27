@@ -20,6 +20,7 @@ import {
   SITE_URL,
 } from "../src/lib/seo.ts";
 
+const withPlainSpaces = (text) => text.replaceAll("\u00a0", " ");
 const originalSource = (src) =>
   Object.entries(responsiveImages).find(([, image]) =>
     image.variants.some((variant) => variant.src === src),
@@ -109,6 +110,8 @@ for (const locale of ["ko", "en"]) {
     const visibleHtml = decode(
       html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""),
     );
+    // 문장 단위 묶음(span)·줄바꿈 없는 공백을 걷어 낸, 사람이 읽는 글자.
+    const visibleText = withPlainSpaces(visibleHtml.replace(/<[^>]+>/g, ""));
     const links = tags(html, "link");
     const displayFont =
       locale === "ko" ? koreanDisplayFont : englishDisplayFont;
@@ -181,7 +184,9 @@ for (const locale of ["ko", "en"]) {
       );
       assert.ok(visibleHtml.includes(messages.home.hero.titleLead));
       assert.ok(visibleHtml.includes(messages.home.hero.titleTail));
-      assert.ok(visibleHtml.includes(messages.home.hero.description));
+      assert.ok(
+        visibleText.includes(withPlainSpaces(messages.home.hero.description)),
+      );
       for (const guide of featureGuides)
         assert.ok(
           tags(html, "a").some(
@@ -343,7 +348,7 @@ for (const locale of ["ko", "en"]) {
           `${route}: ${release.id} anchor`,
         );
         assert.ok(
-          visibleHtml.includes(release.summary[locale]),
+          visibleText.includes(withPlainSpaces(release.summary[locale])),
           `${route}: ${release.id} summary`,
         );
         for (const category of release.categories)
@@ -356,7 +361,7 @@ for (const locale of ["ko", "en"]) {
           for (const text of formatStoreNotes(release, locale).split("\n"))
             if (text)
               assert.ok(
-                visibleHtml.includes(text.replace(/^- /, "")),
+                visibleText.includes(withPlainSpaces(text.replace(/^- /, ""))),
                 `${route}: ${release.version} store summary in SSR HTML`,
               );
         } else {
