@@ -120,7 +120,6 @@ type HomeCatalog = {
     description: string;
     foldedNote: string;
     unfoldedNote: string;
-    foldedAlt: string;
     unfoldedAlt: string;
     ipadTitle: string;
     ipadDescription: string;
@@ -1073,12 +1072,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
       largeScreen: {
         badge: "큰 화면",
         kicker: "넓게 보면 더 편해요",
-        title: "접으면 폰, 펼치면 한눈에",
+        title: "접으면\u00a0폰, 펼치면\u00a0한눈에",
         description:
-          "iPhone Duo를 펼치면 왼쪽엔 할 일 목록, 오른쪽엔 상세가 나란히 보여요. 화면을 오가지 않고 콕과 댓글까지 이어서 봐요.",
+          "iPhone\u00a0Duo를\u00a0펼치면 왼쪽엔\u00a0할\u00a0일\u00a0목록, 오른쪽엔\u00a0상세가\u00a0나란히\u00a0보여요. 화면을\u00a0오가지\u00a0않고 콕과\u00a0댓글까지\u00a0이어서\u00a0봐요.",
         foldedNote: "접었을 때",
         unfoldedNote: "펼치면 두 칸",
-        foldedAlt: "접은 iPhone Duo 바깥 화면에 보이는 아이두 오늘 할 일 목록",
         unfoldedAlt:
           "펼친 iPhone Duo에서 왼쪽엔 할 일 목록, 오른쪽엔 할 일 상세가 함께 보이는 아이두 화면",
         ipadTitle: "iPad에서도 두 칸으로",
@@ -2129,13 +2127,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
       largeScreen: {
         badge: "Big screens",
         kicker: "More room, less tapping",
-        title: "Folded, it’s a phone. Unfolded, it’s all in view.",
+        title:
+          "Folded, it’s\u00a0a\u00a0phone. Unfolded, it’s\u00a0all\u00a0in\u00a0view.",
         description:
-          "Unfold iPhone Duo and your list sits on the left with details on the right. Keep up with nudges and comments without switching screens.",
+          "Unfold\u00a0iPhone\u00a0Duo and\u00a0your\u00a0list\u00a0sits\u00a0on\u00a0the\u00a0left with\u00a0details\u00a0on\u00a0the\u00a0right. Keep\u00a0up\u00a0with\u00a0nudges\u00a0and\u00a0comments without\u00a0switching\u00a0screens.",
         foldedNote: "Folded",
         unfoldedNote: "Unfolded, two panes",
-        foldedAlt:
-          "Today's to-dos in Aido on the outer screen of a folded iPhone Duo",
         unfoldedAlt:
           "Aido on an unfolded iPhone Duo with the to-do list on the left and details on the right",
         ipadTitle: "Two panes on iPad, too",

@@ -19,11 +19,8 @@ const bezelVariants = cva(
     variants: {
       device: {
         iphone: "rounded-[15.5cqw] p-[3.2cqw]",
-        // 접은 iPhone Duo: 왼쪽은 경첩이라 각지고 오른쪽만 둥글다.
-        "duo-folded":
-          "rounded-l-[1.6cqw] rounded-r-[14.5cqw] border-l-[3.4cqw] border-l-gray-8 p-[2.6cqw] pl-[1.8cqw]",
-        // 펼친 iPhone Duo: 네 모서리가 둥근 거의 정사각형 세로 화면, 접힘선은 그리지 않는다.
-        "duo-unfolded": "rounded-[11cqw] p-[1.9cqw]",
+        // 가로로 펼친 iPhone Duo: 얇은 테두리의 넓은 화면, 가운데 접힘선은 그리지 않는다.
+        "duo-open": "rounded-[4.6cqw] p-[1.2cqw]",
         ipad: "rounded-[6cqw] p-[2.8cqw]",
         android: "rounded-[11cqw] p-[2.4cqw]",
       },
@@ -39,8 +36,7 @@ const bezelVariants = cva(
 
 const screenRadius = {
   iphone: "rounded-[12.3cqw]",
-  "duo-folded": "rounded-l-[0.6cqw] rounded-r-[12cqw]",
-  "duo-unfolded": "rounded-[9.3cqw]",
+  "duo-open": "rounded-[3.5cqw]",
   ipad: "rounded-[3.2cqw]",
   android: "rounded-[8.6cqw]",
 } as const satisfies Record<DeviceFrame, string>;
@@ -102,7 +98,7 @@ export function DeviceScreen({
               className="absolute top-[5.4cqw] left-1/2 h-[7.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-ink"
             />
           ))
-          .with("duo-folded", "duo-unfolded", "ipad", "android", () => null)
+          .with("duo-open", "ipad", "android", () => null)
           .exhaustive()}
       </Box>
     </Box>

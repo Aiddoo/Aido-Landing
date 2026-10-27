@@ -376,11 +376,9 @@ test("reduced motion shows the iPhone Duo unfolded without inline transforms", a
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/ko");
   await page.mouse.wheel(0, 4000);
-  for (const part of ["cover", "device", "sheen", "companion"])
-    await expect(page.locator(`[data-duo="${part}"]`)).not.toHaveAttribute(
-      "style",
-      /transform|opacity/,
-    );
+  for (const part of ["device", "flat", "leaf", "shade", "sheen", "companion"])
+    for (const element of await page.locator(`[data-duo="${part}"]`).all())
+      await expect(element).not.toHaveAttribute("style", /transform|opacity/);
 });
 
 test("a malformed invite link renders the invalid state on the server without hydration errors", async ({

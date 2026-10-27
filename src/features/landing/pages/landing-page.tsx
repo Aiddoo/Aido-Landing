@@ -43,6 +43,7 @@ import { nudgeCats } from "@/features/landing/data/home-cats";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { localizedPath } from "@/lib/public-routes";
+import { cn } from "@/lib/utils";
 
 const PHONE_SIZES = "(min-width: 1024px) 288px, min(72vw, 288px)";
 const SIDE_PHONE_SIZES = "(min-width: 1024px) 220px, 0px";
@@ -391,17 +392,22 @@ export function LandingPage({ locale }: { locale: Locale }) {
               <h2
                 id="large-screen-title"
                 data-motion="title"
-                className="text-display-lg text-cream"
+                className="text-balance text-display-lg text-cream"
               >
                 {home.largeScreen.title}
               </h2>
-              <p className="max-w-[36rem] text-body-lg text-cream/75">
+              <p
+                className={cn(
+                  "text-balance text-body-lg text-cream/75",
+                  locale === "ko" ? "max-w-[34em]" : "max-w-[40ch]",
+                )}
+              >
                 {home.largeScreen.description}
               </p>
             </VStack>
             <DuoUnfold
               locale={locale}
-              className="mx-auto w-full max-w-[660px]"
+              className="mx-auto w-full max-w-[720px]"
             />
             <Grid columns={2} gap={6}>
               <HStack

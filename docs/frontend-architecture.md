@@ -50,7 +50,7 @@ src/
   lib/                  # 도메인/스토어/SNS, 공개 경로, UTC 날짜 포맷
 ```
 
-라우트에서 로케일·slug를 검증하고 필요한 식별값을 화면에 전달합니다. LandingPage는 히어로 → AI 할 일 → 친구·콕 → 친구 초대·발자국 판 → 고양이 9종 고르기(`CatPicker`, `CatRadioGroup`) → iPhone Duo·iPad·위젯 → 지원 기기(Mac 앞 iPad·폴더블·폰 장면 `DeviceShowcase` + `SupportedDeviceList`) → 리포트·리마인더 → 프리미엄 → FAQ → 사용법 → 다운로드 순서이며, 기기 화면은 `DeviceScreen`(CSS 기기 틀 + `home-screens` 카탈로그), Duo 펼침은 `DuoUnfold` + 지연 로드 모션의 `createDuoUnfold`(스크롤 연동, 동작 줄이기면 펼친 상태)입니다. 사용법은 GuideWalkthrough → GuideExample → GuideDetails → GuidePlans 순서이며 한 화면에서만 쓰는 컴포넌트는 페이지 아래에 둡니다. 화면의 서로 다른 의미를 가진 섹션을 배열로 일반화하지 않습니다. 실제 콘텐츠 목록은 안정된 키로 map합니다. map 자체가 모든 행의 DOM을 다시 만드는 것은 아닙니다.
+라우트에서 로케일·slug를 검증하고 필요한 식별값을 화면에 전달합니다. LandingPage는 히어로 → AI 할 일 → 친구·콕 → 친구 초대·발자국 판 → 고양이 9종 고르기(`CatPicker`, `CatRadioGroup`) → iPhone Duo·iPad·위젯 → 지원 기기(Mac 앞 iPad·폴더블·폰 장면 `DeviceShowcase` + `SupportedDeviceList`) → 리포트·리마인더 → 프리미엄 → FAQ → 사용법 → 다운로드 순서이며, 기기 화면은 `DeviceScreen`(CSS 기기 틀 + `home-screens` 카탈로그), Duo 펼침은 `DuoUnfold`(가로로 펼친 화면 + 접힌 뒷면) + 지연 로드 모션의 `createDuoUnfold`(스크롤에 맞춰 V자로 연 두 면이 평평해진 뒤 이음새 없는 한 장으로 바뀜, 동작 줄이기면 펼친 상태)입니다. 사용법은 GuideWalkthrough → GuideExample → GuideDetails → GuidePlans 순서이며 한 화면에서만 쓰는 컴포넌트는 페이지 아래에 둡니다. 화면의 서로 다른 의미를 가진 섹션을 배열로 일반화하지 않습니다. 실제 콘텐츠 목록은 안정된 키로 map합니다. map 자체가 모든 행의 DOM을 다시 만드는 것은 아닙니다.
 
 전체 카탈로그는 서버에서만 읽습니다. Client에는 메뉴·동의·복사에 필요한 문구와 검증된 공개 설정만 전달합니다. Git 콘텐츠는 SSG로 읽으므로 정적 페이지에는 API 요청, TanStack Query/Router, loaderDeps, oRPC, react-hook-form, 업로드 훅을 도입할 이유가 없습니다. 실제 비동기 데이터/폼이 생기면 해당 기능 경계에서 도입합니다. 정적 페이지에 의미 없는 Loading/Error 컴포넌트를 추가하지 않습니다.
 
