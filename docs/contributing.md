@@ -40,6 +40,8 @@ Next.js 권장 작업은 공식 CLI `next typegen`, `next build`, `next start`�
 
 CI는 frozen install → pnpm audit → lint → typecheck → unit tests → 이미지/출시 기록 검사 → production 테스트 설정 빌드 → SEO → Playwright 순서입니다. audit는 개발·간접 의존성도 포함하며 등록된 취약점이 있으면 실패합니다. 브라우저 검사는 Google/Vercel 요청을 mock하며 CI에 사용하는 G-TEST123은 실제 운영 ID가 아닙니다. Vercel 배포 빌드는 플랫폼의 실제 환경변수를 사용합니다. 이미 빌드한 CI는 PLAYWRIGHT_SKIP_BUILD=1로 중복 빌드를 피합니다.
 
+`pnpm check`는 위 CI 순서(frozen install 제외)를 로컬에서 그대로 실행하며 production 테스트 환경변수를 내부에서 설정합니다. Playwright는 3217 포트를 쓰므로 비어 있어야 합니다. CI는 Playwright 브라우저를 버전 키로 캐시하고 실패 시 trace·report를 artifact로 올리며, PR의 의존성 변경은 `dependency-review.yml`이 high 이상 취약점을 검토합니다. Dependabot(`.github/dependabot.yml`)은 매주 월요일 Actions와 npm의 minor/patch를 묶어 `chore(deps)` PR로 올립니다. `pnpm fonts:generate`는 `fonttools[woff]`가 설치된 venv의 python3로 실행합니다(절차는 폰트 안내 참고).
+
 로컬 `pnpm test:browser`는 테스트 Production 빌드와 서버를 직접 관리합니다. `pnpm exec playwright install chromium`으로 브라우저를 준비합니다. 설치된 Chrome을 쓰려면 `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`를 실행합니다. 공급자 회귀에 한해 `PLAYWRIGHT_DEV=1 PLAYWRIGHT_CHANNEL=chrome pnpm test:browser --grep "one initialization|no provider requests|script failure" --workers 1`로 개발 StrictMode 재실행도 확인합니다. 운영 DebugView 확인은 모의 테스트와 구분합니다.
 
 ## 의존성·보안 업데이트
