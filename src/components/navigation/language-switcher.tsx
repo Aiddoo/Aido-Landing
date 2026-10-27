@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import { HStack } from "@/components/ui/layout";
 import { analyticsAttributes } from "@/features/analytics/utils/analytics-attributes";
 import { type Locale, locales } from "@/i18n/config";
 import type { MessageCatalog } from "@/i18n/messages";
@@ -55,13 +56,12 @@ function LanguageLinks({
   hash,
 }: LanguageSwitcherProps & { campaign: string; hash: string }) {
   return (
-    <nav
-      aria-label={labels.navLabel}
-      className="flex items-center gap-1 rounded-full border-2 border-foreground bg-white px-2 py-1 hand-shadow"
+    <HStack
+      render={<nav aria-label={labels.navLabel} />}
+      align="center"
+      data-slot="language-switcher"
+      className="h-11 rounded-full border border-border bg-paper p-1"
     >
-      <span className="hidden px-2 text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/75 xl:block">
-        {labels.label}
-      </span>
       {locales.map((item) => (
         <Link
           key={item}
@@ -76,12 +76,13 @@ function LanguageLinks({
           }}
           prefetch={false}
           scroll={false}
+          lang={item}
           aria-current={item === locale ? "page" : undefined}
-          className={`rounded-full border-2 px-2 py-1 text-xs font-bold transition-all ${item === locale ? "border-foreground bg-brand text-foreground" : "border-transparent text-foreground/75 hover:border-foreground/30 hover:text-foreground"}`}
+          className="relative inline-flex h-full min-w-10 items-center justify-center rounded-full px-2.5 text-micro font-bold text-gray-8 transition-colors after:absolute after:-inset-y-1 after:inset-x-0 hover:text-ink aria-[current=page]:bg-ink aria-[current=page]:text-cream"
         >
           {item === "ko" ? labels.ko : labels.en}
         </Link>
       ))}
-    </nav>
+    </HStack>
   );
 }

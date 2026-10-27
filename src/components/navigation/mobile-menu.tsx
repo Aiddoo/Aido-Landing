@@ -2,25 +2,29 @@
 import { Menu } from "lucide-react";
 import { type ComponentType, useEffect, useId, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Box } from "@/components/ui/layout";
 import {
   MobileMenuLinks,
   type MobileMenuLinksProps,
+  menuTriggerClass,
 } from "./mobile-menu-links";
-import type { MobileMenuPopoverProps } from "./mobile-menu-popover";
+import type { MobileMenuSheetProps } from "./mobile-menu-sheet";
 
 type MobileMenuProps = Omit<MobileMenuLinksProps, "onNavigate">;
-export function MobileMenu({ locale, labels }: MobileMenuProps) {
+
+// 시트 코드는 처음 열 때 불러온다. 불러오지 못하면 기본 details 메뉴로 대신한다.
+export function MobileMenu(props: MobileMenuProps) {
   const triggerId = useId();
   const [open, setOpen] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [PopoverMenu, setPopoverMenu] =
-    useState<ComponentType<MobileMenuPopoverProps> | null>(null);
+  const [SheetMenu, setSheetMenu] =
+    useState<ComponentType<MobileMenuSheetProps> | null>(null);
   useEffect(() => {
-    if (!open || PopoverMenu) return;
+    if (!open || SheetMenu) return;
     let disposed = false;
-    void import("./mobile-menu-popover")
-      .then(({ MobileMenuPopover }) => {
-        if (!disposed) setPopoverMenu(() => MobileMenuPopover);
+    void import("./mobile-menu-sheet")
+      .then(({ MobileMenuSheet }) => {
+        if (!disposed) setSheetMenu(() => MobileMenuSheet);
       })
       .catch(() => {
         if (!disposed) setFailed(true);
@@ -28,16 +32,15 @@ export function MobileMenu({ locale, labels }: MobileMenuProps) {
     return () => {
       disposed = true;
     };
-  }, [open, PopoverMenu]);
+  }, [open, SheetMenu]);
   return (
-    <div className="mobile-menu lg:hidden">
-      <div className="mobile-menu-enhanced">
+    <Box data-slot="mobile-menu" className="relative lg:hidden">
+      <Box data-slot="mobile-menu-enhanced">
         {failed ? (
-          <StaticMenu locale={locale} labels={labels} open />
-        ) : PopoverMenu ? (
-          <PopoverMenu
-            locale={locale}
-            labels={labels}
+          <StaticMenu {...props} open />
+        ) : SheetMenu ? (
+          <SheetMenu
+            {...props}
             triggerId={triggerId}
             open={open}
             onOpenChange={setOpen}
@@ -47,37 +50,40 @@ export function MobileMenu({ locale, labels }: MobileMenuProps) {
           <Button
             id={triggerId}
             variant="ghost"
-            aria-label={labels.open}
+            aria-label={props.labels.open}
             aria-haspopup="dialog"
             aria-expanded="false"
             aria-busy={open}
-            className="mobile-menu-button"
+            className={menuTriggerClass}
             onClick={() => setOpen(true)}
           >
-            <Menu size={20} aria-hidden="true" />
+            <Menu aria-hidden="true" />
           </Button>
         )}
-      </div>
+      </Box>
       <noscript>
-        <style>{".mobile-menu-enhanced{display:none}"}</style>
-        <StaticMenu locale={locale} labels={labels} />
+        <style>{"[data-slot=mobile-menu-enhanced]{display:none}"}</style>
+        <StaticMenu {...props} />
       </noscript>
-    </div>
+    </Box>
   );
 }
+
 function StaticMenu({
-  locale,
-  labels,
   open = false,
+  ...props
 }: MobileMenuProps & { open?: boolean }) {
   return (
-    <details open={open}>
-      <summary aria-label={labels.open} className="mobile-menu-button">
-        <Menu size={20} aria-hidden="true" />
+    <details open={open} data-slot="mobile-menu-static">
+      <summary
+        aria-label={props.labels.open}
+        className="flex size-11 cursor-pointer list-none items-center justify-center rounded-full border border-border bg-paper [&::-webkit-details-marker]:hidden"
+      >
+        <Menu className="size-5" aria-hidden="true" />
       </summary>
-      <div className="mobile-menu-panel mobile-menu-static">
-        <MobileMenuLinks locale={locale} labels={labels} />
-      </div>
+      <Box className="absolute top-14 right-0 w-[min(20rem,calc(100vw-2rem))] rounded-2xl bg-popover p-3 shadow-lift">
+        <MobileMenuLinks {...props} />
+      </Box>
     </details>
   );
 }

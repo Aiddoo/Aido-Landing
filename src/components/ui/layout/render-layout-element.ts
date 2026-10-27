@@ -22,9 +22,10 @@ export function renderLayoutElement(
   render: LayoutRenderElement | undefined,
   props: ComponentProps<"div">,
 ) {
-  const ownProps: ComponentProps<"div"> & { "data-slot": string } = {
-    ...props,
+  // 쓰는 쪽이 data-slot으로 역할 이름을 주면 그 이름을 남긴다.
+  const ownProps: ComponentProps<"div"> & { "data-slot"?: string } = {
     "data-slot": slot,
+    ...props,
   };
   if (render == null) return createElement("div", ownProps);
   const renderProps = render.props;

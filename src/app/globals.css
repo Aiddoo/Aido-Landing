@@ -264,6 +264,13 @@
     word-break: keep-all;
     overflow-wrap: break-word;
     background-color: var(--background);
+    /* 앱·SNS 이미지처럼 위쪽에 옅은 주황 빛이 도는 크림 바탕 */
+    background-image: radial-gradient(
+      72rem 34rem at 50% -14rem,
+      color-mix(in oklab, var(--brand-soft) 85%, transparent),
+      transparent 70%
+    );
+    background-repeat: no-repeat;
     color: var(--foreground);
     font-family: var(--font-sans);
     font-size: var(--text-body);
@@ -318,19 +325,67 @@
   }
 }
 
-/* 기존 페이지 전용 스타일. 해당 페이지를 새 컴포넌트로 옮기는 PR에서 함께 지운다. */
-.wobbly-md {
-  border-radius: 60px 20px 50px 20px / 20px 50px 20px 60px;
+/* 머리글: 스크롤하면 종이 바탕과 그림자가 생긴다. 높이는 그대로라 아래 내용이 밀리지 않는다. */
+.site-header {
+  background-color: color-mix(in oklab, var(--cream) 90%, transparent);
+  backdrop-filter: blur(12px);
 }
 
-.wobbly-sm {
-  border-radius: 120px 30px 100px 30px / 30px 100px 30px 120px;
+@keyframes header-raise {
+  from {
+    background-color: transparent;
+    backdrop-filter: blur(0);
+  }
+  to {
+    background-color: color-mix(in oklab, var(--paper) 92%, transparent);
+    backdrop-filter: blur(12px);
+    border-color: var(--border);
+    box-shadow: 0 10px 30px -20px hsl(var(--shadow-color) / 0.35);
+  }
 }
 
-.hand-shadow {
-  box-shadow: 4px 4px 0px 0px var(--foreground);
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .site-header {
+      animation: header-raise linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 120px;
+    }
+  }
 }
 
+/* 초대 영수증의 위·아래 톱니 가장자리. mask라 레이아웃에 영향이 없다. */
+@utility receipt-edge {
+  -webkit-mask:
+    radial-gradient(circle at 11px 0, #0000 9px, #000 9.5px) top / 22px 51%
+    round no-repeat,
+    radial-gradient(circle at 11px 100%, #0000 9px, #000 9.5px) bottom / 22px
+    51% round no-repeat;
+  mask:
+    radial-gradient(circle at 11px 0, #0000 9px, #000 9.5px) top / 22px 51%
+    round no-repeat,
+    radial-gradient(circle at 11px 100%, #0000 9px, #000 9.5px) bottom / 22px
+    51% round no-repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: Accessibility preference must override animation utilities. */
+    animation: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: Accessibility preference must override transition utilities. */
+    transition: none !important;
+  }
+}
+
+/*
+ * 기존 홈 화면 전용 스타일. 홈 개편(feat/landing-2-home)에서 함께 지운다.
+ * 분석 동의 배너도 .page-width를 쓴다.
+ */
 .page-width {
   width: calc(100% - 2.5rem);
   max-width: 72rem;
@@ -339,6 +394,10 @@
 
 .section-space {
   padding-block: 72px;
+}
+
+.section-space.pt-0 {
+  padding-top: 0;
 }
 
 .section-heading {
@@ -369,59 +428,6 @@
   margin-bottom: 18px;
 }
 
-.site-header {
-  position: fixed;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 2rem);
-  max-width: 72rem;
-  z-index: 50;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  background: #fffffff2;
-  backdrop-filter: blur(12px);
-  border: 3px solid var(--foreground);
-  border-radius: 60px 20px 50px 20px / 20px 50px 20px 60px;
-  box-shadow: 5px 5px 0 var(--foreground);
-}
-
-.desktop-nav {
-  align-items: center;
-  gap: 22px;
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.desktop-nav a:hover {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-
-.nav-download {
-  padding: 10px 14px;
-  border: 2px solid var(--foreground);
-  border-radius: 18px 7px 17px 8px;
-  background: var(--brand);
-}
-
-.skip-link {
-  position: fixed;
-  top: -100px;
-  left: 20px;
-  z-index: 100;
-  padding: 12px 18px;
-  background: white;
-  border: 2px solid var(--foreground);
-}
-
-.skip-link:focus {
-  top: 20px;
-}
-
 .sketch-underline {
   text-decoration: underline;
   text-decoration-color: #ff6b4333;
@@ -435,47 +441,6 @@
   overflow: hidden;
   background: white;
   box-shadow: 5px 5px 0 var(--foreground);
-}
-
-.store-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: 100%;
-  max-width: 25rem;
-  gap: 16px;
-}
-
-.store-links {
-  display: flex;
-  min-width: 0;
-}
-
-.store-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 13px 12px;
-  min-width: 0;
-  min-height: 64px;
-  border: 2px solid var(--foreground);
-  border-radius: 24px 8px 23px 8px;
-  background: white;
-  box-shadow: 4px 4px 0 var(--foreground);
-  transition:
-    transform 0.15s,
-    box-shadow 0.15s;
-}
-
-.store-button:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--foreground);
-  background: #fff9c4;
-}
-
-.store-button span:first-child {
-  font-size: 10px;
-  letter-spacing: 0.04em;
 }
 
 .feature-title {
@@ -569,175 +534,13 @@ summary::-webkit-details-marker {
   box-shadow: 6px 6px 0 var(--foreground);
 }
 
-.download-card .store-buttons {
+.download-card [data-slot="store-buttons"] {
   margin-inline: auto;
 }
 
 .download-card > p {
   max-width: 34rem;
   margin-inline: auto;
-}
-
-.mobile-menu {
-  position: relative;
-}
-
-.mobile-menu-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  background: white;
-  border: 2px solid var(--foreground);
-  border-radius: 12px 6px 10px 6px;
-}
-
-.mobile-menu[open] .mobile-menu-button {
-  background: #fff9c4;
-}
-
-.mobile-menu-panel {
-  width: min(300px, calc(100vw - 3rem));
-  background: white;
-  padding: 12px;
-  border: 2px solid var(--foreground);
-  border-radius: 20px 8px 18px 9px;
-  box-shadow: 4px 4px 0 var(--foreground);
-}
-
-.mobile-menu-panel a {
-  display: block;
-  padding: 12px 14px;
-  font-weight: 700;
-  border-radius: 10px;
-}
-
-.mobile-menu-panel a:hover {
-  background: #fff9c4;
-}
-
-@media (max-width: 767px) {
-  .section-space {
-    padding-block: 48px;
-  }
-  .site-header {
-    padding: 10px 12px;
-    top: 12px;
-  }
-  .section-heading {
-    margin-bottom: 32px;
-  }
-  .section-title {
-    font-size: clamp(1.7rem, 5.5vw, 2rem);
-  }
-  .store-buttons {
-    gap: 12px;
-  }
-  .store-button {
-    padding: 12px;
-    gap: 8px;
-  }
-  .store-button svg {
-    width: 24px;
-    height: 24px;
-  }
-  .feature-phone {
-    width: 190px;
-  }
-  .feature-phones-dual .feature-phone {
-    width: 160px;
-  }
-  .second-phone {
-    margin-left: -25px;
-  }
-  .disclosure-summary {
-    padding: 18px;
-  }
-  .disclosure-content {
-    padding: 0 18px 20px;
-  }
-  .download-card {
-    padding: 32px 18px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    /* biome-ignore lint/complexity/noImportantStyles: Accessibility preference must override animation utilities. */
-    animation: none !important;
-    /* biome-ignore lint/complexity/noImportantStyles: Accessibility preference must override transition utilities. */
-    transition: none !important;
-  }
-  .store-button:hover {
-    transform: none;
-  }
-}
-
-.section-space.pt-0 {
-  padding-top: 0;
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .feature-phones-dual .feature-phone {
-    width: 160px;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .feature-phone {
-    transition: transform 0.2s;
-  }
-  .feature-phone:hover {
-    transform: translateY(-5px) rotate(0deg);
-  }
-}
-
-@media (max-width: 359px) {
-  .site-header {
-    padding-inline: 8px;
-    gap: 6px;
-  }
-  .site-header-actions {
-    gap: 6px;
-  }
-  .site-brand {
-    gap: 5px;
-  }
-  .feature-phones-dual .feature-phone {
-    width: 136px;
-  }
-}
-
-@media (max-width: 1023px) {
-  .hero-copy .store-buttons {
-    margin-inline: auto;
-  }
-}
-
-@media (max-width: 399px) {
-  .store-buttons {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: 18rem;
-  }
-  .store-button {
-    min-height: 64px;
-  }
-}
-
-.motion-boundary {
-  display: contents;
-}
-
-.mobile-menu-static {
-  position: absolute;
-  right: 0;
-  top: 54px;
 }
 
 .service-link-wrap {
@@ -767,4 +570,61 @@ summary::-webkit-details-marker {
 
 .value-card-2 {
   background: #eaf3fb;
+}
+
+@media (max-width: 767px) {
+  .section-space {
+    padding-block: 48px;
+  }
+  .section-heading {
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-size: clamp(1.7rem, 5.5vw, 2rem);
+  }
+  .feature-phone {
+    width: 190px;
+  }
+  .feature-phones-dual .feature-phone {
+    width: 160px;
+  }
+  .second-phone {
+    margin-left: -25px;
+  }
+  .disclosure-summary {
+    padding: 18px;
+  }
+  .disclosure-content {
+    padding: 0 18px 20px;
+  }
+  .download-card {
+    padding: 32px 18px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .feature-phones-dual .feature-phone {
+    width: 160px;
+  }
+}
+
+@media (max-width: 359px) {
+  .feature-phones-dual .feature-phone {
+    width: 136px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-copy [data-slot="store-buttons"] {
+    margin-inline: auto;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .feature-phone {
+    transition: transform 0.2s;
+  }
+  .feature-phone:hover {
+    transform: translateY(-5px) rotate(0deg);
+  }
 }
