@@ -2,6 +2,7 @@ import { Crown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
+import { SentenceFlow } from "@/components/layout/sentence-flow";
 import { BrandMotif } from "@/components/marketing/brand-motif";
 import { DownloadCard } from "@/components/marketing/download-card";
 import { FaqList } from "@/components/marketing/faq-list";
@@ -91,9 +92,9 @@ export function LandingPage({ locale }: { locale: Locale }) {
             </h1>
             <p
               data-hero="description"
-              className="max-w-[34rem] text-body-lg text-gray-9"
+              className="max-w-[34rem] text-body-lg text-balance text-gray-9"
             >
-              {home.hero.description}
+              <SentenceFlow text={home.hero.description} />
             </p>
             <Box data-hero="downloads" className="w-full">
               <StoreButtons

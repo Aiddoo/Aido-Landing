@@ -84,7 +84,7 @@ The Company processes collected personal information only for the following purp
 | Service Provision | Core features including task management, calendar (weekly/monthly), friend sharing, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, streaks, and weather for the current location. Publicly shared to-dos are visible to mutual followers, and Nudge and Cheer messages are delivered to the recipient. |
 | AI Feature Provision | AI-powered automatic to-do parsing, memo organizing, weekly & monthly AI report generation (task statistics analysis and achievement summaries), recurring pattern analysis and automatic suggestions (from app version 1.13.0, subject to the AI data sharing consent process; see the "AI data sharing consent notice" below) |
 | Subscription and Payment Management | Paid subscription processing, payment status management, receipt verification |
-| Notification Delivery | To-do reminders (1 hour and 10 minutes before scheduled time), morning & evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications, Win-back notifications, service announcements |
+| Notification Delivery | To-do reminders (1&nbsp;hour and 10 minutes before scheduled time), morning & evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications, Win-back notifications, service announcements |
 | Service Improvement | Usage statistics analysis, error response, service quality enhancement |
 | Abuse Prevention | Preventing friend invite rewards from being claimed repeatedly with the same device or account details |
 | User Protection | Restricting friend requests, invite acceptance, Nudges, Cheers, comments, replies and likes between Members where one has blocked the other, hiding each other's content, and receiving, reviewing and acting on reports of policy violations |
@@ -99,20 +99,20 @@ The Company destroys personal information without delay once the purpose of coll
 
 | Retained Items | Retention Period | Legal Basis |
 |---------------|-----------------|-------------|
-| Records related to contracts or withdrawal of offers | **5 years** | Act on Consumer Protection in Electronic Commerce, Article 6 |
-| Records related to payment and supply of goods | **5 years** | Act on Consumer Protection in Electronic Commerce, Article 6 |
-| Records related to consumer complaints or dispute resolution | **3 years** | Act on Consumer Protection in Electronic Commerce, Article 6 |
-| Records related to advertising and display | **6 months** | Act on Consumer Protection in Electronic Commerce, Article 6 |
-| Service access records (login records, access logs) | **3 months** | Protection of Communications Secrets Act, Article 15-2 |
-| Records related to identity verification | **6 months** | Act on Promotion of ICT Network Utilization, Article 44-5 |
+| Records related to contracts or withdrawal of offers | **5&nbsp;years** | Act on Consumer Protection in Electronic Commerce, Article 6 |
+| Records related to payment and supply of goods | **5&nbsp;years** | Act on Consumer Protection in Electronic Commerce, Article 6 |
+| Records related to consumer complaints or dispute resolution | **3&nbsp;years** | Act on Consumer Protection in Electronic Commerce, Article 6 |
+| Records related to advertising and display | **6&nbsp;months** | Act on Consumer Protection in Electronic Commerce, Article 6 |
+| Service access records (login records, access logs) | **3&nbsp;months** | Protection of Communications Secrets Act, Article 15-2 |
+| Records related to identity verification | **6&nbsp;months** | Act on Promotion of ICT Network Utilization, Article 44-5 |
 
 ### Service Operational Data Retention Periods
 
 | Data Item | Retention Period | Basis |
 |-----------|-----------------|-------|
-| Security Logs (SecurityLog) | **90 days** | Fraud prevention and security auditing |
-| Login Attempt Records (LoginAttempt) | **30 days** | Abnormal login detection and prevention |
-| Notification Data (Notification) | **90 days** | Notification history and service provision |
+| Security Logs (SecurityLog) | **90&nbsp;days** | Fraud prevention and security auditing |
+| Login Attempt Records (LoginAttempt) | **30&nbsp;days** | Abnormal login detection and prevention |
+| Notification Data (Notification) | **90&nbsp;days** | Notification history and service provision |
 | Session Information (Session) | **Until session expiry or revocation** | Authentication and access management |
 | Daily Completion Records (DailyCompletion) | **Until Member withdrawal** | Core service provision (streaks, statistics) |
 | Weekly Achievement Records (WeeklyAchievement) | **Until Member withdrawal** | Weekly achievement badges and statistics |
@@ -165,25 +165,25 @@ The Company transfers personal information overseas for service provision as fol
 | Recipient | Country | Items Transferred | Purpose | Retention Period |
 |-----------|---------|------------------|---------|-----------------|
 | **Google LLC** (Firebase Analytics) | United States | App usage records, device information | Service usage statistical analysis | Until Member withdrawal or purpose fulfillment |
-| **Google LLC** (Firebase Crashlytics) | United States | Error information, device information | App stability improvement | 180 days |
+| **Google LLC** (Firebase Crashlytics) | United States | Error information, device information | App stability improvement | 180&nbsp;days |
 | **Google LLC** (Gemini API) | United States | To-do and memo text, category names, current date and time zone, and to-do statistics, titles and scheduled times used for AI reports and suggestions (see Article 8) | AI feature provision (to-do parsing, memo organizing, AI report and recurring suggestion generation) | Deleted immediately upon API processing completion (per Google's policy) |
 | **RevenueCat, Inc.** | United States | Subscription status, purchase history, user identifier mapping (revenueCatUserId) | Subscription payment management | Service use period + legally mandated retention period |
 | **Apple Inc.** | United States | Authentication information, payment information | Social login, in-app payment | Per each service's policy |
-| **Functional Software, Inc. (Sentry)** | United States | Error logs, request information, IP address, device information | App and server error tracking, stability monitoring | 90 days |
+| **Functional Software, Inc. (Sentry)** | United States | Error logs, request information, IP address, device information | App and server error tracking, stability monitoring | 90&nbsp;days |
 | **650 Industries, Inc. (Expo)** | United States | Push tokens, device information | Push notification delivery | Duration of service use |
 | **Resend, Inc.** | United States | Email address, report notification content | Email delivery (verification, notification, report notifications) | Duration of service use |
 
 - Transfer Method: Transmission via encrypted network communication (HTTPS/TLS)
 - Users may refuse consent to cross-border transfer; however, access to related features may be restricted.
-- From app version 1.13.0, transfers to the Google Gemini API are subject to the **AI data sharing consent** requested before you use AI features (see the "AI data sharing consent notice" below). If you don't agree or withdraw consent, only AI features become unavailable; you can keep using everything else, such as adding to-dos yourself.
+- From app version 1.13.0, transfers to the Google&nbsp;Gemini API are subject to the **AI data sharing consent** requested before you use AI features (see the "AI data sharing consent notice" below). If you don't agree or withdraw consent, only AI features become unavailable; you can keep using everything else, such as adding to-dos yourself.
 
 ---
 
 ## Article 8 (Data Processing for AI Features)
 
-1. The Service transmits Members' data to an external AI service (Google Gemini API) to provide the following AI features:
+1. The Service transmits Members' data to an external AI service (Google&nbsp;Gemini API) to provide the following AI features:
    - **Automatic To-Do Parsing**: Transmits to-do text, typed or converted from voice input, to automatically extract title, date, category, and other details
-   - **Memo Organizing**: Transmits memo text to organize it into several to-dos
+   - **Memo Organizing**: Transmits memo text to organize it into several&nbsp;to-dos
    - **Weekly & Monthly AI Reports**: Transmits task statistics (total completions, per-category completions, day-of-week and time-of-day completion distributions, streak status, week-over-week/month-over-month changes, and other aggregated data), category names and tips from the previous report to generate achievement summaries and personalized tips
    - **Recurring Pattern Analysis**: Transmits task titles, scheduled days and times, category names, and previous suggestions with whether they were accepted or declined to detect recurring patterns and generate suggestions
    - To-do parsing and memo organizing also transmit category names and the current date and time zone so dates and categories are organized correctly.
@@ -200,7 +200,7 @@ The Company transfers personal information overseas for service provision as fol
    - Automatic parsing of to-do text (extracting title, date, category, etc.)
    - Automatic generation of weekly and monthly AI reports (for premium users)
    - Recurring pattern detection and automatic task suggestions (for premium users)
-   - Automatic to-do reminder delivery (1 hour and 10 minutes before the scheduled time)
+   - Automatic to-do reminder delivery (1&nbsp;hour and 10 minutes before the scheduled time)
    - Feature usage restrictions based on subscription status (daily usage limits, etc.)
 2. Automated decisions do not have a **significant impact** on Members' rights or obligations and are intended for providing reference information or service operations.
 3. Members may exercise the following rights regarding automated decisions:
@@ -312,8 +312,8 @@ For reports or consultations regarding personal information breaches, you may co
 ## Article 17 (Changes to This Privacy Policy)
 
 1. This Privacy Policy may be amended to reflect changes in laws, policies, or the Service.
-2. In case of significant changes, the Company shall provide at least **7 days' prior notice** through in-app announcements or push notifications before the effective date.
-3. For changes that significantly affect users' rights, at least **30 days' prior notice** shall be given through individual notification (email or push notification).
+2. In case of significant changes, the Company shall provide at least **7&nbsp;days' prior notice** through in-app announcements or push notifications before the effective date.
+3. For changes that significantly affect users' rights, at least **30&nbsp;days' prior notice** shall be given through individual notification (email or push notification).
 
 ---
 
@@ -326,12 +326,12 @@ For reports or consultations regarding personal information breaches, you may co
 
 ## Official website analytics notice (added October 4, 2026; updated October 27, 2026)
 
-This notice applies to analytics on the official aido.kr website. On your first visit, a small card at the bottom of the screen lets you **Allow** or **Decline** Google Analytics cookies, and you can change your choice at any time with **Cookie settings** at the bottom of the website. Declining does not limit access to content or store links. Your choice is saved in your browser for 180 days. If your browser sends a Do Not Track or Global Privacy Control signal, we treat it as Decline regardless of any saved choice, do not show the card and do not load Google Analytics at all.
+This notice applies to analytics on the official aido.kr website. On your first visit, a small card at the bottom of the screen lets you **Allow** or **Decline** Google&nbsp;Analytics cookies, and you can change your choice at any time with **Cookie settings** at the bottom of the website. Declining does not limit access to content or store links. Your choice is saved in your browser for 180&nbsp;days. If your browser sends a Do Not Track or Global Privacy Control signal, we treat it as Decline regardless of any saved choice, do not show the card and do not load Google&nbsp;Analytics at all.
 
-- **Google Analytics 4 (Google LLC)** measures page visits, referral sources, campaigns, language, feature guide card selections, store button clicks and whether an invite code was copied to improve the website. We use Google Consent Mode v2. Before you allow it, or if you decline, no analytics cookies are stored or read; only cookieless visit, device and browser information is sent to Google and may be used for aggregate reporting and modeling. If you **Allow**, an analytics cookie (`_ga`) is used to recognize return visits. Consent for ad storage, ad user data and ad personalization always stays denied, and Google Signals is not used. A store button click does not mean an app installation or purchase.
+- **Google&nbsp;Analytics 4 (Google LLC)** measures page visits, referral sources, campaigns, language, feature guide card selections, store button clicks and whether an invite code was copied to improve the website. We use Google Consent Mode v2. Before you allow it, or if you decline, no analytics cookies are stored or read; only cookieless visit, device and browser information is sent to Google and may be used for aggregate reporting and modeling. If you **Allow**, an analytics cookie (`_ga`) is used to recognize return visits. Consent for ad storage, ad user data and ad personalization always stays denied, and Google Signals is not used. A store button click does not mean an app installation or purchase.
 - **Vercel Web Analytics (Vercel Inc.)** provides cookie-free, aggregated visit statistics that do not identify individuals, and runs regardless of your choice. It counts pages, referral sources, device and browser types and the events above.
 - We do not send member identifiers, email addresses, to-do or note content, invite codes, arbitrary URL queries or fragments to analytics. Invite link addresses are counted only as a path without the code, and campaign UTM values are limited to a defined format.
-- Switching to **Decline** stops Google Analytics cookie use and clears this site's Google Analytics cookies. Previously collected data is handled according to each analytics service's retention settings. Changing your choice does not delete historical data.
+- Switching to **Decline** stops Google&nbsp;Analytics cookie use and clears this site's Google&nbsp;Analytics cookies. Previously collected data is handled according to each analytics service's retention settings. Changing your choice does not delete historical data.
 
 See [Google's Privacy Policy](https://policies.google.com/privacy) and [Vercel Web Analytics privacy information](https://vercel.com/docs/analytics/privacy-policy) for information about processing by these services. For website analytics questions, contact matthew@redband.co.kr.
 
@@ -363,7 +363,7 @@ This notice is published in advance on October 26, 2026 and applies from the day
 
 ## AI data sharing consent notice (added October 26, 2026)
 
-From app version 1.13.0, before you first use an AI feature, such as turning a memo into to-dos, organizing a to-do you typed or spoke, or AI reports and recurring to-do suggestions, the app asks whether the following may be sent to Google Gemini.
+From app version 1.13.0, before you first use an AI feature, such as turning a memo into to-dos, organizing a to-do you typed or spoke, or AI reports and recurring to-do suggestions, the app asks whether the following may be sent to Google&nbsp;Gemini.
 
 | Item | Details |
 |------|---------|
@@ -375,8 +375,8 @@ From app version 1.13.0, before you first use an AI feature, such as turning a m
 
 - **Consent record**: When you agree or withdraw, we store your choice, the notice version and when you agreed. If the notice changes, we ask you to agree to the new version. A withdrawal stays in place even if the notice changes.
 - **Not now, declining and withdrawal**: If you tap **Not now**, nothing is saved, only that AI feature doesn't run, and we'll ask again the next time you use an AI feature. Even without consent you can sign up, add to-dos yourself and use everything else. Even if you have never agreed, you can choose not to agree at any time in the app's settings under **Terms & Policies**, and after agreeing you can withdraw at any time. To-dos you've already created stay as they are.
-- **App version 1.13.0 or later**: AI parsing of to-dos and memos, and scheduled AI reports and suggestions, send data to Google Gemini only for Members who have **agreed (AGREED)**. Nothing is sent if you haven't agreed, haven't chosen yet, or have withdrawn.
-- **Scheduled features**: Weekly and monthly AI reports and recurring to-do suggestions for Premium Members are prepared by our server on a schedule. For Members who haven't agreed, reports are built from to-do statistics alone without Google Gemini, and recurring suggestions aren't created. Reports and suggestions that were already generated remain viewable.
+- **App version 1.13.0 or later**: AI parsing of to-dos and memos, and scheduled AI reports and suggestions, send data to Google&nbsp;Gemini only for Members who have **agreed (AGREED)**. Nothing is sent if you haven't agreed, haven't chosen yet, or have withdrawn.
+- **Scheduled features**: Weekly and monthly AI reports and recurring to-do suggestions for Premium Members are prepared by our server on a schedule. For Members who haven't agreed, reports are built from to-do statistics alone without Google&nbsp;Gemini, and recurring suggestions aren't created. Reports and suggestions that were already generated remain viewable.
 - **How the app version is determined**: For features you request, we use the app version in the app's request header; for scheduled features, we use the latest app version recorded for your account and devices.
 - **App versions below 1.13.0**: Members who only use an older app, which has no consent screen, are processed as before unless they have chosen not to agree. If you don't want this, you can choose not to agree in the app's settings or ask us to stop processing under Article 12 by emailing matthew@redband.co.kr.
 
