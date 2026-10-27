@@ -25,7 +25,7 @@ pnpm dev        # http://localhost:3000
 | `pnpm lint` / `pnpm lint:fix` | Biome 검사 / 자동 수정 |
 | `pnpm typecheck` | TypeScript 타입 검사 |
 | `pnpm audit` | 전체 의존성의 등록된 보안 취약점 검사 |
-| `pnpm check` | CI와 같은 순서의 전체 검사(audit → … → Playwright, 포트 3217 사용) |
+| `pnpm check` | CI 검사 + Playwright까지 로컬 전체 검사(PR 전 필수, 포트 3217 사용) |
 | `pnpm test` / `pnpm test:watch` / `pnpm analytics:check` | Vitest 분석 경계·동의·공급자 DI 계약 검증 |
 | `pnpm test:browser` | Playwright 상호작용·동의·폰트 차단 검증 |
 | `pnpm images:generate` / `pnpm images:check` | 정적 반응형 이미지 생성 / 해시·치수 검사 |
