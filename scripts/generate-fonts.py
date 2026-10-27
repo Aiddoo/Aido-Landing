@@ -1,9 +1,9 @@
 """Generate immutable unicode-range slices from licensed originals; never modify source bytes.
 
-Every face is split so a page downloads only the slices whose characters it renders:
-`base` (ASCII and the other non-Hangul pages render, plus the few Hangul on English pages),
-then Hangul by the page group that first renders them in that face (font-usage.json), then
-`rest` for the remaining public text so every glyph stays available.
+Korean pages use each family split by the page group that first renders a character in that face
+(font-usage.json): `home` (everything /ko renders), `ascii` (the rest of ASCII), `pages`, `updates`, `legal`,
+then `rest` so every public glyph stays available. English pages use "<Family> Latin", one slice
+with ASCII and what the English pages render, so they never touch the Korean slices.
 """
 from collections import Counter
 from fnmatch import fnmatch
@@ -183,41 +183,64 @@ def unicode_range(codepoints):
 
 
 faces = []
-preload = None
+preloads = {}
 manifest = {"text": "".join(map(chr, sorted(characters))), "faces": {}}
+
+
+def declare(family_name, family, weight, name, codepoints, entry, source, locale):
+    filename = subset_font(source, codepoints, f"{family['slug']}-{weight}-{name}",
+                           family["hinting"])
+    if family["preload"].get(locale) == name:
+        preloads[locale] = filename
+    entry["slices"][filename] = "".join(map(chr, sorted(codepoints)))
+    faces.append(
+        f'@font-face {{ font-family: "{family_name}"; '
+        f'src: url(/fonts/{filename}) format("woff2"); font-weight: {weight}; '
+        f'font-style: normal; font-display: {family["display"]}; '
+        f'unicode-range: {unicode_range(codepoints)}; }}')
+
+
+def manifest_entry(name, covered):
+    entry = manifest["faces"][name] = {
+        "missing": "".join(map(chr, sorted(characters - covered))), "slices": {}}
+    return entry
+
+
 for family in inputs["families"]:
     for face in family["faces"]:
         weight = face["weight"]
         source = TTFont(sources / face["source"])
         available = characters & set(source.getBestCmap())
-        entry = manifest["faces"][f"{family['family']} {weight}"] = {
-            "missing": "".join(map(chr, sorted(characters - available))), "slices": {}}
-        on_pages = rendered(family, weight, "*")
-        base = {codepoint for codepoint in on_pages if not is_hangul(codepoint)}
-        base = (base | set(range(32, 127)) | rendered(family, weight, "/en*")) & available
-        slices = [("base", base)]
-        assigned = set(base)
+
+        # 한국어: /ko가 그리는 글자(라틴 포함)를 한 조각으로, 그 뒤 페이지 묶음 순서로 나눈다.
+        entry = manifest_entry(f"{family['family']} {weight}", available)
+        assigned = set()
         for group in inputs["slices"]:
             members = set()
             for pattern in group["pages"]:
                 members |= rendered(family, weight, pattern)
+            if group["name"] == "home":
+                members |= {32}
             members = (members & available) - assigned
             if members:
-                slices.append((group["name"], members))
+                declare(family["family"], family, weight, group["name"], members, entry,
+                        face["source"], "ko")
                 assigned |= members
+            if group["name"] == "home":
+                # 목록 번호(::marker)처럼 글자 노드가 아닌 문자도 있어 나머지 ASCII는 작은 조각으로 둔다.
+                ascii_ = (set(range(32, 127)) & available) - assigned
+                declare(family["family"], family, weight, "ascii", ascii_, entry,
+                        face["source"], "ko")
+                assigned |= ascii_
         if available - assigned:
-            slices.append(("rest", available - assigned))
-        for name, codepoints in slices:
-            filename = subset_font(face["source"], codepoints,
-                                   f"{family['slug']}-{weight}-{name}", family["hinting"])
-            if family["preload"] == name:
-                preload = filename
-            entry["slices"][filename] = "".join(map(chr, sorted(codepoints)))
-            faces.append(
-                f'@font-face {{ font-family: "{family["family"]}"; '
-                f'src: url(/fonts/{filename}) format("woff2"); font-weight: {weight}; '
-                f'font-style: normal; font-display: {family["display"]}; '
-                f'unicode-range: {unicode_range(codepoints)}; }}')
+            declare(family["family"], family, weight, "rest", available - assigned, entry,
+                    face["source"], "ko")
+
+        # 영어: ASCII와 영어 페이지가 그리는 글자만 담은 "<글꼴> Latin" 한 조각.
+        latin = (set(range(32, 127)) | rendered(family, weight, "/en*")) & available
+        latin_entry = manifest_entry(f"{family['family']} Latin {weight}", latin)
+        declare(f"{family['family']} Latin", family, weight, "latin", latin, latin_entry,
+                face["source"], "en")
         for fallback in KOREAN_FALLBACKS:
             locals_ = ", ".join(f'local("{local}")' for local in fallback["locals"][weight])
             faces.append(
@@ -236,7 +259,8 @@ for family in inputs["families"]:
     "See public/fonts/README.md. */\n" + "\n".join(faces) + "\n")
 (root / "src/components/fonts/font-assets.ts").write_text(
     "// Generated by scripts/generate-fonts.py. Edit font-subset-inputs.json instead.\n"
-    f'export const koreanDisplayFont = "/fonts/{preload}";\n')
+    f'export const koreanDisplayFont = "/fonts/{preloads["ko"]}";\n'
+    f'export const englishDisplayFont = "/fonts/{preloads["en"]}";\n')
 (data / "font-subset-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
 files = sum(len(entry["slices"]) for entry in manifest["faces"].values())
-print(f"web-fonts.css: {len(faces)} faces; {files} files; preload {preload}")
+print(f"web-fonts.css: {len(faces)} faces; {files} files; preload {preloads}")

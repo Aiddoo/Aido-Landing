@@ -14,29 +14,33 @@ original but not shipped). License texts: `jua-OFL.txt`, `nanum-pen-script-OFL.t
 
 ## Visitor assets: unicode-range slices
 
-Both locales use the same families. `src/components/fonts/web-fonts.css` (generated) is imported
-by `globals.css`, so the faces ship inside the one bundled stylesheet; there is no separate font
-CSS request. Every face is split into slices that the browser downloads only when the page renders
-one of their characters:
+`src/components/fonts/web-fonts.css` (generated) is imported by `globals.css`, so the faces ship
+inside the one bundled stylesheet; there is no separate font CSS request. Korean pages use the
+families below, split into slices that the browser downloads only when the page renders one of
+their characters. English pages use `"<Family> Latin"`, one slice per face, so they never touch
+the Korean slices.
 
 | Slice | Contents | Who downloads it |
 |---|---|---|
-| `base` | ASCII, the other non-Hangul characters pages render, the few Hangul on English pages (`한국어`) | every page that uses the face; English pages need nothing else |
-| `home` | Hangul that `/ko` renders in this face | Korean home, and most Korean pages |
-| `pages` | further Hangul from guides, services and the invite pages | those pages |
-| `updates` | further Hangul from patch notes | patch notes |
-| `legal` | further Hangul from terms, privacy and account deletion | legal pages |
+| `home` | everything `/ko` renders in this face (Hangul, Latin, digits, punctuation) | Korean home, and most Korean pages |
+| `ascii` | the rest of printable ASCII (list markers are not text nodes) | Korean pages that render one of them |
+| `pages` | further characters from guides, services and the invite pages | those pages |
+| `updates` | further characters from patch notes | patch notes |
+| `legal` | further characters from terms, privacy and account deletion | legal pages |
 | `rest` | the remaining public text, so every glyph stays available | only a page that renders one of them |
+| `latin` (`"<Family> Latin"`) | ASCII and what the English pages render (`한국어` included) | English pages |
 
-Measured on the 2026-10-27 build: `/ko` downloads about 125KiB of fonts (was 426KiB), `/en`
-about 57KiB (was 84KiB). Wanted Sans ships 400/600/700 only; `globals.css` maps `font-medium` to
-600 so generated shadcn components keep a real face. Jua and Nanum Pen Script have one weight; do
-not combine `font-display` with bold utilities (that synthesizes a faux bold).
+Measured on the 2026-10-27 build: `/ko` downloads 5 files, about 80KiB (was 426KiB), `/en` 5
+files, about 57KiB (was 84KiB). Wanted Sans ships 400/600/700 only; `globals.css` maps
+`font-medium` to 600 so generated shadcn components keep a real face. Jua and Nanum Pen Script
+have one weight; do not combine `font-display` with bold utilities (that synthesizes a faux bold).
 
 ## Loading policy (CLS 0, no FOIT)
 
-- **Exactly one preload, Korean only**: the Jua `home` slice (`koreanDisplayFont`), the
-  above-the-fold heading. Zero English font preloads. Never preload body weights.
+- **Exactly one preload per page**: the Jua slice of the above-the-fold heading,
+  `koreanDisplayFont` (`home`) on Korean pages and `englishDisplayFont` (`latin`) on English pages.
+  Without it the English heading swaps after the first paint and shifts (CLS 0.015). Never preload
+  body weights.
 - `font-display: swap` for Jua and Wanted Sans, `optional` for the decorative Nanum Pen Script.
 - Every family has metric-adjusted fallbacks with `size-adjust`, `ascent-override`,
   `descent-override` and `line-gap-override` computed from the real font: Korean pages use

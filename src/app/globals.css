@@ -69,13 +69,13 @@
     system-ui, sans-serif;
 }
 
-/* 영어 페이지는 같은 글꼴의 라틴 조각만 받고, 대체 글꼴은 Arial 메트릭으로 맞춘다. */
+/* 영어 페이지는 한국어 조각과 나뉜 라틴 조각(글꼴당 1개)만 받고, 대체 글꼴은 Arial 메트릭으로 맞춘다. */
 [lang="en"] {
-  --font-display-stack: "Jua", "Jua Fallback Arial", sans-serif;
+  --font-display-stack: "Jua Latin", "Jua Fallback Arial", sans-serif;
   --font-hand-stack:
-    "Nanum Pen Script", "Nanum Pen Script Fallback Arial", sans-serif;
+    "Nanum Pen Script Latin", "Nanum Pen Script Fallback Arial", sans-serif;
   --font-body-stack:
-    "Wanted Sans", "Wanted Sans Fallback Arial", system-ui, sans-serif;
+    "Wanted Sans Latin", "Wanted Sans Fallback Arial", system-ui, sans-serif;
 }
 
 /*

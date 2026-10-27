@@ -45,6 +45,7 @@ for (const scheme of ["light", "dark"]) {
             const family = style.fontFamily
               .split(",")[0]
               .replaceAll('"', "")
+              .replace(/ Latin$/, "")
               .trim();
             if (!families.includes(family)) continue;
             const key = `${family}|${style.fontWeight}`;

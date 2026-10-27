@@ -26,7 +26,7 @@ const originalSource = (src) =>
   )?.[0] ?? src;
 const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
-const { koreanDisplayFont } = await import(
+const { koreanDisplayFont, englishDisplayFont } = await import(
   "../src/components/fonts/font-assets.ts"
 );
 const fontCss = await read("src/components/fonts/web-fonts.css");
@@ -110,18 +110,14 @@ for (const locale of ["ko", "en"]) {
       html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""),
     );
     const links = tags(html, "link");
-    assert.equal(
-      links.filter(
-        (link) => link.rel === "preload" && link.href === koreanDisplayFont,
-      ).length,
-      locale === "ko" ? 1 : 0,
-      `${route}: only Korean pages preload the Korean display font`,
-    );
-    assert.equal(
-      links.filter((link) => link.rel === "preload" && link.as === "font")
-        .length,
-      locale === "ko" ? 1 : 0,
-      `${route}: no unused Latin preloads or bulk Korean subset preloads`,
+    const displayFont =
+      locale === "ko" ? koreanDisplayFont : englishDisplayFont;
+    assert.deepEqual(
+      links
+        .filter((link) => link.rel === "preload" && link.as === "font")
+        .map((link) => link.href),
+      [displayFont],
+      `${route}: only the heading slice of this locale is preloaded`,
     );
     for (const link of links.filter((link) => link.as === "font")) {
       assert.equal(link.type, "font/woff2");
@@ -448,8 +444,11 @@ assert.doesNotMatch(fontCss, /https?:\/\/|fonts\.googleapis|fonts\.gstatic/);
 // 본문·제목은 swap(제목만 preload), 장식 손글씨는 optional. 폴백은 로컬 글꼴 + 메트릭 보정.
 const fontDisplay = {
   Jua: "swap",
+  "Jua Latin": "swap",
   "Nanum Pen Script": "optional",
+  "Nanum Pen Script Latin": "optional",
   "Wanted Sans": "swap",
+  "Wanted Sans Latin": "swap",
 };
 const bundledCss = await Promise.all(
   (await readdir(".next/static/css")).map((file) =>
@@ -631,8 +630,8 @@ for (const locale of ["ko", "en"]) {
   );
   assert.equal(
     tags(html, "link").filter((link) => link.as === "font").length,
-    locale === "ko" ? 1 : 0,
-    `${route}: keeps the single Korean display preload`,
+    1,
+    `${route}: keeps the single display font preload`,
   );
 }
 const appleAssociation = JSON.parse(
