@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { InvitePage } from "@/features/invite/pages/invite-page";
+import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
-import { resolveLocale } from "@/i18n/resolve-locale";
 import { buildSocialMetadata, SITE_NAME } from "@/lib/seo";
-
-type Props = PageProps<"/[locale]/invite">;
 
 const INVITE_SHARE_IMAGE = {
   url: "/images/invite-share.png",
@@ -13,10 +10,11 @@ const INVITE_SHARE_IMAGE = {
   type: "image/png",
 };
 
-// 브라우저 주소는 /i/{코드}이고 proxy가 이 정적 페이지로 rewrite한다.
-// 코드가 담긴 주소는 색인·사이트맵 대상이 아니다.
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const locale = resolveLocale((await params).locale);
+/**
+ * 초대 페이지 metadata. 코드가 담긴 주소는 색인·사이트맵 대상이 아니며 정규 주소가 없다.
+ * 코드 유무와 관계없이 같은 제목·OG를 쓴다(링크 미리보기는 초대한 친구를 드러내지 않는다).
+ */
+export function buildInviteMetadata(locale: Locale): Metadata {
   const { invite } = getMessages(locale);
   const title = `${invite.metaTitle} | ${SITE_NAME}`;
   const social = buildSocialMetadata({
@@ -36,15 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: { absolute: title },
     description: invite.metaDescription,
-    // 레이아웃의 홈 canonical/hreflang을 물려받지 않는다. 코드별 주소는 정규 주소가 없다.
+    // 레이아웃의 홈 canonical/hreflang을 물려받지 않는다.
     alternates: {},
     robots: { index: false, follow: false },
     openGraph: { ...social.openGraph, url: undefined, images },
     twitter: { ...social.twitter, images },
   };
-}
-
-export default async function Page({ params }: Props) {
-  const locale = resolveLocale((await params).locale);
-  return <InvitePage locale={locale} />;
 }

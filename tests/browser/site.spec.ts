@@ -382,3 +382,29 @@ test("reduced motion shows the iPhone Duo unfolded without inline transforms", a
       /transform|opacity/,
     );
 });
+
+test("a malformed invite link renders the invalid state on the server without hydration errors", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(String(error)));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  const response = await page.goto("/i/AEIOU2");
+  expect(response?.headers()["x-robots-tag"]).toBe("noindex, nofollow");
+  const html = (await response?.text()) ?? "";
+  expect(html).toContain('<meta name="robots" content="noindex, nofollow"/>');
+  await expect(page.locator("h1")).toHaveText(
+    /초대 링크를 확인해 주세요|Please check your invite link/,
+  );
+  const playLink = page.locator(
+    'a[data-placement="invite"][data-store="google_play"]',
+  );
+  await expect(playLink).toHaveAttribute("href", /listing=invite/);
+  await expect(playLink).not.toHaveAttribute("href", /referrer=/);
+  await expect(
+    page.getByRole("button", { name: /초대 코드 복사|Copy invite code/ }),
+  ).toBeDisabled();
+  expect(errors).toEqual([]);
+});

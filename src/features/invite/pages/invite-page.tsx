@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { Suspense } from "react";
-import { preconnect } from "react-dom";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { BrandLogo } from "@/components/marketing/brand-logo";
 import { BrandMotif } from "@/components/marketing/brand-motif";
@@ -14,25 +12,24 @@ import {
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { localizedPath } from "@/lib/public-routes";
-import { API_URL } from "@/lib/seo";
-import {
-  InviteCodeCopy,
-  InviteCodeCopyLoading,
-} from "../components/invite-code-copy";
+import { InviteCodeCopy } from "../components/invite-code-copy";
 import { InviteLead } from "../components/invite-lead";
-import {
-  InviteStoreLinks,
-  InviteStoreLinksLoading,
-} from "../components/invite-store-links";
-import { InviterCard, InviterCardLoading } from "../components/inviter-card";
+import { InviteStoreLinks } from "../components/invite-store-links";
+import { InviterCard } from "../components/inviter-card";
+import type { InviteCode } from "../schemas/invite.schema";
 
-// 위에서 아래로 읽는 정적 페이지. 코드·초대한 친구에 따라 달라지는 블록만 클라이언트
-// 컴포넌트로 나눠 각자 Suspense로 감싸고, 로딩·완료가 같은 크기를 쓴다.
+// 위에서 아래로 읽는 페이지. 초대한 친구에 따라 달라지는 블록만 클라이언트 컴포넌트로 나누고,
+// 각 블록이 자기 Suspense·Loading을 가지며 로딩·오류·완료가 같은 크기를 쓴다.
+// code는 라우트가 검증한 값이고, null이면 형식이 틀린 링크다.
 // 언어 전환은 코드를 잃으므로 두지 않는다(언어는 프록시가 정한다).
-export function InvitePage({ locale }: { locale: Locale }) {
+export function InvitePage({
+  locale,
+  code,
+}: {
+  locale: Locale;
+  code: InviteCode | null;
+}) {
   const { invite, storeButtons, accessibility } = getMessages(locale);
-  // 하이드레이션 직후 미리보기를 요청하므로 API 연결을 HTML 단계에서 미리 연다.
-  preconnect(API_URL, { crossOrigin: "anonymous" });
   return (
     <>
       <a
@@ -73,18 +70,8 @@ export function InvitePage({ locale }: { locale: Locale }) {
               motif="paw"
               className="absolute -right-5 -bottom-5 size-32 -rotate-12 text-brand/10"
             />
-            <Suspense fallback={<InviterCardLoading labels={invite} />}>
-              <InviterCard labels={invite} />
-            </Suspense>
-            <Suspense
-              fallback={
-                <p className="relative mt-3.5 h-[calc(3*1.7em)] overflow-hidden text-[0.9375rem] leading-[1.7] text-gray-9 md:text-body-lg">
-                  {invite.lead}
-                </p>
-              }
-            >
-              <InviteLead labels={invite} />
-            </Suspense>
+            <InviterCard labels={invite} code={code} />
+            <InviteLead labels={invite} code={code} />
           </Box>
 
           <Box className="md:col-start-2 md:row-span-2 md:row-start-1 drop-shadow-[0_18px_28px_hsl(var(--shadow-color)/0.18)]">
@@ -120,15 +107,9 @@ export function InvitePage({ locale }: { locale: Locale }) {
                 </Link>
               </p>
               <ReceiptDivider />
-              <Suspense fallback={<InviteCodeCopyLoading labels={invite} />}>
-                <InviteCodeCopy labels={invite} />
-              </Suspense>
+              <InviteCodeCopy labels={invite} code={code} />
               <ReceiptDivider />
-              <Suspense
-                fallback={<InviteStoreLinksLoading content={storeButtons} />}
-              >
-                <InviteStoreLinks content={storeButtons} />
-              </Suspense>
+              <InviteStoreLinks content={storeButtons} code={code} />
             </VStack>
           </Box>
 

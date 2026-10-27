@@ -5,7 +5,7 @@ AI 투두 플래너 아이두의 Next.js 16 App Router 랜딩입니다. 한영 �
 ## 공통 제약
 
 - 정규 경로는 `/{ko|en}/...`, 도메인은 `https://aido.kr`입니다. 도메인·스토어·SNS 상수는 `src/lib/seo.ts`에서 가져옵니다.
-- 공개 페이지의 SSG를 유지합니다. 로케일 레이아웃은 `dynamic = "error"`, `dynamicParams = false`이며 Git 콘텐츠는 배포 때 갱신합니다. Client Components에는 필요한 상호작용 데이터만 전달합니다.
+- 공개 페이지의 SSG를 유지합니다. `[locale]/(static)` 레이아웃이 `dynamic = "error"`, `dynamicParams = false`이며(요청마다 그리는 곳은 초대 코드 페이지뿐) Git 콘텐츠는 배포 때 갱신합니다. Client Components에는 필요한 상호작용 데이터만 전달합니다.
 - UI 문구는 `src/i18n/messages.ts`에 ko/en을 함께 작성합니다. 법적 문서는 `src/content/legal/`의 한영 Markdown 쌍을 사용합니다.
 - 앱 출시 버전·출시일과 서비스 적용일을 구분합니다. 과거 출시일을 문구 편집일로 덮지 않습니다. 내부 정리만 있는 작업은 공개 기록에 넣지 않습니다.
 - 사이트맵은 실제 콘텐츠 변경일을 사용합니다. Google·네이버 소유확인 HTML, 폰트 OFL 라이선스와 해시 파일명을 보존합니다. 해시 파일의 바이트를 바꾸면 새 이름을 사용합니다.

@@ -1,7 +1,15 @@
+import { dehydrate } from "@tanstack/react-query";
+import { NextRequest } from "next/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { proxy } from "@/proxy";
 import { fetchInvitePreview } from "../api/fetch-invite-preview";
 import { getInviterCat } from "../data/inviter-cats";
 import { usableInviteCode } from "../models/invite-preview";
+import { getQueryClient } from "../providers/get-query-client";
+import {
+  getInvitePreviewQueryOptions,
+  inviteQueryKeys,
+} from "../queries/invite-queries";
 import {
   INVITE_CODE_ALPHABET,
   inviteCodeSchema,
@@ -11,6 +19,7 @@ import {
 import { fillInviterName } from "../utils/format-invite-text";
 import {
   normalizeInviteCode,
+  parseInviteCode,
   parseInviteCodeFromPathname,
 } from "../utils/invite-code";
 import { buildPlayStoreInviteUrl } from "../utils/invite-store-links";
@@ -32,6 +41,12 @@ describe("초대 코드", () => {
     expect(parseInviteCodeFromPathname("/ko/invite")).toBeNull();
     expect(parseInviteCodeFromPathname("/i/BCD2%")).toBeNull();
     expect(parseInviteCodeFromPathname("/i/BCD/234")).toBeNull();
+  });
+  it("라우트 세그먼트의 코드도 같은 규칙으로 읽는다", () => {
+    expect(parseInviteCode("bcd-234")).toBe("BCD234");
+    expect(parseInviteCode("BCD%2D234")).toBe("BCD234");
+    expect(parseInviteCode("BCD2%")).toBeNull();
+    expect(parseInviteCode("AEIOU2")).toBeNull();
   });
 });
 
@@ -190,6 +205,73 @@ describe("usableInviteCode", () => {
       expect(
         usableInviteCode("BCD234", { status: "failed", failure }),
       ).toBeNull();
-    expect(usableInviteCode(null, { status: "pending" })).toBeNull();
+  });
+});
+
+describe("초대 미리보기 쿼리", () => {
+  afterEach(() => vi.unstubAllGlobals());
+  it("코드별 키를 쓴다", () => {
+    expect(inviteQueryKeys.preview("BCD234")).toEqual([
+      "invite",
+      "preview",
+      "BCD234",
+    ]);
+    expect(getInvitePreviewQueryOptions("BCD234").queryKey).toEqual(
+      inviteQueryKeys.preview("BCD234"),
+    );
+  });
+  it.each([
+    [404, "not_found"],
+    [410, "changed"],
+    [503, "unknown"],
+  ] as const)(
+    "%i 응답도 reject하지 않고 실패 결과로 캐시해 dehydrate한다",
+    async (status, failure) => {
+      const fetchMock = vi.fn(async () => new Response("", { status }));
+      vi.stubGlobal("fetch", fetchMock);
+      const queryClient = getQueryClient();
+      const options = getInvitePreviewQueryOptions("BCD234");
+      await queryClient.prefetchQuery(options);
+      expect(queryClient.getQueryData(options.queryKey)).toEqual({
+        status: "failed",
+        failure,
+      });
+      const [query] = dehydrate(queryClient).queries;
+      expect(query?.state.data).toEqual({ status: "failed", failure });
+      // staleTime 안에서는 같은 코드를 다시 요청하지 않는다.
+      await queryClient.prefetchQuery(options);
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+    },
+  );
+  it("진행 중인 조회도 dehydrate해 브라우저가 같은 요청을 다시 보내지 않는다", () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => new Promise<Response>(() => {})),
+    );
+    const queryClient = getQueryClient();
+    void queryClient.prefetchQuery(getInvitePreviewQueryOptions("BCD234"));
+    const [query] = dehydrate(queryClient).queries;
+    expect(query?.state.status).toBe("pending");
+    expect(query?.promise).toBeInstanceOf(Promise);
+  });
+});
+
+describe("초대 링크 proxy", () => {
+  function rewriteTarget(path: string) {
+    const response = proxy(
+      new NextRequest(`https://aido.kr${path}`, {
+        headers: { "accept-language": "ko-KR" },
+      }),
+    );
+    const target = response.headers.get("x-middleware-rewrite");
+    return target === null ? null : new URL(target).pathname;
+  }
+  it("유효한 코드는 정규화해 요청마다 그리는 코드 페이지로 보낸다", () => {
+    expect(rewriteTarget("/i/BCD234")).toBe("/ko/invite/BCD234");
+    expect(rewriteTarget("/i/bcd-234")).toBe("/ko/invite/BCD234");
+  });
+  it("형식이 틀린 코드는 정적 초대 페이지로 보낸다", () => {
+    expect(rewriteTarget("/i/AEIOU2")).toBe("/ko/invite");
+    expect(rewriteTarget("/i/BCD2%")).toBe("/ko/invite");
   });
 });

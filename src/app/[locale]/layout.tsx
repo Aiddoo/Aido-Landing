@@ -24,11 +24,8 @@ import {
 
 type LocaleLayoutProps = LayoutProps<"/[locale]">;
 
-// ko/en만 정적 생성 — 그 외 로케일 세그먼트는 404 (요청시점 생성 금지 → 완전 정적)
-export const dynamicParams = false;
-// Public content changes with deployments. Fail the build on request-time reads.
-export const dynamic = "error";
-
+// ko/en만 생성한다. 정적 페이지의 렌더링 제약(dynamic·dynamicParams)은 (static)/layout.tsx가,
+// 요청마다 그리는 초대 코드 페이지는 (dynamic) 그룹이 각자 정한다.
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }

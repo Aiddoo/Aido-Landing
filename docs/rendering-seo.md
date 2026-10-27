@@ -8,14 +8,17 @@
 |---|---|---|
 | 한영 홈·서비스 소개·사용법·패치노트·법적 문서, 총 20개 정규 페이지 | **SSG + Server Components** | 모두 공개 파일 기반 콘텐츠입니다. 배포할 때 HTML을 만들고 캐시하며, 방문마다 서버에서 본문을 다시 만들지 않습니다. |
 | 복사·언어 전환·모바일 메뉴·분석 동의 | **작은 Client Components** | 초기 HTML에 포함한 뒤 필요한 부분만 하이드레이션합니다. 페이지 본문과 전체 한영 카탈로그를 클라이언트에서 다시 조립하지 않습니다. |
+| 친구 초대 코드 페이지 | **요청마다 SSR(스트리밍)** | 초대한 친구가 코드마다 다르고 바뀔 수 있습니다. 아래 [친구 초대 링크](#친구-초대-링크-i코드)를 참고합니다. |
 | 로케일 없는 주소 | **Proxy의 요청 시 언어 선택** | 쿠키·언어 헤더로 기존 정적 한영 페이지를 선택합니다. 보조 리다이렉트 경로의 동적 처리는 공개 본문의 SSR과 별개입니다. |
 | ISR | **사용하지 않음** | 원본이 Git 안에 있으므로 주기적으로 다시 만들어도 새 내용이 생기지 않습니다. 변경은 Vercel Git 배포로 반영합니다. |
 
-`[locale]/layout.tsx`의 `dynamic = "error"`는 요청 시 API나 캐시하지 않는 데이터가 공개 페이지에 들어오면 빌드를 실패시킵니다. `dynamicParams = false`는 등록하지 않은 언어·사용법 경로의 요청 시 생성을 막습니다. `pnpm seo:check`는 실제 빌드 결과에서 20개 페이지의 정적 생성·ISR 미사용, 본문의 초기 HTML 포함, canonical·hreflang·OG/Twitter·JSON-LD·실제 변경일의 사이트맵을 확인합니다. 패치노트와 FAQ는 브라우저 기본 `<details>`를 사용해 JavaScript 없이도 펼칠 수 있습니다.
+`[locale]/(static)/layout.tsx`의 `dynamic = "error"`는 요청 시 API나 캐시하지 않는 데이터가 공개 페이지에 들어오면 빌드를 실패시킵니다. `dynamicParams = false`는 등록하지 않은 언어·사용법 경로의 요청 시 생성을 막습니다. `pnpm seo:check`는 실제 빌드 결과에서 20개 페이지의 정적 생성·ISR 미사용, 본문의 초기 HTML 포함, canonical·hreflang·OG/Twitter·JSON-LD·실제 변경일의 사이트맵을 확인합니다. 패치노트와 FAQ는 브라우저 기본 `<details>`를 사용해 JavaScript 없이도 펼칠 수 있습니다.
 
 ## 친구 초대 링크 (/i/{코드})
 
-`src/proxy.ts`가 `/i/{코드}`를 현재 언어(쿠키·Accept-Language)의 정적 `/{ko|en}/invite`로 rewrite합니다. 주소창은 `/i/{코드}`를 유지하고 코드는 rewrite 대상에 싣지 않습니다. 페이지는 SSG이며 서버 HTML은 로딩 상태입니다. 브라우저에서 `window.location`의 코드를 Zod로 검증한 뒤 공개 API `GET https://api.aido.kr/v1/invites/{code}`로 초대한 친구의 닉네임을 불러옵니다. 초대 페이지는 `noindex`(metadata와 `X-Robots-Tag`)이며 사이트맵·canonical·hreflang에 넣지 않습니다. 20개 정규 페이지 검사와 별도로 `seo:check`가 ko/en 정적 생성·noindex·사이트맵 제외를 확인합니다.
+`src/proxy.ts`가 `/i/{코드}`의 코드를 검증·정규화(대문자, 하이픈 제거)해 현재 언어(쿠키·Accept-Language)의 `/{ko|en}/invite/{코드}`로 rewrite합니다. 형식이 틀린 코드는 정적 `/{ko|en}/invite`로 보내며, 이 페이지는 서버 HTML부터 "잘못된 링크" 상태입니다. 주소창은 `/i/{코드}`를 유지합니다.
+
+라우트 그룹으로 렌더링 제약을 나눕니다. `[locale]/layout.tsx`는 로케일 `generateStaticParams`와 공통 HTML만 두고, `dynamic = "error"`·`dynamicParams = false`는 기존 공개 페이지를 담은 `[locale]/(static)/layout.tsx`에 있습니다. 초대 코드 페이지 `[locale]/(dynamic)/invite/[inviteCode]/page.tsx`만 `dynamic = "force-dynamic"`으로 요청마다 그리고 결과를 캐시하지 않습니다(빌드 표의 `ƒ /[locale]/invite/[inviteCode]`). 페이지는 공개 API `GET https://api.aido.kr/v1/invites/{code}` 조회를 기다리지 않고 시작한 뒤 셸을 먼저 스트리밍하고, 같은 응답 안에서 초대한 친구의 닉네임이 채워집니다(조회 제한 시간 8초, 넘으면 네트워크 오류 상태). 브라우저는 dehydrate된 결과를 쓰므로 API를 다시 호출하지 않습니다. 초대 페이지는 `noindex`(metadata와 `X-Robots-Tag`)이며 사이트맵·canonical·hreflang에 넣지 않습니다. `seo:check`가 정적 페이지의 SSG·noindex·OG·사이트맵 제외, 코드 페이지가 사전 생성되지 않음, TanStack Query 청크가 초대 페이지 밖에서 로드되지 않음을 확인합니다.
 
 `/.well-known/apple-app-site-association`(iOS Universal Links, `/i/*`만)과 `/.well-known/assetlinks.json`(Android App Links)은 `public/.well-known/`에 두고 `next.config.ts`에서 `application/json`으로 응답합니다. proxy matcher는 `/.well-known`을 제외하므로 로케일 경로로 바뀌지 않습니다. `assetlinks.json`에는 Play Console의 **앱 서명 키** SHA-256(업로드 키 아님)이 들어 있습니다. Play 앱 서명 키가 바뀌면 이 값도 함께 바꿔야 Android 링크 검증이 동작합니다.
 

@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
         source: "/i/:inviteCode",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // proxy가 rewrite하는 실제 경로도 직접 열면 같은 정책을 쓴다.
+      {
+        source: "/:locale(ko|en)/invite/:inviteCode",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
       {
         source: "/responsive/:path*",
         headers: [

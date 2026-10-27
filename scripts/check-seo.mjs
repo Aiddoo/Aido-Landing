@@ -503,8 +503,40 @@ for (const license of [
   "wanted-sans-OFL.txt",
 ])
   assert.match(await read(`public/fonts/${license}`), /SIL OPEN FONT LICENSE/);
-// 친구 초대: /i/{코드}는 proxy가 정적 /{locale}/invite로 rewrite한다. 색인·사이트맵 제외.
+// 친구 초대: 유효한 /i/{코드}는 proxy가 요청마다 그리는 /{locale}/invite/{코드}로, 형식이 틀린
+// 코드는 정적 /{locale}/invite("잘못된 링크")로 rewrite한다. 둘 다 색인·사이트맵 제외.
 const sitemapXml = await read(`${app}/sitemap.xml.body`);
+const inviteCodeRoute = "/[locale]/invite/[inviteCode]";
+const appPaths = JSON.parse(await read(".next/server/app-paths-manifest.json"));
+assert.ok(
+  Object.keys(appPaths).some((page) =>
+    page.endsWith("/invite/[inviteCode]/page"),
+  ),
+  `${inviteCodeRoute}: invite code page exists`,
+);
+assert.ok(
+  !prerender.dynamicRoutes[inviteCodeRoute] &&
+    !Object.keys(prerender.routes).some((route) =>
+      /^\/(ko|en)\/invite\/./.test(route),
+    ),
+  `${inviteCodeRoute}: rendered per request, never prerendered or cached`,
+);
+// TanStack Query는 초대 경계에만 있다. 다른 정적 페이지의 HTML은 그 청크를 불러오지 않는다.
+const queryChunks = [];
+for await (const chunk of glob(".next/static/chunks/**/*.js")) {
+  if ((await read(chunk)).includes("No QueryClient set"))
+    queryChunks.push(chunk.replace(/^\.next/, "/_next"));
+}
+assert.ok(queryChunks.length > 0, "TanStack Query chunk is identifiable");
+for await (const htmlPath of glob(`${app}/**/*.html`)) {
+  if (/\/(ko|en)\/invite\.html$/.test(htmlPath)) continue;
+  const html = await read(htmlPath);
+  for (const chunk of queryChunks)
+    assert.ok(
+      !html.includes(chunk),
+      `${htmlPath}: TanStack Query must only load on invite pages`,
+    );
+}
 for (const locale of ["ko", "en"]) {
   const route = `/${locale}/invite`;
   assert.ok(prerender.routes[route], `${route} must be statically generated`);
@@ -539,12 +571,12 @@ for (const locale of ["ko", "en"]) {
       `${SITE_URL}${inviteOgImage}`,
       `${route}: ${key}`,
     );
+  // 코드 없는 정적 페이지는 서버 HTML부터 "잘못된 링크" 상태다.
   assert.ok(
-    tags(html, "link").some(
-      (link) =>
-        link.rel === "preconnect" && link.href === "https://api.aido.kr",
+    decode(visibleBody).includes(
+      getMessages(locale).invite.errors.invalidCode.title,
     ),
-    `${route}: preconnects to the invite preview API`,
+    `${route}: renders the invalid link state on the server`,
   );
   assert.equal(
     tags(html, "link").filter((link) => link.as === "font").length,

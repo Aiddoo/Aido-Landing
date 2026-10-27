@@ -23,7 +23,7 @@ src/
     feature-guides/{pages,components,data}   # data: 가이드 목록·실제 화면 카탈로그
     updates/{pages,components,data,hooks}
     legal/{pages,components,data}
-    invite/{pages,components,hooks,api,models,schemas,utils,data,tests}  # /i/{코드}, 필요한 블록만 클라이언트
+    invite/{pages,components,hooks,api,queries,providers,models,schemas,utils,data,tests}  # /i/{코드}, 요청마다 SSR + TanStack Query
     analytics/
       components/       # 동의 상태의 UI 소유자, 설정/배너
       hooks/            # React 구독·라우팅 수명 주기
@@ -54,7 +54,9 @@ src/
 
 라우트에서 로케일·slug를 검증하고 필요한 식별값을 화면에 전달합니다. LandingPage는 히어로 → AI 할 일 → 친구·콕 → 친구 초대·발자국 판 → iPhone Duo·iPad·위젯 → 리포트·리마인더 → 프리미엄 → FAQ → 사용법 → 다운로드 순서이며, 기기 화면은 `DeviceScreen`(CSS 기기 틀 + `home-screens` 카탈로그), Duo 펼침은 `DuoUnfold` + 지연 로드 모션의 `createDuoUnfold`(스크롤 연동, 동작 줄이기면 펼친 상태)입니다. 사용법은 GuideWalkthrough → GuideExample → GuideDetails → GuidePlans 순서이며 한 화면에서만 쓰는 컴포넌트는 페이지 아래에 둡니다. 화면의 서로 다른 의미를 가진 섹션을 배열로 일반화하지 않습니다. 실제 콘텐츠 목록은 안정된 키로 map합니다. map 자체가 모든 행의 DOM을 다시 만드는 것은 아닙니다.
 
-전체 카탈로그는 서버에서만 읽습니다. Client에는 메뉴·동의·복사에 필요한 문구와 검증된 공개 설정만 전달합니다. Git 콘텐츠는 SSG로 읽으므로 API 요청, TanStack Query/Router, loaderDeps, oRPC, react-hook-form, 업로드 훅을 도입할 이유가 없습니다. 실제 비동기 데이터/폼이 생기면 해당 기능 경계에서 도입합니다. 정적 페이지에 의미 없는 Loading/Error 컴포넌트를 추가하지 않습니다.
+전체 카탈로그는 서버에서만 읽습니다. Client에는 메뉴·동의·복사에 필요한 문구와 검증된 공개 설정만 전달합니다. Git 콘텐츠는 SSG로 읽으므로 정적 페이지에는 API 요청, TanStack Query/Router, loaderDeps, oRPC, react-hook-form, 업로드 훅을 도입할 이유가 없습니다. 실제 비동기 데이터/폼이 생기면 해당 기능 경계에서 도입합니다. 정적 페이지에 의미 없는 Loading/Error 컴포넌트를 추가하지 않습니다.
+
+**TanStack Query는 초대 코드 페이지 경계에서만 사용합니다.** 초대한 친구 미리보기는 사이트에서 유일하게 방문마다 바뀌는 외부 API 데이터입니다. 서버가 요청마다 새 QueryClient로 prefetch를 시작하고(`providers/get-query-client.ts`, 브라우저는 하나를 재사용), 진행 중인 쿼리까지 dehydrate해 `HydrationBoundary`로 내려보냅니다. 블록들은 라우트가 검증한 코드(식별값)만 props로 받고 `X.Contents`가 `getInvitePreviewQueryOptions(code)`로 `useSuspenseQuery`해 같은 캐시를 나눠 씁니다. 조회 결과를 props로 내려보내지 않습니다. 없는 코드·바뀐 링크·네트워크 오류는 예외가 아니라 화면 상태라 queryFn이 `failed` 결과로 끝나고, 그대로 dehydrate되어 브라우저가 다시 요청하지 않습니다. `InviteQueryProvider`는 초대 페이지에만 있어 다른 정적 페이지 번들에는 TanStack Query가 들어가지 않으며 `seo:check`가 이를 확인합니다.
 
 ## 디자인 시스템과 공용 UI
 
