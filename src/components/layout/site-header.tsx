@@ -46,7 +46,6 @@ export function SiteHeader({
         >
           <Link
             href={localizedPath(locale, "")}
-            aria-label={`${messages.accessibility.home} · Aido`}
             data-slot="site-brand"
             className="-ml-1 rounded-xl p-1"
           >
