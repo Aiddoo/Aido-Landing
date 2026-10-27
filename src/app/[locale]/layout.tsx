@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import type { Organization, WebSite, WithContext } from "schema-dts";
-import { englishFontVariables } from "@/components/fonts/english-fonts";
-import {
-  koreanDisplayFont,
-  koreanFontStylesheet,
-} from "@/components/fonts/font-assets";
+import { koreanDisplayFont } from "@/components/fonts/font-assets";
 import { FontPreload } from "@/components/fonts/font-preload";
 import { StructuredData } from "@/components/seo/structured-data";
 import { AnalyticsProvider } from "@/features/analytics/components/analytics-provider";
@@ -98,22 +94,9 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html
-      lang={locale}
-      data-scroll-behavior="smooth"
-      className={locale === "en" ? englishFontVariables : undefined}
-    >
+    <html lang={locale} data-scroll-behavior="smooth">
       <body className="antialiased">
-        {locale === "ko" && (
-          <>
-            <link
-              rel="stylesheet"
-              href={koreanFontStylesheet}
-              precedence="fonts"
-            />
-            <FontPreload href={koreanDisplayFont} />
-          </>
-        )}
+        {locale === "ko" && <FontPreload href={koreanDisplayFont} />}
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
         {children}

@@ -90,7 +90,7 @@ function CodeField({
       <HStack align="center" justify="between" gap={3} className="h-13">
         <span
           data-empty={code ? undefined : ""}
-          className="font-mono text-[1.875rem] leading-none font-extrabold tracking-[0.12em] whitespace-nowrap text-ink select-all data-empty:text-muted-foreground data-empty:select-none"
+          className="font-mono text-[1.875rem] leading-none font-bold tracking-[0.12em] whitespace-nowrap text-ink select-all data-empty:text-muted-foreground data-empty:select-none"
         >
           {code ?? EMPTY_CODE}
         </span>

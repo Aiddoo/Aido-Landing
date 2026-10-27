@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../components/fonts/web-fonts.css";
 
 /* shadcn의 dark: 변형도 아래 다크 토큰과 같은 조건에서만 켠다. */
 @custom-variant dark {
@@ -74,11 +75,13 @@
     system-ui, sans-serif;
 }
 
-/* 영어 페이지는 next/font/local이 만든 라틴 서브셋과 Arial 메트릭 폴백을 쓴다. */
+/* 영어 페이지는 같은 글꼴의 라틴 조각만 받고, 대체 글꼴은 Arial 메트릭으로 맞춘다. */
 [lang="en"] {
-  --font-display-stack: var(--font-jua-latin), sans-serif;
-  --font-hand-stack: var(--font-nanum-pen-latin), sans-serif;
-  --font-body-stack: var(--font-wanted-sans-latin), system-ui, sans-serif;
+  --font-display-stack: "Jua", "Jua Fallback Arial", sans-serif;
+  --font-hand-stack:
+    "Nanum Pen Script", "Nanum Pen Script Fallback Arial", sans-serif;
+  --font-body-stack:
+    "Wanted Sans", "Wanted Sans Fallback Arial", system-ui, sans-serif;
 }
 
 /*
@@ -187,6 +190,9 @@
 }
 
 @theme {
+  /* Wanted Sans는 400·600·700만 제공한다. shadcn 생성물의 font-medium도 있는 굵기(600)로 그린다. */
+  --font-weight-medium: 600;
+
   /* 타입 스케일: 제목은 Jua(유체 크기), 본문·UI는 Wanted Sans, 손글씨는 메모에만. */
   --text-display-xl: clamp(2.5rem, 1.55rem + 4.2vw, 4.5rem);
   --text-display-xl--line-height: 1.12;

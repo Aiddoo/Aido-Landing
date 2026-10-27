@@ -64,7 +64,7 @@ export function InvitePage({
               className="h-10 font-semibold text-ink"
             >
               <span>{invite.rewardLabel}</span>
-              <strong className="rounded-full bg-primary px-3.5 py-1 font-display text-title whitespace-nowrap text-primary-foreground">
+              <strong className="rounded-full bg-primary px-3.5 py-1 font-display text-title font-normal whitespace-nowrap text-primary-foreground">
                 {invite.rewardValue}
               </strong>
             </HStack>

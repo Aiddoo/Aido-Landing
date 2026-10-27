@@ -4,13 +4,30 @@
     "src/features/updates/data/patch-notes.ts",
     "src/content/legal/*.md"
   ],
+  "slices": [
+    {
+      "name": "home",
+      "pages": ["/ko"]
+    },
+    {
+      "name": "pages",
+      "pages": ["/ko/features/*", "/ko/services", "/ko/invite*"]
+    },
+    {
+      "name": "updates",
+      "pages": ["/ko/patch-notes"]
+    },
+    {
+      "name": "legal",
+      "pages": ["/ko/terms", "/ko/privacy", "/ko/account-deletion"]
+    }
+  ],
   "families": [
     {
       "family": "Jua",
       "slug": "jua",
-      "variable": "--font-jua-latin",
       "display": "swap",
-      "preload": true,
+      "preload": "home",
       "faces": [
         {
           "weight": 400,
@@ -22,9 +39,8 @@
     {
       "family": "Nanum Pen Script",
       "slug": "nanum-pen-script",
-      "variable": "--font-nanum-pen-latin",
       "display": "optional",
-      "preload": false,
+      "preload": null,
       "faces": [
         {
           "weight": 400,
@@ -36,17 +52,12 @@
     {
       "family": "Wanted Sans",
       "slug": "wanted-sans",
-      "variable": "--font-wanted-sans-latin",
       "display": "swap",
-      "preload": false,
+      "preload": null,
       "faces": [
         {
           "weight": 400,
           "source": "WantedSans-Regular.woff2"
-        },
-        {
-          "weight": 500,
-          "source": "WantedSans-Medium.woff2"
         },
         {
           "weight": 600,

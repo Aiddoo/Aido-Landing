@@ -186,7 +186,7 @@ function UpdateCard({
           <HStack align="center" wrap="wrap" gap={2}>
             <VersionHeading
               className={cn(
-                "font-display text-ink",
+                "font-display font-normal text-ink",
                 latest ? "text-display-md" : "text-title-lg",
               )}
             >

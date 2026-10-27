@@ -6,62 +6,72 @@ Three SIL Open Font License families, matching the app, store art and SNS:
 |---|---|---|---|
 | Display (h1/h2, `font-display`, shadcn `font-heading`) | Jua 1.001 | 400 | The Jua Project Authors (Google Fonts) |
 | Hand-written accent (`font-hand`) | Nanum Pen Script 1.10 | 400 | NHN Corporation (Naver Nanum) |
-| Body and UI (`font-sans`) | Wanted Sans 1.003 | 400, 500, 600, 700 | The Wanted Sans Project Authors |
+| Body and UI (`font-sans`) | Wanted Sans 1.003 | 400, 600, 700 | The Wanted Sans Project Authors |
 
-The licensed originals live in `scripts/fonts/source/` (not served). Medium/SemiBold/Bold are the
-original Wanted Sans WOFF2 files; Jua, Nanum Pen Script and Wanted Sans Regular were converted from
-the original TTF to WOFF2 without changing glyph data. License texts: `jua-OFL.txt`,
-`nanum-pen-script-OFL.txt`, `wanted-sans-OFL.txt`.
+The licensed originals live in `scripts/fonts/source/` (not served; Wanted Sans Medium is kept as an
+original but not shipped). License texts: `jua-OFL.txt`, `nanum-pen-script-OFL.txt`,
+`wanted-sans-OFL.txt`.
 
-## Visitor assets
+## Visitor assets: unicode-range slices
 
-- **Korean** pages receive `font-assets.ts → koreanFontStylesheet`, a content-hashed CSS file hoisted
-  into the head with React 19 `precedence="fonts"`. Each face is one `*-site-<hash>.woff2` subset of
-  the public text (about 82KiB Jua, 126KiB Nanum Pen Script, 55KiB per Wanted Sans weight). English
-  pages never request it.
-- **English** pages use `english-fonts.ts` (`next/font/local`) with Latin subsets
-  (`*-latin-<hash>.woff2`, 12–16KiB each) and Next.js' automatic Arial metric fallbacks.
-  `preload: false`, because the locale layout is shared and would otherwise download Latin files on
-  Korean pages.
-- Jua and Nanum Pen Script subsets drop TrueType hinting (large display sizes only; outlines and
-  advances unchanged), which cuts Jua by about 37%. Wanted Sans keeps hinting for body text.
+Both locales use the same families. `src/components/fonts/web-fonts.css` (generated) is imported
+by `globals.css`, so the faces ship inside the one bundled stylesheet; there is no separate font
+CSS request. Every face is split into slices that the browser downloads only when the page renders
+one of their characters:
+
+| Slice | Contents | Who downloads it |
+|---|---|---|
+| `base` | ASCII, the other non-Hangul characters pages render, the few Hangul on English pages (`한국어`) | every page that uses the face; English pages need nothing else |
+| `home` | Hangul that `/ko` renders in this face | Korean home, and most Korean pages |
+| `pages` | further Hangul from guides, services and the invite pages | those pages |
+| `updates` | further Hangul from patch notes | patch notes |
+| `legal` | further Hangul from terms, privacy and account deletion | legal pages |
+| `rest` | the remaining public text, so every glyph stays available | only a page that renders one of them |
+
+Measured on the 2026-10-27 build: `/ko` downloads about 125KiB of fonts (was 426KiB), `/en`
+about 57KiB (was 84KiB). Wanted Sans ships 400/600/700 only; `globals.css` maps `font-medium` to
+600 so generated shadcn components keep a real face. Jua and Nanum Pen Script have one weight; do
+not combine `font-display` with bold utilities (that synthesizes a faux bold).
 
 ## Loading policy (CLS 0, no FOIT)
 
-- **Exactly one Korean preload**: the Jua subset (`koreanDisplayFont`), the above-the-fold heading.
-  Zero English font preloads. Never preload body weights.
+- **Exactly one preload, Korean only**: the Jua `home` slice (`koreanDisplayFont`), the
+  above-the-fold heading. Zero English font preloads. Never preload body weights.
 - `font-display: swap` for Jua and Wanted Sans, `optional` for the decorative Nanum Pen Script.
-- Every Korean family has metric-adjusted fallbacks in the same CSS (`"<Family> Fallback Apple"`
-  for Apple SD Gothic Neo, `"<Family> Fallback Noto"` for Android's Noto Sans CJK KR) with
-  `size-adjust`, `ascent-override`, `descent-override` and `line-gap-override` computed by the
-  generator from the real font: Hangul/Latin advances weighted by the Korean public text, and the
-  web font's `hhea` metrics. The font stacks in `globals.css` list these fallbacks right after the
-  web font, so a late swap keeps line boxes and line breaks.
-- `/fonts/*` uses a one-year immutable cache. Never change the bytes of a hashed asset; generate a
-  new filename instead.
+- Every family has metric-adjusted fallbacks with `size-adjust`, `ascent-override`,
+  `descent-override` and `line-gap-override` computed from the real font: Korean pages use
+  `"<Family> Fallback Apple"` (Apple SD Gothic Neo) and `"<Family> Fallback Noto"` (Noto Sans CJK KR)
+  weighted by the Korean public text; English pages use `"<Family> Fallback Arial"` weighted by the
+  English text. The stacks in `globals.css` list them right after the web font.
+- `/fonts/*` uses a one-year immutable cache. Never change the bytes of a hashed asset; the
+  generator writes a new filename instead.
 
 ## Regeneration
 
-`src/components/fonts/data/font-subset-inputs.json` lists the text sources (messages, update
-records, legal pairs) and the families (CSS family name, display policy, preload, hinting, source
-files). The generator adds Latin-1, writes the hashed WOFF2/CSS files, `font-assets.ts`,
-`english-fonts.ts` and `font-subset-manifest.json`. `pnpm seo:check` compares the public text with
-the manifest and fails when new glyphs need regeneration.
+Inputs: `src/components/fonts/data/font-subset-inputs.json` (text sources, page groups, families)
+and `font-usage.json` (characters each built page renders per face, recorded in light and dark,
+with the analytics consent card visible).
 
 ```bash
+# 1. Record what every page renders (needs a production build with the consent card).
+VERCEL_ENV=production VERCEL=1 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST123 pnpm build
+VERCEL_ENV=production VERCEL=1 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST123 pnpm start --port 3217 &
+pnpm fonts:usage
+# 2. Generate slices, then rebuild and check.
 python3 -m venv /tmp/aido-font-tools
 /tmp/aido-font-tools/bin/pip install 'fonttools[woff]==4.66.1'
+rm public/fonts/*.woff2
 /tmp/aido-font-tools/bin/python scripts/generate-fonts.py
-pnpm exec biome format --write src/components/fonts
-pnpm build
-pnpm seo:check
+pnpm build && pnpm seo:check
 ```
 
-Delete superseded hashed files in `public/fonts` after regeneration (only the files referenced by
-the new CSS and `english-fonts.ts` should remain). The generator refuses files over 300KiB and
-hash collisions. Python/fontTools are authoring tools only; CI validates committed assets with
-Node.
+When only text changes, step 2 alone keeps every glyph available (new characters fall into
+`rest`); re-run step 1 when a page's copy changes noticeably, so that page does not download
+`rest`. The generator refuses files over 300KiB and hash collisions. Python/fontTools and
+Playwright are authoring tools only; CI validates committed assets with Node.
 
-`seo:check` also checks the locale preload counts, same-origin URLs, stylesheet hash, WOFF2
-signatures/content hashes, the 300KiB limit, display policy per family, fallback metric overrides
-and OFL files. See [performance measurements](../../docs/performance.md) for page transfer costs.
+`seo:check` compares the public text with the manifest, checks that each face's slices cover it
+exactly once with non-overlapping `unicode-range`s, that only declared slices remain in
+`public/fonts`, WOFF2 signatures/content hashes, the 300KiB limit, display policy per family,
+fallback metric overrides, the single Korean preload and that the faces are in the bundled
+stylesheet. See [performance measurements](../../docs/performance.md) for page transfer costs.

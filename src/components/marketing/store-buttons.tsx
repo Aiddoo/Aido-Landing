@@ -90,7 +90,7 @@ export function StoreButtons({
 function StoreLabel({ prefix, label }: { prefix: string; label: string }) {
   return (
     <VStack align="start" className="leading-none">
-      <span className="text-[0.6875rem] font-medium opacity-75">{prefix}</span>
+      <span className="text-[0.6875rem] opacity-75">{prefix}</span>
       <span className="text-title font-bold whitespace-nowrap">{label}</span>
     </VStack>
   );
