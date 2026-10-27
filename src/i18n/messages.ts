@@ -1372,7 +1372,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       kicker: "조금씩 자라는 아이두",
       title: "패치노트",
       description:
-        "아이두가 조금씩 달라지고 있어요. 앱 업데이트와 따로 설치할 필요 없는 서비스 개선 소식을 모았어요.",
+        "아이두가 조금씩 달라지고 있어요. 앱 업데이트와, 따로 설치할 필요\u00a0없는 서비스\u00a0개선 소식을\u00a0모았어요.",
       appUpdate: "앱 업데이트",
       serviceUpdate: "서비스 개선",
       noAppUpdateNeeded: "앱을 따로 업데이트하지 않아도 적용돼요.",
@@ -2435,7 +2435,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       kicker: "Growing a little every day",
       title: "Patch Notes",
       description:
-        "Aido keeps getting a little better. Catch up on app updates and service improvements that need no new installation.",
+        "Aido keeps getting a little better. Catch up on app updates and on service improvements that need no new\u00a0installation.",
       appUpdate: "App update",
       serviceUpdate: "Service improvements",
       noAppUpdateNeeded: "These changes apply without an app update.",

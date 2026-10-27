@@ -59,6 +59,7 @@ export function PatchNotesPage({ locale }: { locale: Locale }) {
             kicker={labels.kicker}
             title={labels.title}
             description={labels.description}
+            descriptionLayout="sentences"
           />
           <UpdateCard
             release={latest}
