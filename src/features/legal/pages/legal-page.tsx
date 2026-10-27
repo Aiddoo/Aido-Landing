@@ -73,7 +73,7 @@ export async function LegalPage({
             </Link>
             <a
               href={`/${locale}#top`}
-              className="text-brand-ink underline underline-offset-4"
+              className="text-brand-deep underline underline-offset-4"
             >
               {messages.legal.backHomeLabel}
             </a>

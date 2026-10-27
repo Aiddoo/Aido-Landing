@@ -129,7 +129,7 @@
 
 .guide-steps h3,
 .guide-details h2 {
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.6;

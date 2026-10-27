@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import type { Organization, WebSite, WithContext } from "schema-dts";
+import { englishFontVariables } from "@/components/fonts/english-fonts";
 import {
+  koreanDisplayFont,
   koreanFontStylesheet,
-  koreanHeadingFont,
 } from "@/components/fonts/font-assets";
 import { FontPreload } from "@/components/fonts/font-preload";
 import { StructuredData } from "@/components/seo/structured-data";
@@ -20,23 +20,6 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
-
-const englishHeading = localFont({
-  src: "../../../public/fonts/black-han-sans-f4cb9b35097d.woff2",
-  weight: "400",
-  display: "optional",
-  // Shared locale layout: unconditional preloads also download Latin fonts on ko.
-  preload: false,
-  variable: "--font-heading-en",
-});
-
-const englishBody = localFont({
-  src: "../../../public/fonts/noto-sans-kr-6ecf7205a09a.woff2",
-  weight: "400 700",
-  display: "optional",
-  preload: false,
-  variable: "--font-body-en",
-});
 
 type LocaleLayoutProps = LayoutProps<"/[locale]">;
 
@@ -120,11 +103,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       data-scroll-behavior="smooth"
-      className={
-        locale === "en"
-          ? `${englishHeading.variable} ${englishBody.variable}`
-          : undefined
-      }
+      className={locale === "en" ? englishFontVariables : undefined}
     >
       <body className="antialiased">
         {locale === "ko" && (
@@ -134,7 +113,7 @@ export default async function LocaleLayout({
               href={koreanFontStylesheet}
               precedence="fonts"
             />
-            <FontPreload href={koreanHeadingFont} />
+            <FontPreload href={koreanDisplayFont} />
           </>
         )}
         <StructuredData data={organizationJsonLd} />

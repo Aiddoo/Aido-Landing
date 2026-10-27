@@ -22,7 +22,7 @@ export function AppPreview({
           <h2 id="features-title" className="section-title">
             {content.titleLead}
             <br />
-            <span className="text-brand-ink">{content.titleHighlight}</span>
+            <span className="text-brand-deep">{content.titleHighlight}</span>
           </h2>
           <p>
             {content.descriptionLead} {content.descriptionTail}

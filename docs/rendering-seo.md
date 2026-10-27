@@ -21,7 +21,7 @@
 
 ## 폰트
 
-기존 Black Han Sans·Noto Sans KR를 로컬 WOFF2로 제공합니다. 한국어 제목 한 개만 preload하고 본문은 공개 문구에 필요한 Unicode 서브셋을 사용합니다. 원본은 보존하며 새 글자 추가 시 CI가 재생성 누락을 확인합니다. 영어 파일이 공유 레이아웃을 통해 한국어 페이지에서도 미리 다운로드되지 않도록 영어 자동 preload는 끄고 CSS로 발견합니다. `optional`, 시스템 대체 글꼴, 내용 해시와 1년 immutable 캐시를 사용합니다. 출처·용량·라이선스·재생성은 [폰트 안내](../public/fonts/README.md)에 모읍니다.
+제목 Jua·손글씨 포인트 나눔손글씨 펜·본문 Wanted Sans(모두 OFL)를 로컬 WOFF2로 제공합니다. 한국어는 공개 문구 글자로 만든 서브셋과 해시 CSS를 쓰고, 첫 화면 제목 서체(Jua) 한 개만 preload합니다. 제목·본문은 `swap`, 장식 손글씨는 `optional`이며 시스템 대체 글꼴에는 실제 글꼴에서 계산한 `size-adjust`·`ascent-override`·`descent-override`·`line-gap-override`를 줘 글꼴이 늦게 와도 레이아웃이 밀리지 않게 합니다. 영어는 `next/font/local` 라틴 서브셋(자동 메트릭 폴백)을 쓰고, 공유 레이아웃 때문에 한국어 페이지에서 받지 않도록 자동 preload를 끕니다. 내용 해시와 1년 immutable 캐시를 사용합니다. 출처·용량·라이선스·재생성은 [폰트 안내](../public/fonts/README.md)에 모읍니다.
 
 ## 페이지 추가와 검색 메타데이터
 

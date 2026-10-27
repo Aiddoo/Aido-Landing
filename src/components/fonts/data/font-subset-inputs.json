@@ -1,8 +1,63 @@
 {
-  "stylesheet": "public/fonts/fonts-ko-1553ca02ef76.css",
   "patterns": [
     "src/i18n/messages.ts",
     "src/features/updates/data/patch-notes.ts",
     "src/content/legal/*.md"
+  ],
+  "families": [
+    {
+      "family": "Jua",
+      "slug": "jua",
+      "variable": "--font-jua-latin",
+      "display": "swap",
+      "preload": true,
+      "faces": [
+        {
+          "weight": 400,
+          "source": "Jua-Regular.woff2"
+        }
+      ],
+      "hinting": false
+    },
+    {
+      "family": "Nanum Pen Script",
+      "slug": "nanum-pen-script",
+      "variable": "--font-nanum-pen-latin",
+      "display": "optional",
+      "preload": false,
+      "faces": [
+        {
+          "weight": 400,
+          "source": "NanumPenScript-Regular.woff2"
+        }
+      ],
+      "hinting": false
+    },
+    {
+      "family": "Wanted Sans",
+      "slug": "wanted-sans",
+      "variable": "--font-wanted-sans-latin",
+      "display": "swap",
+      "preload": false,
+      "faces": [
+        {
+          "weight": 400,
+          "source": "WantedSans-Regular.woff2"
+        },
+        {
+          "weight": 500,
+          "source": "WantedSans-Medium.woff2"
+        },
+        {
+          "weight": 600,
+          "source": "WantedSans-SemiBold.woff2"
+        },
+        {
+          "weight": 700,
+          "source": "WantedSans-Bold.woff2"
+        }
+      ],
+      "hinting": true
+    }
   ]
 }

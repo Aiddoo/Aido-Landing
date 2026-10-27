@@ -32,7 +32,7 @@ export function ServiceShowcase({ locale }: { locale: Locale }) {
               <header className="service-feature-heading">
                 <PawPrint
                   size={24}
-                  className="text-brand-ink"
+                  className="text-brand-deep"
                   aria-hidden="true"
                 />
                 <div className="service-badges">

@@ -26,13 +26,13 @@ const originalSource = (src) =>
   )?.[0] ?? src;
 const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
-const { koreanFontStylesheet, koreanHeadingFont } = await import(
+const { koreanFontStylesheet, koreanDisplayFont } = await import(
   "../src/components/fonts/font-assets.ts"
 );
 const fontCss = await read(`public${koreanFontStylesheet}`);
 assert.ok(
-  fontCss.includes(koreanHeadingFont),
-  "Korean heading font asset is declared",
+  fontCss.includes(koreanDisplayFont),
+  "Korean display font asset is declared",
 );
 const fontInputs = JSON.parse(
   await read("src/components/fonts/data/font-subset-inputs.json"),
@@ -107,10 +107,10 @@ for (const locale of ["ko", "en"]) {
     const links = tags(html, "link");
     assert.equal(
       links.filter(
-        (link) => link.rel === "preload" && link.href === koreanHeadingFont,
+        (link) => link.rel === "preload" && link.href === koreanDisplayFont,
       ).length,
       locale === "ko" ? 1 : 0,
-      `${route}: only Korean pages preload the Korean heading font`,
+      `${route}: only Korean pages preload the Korean display font`,
     );
     assert.equal(
       links.filter((link) => link.rel === "preload" && link.as === "font")
@@ -414,13 +414,38 @@ assert.equal(verificationFiles.length, 2);
 for (const file of verificationFiles)
   assert.ok((await read(`public/${file}`)).includes("verification"));
 assert.doesNotMatch(fontCss, /https?:\/\/|fonts\.googleapis|fonts\.gstatic/);
-for (const face of fontCss.matchAll(/@font-face\s*\{([^}]+)\}/g)) {
-  assert.match(face[1], /font-display:\s*optional/);
-  if (face[1].includes('"Noto Sans KR"')) {
-    assert.match(face[1], /font-weight:\s*400 700/);
-    assert.match(face[1], /unicode-range:/);
+// 본문·제목은 swap(제목만 preload), 장식 손글씨는 optional. 폴백은 로컬 글꼴 + 메트릭 보정.
+const fontDisplay = {
+  Jua: "swap",
+  "Nanum Pen Script": "optional",
+  "Wanted Sans": "swap",
+};
+const declaredFamilies = new Set();
+for (const [, face] of fontCss.matchAll(/@font-face\s*\{([^}]+)\}/g)) {
+  const family = face.match(/font-family:\s*"([^"]+)"/)?.[1];
+  assert.ok(family, "Every @font-face names its family");
+  declaredFamilies.add(family);
+  if (family in fontDisplay) {
+    assert.match(face, new RegExp(`font-display:\\s*${fontDisplay[family]}`));
+    assert.match(face, /url\(\/fonts\//, `${family}: same-origin WOFF2`);
+  } else {
+    assert.match(face, / Fallback /, `${family}: only metric fallbacks`);
+    assert.match(face, /src:\s*local\(/, `${family}: local system font`);
+    for (const descriptor of [
+      "size-adjust",
+      "ascent-override",
+      "descent-override",
+      "line-gap-override",
+    ])
+      assert.match(
+        face,
+        new RegExp(`${descriptor}:`),
+        `${family}: ${descriptor}`,
+      );
   }
 }
+for (const family of Object.keys(fontDisplay))
+  assert.ok(declaredFamilies.has(family), `${family} is declared`);
 for (const [, font] of fontCss.matchAll(
   /url\(["']?(\/fonts\/[^"') ]+)["']?\)/g,
 )) {
@@ -434,7 +459,11 @@ for (const [, font] of fontCss.matchAll(
     `${font}: content hash must change when cached font bytes change`,
   );
 }
-for (const license of ["blackhansans-OFL.txt", "notosanskr-OFL.txt"])
+for (const license of [
+  "jua-OFL.txt",
+  "nanum-pen-script-OFL.txt",
+  "wanted-sans-OFL.txt",
+])
   assert.match(await read(`public/fonts/${license}`), /SIL OPEN FONT LICENSE/);
 // 친구 초대: /i/{코드}는 proxy가 정적 /{locale}/invite로 rewrite한다. 색인·사이트맵 제외.
 const sitemapXml = await read(`${app}/sitemap.xml.body`);
@@ -482,7 +511,7 @@ for (const locale of ["ko", "en"]) {
   assert.equal(
     tags(html, "link").filter((link) => link.as === "font").length,
     locale === "ko" ? 1 : 0,
-    `${route}: keeps the single Korean heading preload`,
+    `${route}: keeps the single Korean display preload`,
   );
 }
 const appleAssociation = JSON.parse(

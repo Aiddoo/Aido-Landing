@@ -44,7 +44,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             </span>
             <a
               href={`mailto:${messages.footer.inquiryValue}`}
-              className="hover:text-brand-ink transition-colors decoration-dashed underline underline-offset-4"
+              className="hover:text-brand-deep transition-colors decoration-dashed underline underline-offset-4"
             >
               {messages.footer.inquiryValue}
             </a>
@@ -89,7 +89,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
               </span>{" "}
               <a
                 href={`mailto:${messages.footer.inquiryValue}`}
-                className="underline decoration-dashed underline-offset-4 hover:text-brand-ink"
+                className="underline decoration-dashed underline-offset-4 hover:text-brand-deep"
               >
                 {messages.footer.inquiryValue}
               </a>
@@ -102,19 +102,19 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           >
             <Link
               href={`${prefix}/terms`}
-              className="hover:text-brand-ink transition-colors"
+              className="hover:text-brand-deep transition-colors"
             >
               {messages.footer.termsLabel}
             </Link>
             <Link
               href={`${prefix}/privacy`}
-              className="hover:text-brand-ink transition-colors"
+              className="hover:text-brand-deep transition-colors"
             >
               {messages.footer.privacyLabel}
             </Link>
             <Link
               href={`${prefix}/account-deletion`}
-              className="hover:text-brand-ink transition-colors"
+              className="hover:text-brand-deep transition-colors"
             >
               {messages.footer.accountDeletionLabel}
             </Link>

@@ -42,7 +42,7 @@ const components = {
       href={href}
       target={/^https?:\/\//.test(href ?? "") ? "_blank" : undefined}
       rel={/^https?:\/\//.test(href ?? "") ? "noreferrer noopener" : undefined}
-      className="font-semibold text-brand-ink underline decoration-dashed underline-offset-4 hover:decoration-solid"
+      className="font-semibold text-brand-deep underline decoration-dashed underline-offset-4 hover:decoration-solid"
     >
       {children}
     </a>

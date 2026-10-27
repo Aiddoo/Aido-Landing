@@ -1,112 +1,313 @@
 @import "tailwindcss";
 
+/* shadcn의 dark: 변형도 아래 다크 토큰과 같은 조건에서만 켠다. */
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    &:where([data-color-scheme="system"], [data-color-scheme="system"] *) {
+      @slot;
+    }
+  }
+}
+
+/*
+ * 아이두 디자인 토큰. 색·회색 단계는 앱(apps/mobile/global.css)과 같은 값이다.
+ * 위계: 크림 종이(background) 위에 흰 카드(card), 주황(brand)은 행동·강조에만 쓴다.
+ */
 :root {
-  --font-noto-sans:
-    "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Malgun Gothic", Arial, sans-serif;
-  --font-black-han:
-    "Black Han Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont,
-    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --background: #fdfbf7;
-  --foreground: #2d2d2d;
-  --brand: #ff6843;
-  --brand-ink: #b83c20;
-  --brand-foreground: var(--foreground);
-  --muted: #e5e0d8;
-  --muted-foreground: #7d7d7d;
-  --accent: #ff4d4d;
-  --border: #2d2d2d;
-  --secondary-accent: #2d5da1;
-  --input: #2d2d2d;
-  --ring: #2d5da1;
-  --destructive: #b83c20;
-  --radius: 0.625rem;
+  color-scheme: light;
+
+  --brand: #ff6b43;
+  --brand-deep: #c2410c;
+  --brand-soft: #ffe9df;
+  --fish: #23a2ff;
+  --fish-deep: #0a6fc2;
+  --bone: #f2b680;
+  --cream: #fff8f2;
+  --paper: #ffffff;
+  --ink: #222222;
+
+  --gray-1: oklch(0.98 0 0);
+  --gray-2: oklch(0.97 0 0);
+  --gray-3: oklch(0.94 0 0);
+  --gray-4: oklch(0.9 0 0);
+  --gray-5: oklch(0.798 0 0);
+  --gray-6: oklch(0.699 0 0);
+  --gray-7: oklch(0.566 0 0);
+  --gray-8: oklch(0.493 0 0);
+  --gray-9: oklch(0.379 0 0);
+  --gray-10: oklch(0.248 0 0);
+
+  /* shadcn 의미 토큰 */
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  /* 주황 위 흰 글자는 대비가 부족해 잉크색을 쓴다(약 6.6:1). */
+  --primary-foreground: var(--ink);
+  --secondary: var(--gray-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--gray-3);
+  --muted-foreground: var(--gray-8);
+  --accent: var(--brand-soft);
+  --accent-foreground: var(--brand-deep);
+  --destructive: oklch(0.577 0.215 27);
+  --border: color-mix(in oklab, var(--ink) 10%, transparent);
+  --input: color-mix(in oklab, var(--ink) 16%, transparent);
+  --ring: var(--brand-deep);
+
+  /* 따뜻한 그림자: 회색 대신 주황 기운이 도는 잉크로 띄운다. */
+  --shadow-color: 20 60% 30%;
+  --radius: 1rem;
+
+  --font-display-stack:
+    "Jua", "Jua Fallback Apple", "Jua Fallback Noto", "Apple SD Gothic Neo",
+    "Malgun Gothic", sans-serif;
+  --font-hand-stack:
+    "Nanum Pen Script", "Nanum Pen Script Fallback Apple",
+    "Nanum Pen Script Fallback Noto", "Apple SD Gothic Neo", sans-serif;
+  --font-body-stack:
+    "Wanted Sans", "Wanted Sans Fallback Apple", "Wanted Sans Fallback Noto",
+    -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic",
+    system-ui, sans-serif;
+}
+
+/* 영어 페이지는 next/font/local이 만든 라틴 서브셋과 Arial 메트릭 폴백을 쓴다. */
+[lang="en"] {
+  --font-display-stack: var(--font-jua-latin), sans-serif;
+  --font-hand-stack: var(--font-nanum-pen-latin), sans-serif;
+  --font-body-stack: var(--font-wanted-sans-latin), system-ui, sans-serif;
+}
+
+/*
+ * 다크 모드는 모든 페이지가 새 토큰으로 옮겨진 뒤 <html data-color-scheme="system">으로 켠다.
+ * 기존 페이지 CSS가 흰 배경을 직접 쓰므로 그전에는 밝은 모드로 고정한다.
+ */
+@media (prefers-color-scheme: dark) {
+  :root[data-color-scheme="system"] {
+    color-scheme: dark;
+
+    --brand-deep: #ff9b7a;
+    --brand-soft: oklch(0.3 0.06 40);
+    --fish-deep: #7cc6ff;
+    --cream: oklch(0.19 0.006 50);
+    --paper: oklch(0.24 0.006 50);
+    --ink: oklch(0.97 0 0);
+
+    --gray-1: oklch(0.248 0 0);
+    --gray-2: oklch(0.379 0 0);
+    --gray-3: oklch(0.493 0 0);
+    --gray-4: oklch(0.566 0 0);
+    --gray-5: oklch(0.699 0 0);
+    --gray-6: oklch(0.798 0 0);
+    --gray-7: oklch(0.9 0 0);
+    --gray-8: oklch(0.94 0 0);
+    --gray-9: oklch(0.97 0 0);
+    --gray-10: oklch(0.98 0 0);
+
+    --primary-foreground: #222222;
+    --secondary: oklch(0.3 0.004 50);
+    --muted: oklch(0.3 0.004 50);
+    --muted-foreground: oklch(0.78 0 0);
+    --destructive: oklch(0.704 0.191 22);
+    --border: color-mix(in oklab, var(--ink) 12%, transparent);
+    --input: color-mix(in oklab, var(--ink) 18%, transparent);
+    --shadow-color: 0 0% 0%;
+  }
 }
 
 @theme inline {
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-fish: var(--fish);
+  --color-fish-deep: var(--fish-deep);
+  --color-bone: var(--bone);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-gray-1: var(--gray-1);
+  --color-gray-2: var(--gray-2);
+  --color-gray-3: var(--gray-3);
+  --color-gray-4: var(--gray-4);
+  --color-gray-5: var(--gray-5);
+  --color-gray-6: var(--gray-6);
+  --color-gray-7: var(--gray-7);
+  --color-gray-8: var(--gray-8);
+  --color-gray-9: var(--gray-9);
+  --color-gray-10: var(--gray-10);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-brand: var(--brand);
-  --color-brand-ink: var(--brand-ink);
-  --color-brand-foreground: var(--brand-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
-  --color-secondary-accent: var(--secondary-accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-destructive: var(--destructive);
-  --radius-md: var(--radius);
 
-  --font-heading: var(--font-black-han);
-  --font-body: var(--font-noto-sans);
+  --font-sans: var(--font-body-stack);
+  --font-display: var(--font-display-stack);
+  /* shadcn 생성물의 제목(font-heading)도 같은 제목 서체를 쓴다. */
+  --font-heading: var(--font-display-stack);
+  --font-hand: var(--font-hand-stack);
+
+  /* 크기에 따라 다른 둥글기: 칩 < 컨트롤 < 카드 < 패널 */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --shadow-card:
+    0 1px 2px hsl(var(--shadow-color) / 0.06),
+    0 12px 32px -16px hsl(var(--shadow-color) / 0.22);
+  --shadow-lift:
+    0 2px 4px hsl(var(--shadow-color) / 0.06),
+    0 24px 48px -20px hsl(var(--shadow-color) / 0.3);
+  /* 스티커처럼 눌리는 버튼 아랫단 */
+  --shadow-press-brand: 0 3px 0 0 var(--brand-deep);
+  --shadow-press-ink: 0 3px 0 0 color-mix(in oklab, var(--ink) 80%, black);
+  --shadow-press-soft: 0 2px 0 0
+    color-mix(in oklab, var(--ink) 14%, transparent);
 }
 
-* {
-  border-color: var(--border);
+@theme {
+  /* 타입 스케일: 제목은 Jua(유체 크기), 본문·UI는 Wanted Sans, 손글씨는 메모에만. */
+  --text-display-xl: clamp(2.5rem, 1.55rem + 4.2vw, 4.5rem);
+  --text-display-xl--line-height: 1.12;
+  --text-display-xl--letter-spacing: -0.01em;
+  --text-display-lg: clamp(2rem, 1.45rem + 2.4vw, 3.25rem);
+  --text-display-lg--line-height: 1.16;
+  --text-display-lg--letter-spacing: -0.01em;
+  --text-display-md: clamp(1.5rem, 1.2rem + 1.3vw, 2.125rem);
+  --text-display-md--line-height: 1.24;
+  --text-title-lg: 1.375rem;
+  --text-title-lg--line-height: 1.4;
+  --text-title-lg--letter-spacing: -0.015em;
+  --text-title: 1.125rem;
+  --text-title--line-height: 1.45;
+  --text-title--letter-spacing: -0.01em;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75;
+  --text-body-lg--letter-spacing: -0.01em;
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-body--letter-spacing: -0.01em;
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.55;
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.4;
+  /* 나눔손글씨 펜은 글자 면이 작아 한 단계 크게 쓴다. */
+  --text-hand: 1.5rem;
+  --text-hand--line-height: 1.2;
+  --text-hand-lg: 2rem;
+  --text-hand-lg--line-height: 1.15;
+
+  /* 간격 리듬: 4px 단위(Tailwind 기본) + 화면 여백·섹션 간격 */
+  --spacing-gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+  --spacing-section: clamp(4.5rem, 3rem + 6vw, 8rem);
+  --spacing-section-sm: clamp(3rem, 2.25rem + 3vw, 5rem);
+  --container-page: 72rem;
+  --container-narrow: 52rem;
+  --container-reading: 40rem;
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-accordion-down: accordion-down 220ms var(--ease-out-soft);
+  --animate-accordion-up: accordion-up 180ms var(--ease-out-soft);
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--accordion-panel-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--accordion-panel-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
-body {
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  background-color: var(--background);
-  background-image: radial-gradient(var(--muted) 1px, transparent 1px);
-  background-size: 24px 24px;
-  color: var(--foreground);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-}
+@layer base {
+  * {
+    border-color: var(--border);
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  text-wrap: balance;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-p,
-figcaption,
-li,
-dd {
-  text-wrap: pretty;
-}
+  body {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    letter-spacing: var(--text-body--letter-spacing);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-.wobbly {
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-}
+  [lang="en"] body {
+    word-break: normal;
+    letter-spacing: normal;
+  }
 
-.wobbly-md {
-  border-radius: 60px 20px 50px 20px / 20px 50px 20px 60px;
-}
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
 
-.wobbly-sm {
-  border-radius: 120px 30px 100px 30px / 30px 100px 30px 120px;
-}
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    text-wrap: balance;
+  }
 
-.hand-shadow {
-  box-shadow: 4px 4px 0px 0px var(--foreground);
-}
+  p,
+  figcaption,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
 
-.hand-shadow-lg {
-  box-shadow: 8px 8px 0px 0px var(--foreground);
-}
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 4px;
+  }
 
-.hand-shadow-hover {
-  transition: all 0.1s ease;
-}
-
-.hand-shadow-hover:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px var(--foreground);
-}
-
-.hand-shadow-active:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px 0px var(--foreground);
+  [id] {
+    scroll-margin-top: 120px;
+  }
 }
 
 @utility scrollbar-hide {
@@ -117,24 +318,17 @@ dd {
   }
 }
 
-/* Same paper, ink and hand-drawn edges; a smaller, readable rhythm. */
-html {
-  scroll-behavior: smooth;
+/* 기존 페이지 전용 스타일. 해당 페이지를 새 컴포넌트로 옮기는 PR에서 함께 지운다. */
+.wobbly-md {
+  border-radius: 60px 20px 50px 20px / 20px 50px 20px 60px;
 }
 
-[lang="en"] {
-  word-break: normal;
-  --font-black-han: var(--font-heading-en), "Noto Sans KR", sans-serif;
-  --font-noto-sans: var(--font-body-en), Arial, sans-serif;
+.wobbly-sm {
+  border-radius: 120px 30px 100px 30px / 30px 100px 30px 120px;
 }
 
-:focus-visible {
-  outline: 3px solid var(--secondary-accent);
-  outline-offset: 5px;
-}
-
-[id] {
-  scroll-margin-top: 120px;
+.hand-shadow {
+  box-shadow: 4px 4px 0px 0px var(--foreground);
 }
 
 .page-width {
@@ -230,7 +424,7 @@ html {
 
 .sketch-underline {
   text-decoration: underline;
-  text-decoration-color: #ff684333;
+  text-decoration-color: #ff6b4333;
   text-decoration-thickness: 9px;
   text-underline-offset: 8px;
 }
