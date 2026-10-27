@@ -5,6 +5,7 @@ import { MarketingLayout } from "@/components/layout/marketing-layout";
 import { BrandMotif } from "@/components/marketing/brand-motif";
 import { DownloadCard } from "@/components/marketing/download-card";
 import { FaqList } from "@/components/marketing/faq-list";
+import { PawPrintTrail } from "@/components/marketing/paw-print-trail";
 import { StoreButtons } from "@/components/marketing/store-buttons";
 import {
   HOME_CAT_SIZE,
@@ -342,8 +343,18 @@ export function LandingPage({ locale }: { locale: Locale }) {
         <ReadableContent
           render={<section id="cats" aria-labelledby="cats-title" />}
           data-motion-group
-          className="py-section"
+          className="relative py-section"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <PawPrintTrail className="absolute top-[9%] left-[6%] rotate-[28deg] [&_svg]:size-6" />
+            <BrandMotif
+              motif="bone"
+              className="absolute top-[15%] right-[7%] h-7 w-14 -rotate-[16deg]"
+            />
+          </Box>
           <VStack align="center" gap={5} className="text-center">
             <SectionKicker className="-mb-2">{home.cats.kicker}</SectionKicker>
             <h2 id="cats-title" data-motion="title" className="text-display-lg">
@@ -489,8 +500,25 @@ export function LandingPage({ locale }: { locale: Locale }) {
         <ReadableContent
           render={<section id="reports" aria-labelledby="routine-title" />}
           data-motion-group
-          className="py-section"
+          className="relative py-section"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute top-[36%] left-[4%] h-8 w-16 -rotate-[18deg]"
+            />
+            <PawPrintTrail
+              steps={4}
+              className="absolute top-[40%] left-1/2 -translate-x-1/2 rotate-[10deg] [&_svg]:size-6"
+            />
+            <BrandMotif
+              motif="bone"
+              className="absolute top-[64%] right-[5%] h-6 w-12 rotate-[24deg]"
+            />
+          </Box>
           <SectionKicker className="mb-3 justify-center">
             {home.routine.kicker}
           </SectionKicker>
@@ -541,8 +569,21 @@ export function LandingPage({ locale }: { locale: Locale }) {
         <ReadableContent
           render={<section id="premium" aria-labelledby="premium-title" />}
           data-motion-group
-          className="grid gap-10 py-section-sm lg:grid-cols-[0.8fr_1.2fr] lg:gap-16"
+          className="relative grid gap-10 py-section-sm lg:grid-cols-[0.8fr_1.2fr] lg:gap-16"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute bottom-[16%] left-[22%] h-7 w-14 rotate-[14deg]"
+            />
+            <PawPrintTrail
+              steps={2}
+              className="absolute right-[2%] bottom-0 -rotate-[70deg]"
+            />
+          </Box>
           <VStack
             gap={5}
             className="items-center text-center lg:items-start lg:text-left"
@@ -580,8 +621,25 @@ export function LandingPage({ locale }: { locale: Locale }) {
         <ReadableContent
           render={<section id="faq" aria-labelledby="faq-title" />}
           size="narrow"
-          className="py-section"
+          className="relative py-section"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif xl:block"
+          >
+            <PawPrintTrail
+              steps={4}
+              className="absolute top-[24%] -left-36 -rotate-[12deg] [&_svg]:size-6"
+            />
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute top-[48%] -right-44 h-8 w-16 rotate-[16deg]"
+            />
+            <BrandMotif
+              motif="bone"
+              className="absolute bottom-[18%] -left-32 h-6 w-12 -rotate-[22deg]"
+            />
+          </Box>
           <VStack align="center" gap={4} className="text-center">
             <h2 id="faq-title" className="text-display-lg">
               {messages.faq.title}
@@ -595,8 +653,18 @@ export function LandingPage({ locale }: { locale: Locale }) {
 
         <ReadableContent
           render={<section id="guides" aria-labelledby="guides-title" />}
-          className="pb-section"
+          className="relative pb-section"
         >
+          <Box
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden text-motif lg:block"
+          >
+            <PawPrintTrail className="absolute -top-3 left-[16%] rotate-[78deg]" />
+            <BrandMotif
+              motif="fish-bone"
+              className="absolute top-0 right-[17%] h-6 w-12 -rotate-[10deg]"
+            />
+          </Box>
           <h2 id="guides-title" className="text-center text-display-md">
             {messages.featureGuides.title}
           </h2>

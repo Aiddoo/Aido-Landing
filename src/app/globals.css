@@ -20,6 +20,8 @@
   --cream: #fff8f2;
   --paper: #ffffff;
   --ink: #222222;
+  /* 여백 장식(발자국·생선 뼈·뼈다귀): 바탕에 스며드는 옅은 주황 */
+  --motif: color-mix(in oklab, var(--brand) 26%, var(--cream));
 
   --gray-1: oklch(0.98 0 0);
   --gray-2: oklch(0.97 0 0);
@@ -91,6 +93,7 @@
   --cream: oklch(0.185 0.006 50);
   --paper: oklch(0.245 0.008 50);
   --ink: oklch(0.97 0 0);
+  --motif: oklch(0.33 0.055 45);
 
   --gray-1: oklch(0.248 0 0);
   --gray-2: oklch(0.379 0 0);
@@ -134,6 +137,7 @@
   --color-fish: var(--fish);
   --color-fish-deep: var(--fish-deep);
   --color-bone: var(--bone);
+  --color-motif: var(--motif);
   --color-cream: var(--cream);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
