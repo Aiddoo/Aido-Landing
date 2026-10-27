@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/marketing/brand-logo";
 import { LanguageSwitcher } from "@/components/navigation/language-switcher";
 import { MobileMenu } from "@/components/navigation/mobile-menu";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { HStack, ReadableContent } from "@/components/ui/layout";
 import { featureGuides } from "@/features/feature-guides/data/feature-guides";
 import type { Locale } from "@/i18n/config";
@@ -93,13 +94,22 @@ export function SiteHeader({
               labels={messages.languageSwitcher}
               path={path}
             />
+            <ThemeToggle
+              labels={messages.theme}
+              className="hidden lg:inline-flex"
+            />
             <a
               href={`/${locale}#download`}
               className="hidden h-11 items-center rounded-full bg-primary px-5 text-caption font-semibold text-primary-foreground shadow-press-brand transition-transform hover:-translate-y-px active:translate-y-0.5 active:shadow-none sm:inline-flex"
             >
               {nav.download}
             </a>
-            <MobileMenu locale={locale} labels={nav} guides={guides} />
+            <MobileMenu
+              locale={locale}
+              labels={nav}
+              guides={guides}
+              themeLabels={messages.theme}
+            />
           </HStack>
         </ReadableContent>
       </header>

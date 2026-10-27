@@ -3,6 +3,7 @@ import type { Organization, WebSite, WithContext } from "schema-dts";
 import { koreanDisplayFont } from "@/components/fonts/font-assets";
 import { FontPreload } from "@/components/fonts/font-preload";
 import { StructuredData } from "@/components/seo/structured-data";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { AnalyticsProvider } from "@/features/analytics/components/analytics-provider";
 import { getAnalyticsConfig } from "@/features/analytics/config/analytics-config.server";
 import { locales } from "@/i18n/config";
@@ -94,12 +95,19 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth">
+    <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="antialiased">
         {locale === "ko" && <FontPreload href={koreanDisplayFont} />}
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         {analyticsConfig.providers.length > 0 && (
           <AnalyticsProvider
             locale={locale}

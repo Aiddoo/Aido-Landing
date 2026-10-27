@@ -2,8 +2,9 @@
 import { Menu, X } from "lucide-react";
 import type { ComponentProps } from "react";
 import { BrandLogo } from "@/components/marketing/brand-logo";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Button } from "@/components/ui/button";
-import { Box, HStack } from "@/components/ui/layout";
+import { HStack, VStack } from "@/components/ui/layout";
 import {
   Sheet,
   SheetClose,
@@ -13,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import type { MessageCatalog } from "@/i18n/messages";
 import {
   MobileMenuLinks,
   type MobileMenuLinksProps,
@@ -21,12 +23,15 @@ import {
 
 export interface MobileMenuSheetProps
   extends MobileMenuLinksProps,
-    Pick<ComponentProps<typeof Sheet>, "open" | "onOpenChange" | "triggerId"> {}
+    Pick<ComponentProps<typeof Sheet>, "open" | "onOpenChange" | "triggerId"> {
+  themeLabels: MessageCatalog["theme"];
+}
 
 export function MobileMenuSheet({
   open,
   onOpenChange,
   triggerId,
+  themeLabels,
   ...props
 }: MobileMenuSheetProps) {
   return (
@@ -60,9 +65,15 @@ export function MobileMenuSheet({
             {props.labels.label}
           </SheetDescription>
         </SheetHeader>
-        <Box className="px-2 pb-8">
+        <VStack gap={6} className="px-2 pb-8">
           <MobileMenuLinks {...props} />
-        </Box>
+          <HStack align="center" justify="between" className="px-3">
+            <p className="text-micro font-semibold text-muted-foreground">
+              {themeLabels.label}
+            </p>
+            <ThemeToggle labels={themeLabels} />
+          </HStack>
+        </VStack>
       </SheetContent>
     </Sheet>
   );

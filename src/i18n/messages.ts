@@ -268,6 +268,13 @@ export type MessageCatalog = {
     en: string;
     navLabel: string;
   };
+  theme: {
+    label: string;
+    toggle: string;
+    light: string;
+    dark: string;
+    system: string;
+  };
   nav: {
     label: string;
     guides: string;
@@ -1290,6 +1297,13 @@ const catalogs: Record<Locale, MessageCatalog> = {
       en: "EN",
       navLabel: "언어 선택",
     },
+    theme: {
+      label: "화면 모드",
+      toggle: "화면 모드 바꾸기",
+      light: "밝게",
+      dark: "어둡게",
+      system: "기기 설정대로",
+    },
   },
   en: {
     services: {
@@ -2269,6 +2283,13 @@ const catalogs: Record<Locale, MessageCatalog> = {
       ko: "KO",
       en: "EN",
       navLabel: "Language selection",
+    },
+    theme: {
+      label: "Appearance",
+      toggle: "Change appearance",
+      light: "Light",
+      dark: "Dark",
+      system: "Match device",
     },
   },
 };

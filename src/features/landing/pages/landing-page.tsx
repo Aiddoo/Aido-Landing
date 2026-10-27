@@ -347,6 +347,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
         >
           <VStack
             gap={16}
+            data-surface="inverse"
             className="rounded-[2.5rem] bg-ink px-5 py-section-sm text-cream sm:px-10 lg:px-14"
           >
             <VStack align="center" gap={5} className="text-center">

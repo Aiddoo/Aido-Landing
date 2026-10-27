@@ -10,10 +10,11 @@ import {
 } from "./mobile-menu-links";
 import type { MobileMenuSheetProps } from "./mobile-menu-sheet";
 
-type MobileMenuProps = Omit<MobileMenuLinksProps, "onNavigate">;
+type MobileMenuProps = Omit<MobileMenuLinksProps, "onNavigate"> &
+  Pick<MobileMenuSheetProps, "themeLabels">;
 
 // 시트 코드는 처음 열 때 불러온다. 불러오지 못하면 기본 details 메뉴로 대신한다.
-export function MobileMenu(props: MobileMenuProps) {
+export function MobileMenu({ themeLabels, ...props }: MobileMenuProps) {
   const triggerId = useId();
   const [open, setOpen] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -41,6 +42,7 @@ export function MobileMenu(props: MobileMenuProps) {
         ) : SheetMenu ? (
           <SheetMenu
             {...props}
+            themeLabels={themeLabels}
             triggerId={triggerId}
             open={open}
             onOpenChange={setOpen}
@@ -72,7 +74,7 @@ export function MobileMenu(props: MobileMenuProps) {
 function StaticMenu({
   open = false,
   ...props
-}: MobileMenuProps & { open?: boolean }) {
+}: Omit<MobileMenuProps, "themeLabels"> & { open?: boolean }) {
   return (
     <details open={open} data-slot="mobile-menu-static">
       <summary

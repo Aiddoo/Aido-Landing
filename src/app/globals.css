@@ -1,14 +1,8 @@
 @import "tailwindcss";
 @import "../components/fonts/web-fonts.css";
 
-/* shadcn의 dark: 변형도 아래 다크 토큰과 같은 조건에서만 켠다. */
-@custom-variant dark {
-  @media (prefers-color-scheme: dark) {
-    &:where([data-color-scheme="system"], [data-color-scheme="system"] *) {
-      @slot;
-    }
-  }
-}
+/* shadcn 규약: next-themes가 <html>에 붙이는 .dark 클래스 아래에서 dark: 변형을 켠다. */
+@custom-variant dark (&:is(.dark *));
 
 /*
  * 아이두 디자인 토큰. 색·회색 단계는 앱(apps/mobile/global.css)과 같은 값이다.
@@ -85,40 +79,52 @@
 }
 
 /*
- * 다크 모드는 모든 페이지가 새 토큰으로 옮겨진 뒤 <html data-color-scheme="system">으로 켠다.
- * 기존 페이지 CSS가 흰 배경을 직접 쓰므로 그전에는 밝은 모드로 고정한다.
+ * 다크 모드(next-themes, 기본은 기기 설정). 앱 다크 모드처럼 따뜻한 짙은 회색 바탕에
+ * 주황(#ff6b43) 강조를 그대로 쓰고, 크림·종이는 웜 그레이로 바꾼다.
  */
-@media (prefers-color-scheme: dark) {
-  :root[data-color-scheme="system"] {
-    color-scheme: dark;
+.dark {
+  color-scheme: dark;
 
-    --brand-deep: #ff9b7a;
-    --brand-soft: oklch(0.3 0.06 40);
-    --fish-deep: #7cc6ff;
-    --cream: oklch(0.19 0.006 50);
-    --paper: oklch(0.24 0.006 50);
-    --ink: oklch(0.97 0 0);
+  --brand-deep: #ff9b7a;
+  --brand-soft: oklch(0.3 0.06 40);
+  --fish-deep: #7cc6ff;
+  --cream: oklch(0.185 0.006 50);
+  --paper: oklch(0.245 0.008 50);
+  --ink: oklch(0.97 0 0);
 
-    --gray-1: oklch(0.248 0 0);
-    --gray-2: oklch(0.379 0 0);
-    --gray-3: oklch(0.493 0 0);
-    --gray-4: oklch(0.566 0 0);
-    --gray-5: oklch(0.699 0 0);
-    --gray-6: oklch(0.798 0 0);
-    --gray-7: oklch(0.9 0 0);
-    --gray-8: oklch(0.94 0 0);
-    --gray-9: oklch(0.97 0 0);
-    --gray-10: oklch(0.98 0 0);
+  --gray-1: oklch(0.248 0 0);
+  --gray-2: oklch(0.379 0 0);
+  --gray-3: oklch(0.493 0 0);
+  --gray-4: oklch(0.566 0 0);
+  --gray-5: oklch(0.699 0 0);
+  --gray-6: oklch(0.798 0 0);
+  --gray-7: oklch(0.9 0 0);
+  --gray-8: oklch(0.94 0 0);
+  --gray-9: oklch(0.97 0 0);
+  --gray-10: oklch(0.98 0 0);
 
-    --primary-foreground: #222222;
-    --secondary: oklch(0.3 0.004 50);
-    --muted: oklch(0.3 0.004 50);
-    --muted-foreground: oklch(0.78 0 0);
-    --destructive: oklch(0.704 0.191 22);
-    --border: color-mix(in oklab, var(--ink) 12%, transparent);
-    --input: color-mix(in oklab, var(--ink) 18%, transparent);
-    --shadow-color: 0 0% 0%;
-  }
+  --primary-foreground: #222222;
+  --secondary: oklch(0.3 0.004 50);
+  --muted: oklch(0.3 0.004 50);
+  --muted-foreground: oklch(0.78 0 0);
+  --destructive: oklch(0.704 0.191 22);
+  --border: color-mix(in oklab, var(--ink) 12%, transparent);
+  --input: color-mix(in oklab, var(--ink) 18%, transparent);
+  --shadow-color: 0 0% 0%;
+}
+
+/* 반전 패널(bg-ink 위 text-cream)은 흰 판 대신 한 단계 떠 있는 어두운 판이 된다. */
+.dark [data-surface="inverse"] {
+  --ink: oklch(0.29 0.012 50);
+  --cream: oklch(0.97 0 0);
+}
+
+/* 기기 틀은 실제 기기처럼 어느 모드에서도 어둡고, 화면 바탕은 밝은 앱 화면 그대로다. */
+.dark [data-device] {
+  --ink: #222222;
+  --paper: #ffffff;
+  --gray-8: oklch(0.493 0 0);
+  --gray-9: oklch(0.379 0 0);
 }
 
 @theme inline {
