@@ -1,3 +1,4 @@
+import type { SupportedDeviceId } from "@/features/landing/data/supported-devices";
 import type { ServiceFeatureId } from "@/features/services/data/service-features";
 import type { Locale } from "./config";
 
@@ -105,6 +106,16 @@ type HomeCatalog = {
     widgetTitle: string;
     widgetDescription: string;
     widgetAlt: string;
+  };
+  devices: {
+    kicker: string;
+    title: string;
+    description: string;
+    note: string;
+    items: Record<
+      SupportedDeviceId,
+      { name: string; description: string; requirement: string; alt: string }
+    >;
   };
   routine: {
     kicker: string;
@@ -298,6 +309,8 @@ export type MessageCatalog = {
     titleLineTwo: string;
     description: string;
     closingNote: string;
+    /** 스토어 버튼 아래 짧은 호환 기기 표기 */
+    devices: string;
   };
   storeButtons: {
     ariaLabel: string;
@@ -892,7 +905,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     meta: {
       title: "아이두(Aido) | 친구와 함께 끝내는 AI 투두 플래너",
       description:
-        "말하면 AI가 날짜·시간·반복까지 채워 할 일로 만들어요. 친구와 할 일을 나누고 콕으로 응원하며, 친구를 초대하면 발자국 판에 발자국이 찍혀요. 홈 화면 위젯과 iPhone Duo·iPad 두 칸 화면도 지원해요. iOS와 Android에서 무료로 시작해요.",
+        "말하면 AI가 날짜·시간·반복까지 채워 할 일로 만들어요. 친구와 할 일을 나누고 콕으로 응원하며, 친구를 초대하면 발자국 판에 발자국이 찍혀요. 홈 화면 위젯과 iPhone Duo·폴더블·태블릿 두 칸 화면도 지원해요. iPhone·iPad·Android, Apple 실리콘 Mac에서 무료로 시작해요.",
       openGraphTitle: "아이두 | 혼자 하면 미루고, 같이 하면 끝내요",
       openGraphDescription:
         "말하면 AI가 할 일로 정리하고, 친구가 콕 찔러 응원해요. 친구를 초대하면 발자국이 찍혀요.",
@@ -935,7 +948,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         titleTail: "같이 하면 끝내요",
         description:
           "말하면 AI가 할 일로 정리하고, 친구가 콕 찔러 응원해요. 오늘 할 일, 이번엔 끝까지 해봐요.",
-        note: "iOS·Android에서 무료로 시작해요",
+        note: "iPhone·iPad·Android, Apple\u00a0실리콘 Mac에서 무료로 시작해요",
         screenAlt:
           "오늘 할 일 목록과 친구들의 고양이 프로필이 보이는 아이두 홈 화면",
         nudgeName: "두부",
@@ -1025,6 +1038,45 @@ const catalogs: Record<Locale, MessageCatalog> = {
           "앱을 열지 않아도 오늘 할 일과 진행률이 위젯에 보여요. iOS와 Android에서 쓸 수 있어요.",
         widgetAlt:
           "아이폰 홈 화면에 놓인 아이두 위젯 두 개. 오늘 할 일 3/8과 할 일 목록이 보여요",
+      },
+      devices: {
+        kicker: "쓰던 기기 그대로",
+        title: "폰부터 Mac까지, 어디서든 아이두",
+        description:
+          "iPhone과 Android 폰은 물론, iPhone\u00a0Duo·폴더블·태블릿에서는 두\u00a0칸으로 넓게 봐요. Apple\u00a0실리콘 Mac에서도 App\u00a0Store로 설치해 쓸 수 있어요.",
+        note: "Mac에서는 iPad용 앱이 창으로 열려요. 앱과 웹사이트는 한국어와 영어를 지원해요.",
+        items: {
+          iphone: {
+            name: "iPhone",
+            description: "홈 화면 위젯으로 오늘 할 일을 바로 봐요.",
+            requirement: "iOS\u00a016.4\u00a0이상",
+            alt: "iPhone 홈 화면에 놓인 아이두 위젯",
+          },
+          android: {
+            name: "Android 폰",
+            description: "Google\u00a0Play에서 받고, 위젯도 똑같이 써요.",
+            requirement: "Android\u00a07.0\u00a0이상",
+            alt: "Android 폰에서 주간 달력과 할 일 목록이 보이는 아이두 화면",
+          },
+          foldable: {
+            name: "iPhone\u00a0Duo·폴더블",
+            description: "펼치면 목록과 상세가 두\u00a0칸으로 나란히 보여요.",
+            requirement: "iOS\u00a016.4 · Android\u00a07.0\u00a0이상",
+            alt: "펼친 iPhone Duo에서 메모 목록과 메모 상세가 나란히 보이는 아이두 화면",
+          },
+          tablet: {
+            name: "iPad·태블릿",
+            description: "넓은 화면에서 체크리스트와 댓글까지 함께 봐요.",
+            requirement: "iPadOS\u00a016.4 · Android\u00a07.0\u00a0이상",
+            alt: "iPad에서 할 일 목록 옆에 체크리스트와 댓글이 보이는 아이두 화면",
+          },
+          mac: {
+            name: "Mac",
+            description: "App\u00a0Store로 설치해 책상에서도 창으로 띄워 써요.",
+            requirement: "macOS\u00a012\u00a0이상 · Apple\u00a0M1\u00a0이상",
+            alt: "Mac 화면의 창에 열린 아이두 할 일 목록",
+          },
+        },
       },
       routine: {
         kicker: "쌓인 기록에서 다음 한 걸음",
@@ -1135,9 +1187,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "할 일마다 공개 범위를 선택할 수 있어요. 친구는 공개한 할 일을 볼 수 있고, 비공개로 설정한 할 일은 공유되지 않아요. 생성하거나 수정할 때 공개 설정을 확인해 주세요.",
         },
         {
-          question: "어떤 기기와 언어를 지원하나요?",
+          question: "어떤 기기에서 쓸 수 있나요?",
           answer:
-            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 폴더블 폰과 iPhone Duo를 펼치거나 iPad에서 쓰면 목록과 상세를 나란히 볼 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원하고, 홈 화면 위젯도 iOS와 Android에서 사용할 수 있어요.",
+            "iPhone과 iPad(iOS·iPadOS\u00a016.4 이상)는 App\u00a0Store에서, Android 폰과 태블릿(Android\u00a07.0 이상)은 Google\u00a0Play에서 받을 수 있어요. Apple\u00a0M1 이상 칩을 쓰는 Mac(macOS\u00a012 이상)에서도 App\u00a0Store로 설치하면 iPad용 앱이 창으로 열려요. iPhone\u00a0Duo나 폴더블 폰을 펼치거나 태블릿에서 쓰면 목록과 상세를 나란히 볼 수 있고, 홈 화면 위젯은 iOS와 Android에서 쓸 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원해요.",
         },
         {
           question: "친구를 초대하면 어떤 보상을 받나요?",
@@ -1157,6 +1209,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       description:
         "서로의 할 일을 나누고 응원하며 오늘의 계획을 하나씩 해내요.",
       closingNote: "무료로 시작해요. 일부 기능은 프리미엄 구독이 필요해요.",
+      devices: "iPhone · iPad · Mac(Apple\u00a0실리콘) · Android",
     },
     storeButtons: {
       ariaLabel: "앱 다운로드 링크",
@@ -1880,7 +1933,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     meta: {
       title: "Aido | AI To-Do Planner You Finish with Friends",
       description:
-        "Say it and AI fills in the date, time and repeat. Share to-dos with friends, cheer each other on with nudges, and collect paw prints when friends join from your invite. Home screen widgets and a two-pane view on iPhone Duo and iPad, too. Start free on iOS and Android.",
+        "Say it and AI fills in the date, time and repeat. Share to-dos with friends, cheer each other on with nudges, and collect paw prints when friends join from your invite. Home screen widgets and a two-pane view on iPhone Duo, foldables and tablets, too. Start free on iPhone, iPad, Android and Apple silicon Macs.",
       openGraphTitle: "Aido | Put it off alone. Get it done together.",
       openGraphDescription:
         "Say it and AI turns it into a to-do. Friends nudge you along. Invite a friend and collect paw prints.",
@@ -1922,7 +1975,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         titleTail: "Get it done together.",
         description:
           "Say it and AI turns it into a to-do. Friends nudge you along. This time, see today's list through.",
-        note: "Start free on iOS and Android",
+        note: "Start free on iPhone, iPad, Android and Macs with Apple\u00a0silicon",
         screenAlt:
           "Aido home screen with today's to-dos and friends' cat profiles",
         nudgeName: "Dubu",
@@ -2012,6 +2065,50 @@ const catalogs: Record<Locale, MessageCatalog> = {
           "See today's to-dos and progress in a widget without opening the app. Available on iOS and Android.",
         widgetAlt:
           "Two Aido widgets on an iPhone home screen showing 3 of 8 to-dos done and a to-do list",
+      },
+      devices: {
+        kicker: "On the devices you already use",
+        title: "From phone to Mac, Aido comes along",
+        description:
+          "Use it on iPhone and Android phones, and spread out in two panes on iPhone\u00a0Duo, foldables and tablets. On a Mac with Apple\u00a0silicon, you can install it from the App\u00a0Store, too.",
+        note: "On Mac, the iPad app opens in a window. The app and this website support English and Korean.",
+        items: {
+          iphone: {
+            name: "iPhone",
+            description:
+              "See today's to\u2011dos right from Home Screen widgets.",
+            requirement: "iOS\u00a016.4\u00a0or\u00a0later",
+            alt: "Aido widgets on an iPhone Home Screen",
+          },
+          android: {
+            name: "Android phone",
+            description:
+              "Get it on Google\u00a0Play, home screen widgets included.",
+            requirement: "Android\u00a07.0\u00a0or\u00a0later",
+            alt: "Aido on an Android phone showing the weekly calendar and to-do list",
+          },
+          foldable: {
+            name: "iPhone\u00a0Duo & foldables",
+            description: "Unfold to see your list and details side by side.",
+            requirement: "iOS\u00a016.4 · Android\u00a07.0\u00a0or\u00a0later",
+            alt: "Aido on an unfolded iPhone Duo with the memo list and memo details side by side",
+          },
+          tablet: {
+            name: "iPad & tablets",
+            description: "Keep checklists and comments next to your list.",
+            requirement:
+              "iPadOS\u00a016.4 · Android\u00a07.0\u00a0or\u00a0later",
+            alt: "Aido on iPad with a checklist and comments next to the to-do list",
+          },
+          mac: {
+            name: "Mac",
+            description:
+              "Install from the App\u00a0Store and open it in a window at your desk.",
+            requirement:
+              "macOS\u00a012\u00a0or\u00a0later · Apple\u00a0M1\u00a0or\u00a0later",
+            alt: "Aido's to-do list open in a window on a Mac screen",
+          },
+        },
       },
       routine: {
         kicker: "From your record to your next step",
@@ -2123,9 +2220,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
             "You choose the visibility of each task. Friends can see tasks you make public; private tasks are not shared. Check the visibility setting when creating or editing a task.",
         },
         {
-          question: "Which devices and languages are supported?",
+          question: "Which devices can I use Aido on?",
           answer:
-            "Download the iOS app from the App Store or the Android app from Google Play. On an unfolded foldable phone, iPhone Duo or iPad, lists and details appear side by side. Both the app and this website support English and Korean. Home screen widgets are available on iOS and Android, too.",
+            "Get it on iPhone and iPad (iOS and iPadOS\u00a016.4 or later) from the App\u00a0Store, and on Android phones and tablets (Android\u00a07.0 or later) from Google\u00a0Play. On a Mac with Apple\u00a0M1 or later (macOS\u00a012 or later), you can install it from the App\u00a0Store and the iPad app opens in a window. Unfold an iPhone\u00a0Duo or foldable phone, or use a tablet, to see lists and details side by side. Home screen widgets work on iOS and Android, and both the app and this website support English and Korean.",
         },
         {
           question: "What do I get for inviting friends?",
@@ -2145,6 +2242,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       description:
         "Share your plans, encourage each other and work through today’s to-dos.",
       closingNote: "Start free. Some features require Premium.",
+      devices: "iPhone · iPad · Mac (Apple\u00a0silicon) · Android",
     },
     storeButtons: {
       ariaLabel: "App download links",

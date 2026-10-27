@@ -24,6 +24,10 @@ import {
   guideScreenFiles,
 } from "../src/features/feature-guides/data/guide-screens.ts";
 import { catByIconKey } from "../src/features/invite/data/inviter-cats.ts";
+import {
+  deviceShowcaseScreens,
+  getDeviceShowcaseScreen,
+} from "../src/features/landing/data/supported-devices.ts";
 
 const check = process.argv.includes("--check");
 const sources = [
@@ -37,6 +41,11 @@ const sources = [
     ...["ko", "en"].flatMap((locale) =>
       Object.keys(screenshotFiles).map(
         (key) => getAppScreenshot(locale, key).src,
+      ),
+    ),
+    ...["ko", "en"].flatMap((locale) =>
+      Object.keys(deviceShowcaseScreens).map(
+        (key) => getDeviceShowcaseScreen(locale, key).src,
       ),
     ),
     ...["ko", "en"].flatMap((locale) =>

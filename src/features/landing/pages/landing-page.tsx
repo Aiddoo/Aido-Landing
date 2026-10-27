@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/layout";
 import { FeatureGuideList } from "@/features/feature-guides/components/feature-guide-list";
 import { AiTodoExample } from "@/features/landing/components/ai-todo-example";
+import { DeviceShowcase } from "@/features/landing/components/device-showcase";
 import { DoneSticker } from "@/features/landing/components/done-sticker";
 import { DuoUnfold } from "@/features/landing/components/duo-unfold";
 import { GuideLink } from "@/features/landing/components/guide-link";
@@ -35,6 +36,7 @@ import { PawTrail } from "@/features/landing/components/paw-trail";
 import { PhoneFan } from "@/features/landing/components/phone-fan";
 import { PremiumBenefitList } from "@/features/landing/components/premium-benefit-list";
 import { SectionKicker } from "@/features/landing/components/section-kicker";
+import { SupportedDeviceList } from "@/features/landing/components/supported-device-list";
 import { nudgeCats } from "@/features/landing/data/home-cats";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
@@ -421,6 +423,36 @@ export function LandingPage({ locale }: { locale: Locale }) {
               </HStack>
             </Grid>
           </VStack>
+        </ReadableContent>
+
+        <ReadableContent
+          render={<section id="devices" aria-labelledby="devices-title" />}
+          data-motion-group
+          className="py-section"
+        >
+          <VStack align="center" gap={5} className="text-center">
+            <SectionKicker className="-mb-3">
+              {home.devices.kicker}
+            </SectionKicker>
+            <h2
+              id="devices-title"
+              data-motion="title"
+              className="text-display-lg"
+            >
+              {home.devices.title}
+            </h2>
+            <p className="max-w-[34em] text-body-lg text-balance text-gray-9 [&:lang(en)]:max-w-[40ch]">
+              {home.devices.description}
+            </p>
+          </VStack>
+          <DeviceShowcase
+            locale={locale}
+            className="mx-auto mt-14 max-w-[64rem]"
+          />
+          <SupportedDeviceList locale={locale} className="mt-14" />
+          <p className="mt-8 text-center text-caption text-muted-foreground">
+            {home.devices.note}
+          </p>
         </ReadableContent>
 
         <ReadableContent

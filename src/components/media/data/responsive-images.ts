@@ -293,6 +293,308 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/devices/en/duo-memo.webp": {
+    "sourceHash": "9f73a6b97dce",
+    "width": 1280,
+    "height": 1820,
+    "variants": [
+      {
+        "width": 48,
+        "height": 68,
+        "src": "/responsive/duo-memo-48-63dfad9a3400.webp"
+      },
+      {
+        "width": 96,
+        "height": 136,
+        "src": "/responsive/duo-memo-96-bcce054aa819.webp"
+      },
+      {
+        "width": 160,
+        "height": 228,
+        "src": "/responsive/duo-memo-160-dd204638ea72.webp"
+      },
+      {
+        "width": 240,
+        "height": 341,
+        "src": "/responsive/duo-memo-240-7d69f675c1ec.webp"
+      },
+      {
+        "width": 320,
+        "height": 455,
+        "src": "/responsive/duo-memo-320-37e678a24110.webp"
+      },
+      {
+        "width": 480,
+        "height": 682,
+        "src": "/responsive/duo-memo-480-6b4e2c712c57.webp"
+      },
+      {
+        "width": 640,
+        "height": 910,
+        "src": "/responsive/duo-memo-640-8fa38675fdaf.webp"
+      },
+      {
+        "width": 960,
+        "height": 1365,
+        "src": "/responsive/duo-memo-960-e34a2064f380.webp"
+      },
+      {
+        "width": 1280,
+        "height": 1820,
+        "src": "/responsive/duo-memo-1280-3ab4a2399a4d.webp"
+      }
+    ]
+  },
+  "/app-assets/devices/en/ipad-checklist.webp": {
+    "sourceHash": "5eb7e15bf5e1",
+    "width": 1000,
+    "height": 1333,
+    "variants": [
+      {
+        "width": 48,
+        "height": 64,
+        "src": "/responsive/ipad-checklist-48-9746a123e380.webp"
+      },
+      {
+        "width": 96,
+        "height": 128,
+        "src": "/responsive/ipad-checklist-96-f620b3270fe4.webp"
+      },
+      {
+        "width": 160,
+        "height": 213,
+        "src": "/responsive/ipad-checklist-160-f4b8d0dae2ed.webp"
+      },
+      {
+        "width": 240,
+        "height": 320,
+        "src": "/responsive/ipad-checklist-240-07f7dc7fa8f5.webp"
+      },
+      {
+        "width": 320,
+        "height": 427,
+        "src": "/responsive/ipad-checklist-320-f98e1b95c875.webp"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "src": "/responsive/ipad-checklist-480-8743f5271b59.webp"
+      },
+      {
+        "width": 640,
+        "height": 853,
+        "src": "/responsive/ipad-checklist-640-aebfb69c1e2f.webp"
+      },
+      {
+        "width": 960,
+        "height": 1280,
+        "src": "/responsive/ipad-checklist-960-a7a95ea5be64.webp"
+      },
+      {
+        "width": 1000,
+        "height": 1333,
+        "src": "/responsive/ipad-checklist-1000-26ff2c570af4.webp"
+      }
+    ]
+  },
+  "/app-assets/devices/en/mac-friend-feed.webp": {
+    "sourceHash": "145df794c884",
+    "width": 720,
+    "height": 1426,
+    "variants": [
+      {
+        "width": 48,
+        "height": 95,
+        "src": "/responsive/mac-friend-feed-48-f5449857606e.webp"
+      },
+      {
+        "width": 96,
+        "height": 190,
+        "src": "/responsive/mac-friend-feed-96-33568286236a.webp"
+      },
+      {
+        "width": 160,
+        "height": 317,
+        "src": "/responsive/mac-friend-feed-160-ba3290da2f23.webp"
+      },
+      {
+        "width": 240,
+        "height": 475,
+        "src": "/responsive/mac-friend-feed-240-5b9f8727add8.webp"
+      },
+      {
+        "width": 320,
+        "height": 634,
+        "src": "/responsive/mac-friend-feed-320-fc81e8ce8fe8.webp"
+      },
+      {
+        "width": 480,
+        "height": 951,
+        "src": "/responsive/mac-friend-feed-480-34b57775d0f4.webp"
+      },
+      {
+        "width": 640,
+        "height": 1268,
+        "src": "/responsive/mac-friend-feed-640-2090714ff30e.webp"
+      },
+      {
+        "width": 720,
+        "height": 1426,
+        "src": "/responsive/mac-friend-feed-720-0fce95a7d955.webp"
+      }
+    ]
+  },
+  "/app-assets/devices/ko/duo-memo.webp": {
+    "sourceHash": "a40a1c9fe89c",
+    "width": 1280,
+    "height": 1820,
+    "variants": [
+      {
+        "width": 48,
+        "height": 68,
+        "src": "/responsive/duo-memo-48-62f0c089074c.webp"
+      },
+      {
+        "width": 96,
+        "height": 136,
+        "src": "/responsive/duo-memo-96-b60333a2c78e.webp"
+      },
+      {
+        "width": 160,
+        "height": 228,
+        "src": "/responsive/duo-memo-160-2caf94815ed5.webp"
+      },
+      {
+        "width": 240,
+        "height": 341,
+        "src": "/responsive/duo-memo-240-03eee4a60b96.webp"
+      },
+      {
+        "width": 320,
+        "height": 455,
+        "src": "/responsive/duo-memo-320-90cf17b5f123.webp"
+      },
+      {
+        "width": 480,
+        "height": 682,
+        "src": "/responsive/duo-memo-480-b1b310125e41.webp"
+      },
+      {
+        "width": 640,
+        "height": 910,
+        "src": "/responsive/duo-memo-640-e13e336a1db8.webp"
+      },
+      {
+        "width": 960,
+        "height": 1365,
+        "src": "/responsive/duo-memo-960-8fd205ec7bd5.webp"
+      },
+      {
+        "width": 1280,
+        "height": 1820,
+        "src": "/responsive/duo-memo-1280-bad5f357aa5a.webp"
+      }
+    ]
+  },
+  "/app-assets/devices/ko/ipad-checklist.webp": {
+    "sourceHash": "13d8804260dc",
+    "width": 1000,
+    "height": 1333,
+    "variants": [
+      {
+        "width": 48,
+        "height": 64,
+        "src": "/responsive/ipad-checklist-48-bacba6491b38.webp"
+      },
+      {
+        "width": 96,
+        "height": 128,
+        "src": "/responsive/ipad-checklist-96-9c90a6b27ea8.webp"
+      },
+      {
+        "width": 160,
+        "height": 213,
+        "src": "/responsive/ipad-checklist-160-349b83ccde05.webp"
+      },
+      {
+        "width": 240,
+        "height": 320,
+        "src": "/responsive/ipad-checklist-240-d7ae356a5842.webp"
+      },
+      {
+        "width": 320,
+        "height": 427,
+        "src": "/responsive/ipad-checklist-320-e2186592b1cd.webp"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "src": "/responsive/ipad-checklist-480-3f1e9c59f912.webp"
+      },
+      {
+        "width": 640,
+        "height": 853,
+        "src": "/responsive/ipad-checklist-640-d68c8a53242a.webp"
+      },
+      {
+        "width": 960,
+        "height": 1280,
+        "src": "/responsive/ipad-checklist-960-926d631c6359.webp"
+      },
+      {
+        "width": 1000,
+        "height": 1333,
+        "src": "/responsive/ipad-checklist-1000-70f9945bb5a6.webp"
+      }
+    ]
+  },
+  "/app-assets/devices/ko/mac-friend-feed.webp": {
+    "sourceHash": "b0a4bd6032a0",
+    "width": 720,
+    "height": 1426,
+    "variants": [
+      {
+        "width": 48,
+        "height": 95,
+        "src": "/responsive/mac-friend-feed-48-226f8d91e1d6.webp"
+      },
+      {
+        "width": 96,
+        "height": 190,
+        "src": "/responsive/mac-friend-feed-96-2d6f05a18f09.webp"
+      },
+      {
+        "width": 160,
+        "height": 317,
+        "src": "/responsive/mac-friend-feed-160-f78f1c73ecb3.webp"
+      },
+      {
+        "width": 240,
+        "height": 475,
+        "src": "/responsive/mac-friend-feed-240-9b29385f2836.webp"
+      },
+      {
+        "width": 320,
+        "height": 634,
+        "src": "/responsive/mac-friend-feed-320-6684817fb1f5.webp"
+      },
+      {
+        "width": 480,
+        "height": 951,
+        "src": "/responsive/mac-friend-feed-480-3b62ae665974.webp"
+      },
+      {
+        "width": 640,
+        "height": 1268,
+        "src": "/responsive/mac-friend-feed-640-fd5c1ce4b293.webp"
+      },
+      {
+        "width": 720,
+        "height": 1426,
+        "src": "/responsive/mac-friend-feed-720-028a5fb14120.webp"
+      }
+    ]
+  },
   "/app-assets/guides/en/friend-feed.webp": {
     "sourceHash": "5b12f1e6a770",
     "width": 640,
