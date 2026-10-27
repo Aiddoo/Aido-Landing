@@ -128,6 +128,43 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/cat-hi.webp": {
+    "sourceHash": "7d40a3951ac6",
+    "width": 480,
+    "height": 480,
+    "variants": [
+      {
+        "width": 48,
+        "height": 48,
+        "src": "/responsive/cat-hi-48-95a693625444.webp"
+      },
+      {
+        "width": 96,
+        "height": 96,
+        "src": "/responsive/cat-hi-96-e540eb270553.webp"
+      },
+      {
+        "width": 160,
+        "height": 160,
+        "src": "/responsive/cat-hi-160-014bdc4bc912.webp"
+      },
+      {
+        "width": 240,
+        "height": 240,
+        "src": "/responsive/cat-hi-240-83b0baae8cd8.webp"
+      },
+      {
+        "width": 320,
+        "height": 320,
+        "src": "/responsive/cat-hi-320-d131d19e8b0f.webp"
+      },
+      {
+        "width": 480,
+        "height": 480,
+        "src": "/responsive/cat-hi-480-8dbfd309b0d1.webp"
+      }
+    ]
+  },
   "/app-assets/cat-orange-tabby.webp": {
     "sourceHash": "4fd30b269d45",
     "width": 320,
@@ -513,6 +550,762 @@ export const responsiveImages = {
         "width": 1440,
         "height": 1010,
         "src": "/responsive/todo-detail-1440-2a0b1313f32a.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/friend-feed.webp": {
+    "sourceHash": "5b12f1e6a770",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/friend-feed-48-d81d0009037c.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/friend-feed-96-69b1bd0d8dfa.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/friend-feed-160-55a15823edbd.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/friend-feed-240-4748cb77701c.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/friend-feed-320-df348a3f3b2f.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/friend-feed-480-8434a9dbd364.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/friend-feed-640-ab399ac217e6.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/home-widgets.webp": {
+    "sourceHash": "154a78db2f53",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/home-widgets-48-f61a23adc0be.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/home-widgets-96-e09ad27c3be0.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/home-widgets-160-e493004f0820.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/home-widgets-240-b9dfcc7f31d3.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/home-widgets-320-1f1993d66b6c.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/home-widgets-480-dcab403935f7.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/home-widgets-640-891adc5d24b2.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/invite-card.webp": {
+    "sourceHash": "b15176674d3a",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/invite-card-48-08c5ed2e5945.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/invite-card-96-6fe362d5149d.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/invite-card-160-14ec9f28e6f9.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/invite-card-240-f07b11196859.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/invite-card-320-8b0f1822ec41.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/invite-card-480-21b5d4591c5a.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/invite-card-640-02e9e8132300.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/invite-home.webp": {
+    "sourceHash": "54cd5e780514",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/invite-home-48-ee8bbfe93775.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/invite-home-96-508aa01ce473.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/invite-home-160-700312617951.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/invite-home-240-1a05092d86db.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/invite-home-320-fd76eefa95f7.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/invite-home-480-e066519e54e5.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/invite-home-640-c9930d602673.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/memo-ai.webp": {
+    "sourceHash": "9f7cc6ea7588",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/memo-ai-48-61d513329bfa.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/memo-ai-96-8fc1734ce252.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/memo-ai-160-c72b6db2aa08.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/memo-ai-240-19fd0ed38023.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/memo-ai-320-067e4311e0d5.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/memo-ai-480-dc596a118f35.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/memo-ai-640-3a79172a93bc.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/paw-board.webp": {
+    "sourceHash": "5854acac0b0c",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/paw-board-48-9ed16e40e8da.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/paw-board-96-050cd7dc8e54.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/paw-board-160-39c384b0a913.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/paw-board-240-46c98ef46449.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/paw-board-320-380a8166b9cf.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/paw-board-480-ceecf3eb0dca.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/paw-board-640-53a392d564b8.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/repeat-edit.webp": {
+    "sourceHash": "b1ffebbf197c",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/repeat-edit-48-b1c58c0c00d4.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/repeat-edit-96-dc78debbc842.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/repeat-edit-160-6e2b2eec8e78.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/repeat-edit-240-30de69e4b6fb.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/repeat-edit-320-9972cb28f730.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/repeat-edit-480-2bb9025c6f5a.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/repeat-edit-640-f85351412c3d.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/todo-nudge.webp": {
+    "sourceHash": "8257a8b45db2",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/todo-nudge-48-547602dd2272.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/todo-nudge-96-d8b3cc229ae6.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/todo-nudge-160-ceafd1bc705b.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/todo-nudge-240-bec0264e02bf.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/todo-nudge-320-633f8c676113.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/todo-nudge-480-b4dd71feea72.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/todo-nudge-640-f9a6f3521ab1.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/voice-add.webp": {
+    "sourceHash": "fa984cef5f3e",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/voice-add-48-c9d6f9689adc.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/voice-add-96-2023f26e2d45.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/voice-add-160-860de581e0f8.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/voice-add-240-ede831d45374.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/voice-add-320-0dcc987e729b.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/voice-add-480-0dd0f1c03bb5.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/voice-add-640-e9d8f2b8f876.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/friend-feed.webp": {
+    "sourceHash": "9c7e5010a2f0",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/friend-feed-48-f09258a3a52a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/friend-feed-96-78cb166e0dd2.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/friend-feed-160-8547eee2dbda.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/friend-feed-240-7c9672917ce7.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/friend-feed-320-207208913d65.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/friend-feed-480-757fa868911c.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/friend-feed-640-f8ea91fa7af4.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/home-widgets.webp": {
+    "sourceHash": "bdd652f1c50c",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/home-widgets-48-1310c82e2ac8.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/home-widgets-96-1d8b4008017f.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/home-widgets-160-4bf8260f195b.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/home-widgets-240-21257a1fdd06.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/home-widgets-320-2cd835e11c00.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/home-widgets-480-ee1f4be89316.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/home-widgets-640-a241d965b7cd.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/invite-card.webp": {
+    "sourceHash": "5617729c2c97",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/invite-card-48-a339df6d4ca0.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/invite-card-96-5a9c0959c575.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/invite-card-160-31f86d78fb21.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/invite-card-240-7c265f71a2a3.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/invite-card-320-b8cd2576af4e.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/invite-card-480-cc54e3de9165.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/invite-card-640-4fe25c22f00d.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/invite-home.webp": {
+    "sourceHash": "6fbca1543c9b",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/invite-home-48-bba21334fc98.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/invite-home-96-bb0f93733387.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/invite-home-160-871ee54bb633.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/invite-home-240-b304843c46a2.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/invite-home-320-d4b145204cab.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/invite-home-480-38c062e42357.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/invite-home-640-872007bd2cf3.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/memo-ai.webp": {
+    "sourceHash": "3256780ef0ef",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/memo-ai-48-e98a21071994.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/memo-ai-96-f30923598f02.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/memo-ai-160-a5432d2e48dd.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/memo-ai-240-38c9f0644b2a.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/memo-ai-320-37648d9f75c1.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/memo-ai-480-9fdf54c82460.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/memo-ai-640-1ade69001749.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/paw-board.webp": {
+    "sourceHash": "a0559f5e77dc",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/paw-board-48-b48d7ad4cf3a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/paw-board-96-81e467952a4e.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/paw-board-160-25ac880b1baa.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/paw-board-240-8029f205a7df.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/paw-board-320-014e3e84fdcd.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/paw-board-480-336edd9cb8e6.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/paw-board-640-0fbde44c0505.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/repeat-edit.webp": {
+    "sourceHash": "eaefefe37590",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/repeat-edit-48-219488b9e9a4.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/repeat-edit-96-b13a7c34f4af.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/repeat-edit-160-f4ba28a3735e.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/repeat-edit-240-def682dbe0cf.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/repeat-edit-320-aff0b7c6b963.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/repeat-edit-480-a425dc0060c5.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/repeat-edit-640-3f6baebada8e.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/todo-nudge.webp": {
+    "sourceHash": "b9fe9c5047e9",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/todo-nudge-48-2563ee921646.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/todo-nudge-96-6107e0d100d6.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/todo-nudge-160-42d7a630fdfe.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/todo-nudge-240-a9e180108316.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/todo-nudge-320-5dc3385d3f6a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/todo-nudge-480-668f740c0720.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/todo-nudge-640-c92ed29eb66a.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/voice-add.webp": {
+    "sourceHash": "ae9a36d375fe",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/voice-add-48-8263b8e89503.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/voice-add-96-16385304a8b7.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/voice-add-160-b6caf743a90c.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/voice-add-240-463ac9129346.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/voice-add-320-260f9a207c6d.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/voice-add-480-c14cb190399b.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/voice-add-640-6d776e4a7183.webp"
       }
     ]
   },

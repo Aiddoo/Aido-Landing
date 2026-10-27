@@ -1,10 +1,13 @@
 import type { AppScreenshotKey } from "@/components/media/data/app-screenshots";
-import type { FeatureGuideSlug } from "@/features/feature-guides/data/feature-guides";
 import type { FoldableScreenKey } from "@/features/landing/data/foldable-screens";
 import type { ServiceFeatureId } from "@/features/services/data/service-features";
 import type { Locale } from "./config";
 
+/** 가이드 화면(data/feature-guides.ts의 screens)과 같은 순서의 대체 텍스트·설명 */
+type GuideScreenCopy = { alt: string; caption: string };
 type FeatureGuideContent = {
+  /** 제목 위 손글씨 한 줄 */
+  kicker: string;
   title: string;
   summary: string;
   cardDescription: string;
@@ -13,8 +16,16 @@ type FeatureGuideContent = {
   details: { title: string; body: string }[];
   plans: { free: string; premium: string };
   faq: { question: string; answer: string }[];
-  imageAlt: string;
-  imageCaption: string;
+  screens: GuideScreenCopy[];
+};
+/** 친구 초대 가이드는 요금제 대신 누가·언제·무엇을 받는지와 조건을 보여 준다. */
+export type FriendInviteGuideContent = Omit<FeatureGuideContent, "plans"> & {
+  rewards: {
+    items: { who: string; when: string; reward: string; condition: string }[];
+    limits: string[];
+    termsNote: string;
+    termsLink: string;
+  };
 };
 
 type FriendCard = {
@@ -62,22 +73,32 @@ export type MessageCatalog = {
     title: string;
     description: string;
     readGuide: string;
-    backToGuides: string;
+    breadcrumbLabel: string;
+    screenNote: string;
     stepsTitle: string;
     exampleTitle: string;
     plansTitle: string;
     freeLabel: string;
     premiumLabel: string;
     plansNote: string;
+    rewardsTitle: string;
+    rewardsLimitsTitle: string;
+    pawBoardLabel: string;
+    faqTitle: string;
     relatedTitle: string;
     relatedDescription: string;
     updatedLabel: string;
-    guides: Record<FeatureGuideSlug, FeatureGuideContent>;
+    guides: {
+      "shared-todo": FeatureGuideContent;
+      "recurring-todo": FeatureGuideContent;
+      "ai-todo": FeatureGuideContent;
+      "friend-invite": FriendInviteGuideContent;
+    };
   };
   services: {
+    kicker: string;
     title: string;
     description: string;
-    eyebrow: string;
     introduction: string;
     screenshotNote: string;
     premiumLabel: string;
@@ -141,7 +162,12 @@ export type MessageCatalog = {
   footer: {
     copyright: string;
     tagline: string;
-    contactBadge: string;
+    serviceTitle: string;
+    policyTitle: string;
+    linkHubTitle: string;
+    linkHubLabel: string;
+    downloadTitle: string;
+    businessLabel: string;
     companyLabel: string;
     companyValue: string;
     representativeLabel: string;
@@ -158,10 +184,10 @@ export type MessageCatalog = {
     privacyLabel: string;
     accountDeletionLabel: string;
     instagramLabel: string;
+    externalLinkLabel: string;
   };
   legal: {
     badge: string;
-    backHomeLabel: string;
     viewTermsLabel: string;
     viewPrivacyLabel: string;
     privacyTitle: string;
@@ -172,6 +198,7 @@ export type MessageCatalog = {
     accountDeletionDescription: string;
   };
   patchNotes: {
+    kicker: string;
     title: string;
     description: string;
     appUpdate: string;
@@ -181,13 +208,11 @@ export type MessageCatalog = {
     copySummary: string;
     summaryCopied: string;
     copySummaryFallback: string;
-    backHome: string;
     bugFixes: string;
     features: string;
     improvements: string;
     newRelease: string;
     latest: string;
-    badge: string;
     closingNote: string;
     archiveTitle: string;
     archiveDescription: string;
@@ -198,27 +223,27 @@ export type MessageCatalog = {
     initialNote: string;
   };
   languageSwitcher: {
-    label: string;
     ko: string;
     en: string;
     navLabel: string;
   };
   nav: {
     label: string;
-    features: string;
-    friends: string;
     guides: string;
+    invite: string;
     services: string;
-    faq: string;
     download: string;
     patchNotes: string;
     open: string;
     close: string;
+    menuTitle: string;
+    guidesTitle: string;
+    moreTitle: string;
   };
   accessibility: {
     skip: string;
     home: string;
-    footer: string;
+    breadcrumb: string;
   };
   hero: {
     newLabel: string;
@@ -283,10 +308,10 @@ export type MessageCatalog = {
 const catalogs: Record<Locale, MessageCatalog> = {
   ko: {
     services: {
+      kicker: "아이두 한 바퀴 둘러보기",
       title: "친구와 함께하는 하루를 둘러보세요",
       description:
         "친구와 할 일을 공유하고 콕으로 응원해요. 캘린더와 메모, AI 정리까지 아이두의 실제 iOS와 Android 화면으로 살펴보세요.",
-      eyebrow: "서비스 둘러보기",
       introduction:
         "친구의 할 일을 보고 응원을 보내요. 하나를 끝내면 고마운 마음도 전해 보세요. 각자의 계획을 함께 이어 가는 방법을 보여드릴게요.",
       screenshotNote:
@@ -457,19 +482,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
       title: "친구와 함께 시작하는 아이두",
       description:
         "친구를 연결하고 할 일을 공유해 보세요. 반복 일정과 AI 정리도 차근차근 알아봐요.",
-      readGuide: "사용법 알아보기",
-      backToGuides: "모든 사용법 보기",
+      readGuide: "가이드 보기",
+      breadcrumbLabel: "기능 가이드",
+      screenNote: "실제 앱 화면이에요",
       stepsTitle: "이렇게 시작해 보세요",
       exampleTitle: "내 하루에 이렇게 써 봐요",
       plansTitle: "무료로 시작하고, 필요할 때 더 넉넉하게",
       freeLabel: "무료",
       premiumLabel: "프리미엄",
       plansNote: "구독 가격과 상세 이용 조건은 앱에서 확인할 수 있어요.",
+      rewardsTitle: "누가, 언제 받나요",
+      rewardsLimitsTitle: "조건이 있어요",
+      pawBoardLabel: "발자국 모으기 판",
+      faqTitle: "자주 묻는 질문",
       relatedTitle: "다음으로 알아볼 기능",
       relatedDescription: "내 하루에 필요한 기능을 하나씩 더해 보세요.",
       updatedLabel: "내용 확인일",
       guides: {
         "ai-todo": {
+          kicker: "말 한마디면 정리 끝",
           title: "메모와 음성을 AI로 할 일로 정리하기",
           summary:
             "아이두는 떠오르는 생각을 메모로 남기고, AI로 여러 할 일과 체크리스트 항목으로 정리할 수 있는 투두 리스트 앱이에요. 문장을 입력하거나 말로 할 일을 만들 수도 있어요. 정리된 결과를 확인한 뒤 내 계획에 맞게 선택하고 수정해요.",
@@ -533,13 +564,21 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 "네. 할 일 추가 화면의 마이크 버튼을 눌러 날짜와 시간을 포함해 말할 수 있어요. 인식한 내용과 AI가 정리한 일정을 확인한 뒤 저장해 주세요.",
             },
           ],
-          imageAlt: "직접 입력과 음성 입력을 지원하는 아이두 할 일 추가 화면",
-          imageCaption:
-            "할 일 추가 화면에서 직접 입력하거나 마이크 버튼으로 말할 수 있어요.",
+          screens: [
+            {
+              alt: "‘말로 할 일을 추가해요’ 안내가 보이는 아이두 할 일 추가 화면",
+              caption: "마이크 버튼을 누르고 날짜와 시간을 함께 말해요.",
+            },
+            {
+              alt: "AI가 메모를 할 일 4개로 나눈 아이두 결과 화면",
+              caption: "AI가 나눈 할 일을 확인하고, 필요 없는 건 빼요.",
+            },
+          ],
           cardDescription:
             "메모를 여러 할 일로 나누거나 말로 입력해요. AI가 정리한 내용을 확인하고 내 계획에 더해요.",
         },
         "recurring-todo": {
+          kicker: "매일 조금씩, 꾸준히",
           title: "반복 일정과 위젯으로 하루 관리하기",
           summary:
             "매일 공부하기나 주중 운동처럼 다시 챙겨야 하는 일은 아이두의 반복 할 일로 등록해요. 주간·월간 캘린더에서 계획을 살펴보고, iPhone과 Android 홈 화면 위젯에서 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
@@ -582,7 +621,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "위젯이 이전 내용을 보여준다면",
-              body: "아이두 앱을 열어 로그인 상태와 오늘의 할 일을 확인해요. 앱에서 변경한 내용이 위젯에 반영되는지 살펴보고, 새로운 하루 안내가 보이면 앱을 다시 열어 확인해 주세요.",
+              body: "위젯은 자정이 지나면 앱을 열지 않아도 새 날짜로 바뀌어요. 갱신 시점은 기기 운영체제에 따라 조금 늦을 수 있어요. 지난 내용이 계속 보이면 아이두 앱을 열어 로그인 상태와 오늘의 할 일을 확인해 주세요.",
             },
           ],
           plans: {
@@ -607,12 +646,21 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 "네. 두 플랫폼의 홈 화면에서 사용할 수 있어요. 기기에서 아이두 앱에 로그인한 뒤 위젯을 추가해주세요.",
             },
           ],
-          imageAlt: "날짜별 할 일과 완료 상태가 표시된 아이두 주간 캘린더",
-          imageCaption: "주간 캘린더에서 날짜별 할 일과 완료 상태를 살펴봐요.",
+          screens: [
+            {
+              alt: "날짜·시간·반복을 고르는 아이두 할 일 추가 화면",
+              caption: "할 일을 추가하면서 날짜, 시간, 반복을 정해요.",
+            },
+            {
+              alt: "오늘 할 일과 달성률이 보이는 아이두 홈 화면 위젯",
+              caption: "홈 화면 위젯으로 오늘 할 일과 달성률을 확인해요.",
+            },
+          ],
           cardDescription:
             "반복할 요일을 정하고 캘린더에서 계획을 살펴봐요. 홈 화면 위젯에서도 오늘 할 일을 확인해요.",
         },
         "shared-todo": {
+          kicker: "같이 하면 끝까지 해요",
           title: "친구와 할 일을 나누고 응원하기",
           summary:
             "아이두에서는 친구가 공개한 할 일을 보고, 콕 찌르기와 댓글과 답글로 응원할 수 있어요. 각자의 투두 리스트를 관리하면서 필요한 일만 공유해요. 개인적인 할 일은 비공개로 설정하고, 혼자서 사용하는 것도 괜찮아요.",
@@ -676,10 +724,127 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 "물론이에요. 메모, 할 일, 반복 설정과 캘린더로 혼자 하루를 관리할 수 있어요. 함께하고 싶을 때 친구를 추가해 보세요.",
             },
           ],
-          imageAlt: "친구의 할 일에 콕 찌르기 메시지를 보내는 아이두 화면",
-          imageCaption: "친구가 공개한 할 일에 콕 찌르기로 응원을 보내요.",
+          screens: [
+            {
+              alt: "친구들의 고양이 프로필과 공개한 할 일이 보이는 아이두 친구 화면",
+              caption:
+                "친구를 누르면 공개한 할 일이 보이고, 콕으로 응원할 수 있어요.",
+            },
+            {
+              alt: "콕 횟수와 댓글 입력창이 있는 아이두 할 일 상세 화면",
+              caption: "할 일 상세에서 댓글과 답글로 이야기를 나눠요.",
+            },
+          ],
           cardDescription:
             "친구를 연결하고 공개한 할 일을 함께 봐요. 콕과 댓글로 응원을 보내는 방법을 알아봐요.",
+        },
+        "friend-invite": {
+          kicker: "링크 하나면 충분해요",
+          title: "친구 초대하고 프리미엄 받기",
+          summary:
+            "초대 링크나 6자리 초대 코드로 친구를 아이두에 불러요. 친구는 가입하면 바로 프리미엄 7일을 받고, 나는 친구가 2일 동안 할 일을 끝내면 프리미엄 7일을 받고 친구를 1명 더 추가할 수 있어요. 받는 사람과 시점, 조건을 정리했어요.",
+          steps: [
+            {
+              title: "친구 초대 화면을 열어요",
+              body: "마이 탭에서 ‘친구 초대 · 발자국’을 눌러요. 내 초대 링크와 6자리 초대 코드, 지금까지 모은 발자국이 보여요.",
+            },
+            {
+              title: "초대 링크를 보내요",
+              body: "카카오톡으로 초대하기를 누르거나 링크를 복사해 다른 앱으로 보내요. 친구가 링크를 열면 누가 초대했는지와 초대 코드를 확인하고 앱을 설치할 수 있어요.",
+            },
+            {
+              title: "친구가 가입하면 바로 친구가 돼요",
+              body: "친구가 초대 링크로 앱을 열거나 로그인 화면에 초대 코드를 입력해 가입하면, 서로 친구가 되고 친구는 바로 프리미엄 7일을 받아요.",
+            },
+            {
+              title: "친구가 2일 동안 할 일을 끝내면 발자국이 찍혀요",
+              body: "친구가 가입하고 14일 안에 2일 동안 할 일을 끝내면 내 발자국 판에 발자국이 하나 찍혀요. 그때 나는 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요.",
+            },
+          ],
+          example: {
+            introduction:
+              "같이 운동할 친구가 있다면, 초대 링크 하나로 시작해 보세요.",
+            items: [
+              "나: 카카오톡으로 초대 링크를 보내요.",
+              "친구: 링크로 가입하면 바로 나와 친구가 되고, 프리미엄 7일을 받아요.",
+              "친구가 월요일과 수요일에 할 일을 끝내면 내 판에 발자국이 찍혀요. 나는 프리미엄 7일을 받고 친구를 1명 더 추가할 수 있어요.",
+            ],
+            note: "사용 방법을 설명하기 위한 예시예요. 보상에는 조건이 있으니 아래 내용과 이용약관을 확인해 주세요.",
+          },
+          rewards: {
+            items: [
+              {
+                who: "친구",
+                when: "가입하면 바로",
+                reward: "프리미엄 7일",
+                condition: "가입한 지 7일 안에 초대를 수락하면 받아요.",
+              },
+              {
+                who: "나",
+                when: "친구가 2일 동안 할 일을 끝내면",
+                reward: "프리미엄 7일 + 친구 1명 더",
+                condition:
+                  "친구가 가입하고 14일 안에 채워야 해요. 하루에 여러 개를 끝내도 1일로 세요.",
+              },
+            ],
+            limits: [
+              "초대해서 내가 받는 프리미엄은 30일마다 최대 30일, 모두 합쳐 최대 90일까지예요.",
+              "최대치를 채운 뒤에도 발자국은 계속 모을 수 있고, 발자국이 찍힐 때마다 친구를 1명 더 추가할 수 있어요.",
+              "보상은 아이두 안에서만 쓰는 프리미엄이라 현금으로 바꿀 수 없어요. 같은 기기나 계정으로는 한 번만 받을 수 있어요.",
+              "구독 중에 받은 보상은 구독이 끝난 뒤 이어서 시작해요.",
+            ],
+            termsNote: "자세한 조건은 이용약관 제13조의2에 있어요.",
+            termsLink: "초대 보상 조건 보기",
+          },
+          details: [
+            {
+              title: "발자국 판에서 진행 상황을 봐요",
+              body: "‘발자국 모으기’ 판에 발자국이 한 칸씩 찍혀요. 12칸을 다 채우면 새 판이 열리고, 초대한 친구 목록에서 누가 발자국을 찍었는지 확인할 수 있어요.",
+            },
+            {
+              title: "기다리는 친구에게 콕을 보내요",
+              body: "아직 2일을 채우지 못한 친구에게는 콕을 보내 응원할 수 있어요. 친구가 할 일을 끝내면 앱 알림으로 알려 드려요.",
+            },
+          ],
+          faq: [
+            {
+              question: "링크 없이 코드로도 초대할 수 있나요?",
+              answer:
+                "네. 친구 초대 화면의 6자리 초대 코드를 알려 주세요. 친구가 앱을 설치하고 로그인 화면에서 초대 코드를 입력하면 돼요.",
+            },
+            {
+              question: "이미 아이두를 쓰는 친구도 프리미엄을 받나요?",
+              answer:
+                "가입한 지 7일이 지난 친구가 초대를 수락하면 친구로만 연결되고, 친구는 프리미엄을 받지 않아요.",
+            },
+            {
+              question: "친구 수가 다 찼는데 초대해도 되나요?",
+              answer:
+                "네. 내 친구 수가 추가 한도에 이르렀다면 초대를 수락한 친구에게 친구 요청이 가요. 발자국이 찍히면 친구를 1명 더 추가할 수 있어요.",
+            },
+            {
+              question: "보상 프리미엄이 끝나면 결제되나요?",
+              answer:
+                "아니에요. 보상 프리미엄은 결제가 없고 자동으로 갱신되지 않아요. 기간이 끝나면 무료로 돌아가요.",
+            },
+          ],
+          screens: [
+            {
+              alt: "초대 보상과 6자리 초대 코드가 보이는 아이두 친구 초대 화면",
+              caption: "친구 초대 화면에서 링크를 보내거나 코드를 알려 줘요.",
+            },
+            {
+              alt: "발자국 12칸이 모두 찍힌 아이두 발자국 모으기 판",
+              caption:
+                "친구가 2일 동안 할 일을 끝낼 때마다 발자국이 하나씩 찍혀요.",
+            },
+            {
+              alt: "초대한 사람 이름과 가입 혜택이 보이는 아이두 초대 카드",
+              caption: "친구는 초대 카드에서 혜택을 확인하고 바로 가입해요.",
+            },
+          ],
+          cardDescription:
+            "초대 링크로 친구를 불러요. 누가 언제 프리미엄을 받는지, 발자국 모으기까지 알아봐요.",
         },
       },
     },
@@ -703,20 +868,21 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     nav: {
       label: "주요 메뉴",
-      features: "앱 기능",
-      friends: "고양이 프로필",
-      guides: "사용법",
+      guides: "기능 가이드",
+      invite: "친구 초대",
       services: "서비스 둘러보기",
-      faq: "궁금한 점",
       download: "앱 다운로드",
       patchNotes: "패치노트",
       open: "메뉴 열기",
       close: "메뉴 닫기",
+      menuTitle: "메뉴",
+      guidesTitle: "기능 가이드",
+      moreTitle: "더 알아보기",
     },
     accessibility: {
       skip: "본문으로 바로 가기",
       home: "홈",
-      footer: "하단 메뉴",
+      breadcrumb: "현재 위치",
     },
     hero: {
       newLabel: "NEW",
@@ -1071,7 +1237,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
       tagline: "친구와 함께, 할 일을 해내요.",
-      contactBadge: "고객 문의",
+      serviceTitle: "서비스",
+      policyTitle: "정책·도움말",
+      linkHubTitle: "링크 모음",
+      linkHubLabel: "공식 링크 모음",
+      downloadTitle: "앱 받기",
+      businessLabel: "사업자 정보",
       companyLabel: "상호",
       companyValue: "레드밴드",
       representativeLabel: "대표",
@@ -1088,10 +1259,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
       privacyLabel: "개인정보처리방침",
       accountDeletionLabel: "계정 삭제",
       instagramLabel: "인스타그램",
+      externalLinkLabel: "새 창에서 열려요",
     },
     legal: {
-      badge: "Legal",
-      backHomeLabel: "홈으로 돌아가기",
+      badge: "약관·정책",
       viewTermsLabel: "이용약관 보기",
       viewPrivacyLabel: "개인정보처리방침 보기",
       privacyTitle: "개인정보처리방침",
@@ -1105,6 +1276,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "아이두 계정을 앱에서 삭제하는 방법과 앱 없이 이메일로 삭제를 요청하는 방법, 삭제·보관되는 정보를 안내합니다.",
     },
     patchNotes: {
+      kicker: "조금씩 자라는 아이두",
       title: "패치노트",
       description:
         "아이두가 조금씩 달라지고 있어요. 앱 업데이트와 따로 설치할 필요 없는 서비스 개선 소식을 모았어요.",
@@ -1116,7 +1288,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       summaryCopied: "요약을 복사했어요.",
       copySummaryFallback:
         "아래 문구를 선택해 직접 복사해 주세요. 줄바꿈도 함께 복사돼요.",
-      backHome: "홈으로",
       bugFixes: "고친 문제",
       features: "새로운 기능",
       improvements: "더 편해진 부분",
@@ -1131,11 +1302,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       collapse: "접기",
       initialNote:
         "아이두의 첫 번째 출시 기록이에요. 함께 시작해주셔서 고마워요.",
-      badge: "업데이트 기록",
       closingNote: "더 좋은 하루를 위해, 조금씩 다듬고 있어요. 🐾",
     },
     languageSwitcher: {
-      label: "언어",
       ko: "KO",
       en: "EN",
       navLabel: "언어 선택",
@@ -1143,10 +1312,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
   },
   en: {
     services: {
+      kicker: "A quick tour of Aido",
       title: "A day with friends and Aido",
       description:
         "Share to-dos with friends and cheer each other on. Explore nudges, calendars, notes and AI planning through real iOS and Android app screens.",
-      eyebrow: "Explore Aido",
       introduction:
         "See what your friends are working on and send some encouragement. When you finish a to-do, share your thanks. Here’s how to keep going together.",
       screenshotNote:
@@ -1338,7 +1507,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
       description:
         "Connect with friends and share your plans. Learn how recurring to-dos and AI planning can help, too.",
       readGuide: "Read the guide",
-      backToGuides: "All guides",
+      breadcrumbLabel: "Guides",
+      screenNote: "Real app screens",
       stepsTitle: "Start with these steps",
       exampleTitle: "Try it in your day",
       plansTitle: "Start free, with more room when you need it",
@@ -1346,11 +1516,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
       premiumLabel: "Premium",
       plansNote:
         "Check the app for current subscription prices and full terms.",
+      rewardsTitle: "Who gets what, and when",
+      rewardsLimitsTitle: "Good to know",
+      pawBoardLabel: "Paw print board",
+      faqTitle: "Questions",
       relatedTitle: "More ways to use Aido",
       relatedDescription: "Find the next feature that fits your day.",
       updatedLabel: "Content reviewed",
       guides: {
         "ai-todo": {
+          kicker: "Just say it",
           title: "Turn notes into to-dos with AI",
           summary:
             "Aido is a to-do list app that can turn a note into several to-dos and checklist items with AI. You can also type a sentence or speak to create a to-do. Review the results, select what you need and adjust the plan before you get started.",
@@ -1414,13 +1589,22 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 "Yes. Tap the microphone button on the Add to-do screen and include dates and times when speaking. Check the recognized text and the resulting schedule before saving.",
             },
           ],
-          imageAlt:
-            "Aido Add to-do screen with text input and a microphone button",
-          imageCaption: "Type a to-do or tap the microphone to speak.",
+          screens: [
+            {
+              alt: "Aido Add to-do screen with the “Add to-dos by voice” tip",
+              caption: "Tap the microphone and say the date and time, too.",
+            },
+            {
+              alt: "Aido screen where AI split a note into 4 to-dos",
+              caption:
+                "Review the to-dos AI suggests and remove what you don’t need.",
+            },
+          ],
           cardDescription:
             "Turn notes into to-dos or add them by voice. Review the AI results before adding them to your plans.",
         },
         "recurring-todo": {
+          kicker: "A little every day",
           title: "Plan recurring to-dos",
           summary:
             "Set up recurring to-dos in Aido for activities such as daily reading or weekday exercise. Review your plans in weekly and monthly calendars, and check today's to-dos and progress with home screen widgets on iPhone and Android.",
@@ -1463,7 +1647,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "If the widget shows older information",
-              body: "Open Aido and check your sign-in status and today's to-dos. Check whether changes appear in the widget. If it says a new day has started, open the app again to refresh your view.",
+              body: "Widgets switch to the new day after midnight without opening the app. Timing can vary a little by operating system. If older to-dos stay on screen, open Aido and check your sign-in status and today’s to-dos.",
             },
           ],
           plans: {
@@ -1488,13 +1672,21 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 "Yes. You can use them on both platforms' home screens. Sign in to Aido on your device before adding a widget.",
             },
           ],
-          imageAlt:
-            "Aido weekly calendar showing daily to-dos and completion progress",
-          imageCaption: "Review to-dos and progress in the weekly calendar.",
+          screens: [
+            {
+              alt: "Aido Add to-do screen with date, time and repeat options",
+              caption: "Set the date, time and repeat as you add a to-do.",
+            },
+            {
+              alt: "Aido home screen widgets showing today’s to-dos and progress",
+              caption: "See today’s to-dos and progress from your home screen.",
+            },
+          ],
           cardDescription:
             "Set repeat days and check your calendar. See today’s to-dos from your home screen, too.",
         },
         "shared-todo": {
+          kicker: "Finish more, together",
           title: "Share to-dos with friends",
           summary:
             "In Aido, you can see friends' public to-dos and encourage them with nudges, comments and replies. Manage your own to-do list and choose what to share. Keep personal to-dos private, and use the app on your own whenever you prefer.",
@@ -1559,11 +1751,130 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 "Yes. Manage your day on your own with notes, to-dos, repeat settings and calendars. Add a friend when you want company.",
             },
           ],
-          imageAlt:
-            "Aido screen for sending a nudge message about a friend's to-do",
-          imageCaption: "Encourage a friend with a nudge on a public to-do.",
+          screens: [
+            {
+              alt: "Aido friends screen with cat profiles and a friend’s public to-dos",
+              caption:
+                "Tap a friend to see their public to-dos and send a nudge.",
+            },
+            {
+              alt: "Aido to-do detail with nudge count and a comment field",
+              caption: "Talk it through with comments and replies on a to-do.",
+            },
+          ],
           cardDescription:
             "Connect with friends and share the to-dos you choose. Learn how to send nudges and leave comments.",
+        },
+        "friend-invite": {
+          kicker: "One link is all it takes",
+          title: "Invite friends and earn Premium",
+          summary:
+            "Invite friends to Aido with your invite link or 6-character invite code. Your friend gets 7 days of Premium right when they join. You get 7 days of Premium + 1 more friend once they complete to-dos on 2 days. Here is who gets what, when, and the conditions.",
+          steps: [
+            {
+              title: "Open the invite screen",
+              body: "On the Me tab, tap “Invites · paw prints.” You’ll see your invite link, your 6-character invite code and the paw prints you’ve collected.",
+            },
+            {
+              title: "Send your invite link",
+              body: "Tap Invite via KakaoTalk, or copy the link and share it in any app. When your friend opens it, they see who invited them and the invite code, then install the app.",
+            },
+            {
+              title: "Your friend joins and you’re connected",
+              body: "When your friend opens the app from the link, or enters the invite code on the sign-in screen, you become friends and they get 7 days of Premium right away.",
+            },
+            {
+              title: "A paw print for 2 days of to-dos",
+              body: "Once your friend completes to-dos on 2 days within 14 days of joining, a paw print lands on your board. You get 7 days of Premium and can add 1 more friend.",
+            },
+          ],
+          example: {
+            introduction:
+              "Have a friend you want to work out with? Start with one invite link.",
+            items: [
+              "You: send your invite link on KakaoTalk.",
+              "Your friend: joins from the link, becomes your friend right away and gets 7 days of Premium.",
+              "Your friend completes to-dos on Monday and Wednesday, and a paw print lands on your board. You get 7 days of Premium and can add 1 more friend.",
+            ],
+            note: "This is an example of how it works. Rewards have conditions, so check the details below and the Terms of Service.",
+          },
+          rewards: {
+            items: [
+              {
+                who: "Your friend",
+                when: "Right when they join",
+                reward: "7 days of Premium",
+                condition: "They need to accept within 7 days of signing up.",
+              },
+              {
+                who: "You",
+                when: "Once they complete to-dos on 2 days",
+                reward: "7 days of Premium + 1 more friend",
+                condition:
+                  "Within 14 days of their sign-up. Several to-dos on one day count as 1 day.",
+              },
+            ],
+            limits: [
+              "You can earn up to 30 days of Premium every 30 days from invites, and 90 days in total.",
+              "After that, you can keep collecting paw prints, and each one still lets you add 1 more friend.",
+              "Rewards are in-app Premium with no cash value, once per device and account.",
+              "Rewards earned while subscribed start after your subscription ends.",
+            ],
+            termsNote:
+              "See Article 13-2 of the Terms of Service for full conditions.",
+            termsLink: "View invite reward terms",
+          },
+          details: [
+            {
+              title: "Track progress on your paw print board",
+              body: "Each paw print fills one spot in “Collect paw prints.” When all 12 are filled, a new board opens, and your invited friends list shows who left a paw print.",
+            },
+            {
+              title: "Nudge friends who are on their way",
+              body: "Send a nudge to friends who haven’t reached 2 days yet. You’ll get a notification when a friend completes their to-dos.",
+            },
+          ],
+          faq: [
+            {
+              question: "Can I invite with a code instead of a link?",
+              answer:
+                "Yes. Share the 6-character invite code from the invite screen. Your friend installs the app and enters the code on the sign-in screen.",
+            },
+            {
+              question: "Do friends who already use Aido get Premium?",
+              answer:
+                "If a friend signed up more than 7 days ago, accepting your invite only connects you as friends. They don’t get Premium.",
+            },
+            {
+              question: "What if I’ve reached my friend limit?",
+              answer:
+                "You can still invite. If you’re at your limit, your friend gets a friend request when they accept. Each paw print lets you add 1 more friend.",
+            },
+            {
+              question: "Will I be charged when reward Premium ends?",
+              answer:
+                "No. Reward Premium involves no payment and doesn’t renew. When it ends, you’re back on the free plan.",
+            },
+          ],
+          screens: [
+            {
+              alt: "Aido invite screen with invite rewards and a 6-character invite code",
+              caption:
+                "Send your link or share your code from the invite screen.",
+            },
+            {
+              alt: "Aido “Collect paw prints” board with all 12 paw prints filled",
+              caption:
+                "A paw print lands each time a friend completes to-dos on 2 days.",
+            },
+            {
+              alt: "Aido invite card showing who sent the invite and the sign-up reward",
+              caption:
+                "Your friend sees the reward on the invite card and joins.",
+            },
+          ],
+          cardDescription:
+            "Invite friends with a link. See who gets Premium and when, and how paw prints work.",
         },
       },
     },
@@ -1586,20 +1897,21 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     nav: {
       label: "Main navigation",
-      features: "Features",
-      friends: "Cat Profiles",
       guides: "Guides",
+      invite: "Invite friends",
       services: "Explore Aido",
-      faq: "FAQ",
-      download: "Get the App",
-      patchNotes: "Updates",
+      download: "Get the app",
+      patchNotes: "Patch notes",
       open: "Open menu",
       close: "Close menu",
+      menuTitle: "Menu",
+      guidesTitle: "Guides",
+      moreTitle: "More",
     },
     accessibility: {
       skip: "Skip to content",
       home: "Home",
-      footer: "Footer navigation",
+      breadcrumb: "Breadcrumb",
     },
     hero: {
       newLabel: "NEW",
@@ -1956,7 +2268,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
     footer: {
       copyright: "© 2026 Aido. All rights reserved.",
       tagline: "Get things done with friends.",
-      contactBadge: "Contact",
+      serviceTitle: "Aido",
+      policyTitle: "Policies & help",
+      linkHubTitle: "Links",
+      linkHubLabel: "All official links",
+      downloadTitle: "Get the app",
+      businessLabel: "Business information",
       companyLabel: "Company",
       companyValue: "RedBand",
       representativeLabel: "Representative",
@@ -1973,10 +2290,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
       privacyLabel: "Privacy Policy",
       accountDeletionLabel: "Account deletion",
       instagramLabel: "Instagram",
+      externalLinkLabel: "Opens in a new tab",
     },
     legal: {
-      badge: "Legal",
-      backHomeLabel: "Back to home",
+      badge: "Policies",
       viewTermsLabel: "View Terms of Service",
       viewPrivacyLabel: "View Privacy Policy",
       privacyTitle: "Privacy Policy",
@@ -1990,6 +2307,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "How to delete your Aido account in the app or request deletion by email without the app, and what data is deleted or kept.",
     },
     patchNotes: {
+      kicker: "Growing a little every day",
       title: "Patch Notes",
       description:
         "Aido keeps getting a little better. Catch up on app updates and service improvements that need no new installation.",
@@ -2001,7 +2319,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       summaryCopied: "Summary copied.",
       copySummaryFallback:
         "Select the text below and copy it manually. Line breaks are included.",
-      backHome: "Home",
       bugFixes: "Fixes",
       features: "New features",
       improvements: "Improvements",
@@ -2016,11 +2333,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       collapse: "Show less",
       initialNote:
         "This is Aido's very first release. Thanks for taking the first step with us.",
-      badge: "Update journal",
       closingNote: "We keep making little improvements for better days. 🐾",
     },
     languageSwitcher: {
-      label: "Language",
       ko: "KO",
       en: "EN",
       navLabel: "Language selection",

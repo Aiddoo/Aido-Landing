@@ -14,6 +14,10 @@ import {
   getAppScreenshot,
   screenshotFiles,
 } from "../src/components/media/data/app-screenshots.ts";
+import {
+  getGuideScreen,
+  guideScreenFiles,
+} from "../src/features/feature-guides/data/guide-screens.ts";
 import { foldableScreens } from "../src/features/landing/data/foldable-screens.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 
@@ -22,12 +26,16 @@ const sources = [
   ...new Set([
     "/logo-small.webp",
     "/app-assets/cat-scottish-fold.webp",
+    "/app-assets/cat-hi.webp",
     ...getMessages("ko").friends.cards.map((card) => card.path),
     ...Object.values(foldableScreens),
     ...["ko", "en"].flatMap((locale) =>
       Object.keys(screenshotFiles).map(
         (key) => getAppScreenshot(locale, key).src,
       ),
+    ),
+    ...["ko", "en"].flatMap((locale) =>
+      guideScreenFiles.map((key) => getGuideScreen(locale, key).src),
     ),
   ]),
 ].sort();
@@ -43,7 +51,7 @@ for await (const filename of glob("public/app-assets/**/*")) {
 assert.deepEqual(
   appAssets.sort(),
   sources.filter((src) => src.startsWith("/app-assets/")),
-  "App assets must match the screenshot/friend catalogs; remove unused images.",
+  "App assets must match the screenshot/guide/friend catalogs; remove unused images.",
 );
 if (check) {
   const { responsiveImages } = await import(
