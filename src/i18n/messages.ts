@@ -1112,7 +1112,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             name: "iPhone\u00a0Duo·폴더블",
             description: "펼치면 목록과 상세가 두\u00a0칸으로 나란히 보여요.",
             requirement: "iOS\u00a016.4 · Android\u00a07.0\u00a0이상",
-            alt: "펼친 iPhone Duo에서 메모 목록과 메모 상세가 나란히 보이는 아이두 화면",
+            alt: "가로로 펼친 iPhone Duo에서 할 일 목록과 할 일 상세가 나란히 보이는 아이두 화면",
           },
           tablet: {
             name: "iPad·태블릿",
@@ -2170,7 +2170,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             name: "iPhone\u00a0Duo & foldables",
             description: "Unfold to see your list and details side by side.",
             requirement: "iOS\u00a016.4 · Android\u00a07.0\u00a0or\u00a0later",
-            alt: "Aido on an unfolded iPhone Duo with the memo list and memo details side by side",
+            alt: "Aido on an iPhone Duo unfolded sideways with the to-do list and to-do details side by side",
           },
           tablet: {
             name: "iPad & tablets",

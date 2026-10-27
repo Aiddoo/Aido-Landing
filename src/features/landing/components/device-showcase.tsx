@@ -8,7 +8,7 @@ import { getMessages } from "@/i18n/messages";
 import { cn } from "@/lib/utils";
 
 /**
- * Mac 앞에 iPad·Android 폰·iPhone·펼친 iPhone Duo를 세운 한 장면. 장면 비율을 먼저 정해
+ * Mac 앞에 iPad·Android 폰·iPhone·가로로 펼친 iPhone Duo를 세운 한 장면. 장면 비율을 먼저 정해
  * 이미지가 늦게 와도 자리가 바뀌지 않고, 기기 폭은 장면 폭에 비례한다.
  */
 export function DeviceShowcase({
@@ -50,17 +50,18 @@ export function DeviceShowcase({
           />
         </Box>
       </Box>
-      <Box className="absolute right-0 bottom-0 w-[34%] sm:right-[3%] sm:w-[27%] md:right-[5%] md:w-[23%]">
+      <Box className="absolute right-0 bottom-0 w-[47%] sm:right-[1%] sm:w-[39%] md:right-[2%] md:w-[36%]">
         <Box data-motion="float">
           <DeviceScreen
-            {...getDeviceShowcaseScreen(locale, "duo-memo")}
-            device="duo-unfolded"
+            locale={locale}
+            screen="duo-open"
+            tone="graphite"
             alt={items.foldable.alt}
-            sizes="(min-width: 1024px) 250px, (min-width: 768px) 23vw, 34vw"
+            sizes="(min-width: 1024px) 370px, (min-width: 768px) 36vw, 47vw"
           />
         </Box>
       </Box>
-      <Box className="absolute bottom-0 left-[27%] w-[19%] sm:left-[26%] sm:w-[14%] md:left-[27%] md:w-[11%]">
+      <Box className="absolute bottom-0 left-[25%] w-[17%] sm:left-[25%] sm:w-[13%] md:left-[27%] md:w-[11%]">
         <Box data-motion="float">
           <DeviceScreen
             device={android.device}
@@ -68,17 +69,17 @@ export function DeviceShowcase({
             width={android.width}
             height={android.height}
             alt={items.android.alt}
-            sizes="(min-width: 1024px) 120px, (min-width: 768px) 11vw, 19vw"
+            sizes="(min-width: 1024px) 120px, (min-width: 768px) 11vw, 17vw"
           />
         </Box>
       </Box>
-      <Box className="absolute right-[29%] bottom-0 w-[19%] sm:right-[27%] sm:w-[14%] md:right-[28%] md:w-[11%]">
+      <Box className="absolute right-[38%] bottom-0 w-[17%] sm:right-[33%] sm:w-[13%] md:right-[35%] md:w-[11%]">
         <Box data-motion="float">
           <DeviceScreen
             locale={locale}
             screen="widgets"
             alt={items.iphone.alt}
-            sizes="(min-width: 1024px) 120px, (min-width: 768px) 11vw, 19vw"
+            sizes="(min-width: 1024px) 120px, (min-width: 768px) 11vw, 17vw"
           />
         </Box>
       </Box>

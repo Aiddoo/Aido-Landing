@@ -325,58 +325,6 @@ export const responsiveImages = {
       }
     ]
   },
-  "/app-assets/devices/en/duo-memo.webp": {
-    "sourceHash": "9f73a6b97dce",
-    "width": 1280,
-    "height": 1820,
-    "variants": [
-      {
-        "width": 48,
-        "height": 68,
-        "src": "/responsive/duo-memo-48-63dfad9a3400.webp"
-      },
-      {
-        "width": 96,
-        "height": 136,
-        "src": "/responsive/duo-memo-96-bcce054aa819.webp"
-      },
-      {
-        "width": 160,
-        "height": 228,
-        "src": "/responsive/duo-memo-160-dd204638ea72.webp"
-      },
-      {
-        "width": 240,
-        "height": 341,
-        "src": "/responsive/duo-memo-240-7d69f675c1ec.webp"
-      },
-      {
-        "width": 320,
-        "height": 455,
-        "src": "/responsive/duo-memo-320-37e678a24110.webp"
-      },
-      {
-        "width": 480,
-        "height": 682,
-        "src": "/responsive/duo-memo-480-6b4e2c712c57.webp"
-      },
-      {
-        "width": 640,
-        "height": 910,
-        "src": "/responsive/duo-memo-640-8fa38675fdaf.webp"
-      },
-      {
-        "width": 960,
-        "height": 1365,
-        "src": "/responsive/duo-memo-960-e34a2064f380.webp"
-      },
-      {
-        "width": 1280,
-        "height": 1820,
-        "src": "/responsive/duo-memo-1280-3ab4a2399a4d.webp"
-      }
-    ]
-  },
   "/app-assets/devices/en/ipad-checklist.webp": {
     "sourceHash": "5eb7e15bf5e1",
     "width": 1000,
@@ -473,58 +421,6 @@ export const responsiveImages = {
         "width": 720,
         "height": 1426,
         "src": "/responsive/mac-friend-feed-720-0fce95a7d955.webp"
-      }
-    ]
-  },
-  "/app-assets/devices/ko/duo-memo.webp": {
-    "sourceHash": "a40a1c9fe89c",
-    "width": 1280,
-    "height": 1820,
-    "variants": [
-      {
-        "width": 48,
-        "height": 68,
-        "src": "/responsive/duo-memo-48-62f0c089074c.webp"
-      },
-      {
-        "width": 96,
-        "height": 136,
-        "src": "/responsive/duo-memo-96-b60333a2c78e.webp"
-      },
-      {
-        "width": 160,
-        "height": 228,
-        "src": "/responsive/duo-memo-160-2caf94815ed5.webp"
-      },
-      {
-        "width": 240,
-        "height": 341,
-        "src": "/responsive/duo-memo-240-03eee4a60b96.webp"
-      },
-      {
-        "width": 320,
-        "height": 455,
-        "src": "/responsive/duo-memo-320-90cf17b5f123.webp"
-      },
-      {
-        "width": 480,
-        "height": 682,
-        "src": "/responsive/duo-memo-480-b1b310125e41.webp"
-      },
-      {
-        "width": 640,
-        "height": 910,
-        "src": "/responsive/duo-memo-640-e13e336a1db8.webp"
-      },
-      {
-        "width": 960,
-        "height": 1365,
-        "src": "/responsive/duo-memo-960-8fd205ec7bd5.webp"
-      },
-      {
-        "width": 1280,
-        "height": 1820,
-        "src": "/responsive/duo-memo-1280-bad5f357aa5a.webp"
       }
     ]
   },
