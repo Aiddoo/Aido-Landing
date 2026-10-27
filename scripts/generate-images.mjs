@@ -107,6 +107,14 @@ if (check) {
   assert.equal(inviteShareMeta.format, "png");
   assert.equal(inviteShareMeta.width, 2 * inviteShareMeta.height, "2:1 feed");
   assert.ok(inviteShareMeta.width >= 800 && inviteShare.length <= 1024 * 1024);
+  // 홈 OG 이미지(pnpm images:og). 링크 미리보기 규격 1200×630을 지킨다.
+  for (const locale of ["ko", "en"]) {
+    const og = await readFile(`public/og-image-${locale}.png`);
+    const ogMeta = await sharp(og).metadata();
+    assert.equal(ogMeta.format, "png");
+    assert.deepEqual([ogMeta.width, ogMeta.height], [1200, 630]);
+    assert.ok(og.length <= 300 * 1024, `og-image-${locale}.png size`);
+  }
   console.log(`Checked static variants for ${sources.length} source images.`);
   process.exit(0);
 }

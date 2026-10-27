@@ -18,7 +18,8 @@
     "images:generate": "node scripts/generate-images.mjs",
     "images:check": "node scripts/generate-images.mjs --check",
     "images:invite-share": "node scripts/generate-invite-share-image.mjs",
-    "fonts:usage": "node scripts/collect-font-usage.mjs"
+    "fonts:usage": "node scripts/collect-font-usage.mjs",
+    "images:og": "node scripts/generate-og-images.mjs"
   },
   "packageManager": "pnpm@12.10.1",
   "dependencies": {

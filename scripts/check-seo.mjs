@@ -141,7 +141,7 @@ for (const locale of ["ko", "en"]) {
       );
     }
     assert.equal(value("og:url"), `${SITE_URL}${route}`);
-    assert.equal(value("og:image"), `${SITE_URL}/og-image.png`);
+    assert.equal(value("og:image"), `${SITE_URL}/og-image-${locale}.png`);
     for (const key of [
       "og:title",
       "og:description",
@@ -611,7 +611,7 @@ for (const locale of ["ko", "en"]) {
   assert.doesNotMatch(html, /rel="canonical"/, `${route}: no canonical`);
   // 한국어는 카카오톡 공유와 같은 초대 썸네일, 영어는 기본 OG 이미지를 쓴다.
   const inviteOgImage =
-    locale === "ko" ? "/images/invite-share.png" : "/og-image.png";
+    locale === "ko" ? "/images/invite-share.png" : "/og-image-en.png";
   for (const [attribute, key] of [
     ["property", "og:image"],
     ["name", "twitter:image"],
