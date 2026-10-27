@@ -1,6 +1,6 @@
 "use client";
 import { Menu } from "lucide-react";
-import { type ComponentType, useEffect, useId, useState } from "react";
+import { type ComponentType, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Box } from "@/components/ui/layout";
 import {
@@ -18,6 +18,7 @@ export function MobileMenu({ themeLabels, ...props }: MobileMenuProps) {
   const triggerId = useId();
   const [open, setOpen] = useState(false);
   const [failed, setFailed] = useState(false);
+  const navigated = useRef(false);
   const [SheetMenu, setSheetMenu] =
     useState<ComponentType<MobileMenuSheetProps> | null>(null);
   useEffect(() => {
@@ -45,8 +46,15 @@ export function MobileMenu({ themeLabels, ...props }: MobileMenuProps) {
             themeLabels={themeLabels}
             triggerId={triggerId}
             open={open}
-            onOpenChange={setOpen}
-            onNavigate={() => setOpen(false)}
+            onOpenChange={(next) => {
+              if (next) navigated.current = false;
+              setOpen(next);
+            }}
+            onNavigate={() => {
+              navigated.current = true;
+              setOpen(false);
+            }}
+            returnFocusToTrigger={() => !navigated.current}
           />
         ) : (
           <Button

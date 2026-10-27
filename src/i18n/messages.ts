@@ -305,6 +305,7 @@ export type MessageCatalog = {
     appStoreLabel: string;
     playStorePrefix: string;
     playStoreLabel: string;
+    newTabLabel: string;
   };
   invite: {
     metaTitle: string;
@@ -1163,6 +1164,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+      newTabLabel: "새 창에서 열려요",
     },
     invite: {
       metaTitle: "친구 초대",
@@ -2150,6 +2152,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       appStoreLabel: "App Store",
       playStorePrefix: "Get it on",
       playStoreLabel: "Google Play",
+      newTabLabel: "Opens in a new tab",
     },
     invite: {
       metaTitle: "Friend invite",

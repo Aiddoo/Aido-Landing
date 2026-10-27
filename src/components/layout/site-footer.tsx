@@ -15,7 +15,7 @@ import { AnalyticsSettingsButton } from "@/features/analytics/components/analyti
 import { getAnalyticsConfig } from "@/features/analytics/config/analytics-config.server";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
-import { localizedPath } from "@/lib/public-routes";
+import { localizedHomeAnchor, localizedPath } from "@/lib/public-routes";
 import { INSTAGRAM_URL, LINK_HUB_URL } from "@/lib/seo";
 
 const linkClass =
@@ -58,9 +58,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                 </Link>
               </li>
               <li>
-                <a href={`/${locale}#guides`} className={linkClass}>
+                <Link
+                  href={localizedHomeAnchor(locale, "guides")}
+                  className={linkClass}
+                >
                   {nav.guides}
-                </a>
+                </Link>
               </li>
               <li>
                 <Link

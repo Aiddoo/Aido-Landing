@@ -1,4 +1,4 @@
-import { Grid, ReadableContent } from "@/components/ui/layout";
+import { Box, Grid, ReadableContent } from "@/components/ui/layout";
 import { InviteGreetingCard } from "../components/invite-greeting-card";
 import { InviteHeader } from "../components/invite-header";
 import { InviteLead } from "../components/invite-lead";
@@ -19,7 +19,7 @@ export function InviteErrorPage({
   onRetry,
 }: InviteErrorPageProps) {
   return (
-    <>
+    <Box>
       <InviteHeader
         locale={locale}
         brandLabel={labels.brandLabel}
@@ -48,6 +48,6 @@ export function InviteErrorPage({
           </InviteReceipt>
         </Grid>
       </ReadableContent>
-    </>
+    </Box>
   );
 }

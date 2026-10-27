@@ -270,6 +270,14 @@
 
   html {
     scroll-behavior: smooth;
+    /* sticky 헤더 높이(h-16, md:h-18). 해시 도착 위치와 Next의 페이지 맨 위 이동 판단이 이 값을 쓴다. */
+    scroll-padding-top: 4rem;
+  }
+
+  @media (min-width: 48rem) {
+    html {
+      scroll-padding-top: 4.5rem;
+    }
   }
 
   body {
@@ -391,5 +399,11 @@
     animation: none !important;
     /* biome-ignore lint/complexity/noImportantStyles: Accessibility preference must override transition utilities. */
     transition: none !important;
+  }
+}
+
+@layer base {
+  [tabindex="-1"]:focus-visible {
+    outline: none;
   }
 }

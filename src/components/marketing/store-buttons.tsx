@@ -41,6 +41,8 @@ export function StoreButtons({
     >
       <a
         href={appStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         data-slot="store-button"
         className={storeButtonClass}
         {...analyticsAttributes({
@@ -60,9 +62,12 @@ export function StoreButtons({
           prefix={content.appStorePrefix}
           label={content.appStoreLabel}
         />
+        <NewTabNotice label={content.newTabLabel} />
       </a>
       <a
         href={playStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         data-slot="store-button"
         className={storeButtonClass}
         {...analyticsAttributes({
@@ -82,9 +87,14 @@ export function StoreButtons({
           prefix={content.playStorePrefix}
           label={content.playStoreLabel}
         />
+        <NewTabNotice label={content.newTabLabel} />
       </a>
     </Grid>
   );
+}
+
+function NewTabNotice({ label }: { label: string }) {
+  return <span className="sr-only">({label})</span>;
 }
 
 function StoreLabel({ prefix, label }: { prefix: string; label: string }) {

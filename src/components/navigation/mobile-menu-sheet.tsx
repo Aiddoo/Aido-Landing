@@ -25,6 +25,7 @@ export interface MobileMenuSheetProps
   extends MobileMenuLinksProps,
     Pick<ComponentProps<typeof Sheet>, "open" | "onOpenChange" | "triggerId"> {
   themeLabels: MessageCatalog["theme"];
+  returnFocusToTrigger: () => boolean;
 }
 
 export function MobileMenuSheet({
@@ -32,6 +33,7 @@ export function MobileMenuSheet({
   onOpenChange,
   triggerId,
   themeLabels,
+  returnFocusToTrigger,
   ...props
 }: MobileMenuSheetProps) {
   return (
@@ -47,6 +49,7 @@ export function MobileMenuSheet({
       <SheetContent
         side="right"
         showCloseButton={false}
+        finalFocus={returnFocusToTrigger}
         className="w-[min(22rem,88vw)] gap-2 overflow-y-auto bg-cream p-0"
       >
         <SheetHeader className="p-4 pb-2">

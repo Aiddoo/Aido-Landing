@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { BrandMotif } from "@/components/marketing/brand-motif";
-import { Grid, HStack, ReadableContent } from "@/components/ui/layout";
+import { Box, Grid, HStack, ReadableContent } from "@/components/ui/layout";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { localizedPath } from "@/lib/public-routes";
@@ -26,7 +26,7 @@ export function InvitePage({
 }) {
   const { invite, storeButtons, accessibility } = getMessages(locale);
   return (
-    <>
+    <Box>
       <InviteHeader
         locale={locale}
         brandLabel={invite.brandLabel}
@@ -90,6 +90,6 @@ export function InvitePage({
       </ReadableContent>
 
       <SiteFooter locale={locale} />
-    </>
+    </Box>
   );
 }

@@ -7,10 +7,14 @@ import { HStack, ReadableContent } from "@/components/ui/layout";
 import { featureGuides } from "@/features/feature-guides/data/feature-guides";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
-import { localizedPath, type PublicPath } from "@/lib/public-routes";
+import {
+  localizedHomeAnchor,
+  localizedPath,
+  type PublicPath,
+} from "@/lib/public-routes";
 
 const navLinkClass =
-  "inline-flex h-11 items-center rounded-full px-3.5 text-caption font-semibold text-gray-9 transition-colors hover:bg-brand-soft hover:text-brand-deep aria-[current=page]:bg-brand-soft aria-[current=page]:text-brand-deep";
+  "inline-flex h-11 items-center rounded-full px-3.5 whitespace-nowrap text-caption font-semibold text-gray-9 transition-colors hover:bg-brand-soft hover:text-brand-deep aria-[current=page]:bg-brand-soft aria-[current=page]:text-brand-deep";
 
 export function SiteHeader({
   locale,
@@ -57,9 +61,12 @@ export function SiteHeader({
             gap={1}
             className="hidden lg:flex"
           >
-            <a href={`/${locale}#guides`} className={navLinkClass}>
+            <Link
+              href={localizedHomeAnchor(locale, "guides")}
+              className={navLinkClass}
+            >
               {nav.guides}
-            </a>
+            </Link>
             <Link
               href={localizedPath(locale, "/features/friend-invite")}
               aria-current={current("/features/friend-invite")}
@@ -97,16 +104,17 @@ export function SiteHeader({
               labels={messages.theme}
               className="hidden lg:inline-flex"
             />
-            <a
-              href={`/${locale}#download`}
+            <Link
+              href={localizedHomeAnchor(locale, "download")}
               className="hidden h-11 items-center rounded-full bg-primary px-5 text-caption font-semibold text-primary-foreground shadow-press-brand transition-transform hover:-translate-y-px active:translate-y-0.5 active:shadow-none sm:inline-flex"
             >
               {nav.download}
-            </a>
+            </Link>
             <MobileMenu
               locale={locale}
               labels={nav}
               guides={guides}
+              path={path}
               themeLabels={messages.theme}
             />
           </HStack>
