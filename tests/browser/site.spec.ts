@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { blockAnalyticsVendors } from "./block-analytics-vendors";
 
 // These tests deliberately keep analytics rejected and never contact marketing services.
 test.beforeEach(async ({ page }) => {
+  await blockAnalyticsVendors(page);
   await page.addInitScript(() =>
     localStorage.setItem(
       "aido.analytics-consent.v1",
@@ -397,7 +399,7 @@ test("a malformed invite link renders the invalid state on the server without hy
     /초대 링크를 확인해 주세요|Please check your invite link/,
   );
   const playLink = page.locator(
-    'a[data-placement="invite"][data-store="google_play"]',
+    'a[data-analytics*="google_play"][data-analytics*=\'"cta_placement":"invite"\']',
   );
   await expect(playLink).toHaveAttribute("href", /listing=invite/);
   await expect(playLink).not.toHaveAttribute("href", /referrer=/);

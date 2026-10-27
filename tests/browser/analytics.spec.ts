@@ -152,10 +152,15 @@ test("keeps storage denied after decline and lets the footer reopen the choice",
 });
 
 for (const preference of ["dnt", "gpc"] as const) {
-  test(`${preference} keeps storage denied and hides the card`, async ({
+  test(`${preference} loads no Google tag, keeps cookieless Vercel counting and hides the card`, async ({
     page,
   }) => {
     await mockVendors(page);
+    const googleRequests: string[] = [];
+    page.on("request", (request) => {
+      if (request.url().startsWith("https://www.googletagmanager.com/"))
+        googleRequests.push(request.url());
+    });
     await storeConsent(page, "accepted");
     await page.addInitScript((preference) => {
       Object.defineProperty(
@@ -165,10 +170,10 @@ for (const preference of ["dnt", "gpc"] as const) {
       );
     }, preference);
     await page.goto("/ko");
-    await expect
-      .poll(async () => (await gaEvents(page, "page_view")).length)
-      .toBe(1);
-    expect(await consentCommands(page)).toHaveLength(1);
+    await expect.poll(async () => (await vercelEvents(page)).length).toBe(1);
+    await page.waitForLoadState("networkidle");
+    expect(googleRequests).toEqual([]);
+    expect(await gaCommands(page)).toEqual([]);
     await expect(
       page.getByRole("region", { name: "방문 통계 쿠키" }),
     ).toHaveCount(0);
@@ -179,17 +184,22 @@ for (const preference of ["dnt", "gpc"] as const) {
   });
 }
 
-test("drops invite codes from every provider", async ({ page }) => {
-  await mockVendors(page);
-  await storeConsent(page, "rejected");
-  await page.goto("/i/BCD234");
-  await expect
-    .poll(async () => (await gaEvents(page, "page_view")).length)
-    .toBe(1);
-  await expect.poll(async () => (await vercelEvents(page)).length).toBe(1);
-  expect(JSON.stringify(await gaCommands(page))).not.toContain("BCD234");
-  expect(JSON.stringify(await vercelEvents(page))).not.toContain("BCD234");
-  expect((await vercelEvents(page))[0]?.url).toBe("https://aido.kr/ko/invite");
+test.describe("invite links", () => {
+  test.use({ locale: "ko-KR" });
+  test("drops invite codes from every provider", async ({ page }) => {
+    await mockVendors(page);
+    await storeConsent(page, "rejected");
+    await page.goto("/i/BCD234");
+    await expect
+      .poll(async () => (await gaEvents(page, "page_view")).length)
+      .toBe(1);
+    await expect.poll(async () => (await vercelEvents(page)).length).toBe(1);
+    expect(JSON.stringify(await gaCommands(page))).not.toContain("BCD234");
+    expect(JSON.stringify(await vercelEvents(page))).not.toContain("BCD234");
+    expect((await vercelEvents(page))[0]?.url).toBe(
+      "https://aido.kr/ko/invite",
+    );
+  });
 });
 
 test("sends one page view per navigation and typed clicks to both providers", async ({

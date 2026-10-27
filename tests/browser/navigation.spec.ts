@@ -1,6 +1,8 @@
 import { expect, type Page, test } from "@playwright/test";
+import { blockAnalyticsVendors } from "./block-analytics-vendors";
 
 test.beforeEach(async ({ page }) => {
+  await blockAnalyticsVendors(page);
   await page.addInitScript(() =>
     localStorage.setItem(
       "aido.analytics-consent.v1",
