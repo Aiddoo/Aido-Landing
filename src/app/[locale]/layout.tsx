@@ -5,6 +5,7 @@ import {
   koreanDisplayFont,
 } from "@/components/fonts/font-assets";
 import { FontPreload } from "@/components/fonts/font-preload";
+import { BrandMotifSprite } from "@/components/marketing/brand-motif";
 import { StructuredData } from "@/components/seo/structured-data";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { AnalyticsProvider } from "@/features/analytics/components/analytics-provider";
@@ -103,6 +104,7 @@ export default async function LocaleLayout({
         <FontPreload
           href={locale === "ko" ? koreanDisplayFont : englishDisplayFont}
         />
+        <BrandMotifSprite />
         <StructuredData data={organizationJsonLd} />
         <StructuredData data={websiteJsonLd} />
         <ThemeProvider
