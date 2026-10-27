@@ -7,7 +7,7 @@ updates:
       day: monday
       time: "09:00"
       timezone: Asia/Seoul
-    labels: [dependencies, maintenance]
+    labels: ["type: deps", "area: ci"]
     commit-message:
       prefix: "chore(deps)"
     groups:
@@ -23,7 +23,7 @@ updates:
       time: "09:00"
       timezone: Asia/Seoul
     open-pull-requests-limit: 5
-    labels: [dependencies]
+    labels: ["type: deps"]
     commit-message:
       prefix: "chore(deps)"
     groups:
