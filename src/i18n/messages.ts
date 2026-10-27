@@ -1,3 +1,4 @@
+import type { ProfileCatId } from "@/features/landing/data/home-cats";
 import type { SupportedDeviceId } from "@/features/landing/data/supported-devices";
 import type { ServiceFeatureId } from "@/features/services/data/service-features";
 import type { Locale } from "./config";
@@ -25,6 +26,20 @@ export type FriendInviteGuideContent = Omit<FeatureGuideContent, "plans"> & {
     termsNote: string;
     termsLink: string;
   };
+};
+
+/** 홈 고양이 고르기. 이름은 앱 app-icon.json의 icons와 같다. */
+export type CatPickerContent = {
+  groupLabel: string;
+  hint: string;
+  profileLabel: string;
+  friendsLabel: string;
+  meLabel: string;
+  friendNames: readonly [string, string];
+  appIconLabel: string;
+  appName: string;
+  premiumBadge: string;
+  names: Record<ProfileCatId, string>;
 };
 
 type PremiumBenefitId =
@@ -90,6 +105,13 @@ type HomeCatalog = {
     boardAlt: string;
     fullBoardAlt: string;
     guideLink: string;
+  };
+  cats: {
+    kicker: string;
+    title: string;
+    description: string;
+    premiumNote: string;
+    picker: CatPickerContent;
   };
   largeScreen: {
     badge: string;
@@ -1017,6 +1039,36 @@ const catalogs: Record<Locale, MessageCatalog> = {
         fullBoardAlt:
           "12칸이 모두 찍혀 1번째 판을 다 채운 아이두 발자국 판 화면",
         guideLink: "친구 초대 자세히 보기",
+      },
+      cats: {
+        kicker: "오늘은 어떤 고양이로 할까요?",
+        title: "귀여운 고양이 9마리와 함께해요",
+        description:
+          "누구나 마음에 드는 고양이를 골라 내\u00a0프로필로 쓸 수 있어요. 친구들에게도 그\u00a0고양이로 보여요.",
+        premiumNote:
+          "프리미엄이면 홈\u00a0화면의 앱\u00a0아이콘도 고양이로 바꿀 수 있어요.",
+        picker: {
+          groupLabel: "프로필 고양이 고르기",
+          hint: "하나 골라 볼까요?",
+          profileLabel: "내 프로필",
+          friendsLabel: "친구 목록",
+          meLabel: "나",
+          friendNames: ["두부", "치즈"],
+          appIconLabel: "앱 아이콘",
+          appName: "아이두",
+          premiumBadge: "프리미엄",
+          names: {
+            default: "기본",
+            scottishFold: "스코티시폴드",
+            orangeTabby: "치즈 태비",
+            blackCat: "검은 고양이",
+            whiteCat: "하얀 고양이",
+            siamese: "샴",
+            russianBlue: "러시안 블루",
+            creamCat: "크림 고양이",
+            tuxedoCat: "턱시도 고양이",
+          },
+        },
       },
       largeScreen: {
         badge: "큰 화면",
@@ -2043,6 +2095,36 @@ const catalogs: Record<Locale, MessageCatalog> = {
         fullBoardAlt:
           "Aido paw print board with all 12 cells filled, completing board 1",
         guideLink: "How friend invites work",
+      },
+      cats: {
+        kicker: "Which cat are you today?",
+        title: "Nine cute cats to keep you company",
+        description:
+          "Anyone can pick a cat for their profile. Your friends will see you as that\u00a0cat, too.",
+        premiumNote:
+          "With Premium, your home screen app\u00a0icon can be a\u00a0cat, too.",
+        picker: {
+          groupLabel: "Pick your profile cat",
+          hint: "Go on, pick one!",
+          profileLabel: "My profile",
+          friendsLabel: "Friend list",
+          meLabel: "Me",
+          friendNames: ["Dubu", "Cheese"],
+          appIconLabel: "App icon",
+          appName: "Aido",
+          premiumBadge: "Premium",
+          names: {
+            default: "Default",
+            scottishFold: "Scottish Fold",
+            orangeTabby: "Orange Tabby",
+            blackCat: "Black Cat",
+            whiteCat: "White Cat",
+            siamese: "Siamese",
+            russianBlue: "Russian Blue",
+            creamCat: "Cream Cat",
+            tuxedoCat: "Tuxedo Cat",
+          },
+        },
       },
       largeScreen: {
         badge: "Big screens",

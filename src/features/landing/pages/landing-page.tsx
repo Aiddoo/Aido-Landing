@@ -1,3 +1,4 @@
+import { Crown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
@@ -21,6 +22,7 @@ import {
 } from "@/components/ui/layout";
 import { FeatureGuideList } from "@/features/feature-guides/components/feature-guide-list";
 import { AiTodoExample } from "@/features/landing/components/ai-todo-example";
+import { CatPicker } from "@/features/landing/components/cat-picker";
 import { DeviceShowcase } from "@/features/landing/components/device-showcase";
 import { DoneSticker } from "@/features/landing/components/done-sticker";
 import { DuoUnfold } from "@/features/landing/components/duo-unfold";
@@ -338,6 +340,33 @@ export function LandingPage({ locale }: { locale: Locale }) {
               </Link>
             </Centered>
           </VStack>
+        </ReadableContent>
+
+        <ReadableContent
+          render={<section id="cats" aria-labelledby="cats-title" />}
+          data-motion-group
+          className="py-section"
+        >
+          <VStack align="center" gap={5} className="text-center">
+            <SectionKicker className="-mb-2">{home.cats.kicker}</SectionKicker>
+            <h2 id="cats-title" data-motion="title" className="text-display-lg">
+              {home.cats.title}
+            </h2>
+            <p className="max-w-[34em] text-body-lg text-balance text-gray-9 [&:lang(en)]:max-w-[40ch]">
+              {home.cats.description}
+            </p>
+          </VStack>
+          <CatPicker
+            content={home.cats.picker}
+            className="mx-auto mt-12 max-w-[60rem]"
+          />
+          <p className="mx-auto mt-6 max-w-[34em] text-center text-caption text-balance text-muted-foreground">
+            <Crown
+              aria-hidden="true"
+              className="mr-1.5 inline-block size-4 -translate-y-px align-middle text-brand-deep"
+            />
+            {home.cats.premiumNote}
+          </p>
         </ReadableContent>
 
         <ReadableContent

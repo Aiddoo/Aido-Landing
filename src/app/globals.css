@@ -243,6 +243,17 @@
 
   --animate-accordion-down: accordion-down 220ms var(--ease-out-soft);
   --animate-accordion-up: accordion-up 180ms var(--ease-out-soft);
+  --animate-cat-pop: cat-pop 420ms var(--ease-spring);
+
+  /* 고른 고양이가 통통 튀어 들어온다. translate·rotate 속성과 겹치지 않게 scale만 쓴다. */
+  @keyframes cat-pop {
+    from {
+      scale: 0.82;
+    }
+    to {
+      scale: 1;
+    }
+  }
 
   @keyframes accordion-down {
     from {

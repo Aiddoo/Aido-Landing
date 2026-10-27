@@ -229,35 +229,35 @@ export const responsiveImages = {
       }
     ]
   },
-  "/app-assets/cat-shyam.webp": {
-    "sourceHash": "3c182ccfbb69",
+  "/app-assets/cat-siamese.webp": {
+    "sourceHash": "2ca0aca2b95a",
     "width": 320,
     "height": 320,
     "variants": [
       {
         "width": 48,
         "height": 48,
-        "src": "/responsive/cat-shyam-48-7ea143a40da1.webp"
+        "src": "/responsive/cat-siamese-48-b09aa3acf66f.webp"
       },
       {
         "width": 96,
         "height": 96,
-        "src": "/responsive/cat-shyam-96-af6c1e9bcd63.webp"
+        "src": "/responsive/cat-siamese-96-e38ffcb4c89c.webp"
       },
       {
         "width": 160,
         "height": 160,
-        "src": "/responsive/cat-shyam-160-5232ffbcc064.webp"
+        "src": "/responsive/cat-siamese-160-2b07c448ad20.webp"
       },
       {
         "width": 240,
         "height": 240,
-        "src": "/responsive/cat-shyam-240-217167aa5444.webp"
+        "src": "/responsive/cat-siamese-240-c9046c91e7ea.webp"
       },
       {
         "width": 320,
         "height": 320,
-        "src": "/responsive/cat-shyam-320-26a7a84c7633.webp"
+        "src": "/responsive/cat-siamese-320-c3d9944d6ae2.webp"
       }
     ]
   },
@@ -290,6 +290,38 @@ export const responsiveImages = {
         "width": 320,
         "height": 320,
         "src": "/responsive/cat-tuxedo-320-f4326e47128e.webp"
+      }
+    ]
+  },
+  "/app-assets/cat-white.webp": {
+    "sourceHash": "959c698acab7",
+    "width": 320,
+    "height": 320,
+    "variants": [
+      {
+        "width": 48,
+        "height": 48,
+        "src": "/responsive/cat-white-48-4d10c166438e.webp"
+      },
+      {
+        "width": 96,
+        "height": 96,
+        "src": "/responsive/cat-white-96-45a498aa8f3a.webp"
+      },
+      {
+        "width": 160,
+        "height": 160,
+        "src": "/responsive/cat-white-160-02452118b37f.webp"
+      },
+      {
+        "width": 240,
+        "height": 240,
+        "src": "/responsive/cat-white-240-7c2aeee058f6.webp"
+      },
+      {
+        "width": 320,
+        "height": 320,
+        "src": "/responsive/cat-white-320-35bea22ae431.webp"
       }
     ]
   },
