@@ -1,0 +1,91 @@
+import { cva } from "class-variance-authority";
+import Image from "next/image";
+import type { ComponentProps, ReactNode } from "react";
+import { match } from "ts-pattern";
+import {
+  getHomeScreen,
+  type HomeScreenDevice,
+  type HomeScreenKey,
+} from "@/components/media/data/home-screens";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Box } from "@/components/ui/layout";
+import type { Locale } from "@/i18n/config";
+import { cn } from "@/lib/utils";
+
+// 테두리·둥글기는 기기 폭(cqw)에 비례해야 어떤 크기에서도 같은 기기로 보인다.
+const bezelVariants = cva(
+  "relative before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:ring-1 before:ring-white/15 before:ring-inset",
+  {
+    variants: {
+      device: {
+        iphone: "rounded-[15.5cqw] p-[3.2cqw]",
+        // 접은 iPhone Duo: 왼쪽은 경첩이라 각지고 오른쪽만 둥글다.
+        "duo-folded":
+          "rounded-l-[1.6cqw] rounded-r-[14.5cqw] border-l-[3.4cqw] border-l-gray-8 p-[2.6cqw] pl-[1.8cqw]",
+        // 펼친 iPhone Duo: 네 모서리가 둥근 거의 정사각형 세로 화면, 접힘선은 그리지 않는다.
+        "duo-unfolded": "rounded-[11cqw] p-[1.9cqw]",
+        ipad: "rounded-[6cqw] p-[2.8cqw]",
+      },
+      // 어두운 바탕에서는 잉크 테두리가 묻혀 한 단계 밝은 회색을 쓴다.
+      tone: {
+        ink: "bg-ink",
+        graphite: "bg-gray-9",
+      },
+    },
+    defaultVariants: { tone: "ink" },
+  },
+);
+
+const screenRadius = {
+  iphone: "rounded-[12.3cqw]",
+  "duo-folded": "rounded-l-[0.6cqw] rounded-r-[12cqw]",
+  "duo-unfolded": "rounded-[9.3cqw]",
+  ipad: "rounded-[3.2cqw]",
+} as const satisfies Record<HomeScreenDevice, string>;
+
+type DeviceScreenProps = Omit<
+  ComponentProps<typeof Image>,
+  "src" | "width" | "height" | "fill" | "overrideSrc" | "className"
+> & {
+  locale: Locale;
+  screen: HomeScreenKey;
+  /** 기기 바깥 틀의 className */
+  className?: string;
+  tone?: "ink" | "graphite";
+  /** 화면 위에 겹쳐 그릴 장식(빛 반사 등) */
+  overlay?: ReactNode;
+};
+
+/** 실제 앱 화면을 CSS로 그린 기기 틀(iPhone·iPhone Duo·iPad)에 넣는다. */
+export function DeviceScreen({
+  locale,
+  screen,
+  className,
+  tone = "ink",
+  overlay,
+  ...imageProps
+}: DeviceScreenProps) {
+  const { src, device, width, height } = getHomeScreen(locale, screen);
+  return (
+    <Box data-device={device} className={cn("@container", className)}>
+      <Box className={cn(bezelVariants({ device, tone }), "shadow-lift")}>
+        <AspectRatio
+          ratio={width / height}
+          className={cn("overflow-hidden bg-paper", screenRadius[device])}
+        >
+          <Image src={src} fill className="object-cover" {...imageProps} />
+          {overlay}
+        </AspectRatio>
+        {match(device)
+          .with("iphone", () => (
+            <Box
+              aria-hidden="true"
+              className="absolute top-[5.4cqw] left-1/2 h-[7.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-ink"
+            />
+          ))
+          .with("duo-folded", "duo-unfolded", "ipad", () => null)
+          .exhaustive()}
+      </Box>
+    </Box>
+  );
+}
