@@ -207,7 +207,9 @@ test("뒤로 가면 스크롤한 이전 위치로 바로 돌아와요", async ({
     .locator("a[href*='/features/']")
     .filter({ visible: true })
     .first();
-  await link.evaluate((element) => element.click());
+  await link.evaluate((element) => {
+    if (element instanceof HTMLElement) element.click();
+  });
   await expect(page).toHaveURL(/\/ko\/features\//);
   await page.goBack();
   await expect(page).toHaveURL(/\/ko$/);
