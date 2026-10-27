@@ -37,7 +37,7 @@ src/
     layout/             # MarketingLayout, SiteHeader, SiteFooter, PageHeader(하위 페이지 머리)
     navigation/         # 언어 전환·모바일 메뉴(Sheet)·PageBreadcrumb
     theme/              # next-themes ThemeProvider·ThemeToggle
-    marketing/          # BrandLogo·StoreButtons·DownloadCard·FaqList(details)·BrandMotif
+    marketing/          # BrandLogo·StoreButtons·DownloadCard·FaqList(details)·BrandMotif·PawPrintTrail
     media/              # DeviceScreen(CSS 기기 틀+AspectRatio+fill)·AppScreenshot·정적 loader/data
     motion/             # 지연 로드 GSAP 경계/정리
     seo/                # schema-dts JSON-LD·Breadcrumb
@@ -80,7 +80,7 @@ UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest 
 | `ListRow` | `left`·`contents`·`right` 슬롯 행, 목록에서는 `render={<li />}` |
 | `ReadableContent` | 넓은 화면에서 최대 폭(`page`·`narrow`·`reading`)과 화면 여백 |
 
-`useRender` 훅(useRef)은 Server Component에서 쓸 수 없어, 배치만 하는 이 컴포넌트들은 같은 규칙의 훅 없는 `renderLayoutElement`로 렌더합니다. 그래서 Server Component이고 클라이언트 JavaScript를 늘리지 않습니다. 상태·이벤트가 있는 클라이언트 컴포넌트를 직접 만들 때만 `useRender`를 씁니다. `render`에는 함수가 아닌 요소를 넘깁니다. 장식 모티프는 `BrandMotif`(발자국·생선은 앱 아이콘과 같은 경로, 생선 뼈·뼈다귀, aria-hidden, `currentColor`)를 씁니다. 경로는 로케일 레이아웃의 `BrandMotifSprite`에 한 번만 싣고 각 모티프는 `<use>`로 가리킵니다. 이미지는 `AspectRatio` 안에 `next/image`의 `fill`+`sizes`로 넣어 이미지가 오기 전에도 자리를 차지하게 합니다(CLS 0).
+`useRender` 훅(useRef)은 Server Component에서 쓸 수 없어, 배치만 하는 이 컴포넌트들은 같은 규칙의 훅 없는 `renderLayoutElement`로 렌더합니다. 그래서 Server Component이고 클라이언트 JavaScript를 늘리지 않습니다. 상태·이벤트가 있는 클라이언트 컴포넌트를 직접 만들 때만 `useRender`를 씁니다. `render`에는 함수가 아닌 요소를 넘깁니다. 장식 모티프는 `BrandMotif`(발자국·생선은 앱 아이콘과 같은 경로, 생선 뼈·뼈다귀, aria-hidden, `currentColor`)를 씁니다. 경로는 로케일 레이아웃의 `BrandMotifSprite`에 한 번만 싣고 각 모티프는 `<use>`로 가리킵니다. 넓은 여백의 장식은 `motif` 색 토큰(라이트 옅은 주황, 다크 저대비 갈색)으로 칠하고, 걸어간 흔적은 `PawPrintTrail`, 놓는 자리는 섹션의 aria-hidden absolute 층(lg 미만에서 숨김)이 정합니다. 리드 문장은 `SentenceFlow`로 문장마다 묶고, 짧은 마지막 낱말·'할 일'·숫자+단위·브랜드 이름은 문구에서 `\u00a0`로 묶습니다(스토어에 복사하는 패치노트 요약·스토어 문안은 화면에서만 `keepPhrasesTogether`). 이미지는 `AspectRatio` 안에 `next/image`의 `fill`+`sizes`로 넣어 이미지가 오기 전에도 자리를 차지하게 합니다(CLS 0).
 
 ### 컴포넌트 규칙
 
