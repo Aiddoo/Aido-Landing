@@ -87,8 +87,12 @@ export function LandingPage({ locale }: { locale: Locale }) {
               data-hero="title"
               className="w-full text-display-xl max-md:[&:lang(en)]:min-h-[3.36em]"
             >
-              <span className="block">{home.hero.titleLead}</span>
-              <span className="block">{home.hero.titleTail}</span>
+              <span className="block sm:text-nowrap">
+                {home.hero.titleLead}
+              </span>
+              <span className="block sm:text-nowrap">
+                {home.hero.titleTail}
+              </span>
             </h1>
             <p
               data-hero="description"
