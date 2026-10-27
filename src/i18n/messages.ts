@@ -208,7 +208,6 @@ export type MessageCatalog = {
     policyTitle: string;
     linkHubTitle: string;
     linkHubLabel: string;
-    downloadTitle: string;
     businessLabel: string;
     companyLabel: string;
     companyValue: string;
@@ -1231,7 +1230,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       policyTitle: "정책·도움말",
       linkHubTitle: "링크 모음",
       linkHubLabel: "공식 링크 모음",
-      downloadTitle: "앱 받기",
       businessLabel: "사업자 정보",
       companyLabel: "상호",
       companyValue: "레드밴드",
@@ -2220,7 +2218,6 @@ const catalogs: Record<Locale, MessageCatalog> = {
       policyTitle: "Policies & help",
       linkHubTitle: "Links",
       linkHubLabel: "All official links",
-      downloadTitle: "Get the app",
       businessLabel: "Business information",
       companyLabel: "Company",
       companyValue: "RedBand",

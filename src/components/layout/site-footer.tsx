@@ -140,12 +140,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             </FooterColumn>
           </Grid>
         </Stack>
-        <VStack gap={3}>
-          <p className="text-caption font-semibold text-ink">
-            {footer.downloadTitle}
-          </p>
-          <StoreButtons content={messages.storeButtons} placement="download" />
-        </VStack>
+        <StoreButtons content={messages.storeButtons} placement="download" />
         <VStack
           gap={3}
           className="border-t pt-8 text-micro text-muted-foreground"
