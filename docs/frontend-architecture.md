@@ -8,7 +8,7 @@
 | 폴더 | 평평한 `components`, 중앙 `data` | 기능별 `pages/components/data/hooks/styles`, 실제 재사용 UI는 `components/*` |
 | 법적 문서 | 중복 화면, 자체 정규식 Markdown 파서, 번역 누락 시 한국어 대체 | 공통 LegalPage, 서버 react-markdown/GFM, 명시적인 한영 파일 쌍 |
 | 분석 | 한 Client Component의 GA/Vercel/동의/DOM 처리 | Zod 계약 → 동의 저장소 → 공급자 독립 런타임 → 어댑터 → 브라우저 통합 |
-| UI | 사용하지 않는 Radix 버튼, 직접 모바일 메뉴 닫기 | shadcn CLI 생성 Base UI Button/Popover/Textarea, 원본 Props 유지 |
+| UI | 사용하지 않는 Radix 버튼, 직접 모바일 메뉴 닫기, 손그림 유틸 | shadcn CLI(base-nova) 생성 Base UI 컴포넌트 + 브랜드 cva 변형, 앱과 같은 이름의 레이아웃 원시 컴포넌트 |
 | 타입 | strict, 단언과 배열 첫 항목 가정 | 추가 strict 옵션, Next typegen/typedRoutes, unknown 경계 Zod, schema-dts |
 | 자원 | 모든 언어가 한국어 폰트 CSS 수신, 원본 크기 이미지 | 한국어 전용 해시 CSS/공개 문구 폰트 서브셋, 정적 반응형 이미지 loader |
 
@@ -39,12 +39,13 @@ src/
   components/
     layout/             # MarketingLayout, SiteHeader, SiteFooter
     navigation/         # 언어 전환·모바일 메뉴
-    marketing/          # 다운로드 CTA·스토어 링크·FAQ
+    marketing/          # 다운로드 CTA·스토어 링크·FAQ·BrandMotif(장식 SVG)
     media/              # AppScreenshot·PhonePreview·정적 loader/data
     motion/             # 지연 로드 GSAP 경계/정리
     seo/                # schema-dts JSON-LD·Breadcrumb
     fonts/              # locale 자원 목록·preload
-    ui/                 # shadcn CLI 생성 Base UI 원본 기반
+    ui/                 # shadcn CLI 생성 Base UI 원본 기반 + 브랜드 cva 변형
+      layout/           # Box·Stack/HStack/VStack·Grid·Centered·Spacing·ListRow·ReadableContent
   hooks/                # 기능 독립 useHydrated
   i18n/                 # 한영 문구/locale 정책
   content/legal/        # Git으로 관리하는 한영 문서
@@ -54,6 +55,40 @@ src/
 라우트에서 로케일·slug를 검증하고 필요한 식별값을 화면에 전달합니다. LandingPage는 Hero → Values → Foldable → AppPreview → FeatureGuides → Friends → FAQ → CTA 순서입니다. 사용법은 GuideWalkthrough → GuideExample → GuideDetails → GuidePlans 순서이며 한 화면에서만 쓰는 컴포넌트는 페이지 아래에 둡니다. 화면의 서로 다른 의미를 가진 섹션을 배열로 일반화하지 않습니다. 실제 콘텐츠 목록은 안정된 키로 map합니다. map 자체가 모든 행의 DOM을 다시 만드는 것은 아닙니다.
 
 전체 카탈로그는 서버에서만 읽습니다. Client에는 메뉴·동의·복사에 필요한 문구와 검증된 공개 설정만 전달합니다. Git 콘텐츠는 SSG로 읽으므로 API 요청, TanStack Query/Router, loaderDeps, oRPC, react-hook-form, 업로드 훅을 도입할 이유가 없습니다. 실제 비동기 데이터/폼이 생기면 해당 기능 경계에서 도입합니다. 정적 페이지에 의미 없는 Loading/Error 컴포넌트를 추가하지 않습니다.
+
+## 디자인 시스템과 공용 UI
+
+토큰은 `src/app/globals.css` 한 곳에 있습니다. 색은 `brand`(#ff6b43, 행동·강조), `brand-deep`(#c2410c, 크림 위 글자·링크·포커스), `brand-soft`, `fish`(#23a2ff, 친구·소셜), `bone`, `cream`(페이지 바탕), `paper`(카드), `ink`(#222), 앱과 같은 `gray-1…10`입니다. shadcn 의미 토큰(`primary`, `muted`, `accent`, `border`, `ring`…)은 이 값을 가리킵니다. 주황 바탕의 글자는 대비 때문에 흰색이 아닌 `ink`입니다. 서체는 `font-display`(Jua, h1·h2, shadcn `font-heading`), `font-sans`(Wanted Sans), `font-hand`(나눔손글씨 펜, 짧은 메모만)입니다. 크기는 `text-display-xl|lg|md`, `text-title-lg|title`, `text-body-lg|body`, `text-caption|micro`, `text-hand|hand-lg`, 간격은 Tailwind 4px 단계 + `px-gutter`·`py-section`·`py-section-sm`, 폭은 `max-w-page|narrow|reading`입니다. 둥글기는 칩(`rounded-sm`) < 버튼(`rounded-lg`, xl 버튼은 pill) < 카드(`rounded-xl`) < 큰 패널(`rounded-3xl`), 그림자는 `shadow-card`·`shadow-lift`(따뜻한 그림자)와 눌리는 버튼 아랫단 `shadow-press-*`입니다. 새 사용자 토큰을 추가하면 `src/lib/utils.ts`의 `cn` 설정에도 그룹을 알려 클래스 병합에서 지워지지 않게 합니다. 다크 모드 토큰과 `dark:` 변형은 모든 페이지를 옮긴 뒤 `<html data-color-scheme="system">`으로 켭니다.
+
+UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest view <이름>`) CLI로 추가합니다. 현재 Button·Card·Badge·Tabs·Accordion·Sheet·Separator·AspectRatio·Carousel·Skeleton·Popover·Textarea가 있습니다. 생성물은 원본 그대로 두고 브랜드 변형만 cva에 더합니다(Button `ink`·`soft`·`xl`, Card `elevated`·`soft`, Badge `soft`·`fish`). 목적이 있는 확장은 `목적-원본.tsx`(예: `download-dialog.tsx`, `store-badge-button.tsx`)로 새 파일을 만들고 `Omit<ComponentProps<typeof Dialog>, "…">`처럼 원본 Props(open/onOpenChange, className, ...rest)를 그대로 받습니다. Button은 이벤트 연결 전 클릭을 막지만(`useHydrated`) 비활성 모양으로 바뀌지 않아 서버 HTML과 첫 화면이 같습니다. shadcn 생성물의 영어 낭독 문구(Sheet "Close", Carousel "Previous/Next slide")는 쓰는 쪽에서 한영 문구로 바꿉니다.
+
+### 레이아웃 원시 컴포넌트 (`@/components/ui/layout`)
+
+앱 `src/shared/ui`와 같은 이름·의미입니다. 모두 Base UI `useRender`의 요소형 `render` 계약을 따라 `render={<section />}`·`<ul />`·`<li />`·`<a />`를 받아 의미 있는 태그로 렌더합니다. render 요소의 props가 우선하고 className은 합치며 ref·이벤트는 그대로 전달합니다. Props는 원본 `ComponentProps<"div">` + `render`에 cva 변형만 더하고, 인라인 style 대신 클래스로 매핑합니다.
+
+| 컴포넌트 | 역할 |
+|---|---|
+| `Box` | 의미 태그로 감싸는 가장 작은 블록 |
+| `Stack` / `HStack` / `VStack` | flex 방향(`column-to-row`는 md부터 가로)·`gap`(4px 단계)·`align`·`justify`·`wrap` |
+| `Grid` | 반응형 열(`columns` 1–4는 가장 넓은 화면 기준)·`gap`·`align` |
+| `Centered` | 자식을 가로·세로 가운데로 |
+| `Spacing` | gap으로 안 되는 불규칙한 간격(`size`, `direction`), aria-hidden |
+| `ListRow` | `left`·`contents`·`right` 슬롯 행, 목록에서는 `render={<li />}` |
+| `ReadableContent` | 넓은 화면에서 최대 폭(`page`·`narrow`·`reading`)과 화면 여백 |
+
+`useRender` 훅(useRef)은 Server Component에서 쓸 수 없어, 배치만 하는 이 컴포넌트들은 같은 규칙의 훅 없는 `renderLayoutElement`로 렌더합니다. 그래서 Server Component이고 클라이언트 JavaScript를 늘리지 않습니다. 상태·이벤트가 있는 클라이언트 컴포넌트를 직접 만들 때만 `useRender`를 씁니다. `render`에는 함수가 아닌 요소를 넘깁니다. 장식 모티프는 `BrandMotif`(발자국·생선은 앱 아이콘과 같은 경로, 생선 뼈·뼈다귀, aria-hidden, `currentColor`)를 씁니다. 이미지는 `AspectRatio` 안에 `next/image`의 `fill`+`sizes`로 넣어 이미지가 오기 전에도 자리를 차지하게 합니다(CLS 0).
+
+### 컴포넌트 규칙
+
+- `HeroSection`·`XxxSection`·`XxxContainer`·`XxxView` 같은 일반 래퍼를 만들지 않습니다. Screen(`features/*/pages/*`)이 레이아웃 원시 컴포넌트와 `render`로 직접 배치하고, 의미 있는 UI 덩어리만 컴포넌트로 만듭니다.
+- 컴포넌트는 배치를 모릅니다. 바깥 margin·위치·폭을 스스로 정하지 않고 부모(Screen)가 className이나 레이아웃 원시 컴포넌트로 정합니다.
+- **ProductList**: 데이터를 쓰는 컴포넌트가 직접 읽습니다(서버에서 메시지·스크린샷 카탈로그를 필요한 곳에서 읽고 여러 단계 props로 내려보내지 않음). 바깥은 `filters`/`orderBy`처럼 보이는 방식만 바꿉니다.
+- **CalculationResult**: 식별자(코드·slug)는 바깥/route에서 읽고, `.Contents`가 조회하며 `.Loading`/`.Error`를 함께 둡니다.
+- **AmountInput**: 입력 래퍼는 `Omit<ComponentProps<typeof X>, "…">`로 원본 props(value/onChange 등)를 그대로 유지합니다.
+- 변수·props 이름은 역할이 드러나게 짓습니다(`isOpen` 대신 원본의 `open`, `data` 대신 `inviteCode`).
+- **typedRoutes**: 모든 `Link`·redirect·router 경로는 `Route` 타입으로 검사합니다. 동적 경로는 `localizedPath()`처럼 템플릿 리터럴 타입을 돌려주는 헬퍼로 만들고, 상수는 `satisfies Route`로 검사합니다. `as Route` 같은 단언을 쓰지 않습니다.
+- **라우트 책임 분리**: `layout.tsx`는 그 구간의 공통 셸만 둡니다(html/lang, 폰트, 분석 같은 Provider, 헤더·푸터 틀, 모든 하위 페이지에 해당하는 JSON-LD). 한 페이지만 쓰는 내용·데이터를 두지 않습니다. `page.tsx`는 params 검증, `generateStaticParams`, `generateMetadata` 뒤 기능 Screen(`features/*/pages/*-page.tsx`)을 렌더하는 일만 합니다. Screen은 섹션을 위에서 아래로 레이아웃 원시 컴포넌트로 조합합니다.
+- 조합·분기는 직접 쓴 반복문·reduce·긴 if/switch 대신 es-toolkit(`groupBy`, `keyBy`, `partition`, `uniqBy`, `orderBy`, `chunk`, `compact`, `times`, `noop`…)와 ts-pattern `match(...).exhaustive()`를 씁니다.
 
 ## Props·상태·순수 함수
 
