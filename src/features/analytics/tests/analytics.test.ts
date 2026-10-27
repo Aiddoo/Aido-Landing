@@ -407,9 +407,26 @@ describe("invite page analytics", () => {
       expect(JSON.stringify(page)).not.toContain("BCD234");
     },
   );
+  it.each(["ko", "en"] as const)(
+    "rewrite된 실제 경로도 같은 /invite로 집계하고 코드를 버린다 (%s)",
+    (locale) => {
+      const page = getAnalyticsPage(
+        `https://aido.kr/${locale}/invite/BCD234?token=secret`,
+        locale,
+      );
+      expect(page).toMatchObject({
+        path: `/${locale}/invite`,
+        location: `https://aido.kr/${locale}/invite`,
+        type: "invite",
+        locale,
+      });
+      expect(JSON.stringify(page)).not.toContain("BCD234");
+    },
+  );
   it("초대 주소가 아닌 /i 경로는 집계하지 않는다", () => {
     expect(getAnalyticsPage("https://aido.kr/i", "ko")).toBeNull();
     expect(getAnalyticsPage("https://aido.kr/i/a/b", "ko")).toBeNull();
+    expect(getAnalyticsPage("https://aido.kr/ko/invite/a/b", "ko")).toBeNull();
   });
   it("invite 위치의 download_click을 data 속성으로 만들고 다시 읽는다", () => {
     const event = {
