@@ -1,5 +1,3 @@
-import type { AppScreenshotKey } from "@/components/media/data/app-screenshots";
-import type { FoldableScreenKey } from "@/features/landing/data/foldable-screens";
 import type { ServiceFeatureId } from "@/features/services/data/service-features";
 import type { Locale } from "./config";
 
@@ -28,35 +26,107 @@ export type FriendInviteGuideContent = Omit<FeatureGuideContent, "plans"> & {
   };
 };
 
-type FriendCard = {
-  name: string;
-  path: string;
-  alt: string;
-  color: string;
-  rotate: number;
-  isNew?: boolean;
-};
-type ValueItem = {
-  icon: "sparkles" | "users" | "calendar";
-  title: string;
-  description: string[];
-  rotate: number;
-};
-type FoldableScreen = {
-  screen: FoldableScreenKey;
-  title: string;
-  alt: string;
-};
-type PreviewScreen = {
-  title: string;
-  subtitle: string;
-  description: string[];
-  screenshot: AppScreenshotKey;
-  alt: string;
-  secondScreenshot?: AppScreenshotKey;
-  secondAlt?: string;
-  rotate: number;
-  premium?: boolean;
+type PremiumBenefitId =
+  | "aiParsing"
+  | "nudge"
+  | "friends"
+  | "reminder"
+  | "aiReport"
+  | "aiRepeat"
+  | "categories"
+  | "appIcon";
+type HomeCatalog = {
+  hero: {
+    release: string;
+    titleLead: string;
+    titleTail: string;
+    description: string;
+    note: string;
+    screenAlt: string;
+    nudgeName: string;
+    nudgeText: string;
+    doneNote: string;
+  };
+  ai: {
+    kicker: string;
+    title: string;
+    description: string;
+    exampleLabel: string;
+    examples: { input: string; date: string; time: string }[];
+    voiceAlt: string;
+    parseAlt: string;
+    repeatAlt: string;
+    guideLink: string;
+    repeatGuideLink: string;
+  };
+  friends: {
+    kicker: string;
+    title: string;
+    description: string;
+    feedAlt: string;
+    nudgeAlt: string;
+    nudgeName: string;
+    nudgeText: string;
+    guideLink: string;
+  };
+  invite: {
+    badge: string;
+    kicker: string;
+    title: string;
+    description: string;
+    rewardTitle: string;
+    friendLabel: string;
+    friendWhen: string;
+    friendReward: string;
+    myLabel: string;
+    myWhen: string;
+    myReward: string;
+    conditionBadge: string;
+    conditionNote: string;
+    boardTitle: string;
+    boardSummary: string;
+    boardHint: string;
+    boardAlt: string;
+    fullBoardAlt: string;
+    guideLink: string;
+  };
+  largeScreen: {
+    badge: string;
+    kicker: string;
+    title: string;
+    description: string;
+    foldedNote: string;
+    unfoldedNote: string;
+    foldedAlt: string;
+    unfoldedAlt: string;
+    ipadTitle: string;
+    ipadDescription: string;
+    ipadAlt: string;
+    widgetTitle: string;
+    widgetDescription: string;
+    widgetAlt: string;
+  };
+  routine: {
+    kicker: string;
+    title: string;
+    reportTitle: string;
+    reportDescription: string;
+    reportAlt: string;
+    reminderTitle: string;
+    reminderDescription: string;
+    reminderAlt: string;
+    premiumLabel: string;
+  };
+  premium: {
+    kicker: string;
+    title: string;
+    description: string;
+    note: string;
+    /** 앱 구독 화면(subscription.json benefits)과 같은 문구. 지어내지 않는다. */
+    benefits: { id: PremiumBenefitId; title: string; description: string }[];
+  };
+  /** MobileApplication JSON-LD featureList */
+  appFeatures: string[];
 };
 export type MessageCatalog = {
   analyticsConsent: {
@@ -124,36 +194,7 @@ export type MessageCatalog = {
     openGraphDescription: string;
     keywords: string[];
   };
-  values: { title: string; items: ValueItem[] };
-  foldable: {
-    label: string;
-    titleLead: string;
-    titleHighlight: string;
-    description: string;
-    listLabel: string;
-    detailLabel: string;
-    main: FoldableScreen;
-    points: { title: string; description: string }[];
-    screens: FoldableScreen[];
-    screenshotNote: string;
-  };
-  appPreview: {
-    titleLead: string;
-    titleHighlight: string;
-    descriptionLead: string;
-    descriptionTail: string;
-    premiumLabel: string;
-    screens: PreviewScreen[];
-    viewAll: string;
-  };
-  friends: {
-    label: string;
-    title: string;
-    descriptionLead: string;
-    descriptionTail: string;
-    newLabel: string;
-    cards: FriendCard[];
-  };
+  home: HomeCatalog;
   faq: {
     title: string;
     description: string;
@@ -244,21 +285,6 @@ export type MessageCatalog = {
     skip: string;
     home: string;
     breadcrumb: string;
-  };
-  hero: {
-    newLabel: string;
-    newRelease: string;
-    eyebrow: string;
-    headingLead: string;
-    headingHighlight: string;
-    description: string;
-    note: string;
-    previewAlt: string;
-    previewCaption: string;
-    shareLabel: string;
-    shareText: string;
-    doneLabel: string;
-    doneText: string;
   };
   cta: {
     titleLineOne: string;
@@ -849,12 +875,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
       },
     },
     meta: {
-      title: "아이두(Aido) | 친구와 함께하는 할 일 관리 앱",
+      title: "아이두(Aido) | 친구와 함께 끝내는 AI 투두 플래너",
       description:
-        "친구와 할 일을 공유하고 콕과 댓글로 서로 응원해요. 아이두에서 각자의 계획을 함께 실천해 보세요. 캘린더와 반복 일정, AI 할 일 정리도 이용할 수 있어요. iOS와 Android에서 무료로 시작해요.",
-      openGraphTitle: "아이두 | 친구와 함께, 할 일을 해내요",
+        "말하면 AI가 날짜·시간·반복까지 채워 할 일로 만들어요. 친구와 할 일을 나누고 콕으로 응원하며, 친구를 초대하면 발자국 판에 발자국이 찍혀요. 홈 화면 위젯과 iPhone Duo·iPad 두 칸 화면도 지원해요. iOS와 Android에서 무료로 시작해요.",
+      openGraphTitle: "아이두 | 혼자 하면 미루고, 같이 하면 끝내요",
       openGraphDescription:
-        "서로의 할 일을 나누고 콕과 댓글로 응원해요. 혼자 미루던 일도 친구와 함께 시작해 보세요.",
+        "말하면 AI가 할 일로 정리하고, 친구가 콕 찔러 응원해요. 친구를 초대하면 발자국이 찍혀요.",
       keywords: [
         "아이두",
         "Aido",
@@ -864,6 +890,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "투두 리스트",
         "반복 할 일",
         "AI 할 일 정리",
+        "AI 투두",
+        "친구 초대",
+        "홈 화면 위젯",
       ],
     },
     nav: {
@@ -884,235 +913,176 @@ const catalogs: Record<Locale, MessageCatalog> = {
       home: "홈",
       breadcrumb: "현재 위치",
     },
-    hero: {
-      newLabel: "NEW",
-      newRelease: "1.12.0 · 폴더블·iPhone Duo 지원",
-      eyebrow: "할 일 관리 앱 아이두",
-      headingLead: "친구와 함께,",
-      headingHighlight: "할 일을 해내요",
-      description:
-        "서로의 할 일을 나누고 콕과 댓글로 응원해요. 혼자 미루던 일도 친구와 함께 시작해 보세요.",
-      note: "iOS와 Android에서 무료로 시작해요",
-      previewAlt: "친구가 공개한 할 일과 콕 버튼이 보이는 아이두 화면",
-      previewCaption: "각자의 할 일도 친구와 함께해요",
-      doneLabel: "콕으로 응원해요",
-      doneText: "오늘도 같이 힘내자!",
-      shareLabel: "오늘 할 일을 나눠요",
-      shareText: "오늘은 20분 책 읽기",
-    },
-    values: {
-      title: "친구와 함께 하나씩 해내요",
-      items: [
-        {
-          icon: "users",
-          title: "친구와 함께",
-          description: [
-            "콕 찌르기와 댓글로 응원하며",
-            "서로의 하루에 힘을 보태요.",
-          ],
-          rotate: 1,
-        },
-        {
-          icon: "calendar",
-          title: "내 하루에 맞게",
-          description: [
-            "반복 일정과 캘린더, 알림으로",
-            "놓치지 않고 차근차근 해봐요.",
-          ],
-          rotate: -1,
-        },
-        {
-          icon: "sparkles",
-          title: "생각을 할 일로",
-          description: [
-            "메모와 자연스러운 문장을",
-            "AI가 실행할 할 일로 정리해요.",
-          ],
-          rotate: -1,
-        },
-      ],
-    },
-    foldable: {
-      label: "1.12.0 새 소식",
-      titleLead: "펼치면 한눈에,",
-      titleHighlight: "목록과 상세를 나란히",
-      description:
-        "폴더블 폰과 iPhone Duo를 펼치면 왼쪽엔 목록, 오른쪽엔 상세가 함께 보여요. 화면을 오가지 않고 할 일과 댓글, 메모를 이어서 살펴봐요.",
-      listLabel: "목록",
-      detailLabel: "상세",
-      main: {
-        screen: "todo",
-        title: "이번 주 할 일을 보면서 친구와 나눈 댓글까지 한 화면에서",
-        alt: "펼친 iPhone Duo의 아이두 화면. 왼쪽에 주간 캘린더와 할 일 목록, 오른쪽에 필라테스 할 일의 상세와 친구 댓글이 보여요",
+    home: {
+      hero: {
+        release: "1.13.0 새 기능: 친구 초대와 발자국 판",
+        titleLead: "혼자 하면 미루고,",
+        titleTail: "같이 하면 끝내요",
+        description:
+          "말하면 AI가 할 일로 정리하고, 친구가 콕 찔러 응원해요. 오늘 할 일, 이번엔 끝까지 해봐요.",
+        note: "iOS·Android에서 무료로 시작해요",
+        screenAlt:
+          "오늘 할 일 목록과 친구들의 고양이 프로필이 보이는 아이두 홈 화면",
+        nudgeName: "두부",
+        nudgeText: "콕! 필라테스 같이 가자",
+        doneNote: "디자인 리뷰 정리 끝!",
       },
-      points: [
-        {
-          title: "네 곳에서 나란히",
-          description:
-            "내 할 일과 친구의 할 일, 메모, 설정을 목록과 상세로 나눠 보여줘요.",
-        },
-        {
-          title: "접고 펼쳐도 그대로",
-          description:
-            "쓰던 댓글과 메모는 화면을 접거나 펼쳐도 남아 있어요. 다시 로그인해도 이어서 써요.",
-        },
-        {
-          title: "넓은 화면에 알맞게",
-          description:
-            "iPhone Duo의 세로 레일을 피해 내용과 버튼이 놓이고, 로그인 화면은 가운데 알맞은 폭으로 보여요.",
-        },
-      ],
-      screens: [
-        {
-          screen: "feed",
-          title: "친구의 할 일과 응원 댓글을 함께",
-          alt: "펼친 화면 왼쪽에 친구의 주간 캘린더와 콕 응원 안내, 오른쪽에 친구가 완료한 아침 러닝과 댓글이 보이는 아이두 화면",
-        },
-        {
-          screen: "notes",
-          title: "메모 목록 옆에서 내용을 바로",
-          alt: "펼친 화면 왼쪽에 메모 목록, 오른쪽에 여행 준비 메모 내용이 보이는 아이두 화면",
-        },
-        {
-          screen: "settings",
-          title: "내 정보 메뉴와 설정을 나란히",
-          alt: "펼친 화면 왼쪽에 내 정보 메뉴, 오른쪽에 오전·오후 리마인드 알림 설정이 보이는 아이두 화면",
-        },
-      ],
-      screenshotNote:
-        "iPhone Duo를 펼친 실제 앱 화면이에요. 접은 화면과 일반 휴대폰에서는 지금처럼 한 화면씩 보여요.",
-    },
-    appPreview: {
-      titleLead: "서로 응원하며,",
-      titleHighlight: "하나씩 해내요",
-      descriptionLead: "친구와 할 일을 나누고 응원을 보내요.",
-      descriptionTail: "일정 관리와 AI 정리가 계획을 도와줘요.",
-      premiumLabel: "프리미엄",
-      viewAll: "실제 화면으로 모든 기능 살펴보기",
-      screens: [
-        {
-          title: "혼자 미루던 일도 같이 해봐요",
-          subtitle: "친구와 콕 찌르기",
-          description: [
-            "이름이나 고유 해시태그로 친구를 찾아요. 공개한 할 일을 서로 살펴보고 콕과 댓글로 응원을 보내요.",
-            "할 일을 마치면 응원해 준 친구에게 고마움을 전해요. 할 일마다 공개 범위를 직접 정할 수 있어요.",
-          ],
-          screenshot: "friend",
-          alt: "친구에게 콕 찌르기로 응원을 보내는 아이두 화면",
-          rotate: -2,
-        },
-        {
-          title: "오늘부터 한 달까지, 한눈에",
-          subtitle: "주간·월간 캘린더",
-          description: [
-            "오늘 할 일과 주간·월간 일정을 한눈에 살펴봐요. 반복 할 일과 알림으로 꾸준한 하루를 만들어가요.",
-            "iOS와 Android 홈 화면 위젯에서도 오늘의 할 일과 완료 상태를 확인할 수 있어요.",
-          ],
-          screenshot: "month",
-          secondScreenshot: "week",
-          alt: "아이두 월간 캘린더의 날짜별 할 일",
-          secondAlt: "아이두 주간 캘린더의 일주일 일정",
-          rotate: 2,
-        },
-        {
-          title: "메모가 할 일이 되는 순간",
-          subtitle: "AI 할 일 정리",
-          description: [
-            "떠오르는 내용을 메모하면 AI가 여러 할 일로 나눠줘요. 자연스러운 문장이나 음성으로도 할 일을 입력할 수 있어요.",
-            "날짜와 시간, 반복, 카테고리를 내 흐름에 맞게 정리해요.",
-          ],
-          screenshot: "add",
-          alt: "직접 입력과 음성 입력을 지원하는 아이두 할 일 추가 화면",
-          rotate: -2,
-        },
-        {
-          title: "쌓인 기록에서 다음 한 걸음으로",
-          subtitle: "AI 리포트와 반복 제안",
-          description: [
-            "AI 주간·월간 리포트로 달성률과 나의 패턴을 돌아봐요. 반복되는 할 일은 AI가 제안하고, 마음에 드는 제안을 수락해 일정에 더해요.",
-            "AI 리포트와 반복 제안은 프리미엄에서 이용할 수 있어요.",
-          ],
-          screenshot: "report",
-          alt: "아이두 AI 리포트의 달성률과 카테고리 분석",
-          rotate: 2,
-          premium: true,
-        },
-      ],
-    },
-    friends: {
-      label: "나만의 고양이 프로필",
-      title: "나를 닮은 고양이를 골라요",
-      descriptionLead: "9가지 고양이 중 내 프로필에 쓸 고양이를 골라 보세요.",
-      descriptionTail:
-        "프리미엄에서는 마음에 드는 고양이로 앱 아이콘도 바꿀 수 있어요.",
-      newLabel: "새 고양이",
-      cards: [
-        {
-          name: "러시안 블루",
-          path: "/app-assets/cat-russian-blue.webp",
-          alt: "연보라 배경에 졸린 표정을 짓고 있는 회색 고양이",
-          color: "#f3e5f5",
-          rotate: -2,
-          isNew: true,
-        },
-        {
-          name: "크림 고양이",
-          path: "/app-assets/cat-cream.webp",
-          alt: "연노랑 배경에 졸린 표정을 짓고 있는 크림색 고양이",
-          color: "#fff9c4",
-          rotate: 2,
-          isNew: true,
-        },
-        {
-          name: "턱시도 고양이",
-          path: "/app-assets/cat-tuxedo.webp",
-          alt: "민트색 배경에 흰 얼굴과 검은 털을 가진 고양이",
-          color: "#e8f5e9",
-          rotate: -1,
-          isNew: true,
-        },
-        {
-          name: "아이두 고양이",
-          path: "/app-assets/cat-default.webp",
-          alt: "주황색 배경에 졸린 표정을 짓고 있는 아이두의 기본 고양이",
-          color: "#fdf1e3",
-          rotate: 2,
-        },
-        {
-          name: "스코티시폴드",
-          path: "/app-assets/cat-scottish-fold.webp",
-          alt: "연보라 배경에 접힌 귀를 가진 회색 고양이",
-          color: "#fff9c4",
-          rotate: -2,
-        },
-        {
-          name: "치즈 태비",
-          path: "/app-assets/cat-orange-tabby.webp",
-          alt: "하늘색 배경에 줄무늬가 있는 치즈색 고양이",
-          color: "#e3f2fd",
-          rotate: 3,
-        },
-        {
-          name: "검은 고양이",
-          path: "/app-assets/cat-black.webp",
-          alt: "분홍색 배경에 졸린 표정을 짓고 있는 검은 고양이",
-          color: "#f3e5f5",
-          rotate: -1,
-        },
-        {
-          name: "샴",
-          path: "/app-assets/cat-abyssinian.webp",
-          alt: "연녹색 배경에 갈색 얼굴과 귀를 가진 고양이",
-          color: "#e8f5e9",
-          rotate: 2,
-        },
-        {
-          name: "하얀 고양이",
-          path: "/app-assets/cat-shyam.webp",
-          alt: "검은 배경에 졸린 표정을 짓고 있는 하얀 고양이",
-          color: "#fdf1e3",
-          rotate: -3,
-        },
+      ai: {
+        kicker: "말하면 뚝딱, 할 일은 바로",
+        title: "말만 하면, 할 일이 돼요",
+        description:
+          "말하거나 적기만 하면 날짜와 시간, 반복까지 알아서 채워져요. 긴 메모도 AI가 할 일 여러 개로 나눠줘요.",
+        exampleLabel: "AI가 할 일을 정리하는 예시",
+        examples: [
+          {
+            input: "내일 오후 3시 치과 예약",
+            date: "내일",
+            time: "오후 3:00",
+          },
+          {
+            input: "매주 월요일 아침 7시 러닝",
+            date: "매주 월요일",
+            time: "오전 7:00",
+          },
+        ],
+        voiceAlt:
+          "말로 할 일을 추가하는 방법을 알려 주는 아이두 할 일 추가 화면",
+        parseAlt: "메모 한 개에서 AI가 할 일 4개를 만든 아이두 화면",
+        repeatAlt:
+          "필라테스 할 일에 날짜와 시간이 채워진 아이두 할 일 추가 화면",
+        guideLink: "AI 할 일 사용법",
+        repeatGuideLink: "반복 할 일 사용법",
+      },
+      friends: {
+        kicker: "미루면 콕, 함께하면 쭉",
+        title: "친구가 콕 찌르면, 미루던 일도 시작돼요",
+        description:
+          "친구가 공개한 할 일을 보고 콕이나 댓글로 응원해요. 끝내면 응원해 준 친구에게 고마움을 전해요. 보여 줄 할 일은 하나씩 직접 골라요.",
+        feedAlt:
+          "친구의 고양이 프로필과 할 일 옆에 콕 버튼이 보이는 아이두 친구 화면",
+        nudgeAlt: "친구 할 일의 상세와 댓글 입력창이 보이는 아이두 화면",
+        nudgeName: "치즈",
+        nudgeText: "콕! 오늘 하체 운동 잊지 마",
+        guideLink: "함께하는 할 일 사용법",
+      },
+      invite: {
+        badge: "새 기능",
+        kicker: "링크 하나면 충분해요",
+        title: "친구를 초대하면, 발자국이 찍혀요",
+        description:
+          "초대 링크로 친구가 가입하면 바로 친구가 돼요. 친구가 꾸준히 할 일을 끝내면 내 발자국 판에 발자국이 하나씩 찍혀요.",
+        rewardTitle: "누가, 언제 받나요?",
+        friendLabel: "친구",
+        friendWhen: "가입하면 바로",
+        friendReward: "프리미엄 7일",
+        myLabel: "나",
+        myWhen: "친구가 2일 동안 할 일을 끝내면",
+        myReward: "프리미엄 7일 + 친구 1명 더",
+        conditionBadge: "조건 있음",
+        conditionNote:
+          "친구가 가입하고 14일 안에 2일 동안 할 일을 끝내면 발자국이 찍혀요. 하루에 여러 개를 끝내도 1일로 세요. 보상 프리미엄은 30일마다 최대 30일, 모두 합쳐 90일까지예요.",
+        boardTitle: "발자국 판",
+        boardSummary: "12칸 중 5칸에 발자국이 찍혔어요",
+        boardHint: "12칸을 다 채우면 새 판이 열려요",
+        boardAlt:
+          "카카오톡 초대 버튼 아래 발자국 1개가 찍힌 12칸 발자국 판이 보이는 아이두 친구 초대 화면",
+        fullBoardAlt:
+          "12칸이 모두 찍혀 1번째 판을 다 채운 아이두 발자국 판 화면",
+        guideLink: "친구 초대 자세히 보기",
+      },
+      largeScreen: {
+        badge: "큰 화면",
+        kicker: "넓게 보면 더 편해요",
+        title: "접으면 폰, 펼치면 한눈에",
+        description:
+          "iPhone Duo를 펼치면 왼쪽엔 할 일 목록, 오른쪽엔 상세가 나란히 보여요. 화면을 오가지 않고 콕과 댓글까지 이어서 봐요.",
+        foldedNote: "접었을 때",
+        unfoldedNote: "펼치면 두 칸",
+        foldedAlt: "접은 iPhone Duo 바깥 화면에 보이는 아이두 오늘 할 일 목록",
+        unfoldedAlt:
+          "펼친 iPhone Duo에서 왼쪽엔 할 일 목록, 오른쪽엔 할 일 상세가 함께 보이는 아이두 화면",
+        ipadTitle: "iPad에서도 두 칸으로",
+        ipadDescription:
+          "넓은 화면에서 목록을 보며 상세와 댓글을 함께 확인해요.",
+        ipadAlt: "iPad에서 할 일 목록과 상세가 나란히 보이는 아이두 화면",
+        widgetTitle: "홈 화면에서 바로 확인해요",
+        widgetDescription:
+          "앱을 열지 않아도 오늘 할 일과 진행률이 위젯에 보여요. iOS와 Android에서 쓸 수 있어요.",
+        widgetAlt:
+          "아이폰 홈 화면에 놓인 아이두 위젯 두 개. 오늘 할 일 3/8과 할 일 목록이 보여요",
+      },
+      routine: {
+        kicker: "쌓인 기록에서 다음 한 걸음",
+        title: "한 주를 돌아보고, 알림은 내 하루에 맞게",
+        reportTitle: "AI 주간·월간 리포트",
+        reportDescription:
+          "달성률과 카테고리별 기록, 요일별 패턴을 한눈에 돌아봐요.",
+        reportAlt:
+          "주간 달성률 100%, 완료 25개, 연속 7일과 카테고리별 분석이 보이는 아이두 AI 리포트 화면",
+        reminderTitle: "리마인드 알림",
+        reminderDescription:
+          "아침과 저녁에 오늘 할 일을 알려줘요. 프리미엄에서는 원하는 시간으로 바꿀 수 있어요.",
+        reminderAlt:
+          "푸시 알림, 날씨 알림, 오전 8시와 오후 7시 리마인드 알림이 켜진 아이두 알림 설정 화면",
+        premiumLabel: "프리미엄",
+      },
+      premium: {
+        kicker: "더 쓰고 싶어지면",
+        title: "프리미엄이면 더 넉넉하게",
+        description:
+          "기본 기능은 무료예요. 프리미엄에서는 이런 혜택이 더해져요.",
+        note: "구독 가격과 자세한 조건은 앱에서 확인할 수 있어요.",
+        benefits: [
+          {
+            id: "aiParsing",
+            title: "AI 할 일 만들기 무제한",
+            description: "월 5회 제한 없이, 자연어로 할 일을 마음껏 정리해요",
+          },
+          {
+            id: "nudge",
+            title: "콕 찌르기 무제한",
+            description: "하루 3회 제한 없이, 친구에게 마음껏 찔러요",
+          },
+          {
+            id: "friends",
+            title: "친구 무제한 추가",
+            description: "5명 제한 없이, 친구를 자유롭게 추가해요",
+          },
+          {
+            id: "reminder",
+            title: "리마인더 시간 자유 설정",
+            description: "고정 시간 대신, 내가 원하는 시간에 알림을 받아요",
+          },
+          {
+            id: "aiReport",
+            title: "AI 주간/월간 리포트",
+            description: "내 할 일 달성률과 패턴을 한눈에 확인해요",
+          },
+          {
+            id: "aiRepeat",
+            title: "AI 반복 제안",
+            description: "반복되는 할 일을 AI가 자동으로 제안해요",
+          },
+          {
+            id: "categories",
+            title: "카테고리 최대 30개",
+            description: "3개 제한에서 최대 30개까지 늘어나요",
+          },
+          {
+            id: "appIcon",
+            title: "앱 아이콘 커스터마이징",
+            description: "나만의 스타일로 앱 아이콘을 바꿀 수 있어요",
+          },
+        ],
+      },
+      appFeatures: [
+        "말하거나 적으면 AI가 날짜·시간·반복을 채우는 할 일 만들기",
+        "친구와 할 일을 나누고 콕과 댓글로 응원하기",
+        "친구 초대와 12칸 발자국 판",
+        "iOS·Android 홈 화면 위젯",
+        "iPhone Duo·폴더블·iPad 두 칸 화면",
+        "AI 주간·월간 리포트와 반복 제안",
+        "리마인드 알림",
       ],
     },
     faq: {
@@ -1152,7 +1122,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "어떤 기기와 언어를 지원하나요?",
           answer:
-            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 폴더블 폰과 iPhone Duo를 펼치면 목록과 상세를 나란히 볼 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원하고, 홈 화면 위젯도 iOS와 Android에서 사용할 수 있어요.",
+            "App Store에서 iOS 앱을, Google Play에서 Android 앱을 다운로드할 수 있어요. 폴더블 폰과 iPhone Duo를 펼치거나 iPad에서 쓰면 목록과 상세를 나란히 볼 수 있어요. 앱과 이 웹사이트는 한국어와 영어를 지원하고, 홈 화면 위젯도 iOS와 Android에서 사용할 수 있어요.",
         },
         {
           question: "친구를 초대하면 어떤 보상을 받나요?",
@@ -1879,12 +1849,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
       },
     },
     meta: {
-      title: "Aido | Get Things Done with Friends",
+      title: "Aido | AI To-Do Planner You Finish with Friends",
       description:
-        "Share to-dos with friends and cheer each other on with nudges and comments. Keep your plans on track with calendars, recurring tasks and AI planning. Start free on iOS and Android.",
-      openGraphTitle: "Aido | Get things done with friends",
+        "Say it and AI fills in the date, time and repeat. Share to-dos with friends, cheer each other on with nudges, and collect paw prints when friends join from your invite. Home screen widgets and a two-pane view on iPhone Duo and iPad, too. Start free on iOS and Android.",
+      openGraphTitle: "Aido | Put it off alone. Get it done together.",
       openGraphDescription:
-        "Share your to-dos and cheer each other on with nudges and comments. Take the first step with a friend.",
+        "Say it and AI turns it into a to-do. Friends nudge you along. Invite a friend and collect paw prints.",
       keywords: [
         "Aido",
         "to-dos with friends",
@@ -1893,6 +1863,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "daily planner",
         "recurring tasks",
         "AI to-do planning",
+        "AI to-do app",
+        "invite friends",
+        "home screen widget",
       ],
     },
     nav: {
@@ -1913,236 +1886,177 @@ const catalogs: Record<Locale, MessageCatalog> = {
       home: "Home",
       breadcrumb: "Breadcrumb",
     },
-    hero: {
-      newLabel: "NEW",
-      newRelease: "1.12.0 · Now on foldables and iPhone Duo",
-      eyebrow: "Aido, your to-do app",
-      headingLead: "Get things done,",
-      headingHighlight: "with friends.",
-      description:
-        "Share your to-dos and cheer each other on with nudges and comments. Take the first step with a friend.",
-      note: "Start free on iOS and Android",
-      previewAlt: "A friend’s shared to-dos and nudge button in Aido",
-      previewCaption: "Your own plans. A little encouragement from friends.",
-      doneLabel: "Send a nudge",
-      doneText: "You’ve got this!",
-      shareLabel: "Share today’s plan",
-      shareText: "Read for 20 minutes",
-    },
-    values: {
-      title: "Get things done with a little encouragement.",
-      items: [
-        {
-          icon: "users",
-          title: "Better together",
-          description: [
-            "Send a nudge, leave a comment,",
-            "and give each other a little boost.",
-          ],
-          rotate: 1,
-        },
-        {
-          icon: "calendar",
-          title: "Your day, your pace",
-          description: [
-            "Plan with recurring tasks,",
-            "calendars, and timely reminders.",
-          ],
-          rotate: -1,
-        },
-        {
-          icon: "sparkles",
-          title: "Thoughts into tasks",
-          description: [
-            "Turn notes and everyday language",
-            "into actionable to-dos with AI.",
-          ],
-          rotate: -1,
-        },
-      ],
-    },
-    foldable: {
-      label: "New in 1.12.0",
-      titleLead: "Unfold to see more,",
-      titleHighlight: "lists and details side by side",
-      description:
-        "On foldable phones and iPhone Duo, your list stays on the left while details open on the right. Follow to-dos, comments, and notes without switching screens.",
-      listLabel: "List",
-      detailLabel: "Details",
-      main: {
-        screen: "todo",
-        title: "Browse your week while reading comments from friends",
-        alt: "Aido on an unfolded iPhone Duo, with a weekly calendar and to-do list on the left and a to-do’s details and friends’ comments on the right",
+    home: {
+      hero: {
+        release: "New in 1.13.0: friend invites and paw prints",
+        titleLead: "Put it off alone.",
+        titleTail: "Get it done together.",
+        description:
+          "Say it and AI turns it into a to-do. Friends nudge you along. This time, see today's list through.",
+        note: "Start free on iOS and Android",
+        screenAlt:
+          "Aido home screen with today's to-dos and friends' cat profiles",
+        nudgeName: "Dubu",
+        nudgeText: "Nudge! Pilates tonight?",
+        doneNote: "Design review, done!",
       },
-      points: [
-        {
-          title: "Side by side in four places",
-          description:
-            "Your to-dos, friends’ to-dos, notes, and settings each show a list beside its details.",
-        },
-        {
-          title: "Fold or unfold, keep writing",
-          description:
-            "Comments and notes you’re writing stay put when you fold or unfold. Sign back in and pick up where you left off.",
-        },
-        {
-          title: "Made for wide screens",
-          description:
-            "Content and buttons stay clear of the iPhone Duo rail, and sign-in screens sit at a comfortable width.",
-        },
-      ],
-      screens: [
-        {
-          screen: "feed",
-          title: "A friend’s to-dos with cheering comments",
-          alt: "Aido on an unfolded screen, with a friend’s weekly calendar on the left and their finished morning run with comments on the right",
-        },
-        {
-          screen: "notes",
-          title: "Your notes list beside the open note",
-          alt: "Aido on an unfolded screen, with a notes list on the left and a trip-planning note on the right",
-        },
-        {
-          screen: "settings",
-          title: "My Page menu beside its settings",
-          alt: "Aido on an unfolded screen, with the My Page menu on the left and morning and evening reminder settings on the right",
-        },
-      ],
-      screenshotNote:
-        "Actual app screens on an unfolded iPhone Duo, shown in Korean. Folded screens and regular phones keep the familiar single view.",
-    },
-    appPreview: {
-      titleLead: "Cheer each other on.",
-      titleHighlight: "Get things done together.",
-      descriptionLead: "Share your to-dos and encourage your friends.",
-      descriptionTail: "Calendars and AI planning help you along the way.",
-      premiumLabel: "Premium",
-      viewAll: "Explore every feature in the app",
-      screens: [
-        {
-          title: "A little nudge goes a long way",
-          subtitle: "Plan with Friends",
-          description: [
-            "Find friends by name or their unique hashtag. See the to-dos they share and cheer them on with nudges and comments.",
-            "When you finish a to-do, thank the friends who encouraged you. You choose the visibility of each to-do.",
-          ],
-          screenshot: "friend",
-          alt: "Sending a friendly nudge in Aido",
-          rotate: -2,
-        },
-        {
-          title: "Today, this week, the whole month",
-          subtitle: "Weekly & Monthly Calendars",
-          description: [
-            "See your day and upcoming plans at a glance. Recurring tasks and reminders help you keep a steady rhythm.",
-            "Check today’s tasks and completion progress from an iOS or Android home screen widget.",
-          ],
-          screenshot: "month",
-          secondScreenshot: "week",
-          alt: "Date-based tasks in the Aido monthly calendar",
-          secondAlt: "A week of plans in the Aido weekly calendar",
-          rotate: 2,
-        },
-        {
-          title: "A note becomes your next step",
-          subtitle: "AI Task Planning",
-          description: [
-            "Jot down a note and let AI turn it into multiple to-dos. Add tasks in everyday language or with voice input, too.",
-            "Set the date, time, repetition, and category to fit your day.",
-          ],
-          screenshot: "add",
-          alt: "Entering a task in everyday language with Aido AI",
-          rotate: -2,
-        },
-        {
-          title: "Learn from your days. Plan your next step.",
-          subtitle: "AI Reports & Recurring Suggestions",
-          description: [
-            "Reflect on completion rates and patterns with weekly and monthly AI reports. AI suggests recurring tasks; accept the ones that fit your routine.",
-            "AI reports and recurring suggestions are included with Premium.",
-          ],
-          screenshot: "report",
-          alt: "Completion rates and category insights in an Aido AI report",
-          rotate: 2,
-          premium: true,
-        },
-      ],
-    },
-    friends: {
-      label: "Make your profile yours",
-      title: "Pick a cat for your profile",
-      descriptionLead:
-        "Choose from nine cats to make your profile feel like you.",
-      descriptionTail:
-        "With Premium, you can also choose your favorite for your app icon.",
-      newLabel: "New",
-      cards: [
-        {
-          name: "Russian Blue",
-          path: "/app-assets/cat-russian-blue.webp",
-          alt: "A sleepy gray cat against a lavender background",
-          color: "#f3e5f5",
-          rotate: -2,
-          isNew: true,
-        },
-        {
-          name: "Cream Cat",
-          path: "/app-assets/cat-cream.webp",
-          alt: "A sleepy cream-colored cat against a pale yellow background",
-          color: "#fff9c4",
-          rotate: 2,
-          isNew: true,
-        },
-        {
-          name: "Tuxedo Cat",
-          path: "/app-assets/cat-tuxedo.webp",
-          alt: "A black cat with a white face against a mint background",
-          color: "#e8f5e9",
-          rotate: -1,
-          isNew: true,
-        },
-        {
-          name: "Aido Cat",
-          path: "/app-assets/cat-default.webp",
-          alt: "Aido's sleepy default cat against an orange background",
-          color: "#fdf1e3",
-          rotate: 2,
-        },
-        {
-          name: "Scottish Fold",
-          path: "/app-assets/cat-scottish-fold.webp",
-          alt: "A gray cat with folded ears against a lavender background",
-          color: "#fff9c4",
-          rotate: -2,
-        },
-        {
-          name: "Cheese Tabby",
-          path: "/app-assets/cat-orange-tabby.webp",
-          alt: "An orange striped cat against a sky blue background",
-          color: "#e3f2fd",
-          rotate: 3,
-        },
-        {
-          name: "Black Cat",
-          path: "/app-assets/cat-black.webp",
-          alt: "A sleepy black cat against a pink background",
-          color: "#f3e5f5",
-          rotate: -1,
-        },
-        {
-          name: "Siamese",
-          path: "/app-assets/cat-abyssinian.webp",
-          alt: "A cat with a brown face and ears against a pale green background",
-          color: "#e8f5e9",
-          rotate: 2,
-        },
-        {
-          name: "White Cat",
-          path: "/app-assets/cat-shyam.webp",
-          alt: "A sleepy white cat against a black background",
-          color: "#fdf1e3",
-          rotate: -3,
-        },
+      ai: {
+        kicker: "Say it, and it’s on your list",
+        title: "Just say it. It’s a to-do.",
+        description:
+          "Say it or type it, and the date, time and repeat fill themselves in. AI can also split a long note into separate to-dos.",
+        exampleLabel: "Examples of AI organizing a to-do",
+        examples: [
+          {
+            input: "Dentist tomorrow at 3pm",
+            date: "Tomorrow",
+            time: "3:00 PM",
+          },
+          {
+            input: "Run every Monday at 7am",
+            date: "Every Monday",
+            time: "7:00 AM",
+          },
+        ],
+        voiceAlt: "Aido add-to-do screen showing how to add a to-do by voice",
+        parseAlt: "Aido screen where AI made 4 to-dos from a single note",
+        repeatAlt:
+          "Aido add-to-do screen with the date and time filled in for Pilates",
+        guideLink: "How AI to-dos work",
+        repeatGuideLink: "How recurring to-dos work",
+      },
+      friends: {
+        kicker: "Put it off? Get a nudge.",
+        title: "A nudge from a friend gets you going",
+        description:
+          "See the to-dos friends share and cheer them on with a nudge or a comment. When you finish, thank the friends who cheered you on. You pick which to-dos to show.",
+        feedAlt:
+          "Aido friends screen with cat profiles and a nudge button next to a friend's to-dos",
+        nudgeAlt: "Aido screen with a friend's to-do details and a comment box",
+        nudgeName: "Cheese",
+        nudgeText: "Nudge! Leg day today",
+        guideLink: "How shared to-dos work",
+      },
+      invite: {
+        badge: "New",
+        kicker: "One link is all it takes",
+        title: "Invite a friend, collect paw prints",
+        description:
+          "When a friend joins from your invite link, you're friends right away. As they keep finishing to-dos, paw prints land on your board one by one.",
+        rewardTitle: "Who gets what, and when?",
+        friendLabel: "Your friend",
+        friendWhen: "Right when they join",
+        friendReward: "7 days of Premium",
+        myLabel: "You",
+        myWhen: "Once they complete to-dos on 2 days",
+        myReward: "7 days of Premium + 1 more friend",
+        conditionBadge: "Conditions apply",
+        conditionNote:
+          "You get a paw print when your friend completes to-dos on 2 days within 14 days of joining. Several to-dos on the same day count as 1 day. You can earn up to 30 days of reward Premium every 30 days, and up to 90 days in total.",
+        boardTitle: "Paw print board",
+        boardSummary: "5 of 12 paw prints added",
+        boardHint: "Fill all 12 and a new board opens",
+        boardAlt:
+          "Aido invite screen with a KakaoTalk invite button and a 12-cell paw print board with 1 paw print",
+        fullBoardAlt:
+          "Aido paw print board with all 12 cells filled, completing board 1",
+        guideLink: "How friend invites work",
+      },
+      largeScreen: {
+        badge: "Big screens",
+        kicker: "More room, less tapping",
+        title: "Folded, it’s a phone. Unfolded, it’s all in view.",
+        description:
+          "Unfold iPhone Duo and your list sits on the left with details on the right. Keep up with nudges and comments without switching screens.",
+        foldedNote: "Folded",
+        unfoldedNote: "Unfolded, two panes",
+        foldedAlt:
+          "Today's to-dos in Aido on the outer screen of a folded iPhone Duo",
+        unfoldedAlt:
+          "Aido on an unfolded iPhone Duo with the to-do list on the left and details on the right",
+        ipadTitle: "Two panes on iPad, too",
+        ipadDescription:
+          "See your list alongside details and comments on a bigger screen.",
+        ipadAlt: "Aido on iPad with the to-do list and details side by side",
+        widgetTitle: "Check in from your home screen",
+        widgetDescription:
+          "See today's to-dos and progress in a widget without opening the app. Available on iOS and Android.",
+        widgetAlt:
+          "Two Aido widgets on an iPhone home screen showing 3 of 8 to-dos done and a to-do list",
+      },
+      routine: {
+        kicker: "From your record to your next step",
+        title: "Look back on your week. Get reminders on your schedule.",
+        reportTitle: "AI weekly and monthly reports",
+        reportDescription:
+          "See your completion rate, categories and day-by-day patterns at a glance.",
+        reportAlt:
+          "Aido AI report with a 100% weekly completion rate, 25 done, a 7-day streak and category breakdown",
+        reminderTitle: "Reminders",
+        reminderDescription:
+          "Get today's to-dos in the morning and evening. With Premium, pick any time you like.",
+        reminderAlt:
+          "Aido notification settings with push, weather and 8:00 AM and 7:00 PM reminders on",
+        premiumLabel: "Premium",
+      },
+      premium: {
+        kicker: "When you want a little more",
+        title: "More room with Premium",
+        description: "The basics are free. Premium adds these.",
+        note: "Check the app for current prices and details.",
+        benefits: [
+          {
+            id: "aiParsing",
+            title: "Unlimited AI to-dos",
+            description:
+              "Organize to-dos in natural language, without the 5-per-month limit",
+          },
+          {
+            id: "nudge",
+            title: "Unlimited nudges",
+            description:
+              "Nudge your friends freely, without the 3-per-day limit",
+          },
+          {
+            id: "friends",
+            title: "Unlimited friends",
+            description: "Add friends freely, without the 5-friend limit",
+          },
+          {
+            id: "reminder",
+            title: "Custom reminder times",
+            description: "Get notified when you want, not at fixed times",
+          },
+          {
+            id: "aiReport",
+            title: "AI weekly/monthly reports",
+            description: "See your completion rate and patterns at a glance",
+          },
+          {
+            id: "aiRepeat",
+            title: "AI repeat suggestions",
+            description: "AI automatically suggests recurring to-dos",
+          },
+          {
+            id: "categories",
+            title: "Up to 30 categories",
+            description: "Grow from the 3-category limit up to 30",
+          },
+          {
+            id: "appIcon",
+            title: "App icon customization",
+            description: "Change the app icon to match your style",
+          },
+        ],
+      },
+      appFeatures: [
+        "AI to-dos that fill in the date, time and repeat from what you say or type",
+        "Share to-dos with friends and cheer them on with nudges and comments",
+        "Friend invites with a 12-cell paw print board",
+        "Home screen widgets on iOS and Android",
+        "Two-pane view on iPhone Duo, foldables and iPad",
+        "AI weekly and monthly reports and repeat suggestions",
+        "Reminders",
       ],
     },
     faq: {
@@ -2182,7 +2096,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "Which devices and languages are supported?",
           answer:
-            "Download the iOS app from the App Store or the Android app from Google Play. On an unfolded foldable phone or iPhone Duo, lists and details appear side by side. Both the app and this website support English and Korean. Home screen widgets are available on iOS and Android, too.",
+            "Download the iOS app from the App Store or the Android app from Google Play. On an unfolded foldable phone, iPhone Duo or iPad, lists and details appear side by side. Both the app and this website support English and Korean. Home screen widgets are available on iOS and Android, too.",
         },
         {
           question: "What do I get for inviting friends?",

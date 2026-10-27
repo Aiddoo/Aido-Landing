@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ReadableContent } from "@/components/ui/layout";
 import type { Locale } from "@/i18n/config";
 import type { MessageCatalog } from "@/i18n/messages";
 import type {
@@ -30,7 +31,7 @@ export function AnalyticsConsentBanner({
 }: AnalyticsConsentBannerProps) {
   return (
     <>
-      <div className="analytics-settings page-width">
+      <ReadableContent className="analytics-settings">
         <Button
           variant="link"
           size="sm"
@@ -39,7 +40,7 @@ export function AnalyticsConsentBanner({
         >
           {labels.settings}
         </Button>
-      </div>
+      </ReadableContent>
       {(consent === "pending" || settingsOpen) && (
         <section className="analytics-consent" aria-label={labels.title}>
           <div>

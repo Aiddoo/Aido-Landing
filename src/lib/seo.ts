@@ -3,7 +3,7 @@ import type { Locale } from "@/i18n/config";
 
 export const SITE_URL = "https://aido.kr";
 export const SITE_NAME = "Aido";
-export const HOME_CONTENT_UPDATED_AT = "2026-10-26";
+export const HOME_CONTENT_UPDATED_AT = "2026-10-27";
 
 export const APP_STORE_URL =
   "https://apps.apple.com/kr/app/%EC%95%84%EC%9D%B4%EB%91%90-ai-%ED%88%AC%EB%91%90-%ED%94%8C%EB%9E%98%EB%84%88/id6757722325";

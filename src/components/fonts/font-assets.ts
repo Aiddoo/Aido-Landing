@@ -1,2 +1,2 @@
-export const koreanFontStylesheet = "/fonts/fonts-ko-03ff73a596e2.css";
-export const koreanDisplayFont = "/fonts/jua-400-site-30e36b982b0a.woff2";
+export const koreanFontStylesheet = "/fonts/fonts-ko-29504432da3e.css";
+export const koreanDisplayFont = "/fonts/jua-400-site-4ec87bc556dc.woff2";

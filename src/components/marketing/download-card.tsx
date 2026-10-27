@@ -50,7 +50,11 @@ export function DownloadCard({
           {cta.titleLineTwo}
         </h2>
         <p className="max-w-reading text-gray-9">{cta.description}</p>
-        <StoreButtons content={storeButtons} placement="download" />
+        <StoreButtons
+          content={storeButtons}
+          placement="download"
+          className="mx-auto md:mx-0"
+        />
         <p className="text-caption text-gray-8">{cta.closingNote}</p>
       </VStack>
       <Box className="relative mx-auto -mb-2 w-44 shrink-0 md:mx-0 md:mr-10 md:w-64">
