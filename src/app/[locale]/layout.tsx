@@ -16,6 +16,7 @@ import {
   APP_STORE_URL,
   buildSocialMetadata,
   INSTAGRAM_URL,
+  LINK_HUB_URL,
   PLAY_STORE_URL,
   SITE_NAME,
   SITE_URL,
@@ -79,7 +80,7 @@ export default async function LocaleLayout({
     alternateName: locale === "ko" ? "RedBand" : "레드밴드",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    sameAs: [INSTAGRAM_URL, APP_STORE_URL, PLAY_STORE_URL],
+    sameAs: [INSTAGRAM_URL, LINK_HUB_URL, APP_STORE_URL, PLAY_STORE_URL],
     founder: {
       "@type": "Person",
       name: messages.footer.representativeValue,
