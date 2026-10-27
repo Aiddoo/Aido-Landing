@@ -1,27 +1,62 @@
 "use client";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import type { MessageCatalog } from "@/i18n/messages";
-import { useInvitePreview } from "../hooks/use-invite-preview";
+import { cn } from "@/lib/utils";
+import type { InvitePageFailure } from "../models/invite-preview";
+import {
+  getInvitePreviewQueryOptions,
+  inviteQueryKeys,
+} from "../queries/invite-queries";
+import type { InviteCode } from "../schemas/invite.schema";
 import { fillInviterName } from "../utils/format-invite-text";
 import { inviteErrorCopy } from "../utils/invite-error-copy";
+import { InviteQueryBoundary } from "./invite-query-boundary";
 import { InviterProfile } from "./inviter-profile";
 
-type InviterCardProps = { labels: MessageCatalog["invite"] };
+type Labels = MessageCatalog["invite"];
 
-// 초대한 친구의 프로필과 제목. 미리보기를 기다리는 동안 Suspense가 Loading을 보여 준다.
-export function InviterCard({ labels }: InviterCardProps) {
-  const preview = useInvitePreview();
-  if (preview.status === "pending")
-    return <InviterCardLoading labels={labels} />;
-  if (preview.status === "failed") {
-    return (
-      <>
-        <InviterProfile labels={labels} inviter={null} isLoading={false} />
-        <h1 id="invite-title" className="invite-title">
-          {inviteErrorCopy(labels, preview.failure).title}
-        </h1>
-      </>
-    );
-  }
+// 두 줄 높이를 고정해 로딩·오류·완료가 바뀌어도 아래가 움직이지 않는다.
+const titleBoxClass =
+  "relative mt-5 h-[2.8em] overflow-hidden text-[1.625rem] leading-[1.4] wrap-anywhere text-ink md:text-[2.125rem]";
+const titleClass = cn(titleBoxClass, "line-clamp-2");
+// h1·p 안에 들어가므로 div인 Skeleton 대신 같은 모양의 span을 쓴다.
+const skeletonClass = "block animate-pulse rounded-full bg-muted";
+
+// 초대한 친구의 프로필과 제목. 코드는 라우트가 정하고, 형식이 틀린 코드는 조회하지 않는다.
+export function InviterCard({
+  labels,
+  code,
+}: {
+  labels: Labels;
+  code: InviteCode | null;
+}) {
+  if (code == null)
+    return <InviterCard.Error labels={labels} failure="invalid_code" />;
+  return (
+    <InviteQueryBoundary
+      queryKey={inviteQueryKeys.preview(code)}
+      pendingFallback={<InviterCard.Loading labels={labels} />}
+      rejectedFallback={() => (
+        <InviterCard.Error labels={labels} failure="render_error" />
+      )}
+    >
+      <InviterCard.Contents labels={labels} code={code} />
+    </InviteQueryBoundary>
+  );
+}
+
+function InviterCardContents({
+  labels,
+  code,
+}: {
+  labels: Labels;
+  code: InviteCode;
+}) {
+  const { data: preview } = useSuspenseQuery(
+    getInvitePreviewQueryOptions(code),
+  );
+  if (preview.status === "failed")
+    return <InviterCard.Error labels={labels} failure={preview.failure} />;
   return (
     <>
       <InviterProfile
@@ -29,7 +64,7 @@ export function InviterCard({ labels }: InviterCardProps) {
         inviter={preview.inviter}
         isLoading={false}
       />
-      <h1 id="invite-title" className="invite-title">
+      <h1 id="invite-title" className={titleClass}>
         {fillInviterName(
           labels.titleTemplate,
           preview.inviter.name,
@@ -40,19 +75,45 @@ export function InviterCard({ labels }: InviterCardProps) {
   );
 }
 
-// 로딩·오류·완료가 같은 박스 크기를 써서 교체해도 아무것도 움직이지 않는다.
-export function InviterCardLoading({ labels }: InviterCardProps) {
+function InviterCardLoading({ labels }: { labels: Labels }) {
   return (
     <>
       <InviterProfile labels={labels} inviter={null} isLoading />
-      <h1 id="invite-title" className="invite-title" data-loading>
+      <h1
+        id="invite-title"
+        className={cn(titleBoxClass, "flex flex-col justify-around")}
+      >
         <span className="sr-only">{labels.loadingLabel}</span>
-        <span className="invite-skeleton invite-bar-title" aria-hidden="true" />
         <span
-          className="invite-skeleton invite-bar-title invite-bar-short"
           aria-hidden="true"
+          className={cn(skeletonClass, "h-[0.9em] w-full")}
+        />
+        <span
+          aria-hidden="true"
+          className={cn(skeletonClass, "h-[0.9em] w-[62%]")}
         />
       </h1>
     </>
   );
 }
+
+function InviterCardError({
+  labels,
+  failure,
+}: {
+  labels: Labels;
+  failure: InvitePageFailure;
+}) {
+  return (
+    <>
+      <InviterProfile labels={labels} inviter={null} isLoading={false} />
+      <h1 id="invite-title" className={titleClass}>
+        {inviteErrorCopy(labels, failure).title}
+      </h1>
+    </>
+  );
+}
+
+InviterCard.Contents = InviterCardContents;
+InviterCard.Loading = InviterCardLoading;
+InviterCard.Error = InviterCardError;

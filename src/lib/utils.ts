@@ -1,29 +1,6 @@
-import { createCn } from "cn/config";
+import { createCn } from "cn/engine";
+import tables from "./cn-tables";
 
-// globals.css의 사용자 토큰을 알려 줘야 text-body와 text-ink 같은 클래스가 서로 지워지지 않는다.
-export const cn = createCn({
-  extend: {
-    classGroups: {
-      "font-size": [
-        {
-          text: [
-            "display-xl",
-            "display-lg",
-            "display-md",
-            "title-lg",
-            "title",
-            "body-lg",
-            "body",
-            "caption",
-            "micro",
-            "hand",
-            "hand-lg",
-          ],
-        },
-      ],
-      shadow: [
-        { shadow: ["card", "lift", "press-brand", "press-ink", "press-soft"] },
-      ],
-    },
-  },
-});
+// next.config.ts의 withCn이 소스와 globals.css의 @theme(text-body·shadow-card 같은 사용자 토큰 포함)로
+// 병합 표를 빌드 때 다시 만든다. 표에 없는 클래스는 병합하지 않고 그대로 둔다.
+export const cn = createCn(tables);

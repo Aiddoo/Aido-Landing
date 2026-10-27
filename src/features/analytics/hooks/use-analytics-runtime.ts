@@ -1,58 +1,52 @@
 "use client";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { match } from "ts-pattern";
 import type { Locale } from "@/i18n/config";
 import { bindAnalyticsClicks } from "../browser/browser-analytics-bindings";
-import type { AnalyticsClient } from "../runtime/create-analytics-client";
+import { privacyOptOut } from "../browser/browser-consent-platform";
+import {
+  startGoogleAnalytics,
+  startVercelAnalytics,
+  trackPageView,
+  updateGoogleConsent,
+} from "../runtime/analytics-tracker";
 import type { ConsentStore } from "../runtime/create-consent-store";
-import type {
-  AnalyticsConfig,
-  AnalyticsConsent,
-} from "../schemas/analytics.schema";
+import type { AnalyticsConfig } from "../schemas/analytics.schema";
 import { getAnalyticsPage } from "../utils/sanitize-analytics-page";
 
+// 라우트가 바뀔 때마다 정리된 공개 경로로 페이지뷰를 한 번 보낸다. gtag.js는 동의 기본값을 넣은 뒤에만 그리고, DNT/GPC면 그리지 않는다.
 export function useAnalyticsRuntime(
   config: AnalyticsConfig,
   locale: Locale,
-  consent: AnalyticsConsent,
   store: ConsentStore,
 ) {
   const pathname = usePathname();
-  const search = useSearchParams();
-  const client = useRef<AnalyticsClient | undefined>(undefined);
+  const search = useSearchParams().toString();
+  const [googleTagRequested, setGoogleTagRequested] = useState(false);
   useEffect(() => {
-    if (consent !== "accepted") return;
-    let cancelled = false;
-    let unbind: (() => void) | undefined;
-    void import("../runtime/create-browser-analytics-client")
-      .then(async ({ createBrowserAnalyticsClient }) => {
-        if (cancelled || store.getSnapshot() !== "accepted") return;
-        const runtime = createBrowserAnalyticsClient(config, store.getSnapshot);
-        client.current = runtime;
-        unbind = bindAnalyticsClicks(runtime, locale);
-        const page = getAnalyticsPage(window.location.href, locale);
-        if (page) await runtime.start(page);
-      })
-      .catch(() => {
-        // A blocked analytics chunk must leave the page usable and collection disabled.
-      });
-    // Subscribe directly so a stored withdrawal stops sends before the React effect runs.
-    const unsubscribe = store.subscribe(() => {
-      if (store.getSnapshot() === "accepted") return;
-      const result = client.current?.revoke();
-      if (result?.requiresReload) window.location.reload();
-    });
-    return () => {
-      cancelled = true;
-      unsubscribe();
-      unbind?.();
-      client.current?.dispose();
-      client.current = undefined;
-    };
-  }, [config, locale, consent, store]);
-  useEffect(() => {
-    if (!pathname || !search) return;
-    const page = getAnalyticsPage(window.location.href, locale);
-    if (page) client.current?.pageView(page);
-  }, [pathname, search, locale]);
+    const page = getAnalyticsPage(
+      search === "" ? pathname : `${pathname}?${search}`,
+      locale,
+    );
+    if (page == null) return;
+    for (const provider of config.providers)
+      match(provider)
+        .with({ id: "ga4" }, ({ measurementId }) => {
+          if (privacyOptOut()) return;
+          startGoogleAnalytics(measurementId, store.getSnapshot(), page);
+          setGoogleTagRequested(true);
+        })
+        .with({ id: "vercel" }, (vercel) =>
+          startVercelAnalytics(vercel, locale),
+        )
+        .exhaustive();
+    trackPageView(page);
+  }, [config, locale, store, pathname, search]);
+  useEffect(
+    () => store.subscribe(() => updateGoogleConsent(store.getSnapshot())),
+    [store],
+  );
+  useEffect(() => bindAnalyticsClicks(), []);
+  return googleTagRequested;
 }

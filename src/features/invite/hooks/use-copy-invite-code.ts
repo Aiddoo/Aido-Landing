@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { track } from "@/features/analytics/runtime/analytics-tracker";
 import { copyToClipboard } from "../utils/copy-to-clipboard";
 
 export type CopyStatus = "idle" | "copied" | "manual";
@@ -14,6 +15,10 @@ export function useCopyInviteCode(code: string | null) {
     if (!code) return;
     const copied = await copyToClipboard(code);
     setStatus(copied ? "copied" : "manual");
+    track({
+      name: "invite_code_copy",
+      copy_result: copied ? "copied" : "manual",
+    });
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setStatus("idle"), RESET_MS);
   }

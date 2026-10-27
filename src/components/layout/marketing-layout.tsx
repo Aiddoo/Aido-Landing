@@ -1,5 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 import { MotionBoundary } from "@/components/motion/motion-boundary";
+import { Box } from "@/components/ui/layout";
 import type { Locale } from "@/i18n/config";
 import type { PublicPath } from "@/lib/public-routes";
 import { SiteFooter } from "./site-footer";
@@ -20,7 +21,7 @@ export function MarketingLayout({
   ...props
 }: MarketingLayoutProps) {
   return (
-    <>
+    <Box>
       <SiteHeader locale={locale} path={path} />
       <MotionBoundary>
         <main id="content" {...props}>
@@ -28,6 +29,6 @@ export function MarketingLayout({
         </main>
       </MotionBoundary>
       {footer ?? <SiteFooter locale={locale} />}
-    </>
+    </Box>
   );
 }

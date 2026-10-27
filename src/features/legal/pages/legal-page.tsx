@@ -1,11 +1,19 @@
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { match } from "ts-pattern";
-import { LanguageSwitcher } from "@/components/navigation/language-switcher";
+import { MarketingLayout } from "@/components/layout/marketing-layout";
+import { PageHeader } from "@/components/layout/page-header";
 import { BreadcrumbData } from "@/components/seo/breadcrumb-data";
+import { ReadableContent, VStack } from "@/components/ui/layout";
 import { LegalMarkdown } from "@/features/legal/components/legal-markdown";
-import { readLegalDocument } from "@/features/legal/data/legal-docs.server";
+import {
+  type LegalDocumentKey,
+  readLegalDocument,
+} from "@/features/legal/data/legal-docs.server";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
+import { localizedPath, type PublicPath } from "@/lib/public-routes";
+
 export async function LegalPage({
   locale,
   document,
@@ -13,75 +21,68 @@ export async function LegalPage({
   locale: Locale;
   document: "privacy" | "terms" | "account-deletion";
 }) {
-  const messages = getMessages(locale);
+  const { legal } = getMessages(locale);
   const content = match(document)
+    .returnType<{
+      title: string;
+      description: string;
+      key: LegalDocumentKey;
+      relatedPath: PublicPath;
+      relatedLabel: string;
+    }>()
     .with("privacy", () => ({
-      title: messages.legal.privacyTitle,
-      description: messages.legal.privacyDescription,
-      key: "privacy-policy" as const,
-      relatedPath: "/terms" as const,
-      relatedLabel: messages.legal.viewTermsLabel,
+      title: legal.privacyTitle,
+      description: legal.privacyDescription,
+      key: "privacy-policy",
+      relatedPath: "/terms",
+      relatedLabel: legal.viewTermsLabel,
     }))
     .with("terms", () => ({
-      title: messages.legal.termsTitle,
-      description: messages.legal.termsDescription,
-      key: "terms-of-service" as const,
-      relatedPath: "/privacy" as const,
-      relatedLabel: messages.legal.viewPrivacyLabel,
+      title: legal.termsTitle,
+      description: legal.termsDescription,
+      key: "terms-of-service",
+      relatedPath: "/privacy",
+      relatedLabel: legal.viewPrivacyLabel,
     }))
     .with("account-deletion", () => ({
-      title: messages.legal.accountDeletionTitle,
-      description: messages.legal.accountDeletionDescription,
-      key: "account-deletion" as const,
-      relatedPath: "/privacy" as const,
-      relatedLabel: messages.legal.viewPrivacyLabel,
+      title: legal.accountDeletionTitle,
+      description: legal.accountDeletionDescription,
+      key: "account-deletion",
+      relatedPath: "/privacy",
+      relatedLabel: legal.viewPrivacyLabel,
     }))
     .exhaustive();
   const markdown = await readLegalDocument(content.key, locale);
-
   return (
-    <main className="px-4 py-12 sm:px-6 sm:py-16 lg:py-20" lang={locale}>
+    <>
       <BreadcrumbData
         locale={locale}
         path={`/${document}`}
         title={content.title}
       />
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="mb-6 space-y-4 sm:mb-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="inline-flex items-center rounded-full border-2 border-foreground/20 bg-white px-3 py-1 text-xs font-bold tracking-wide text-foreground/70">
-              {messages.legal.badge}
-            </p>
-            <LanguageSwitcher
-              locale={locale}
-              labels={messages.languageSwitcher}
-              path={`/${document}`}
-            />
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {content.title}
-          </h1>
-          <p className="max-w-3xl text-sm leading-7 text-foreground/70 sm:text-base sm:leading-8">
-            {content.description}
-          </p>
-          <div className="flex flex-wrap items-center gap-3 text-sm font-semibold">
+      <MarketingLayout locale={locale} path={`/${document}`}>
+        <ReadableContent
+          size="narrow"
+          render={<VStack gap={10} />}
+          className="pt-8 md:pt-14"
+        >
+          <PageHeader
+            locale={locale}
+            title={content.title}
+            description={content.description}
+            breadcrumbs={[{ label: legal.badge }]}
+          >
             <Link
-              href={`/${locale}${content.relatedPath}`}
-              className="rounded-full border border-foreground/20 px-4 py-2 hover:bg-foreground/5"
+              href={localizedPath(locale, content.relatedPath)}
+              className="inline-flex h-11 items-center gap-1.5 rounded-full bg-card px-4 text-caption font-semibold text-ink shadow-press-soft transition-colors hover:text-brand-deep"
             >
               {content.relatedLabel}
+              <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
-            <a
-              href={`/${locale}#top`}
-              className="text-brand-deep underline underline-offset-4"
-            >
-              {messages.legal.backHomeLabel}
-            </a>
-          </div>
-        </header>
-
-        <LegalMarkdown markdown={markdown} />
-      </div>
-    </main>
+          </PageHeader>
+          <LegalMarkdown markdown={markdown} />
+        </ReadableContent>
+      </MarketingLayout>
+    </>
   );
 }

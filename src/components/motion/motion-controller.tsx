@@ -1,17 +1,21 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { RefObject } from "react";
+import { createDuoUnfold } from "./duo-unfold-motion";
+import { animateEntrances } from "./entrance-motion";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 export interface MotionControllerProps {
   scope: RefObject<HTMLDivElement | null>;
 }
+
 export function MotionController({ scope }: MotionControllerProps) {
   useGSAP(
-    (_context, contextSafe) => {
+    () => {
       const root = scope.current;
-      if (!root || !contextSafe) return;
+      if (!root) return;
       const media = gsap.matchMedia();
       media.add("(prefers-reduced-motion: no-preference)", (mediaContext) => {
         // Content is always visible. Animate inner ornaments so CSS rotation remains intact.
@@ -28,35 +32,43 @@ export function MotionController({ scope }: MotionControllerProps) {
               clearProps: "transform",
             },
           );
-        const reveal = contextSafe((element: Element) => {
-          mediaContext.add(() => {
-            gsap.fromTo(
-              element,
-              { y: 12 },
-              {
-                y: 0,
-                duration: 0.4,
-                ease: "power2.out",
-                clearProps: "transform",
-              },
-            );
-          });
+        // 나중에 불리는 콜백도 matchMedia 맥락에 기록해 동작 줄이기·언마운트 때 함께 되돌린다.
+        const reveal = mediaContext.add("reveal", (element: Element) => {
+          gsap.fromTo(
+            element,
+            { y: 12 },
+            {
+              y: 0,
+              duration: 0.4,
+              ease: "power2.out",
+              clearProps: "transform",
+            },
+          );
         });
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (!entry.isIntersecting) continue;
-              reveal(entry.target);
-              observer.unobserve(entry.target);
-            }
-          },
-          { threshold: 0.12 },
+        const enter = mediaContext.add("enter", (elements: HTMLElement[]) =>
+          animateEntrances(elements),
         );
-        for (const element of root.querySelectorAll("[data-motion-section]")) {
-          if (element.getBoundingClientRect().top >= window.innerHeight)
-            observer.observe(element);
+        for (const element of root.querySelectorAll<HTMLElement>(
+          "[data-motion-section], [data-motion-group]",
+        )) {
+          if (element.getBoundingClientRect().top < window.innerHeight)
+            continue;
+          ScrollTrigger.create({
+            trigger: element,
+            start: "top 85%",
+            once: true,
+            onEnter: () =>
+              element.dataset.motionGroup == null
+                ? reveal(element)
+                : enter([
+                    ...element.querySelectorAll<HTMLElement>("[data-motion]"),
+                  ]),
+          });
         }
-        return () => observer.disconnect();
+        for (const stage of root.querySelectorAll<HTMLElement>(
+          "[data-motion='duo']",
+        ))
+          createDuoUnfold(stage);
       });
       return () => media.revert();
     },

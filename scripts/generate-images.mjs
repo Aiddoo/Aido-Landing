@@ -14,20 +14,42 @@ import {
   getAppScreenshot,
   screenshotFiles,
 } from "../src/components/media/data/app-screenshots.ts";
-import { foldableScreens } from "../src/features/landing/data/foldable-screens.ts";
-import { getMessages } from "../src/i18n/messages.ts";
+import {
+  getHomeScreen,
+  homeCatImages,
+  homeScreenFiles,
+} from "../src/components/media/data/home-screens.ts";
+import {
+  getGuideScreen,
+  guideScreenFiles,
+} from "../src/features/feature-guides/data/guide-screens.ts";
+import { catByIconKey } from "../src/features/invite/data/inviter-cats.ts";
+import {
+  deviceShowcaseScreens,
+  getDeviceShowcaseScreen,
+} from "../src/features/landing/data/supported-devices.ts";
 
 const check = process.argv.includes("--check");
 const sources = [
   ...new Set([
     "/logo-small.webp",
-    "/app-assets/cat-scottish-fold.webp",
-    ...getMessages("ko").friends.cards.map((card) => card.path),
-    ...Object.values(foldableScreens),
+    ...Object.values(catByIconKey),
+    ...Object.values(homeCatImages),
+    ...["ko", "en"].flatMap((locale) =>
+      Object.keys(homeScreenFiles).map((key) => getHomeScreen(locale, key).src),
+    ),
     ...["ko", "en"].flatMap((locale) =>
       Object.keys(screenshotFiles).map(
         (key) => getAppScreenshot(locale, key).src,
       ),
+    ),
+    ...["ko", "en"].flatMap((locale) =>
+      Object.keys(deviceShowcaseScreens).map(
+        (key) => getDeviceShowcaseScreen(locale, key).src,
+      ),
+    ),
+    ...["ko", "en"].flatMap((locale) =>
+      guideScreenFiles.map((key) => getGuideScreen(locale, key).src),
     ),
   ]),
 ].sort();
@@ -43,7 +65,7 @@ for await (const filename of glob("public/app-assets/**/*")) {
 assert.deepEqual(
   appAssets.sort(),
   sources.filter((src) => src.startsWith("/app-assets/")),
-  "App assets must match the screenshot/friend catalogs; remove unused images.",
+  "App assets must match the screenshot/guide/home/invite catalogs; remove unused images.",
 );
 if (check) {
   const { responsiveImages } = await import(
@@ -94,6 +116,14 @@ if (check) {
   assert.equal(inviteShareMeta.format, "png");
   assert.equal(inviteShareMeta.width, 2 * inviteShareMeta.height, "2:1 feed");
   assert.ok(inviteShareMeta.width >= 800 && inviteShare.length <= 1024 * 1024);
+  // 홈 OG 이미지(pnpm images:og). 링크 미리보기 규격 1200×630을 지킨다.
+  for (const locale of ["ko", "en"]) {
+    const og = await readFile(`public/og-image-${locale}.png`);
+    const ogMeta = await sharp(og).metadata();
+    assert.equal(ogMeta.format, "png");
+    assert.deepEqual([ogMeta.width, ogMeta.height], [1200, 630]);
+    assert.ok(og.length <= 300 * 1024, `og-image-${locale}.png size`);
+  }
   console.log(`Checked static variants for ${sources.length} source images.`);
   process.exit(0);
 }
