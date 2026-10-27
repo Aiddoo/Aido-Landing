@@ -61,6 +61,11 @@ const paths = [
   "/account-deletion",
   ...featureGuides.map((guide) => guide.path),
 ];
+assert.equal(
+  paths.length * 2,
+  20,
+  "ko/en canonical pages: home, services, patch notes, 3 legal and 4 guides",
+);
 const decode = (text) =>
   text
     .replaceAll("&amp;", "&")
@@ -229,7 +234,11 @@ for (const locale of ["ko", "en"]) {
         assert.ok(
           originalSource(image.src).includes(`/screenshots/${locale}/`),
         );
-        assert.ok(Number(image.width) > 0 && Number(image.height) > 0);
+        // 치수가 있거나, 비율 상자(AspectRatio) 안을 채우는 fill 이미지여야 CLS가 없다.
+        assert.ok(
+          (Number(image.width) > 0 && Number(image.height) > 0) ||
+            /position:absolute/.test(image.style ?? ""),
+        );
       }
     }
     const guide = featureGuides.find((item) => item.path === path);
@@ -244,8 +253,18 @@ for (const locale of ["ko", "en"]) {
       for (const text of [
         content.title,
         content.summary,
-        content.plans.free,
-        content.plans.premium,
+        ...("plans" in content
+          ? [content.plans.free, content.plans.premium]
+          : [
+              ...content.rewards.items.flatMap((item) => [
+                item.who,
+                item.when,
+                item.reward,
+                item.condition,
+              ]),
+              ...content.rewards.limits,
+            ]),
+        ...content.screens.flatMap((screen) => [screen.caption]),
         ...content.steps.flatMap((step) => [step.title, step.body]),
         ...content.example.items,
         ...content.details.flatMap((detail) => [detail.title, detail.body]),
@@ -261,6 +280,16 @@ for (const locale of ["ko", "en"]) {
       assert.ok(
         tags(html, "time").some((time) => time.datetime === guide.updatedAt),
       );
+      const screenAlts = tags(html, "img").map((image) => image.alt);
+      for (const screen of content.screens)
+        assert.ok(
+          screenAlts.includes(screen.alt),
+          `${route}: guide screen alt`,
+        );
+      for (const image of tags(html, "img").filter((image) =>
+        originalSource(image.src)?.includes("/guides/"),
+      ))
+        assert.ok(originalSource(image.src).includes(`/guides/${locale}/`));
       for (const related of featureGuides.filter(
         (item) => item.slug !== guide.slug,
       ))
@@ -332,8 +361,8 @@ for (const locale of ["ko", "en"]) {
         }
       }
       assert.equal(
-        tags(html, "button").filter((button) =>
-          button.class?.split(" ").includes("release-copy-button"),
+        tags(html, "button").filter(
+          (button) => button["data-slot"] === "copy-update-summary",
         ).length,
         releaseNotes.length,
         "Only app releases have a summary copy button",
@@ -540,5 +569,5 @@ for (const fingerprint of assetLinks[0].target.sha256_cert_fingerprints)
     "assetlinks.json needs the Play app signing SHA-256 fingerprint",
   );
 console.log(
-  "SEO checks passed: 18 SSG pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.",
+  `SEO checks passed: ${paths.length * 2} canonical SSG pages and 2 noindex invite pages without ISR, crawlable update archives, canonical/hreflang/social metadata, JSON-LD, sitemap dates, locale font preloads, hashed WOFF2 assets and licenses.`,
 );

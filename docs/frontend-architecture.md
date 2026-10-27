@@ -19,11 +19,11 @@ src/
   app/[locale]/...       # Next.js 라우팅·SSG·metadata
   features/
     landing/{pages,components,styles}
-    services/{pages,components,data,styles}
-    feature-guides/{pages,components,data,styles}
-    updates/{pages,components,data,hooks,styles}
+    services/{pages,components,data}
+    feature-guides/{pages,components,data}   # data: 가이드 목록·실제 화면 카탈로그
+    updates/{pages,components,data,hooks}
     legal/{pages,components,data}
-    invite/{pages,components,hooks,api,models,schemas,utils,data,styles,tests}  # /i/{코드}, 필요한 블록만 클라이언트
+    invite/{pages,components,hooks,api,models,schemas,utils,data,tests}  # /i/{코드}, 필요한 블록만 클라이언트
     analytics/
       components/       # 동의 상태의 UI 소유자, 설정/배너
       hooks/            # React 구독·라우팅 수명 주기
@@ -37,10 +37,10 @@ src/
       tests/            # 경계/DI 계약 테스트
       styles/
   components/
-    layout/             # MarketingLayout, SiteHeader, SiteFooter
-    navigation/         # 언어 전환·모바일 메뉴
-    marketing/          # 다운로드 CTA·스토어 링크·FAQ·BrandMotif(장식 SVG)
-    media/              # AppScreenshot·PhonePreview·정적 loader/data
+    layout/             # MarketingLayout, SiteHeader, SiteFooter, PageHeader(하위 페이지 머리)
+    navigation/         # 언어 전환·모바일 메뉴(Sheet)·PageBreadcrumb
+    marketing/          # BrandLogo·StoreButtons·DownloadCard·FaqList(details)·BrandMotif
+    media/              # PhoneScreenshot(AspectRatio+fill)·AppScreenshot·정적 loader/data
     motion/             # 지연 로드 GSAP 경계/정리
     seo/                # schema-dts JSON-LD·Breadcrumb
     fonts/              # locale 자원 목록·preload
@@ -60,7 +60,7 @@ src/
 
 토큰은 `src/app/globals.css` 한 곳에 있습니다. 색은 `brand`(#ff6b43, 행동·강조), `brand-deep`(#c2410c, 크림 위 글자·링크·포커스), `brand-soft`, `fish`(#23a2ff, 친구·소셜), `bone`, `cream`(페이지 바탕), `paper`(카드), `ink`(#222), 앱과 같은 `gray-1…10`입니다. shadcn 의미 토큰(`primary`, `muted`, `accent`, `border`, `ring`…)은 이 값을 가리킵니다. 주황 바탕의 글자는 대비 때문에 흰색이 아닌 `ink`입니다. 서체는 `font-display`(Jua, h1·h2, shadcn `font-heading`), `font-sans`(Wanted Sans), `font-hand`(나눔손글씨 펜, 짧은 메모만)입니다. 크기는 `text-display-xl|lg|md`, `text-title-lg|title`, `text-body-lg|body`, `text-caption|micro`, `text-hand|hand-lg`, 간격은 Tailwind 4px 단계 + `px-gutter`·`py-section`·`py-section-sm`, 폭은 `max-w-page|narrow|reading`입니다. 둥글기는 칩(`rounded-sm`) < 버튼(`rounded-lg`, xl 버튼은 pill) < 카드(`rounded-xl`) < 큰 패널(`rounded-3xl`), 그림자는 `shadow-card`·`shadow-lift`(따뜻한 그림자)와 눌리는 버튼 아랫단 `shadow-press-*`입니다. 새 사용자 토큰을 추가하면 `src/lib/utils.ts`의 `cn` 설정에도 그룹을 알려 클래스 병합에서 지워지지 않게 합니다. 다크 모드 토큰과 `dark:` 변형은 모든 페이지를 옮긴 뒤 `<html data-color-scheme="system">`으로 켭니다.
 
-UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest view <이름>`) CLI로 추가합니다. 현재 Button·Card·Badge·Tabs·Accordion·Sheet·Separator·AspectRatio·Carousel·Skeleton·Popover·Textarea가 있습니다. 생성물은 원본 그대로 두고 브랜드 변형만 cva에 더합니다(Button `ink`·`soft`·`xl`, Card `elevated`·`soft`, Badge `soft`·`fish`). 목적이 있는 확장은 `목적-원본.tsx`(예: `download-dialog.tsx`, `store-badge-button.tsx`)로 새 파일을 만들고 `Omit<ComponentProps<typeof Dialog>, "…">`처럼 원본 Props(open/onOpenChange, className, ...rest)를 그대로 받습니다. Button은 이벤트 연결 전 클릭을 막지만(`useHydrated`) 비활성 모양으로 바뀌지 않아 서버 HTML과 첫 화면이 같습니다. shadcn 생성물의 영어 낭독 문구(Sheet "Close", Carousel "Previous/Next slide")는 쓰는 쪽에서 한영 문구로 바꿉니다.
+UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest view <이름>`) CLI로 추가합니다. 현재 Button·Card·Badge·Tabs·Accordion·Sheet·Separator·AspectRatio·Carousel·Skeleton·Breadcrumb·Textarea가 있습니다. 생성물은 원본 그대로 두고 브랜드 변형만 cva에 더합니다(Button `ink`·`soft`·`xl`, Card `elevated`·`soft`, Badge `soft`·`fish`). 목적이 있는 확장은 `목적-원본.tsx`(예: `download-dialog.tsx`, `store-badge-button.tsx`)로 새 파일을 만들고 `Omit<ComponentProps<typeof Dialog>, "…">`처럼 원본 Props(open/onOpenChange, className, ...rest)를 그대로 받습니다. Button은 이벤트 연결 전 클릭을 막지만(`useHydrated`) 비활성 모양으로 바뀌지 않아 서버 HTML과 첫 화면이 같습니다. shadcn 생성물의 영어 낭독 문구(Sheet "Close", Carousel "Previous/Next slide")는 쓰는 쪽에서 한영 문구로 바꿉니다.
 
 ### 레이아웃 원시 컴포넌트 (`@/components/ui/layout`)
 
@@ -94,7 +94,7 @@ UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest 
 
 원본 UI를 확장할 때 `ComponentProps<typeof Original>` 또는 Base UI의 원본 Props를 기준으로 하고, 변경할 계약만 Omit합니다. AppScreenshot은 Image의 src/치수 소유권만 바꾸며 alt/sizes/loading 등은 Image 계약 그대로입니다. 입력 값은 value/onChange, 체크박스는 해당 원본의 checked/onCheckedChange를 유지합니다. 내부 구현을 설명하는 별도 prop 이름으로 바꾸지 않습니다.
 
-상태 소유자는 AnalyticsProvider와 복사 훅입니다. 공용 Button과 메뉴 트리거는 useHydrated로 이벤트 핸들러 연결 전의 클릭을 막습니다. 언어/스토어 링크는 서버 HTML에서도 동작합니다. 메뉴 팝오버는 첫 열기 시 로드하고 실패하면 native details로 대체합니다. 언어 전환의 캠페인 정리 함수는 분석 스키마와 분리해 불필요한 검증 번들을 가져오지 않습니다. ConsentBanner는 값과 명확한 변경 콜백만 받습니다. 복사 상태는 idle/copying/copied/manual 중 하나이고 중복 클릭·unmount 후 비동기 결과를 차단합니다. readOnly Textarea의 값은 서버가 제공한 문안입니다. 소비하지 않는 상태 구독이나 전역 저장소를 추가하지 않습니다.
+상태 소유자는 AnalyticsProvider와 복사 훅입니다. 공용 Button과 메뉴 트리거는 useHydrated로 이벤트 핸들러 연결 전의 클릭을 막습니다. 언어/스토어 링크는 서버 HTML에서도 동작합니다. 모바일 메뉴 Sheet는 첫 열기 시 로드하고 실패하면 native details로 대체합니다. 머리글의 스크롤 상태는 JavaScript 없이 CSS scroll-driven animation으로 바꿔 리스너·타이머가 없습니다(지원하지 않거나 reduced-motion이면 고정 바탕). 언어 전환의 캠페인 정리 함수는 분석 스키마와 분리해 불필요한 검증 번들을 가져오지 않습니다. ConsentBanner는 값과 명확한 변경 콜백만 받습니다. 복사 상태는 idle/copying/copied/manual 중 하나이고 중복 클릭·unmount 후 비동기 결과를 차단합니다. readOnly Textarea의 값은 서버가 제공한 문안입니다. 소비하지 않는 상태 구독이나 전역 저장소를 추가하지 않습니다.
 
 URL/캠페인/동의 레코드·이벤트 변환은 순수 함수입니다. 날짜는 `formatContentDate`의 명시적인 UTC/로케일 Intl 정책을 따릅니다. 조합과 분기는 es-toolkit groupBy와 ts-pattern의 exhaustive match를 사용합니다. 외부 JSON·환경변수·dataset을 타입 단언으로 신뢰하지 않습니다.
 
