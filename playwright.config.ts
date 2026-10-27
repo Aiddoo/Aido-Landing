@@ -1,4 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
+
+const port = process.env.PLAYWRIGHT_PORT ?? "3217";
+
 export default defineConfig({
   testDir: "./tests/browser",
   fullyParallel: true,
@@ -6,7 +9,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 2 : 4,
   reporter: "list",
-  use: { baseURL: "http://localhost:3217", trace: "retain-on-failure" },
+  use: { baseURL: `http://localhost:${port}`, trace: "retain-on-failure" },
   projects: [
     {
       name: "chromium",
@@ -21,11 +24,11 @@ export default defineConfig({
   webServer: {
     command:
       process.env.PLAYWRIGHT_DEV === "1"
-        ? "pnpm dev --port 3217"
+        ? `pnpm dev --port ${port}`
         : process.env.PLAYWRIGHT_SKIP_BUILD === "1"
-          ? "pnpm start --port 3217"
-          : "pnpm build && pnpm start --port 3217",
-    url: "http://localhost:3217/ko",
+          ? `pnpm start --port ${port}`
+          : `pnpm build && pnpm start --port ${port}`,
+    url: `http://localhost:${port}/ko`,
     reuseExistingServer: false,
     timeout: 120_000,
     env: {
