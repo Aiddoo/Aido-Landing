@@ -7,7 +7,7 @@
 | 화면 구성 | 라우트가 화면·문서 레이아웃·지역 UI를 함께 소유 | `app`은 params/metadata/static params, `features/*/pages`는 위에서 아래로 읽는 화면 구성 |
 | 폴더 | 평평한 `components`, 중앙 `data` | 기능별 `pages/components/data/hooks/styles`, 실제 재사용 UI는 `components/*` |
 | 법적 문서 | 중복 화면, 자체 정규식 Markdown 파서, 번역 누락 시 한국어 대체 | 공통 LegalPage, 서버 react-markdown/GFM, 명시적인 한영 파일 쌍 |
-| 분석 | 한 Client Component의 GA/Vercel/동의/DOM 처리 | Zod 계약 → 동의 저장소 → 공급자 독립 런타임 → 어댑터 → 브라우저 통합 |
+| 분석 | 한 Client Component의 GA/Vercel/동의/DOM 처리 | Zod 이벤트 계약 → `track()` 하나로 GA4·Vercel 전송, 동의 저장소 → Consent Mode v2 |
 | UI | 사용하지 않는 Radix 버튼, 직접 모바일 메뉴 닫기, 손그림 유틸 | shadcn CLI(base-nova) 생성 Base UI 컴포넌트 + 브랜드 cva 변형, 앱과 같은 이름의 레이아웃 원시 컴포넌트 |
 | 타입 | strict, 단언과 배열 첫 항목 가정 | 추가 strict 옵션, Next typegen/typedRoutes, unknown 경계 Zod, schema-dts |
 | 자원 | 모든 언어가 한국어 폰트 CSS 수신, 원본 크기 이미지 | 한국어 전용 해시 CSS/공개 문구 폰트 서브셋, 정적 반응형 이미지 loader |
@@ -25,17 +25,14 @@ src/
     legal/{pages,components,data}
     invite/{pages,components,hooks,api,queries,providers,models,schemas,utils,data,tests}  # /i/{코드}, 요청마다 SSR + TanStack Query
     analytics/
-      components/       # 동의 상태의 UI 소유자, 설정/배너
+      components/       # 동의 상태의 UI 소유자, 동의 카드·쿠키 설정 버튼
       hooks/            # React 구독·라우팅 수명 주기
-      schemas/          # 런타임 검증과 z.infer 타입의 단일 원본
-      models/           # AnalyticsAdapter 인터페이스
+      schemas/          # 이벤트·페이지·동의·설정, z.infer 타입의 단일 원본
       config/           # server-only 환경변수 읽기
-      runtime/          # 공급자 독립 실행·동의 저장, 브라우저 등록부
-      adapters/         # GA4/Vercel 계약 변환
-      browser/          # DOM/storage/script/vendor globals 경계
-      utils/            # URL·data-* 순수 변환
-      tests/            # 경계/DI 계약 테스트
-      styles/
+      runtime/          # track()·페이지뷰·Consent Mode·동의 저장
+      browser/          # DOM/storage/vendor globals 경계
+      utils/            # URL·data-* 순수 변환, Vercel beforeSend
+      tests/            # 스키마·동의 전이·경로 정규화
   components/
     layout/             # MarketingLayout, SiteHeader, SiteFooter, PageHeader(하위 페이지 머리)
     navigation/         # 언어 전환·모바일 메뉴(Sheet)·PageBreadcrumb
@@ -97,7 +94,7 @@ UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest 
 
 원본 UI를 확장할 때 `ComponentProps<typeof Original>` 또는 Base UI의 원본 Props를 기준으로 하고, 변경할 계약만 Omit합니다. AppScreenshot은 Image의 src/치수 소유권만 바꾸며 alt/sizes/loading 등은 Image 계약 그대로입니다. 입력 값은 value/onChange, 체크박스는 해당 원본의 checked/onCheckedChange를 유지합니다. 내부 구현을 설명하는 별도 prop 이름으로 바꾸지 않습니다.
 
-상태 소유자는 AnalyticsProvider와 복사 훅입니다. 공용 Button과 메뉴 트리거는 useHydrated로 이벤트 핸들러 연결 전의 클릭을 막습니다. 언어/스토어 링크는 서버 HTML에서도 동작합니다. 모바일 메뉴 Sheet는 첫 열기 시 로드하고 실패하면 native details로 대체합니다. 머리글의 스크롤 상태는 JavaScript 없이 CSS scroll-driven animation으로 바꿔 리스너·타이머가 없습니다(지원하지 않거나 reduced-motion이면 고정 바탕). 언어 전환의 캠페인 정리 함수는 분석 스키마와 분리해 불필요한 검증 번들을 가져오지 않습니다. ConsentBanner는 값과 명확한 변경 콜백만 받습니다. 복사 상태는 idle/copying/copied/manual 중 하나이고 중복 클릭·unmount 후 비동기 결과를 차단합니다. readOnly Textarea의 값은 서버가 제공한 문안입니다. 소비하지 않는 상태 구독이나 전역 저장소를 추가하지 않습니다.
+상태 소유자는 AnalyticsProvider와 복사 훅입니다. 공용 Button과 메뉴 트리거는 useHydrated로 이벤트 핸들러 연결 전의 클릭을 막습니다. 언어/스토어 링크는 서버 HTML에서도 동작합니다. 모바일 메뉴 Sheet는 첫 열기 시 로드하고 실패하면 native details로 대체합니다. 머리글의 스크롤 상태는 JavaScript 없이 CSS scroll-driven animation으로 바꿔 리스너·타이머가 없습니다(지원하지 않거나 reduced-motion이면 고정 바탕). 언어 전환의 캠페인 정리 함수는 분석 스키마와 분리해 불필요한 검증 번들을 가져오지 않습니다. AnalyticsConsentCard는 값과 명확한 변경 콜백(onChoose·onClose)만 받습니다. 복사 상태는 idle/copying/copied/manual 중 하나이고 중복 클릭·unmount 후 비동기 결과를 차단합니다. readOnly Textarea의 값은 서버가 제공한 문안입니다. 소비하지 않는 상태 구독이나 전역 저장소를 추가하지 않습니다.
 
 URL/캠페인/동의 레코드·이벤트 변환은 순수 함수입니다. 날짜는 `formatContentDate`의 명시적인 UTC/로케일 Intl 정책을 따릅니다. 조합과 분기는 es-toolkit groupBy와 ts-pattern의 exhaustive match를 사용합니다. 외부 JSON·환경변수·dataset을 타입 단언으로 신뢰하지 않습니다.
 
@@ -105,6 +102,6 @@ URL/캠페인/동의 레코드·이벤트 변환은 순수 함수입니다. 날�
 
 GSAP은 첫 스크롤 뒤 동적으로 읽으며 RSC children을 유지합니다. 제목·본문·LCP 이미지·CTA는 처음부터 보입니다. useGSAP scope/contextSafe, matchMedia/revert와 IntersectionObserver.disconnect로 해제합니다. 회전은 기존 부모에, 이동은 내부 장식에 적용합니다. reduced-motion에서는 애니메이션을 하지 않고 설정이 바뀌면 정리합니다.
 
-분석 스크립트는 유효한 동의 뒤에만 요청합니다. 동의 전 이벤트를 큐에 담았다가 재생하지 않습니다. DOM 클릭 리스너·동의 timer/storage 리스너·abort listener를 해제합니다. 자세한 공급자 교체·키 관리·집계 한계는 [분석 운영](analytics.md)에 있습니다.
+GA4는 Consent Mode v2 기본값을 넣은 뒤에만 gtag.js를 그리고, 쿠키는 동의 뒤에만 씁니다. Vercel Analytics는 쿠키 없이 항상 켭니다. DOM 클릭 리스너·동의 timer/storage 리스너를 해제합니다. 자세한 동의·키 관리·집계 한계는 [분석 운영](analytics.md)에 있습니다.
 
 검사는 [기여 안내](contributing.md), 자원/측정 결과는 [성능 기록](performance.md)을 참고합니다. TypeScript와 스키마 검증은 코드·런타임 경계의 안전성을 강화하지만 외부 SDK/브라우저의 동작까지 “100% 오류 없음”을 보장하지 않습니다.

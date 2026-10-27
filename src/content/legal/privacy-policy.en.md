@@ -324,14 +324,14 @@ For reports or consultations regarding personal information breaches, you may co
 
 ---
 
-## Official website analytics notice (added October 4, 2026)
+## Official website analytics notice (added October 4, 2026; updated October 27, 2026)
 
-This notice applies to analytics on the official aido.kr website. Use **Website analytics settings** at the bottom of the website to allow or decline analytics. Analytics starts only after you allow it. Declining does not limit access to content or store links. Your choice is saved in your browser for 180 days and can be changed at any time. Analytics does not start when your browser sends a Do Not Track or Global Privacy Control signal.
+This notice applies to analytics on the official aido.kr website. On your first visit, a small card at the bottom of the screen lets you **Allow** or **Decline** Google Analytics cookies, and you can change your choice at any time with **Cookie settings** at the bottom of the website. Declining does not limit access to content or store links. Your choice is saved in your browser for 180 days. If your browser sends a Do Not Track or Global Privacy Control signal, we treat it as Decline regardless of any saved choice and do not show the card.
 
-- **Google Analytics 4 (Google LLC)** measures page visits, referral sources, campaigns, language, feature guide card selections and store button clicks to improve the website. After consent, it uses analytics cookies and Google processes visit, device and browser information. This website tag does not use advertising personalization or Google Signals. A store button click does not mean an app installation or purchase.
-- **Vercel Web Analytics (Vercel Inc.)** provides cookie-free visit statistics after consent. It processes page, referral source, device and browser information.
-- We do not add member identifiers, email addresses, to-do or note content, arbitrary URL queries or fragments to analytics events. Campaign UTM values are limited to a defined format.
-- Selecting **Decline** stops tracking and clears this site's Google Analytics cookies. Previously collected data is handled according to each analytics service's retention settings. Changing your choice does not delete historical data.
+- **Google Analytics 4 (Google LLC)** measures page visits, referral sources, campaigns, language, feature guide card selections, store button clicks and whether an invite code was copied to improve the website. We use Google Consent Mode v2. Before you allow it, or if you decline, no analytics cookies are stored or read; only cookieless visit, device and browser information is sent to Google and may be used for aggregate reporting and modeling. If you **Allow**, an analytics cookie (`_ga`) is used to recognize return visits. Consent for ad storage, ad user data and ad personalization always stays denied, and Google Signals is not used. A store button click does not mean an app installation or purchase.
+- **Vercel Web Analytics (Vercel Inc.)** provides cookie-free, aggregated visit statistics that do not identify individuals, and runs regardless of your choice. It counts pages, referral sources, device and browser types and the events above.
+- We do not send member identifiers, email addresses, to-do or note content, invite codes, arbitrary URL queries or fragments to analytics. Invite link addresses are counted only as a path without the code, and campaign UTM values are limited to a defined format.
+- Switching to **Decline** stops Google Analytics cookie use and clears this site's Google Analytics cookies. Previously collected data is handled according to each analytics service's retention settings. Changing your choice does not delete historical data.
 
 See [Google's Privacy Policy](https://policies.google.com/privacy) and [Vercel Web Analytics privacy information](https://vercel.com/docs/analytics/privacy-policy) for information about processing by these services. For website analytics questions, contact matthew@redband.co.kr.
 
