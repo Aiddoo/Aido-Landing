@@ -137,6 +137,7 @@ export type MessageCatalog = {
     privacy: string;
     settings: string;
     storageError: string;
+    privacySignal: string;
     close: string;
   };
   featureGuides: {
@@ -507,14 +508,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
       },
     },
     analyticsConsent: {
-      title: "웹사이트 이용 분석",
+      title: "방문 통계 쿠키",
       description:
-        "동의하면 Google Analytics와 Vercel Analytics로 방문 경로와 스토어 버튼 이용을 분석해요. 선택은 언제든 변경할 수 있어요.",
-      accept: "분석 허용",
-      reject: "허용 안 함",
-      privacy: "개인정보처리방침",
-      settings: "웹사이트 분석 설정",
-      storageError: "선택을 저장하지 못했어요. 분석은 꺼진 상태로 유지됩니다.",
+        "더 나은 아이두를 위해 방문 통계를 써요. 허용하면 Google Analytics 쿠키로 재방문을 구분해요.",
+      accept: "허용",
+      reject: "거부",
+      privacy: "자세히",
+      settings: "쿠키 설정",
+      storageError: "선택을 저장하지 못했어요. 쿠키는 쓰지 않아요.",
+      privacySignal: "브라우저의 추적 거부 설정을 따라 쿠키를 쓰지 않아요.",
       close: "닫기",
     },
     featureGuides: {
@@ -1487,14 +1489,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
       },
     },
     analyticsConsent: {
-      title: "Website analytics",
+      title: "Visit stats cookies",
       description:
-        "With your consent, Google Analytics and Vercel Analytics help us understand visits and store button use. You can change your choice at any time.",
-      accept: "Allow analytics",
+        "We use visit stats to make Aido better. If you allow it, Google Analytics uses cookies to recognize return visits.",
+      accept: "Allow",
       reject: "Decline",
-      privacy: "Privacy policy",
-      settings: "Website analytics settings",
-      storageError: "Your choice could not be saved. Analytics remains off.",
+      privacy: "Learn more",
+      settings: "Cookie settings",
+      storageError: "We couldn’t save your choice, so cookies stay off.",
+      privacySignal:
+        "We’re following your browser’s do-not-track setting, so cookies stay off.",
       close: "Close",
     },
     featureGuides: {

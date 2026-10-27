@@ -46,7 +46,7 @@ export function StoreButtons({
         {...analyticsAttributes({
           name: "download_click",
           store: "app_store",
-          placement,
+          cta_placement: placement,
         })}
       >
         <svg
@@ -68,7 +68,7 @@ export function StoreButtons({
         {...analyticsAttributes({
           name: "download_click",
           store: "google_play",
-          placement,
+          cta_placement: placement,
         })}
       >
         <svg
