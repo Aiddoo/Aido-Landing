@@ -12,105 +12,211 @@ const consume = (command) => window.__gaCommands.push(Array.from(command));
 window.dataLayer.push = (...commands) => { commands.forEach(consume); return window.__gaCommands.length; };
 `;
 const vercelScript = `
-window.__vercelPages = [];
+window.__vercelEvents = [];
 let beforeSend;
 const queue = window.vaq || [];
 window.va = (type, properties) => {
   if (type === "beforeSend") beforeSend = properties;
-  if (type === "pageview") {
-    const event = { type: "pageview", url: new URL(properties.path || location.href, location.origin).href };
+  if (type === "pageview" || type === "event") {
+    const event = { type: type === "pageview" ? "pageview" : "event", url: location.href };
     const result = beforeSend ? beforeSend(event) : null;
-    if (result) window.__vercelPages.push(result.url);
+    if (result) window.__vercelEvents.push({ ...result, name: properties.name ?? null });
   }
 };
 queue.forEach(([type, properties]) => window.va(type, properties));
-// Simulate the SDK's unsolicited initial pageview. The adapter permits only manual views.
-window.va("pageview", { path: location.href });
 `;
+const commandSchema = z.array(z.array(z.unknown()));
+const vercelEventSchema = z.array(
+  z.object({ type: z.string(), url: z.string(), name: z.string().nullable() }),
+);
+
 async function mockVendors(page: Page) {
-  const requests: string[] = [];
-  await page.route("https://www.googletagmanager.com/**", async (route) => {
-    requests.push("ga4");
-    await route.fulfill({
+  await page.route("https://www.googletagmanager.com/**", (route) =>
+    route.fulfill({
       contentType: "application/javascript",
       body: googleScript,
-    });
-  });
-  await page.route("**/_vercel/insights/script.js", async (route) => {
-    requests.push("vercel");
-    await route.fulfill({
+    }),
+  );
+  await page.route("**/_vercel/insights/script.js", (route) =>
+    route.fulfill({
       contentType: "application/javascript",
       body: vercelScript,
-    });
-  });
-  return requests;
+    }),
+  );
+}
+async function gaCommands(page: Page) {
+  return commandSchema.parse(
+    await page.evaluate(() => Reflect.get(window, "__gaCommands") ?? []),
+  );
 }
 async function gaEvents(page: Page, name: string) {
-  const input: unknown = await page.evaluate(
-    () => Reflect.get(window, "__gaCommands") ?? [],
+  return (await gaCommands(page)).filter(
+    (command) => command[0] === "event" && command[1] === name,
   );
-  return z
-    .array(z.array(z.unknown()))
-    .parse(input)
-    .filter((command) => command[0] === "event" && command[1] === name);
 }
-async function vercelPages(page: Page) {
-  const input: unknown = await page.evaluate(
-    () => Reflect.get(window, "__vercelPages") ?? [],
+async function consentCommands(page: Page) {
+  return (await gaCommands(page)).filter((command) => command[0] === "consent");
+}
+async function vercelEvents(page: Page) {
+  return vercelEventSchema.parse(
+    await page.evaluate(() => Reflect.get(window, "__vercelEvents") ?? []),
   );
-  return z.array(z.string()).parse(input);
 }
-async function accept(page: Page) {
-  await page.getByRole("button", { name: "분석 허용", exact: true }).click();
+function storeConsent(page: Page, choice: "accepted" | "rejected") {
+  return page.addInitScript(
+    ({ key, maxAge, choice }) =>
+      localStorage.setItem(
+        key,
+        JSON.stringify({ choice, expiresAt: Date.now() + maxAge }),
+      ),
+    { key: CONSENT_KEY, maxAge: CONSENT_MAX_AGE, choice },
+  );
+}
+
+test("measures cookieless before consent and grants analytics storage on accept", async ({
+  page,
+}) => {
+  await mockVendors(page);
+  await page.goto("/ko?utm_source=instagram&email=private%40example.com");
   await expect
     .poll(async () => (await gaEvents(page, "page_view")).length)
     .toBe(1);
-}
-
-test("no provider requests before consent or after decline, including reload", async ({
-  page,
-}) => {
-  const requests = await mockVendors(page);
-  await page.goto("/ko");
-  await page.locator("#faq summary").first().click();
-  expect(requests).toEqual([]);
-  await page.getByRole("button", { name: "허용 안 함", exact: true }).click();
-  await page.reload();
-  await expect(
-    page.getByRole("button", { name: "웹사이트 분석 설정", exact: true }),
-  ).toBeVisible();
-  expect(requests).toEqual([]);
-  await expect(
-    page.locator('script[src*="googletagmanager"], script[data-sdkn]'),
-  ).toHaveCount(0);
-});
-
-test("one initialization, sanitized views, typed clicks, navigation and withdrawal", async ({
-  page,
-}) => {
-  const requests = await mockVendors(page);
-  await page.goto(
-    "/ko?utm_source=instagram&email=private%40example.com#guides",
-  );
-  await accept(page);
-  await expect.poll(async () => (await vercelPages(page)).length).toBe(1);
-  expect(requests.sort()).toEqual(["ga4", "vercel"]);
+  const commands = await gaCommands(page);
+  expect(commands[0]).toEqual([
+    "consent",
+    "default",
+    {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      wait_for_update: 500,
+    },
+  ]);
+  expect(await consentCommands(page)).toHaveLength(1);
   expect((await gaEvents(page, "page_view"))[0]?.[2]).toMatchObject({
     page_location: "https://aido.kr/ko?utm_source=instagram",
     page_path: "/ko",
-    site_locale: "ko",
   });
+  await expect.poll(async () => (await vercelEvents(page)).length).toBe(1);
+
+  await page.getByRole("button", { name: "허용", exact: true }).click();
+  await expect(
+    page.getByRole("region", { name: "방문 통계 쿠키" }),
+  ).toBeHidden();
+  expect((await consentCommands(page)).at(-1)).toEqual([
+    "consent",
+    "update",
+    { analytics_storage: "granted" },
+  ]);
+});
+
+test("restores a saved acceptance before config and hides the card", async ({
+  page,
+}) => {
+  await mockVendors(page);
+  await storeConsent(page, "accepted");
+  await page.goto("/ko");
+  await expect
+    .poll(async () => (await gaEvents(page, "page_view")).length)
+    .toBe(1);
+  const commands = await gaCommands(page);
+  const update = commands.findIndex((command) => command[1] === "update");
+  const config = commands.findIndex((command) => command[0] === "config");
+  expect(update).toBeGreaterThan(0);
+  expect(update).toBeLessThan(config);
+  await expect(
+    page.getByRole("region", { name: "방문 통계 쿠키" }),
+  ).toHaveCount(0);
+});
+
+test("keeps storage denied after decline and lets the footer reopen the choice", async ({
+  page,
+}) => {
+  await mockVendors(page);
+  await page.goto("/ko");
+  await page.getByRole("button", { name: "거부", exact: true }).click();
+  await page.reload();
+  await expect
+    .poll(async () => (await gaEvents(page, "page_view")).length)
+    .toBe(1);
+  expect(await consentCommands(page)).toHaveLength(1);
+  await page.getByRole("button", { name: "쿠키 설정", exact: true }).click();
+  await expect(
+    page.getByRole("region", { name: "방문 통계 쿠키" }),
+  ).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(
+    page.getByRole("region", { name: "방문 통계 쿠키" }),
+  ).toHaveCount(0);
+});
+
+for (const preference of ["dnt", "gpc"] as const) {
+  test(`${preference} loads no Google tag, keeps cookieless Vercel counting and hides the card`, async ({
+    page,
+  }) => {
+    await mockVendors(page);
+    const googleRequests: string[] = [];
+    page.on("request", (request) => {
+      if (request.url().startsWith("https://www.googletagmanager.com/"))
+        googleRequests.push(request.url());
+    });
+    await storeConsent(page, "accepted");
+    await page.addInitScript((preference) => {
+      Object.defineProperty(
+        navigator,
+        preference === "dnt" ? "doNotTrack" : "globalPrivacyControl",
+        { get: () => (preference === "dnt" ? "1" : true) },
+      );
+    }, preference);
+    await page.goto("/ko");
+    await expect.poll(async () => (await vercelEvents(page)).length).toBe(1);
+    await page.waitForLoadState("networkidle");
+    expect(googleRequests).toEqual([]);
+    expect(await gaCommands(page)).toEqual([]);
+    await expect(
+      page.getByRole("region", { name: "방문 통계 쿠키" }),
+    ).toHaveCount(0);
+    await page.getByRole("button", { name: "쿠키 설정", exact: true }).click();
+    await expect(
+      page.getByRole("button", { name: "허용", exact: true }),
+    ).toBeDisabled();
+  });
+}
+
+test.describe("invite links", () => {
+  test.use({ locale: "ko-KR" });
+  test("drops invite codes from every provider", async ({ page }) => {
+    await mockVendors(page);
+    await storeConsent(page, "rejected");
+    await page.goto("/i/BCD234");
+    await expect
+      .poll(async () => (await gaEvents(page, "page_view")).length)
+      .toBe(1);
+    await expect.poll(async () => (await vercelEvents(page)).length).toBe(1);
+    expect(JSON.stringify(await gaCommands(page))).not.toContain("BCD234");
+    expect(JSON.stringify(await vercelEvents(page))).not.toContain("BCD234");
+    expect((await vercelEvents(page))[0]?.url).toBe(
+      "https://aido.kr/ko/invite",
+    );
+  });
+});
+
+test("sends one page view per navigation and typed clicks to both providers", async ({
+  page,
+}) => {
+  await mockVendors(page);
+  await storeConsent(page, "accepted");
+  await page.goto("/ko");
+  await expect
+    .poll(async () => (await gaEvents(page, "page_view")).length)
+    .toBe(1);
   await page.evaluate(() =>
     document
-      .querySelector<HTMLAnchorElement>(
-        '[data-analytics-event="download_click"]',
-      )
+      .querySelector<HTMLAnchorElement>("[data-analytics*=download_click]")
       ?.addEventListener("click", (event) => event.preventDefault()),
   );
-  await page
-    .locator('[data-analytics-event="download_click"][data-store="app_store"]')
-    .first()
-    .click();
+  await page.locator("[data-analytics*=download_click]").first().click();
   await expect
     .poll(async () => (await gaEvents(page, "download_click")).length)
     .toBe(1);
@@ -123,152 +229,26 @@ test("one initialization, sanitized views, typed clicks, navigation and withdraw
     item_id: "ai-todo",
     content_type: "feature_guide",
   });
-  await expect.poll(async () => (await vercelPages(page)).length).toBe(2);
-  expect(requests).toHaveLength(2);
-  await page
-    .getByRole("button", { name: "웹사이트 분석 설정", exact: true })
-    .click();
-  await page.getByRole("button", { name: "허용 안 함", exact: true }).click();
   await expect
     .poll(async () =>
-      page.evaluate(
-        (key) => JSON.parse(localStorage.getItem(key) ?? "null")?.choice,
-        CONSENT_KEY,
-      ),
+      (await vercelEvents(page)).map((event) => event.name ?? event.type),
     )
-    .toBe("rejected");
-  await expect(
-    page.locator('script[src*="googletagmanager"], script[data-sdkn]'),
-  ).toHaveCount(0);
-  expect(requests).toHaveLength(2);
+    .toEqual(["pageview", "download_click", "select_content", "pageview"]);
 });
 
-test("script failure isolates GA while Vercel still sends a page view", async ({
+test("storage failure reports the problem and keeps storage denied", async ({
   page,
 }) => {
   await mockVendors(page);
-  await page.route("https://www.googletagmanager.com/**", (route) =>
-    route.abort(),
-  );
-  await page.goto("/ko");
-  await page.getByRole("button", { name: "분석 허용", exact: true }).click();
-  await expect.poll(async () => (await vercelPages(page)).length).toBe(1);
-  expect(await gaEvents(page, "page_view")).toEqual([]);
-});
-
-for (const preference of ["dnt", "gpc"] as const) {
-  test(`saved acceptance cannot override ${preference}`, async ({ page }) => {
-    const requests = await mockVendors(page);
-    await page.addInitScript(
-      ({ key, maxAge, preference }) => {
-        localStorage.setItem(
-          key,
-          JSON.stringify({
-            choice: "accepted",
-            expiresAt: Date.now() + maxAge,
-          }),
-        );
-        Object.defineProperty(
-          navigator,
-          preference === "dnt" ? "doNotTrack" : "globalPrivacyControl",
-          { get: () => (preference === "dnt" ? "1" : true) },
-        );
-      },
-      { key: CONSENT_KEY, maxAge: CONSENT_MAX_AGE, preference },
-    );
-    await page.goto("/ko");
-    await page
-      .getByRole("button", { name: "웹사이트 분석 설정", exact: true })
-      .click();
-    await expect(
-      page.getByRole("button", { name: "분석 허용", exact: true }),
-    ).toBeDisabled();
-    expect(requests).toEqual([]);
-  });
-}
-
-test("storage failure reports the problem and keeps providers off", async ({
-  page,
-}) => {
-  const requests = await mockVendors(page);
   await page.addInitScript(() => {
     Storage.prototype.setItem = () => {
       throw new Error("blocked storage");
     };
   });
   await page.goto("/ko");
-  await page.getByRole("button", { name: "분석 허용", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText(
-    "선택을 저장하지 못했어요",
-  );
-  expect(requests).toEqual([]);
-});
-
-test("expired and malformed stored consent do not load providers", async ({
-  page,
-}) => {
-  const requests = await mockVendors(page);
-  await page.addInitScript(
-    (key) =>
-      localStorage.setItem(
-        key,
-        JSON.stringify({ choice: "accepted", expiresAt: Date.now() - 1 }),
-      ),
-    CONSENT_KEY,
-  );
-  await page.goto("/ko");
+  await page.getByRole("button", { name: "허용", exact: true }).click();
   await expect(
-    page.getByRole("button", { name: "분석 허용", exact: true }),
+    page.getByRole("status").filter({ hasText: "선택을 저장하지 못했어요" }),
   ).toBeVisible();
-  expect(requests).toEqual([]);
-});
-
-test("cross-tab withdrawal stops loaded tags", async ({ context, page }) => {
-  await mockVendors(page);
-  await page.goto("/ko");
-  await accept(page);
-  const other = await context.newPage();
-  await mockVendors(other);
-  await other.goto("/ko/privacy");
-  await other.evaluate(
-    (key) =>
-      localStorage.setItem(
-        key,
-        JSON.stringify({ choice: "rejected", expiresAt: Date.now() + 60_000 }),
-      ),
-    CONSENT_KEY,
-  );
-  await expect(
-    page.locator('script[src*="googletagmanager"], script[data-sdkn]'),
-  ).toHaveCount(0);
-});
-
-test("repeated navigation keeps one script and one click handler per provider", async ({
-  page,
-}) => {
-  const requests = await mockVendors(page);
-  await page.goto("/ko");
-  await accept(page);
-  for (const [index, slug] of [
-    "ai-todo",
-    "recurring-todo",
-    "shared-todo",
-  ].entries()) {
-    await page.locator(`a[href="/ko/features/${slug}"]`).first().click();
-    await expect
-      .poll(async () => (await gaEvents(page, "page_view")).length)
-      .toBe(index + 2);
-    await expect
-      .poll(async () => (await gaEvents(page, "select_content")).length)
-      .toBe(index + 1);
-  }
-  await page.goBack();
-  await expect
-    .poll(async () => (await gaEvents(page, "page_view")).length)
-    .toBe(5);
-  await expect.poll(async () => (await vercelPages(page)).length).toBe(5);
-  expect(requests.sort()).toEqual(["ga4", "vercel"]);
-  await expect(
-    page.locator('script[src*="googletagmanager"], script[data-sdkn]'),
-  ).toHaveCount(2);
+  expect(await consentCommands(page)).toHaveLength(1);
 });

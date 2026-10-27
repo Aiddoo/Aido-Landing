@@ -1,34 +1,81 @@
 "use client";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { match } from "ts-pattern";
 import { HStack } from "@/components/ui/layout";
 import type { MessageCatalog } from "@/i18n/messages";
 import { useCopyInviteCode } from "../hooks/use-copy-invite-code";
-import { useInviteCode } from "../hooks/use-invite-code";
-import { useInvitePreview } from "../hooks/use-invite-preview";
 import { usableInviteCode } from "../models/invite-preview";
+import {
+  getInvitePreviewQueryOptions,
+  inviteQueryKeys,
+} from "../queries/invite-queries";
 import type { InviteCode } from "../schemas/invite.schema";
+import { InviteQueryBoundary } from "./invite-query-boundary";
 
 const EMPTY_CODE = "······";
 
-type InviteCodeCopyProps = { labels: MessageCatalog["invite"] };
+type Labels = MessageCatalog["invite"];
 
 // 쓸 수 있는 초대 코드와 복사 버튼. 없거나 바뀐 링크의 코드는 숨기고 복사를 막는다.
-export function InviteCodeCopy({ labels }: InviteCodeCopyProps) {
-  const { code } = useInviteCode();
-  const preview = useInvitePreview();
+export function InviteCodeCopy({
+  labels,
+  code,
+}: {
+  labels: Labels;
+  code: InviteCode | null;
+}) {
+  if (code == null) return <InviteCodeCopy.Error labels={labels} />;
+  return (
+    <InviteQueryBoundary
+      queryKey={inviteQueryKeys.preview(code)}
+      pendingFallback={<InviteCodeCopy.Loading labels={labels} code={code} />}
+      rejectedFallback={() => <InviteCodeCopy.Error labels={labels} />}
+    >
+      <InviteCodeCopy.Contents labels={labels} code={code} />
+    </InviteQueryBoundary>
+  );
+}
+
+function InviteCodeCopyContents({
+  labels,
+  code,
+}: {
+  labels: Labels;
+  code: InviteCode;
+}) {
+  const { data: preview } = useSuspenseQuery(
+    getInvitePreviewQueryOptions(code),
+  );
   return <CodeField labels={labels} code={usableInviteCode(code, preview)} />;
 }
 
 // 미리보기를 기다리는 동안에도 주소의 코드를 바로 복사할 수 있다.
-export function InviteCodeCopyLoading({ labels }: InviteCodeCopyProps) {
-  const { code } = useInviteCode();
+function InviteCodeCopyLoading({
+  labels,
+  code,
+}: {
+  labels: Labels;
+  code: InviteCode;
+}) {
   return <CodeField labels={labels} code={code} />;
 }
+
+// 코드를 확인하지 못했으므로 숨기고 복사를 막는다.
+function InviteCodeCopyError({ labels }: { labels: Labels }) {
+  return <CodeField labels={labels} code={null} />;
+}
+
+InviteCodeCopy.Contents = InviteCodeCopyContents;
+InviteCodeCopy.Loading = InviteCodeCopyLoading;
+InviteCodeCopy.Error = InviteCodeCopyError;
 
 function CodeField({
   labels,
   code,
-}: InviteCodeCopyProps & { code: InviteCode | null }) {
+}: {
+  labels: Labels;
+  code: InviteCode | null;
+}) {
   const copy = useCopyInviteCode(code);
   const hint = match(copy.status)
     .with("manual", () => labels.codeManualStatus)
@@ -43,7 +90,7 @@ function CodeField({
       <HStack align="center" justify="between" gap={3} className="h-13">
         <span
           data-empty={code ? undefined : ""}
-          className="font-mono text-[1.875rem] leading-none font-extrabold tracking-[0.12em] whitespace-nowrap text-ink select-all data-empty:text-muted-foreground data-empty:select-none"
+          className="font-mono text-[1.875rem] leading-none font-bold tracking-[0.12em] whitespace-nowrap text-ink select-all data-empty:text-muted-foreground data-empty:select-none"
         >
           {code ?? EMPTY_CODE}
         </span>

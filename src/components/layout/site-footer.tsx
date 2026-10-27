@@ -11,9 +11,11 @@ import {
   Stack,
   VStack,
 } from "@/components/ui/layout";
+import { AnalyticsSettingsButton } from "@/features/analytics/components/analytics-settings-button";
+import { getAnalyticsConfig } from "@/features/analytics/config/analytics-config.server";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
-import { localizedPath } from "@/lib/public-routes";
+import { localizedHomeAnchor, localizedPath } from "@/lib/public-routes";
 import { INSTAGRAM_URL, LINK_HUB_URL } from "@/lib/seo";
 
 const linkClass =
@@ -22,6 +24,9 @@ const linkClass =
 export function SiteFooter({ locale }: { locale: Locale }) {
   const messages = getMessages(locale);
   const { footer, nav } = messages;
+  const hasCookieConsent = getAnalyticsConfig().providers.some(
+    (provider) => provider.id === "ga4",
+  );
   return (
     <footer
       lang={locale}
@@ -53,9 +58,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                 </Link>
               </li>
               <li>
-                <a href={`/${locale}#guides`} className={linkClass}>
+                <Link
+                  href={localizedHomeAnchor(locale, "guides")}
+                  className={linkClass}
+                >
                   {nav.guides}
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
@@ -99,6 +107,16 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                   {footer.accountDeletionLabel}
                 </Link>
               </li>
+              {hasCookieConsent && (
+                <li>
+                  <AnalyticsSettingsButton
+                    variant="link"
+                    className={`${linkClass} h-auto rounded-none px-0 font-medium no-underline`}
+                  >
+                    {messages.analyticsConsent.settings}
+                  </AnalyticsSettingsButton>
+                </li>
+              )}
               <li>
                 <a href={`mailto:${footer.inquiryValue}`} className={linkClass}>
                   {footer.inquiryLabel}
@@ -125,12 +143,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             </FooterColumn>
           </Grid>
         </Stack>
-        <VStack gap={3}>
-          <p className="text-caption font-semibold text-ink">
-            {footer.downloadTitle}
-          </p>
-          <StoreButtons content={messages.storeButtons} placement="download" />
-        </VStack>
+        <StoreButtons content={messages.storeButtons} placement="download" />
         <VStack
           gap={3}
           className="border-t pt-8 text-micro text-muted-foreground"

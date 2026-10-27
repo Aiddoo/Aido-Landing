@@ -7,20 +7,26 @@ export const localeSchema = z.enum(["ko", "en"]);
 export const featureSlugSchema = z.enum(
   featureGuides.map((guide) => guide.slug),
 );
+// GA4와 Vercel에 같은 이름·파라미터로 보내는 유일한 이벤트 목록이다.
 export const analyticsEventSchema = z.discriminatedUnion("name", [
   z.strictObject({
     name: z.literal("download_click"),
     store: z.enum(["app_store", "google_play"]),
-    placement: z.enum(["hero", "download", "invite"]),
+    cta_placement: z.enum(["hero", "download", "invite"]),
   }),
   z.strictObject({
-    name: z.literal("feature_guide_click"),
-    slug: featureSlugSchema,
-    placement: z.enum(["home_guides", "related_guides"]),
+    name: z.literal("select_content"),
+    content_type: z.literal("feature_guide"),
+    item_id: featureSlugSchema,
+    cta_placement: z.enum(["home_guides", "related_guides"]),
   }),
   z.strictObject({
     name: z.literal("language_switch"),
-    targetLocale: localeSchema,
+    target_locale: localeSchema,
+  }),
+  z.strictObject({
+    name: z.literal("invite_code_copy"),
+    copy_result: z.enum(["copied", "manual"]),
   }),
 ]);
 export const analyticsPageSchema = z.strictObject({
@@ -74,5 +80,9 @@ export const analyticsConfigSchema = z.strictObject({
 export type AnalyticsEvent = z.infer<typeof analyticsEventSchema>;
 export type AnalyticsPage = z.infer<typeof analyticsPageSchema>;
 export type AnalyticsConfig = z.infer<typeof analyticsConfigSchema>;
+export type VercelAnalyticsConfig = Extract<
+  AnalyticsConfig["providers"][number],
+  { id: "vercel" }
+>;
 export type ConsentChoice = z.infer<typeof consentRecordSchema>["choice"];
 export type AnalyticsConsent = ConsentChoice | "pending";

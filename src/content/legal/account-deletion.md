@@ -28,7 +28,7 @@
 계정을 삭제해도 Apple·Google 구독 결제는 자동으로 멈추지 않아요. 다음 결제를 막으려면 삭제 전에 직접 해지해 주세요.
 
 - **iPhone·iPad**: 설정 > Apple 계정(이름) > 구독 > 아이두
-- **Android**: Google Play 앱 > 프로필 > 결제 및 정기 결제 > 정기 결제 > 아이두
+- **Android**: Google&nbsp;Play 앱 > 프로필 > 결제 및 정기 결제 > 정기 결제 > 아이두
 
 ---
 

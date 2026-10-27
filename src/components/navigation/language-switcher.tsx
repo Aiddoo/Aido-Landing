@@ -67,7 +67,7 @@ function LanguageLinks({
           key={item}
           {...analyticsAttributes({
             name: "language_switch",
-            targetLocale: item,
+            target_locale: item,
           })}
           href={{
             pathname: localizedPath(item, path),

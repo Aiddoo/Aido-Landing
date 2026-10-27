@@ -1,3 +1,4 @@
+import { withCn } from "cn/next";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -23,6 +24,11 @@ const nextConfig: NextConfig = {
       // 코드가 담긴 초대 주소는 색인하지 않는다(페이지 metadata와 함께 적용).
       {
         source: "/i/:inviteCode",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      // proxy가 rewrite하는 실제 경로도 직접 열면 같은 정책을 쓴다.
+      {
+        source: "/:locale(ko|en)/invite/:inviteCode",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
       {
@@ -53,4 +59,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// cn의 병합 표를 실제로 쓰는 클래스만으로 빌드 때 만들어 브라우저 JavaScript를 줄인다.
+export default withCn(nextConfig, {
+  content: ["src/**/*.{ts,tsx}"],
+  css: "src/app/globals.css",
+  out: "src/lib/cn-tables.ts",
+});

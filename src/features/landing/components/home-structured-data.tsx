@@ -16,7 +16,8 @@ export function MobileApplicationData({ locale }: { locale: Locale }) {
         name: SITE_NAME,
         alternateName: "아이두",
         url: `${SITE_URL}/${locale}`,
-        operatingSystem: "iOS, iPadOS, Android",
+        operatingSystem:
+          "iOS 16.4+, iPadOS 16.4+, macOS 12+ (Apple silicon), Android 7.0+",
         applicationCategory: "BusinessApplication",
         offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
         installUrl: [APP_STORE_URL, PLAY_STORE_URL],

@@ -1,11 +1,11 @@
 import type { Locale } from "@/i18n/config";
 
-// 홈에 쓰는 1.13.0 실제 앱 화면(라이트). 원본은 캡처_원본/아이두_실화면_1.13.0에서
-// iPhone 6.3·iPhone Duo(접힘/펼침)·iPad 13 화면을 골라 WebP로 줄였다. 기기 테두리는 CSS로 그린다.
+// 홈에 쓰는 실제 앱 화면(라이트). iPhone 6.3·iPad 13은 캡처_원본/아이두_실화면_1.13.0에서,
+// 가로로 펼친 iPhone Duo는 1.12.0 랜딩의 가로 두 칸 캡처(foldable/todo-detail)에서 골라 WebP로 줄였다.
+// 기기 테두리는 CSS로 그린다.
 export const homeScreenDevices = {
   iphone: { width: 900, height: 1957 },
-  "duo-folded": { width: 900, height: 1309 },
-  "duo-unfolded": { width: 1280, height: 1820 },
+  "duo-open": { width: 1440, height: 1010 },
   ipad: { width: 1000, height: 1333 },
 } as const;
 
@@ -23,8 +23,7 @@ export const homeScreenFiles = {
   widgets: "iphone",
   report: "iphone",
   reminders: "iphone",
-  "duo-folded": "duo-folded",
-  "duo-unfolded": "duo-unfolded",
+  "duo-open": "duo-open",
   "ipad-detail": "ipad",
 } as const satisfies Record<string, HomeScreenDevice>;
 

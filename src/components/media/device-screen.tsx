@@ -19,12 +19,10 @@ const bezelVariants = cva(
     variants: {
       device: {
         iphone: "rounded-[15.5cqw] p-[3.2cqw]",
-        // 접은 iPhone Duo: 왼쪽은 경첩이라 각지고 오른쪽만 둥글다.
-        "duo-folded":
-          "rounded-l-[1.6cqw] rounded-r-[14.5cqw] border-l-[3.4cqw] border-l-gray-8 p-[2.6cqw] pl-[1.8cqw]",
-        // 펼친 iPhone Duo: 네 모서리가 둥근 거의 정사각형 세로 화면, 접힘선은 그리지 않는다.
-        "duo-unfolded": "rounded-[11cqw] p-[1.9cqw]",
+        // 가로로 펼친 iPhone Duo: 얇은 테두리의 넓은 화면, 가운데 접힘선은 그리지 않는다.
+        "duo-open": "rounded-[4.6cqw] p-[1.2cqw]",
         ipad: "rounded-[6cqw] p-[2.8cqw]",
+        android: "rounded-[11cqw] p-[2.4cqw]",
       },
       // 어두운 바탕에서는 잉크 테두리가 묻혀 한 단계 밝은 회색을 쓴다.
       tone: {
@@ -38,34 +36,51 @@ const bezelVariants = cva(
 
 const screenRadius = {
   iphone: "rounded-[12.3cqw]",
-  "duo-folded": "rounded-l-[0.6cqw] rounded-r-[12cqw]",
-  "duo-unfolded": "rounded-[9.3cqw]",
+  "duo-open": "rounded-[3.5cqw]",
   ipad: "rounded-[3.2cqw]",
-} as const satisfies Record<HomeScreenDevice, string>;
+  android: "rounded-[8.6cqw]",
+} as const satisfies Record<DeviceFrame, string>;
 
-type DeviceScreenProps = Omit<
+export type DeviceFrame = HomeScreenDevice | "android";
+
+/** 홈 카탈로그의 화면, 또는 가이드·서비스 캡처처럼 직접 가진 이미지와 원본 크기 */
+type DeviceScreenSource =
+  | { locale: Locale; screen: HomeScreenKey }
+  | { device: DeviceFrame; src: string; width: number; height: number };
+
+type DeviceScreenImageProps = Omit<
   ComponentProps<typeof Image>,
   "src" | "width" | "height" | "fill" | "overrideSrc" | "className"
-> & {
-  locale: Locale;
-  screen: HomeScreenKey;
-  /** 기기 바깥 틀의 className */
-  className?: string;
-  tone?: "ink" | "graphite";
-  /** 화면 위에 겹쳐 그릴 장식(빛 반사 등) */
-  overlay?: ReactNode;
-};
+>;
 
-/** 실제 앱 화면을 CSS로 그린 기기 틀(iPhone·iPhone Duo·iPad)에 넣는다. */
+type DeviceScreenProps = DeviceScreenImageProps &
+  DeviceScreenSource & {
+    /** 기기 바깥 틀의 className */
+    className?: string;
+    tone?: "ink" | "graphite";
+    /** 화면 위에 겹쳐 그릴 장식(빛 반사 등) */
+    overlay?: ReactNode;
+  };
+
+function resolveDeviceScreen(
+  props: DeviceScreenImageProps & DeviceScreenSource,
+) {
+  if ("screen" in props) {
+    const { locale, screen, ...imageProps } = props;
+    return { ...getHomeScreen(locale, screen), imageProps };
+  }
+  const { device, src, width, height, ...imageProps } = props;
+  return { device, src, width, height, imageProps };
+}
+
+/** 실제 앱 화면을 CSS로 그린 기기 틀(iPhone·iPhone Duo·iPad·Android)에 넣는다. */
 export function DeviceScreen({
-  locale,
-  screen,
   className,
   tone = "ink",
   overlay,
-  ...imageProps
+  ...props
 }: DeviceScreenProps) {
-  const { src, device, width, height } = getHomeScreen(locale, screen);
+  const { src, device, width, height, imageProps } = resolveDeviceScreen(props);
   return (
     <Box data-device={device} className={cn("@container", className)}>
       <Box className={cn(bezelVariants({ device, tone }), "shadow-lift")}>
@@ -83,7 +98,7 @@ export function DeviceScreen({
               className="absolute top-[5.4cqw] left-1/2 h-[7.4cqw] w-[26cqw] -translate-x-1/2 rounded-full bg-ink"
             />
           ))
-          .with("duo-folded", "duo-unfolded", "ipad", () => null)
+          .with("duo-open", "ipad", "android", () => null)
           .exhaustive()}
       </Box>
     </Box>

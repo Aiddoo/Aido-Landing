@@ -19,8 +19,8 @@ const badgeVariants = cva(
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-brand-deep underline-offset-4 hover:underline",
         // 브랜드 변형: 부드러운 주황(새 기능·혜택), 생선 파랑(친구·소셜)
-        soft: "bg-accent font-semibold text-accent-foreground [a]:hover:bg-accent/80",
-        fish: "bg-fish/12 font-semibold text-fish-deep [a]:hover:bg-fish/20",
+        soft: "bg-accent font-semibold text-ink [a]:hover:bg-accent/80",
+        fish: "bg-fish/8 font-semibold text-fish-deep [a]:hover:bg-fish/20",
       },
     },
     defaultVariants: {

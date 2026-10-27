@@ -39,19 +39,19 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "초대 링크를 카카오톡이나 다른 앱으로 보내 친구를 불러요. 새로 가입한 친구는 바로 친구가 되고 프리미엄 7일을 받아요.",
-            en: "Send an invite link on KakaoTalk or any app. A friend who just signed up becomes your friend right away and gets 7 days of Premium.",
+            ko: "초대 링크를 카카오톡이나 다른 앱으로 보내 친구를 불러요. 새로 가입한 친구는 바로 친구가 되고 프리미엄 7일을\u00a0받아요.",
+            en: "Send an invite link on KakaoTalk or any app. A friend who just signed up becomes your friend right away and gets 7\u00a0days of\u00a0Premium.",
           },
           {
-            ko: "초대한 친구가 2일 동안 할 일을 끝내면 나는 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요. ‘발자국 모으기’에서 초대 현황을 보고, 기다리는 친구에게 콕을 보내 응원할 수 있어요.",
-            en: "When a friend you invited completes to-dos on 2 days, you get 7 days of Premium and can add 1 more friend. Track it in “Collect paw prints” and send a nudge to friends who are still on their way.",
+            ko: "초대한 친구가 2일 동안 할\u00a0일을 끝내면 나는 프리미엄 7일을 받고, 친구를 1명 더 추가할 수 있어요. ‘발자국 모으기’에서 초대 현황을 보고, 기다리는 친구에게 콕을 보내 응원할 수\u00a0있어요.",
+            en: "When a friend you invited completes to-dos on 2\u00a0days, you get 7\u00a0days of Premium and can add 1\u00a0more friend. Track it in “Collect paw prints” and send a nudge to friends who are still on their\u00a0way.",
           },
           {
-            ko: "불편한 할 일·댓글·콕·응원은 신고하고, 그 사람을 차단할 수 있어요. 내 할 일에 달린 댓글은 직접 지울 수 있어요.",
-            en: "Report to-dos, comments, nudges, or cheers that bother you, and block the person. You can also delete comments on your own to-dos.",
+            ko: "불편한 할\u00a0일·댓글·콕·응원은 신고하고, 그 사람을 차단할 수 있어요. 내 할\u00a0일에 달린 댓글은 직접 지울 수\u00a0있어요.",
+            en: "Report to-dos, comments, nudges, or cheers that bother you, and block the person. You can also delete comments on your own\u00a0to-dos.",
           },
           {
-            ko: "AI에 메모나 할 일을 보내기 전에 동의를 받아요. 설정에서 언제든 바꿀 수 있어요.",
+            ko: "AI에 메모나 할\u00a0일을 보내기 전에 동의를 받아요. 설정에서 언제든 바꿀 수\u00a0있어요.",
             en: "We ask for your consent before sending notes or to-dos to AI. You can change it anytime in Settings.",
           },
         ],
@@ -60,28 +60,28 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "AI가 ‘내일 오후 3시’, ‘다음 주 금요일’ 같은 날짜를 더 정확하게 알아듣고, 긴 메모는 할 일 5개까지 나눠 만들어요.",
-            en: "AI understands dates like “tomorrow at 3 PM” or “next Friday” more accurately, and turns long notes into up to 5 to-dos.",
+            ko: "AI가 ‘내일 오후 3시’, ‘다음 주 금요일’ 같은 날짜를 더 정확하게 알아듣고, 긴 메모는 할\u00a0일 5개까지 나눠\u00a0만들어요.",
+            en: "AI understands dates like “tomorrow at 3 PM” or “next Friday” more accurately, and turns long notes into up to 5\u00a0to-dos.",
           },
           {
-            ko: "위젯이 자정이 지나면 앱을 열지 않아도 새 날짜로 바뀌고, 기기 언어로 보여요.",
+            ko: "위젯이 자정이 지나면 앱을 열지 않아도 새 날짜로 바뀌고, 기기 언어로\u00a0보여요.",
             en: "Widgets switch to the new day after midnight without opening the app, and follow your device language.",
           },
           {
-            ko: "주간 성취와 AI 리포트에 ‘10월 19일 ~ 10월 25일’처럼 날짜 범위를 함께 보여줘요.",
-            en: "Weekly achievements and AI reports now show the date range, like “Oct 19 – Oct 25.”",
+            ko: "주간 성취와 AI 리포트에 ‘10월 19일 ~ 10월 25일’처럼 날짜 범위를 함께\u00a0보여줘요.",
+            en: "Weekly achievements and AI reports now show the date range, like “Oct 19 – Oct\u00a025.”",
           },
           {
-            ko: "구독 화면에서 초대 보상으로 받은 프리미엄 기간을 확인할 수 있어요. 구독 중에 받은 보상은 구독이 끝난 뒤 이어서 시작해요.",
-            en: "See your reward Premium period on the Subscription screen. Rewards earned while subscribed start after your subscription ends.",
+            ko: "구독 화면에서 초대 보상으로 받은 프리미엄 기간을 확인할 수 있어요. 구독 중에 받은 보상은 구독이 끝난 뒤 이어서\u00a0시작해요.",
+            en: "See your reward Premium period on the Subscription screen. Rewards earned while subscribed start after your subscription\u00a0ends.",
           },
           {
-            ko: "콕 고마움 카드, 친구 목록, 댓글 화면을 더 편하게 다듬었고, 키보드가 버튼을 가리지 않아요. 탭 아이콘은 고양이 귀 모양이 됐어요.",
-            en: "We polished the nudge thank-you card, friends list, and comments, and the keyboard no longer covers buttons. Tab icons now have cat ears.",
+            ko: "콕 고마움 카드, 친구 목록, 댓글 화면을 더 편하게 다듬었고, 키보드가 버튼을 가리지 않아요. 탭 아이콘은 고양이 귀 모양이\u00a0됐어요.",
+            en: "We polished the nudge thank-you card, friends list, and comments, and the keyboard no longer covers buttons. Tab icons now have cat\u00a0ears.",
           },
           {
-            ko: "초대한 친구가 첫날 할 일을 끝내면 알림으로 알려 줘요. 홈의 새 기능 카드는 닫을 수 있어요.",
-            en: "We let you know when a friend you invited finishes their first day. You can now dismiss the what's-new card on Home.",
+            ko: "초대한 친구가 첫날 할\u00a0일을 끝내면 알림으로 알려 줘요. 홈의 새 기능 카드는 닫을 수\u00a0있어요.",
+            en: "We let you know when a friend you invited finishes their first day. You can now dismiss the what's-new card on\u00a0Home.",
           },
         ],
       },
@@ -89,16 +89,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "달력이 몇 년 뒤로 넘어가거나 서머타임에 반복 할 일이 빠지던 문제를 고쳤어요.",
-            en: "Fixed the calendar jumping years ahead and recurring to-dos going missing when daylight saving time begins.",
+            ko: "달력이 몇 년 뒤로 넘어가거나 서머타임에 반복 할\u00a0일이 빠지던 문제를\u00a0고쳤어요.",
+            en: "Fixed the calendar jumping years ahead and recurring to-dos going missing when daylight saving time\u00a0begins.",
           },
           {
-            ko: "고양이 프로필이 비어 보이거나 위젯 날짜가 잘리던 문제를 고쳤어요.",
-            en: "Fixed blank cat profiles and cut-off widget dates.",
+            ko: "고양이 프로필이 비어 보이거나 위젯 날짜가 잘리던 문제를\u00a0고쳤어요.",
+            en: "Fixed blank cat profiles and cut-off widget\u00a0dates.",
           },
           {
-            ko: "알림이나 링크를 눌렀을 때 엉뚱한 화면이 열리거나 오류가 보이던 문제를 고쳤어요.",
-            en: "Fixed notifications and links that opened the wrong screen or showed an error.",
+            ko: "알림이나 링크를 눌렀을 때 엉뚱한 화면이 열리거나 오류가 보이던 문제를\u00a0고쳤어요.",
+            en: "Fixed notifications and links that opened the wrong screen or showed an\u00a0error.",
           },
         ],
       },
@@ -130,12 +130,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "iPhone Duo나 폴더블 폰을 반쯤 접으면 목록과 상세가 접히는 선을 기준으로 나뉘어 보여요. 내용이 접히는 부분에 걸리지 않아요.",
-            en: "Half-fold your iPhone Duo or foldable phone, and the list and details split neatly along the fold, so nothing sits across the crease.",
+            ko: "iPhone Duo나 폴더블 폰을 반쯤 접으면 목록과 상세가 접히는 선을 기준으로 나뉘어 보여요. 내용이 접히는 부분에 걸리지\u00a0않아요.",
+            en: "Half-fold your iPhone\u00a0Duo or foldable phone, and the list and details split neatly along the fold, so nothing sits across the\u00a0crease.",
           },
           {
-            ko: "보낸 콕을 알림의 친구 탭에서 받은 알림과 함께 확인할 수 있어요. ‘받은 알림’과 ‘보낸 콕’을 눌러 바로 오갈 수 있어요.",
-            en: "Find the nudges you sent in the Friends tab of your notifications. Switch between Received and Sent with a single tap.",
+            ko: "보낸 콕을 알림의 친구 탭에서 받은 알림과 함께 확인할 수 있어요. ‘받은 알림’과 ‘보낸 콕’을 눌러 바로 오갈 수\u00a0있어요.",
+            en: "Find the nudges you sent in the Friends tab of your notifications. Switch between Received and Sent with a single\u00a0tap.",
           },
         ],
       },
@@ -143,24 +143,24 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "접은 iPhone Duo에서는 뒤로 가기, 저장, 검색 같은 화면 위쪽 버튼이 옆쪽 막대로 옮겨져 더 편하게 누를 수 있어요. 일반 iPhone에서도 버튼 모양이 기기와 자연스럽게 어울려요.",
-            en: "On a folded iPhone Duo, top buttons like Back, Save, and Search move to the side bar within easy reach. On other iPhones, they now match the look of your device.",
+            ko: "접은 iPhone Duo에서는 뒤로 가기, 저장, 검색 같은 화면 위쪽 버튼이 옆쪽 막대로 옮겨져 더 편하게 누를 수 있어요. 일반 iPhone에서도 버튼 모양이 기기와 자연스럽게\u00a0어울려요.",
+            en: "On a folded iPhone\u00a0Duo, top buttons like Back, Save, and Search move to the side bar within easy reach. On other iPhones, they now match the look of your\u00a0device.",
           },
           {
-            ko: "할 일 옵션, 날짜, 시간처럼 아래에서 올라오는 창이 화면 너비에 맞게 펼쳐지고, 시계 아래에서 열려 잘리지 않아요. 내용이 길면 창 안에서 스크롤할 수 있어요.",
-            en: "Sheets for to-do options, date, and time now fit the width of your screen and open below the clock without getting cut off. Longer content scrolls inside the sheet.",
+            ko: "할\u00a0일 옵션, 날짜, 시간처럼 아래에서 올라오는 창이 화면 너비에 맞게 펼쳐지고, 시계 아래에서 열려 잘리지 않아요. 내용이 길면 창 안에서 스크롤할 수\u00a0있어요.",
+            en: "Sheets for to-do options, date, and time now fit the width of your screen and open below the clock without getting cut off. Longer content scrolls inside the\u00a0sheet.",
           },
           {
-            ko: "할 일, 하위 할 일, 친구, 카테고리 순서를 끌어서 바꿀 때 더 부드럽게 움직이고, 자리를 옮길 때마다 가벼운 진동으로 알려줘요.",
-            en: "Dragging to reorder to-dos, checklist items, friends, and categories feels smoother, with a light tap of feedback each time an item moves.",
+            ko: "할\u00a0일, 하위 할\u00a0일, 친구, 카테고리 순서를 끌어서 바꿀 때 더 부드럽게 움직이고, 자리를 옮길 때마다 가벼운 진동으로\u00a0알려줘요.",
+            en: "Dragging to reorder to-dos, checklist items, friends, and categories feels smoother, with a light tap of feedback each time an item\u00a0moves.",
           },
           {
-            ko: "VoiceOver와 TalkBack에서 할 일 완료, 댓글 보기, 더보기를 바로 사용할 수 있어요.",
-            en: "With VoiceOver or TalkBack, you can complete a to-do, open its comments, or see more options right from the list.",
+            ko: "VoiceOver와 TalkBack에서 할\u00a0일 완료, 댓글 보기, 더보기를 바로 사용할 수\u00a0있어요.",
+            en: "With VoiceOver or TalkBack, you can complete a to-do, open its comments, or see more options right from the\u00a0list.",
           },
           {
-            ko: "Mac에서는 창 크기와 관계없이 익숙한 휴대폰 화면으로 보여요.",
-            en: "On Mac, Aido keeps its familiar phone layout at any window size.",
+            ko: "Mac에서는 창 크기와 관계없이 익숙한 휴대폰 화면으로\u00a0보여요.",
+            en: "On Mac, Aido keeps its familiar phone layout at any window\u00a0size.",
           },
         ],
       },
@@ -168,23 +168,23 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "끌어서 순서를 바꾼 뒤 줄이 겹치거나 빈칸이 남던 문제를 고쳤어요.",
-            en: "We fixed rows overlapping or leaving gaps after you dragged to reorder.",
+            ko: "끌어서 순서를 바꾼 뒤 줄이 겹치거나 빈칸이 남던 문제를\u00a0고쳤어요.",
+            en: "We fixed rows overlapping or leaving gaps after you dragged to\u00a0reorder.",
           },
           {
-            ko: "할 일 옵션에서 날짜 변경을 누르면 창이 덜 열린 채 멈춰 있던 문제를 고쳤어요.",
-            en: "We fixed the date sheet getting stuck halfway open when chosen from to-do options.",
+            ko: "할\u00a0일 옵션에서 날짜 변경을 누르면 창이 덜 열린 채 멈춰 있던 문제를\u00a0고쳤어요.",
+            en: "We fixed the date sheet getting stuck halfway open when chosen from to-do\u00a0options.",
           },
           {
-            ko: "펼친 화면에서 메모를 보다가 다른 탭으로 옮긴 뒤 접으면 메모가 엉뚱하게 열리던 문제와, 펼친 직후 화면이 살짝 흔들리던 문제를 고쳤어요.",
+            ko: "펼친 화면에서 메모를 보다가 다른 탭으로 옮긴 뒤 접으면 메모가 엉뚱하게 열리던 문제와, 펼친 직후 화면이 살짝 흔들리던 문제를\u00a0고쳤어요.",
             en: "We fixed a note opening in the wrong tab after folding, and the screen shifting slightly right after unfolding.",
           },
           {
-            ko: "보낸 콕을 열 때 오류 화면이 보이던 문제를 고쳤어요.",
-            en: "We fixed an error screen that appeared when opening the nudges you sent.",
+            ko: "보낸 콕을 열 때 오류 화면이 보이던 문제를\u00a0고쳤어요.",
+            en: "We fixed an error screen that appeared when opening the nudges you\u00a0sent.",
           },
           {
-            ko: "영어로 쓸 때 시간이 ‘PM 2:30’처럼 보이거나 24시간제 설정을 따르지 않던 문제, 자정이 지나도 날짜 선택의 ‘오늘·내일’이 바뀌지 않던 문제를 고쳤어요.",
+            ko: "영어로 쓸 때 시간이 ‘PM 2:30’처럼 보이거나 24시간제 설정을 따르지 않던 문제, 자정이 지나도 날짜 선택의 ‘오늘·내일’이 바뀌지 않던 문제를\u00a0고쳤어요.",
             en: "We fixed times showing as “PM 2:30” in English or ignoring your 24-hour setting, and Today and Tomorrow in the date picker not updating after midnight.",
           },
         ],
@@ -217,12 +217,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "폴더블 폰과 iPhone Duo를 펼치면 할 일, 친구의 할 일, 메모, 설정을 왼쪽 목록과 오른쪽 상세로 나눠 볼 수 있어요. 목록을 보면서 할 일의 댓글이나 메모 내용을 바로 확인해요.",
-            en: "On an unfolded foldable phone or iPhone Duo, to-dos, your friends’ to-dos, notes, and settings show a list on the left and details on the right. Read comments or notes while keeping your list in view.",
+            ko: "폴더블 폰과 iPhone Duo를 펼치면 할\u00a0일, 친구의 할\u00a0일, 메모, 설정을 왼쪽 목록과 오른쪽 상세로 나눠 볼 수 있어요. 목록을 보면서 할\u00a0일의 댓글이나 메모 내용을 바로\u00a0확인해요.",
+            en: "On an unfolded foldable phone or iPhone\u00a0Duo, to-dos, your friends’ to-dos, notes, and settings show a list on the left and details on the right. Read comments or notes while keeping your list in\u00a0view.",
           },
           {
-            ko: "작성 중인 댓글과 메모는 화면을 접거나 펼쳐도 그대로 남아 있어요. 로그인이 만료돼도 다시 로그인하면 이어서 쓸 수 있어요.",
-            en: "Comments and notes you’re writing stay put when you fold or unfold your phone. If you’re signed out, pick up where you left off after signing back in.",
+            ko: "작성 중인 댓글과 메모는 화면을 접거나 펼쳐도 그대로 남아 있어요. 로그인이 만료돼도 다시 로그인하면 이어서 쓸 수\u00a0있어요.",
+            en: "Comments and notes you’re writing stay put when you fold or unfold your phone. If you’re signed out, pick up where you left off after signing back\u00a0in.",
           },
         ],
       },
@@ -230,23 +230,23 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "작성 중인 글은 이 기기에 암호화해 보관하고, 다른 계정으로 로그인하면 이전 계정의 글을 정리해요.",
-            en: "Unsent writing is encrypted on your device and cleared when a different account signs in.",
+            ko: "작성 중인 글은 이 기기에 암호화해 보관하고, 다른 계정으로 로그인하면 이전 계정의 글을\u00a0정리해요.",
+            en: "Unsent writing is encrypted on your device and cleared when a different account signs\u00a0in.",
           },
           {
-            ko: "iPhone Duo의 세로 레일과 겹치지 않도록 화면 내용, 알림 메시지, 아래에서 올라오는 창과 하단 버튼의 위치를 다듬었어요.",
-            en: "Screen content, toasts, bottom sheets, and bottom buttons now stay clear of the iPhone Duo rail.",
+            ko: "iPhone Duo의 세로 레일과 겹치지 않도록 화면 내용, 알림 메시지, 아래에서 올라오는 창과 하단 버튼의 위치를\u00a0다듬었어요.",
+            en: "Screen content, toasts, bottom sheets, and bottom buttons now stay clear of the iPhone\u00a0Duo\u00a0rail.",
           },
           {
-            ko: "넓은 화면에서는 로그인 화면이 가운데 알맞은 폭으로 보이고, 아래에서 올라오는 창도 너무 넓어지지 않아요.",
-            en: "On wide screens, sign-in screens sit at a comfortable width in the center, and bottom sheets no longer stretch too wide.",
+            ko: "넓은 화면에서는 로그인 화면이 가운데 알맞은 폭으로 보이고, 아래에서 올라오는 창도 너무 넓어지지\u00a0않아요.",
+            en: "On wide screens, sign-in screens sit at a comfortable width in the center, and bottom sheets no longer stretch too\u00a0wide.",
           },
           {
-            ko: "펼친 화면에서 아직 선택한 항목이 없으면 상세 영역에 안내가 보여요. Android에서는 뒤로 가기로 열린 상세를 먼저 닫을 수 있어요.",
-            en: "When nothing is selected on an unfolded screen, the detail area shows a short guide. On Android, Back closes the open details first.",
+            ko: "펼친 화면에서 아직 선택한 항목이 없으면 상세 영역에 안내가 보여요. Android에서는 뒤로 가기로 열린 상세를 먼저 닫을 수\u00a0있어요.",
+            en: "When nothing is selected on an unfolded screen, the detail area shows a short guide. On Android, Back closes the open details\u00a0first.",
           },
           {
-            ko: "답글 대상을 바꿔도 쓰던 글을 이어서 쓸 수 있어요. 할 일 변경이 실패하면 해당 할 일만 원래대로 되돌리도록 다듬었어요.",
+            ko: "답글 대상을 바꿔도 쓰던 글을 이어서 쓸 수 있어요. 할\u00a0일 변경이 실패하면 해당 할\u00a0일만 원래대로 되돌리도록\u00a0다듬었어요.",
             en: "Switching who you reply to keeps your draft. If a to-do change fails, only that to-do is restored.",
           },
         ],
@@ -255,16 +255,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "화면을 접거나 펼칠 때 보던 내용이 처음부터 다시 그려지던 문제를 고쳤어요.",
-            en: "We fixed content redrawing from scratch when you fold or unfold your phone.",
+            ko: "화면을 접거나 펼칠 때 보던 내용이 처음부터 다시 그려지던 문제를\u00a0고쳤어요.",
+            en: "We fixed content redrawing from scratch when you fold or unfold your\u00a0phone.",
           },
           {
-            ko: "펼친 화면에서 주간·월간 달력을 넘길 때 폭이 어긋나던 문제를 고쳤어요.",
-            en: "We fixed misaligned weekly and monthly calendars when swiping on an unfolded screen.",
+            ko: "펼친 화면에서 주간·월간 달력을 넘길 때 폭이 어긋나던 문제를\u00a0고쳤어요.",
+            en: "We fixed misaligned weekly and monthly calendars when swiping on an unfolded\u00a0screen.",
           },
           {
-            ko: "펼친 화면에서 댓글을 쓸 때 입력창과 목록이 키보드보다 높게 떠오르던 문제를 고쳤어요.",
-            en: "We fixed the comment field and list rising too far above the keyboard on an unfolded screen.",
+            ko: "펼친 화면에서 댓글을 쓸 때 입력창과 목록이 키보드보다 높게 떠오르던 문제를\u00a0고쳤어요.",
+            en: "We fixed the comment field and list rising too far above the keyboard on an unfolded\u00a0screen.",
           },
         ],
       },
@@ -294,16 +294,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "친구가 보낸 콕에 ‘시작해볼게’, ‘응원 고마워’, ‘조금 뒤에 할게’로 답장할 수 있어요. 답장 후에도 마친 할 일은 직접 체크해 주세요.",
-            en: "Reply to a friend’s nudge with “I’ll get started”, “Thanks for cheering me on”, or “I’ll do it later”. You still need to check off the to-do when you finish it.",
+            ko: "친구가 보낸 콕에 ‘시작해볼게’, ‘응원 고마워’, ‘조금 뒤에 할게’로 답장할 수 있어요. 답장 후에도 마친 할\u00a0일은 직접 체크해\u00a0주세요.",
+            en: "Reply to a friend’s nudge with “I’ll get started”, “Thanks for cheering me on”, or “I’ll do it later”. You still need to check off the to-do when you finish\u00a0it.",
           },
           {
-            ko: "공개한 할 일을 마치면 콕으로 응원해 준 친구들에게 한 번에 고마움을 전할 수 있어요. 답장과 감사는 무료로 이용할 때도 쓸 수 있어요.",
-            en: "After finishing a public to-do, thank the friends who nudged you in one go. Replies and thanks are available on the free plan too.",
+            ko: "공개한 할\u00a0일을 마치면 콕으로 응원해 준 친구들에게 한 번에 고마움을 전할 수 있어요. 답장과 감사는 무료로 이용할 때도 쓸 수\u00a0있어요.",
+            en: "After finishing a public to-do, thank the friends who nudged you in one go. Replies and thanks are available on the free plan\u00a0too.",
           },
           {
-            ko: "중간 위젯에서는 오늘의 할 일을, 큰 위젯에서는 주간 달력과 오늘의 목록을 함께 볼 수 있어요. ‘할 일 만들기’를 누르면 앱에서 바로 추가할 수 있어요.",
-            en: "See today's to-dos in the medium widget, or your weekly calendar and today's list in the large widget. Tap ‘Add a to-do’ to create one in the app.",
+            ko: "중간 위젯에서는 오늘의 할\u00a0일을, 큰 위젯에서는 주간 달력과 오늘의 목록을 함께 볼 수 있어요. ‘할\u00a0일 만들기’를 누르면 앱에서 바로 추가할 수\u00a0있어요.",
+            en: "See today's to-dos in the medium widget, or your weekly calendar and today's list in the large widget. Tap ‘Add a to-do’ to create one in the\u00a0app.",
           },
         ],
       },
@@ -311,20 +311,20 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "받은 콕과 친구의 답장, 고마움을 알림 목록에서 함께 확인할 수 있어요. 보낸 콕에서도 친구의 반응을 살펴볼 수 있어요.",
-            en: "Find nudges, replies, and thanks together in your notifications. You can also follow your friends' responses in the nudges you've sent.",
+            ko: "받은 콕과 친구의 답장, 고마움을 알림 목록에서 함께 확인할 수 있어요. 보낸 콕에서도 친구의 반응을 살펴볼 수\u00a0있어요.",
+            en: "Find nudges, replies, and thanks together in your notifications. You can also follow your friends' responses in the nudges you've\u00a0sent.",
           },
           {
-            ko: "작은 위젯에서는 완료 수와 진행률을 확인할 수 있어요. 모든 크기의 고양이 발자국을 더 또렷하게 다듬고, iPhone과 Android의 배치를 비슷하게 맞췄어요.",
-            en: "The small widget shows your completion count and progress. Paw prints are clearer in every size, with more consistent layouts on iPhone and Android.",
+            ko: "작은 위젯에서는 완료 수와 진행률을 확인할 수 있어요. 모든 크기의 고양이 발자국을 더 또렷하게 다듬고, iPhone과 Android의 배치를 비슷하게\u00a0맞췄어요.",
+            en: "The small widget shows your completion count and progress. Paw prints are clearer in every size, with more consistent layouts on iPhone and\u00a0Android.",
           },
           {
-            ko: "앱을 켜 둔 채 자정이 지나거나 다음 날 앱으로 돌아오면 오늘 날짜가 바뀌도록 다듬었어요.",
-            en: "Today’s date now updates after midnight while the app is open, or when you return the next day.",
+            ko: "앱을 켜 둔 채 자정이 지나거나 다음 날 앱으로 돌아오면 오늘 날짜가 바뀌도록\u00a0다듬었어요.",
+            en: "Today’s date now updates after midnight while the app is open, or when you return the next\u00a0day.",
           },
           {
-            ko: "콕과 할 일 알림의 문구를 다듬었어요. 알림에서 할 일로 이동하거나 이전 화면으로 돌아가는 과정도 더 자연스러워졌어요.",
-            en: "Nudge and to-do reminder messages read more naturally. Moving from a notification to a to-do and back is smoother too.",
+            ko: "콕과 할\u00a0일 알림의 문구를 다듬었어요. 알림에서 할\u00a0일로 이동하거나 이전 화면으로 돌아가는 과정도 더 자연스러워졌어요.",
+            en: "Nudge and to-do reminder messages read more naturally. Moving from a notification to a to-do and back is smoother\u00a0too.",
           },
         ],
       },
@@ -354,8 +354,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "러시안 블루, 크림, 턱시도 고양이가 추가돼 프로필을 9가지 고양이 중에서 고를 수 있어요. 프리미엄 구독자는 앱 아이콘도 바꿀 수 있어요.",
-            en: "Russian Blue, Cream, and Tuxedo cats bring your profile choices to nine. Premium subscribers can also change their app icon.",
+            ko: "러시안 블루, 크림, 턱시도 고양이가 추가돼 프로필을 9가지 고양이 중에서 고를 수 있어요. 프리미엄 구독자는 앱 아이콘도 바꿀 수\u00a0있어요.",
+            en: "Russian Blue, Cream, and Tuxedo cats bring your profile choices to nine. Premium subscribers can also change their app\u00a0icon.",
           },
         ],
       },
@@ -363,28 +363,28 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "날씨 화면의 상단과 배경을 자연스럽게 맞추고, 라이트 모드와 다크 모드에서 더 편하게 볼 수 있도록 다듬었어요.",
-            en: "The weather screen has a more consistent header and background, with clearer colors in light and dark mode.",
+            ko: "날씨 화면의 상단과 배경을 자연스럽게 맞추고, 라이트 모드와 다크 모드에서 더 편하게 볼 수 있도록\u00a0다듬었어요.",
+            en: "The weather screen has a more consistent header and background, with clearer colors in light and dark\u00a0mode.",
           },
           {
-            ko: "한국 밖에서는 날씨를 국내에서만 지원한다는 안내를 확인할 수 있어요.",
-            en: "Outside Korea, you will see a notice explaining that weather is currently supported only in Korea.",
+            ko: "한국 밖에서는 날씨를 국내에서만 지원한다는 안내를 확인할 수\u00a0있어요.",
+            en: "Outside Korea, you will see a notice explaining that weather is currently supported only in\u00a0Korea.",
           },
           {
-            ko: "할 일, 메모, 마이페이지를 더 쉽게 구분할 수 있도록 하단 탭 아이콘을 새롭게 다듬었어요.",
-            en: "Refreshed bottom tab icons make to-dos, notes, and My Page easier to tell apart.",
+            ko: "할\u00a0일, 메모, 마이페이지를 더 쉽게 구분할 수 있도록 하단 탭 아이콘을 새롭게\u00a0다듬었어요.",
+            en: "Refreshed bottom tab icons make to-dos, notes, and My Page easier to tell\u00a0apart.",
           },
           {
-            ko: "등록된 할 일이나 메모가 없을 때 안내가 화면 가운데에 보이고, 캘린더를 불러오지 못하면 가까운 곳에서 다시 시도할 수 있어요.",
-            en: "Empty to-do and note lists show a centered message. If the calendar cannot load, you can retry without scrolling far.",
+            ko: "등록된 할\u00a0일이나 메모가 없을 때 안내가 화면 가운데에 보이고, 캘린더를 불러오지 못하면 가까운 곳에서 다시 시도할 수\u00a0있어요.",
+            en: "Empty to-do and note lists show a centered message. If the calendar cannot load, you can retry without scrolling\u00a0far.",
           },
           {
-            ko: "목록을 스크롤하거나 불러오는 과정을 다듬고, 화면 아래 내용이 하단 탭에 가려지지 않도록 정리했어요.",
-            en: "Lists are smoother to scroll and load, and content at the bottom stays clear of the tabs.",
+            ko: "목록을 스크롤하거나 불러오는 과정을 다듬고, 화면 아래 내용이 하단 탭에 가려지지 않도록\u00a0정리했어요.",
+            en: "Lists are smoother to scroll and load, and content at the bottom stays clear of the\u00a0tabs.",
           },
           {
-            ko: "무료로 이용할 때는 AI 기능 안내를 먼저 보여드리고, 프리미엄 AI 제안을 준비 중이거나 불러오지 못했을 때도 상태를 더 쉽게 알 수 있어요.",
-            en: "Free users see an introduction to AI features. Premium subscribers get clearer messages while AI suggestions are being prepared or cannot load.",
+            ko: "무료로 이용할 때는 AI 기능 안내를 먼저 보여드리고, 프리미엄 AI 제안을 준비 중이거나 불러오지 못했을 때도 상태를 더 쉽게 알 수\u00a0있어요.",
+            en: "Free users see an introduction to AI features. Premium subscribers get clearer messages while AI suggestions are being prepared or cannot\u00a0load.",
           },
         ],
       },
@@ -392,12 +392,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "앱에 처음 들어왔을 때 위치와 예보가 늦게 반영되거나, 상단 온도가 가끔 보이지 않던 문제를 고쳤어요.",
-            en: "We fixed delayed location and forecast updates when opening the app, and the temperature occasionally missing from the top of the screen.",
+            ko: "앱에 처음 들어왔을 때 위치와 예보가 늦게 반영되거나, 상단 온도가 가끔 보이지 않던 문제를\u00a0고쳤어요.",
+            en: "We fixed delayed location and forecast updates when opening the app, and the temperature occasionally missing from the top of the\u00a0screen.",
           },
           {
-            ko: "Android에서 테마를 바꾸거나 이전 화면으로 돌아갈 때 앱이 갑자기 종료될 수 있던 문제를 고쳤어요.",
-            en: "We fixed an issue that could unexpectedly close the app on Android when changing themes or going back.",
+            ko: "Android에서 테마를 바꾸거나 이전 화면으로 돌아갈 때 앱이 갑자기 종료될 수 있던 문제를\u00a0고쳤어요.",
+            en: "We fixed an issue that could unexpectedly close the app on Android when changing themes or going\u00a0back.",
           },
         ],
       },
@@ -427,8 +427,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "앱 하단 탭을 새롭게 다듬어, iPhone과 Android에서 원하는 화면으로 더 자연스럽게 이동할 수 있어요.",
-            en: "You can move between screens more naturally with refreshed bottom tabs on iPhone and Android.",
+            ko: "앱 하단 탭을 새롭게 다듬어, iPhone과 Android에서 원하는 화면으로 더 자연스럽게 이동할 수\u00a0있어요.",
+            en: "You can move between screens more naturally with refreshed bottom tabs on iPhone and\u00a0Android.",
           },
         ],
       },
@@ -436,15 +436,15 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "홈 화면 위젯에 오늘의 날짜, 할 일 목록과 완료 상태가 더 안정적으로 표시되도록 다듬었어요.",
+            ko: "홈 화면 위젯에 오늘의 날짜, 할\u00a0일 목록과 완료 상태가 더 안정적으로 표시되도록\u00a0다듬었어요.",
             en: "Your home screen widgets now show today's date, to-dos, and completion progress more reliably.",
           },
           {
-            ko: "입력창과 키보드 동작을 다듬어, 할 일과 댓글을 더 편하게 작성할 수 있어요.",
+            ko: "입력창과 키보드 동작을 다듬어, 할\u00a0일과 댓글을 더 편하게 작성할 수\u00a0있어요.",
             en: "You can write to-dos and comments more comfortably with improved text fields and keyboard behavior.",
           },
           {
-            ko: "메모를 작성하고 수정하거나 할 일로 바꾸는 과정이 더 안정적으로 이어지도록 다듬었어요.",
+            ko: "메모를 작성하고 수정하거나 할\u00a0일로 바꾸는 과정이 더 안정적으로 이어지도록\u00a0다듬었어요.",
             en: "Creating, editing, and turning notes into to-dos now works more reliably.",
           },
         ],
@@ -475,11 +475,11 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "할 일 상세에서 댓글과 답글을 함께 보고, 원하는 댓글에 바로 답글을 남길 수 있어요.",
-            en: "You can view comments and replies together in a to-do and reply directly to a comment.",
+            ko: "할\u00a0일 상세에서 댓글과 답글을 함께 보고, 원하는 댓글에 바로 답글을 남길 수\u00a0있어요.",
+            en: "You can view comments and replies together in a to-do and reply directly to a\u00a0comment.",
           },
           {
-            ko: "답글이 이어진 대화를 펼쳐 보고, 댓글 알림을 누르면 해당 댓글로 바로 이동할 수 있어요.",
+            ko: "답글이 이어진 대화를 펼쳐 보고, 댓글 알림을 누르면 해당 댓글로 바로 이동할 수\u00a0있어요.",
             en: "You can expand a conversation to read its replies and jump to the relevant comment from a notification.",
           },
         ],
@@ -488,16 +488,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "댓글을 쓰거나 답글을 오갈 때 입력창과 화면 이동이 더 자연스럽게 이어지도록 다듬었어요.",
-            en: "Writing comments and moving between replies now feels smoother, with the text field ready where you need it.",
+            ko: "댓글을 쓰거나 답글을 오갈 때 입력창과 화면 이동이 더 자연스럽게 이어지도록\u00a0다듬었어요.",
+            en: "Writing comments and moving between replies now feels smoother, with the text field ready where you need\u00a0it.",
           },
           {
-            ko: "답글을 작성하다 뒤로 가기를 누르면 한 번에 이전 댓글 화면으로 돌아갈 수 있어요.",
-            en: "You can return to the previous comment screen with one tap when you go back while writing a reply.",
+            ko: "답글을 작성하다 뒤로 가기를 누르면 한 번에 이전 댓글 화면으로 돌아갈 수\u00a0있어요.",
+            en: "You can return to the previous comment screen with one tap when you go back while writing a\u00a0reply.",
           },
           {
-            ko: "할 일 목록의 간격을 정돈하고, 댓글 작성자와 내용이 더 또렷하게 보이도록 다듬었어요.",
-            en: "Your to-do list has tidier spacing, and comment authors and text are easier to read.",
+            ko: "할\u00a0일 목록의 간격을 정돈하고, 댓글 작성자와 내용이 더 또렷하게 보이도록\u00a0다듬었어요.",
+            en: "Your to-do list has tidier spacing, and comment authors and text are easier to\u00a0read.",
           },
         ],
       },
@@ -527,15 +527,15 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "친구가 공개한 할 일을 모두 마친 날에는 친구 캘린더에 물고기가 보여요.",
-            en: "A fish appears on a friend's calendar when they finish all their public to-dos for the day.",
+            ko: "친구가 공개한 할\u00a0일을 모두 마친 날에는 친구 캘린더에 물고기가\u00a0보여요.",
+            en: "A fish appears on a friend's calendar when they finish all their public to-dos for the\u00a0day.",
           },
           {
-            ko: "친구가 어떤 카테고리의 할 일을 마쳤는지 색깔 점으로 한눈에 확인할 수 있어요.",
-            en: "You can see which categories your friend completed at a glance with colored dots.",
+            ko: "친구가 어떤 카테고리의 할\u00a0일을 마쳤는지 색깔 점으로 한눈에 확인할 수\u00a0있어요.",
+            en: "You can see which categories your friend completed at a glance with colored\u00a0dots.",
           },
           {
-            ko: "친구가 공개한 할 일만 보여드려서, 서로의 하루를 부담 없이 살펴볼 수 있어요.",
+            ko: "친구가 공개한 할\u00a0일만 보여드려서, 서로의 하루를 부담 없이 살펴볼 수\u00a0있어요.",
             en: "You only see your friend's public to-dos, so you can follow their day comfortably.",
           },
         ],
@@ -544,11 +544,11 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "날짜를 바꿔도 친구의 완료 기록이 자연스럽게 이어지도록 다듬었어요.",
-            en: "Your friend's completion history now stays in sync as you move between dates.",
+            ko: "날짜를 바꿔도 친구의 완료 기록이 자연스럽게 이어지도록\u00a0다듬었어요.",
+            en: "Your friend's completion history now stays in sync as you move between\u00a0dates.",
           },
           {
-            ko: "내 캘린더와 친구 캘린더를 오갈 때 필요한 정보를 더 쉽게 알아볼 수 있도록 다듬었어요.",
+            ko: "내 캘린더와 친구 캘린더를 오갈 때 필요한 정보를 더 쉽게 알아볼 수 있도록\u00a0다듬었어요.",
             en: "The details you need are easier to follow when switching between your calendar and a friend's.",
           },
         ],
@@ -579,15 +579,15 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "화면을 이동할 때 움직임이 더 부드럽게 이어지도록 다듬었어요.",
+            ko: "화면을 이동할 때 움직임이 더 부드럽게 이어지도록\u00a0다듬었어요.",
             en: "Moving between screens now feels smoother.",
           },
           {
-            ko: "로그인과 구독을 더 안정적으로 이용할 수 있도록 다듬었어요.",
+            ko: "로그인과 구독을 더 안정적으로 이용할 수 있도록\u00a0다듬었어요.",
             en: "Sign-in and subscriptions now work more reliably.",
           },
           {
-            ko: "가끔 생기던 오류를 줄이고, 문제가 생겼을 때 원인을 확인하기 쉽도록 다듬었어요.",
+            ko: "가끔 생기던 오류를 줄이고, 문제가 생겼을 때 원인을 확인하기 쉽도록\u00a0다듬었어요.",
             en: "We reduced occasional errors and made issues easier to investigate.",
           },
         ],
@@ -618,15 +618,15 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "메모 AI, 친구 찾기, 순서 정리 등 유용한 기능을 모은 기능 가이드가 생겼어요. 마이페이지에서 언제든 다시 볼 수 있어요.",
-            en: "You can explore features like AI for notes, finding friends, and reordering in the new Feature Guide, then reopen it anytime from My Page.",
+            ko: "메모 AI, 친구 찾기, 순서 정리 등 유용한 기능을 모은 기능 가이드가 생겼어요. 마이페이지에서 언제든 다시 볼 수\u00a0있어요.",
+            en: "You can explore features like AI for notes, finding friends, and reordering in the new Feature Guide, then reopen it anytime from My\u00a0Page.",
           },
           {
-            ko: "아이두를 처음 쓴다면, 홈의 시작 체크리스트를 따라 첫 할 일을 만들고 완료할 수 있어요.",
-            en: "If you're new to Aido, a starter checklist on Home guides you through creating and completing your first to-do.",
+            ko: "아이두를 처음 쓴다면, 홈의 시작 체크리스트를 따라 첫 할\u00a0일을 만들고 완료할 수\u00a0있어요.",
+            en: "If you're new to Aido, a starter checklist on Home guides you through creating and completing your first\u00a0to-do.",
           },
           {
-            ko: "할 일과 카테고리를 길게 눌러 원하는 순서로 옮길 수 있다는 안내를 화면에서 바로 확인할 수 있어요.",
+            ko: "할\u00a0일과 카테고리를 길게 눌러 원하는 순서로 옮길 수 있다는 안내를 화면에서 바로 확인할 수\u00a0있어요.",
             en: "You can see an on-screen tip explaining how to press and hold to reorder to-dos and categories.",
           },
         ],
@@ -635,16 +635,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "친구를 구분하는 8자리 코드를 #이 붙은 표기로 통일했어요. 검색과 프로필에서 같은 코드로 친구를 알아볼 수 있어요.",
+            ko: "친구를 구분하는 8자리 코드를 #이 붙은 표기로 통일했어요. 검색과 프로필에서 같은 코드로 친구를 알아볼 수\u00a0있어요.",
             en: "Your 8-character friend code now uses the same # format in search and profiles.",
           },
           {
-            ko: "친구가 할 일을 완료했을 때 보내드리는 알림이 더 정확한 순간에 도착하도록 다듬었어요.",
-            en: "Notifications about a friend's completed to-do now arrive at a more accurate time.",
+            ko: "친구가 할\u00a0일을 완료했을 때 보내드리는 알림이 더 정확한 순간에 도착하도록\u00a0다듬었어요.",
+            en: "Notifications about a friend's completed to-do now arrive at a more accurate\u00a0time.",
           },
           {
-            ko: "할 일과 카테고리를 빠르게 연달아 정리해도 순서가 어긋나지 않도록 다듬었어요.",
-            en: "Your to-dos and categories now stay in the right order, even when you rearrange them quickly.",
+            ko: "할\u00a0일과 카테고리를 빠르게 연달아 정리해도 순서가 어긋나지 않도록\u00a0다듬었어요.",
+            en: "Your to-dos and categories now stay in the right order, even when you rearrange them\u00a0quickly.",
           },
         ],
       },
@@ -678,8 +678,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "We improved the app’s reliability.",
           },
           {
-            ko: "문제가 생겼을 때 원인을 확인하고 수정하는 과정을 다듬었어요.",
-            en: "We improved how we investigate and fix issues.",
+            ko: "문제가 생겼을 때 원인을 확인하고 수정하는 과정을\u00a0다듬었어요.",
+            en: "We improved how we investigate and fix\u00a0issues.",
           },
         ],
       },
@@ -707,8 +707,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "설정에서 언어와 화면 테마를 고르는 화면을 새롭게 꾸몄어요. 아이콘과 함께 원하는 옵션을 더 쉽게 찾을 수 있어요.",
-            en: "You can find your preferred language and theme more easily in the refreshed Settings screens, now with icons.",
+            ko: "설정에서 언어와 화면 테마를 고르는 화면을 새롭게 꾸몄어요. 아이콘과 함께 원하는 옵션을 더 쉽게 찾을 수\u00a0있어요.",
+            en: "You can find your preferred language and theme more easily in the refreshed Settings screens, now with\u00a0icons.",
           },
         ],
       },
@@ -720,7 +720,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "We improved the app’s reliability.",
           },
           {
-            ko: "구독을 이용하고 데이터를 저장하는 과정을 더 안정적으로 다듬었어요.",
+            ko: "구독을 이용하고 데이터를 저장하는 과정을 더 안정적으로\u00a0다듬었어요.",
             en: "Subscriptions and saving your data now work more reliably.",
           },
         ],
@@ -749,16 +749,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "Android에서도 iPhone과 같은 디자인의 위젯 3종을 사용할 수 있어요. 필요한 정보에 맞춰 골라보세요.",
-            en: "You can choose from the same three widget styles on Android and iPhone to see the information you need.",
+            ko: "Android에서도 iPhone과 같은 디자인의 위젯 3종을 사용할 수 있어요. 필요한 정보에 맞춰\u00a0골라보세요.",
+            en: "You can choose from the same three widget styles on Android and iPhone to see the information you\u00a0need.",
           },
           {
-            ko: "할 일과 연속 달성을 이어갈 수 있도록 맞춤 제안과 응원 알림을 받아볼 수 있어요.",
-            en: "You can receive personalized suggestions and encouragement to keep your to-dos and streaks going.",
+            ko: "할\u00a0일과 연속 달성을 이어갈 수 있도록 맞춤 제안과 응원 알림을 받아볼 수\u00a0있어요.",
+            en: "You can receive personalized suggestions and encouragement to keep your to-dos and streaks\u00a0going.",
           },
           {
-            ko: "맞춤 제안 알림은 회원가입할 때 선택하거나, 마이페이지의 약관 및 정책에서 언제든 바꿀 수 있어요.",
-            en: "You can choose whether to receive personalized suggestions at sign-up and change your choice anytime under Terms & Policies in My Page.",
+            ko: "맞춤 제안 알림은 회원가입할 때 선택하거나, 마이페이지의 약관 및 정책에서 언제든 바꿀 수\u00a0있어요.",
+            en: "You can choose whether to receive personalized suggestions at sign-up and change your choice anytime under Terms & Policies in My\u00a0Page.",
           },
         ],
       },
@@ -766,12 +766,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "자정이 지나거나 다음 날 앱으로 돌아오면, 새로운 오늘 날짜로 시작하도록 다듬었어요.",
-            en: "The app now starts on the new date after midnight or when you return the next day.",
+            ko: "자정이 지나거나 다음 날 앱으로 돌아오면, 새로운 오늘 날짜로 시작하도록\u00a0다듬었어요.",
+            en: "The app now starts on the new date after midnight or when you return the next\u00a0day.",
           },
           {
-            ko: "알림을 누르면 관련 화면으로 이동하도록 다듬었어요. 알림을 모두 읽음으로 바꾸면 목록에도 바로 반영돼요.",
-            en: "Notifications now open the relevant screen. Marking all as read updates the list right away.",
+            ko: "알림을 누르면 관련 화면으로 이동하도록 다듬었어요. 알림을 모두 읽음으로 바꾸면 목록에도 바로\u00a0반영돼요.",
+            en: "Notifications now open the relevant screen. Marking all as read updates the list right\u00a0away.",
           },
         ],
       },
@@ -779,12 +779,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "일부 iPhone과 Android 기기에서 위젯의 글자가 잘리거나 정렬이 어긋나던 문제를 고쳤어요.",
-            en: "We fixed clipped text and uneven alignment in widgets on some iPhone and Android devices.",
+            ko: "일부 iPhone과 Android 기기에서 위젯의 글자가 잘리거나 정렬이 어긋나던 문제를\u00a0고쳤어요.",
+            en: "We fixed clipped text and uneven alignment in widgets on some iPhone and Android\u00a0devices.",
           },
           {
-            ko: "화면을 불러오는 중 문제가 생겨도 앱을 계속 사용할 수 있도록 안정성을 다듬었어요.",
-            en: "We improved stability so you can keep using the app when a screen has trouble loading.",
+            ko: "화면을 불러오는 중 문제가 생겨도 앱을 계속 사용할 수 있도록 안정성을\u00a0다듬었어요.",
+            en: "We improved stability so you can keep using the app when a screen has trouble\u00a0loading.",
           },
         ],
       },
@@ -814,20 +814,20 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "홈 화면에 위젯을 추가하면, 앱을 열지 않아도 오늘 할 일을 한눈에 확인할 수 있어요.",
-            en: "You can add a home screen widget to see today's to-dos without opening the app.",
+            ko: "홈 화면에 위젯을 추가하면, 앱을 열지 않아도 오늘 할\u00a0일을 한눈에 확인할 수\u00a0있어요.",
+            en: "You can add a home screen widget to see today's to-dos without opening the\u00a0app.",
           },
           {
-            ko: "작은 위젯에서는 남은 할 일 개수와 연속 달성 일수를, 큰 위젯에서는 할 일 목록까지 확인할 수 있어요.",
-            en: "You can use a small widget for your remaining to-do count and streak, or a larger one for the to-do list too.",
+            ko: "작은 위젯에서는 남은 할\u00a0일 개수와 연속 달성 일수를, 큰 위젯에서는 할\u00a0일 목록까지 확인할 수\u00a0있어요.",
+            en: "You can use a small widget for your remaining to-do count and streak, or a larger one for the to-do list\u00a0too.",
           },
           {
-            ko: "할 일을 완료하면 위젯에서도 바로 확인할 수 있어요.",
-            en: "Complete a to-do in the app, and your widget updates right away.",
+            ko: "할\u00a0일을 완료하면 위젯에서도 바로 확인할 수 있어요.",
+            en: "Complete a to-do in the app, and your widget updates right\u00a0away.",
           },
           {
-            ko: "위젯은 iPhone과 Android에서 사용할 수 있고, 기기의 라이트 모드와 다크 모드를 따라가요.",
-            en: "Widgets are available on iPhone and Android and follow your device’s light or dark mode.",
+            ko: "위젯은 iPhone과 Android에서 사용할 수 있고, 기기의 라이트 모드와 다크 모드를\u00a0따라가요.",
+            en: "Widgets are available on iPhone and Android and follow your device’s light or dark\u00a0mode.",
           },
         ],
       },
@@ -835,12 +835,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "자정이 지나면 위젯도 새로운 하루로 바뀌도록 다듬었어요.",
+            ko: "자정이 지나면 위젯도 새로운 하루로 바뀌도록\u00a0다듬었어요.",
             en: "The widget now switches to the new day automatically at midnight.",
           },
           {
             ko: "위젯이 배터리와 데이터를 적게 쓰도록 다듬었어요.",
-            en: "The widget is designed to use little battery or data.",
+            en: "The widget is designed to use little battery or\u00a0data.",
           },
         ],
       },
@@ -870,16 +870,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "이름이나 아이디로 친구를 검색하고, 원하는 사람을 찾아 친구로 추가할 수 있어요.",
-            en: "You can search for friends by name or ID and add the person you're looking for.",
+            ko: "이름이나 아이디로 친구를 검색하고, 원하는 사람을 찾아 친구로 추가할 수\u00a0있어요.",
+            en: "You can search for friends by name or ID and add the person you're looking\u00a0for.",
           },
           {
-            ko: "같은 이름을 쓰는 사람이 여러 명이어도 아이디로 구분해 원하는 친구를 찾을 수 있어요.",
-            en: "You can tell people with the same name apart by their ID to find the right friend.",
+            ko: "같은 이름을 쓰는 사람이 여러 명이어도 아이디로 구분해 원하는 친구를 찾을 수\u00a0있어요.",
+            en: "You can tell people with the same name apart by their ID to find the right\u00a0friend.",
           },
           {
-            ko: "친구 요청을 보낸 뒤 마음이 바뀌면 요청을 취소할 수 있어요.",
-            en: "You can cancel a friend request if you change your mind after sending it.",
+            ko: "친구 요청을 보낸 뒤 마음이 바뀌면 요청을 취소할 수\u00a0있어요.",
+            en: "You can cancel a friend request if you change your mind after sending\u00a0it.",
           },
         ],
       },
@@ -887,7 +887,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "Google이나 Apple 계정을 처음 연결할 때 더 안정적으로 처리되도록 다듬었어요.",
+            ko: "Google이나 Apple 계정을 처음 연결할 때 더 안정적으로 처리되도록\u00a0다듬었어요.",
             en: "Connecting a Google or Apple account for the first time now works more reliably.",
           },
         ],
@@ -918,8 +918,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "연결이 잠깐 불안정할 때 앱을 열어도, 로그인을 유지한 채 내용을 자동으로 다시 불러오도록 다듬었어요.",
-            en: "The app now reloads content automatically while keeping you signed in if your connection is briefly unstable when you open it.",
+            ko: "연결이 잠깐 불안정할 때 앱을 열어도, 로그인을 유지한 채 내용을 자동으로 다시 불러오도록\u00a0다듬었어요.",
+            en: "The app now reloads content automatically while keeping you signed in if your connection is briefly unstable when you open\u00a0it.",
           },
         ],
       },
@@ -927,8 +927,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "앱을 열자마자 할 일, AI 제안, 날씨에 ‘다시 시도’ 안내가 뜨던 문제를 고쳤어요. 이제 잠시 기다리면 내용을 자동으로 불러와요.",
-            en: "We fixed “Try again” messages appearing for to-dos, AI suggestions, and weather just after opening the app. Content now loads automatically after a brief wait.",
+            ko: "앱을 열자마자 할\u00a0일, AI 제안, 날씨에 ‘다시 시도’ 안내가 뜨던 문제를 고쳤어요. 이제 잠시 기다리면 내용을 자동으로\u00a0불러와요.",
+            en: "We fixed “Try again” messages appearing for to-dos, AI suggestions, and weather just after opening the app. Content now loads automatically after a brief\u00a0wait.",
           },
         ],
       },
@@ -956,8 +956,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "일부 사용자에게 가끔 로그인이 풀리던 문제를 고쳤어요.",
-            en: "We fixed an issue that could occasionally sign some users out.",
+            ko: "일부 사용자에게 가끔 로그인이 풀리던 문제를\u00a0고쳤어요.",
+            en: "We fixed an issue that could occasionally sign some users\u00a0out.",
           },
         ],
       },
@@ -979,8 +979,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "앱을 더 안정적이고 편하게 사용할 수 있도록 다듬었어요.",
-            en: "The app now feels more reliable and easier to use.",
+            ko: "앱을 더 안정적이고 편하게 사용할 수 있도록\u00a0다듬었어요.",
+            en: "The app now feels more reliable and easier to\u00a0use.",
           },
         ],
       },
@@ -989,18 +989,18 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         items: [
           {
             ko: "앱을 업데이트한 뒤 로그인이 풀리던 문제를 고쳤어요.",
-            en: "We fixed an issue that could sign you out after an app update.",
+            en: "We fixed an issue that could sign you out after an app\u00a0update.",
           },
           {
-            ko: "앱을 쓰다가 갑자기 ‘다시 시도’ 안내가 뜨던 문제를 고쳤어요.",
-            en: "We fixed “Try again” messages appearing unexpectedly while using the app.",
+            ko: "앱을 쓰다가 갑자기 ‘다시 시도’ 안내가 뜨던 문제를\u00a0고쳤어요.",
+            en: "We fixed “Try again” messages appearing unexpectedly while using the\u00a0app.",
           },
           {
-            ko: "휴대폰이 잠겨 있을 때 알림으로 앱을 열면 로그인이 풀리던 문제를 고쳤어요.",
-            en: "We fixed an issue that could sign you out when opening a notification while your phone was locked.",
+            ko: "휴대폰이 잠겨 있을 때 알림으로 앱을 열면 로그인이 풀리던 문제를\u00a0고쳤어요.",
+            en: "We fixed an issue that could sign you out when opening a notification while your phone was\u00a0locked.",
           },
           {
-            ko: "인터넷이 연결되지 않은 상태에서 앱을 열면 로그인이 풀리던 문제를 고쳤어요.",
+            ko: "인터넷이 연결되지 않은 상태에서 앱을 열면 로그인이 풀리던 문제를\u00a0고쳤어요.",
             en: "We fixed an issue that could sign you out when opening the app without an internet connection.",
           },
         ],
@@ -1029,8 +1029,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "인터넷 연결이 잠깐 끊기거나 느려져도 로그인을 유지할 수 있도록 다듬었어요.",
-            en: "The app now keeps you signed in more reliably when your internet connection briefly drops or slows down.",
+            ko: "인터넷 연결이 잠깐 끊기거나 느려져도 로그인을 유지할 수 있도록\u00a0다듬었어요.",
+            en: "The app now keeps you signed in more reliably when your internet connection briefly drops or slows\u00a0down.",
           },
         ],
       },
@@ -1038,12 +1038,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "앱을 업데이트한 뒤 로그인이 풀리던 문제를 고쳤어요. 이미 로그아웃된 상태라면 한 번만 다시 로그인해 주세요.",
-            en: "We fixed an issue that could sign you out after an app update. If you've already been signed out, please sign in once more.",
+            ko: "앱을 업데이트한 뒤 로그인이 풀리던 문제를 고쳤어요. 이미 로그아웃된 상태라면 한 번만 다시 로그인해\u00a0주세요.",
+            en: "We fixed an issue that could sign you out after an app update. If you've already been signed out, please sign in once\u00a0more.",
           },
           {
-            ko: "일부 iPhone 화면에서 영어 문구가 어색하게 보이던 문제를 고쳤어요.",
-            en: "We fixed awkward English wording on some iPhone screens.",
+            ko: "일부 iPhone 화면에서 영어 문구가 어색하게 보이던 문제를\u00a0고쳤어요.",
+            en: "We fixed awkward English wording on some iPhone\u00a0screens.",
           },
         ],
       },
@@ -1073,23 +1073,23 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "영어로 아이두를 이용할 수 있어요. 설정 > 언어에서 ‘시스템 설정’, ‘한국어’, ‘English’ 중 선택해 주세요.",
+            ko: "영어로 아이두를 이용할 수 있어요. 설정 > 언어에서 ‘시스템 설정’, ‘한국어’, ‘English’ 중 선택해\u00a0주세요.",
             en: "You can now use Aido in English. Choose “System default”, “한국어”, or “English” in Settings > Language.",
           },
           {
-            ko: "처음 설치하면 기기 언어를 따라가요. 한국어 기기에서는 한국어로, 그 외에는 영어로 시작해요.",
-            en: "Aido follows your device language on first install, starting in Korean on Korean-language devices and English on others.",
+            ko: "처음 설치하면 기기 언어를 따라가요. 한국어 기기에서는 한국어로, 그 외에는 영어로\u00a0시작해요.",
+            en: "Aido follows your device language on first install, starting in Korean on Korean-language devices and English on\u00a0others.",
           },
           {
-            ko: "할 일, 친구 소식, 날씨 알림도 선택한 언어로 받아볼 수 있어요.",
-            en: "To-do reminders, friend updates, and weather notifications arrive in your chosen language too.",
+            ko: "할\u00a0일, 친구 소식, 날씨 알림도 선택한 언어로 받아볼 수\u00a0있어요.",
+            en: "To-do reminders, friend updates, and weather notifications arrive in your chosen language\u00a0too.",
           },
           {
-            ko: "AI 주간·월간 리포트와 반복 할 일 제안도 선택한 언어로 받아볼 수 있어요.",
+            ko: "AI 주간·월간 리포트와 반복 할\u00a0일 제안도 선택한 언어로 받아볼 수\u00a0있어요.",
             en: "You can receive weekly and monthly AI reports and recurring to-do suggestions in your chosen language.",
           },
           {
-            ko: "날짜, 시간, 요일도 선택한 언어에 맞는 표기로 확인할 수 있어요.",
+            ko: "날짜, 시간, 요일도 선택한 언어에 맞는 표기로 확인할 수\u00a0있어요.",
             en: "You can see dates, times, and weekdays formatted for your chosen language.",
           },
         ],
@@ -1098,8 +1098,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "언어를 바꾸면 앱을 다시 시작하지 않아도 모든 화면에 바로 적용되도록 다듬었어요.",
-            en: "Language changes now apply across the app right away without a restart.",
+            ko: "언어를 바꾸면 앱을 다시 시작하지 않아도 모든 화면에 바로 적용되도록\u00a0다듬었어요.",
+            en: "Language changes now apply across the app right away without a\u00a0restart.",
           },
         ],
       },
@@ -1129,8 +1129,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "앱을 지웠다가 다시 설치하면 로그인 직후 바로 로그아웃되던 문제를 고쳤어요.",
-            en: "We fixed an issue that could sign you out immediately after signing in to a freshly reinstalled app.",
+            ko: "앱을 지웠다가 다시 설치하면 로그인 직후 바로 로그아웃되던 문제를\u00a0고쳤어요.",
+            en: "We fixed an issue that could sign you out immediately after signing in to a freshly reinstalled\u00a0app.",
           },
         ],
       },
@@ -1156,8 +1156,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "앱의 안정성을 높이고, 오류가 생기면 더 빨리 찾아 고칠 수 있도록 다듬었어요.",
-            en: "We improved app stability and how quickly we can find and fix issues.",
+            ko: "앱의 안정성을 높이고, 오류가 생기면 더 빨리 찾아 고칠 수 있도록\u00a0다듬었어요.",
+            en: "We improved app stability and how quickly we can find and fix\u00a0issues.",
           },
         ],
       },
@@ -1165,8 +1165,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "일부 상황에서 예상치 못하게 로그인이 풀리던 문제를 추가로 고쳤어요.",
-            en: "We fixed more situations that could unexpectedly sign you out.",
+            ko: "일부 상황에서 예상치 못하게 로그인이 풀리던 문제를 추가로\u00a0고쳤어요.",
+            en: "We fixed more situations that could unexpectedly sign you\u00a0out.",
           },
         ],
       },
@@ -1194,7 +1194,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "휴대폰으로 받는 알림 문구를 더 친근하고 자연스럽게 다듬었어요.",
+            ko: "휴대폰으로 받는 알림 문구를 더 친근하고 자연스럽게\u00a0다듬었어요.",
             en: "Notification messages now read more naturally.",
           },
         ],
@@ -1203,15 +1203,15 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "비나 눈 예보가 있는 날에도 맑은 날씨 알림이 오던 문제를 고쳤어요.",
+            ko: "비나 눈 예보가 있는 날에도 맑은 날씨 알림이 오던 문제를\u00a0고쳤어요.",
             en: "We fixed sunny-weather notifications being sent on days with rain or snow in the forecast.",
           },
           {
-            ko: "인터넷 연결이 불안정할 때 가끔 로그인이 풀리던 문제를 고쳤어요.",
+            ko: "인터넷 연결이 불안정할 때 가끔 로그인이 풀리던 문제를\u00a0고쳤어요.",
             en: "We fixed an issue that could occasionally sign you out on an unstable internet connection.",
           },
           {
-            ko: "알림에서 친구 이름 뒤의 말이 어색하게 이어지던 문제를 고쳤어요.",
+            ko: "알림에서 친구 이름 뒤의 말이 어색하게 이어지던 문제를\u00a0고쳤어요.",
             en: "We fixed awkward wording after friends’ names in Korean notifications.",
           },
         ],
@@ -1242,8 +1242,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "앱을 더 안정적이고 편하게 사용할 수 있도록 다듬었어요.",
-            en: "The app now feels more reliable and easier to use.",
+            ko: "앱을 더 안정적이고 편하게 사용할 수 있도록\u00a0다듬었어요.",
+            en: "The app now feels more reliable and easier to\u00a0use.",
           },
         ],
       },
@@ -1265,12 +1265,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "캘린더를 좌우로 쓸어 주와 월을 넘길 수 있어요. 화면 전환도 더 부드럽게 이어져요.",
+            ko: "캘린더를 좌우로 쓸어 주와 월을 넘길 수 있어요. 화면 전환도 더 부드럽게\u00a0이어져요.",
             en: "You can swipe the calendar left or right to move between weeks and months, with smoother transitions.",
           },
           {
-            ko: "반복 설정에서 ‘매일’, ‘주중’, ‘주말’, ‘월~일’ 중 원하는 주기를 한 번에 선택할 수 있어요.",
-            en: "Choose “Daily”, “Weekdays”, “Weekends”, or “Mon–Sun” in one tap when setting repeats.",
+            ko: "반복 설정에서 ‘매일’, ‘주중’, ‘주말’, ‘월~일’ 중 원하는 주기를 한 번에 선택할 수\u00a0있어요.",
+            en: "Choose “Daily”, “Weekdays”, “Weekends”, or “Mon–Sun” in one tap when setting\u00a0repeats.",
           },
         ],
       },
@@ -1278,16 +1278,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "무료로 AI를 이용해 할 일을 정리할 수 있는 횟수를 월 5회로 바꿨어요. 한국 시간으로 매월 1일 자정에 다시 채워져요.",
-            en: "The free plan now includes five uses of AI to organize to-dos per month. Your allowance resets at midnight Korean time on the first of each month.",
+            ko: "무료로 AI를 이용해 할\u00a0일을 정리할 수 있는 횟수를 월 5회로 바꿨어요. 한국 시간으로 매월 1일 자정에 다시\u00a0채워져요.",
+            en: "The free plan now includes five uses of AI to organize to-dos per month. Your allowance resets at midnight Korean time on the first of each\u00a0month.",
           },
           {
-            ko: "AI가 할 일의 카테고리와 내용을 더 정확하게 구분하도록 다듬었어요.",
+            ko: "AI가 할\u00a0일의 카테고리와 내용을 더 정확하게 구분하도록\u00a0다듬었어요.",
             en: "AI now distinguishes a to-do's category and content more accurately.",
           },
           {
-            ko: "AI 리포트를 더 안정적인 품질로 받아볼 수 있도록 다듬었어요.",
-            en: "AI reports now have more consistent, reliable results.",
+            ko: "AI 리포트를 더 안정적인 품질로 받아볼 수 있도록\u00a0다듬었어요.",
+            en: "AI reports now have more consistent, reliable\u00a0results.",
           },
         ],
       },
@@ -1295,7 +1295,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "캘린더를 넘길 때 날씨 배지가 깜빡이던 문제를 고쳤어요.",
+            ko: "캘린더를 넘길 때 날씨 배지가 깜빡이던 문제를\u00a0고쳤어요.",
             en: "We fixed a flickering weather badge when moving through the calendar.",
           },
         ],
@@ -1326,12 +1326,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "메모가 생겼어요. 떠오르는 생각을 자유롭게 적어둘 수 있어요.",
-            en: "You can now jot down your thoughts anytime with notes.",
+            ko: "메모가 생겼어요. 떠오르는 생각을 자유롭게 적어둘 수\u00a0있어요.",
+            en: "You can now jot down your thoughts anytime with\u00a0notes.",
           },
           {
-            ko: "메모 상단의 로봇 아이콘을 누르면 AI가 내용을 할 일과 체크리스트 항목으로 정리해 줘요.",
-            en: "Tap the robot icon at the top of a note to organize its contents into to-dos and checklist items with AI.",
+            ko: "메모 상단의 로봇 아이콘을 누르면 AI가 내용을 할\u00a0일과 체크리스트 항목으로 정리해\u00a0줘요.",
+            en: "Tap the robot icon at the top of a note to organize its contents into to-dos and checklist items with\u00a0AI.",
           },
         ],
       },
@@ -1339,12 +1339,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "AI가 필요한 할 일을 더 명확하게 제안하도록 다듬었어요.",
-            en: "AI suggestions now explain the to-dos that fit your needs more clearly.",
+            ko: "AI가 필요한 할\u00a0일을 더 명확하게 제안하도록\u00a0다듬었어요.",
+            en: "AI suggestions now explain the to-dos that fit your needs more\u00a0clearly.",
           },
           {
             ko: "다크 모드 화면이 더 자연스럽게 보이도록 다듬었어요.",
-            en: "Dark mode screens now have a more natural look.",
+            en: "Dark mode screens now have a more natural\u00a0look.",
           },
         ],
       },
@@ -1352,8 +1352,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "가끔 로그인이 풀리던 문제를 고쳤어요. 이미 로그아웃된 상태라면 한 번만 다시 로그인해 주세요.",
-            en: "We fixed an issue that could occasionally sign you out. If you've already been signed out, please sign in once more.",
+            ko: "가끔 로그인이 풀리던 문제를 고쳤어요. 이미 로그아웃된 상태라면 한 번만 다시 로그인해\u00a0주세요.",
+            en: "We fixed an issue that could occasionally sign you out. If you've already been signed out, please sign in once\u00a0more.",
           },
         ],
       },
@@ -1383,8 +1383,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "체크리스트 항목이 있는 할 일을 기본으로 펼쳐, 내용을 한눈에 볼 수 있도록 다듬었어요.",
-            en: "To-dos with checklist items now open expanded by default, so you can see the details at a glance.",
+            ko: "체크리스트 항목이 있는 할\u00a0일을 기본으로 펼쳐, 내용을 한눈에 볼 수 있도록\u00a0다듬었어요.",
+            en: "To-dos with checklist items now open expanded by default, so you can see the details at a\u00a0glance.",
           },
         ],
       },
@@ -1392,7 +1392,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "알림 메시지에 글꼴 크기 설정이 반영되지 않던 문제를 고쳤어요.",
+            ko: "알림 메시지에 글꼴 크기 설정이 반영되지 않던 문제를\u00a0고쳤어요.",
             en: "We fixed font size settings not being applied to notification messages.",
           },
         ],
@@ -1421,16 +1421,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "휴대폰 알림을 눌렀을 때 화면이 겹쳐 보이던 문제를 고쳤어요.",
+            ko: "휴대폰 알림을 눌렀을 때 화면이 겹쳐 보이던 문제를\u00a0고쳤어요.",
             en: "We fixed overlapping screens when opening a notification.",
           },
           {
-            ko: "날씨 알림이 할 일 카테고리로 잘못 표시되던 문제를 고쳤어요.",
+            ko: "날씨 알림이 할\u00a0일 카테고리로 잘못 표시되던 문제를\u00a0고쳤어요.",
             en: "We fixed weather notifications being incorrectly labeled as to-do notifications.",
           },
           {
-            ko: "날씨 화면에서 비나 눈을 나타내는 아이콘과 설명이 서로 다르던 문제를 고쳤어요.",
-            en: "We fixed mismatched rain and snow icons and descriptions on the weather screen.",
+            ko: "날씨 화면에서 비나 눈을 나타내는 아이콘과 설명이 서로 다르던 문제를\u00a0고쳤어요.",
+            en: "We fixed mismatched rain and snow icons and descriptions on the weather\u00a0screen.",
           },
         ],
       },
@@ -1458,12 +1458,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "날씨 화면에서 평균 기온 대신 현재 기온을 확인할 수 있도록 다듬었어요.",
-            en: "The weather screen now shows the current temperature instead of the average.",
+            ko: "날씨 화면에서 평균 기온 대신 현재 기온을 확인할 수 있도록\u00a0다듬었어요.",
+            en: "The weather screen now shows the current temperature instead of the\u00a0average.",
           },
           {
             ko: "알림 설정 화면을 더 깔끔하게 정리했어요.",
-            en: "Notification settings now have a cleaner, easier-to-follow layout.",
+            en: "Notification settings now have a cleaner, easier-to-follow\u00a0layout.",
           },
         ],
       },
@@ -1492,7 +1492,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         items: [
           {
             ko: "날씨 상세 화면을 더 보기 좋게 다듬었어요.",
-            en: "The weather detail screen now has a clearer, easier-to-read design.",
+            en: "The weather detail screen now has a clearer, easier-to-read\u00a0design.",
           },
         ],
       },
@@ -1514,24 +1514,24 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "아침과 오후에 날씨에 맞는 할 일 팁을 알림으로 받아볼 수 있어요.",
+            ko: "아침과 오후에 날씨에 맞는 할\u00a0일 팁을 알림으로 받아볼 수\u00a0있어요.",
             en: "You can receive weather-based to-do tips in morning and afternoon notifications.",
           },
           {
-            ko: "날씨 상세 화면에서 시간대별 날씨, 체감온도, 자외선, 미세먼지와 5일 예보를 확인할 수 있어요.",
-            en: "You can check hourly weather, feels-like temperature, the UV index, fine dust levels, and a five-day forecast on the weather detail screen.",
+            ko: "날씨 상세 화면에서 시간대별 날씨, 체감온도, 자외선, 미세먼지와 5일 예보를 확인할 수\u00a0있어요.",
+            en: "You can check hourly weather, feels-like temperature, the UV index, fine dust levels, and a five-day forecast on the weather detail\u00a0screen.",
           },
           {
-            ko: "날씨 알림 시간을 오전과 오후 각각 원하는 시간으로 설정할 수 있어요.",
+            ko: "날씨 알림 시간을 오전과 오후 각각 원하는 시간으로 설정할 수\u00a0있어요.",
             en: "You can set your preferred times for morning and afternoon weather notifications separately.",
           },
           {
-            ko: "AI 제안이 8가지 유형으로 늘었어요. 습관 회복과 균형 잡힌 계획 등 더 다양한 맞춤 제안을 받아볼 수 있어요.",
+            ko: "AI 제안이 8가지 유형으로 늘었어요. 습관 회복과 균형 잡힌 계획 등 더 다양한 맞춤 제안을 받아볼 수\u00a0있어요.",
             en: "You can receive eight types of AI suggestions, including habit recovery and balance tips, for more personalized planning.",
           },
           {
-            ko: "반복 할 일의 시작일을 바꾸거나, 반복 할 일을 삭제할 수 있어요.",
-            en: "You can change a recurring to-do's start date or delete it.",
+            ko: "반복 할\u00a0일의 시작일을 바꾸거나, 반복 할\u00a0일을 삭제할 수\u00a0있어요.",
+            en: "You can change a recurring to-do's start date or delete\u00a0it.",
           },
         ],
       },
@@ -1539,20 +1539,20 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "AI 리포트의 습관 패턴 분석과 맞춤 코칭을 더 세심하게 다듬었어요.",
+            ko: "AI 리포트의 습관 패턴 분석과 맞춤 코칭을 더 세심하게\u00a0다듬었어요.",
             en: "AI reports now offer more detailed habit pattern analysis and personalized coaching.",
           },
           {
-            ko: "AI가 이전에 수락하거나 거절한 제안을 참고해, 나에게 더 잘 맞는 제안을 하도록 다듬었어요.",
-            en: "AI now learns from suggestions you've accepted or declined to offer recommendations that better fit you over time.",
+            ko: "AI가 이전에 수락하거나 거절한 제안을 참고해, 나에게 더 잘 맞는 제안을 하도록\u00a0다듬었어요.",
+            en: "AI now learns from suggestions you've accepted or declined to offer recommendations that better fit you over\u00a0time.",
           },
           {
-            ko: "알림이 한꺼번에 몰려오지 않도록 보내는 시간을 나눴어요.",
-            en: "We spread out notification times so they don’t all arrive at once.",
+            ko: "알림이 한꺼번에 몰려오지 않도록 보내는 시간을\u00a0나눴어요.",
+            en: "We spread out notification times so they don’t all arrive at\u00a0once.",
           },
           {
-            ko: "휴대폰 알림을 꺼도 앱 안의 알림 목록에서는 내용을 확인할 수 있어요.",
-            en: "You can still read updates in the app’s notification list when phone notifications are turned off.",
+            ko: "휴대폰 알림을 꺼도 앱 안의 알림 목록에서는 내용을 확인할 수\u00a0있어요.",
+            en: "You can still read updates in the app’s notification list when phone notifications are turned\u00a0off.",
           },
         ],
       },
@@ -1560,8 +1560,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "일부 화면에서 글꼴 크기 설정이 적용되지 않던 문제를 고쳤어요.",
-            en: "We fixed font size settings not being applied on some screens.",
+            ko: "일부 화면에서 글꼴 크기 설정이 적용되지 않던 문제를\u00a0고쳤어요.",
+            en: "We fixed font size settings not being applied on some\u00a0screens.",
           },
         ],
       },
@@ -1591,8 +1591,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "앱 안의 글꼴 크기를 아주 작게부터 아주 크게까지 5단계로 조절할 수 있어요.",
-            en: "You can choose from five font sizes in the app, from Extra Small to Extra Large.",
+            ko: "앱 안의 글꼴 크기를 아주 작게부터 아주 크게까지 5단계로 조절할 수\u00a0있어요.",
+            en: "You can choose from five font sizes in the app, from Extra Small to Extra\u00a0Large.",
           },
         ],
       },
@@ -1600,12 +1600,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "일부 기기에서 시간 선택 화면이 잘리던 문제를 고쳤어요.",
-            en: "We fixed the time picker being cut off on some devices.",
+            ko: "일부 기기에서 시간 선택 화면이 잘리던 문제를\u00a0고쳤어요.",
+            en: "We fixed the time picker being cut off on some\u00a0devices.",
           },
           {
             ko: "AI 제안 화면이 가끔 깜빡이던 문제를 고쳤어요.",
-            en: "We fixed occasional flickering on the AI suggestions screen.",
+            en: "We fixed occasional flickering on the AI suggestions\u00a0screen.",
           },
         ],
       },
@@ -1633,12 +1633,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "할 일에 체크리스트 항목을 추가할 수 있어요.",
-            en: "You can add checklist items to your to-dos.",
+            ko: "할\u00a0일에 체크리스트 항목을 추가할 수 있어요.",
+            en: "You can add checklist items to your\u00a0to-dos.",
           },
           {
-            ko: "할 일을 추가할 때 카테고리를 더 쉽게 선택할 수 있어요.",
-            en: "You can choose a category more easily when adding a to-do.",
+            ko: "할\u00a0일을 추가할 때 카테고리를 더 쉽게 선택할 수\u00a0있어요.",
+            en: "You can choose a category more easily when adding a\u00a0to-do.",
           },
         ],
       },
@@ -1646,16 +1646,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "카테고리 관리 화면을 더 쉽게 사용할 수 있도록 다듬었어요.",
-            en: "Category management now has a more intuitive layout.",
+            ko: "카테고리 관리 화면을 더 쉽게 사용할 수 있도록\u00a0다듬었어요.",
+            en: "Category management now has a more intuitive\u00a0layout.",
           },
           {
             ko: "반복 설정 화면을 더 깔끔하게 정리했어요.",
-            en: "Repeat settings now have a cleaner layout.",
+            en: "Repeat settings now have a cleaner\u00a0layout.",
           },
           {
-            ko: "카테고리 색상을 바꾸면 캘린더에도 바로 반영되도록 다듬었어요.",
-            en: "Category color changes now appear in the calendar right away.",
+            ko: "카테고리 색상을 바꾸면 캘린더에도 바로 반영되도록\u00a0다듬었어요.",
+            en: "Category color changes now appear in the calendar right\u00a0away.",
           },
         ],
       },
@@ -1663,8 +1663,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "앱을 잠깐 나갔다 돌아오면 입력 화면이 깨지던 문제를 고쳤어요.",
-            en: "We fixed a broken input screen when returning to the app after a short time away.",
+            ko: "앱을 잠깐 나갔다 돌아오면 입력 화면이 깨지던 문제를\u00a0고쳤어요.",
+            en: "We fixed a broken input screen when returning to the app after a short time\u00a0away.",
           },
         ],
       },
@@ -1694,12 +1694,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "오늘 할 일은 내일로 미루고, 다른 날의 할 일은 오늘로 당겨올 수 있어요.",
-            en: "You can move today's to-dos to tomorrow or bring to-dos from other days forward to today.",
+            ko: "오늘 할\u00a0일은 내일로 미루고, 다른 날의 할\u00a0일은 오늘로 당겨올 수\u00a0있어요.",
+            en: "You can move today's to-dos to tomorrow or bring to-dos from other days forward to\u00a0today.",
           },
           {
             ko: "친구 목록을 편집할 수 있는 모드가 생겼어요.",
-            en: "You can now edit your friend list in a dedicated mode.",
+            en: "You can now edit your friend list in a dedicated\u00a0mode.",
           },
         ],
       },
@@ -1707,20 +1707,20 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "할 일을 추가하거나 수정·삭제할 때 더 빠르게 반영되도록 다듬었어요.",
-            en: "Adding, editing, and deleting to-dos now responds faster.",
+            ko: "할\u00a0일을 추가하거나 수정·삭제할 때 더 빠르게 반영되도록\u00a0다듬었어요.",
+            en: "Adding, editing, and deleting to-dos now responds\u00a0faster.",
           },
           {
-            ko: "카테고리를 추가하거나 수정·삭제할 때 더 빠르게 반영되도록 다듬었어요.",
-            en: "Adding, editing, and deleting categories now responds faster.",
+            ko: "카테고리를 추가하거나 수정·삭제할 때 더 빠르게 반영되도록\u00a0다듬었어요.",
+            en: "Adding, editing, and deleting categories now responds\u00a0faster.",
           },
           {
             ko: "AI 제안 문구를 더 다양하게 다듬었어요.",
             en: "AI suggestions now use a wider variety of messages.",
           },
           {
-            ko: "카테고리 관리 화면을 더 편하게 사용할 수 있도록 다듬었어요.",
-            en: "Category management is now easier to use.",
+            ko: "카테고리 관리 화면을 더 편하게 사용할 수 있도록\u00a0다듬었어요.",
+            en: "Category management is now easier to\u00a0use.",
           },
         ],
       },
@@ -1728,12 +1728,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "할 일 제목을 바꿔도 알림에 이전 제목이 표시되던 문제를 고쳤어요.",
-            en: "We fixed reminders showing the old title after you renamed a to-do.",
+            ko: "할\u00a0일 제목을 바꿔도 알림에 이전 제목이 표시되던 문제를\u00a0고쳤어요.",
+            en: "We fixed reminders showing the old title after you renamed a\u00a0to-do.",
           },
           {
-            ko: "할 일 추가 화면에서 키보드와 날짜 선택을 오갈 때 화면이 끊기던 문제를 고쳤어요.",
-            en: "We fixed stuttering when switching between the keyboard and date picker while adding a to-do.",
+            ko: "할\u00a0일 추가 화면에서 키보드와 날짜 선택을 오갈 때 화면이 끊기던 문제를\u00a0고쳤어요.",
+            en: "We fixed stuttering when switching between the keyboard and date picker while adding a\u00a0to-do.",
           },
         ],
       },
@@ -1763,11 +1763,11 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "하루의 완료 현황에서 카테고리를 색상으로 구분해 볼 수 있어요.",
+            ko: "하루의 완료 현황에서 카테고리를 색상으로 구분해 볼 수\u00a0있어요.",
             en: "You can see category colors in your daily completion overview.",
           },
           {
-            ko: "캘린더에서 날짜별 할 일 완료 상태를 확인할 수 있어요.",
+            ko: "캘린더에서 날짜별 할\u00a0일 완료 상태를 확인할 수\u00a0있어요.",
             en: "You can check each day's to-do completion status in the calendar.",
           },
         ],
@@ -1777,23 +1777,23 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         items: [
           {
             ko: "휴대폰으로 받는 알림 문구를 더 다양하게 다듬었어요.",
-            en: "Notification messages now have more variety.",
+            en: "Notification messages now have more\u00a0variety.",
           },
           {
-            ko: "AI 리포트를 주간과 월간 분석으로 나누고, 맞춤 코칭의 품질을 다듬었어요.",
+            ko: "AI 리포트를 주간과 월간 분석으로 나누고, 맞춤 코칭의 품질을\u00a0다듬었어요.",
             en: "AI reports now separate weekly and monthly analysis, with improved personalized coaching.",
           },
           {
-            ko: "AI가 더 다양한 패턴을 살펴보고 할 일을 제안하도록 다듬었어요.",
+            ko: "AI가 더 다양한 패턴을 살펴보고 할\u00a0일을 제안하도록\u00a0다듬었어요.",
             en: "AI suggestions now recognize a wider range of patterns.",
           },
           {
-            ko: "카테고리 관리를 마이페이지로 옮기고, 화면 구성을 더 보기 좋게 다듬었어요.",
-            en: "Category management has moved to My Page with a clearer layout.",
+            ko: "카테고리 관리를 마이페이지로 옮기고, 화면 구성을 더 보기 좋게\u00a0다듬었어요.",
+            en: "Category management has moved to My Page with a clearer\u00a0layout.",
           },
           {
-            ko: "Android 하단 탭의 경계선을 없애 화면이 자연스럽게 이어지도록 다듬었어요.",
-            en: "We removed the border on Android's bottom tabs for a more seamless screen.",
+            ko: "Android 하단 탭의 경계선을 없애 화면이 자연스럽게 이어지도록\u00a0다듬었어요.",
+            en: "We removed the border on Android's bottom tabs for a more seamless\u00a0screen.",
           },
         ],
       },
@@ -1801,11 +1801,11 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "iPhone에서 하단 탭과 관련해 앱이 갑자기 종료되던 문제를 고쳤어요.",
-            en: "We fixed an issue with the bottom tabs that could unexpectedly close the app on iPhone.",
+            ko: "iPhone에서 하단 탭과 관련해 앱이 갑자기 종료되던 문제를\u00a0고쳤어요.",
+            en: "We fixed an issue with the bottom tabs that could unexpectedly close the app on\u00a0iPhone.",
           },
           {
-            ko: "AI 리포트가 잘못된 시간에 생성되던 문제를 고쳤어요.",
+            ko: "AI 리포트가 잘못된 시간에 생성되던 문제를\u00a0고쳤어요.",
             en: "We fixed an issue with when AI reports were generated.",
           },
         ],
@@ -1836,12 +1836,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "친구 목록에서 친구를 끌어 옮겨 원하는 순서로 정리할 수 있어요.",
-            en: "You can drag friends into your preferred order in the friend list.",
+            ko: "친구 목록에서 친구를 끌어 옮겨 원하는 순서로 정리할 수\u00a0있어요.",
+            en: "You can drag friends into your preferred order in the friend\u00a0list.",
           },
           {
-            ko: "할 일 메뉴에서 카테고리를 바로 바꿀 수 있어요.",
-            en: "You can change a to-do's category directly from its action menu.",
+            ko: "할\u00a0일 메뉴에서 카테고리를 바로 바꿀 수 있어요.",
+            en: "You can change a to-do's category directly from its action\u00a0menu.",
           },
         ],
       },
@@ -1849,8 +1849,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "문의하기 화면에서 키보드를 더 편하게 사용할 수 있도록 다듬었어요.",
-            en: "We improved keyboard behavior on the contact screen for easier typing.",
+            ko: "문의하기 화면에서 키보드를 더 편하게 사용할 수 있도록\u00a0다듬었어요.",
+            en: "We improved keyboard behavior on the contact screen for easier\u00a0typing.",
           },
         ],
       },
@@ -1880,12 +1880,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "친구에게 콕 찌르기를 보내 할 일을 떠올릴 수 있도록 도와줄 수 있어요.",
-            en: "Send a friend a nudge to help them remember a to-do.",
+            ko: "친구에게 콕 찌르기를 보내 할\u00a0일을 떠올릴 수 있도록 도와줄 수\u00a0있어요.",
+            en: "Send a friend a nudge to help them remember a\u00a0to-do.",
           },
           {
             ko: "문의하기에서 궁금한 점을 남길 수 있어요.",
-            en: "You can get in touch with us through the new contact feature.",
+            en: "You can get in touch with us through the new contact\u00a0feature.",
           },
         ],
       },
@@ -1894,15 +1894,15 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         items: [
           {
             ko: "선택한 캘린더 보기 모드가 유지되도록 다듬었어요.",
-            en: "Your selected calendar view now stays saved.",
+            en: "Your selected calendar view now stays\u00a0saved.",
           },
           {
-            ko: "친구 요청을 보내고 받는 과정을 더 편하게 다듬었어요.",
-            en: "Sending and receiving friend requests is easier to follow.",
+            ko: "친구 요청을 보내고 받는 과정을 더 편하게\u00a0다듬었어요.",
+            en: "Sending and receiving friend requests is easier to\u00a0follow.",
           },
           {
-            ko: "마이페이지와 프로필 설정 화면을 더 보기 좋게 다듬었어요.",
-            en: "My Page and profile settings now have a clearer design.",
+            ko: "마이페이지와 프로필 설정 화면을 더 보기 좋게\u00a0다듬었어요.",
+            en: "My Page and profile settings now have a clearer\u00a0design.",
           },
         ],
       },
@@ -1910,16 +1910,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "다크 모드에서 Apple 아이콘이 보이지 않던 문제를 고쳤어요.",
-            en: "We fixed the Apple icon not appearing in dark mode.",
+            ko: "다크 모드에서 Apple 아이콘이 보이지 않던 문제를\u00a0고쳤어요.",
+            en: "We fixed the Apple icon not appearing in dark\u00a0mode.",
           },
           {
             ko: "카카오 프로필 이미지가 보이지 않던 문제를 고쳤어요.",
             en: "We fixed Kakao profile images not appearing.",
           },
           {
-            ko: "Android에서 마이페이지 하단 내용이 탭에 가려지던 문제를 고쳤어요.",
-            en: "We fixed the bottom tabs covering content at the bottom of My Page on Android.",
+            ko: "Android에서 마이페이지 하단 내용이 탭에 가려지던 문제를\u00a0고쳤어요.",
+            en: "We fixed the bottom tabs covering content at the bottom of My Page on\u00a0Android.",
           },
         ],
       },
@@ -1949,12 +1949,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "주간 목표 달성 배지를 확인할 수 있는 화면이 생겼어요.",
-            en: "You can see your weekly goal achievement badges on a new screen.",
+            ko: "주간 목표 달성 배지를 확인할 수 있는 화면이\u00a0생겼어요.",
+            en: "You can see your weekly goal achievement badges on a new\u00a0screen.",
           },
           {
             ko: "주간 배지를 공유해 작은 성취를 나눌 수 있어요.",
-            en: "You can share your weekly badges to celebrate small wins.",
+            en: "You can share your weekly badges to celebrate small\u00a0wins.",
           },
           {
             ko: "점심시간에 리마인더 알림을 받아볼 수 있어요.",
@@ -1962,7 +1962,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
           },
           {
             ko: "연속 달성이 끊기기 전에 알림을 받아볼 수 있어요.",
-            en: "You can receive an alert before your streak ends.",
+            en: "You can receive an alert before your streak\u00a0ends.",
           },
           {
             ko: "시간을 24시간제로 표시하도록 설정할 수 있어요.",
@@ -1974,28 +1974,28 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "improvements",
         items: [
           {
-            ko: "AI가 할 일을 더 정확하게 이해하도록 다듬었어요.",
+            ko: "AI가 할\u00a0일을 더 정확하게 이해하도록 다듬었어요.",
             en: "AI now recognizes to-dos more accurately.",
           },
           {
-            ko: "AI가 매일 할 일을 살펴보고, 제안에 카테고리도 함께 안내하도록 다듬었어요.",
+            ko: "AI가 매일 할\u00a0일을 살펴보고, 제안에 카테고리도 함께 안내하도록\u00a0다듬었어요.",
             en: "AI now reviews your to-dos daily and includes category suggestions in its recommendations.",
           },
           {
-            ko: "프리미엄 리포트가 아직 없을 때 보이는 화면을 더 보기 좋게 다듬었어요.",
-            en: "Premium reports now have a clearer screen when no report is available yet.",
+            ko: "프리미엄 리포트가 아직 없을 때 보이는 화면을 더 보기 좋게\u00a0다듬었어요.",
+            en: "Premium reports now have a clearer screen when no report is available\u00a0yet.",
           },
           {
-            ko: "주간 달성 리포트를 더 안정적으로 받아볼 수 있도록 다듬었어요.",
+            ko: "주간 달성 리포트를 더 안정적으로 받아볼 수 있도록\u00a0다듬었어요.",
             en: "Weekly achievement reports now work more reliably.",
           },
           {
             ko: "친구 요청을 수락하면 바로 반영되도록 다듬었어요.",
-            en: "Accepted friend requests now appear right away.",
+            en: "Accepted friend requests now appear right\u00a0away.",
           },
           {
             ko: "소셜 로그인 버튼을 더 보기 좋게 다듬었어요.",
-            en: "Social sign-in buttons now have a clearer design.",
+            en: "Social sign-in buttons now have a clearer\u00a0design.",
           },
         ],
       },
@@ -2003,32 +2003,32 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "bugFixes",
         items: [
           {
-            ko: "기기에서 큰 글씨를 설정했을 때 화면이 깨지던 문제를 고쳤어요.",
-            en: "We fixed broken layouts when using a larger system font size.",
+            ko: "기기에서 큰 글씨를 설정했을 때 화면이 깨지던 문제를\u00a0고쳤어요.",
+            en: "We fixed broken layouts when using a larger system font\u00a0size.",
           },
           {
-            ko: "Android에서 앱 아이콘이 잘리던 문제를 고쳤어요.",
-            en: "We fixed the app icon being clipped on Android.",
+            ko: "Android에서 앱 아이콘이 잘리던 문제를\u00a0고쳤어요.",
+            en: "We fixed the app icon being clipped on\u00a0Android.",
           },
           {
             ko: "구독 금액이 잘못 표시되던 문제를 고쳤어요.",
-            en: "We fixed an incorrect subscription price display.",
+            en: "We fixed an incorrect subscription price\u00a0display.",
           },
           {
             ko: "일부 색상이 올바르게 표시되지 않던 문제를 고쳤어요.",
             en: "We fixed some colors not displaying correctly.",
           },
           {
-            ko: "Android에서 Apple 로그인 버튼이 잘못 표시되던 문제를 고쳤어요.",
-            en: "We fixed the Apple sign-in button appearing incorrectly on Android.",
+            ko: "Android에서 Apple 로그인 버튼이 잘못 표시되던 문제를\u00a0고쳤어요.",
+            en: "We fixed the Apple sign-in button appearing incorrectly on\u00a0Android.",
           },
           {
-            ko: "알림을 받을 때 앱이 갑자기 종료되던 문제를 고쳤어요.",
-            en: "We fixed an issue that could unexpectedly close the app when a notification arrived.",
+            ko: "알림을 받을 때 앱이 갑자기 종료되던 문제를\u00a0고쳤어요.",
+            en: "We fixed an issue that could unexpectedly close the app when a notification\u00a0arrived.",
           },
           {
-            ko: "알림을 누르면 잘못된 화면으로 이동하던 문제를 고쳤어요.",
-            en: "We fixed notifications opening the wrong screen.",
+            ko: "알림을 누르면 잘못된 화면으로 이동하던 문제를\u00a0고쳤어요.",
+            en: "We fixed notifications opening the wrong\u00a0screen.",
           },
         ],
       },
@@ -2077,15 +2077,15 @@ export const serviceUpdates: ServiceUpdate[] = [
         type: "improvements",
         items: [
           {
-            ko: "메모를 AI로 정리할 때 적어 둔 날짜와 시간, 세부 내용을 더 잘 반영하도록 다듬었어요.",
+            ko: "메모를 AI로 정리할 때 적어 둔 날짜와 시간, 세부 내용을 더 잘 반영하도록\u00a0다듬었어요.",
             en: "AI for notes now handles the dates, times, and details you write more carefully.",
           },
           {
-            ko: "이미 수락하거나 거절한 활동이 AI 제안에 다시 나타나는 경우를 줄였어요.",
+            ko: "이미 수락하거나 거절한 활동이 AI 제안에 다시 나타나는 경우를\u00a0줄였어요.",
             en: "AI suggestions are less likely to repeat activities you have already accepted or declined.",
           },
           {
-            ko: "남은 할 일과 친구의 활동에 맞춰 알림 문구를 더 자연스럽게 다듬었어요.",
+            ko: "남은 할\u00a0일과 친구의 활동에 맞춰 알림 문구를 더 자연스럽게\u00a0다듬었어요.",
             en: "Notification messages now describe your remaining to-dos and friends’ activity more naturally.",
           },
         ],
@@ -2094,16 +2094,16 @@ export const serviceUpdates: ServiceUpdate[] = [
         type: "bugFixes",
         items: [
           {
-            ko: "주간·월간 리포트에서 일부 완료 기록이 다른 날짜에 반영되거나 빠지던 문제를 고쳤어요.",
-            en: "We fixed some completion records appearing on the wrong date or missing from weekly and monthly reports.",
+            ko: "주간·월간 리포트에서 일부 완료 기록이 다른 날짜에 반영되거나 빠지던 문제를\u00a0고쳤어요.",
+            en: "We fixed some completion records appearing on the wrong date or missing from weekly and monthly\u00a0reports.",
           },
           {
-            ko: "날짜가 바뀔 때 일부 날씨 정보가 이전 날짜를 기준으로 표시될 수 있던 문제를 고쳤어요.",
-            en: "We fixed some weather information using the previous date after a new day began.",
+            ko: "날짜가 바뀔 때 일부 날씨 정보가 이전 날짜를 기준으로 표시될 수 있던 문제를\u00a0고쳤어요.",
+            en: "We fixed some weather information using the previous date after a new day\u00a0began.",
           },
           {
-            ko: "메모를 할 일로 바꾸거나 AI 제안을 수락하는 과정에서 같은 할 일이 겹쳐 만들어질 수 있던 문제를 고쳤어요.",
-            en: "We fixed a case where converting a note or accepting an AI suggestion could create the same to-do twice.",
+            ko: "메모를 할\u00a0일로 바꾸거나 AI 제안을 수락하는 과정에서 같은 할\u00a0일이 겹쳐 만들어질 수 있던 문제를\u00a0고쳤어요.",
+            en: "We fixed a case where converting a note or accepting an AI suggestion could create the same to-do\u00a0twice.",
           },
         ],
       },

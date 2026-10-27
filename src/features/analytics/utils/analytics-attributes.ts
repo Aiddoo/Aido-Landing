@@ -1,21 +1,6 @@
-import { match } from "ts-pattern";
 import type { AnalyticsEvent } from "../schemas/analytics.schema";
 
+// Server Component 링크도 클라이언트 경계 없이 track()에 이벤트를 넘기도록 data 속성에 싣는다.
 export function analyticsAttributes(event: AnalyticsEvent) {
-  return match(event)
-    .with({ name: "download_click" }, (value) => ({
-      "data-analytics-event": value.name,
-      "data-store": value.store,
-      "data-placement": value.placement,
-    }))
-    .with({ name: "feature_guide_click" }, (value) => ({
-      "data-analytics-event": value.name,
-      "data-feature-slug": value.slug,
-      "data-placement": value.placement,
-    }))
-    .with({ name: "language_switch" }, (value) => ({
-      "data-analytics-event": value.name,
-      "data-target-locale": value.targetLocale,
-    }))
-    .exhaustive();
+  return { "data-analytics": JSON.stringify(event) };
 }
