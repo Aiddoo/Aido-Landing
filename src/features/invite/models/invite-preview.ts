@@ -8,6 +8,9 @@ export type InvitePreviewFailure =
   | "unavailable"
   | "unknown";
 
+/** 화면이 보여 주는 실패. render_error는 미리보기와 무관하게 화면을 그리다 난 예상 밖 오류다. */
+export type InvitePageFailure = InvitePreviewFailure | "render_error";
+
 export type InvitePreview =
   | { status: "ready"; inviter: InviteInviter }
   | { status: "failed"; failure: InvitePreviewFailure };

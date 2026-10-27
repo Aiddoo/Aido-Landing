@@ -1,15 +1,18 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Suspense } from "react";
 import { StoreButtons } from "@/components/marketing/store-buttons";
 import type { MessageCatalog } from "@/i18n/messages";
 import { usableInviteCode } from "../models/invite-preview";
-import { getInvitePreviewQueryOptions } from "../queries/invite-queries";
+import {
+  getInvitePreviewQueryOptions,
+  inviteQueryKeys,
+} from "../queries/invite-queries";
 import type { InviteCode } from "../schemas/invite.schema";
 import {
   APP_STORE_INVITE_URL,
   buildPlayStoreInviteUrl,
 } from "../utils/invite-store-links";
+import { InviteQueryBoundary } from "./invite-query-boundary";
 
 type Content = MessageCatalog["storeButtons"];
 
@@ -21,13 +24,17 @@ export function InviteStoreLinks({
   content: Content;
   code: InviteCode | null;
 }) {
-  if (code == null) return <InviteStoreButtons content={content} code={null} />;
+  if (code == null) return <InviteStoreLinks.Error content={content} />;
   return (
-    <Suspense
-      fallback={<InviteStoreLinks.Loading content={content} code={code} />}
+    <InviteQueryBoundary
+      queryKey={inviteQueryKeys.preview(code)}
+      pendingFallback={
+        <InviteStoreLinks.Loading content={content} code={code} />
+      }
+      rejectedFallback={() => <InviteStoreLinks.Error content={content} />}
     >
       <InviteStoreLinks.Contents content={content} code={code} />
-    </Suspense>
+    </InviteQueryBoundary>
   );
 }
 
@@ -60,8 +67,14 @@ function InviteStoreLinksLoading({
   return <InviteStoreButtons content={content} code={code} />;
 }
 
+// 코드를 확인하지 못했으므로 referrer를 싣지 않는다.
+function InviteStoreLinksError({ content }: { content: Content }) {
+  return <InviteStoreButtons content={content} code={null} />;
+}
+
 InviteStoreLinks.Contents = InviteStoreLinksContents;
 InviteStoreLinks.Loading = InviteStoreLinksLoading;
+InviteStoreLinks.Error = InviteStoreLinksError;
 
 function InviteStoreButtons({
   content,

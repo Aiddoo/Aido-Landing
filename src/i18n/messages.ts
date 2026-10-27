@@ -324,8 +324,14 @@ export type MessageCatalog = {
     outdatedNote: string;
     rewardTermsNote: string;
     rewardTermsLink: string;
+    retry: string;
     errors: Record<
-      "invalidCode" | "notFound" | "changed" | "unavailable" | "unknown",
+      | "invalidCode"
+      | "notFound"
+      | "changed"
+      | "unavailable"
+      | "unknown"
+      | "renderError",
       { title: string; description: string }
     >;
   };
@@ -1177,6 +1183,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       rewardTermsNote:
         "가입한 지 7일 안에 초대를 수락하면 받아요. 앱 안에서만 쓰는 프리미엄이라 현금으로 바꿀 수 없고, 이미 보상을 받은 기기나 계정은 받을 수 없어요.",
       rewardTermsLink: "초대 보상 조건 보기",
+      retry: "다시 시도",
       errors: {
         invalidCode: {
           title: "초대 링크를 확인해 주세요",
@@ -1201,6 +1208,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "친구 정보를 불러오지 못했어요",
           description:
             "코드는 그대로 쓸 수 있어요. 잠시 뒤에 다시 열어도 좋아요.",
+        },
+        renderError: {
+          title: "초대 화면을 보여 주지 못했어요",
+          description: "다시 시도하거나 잠시 뒤에 링크를 다시 열어 주세요.",
         },
       },
     },
@@ -2151,6 +2162,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
       rewardTermsNote:
         "Accept the invite within 7 days of joining to get it. It's in-app Premium only, has no cash value, and can't be claimed again on a device or account that already got it.",
       rewardTermsLink: "See invite reward terms",
+      retry: "Try again",
       errors: {
         invalidCode: {
           title: "Please check your invite link",
@@ -2176,6 +2188,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "We couldn’t load your friend’s info",
           description:
             "Your code still works. You can also try again in a bit.",
+        },
+        renderError: {
+          title: "We couldn’t show this invite",
+          description: "Try again, or reopen the link in a bit.",
         },
       },
     },

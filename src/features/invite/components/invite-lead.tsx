@@ -1,11 +1,14 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Suspense } from "react";
 import type { MessageCatalog } from "@/i18n/messages";
-import type { InvitePreviewFailure } from "../models/invite-preview";
-import { getInvitePreviewQueryOptions } from "../queries/invite-queries";
+import type { InvitePageFailure } from "../models/invite-preview";
+import {
+  getInvitePreviewQueryOptions,
+  inviteQueryKeys,
+} from "../queries/invite-queries";
 import type { InviteCode } from "../schemas/invite.schema";
 import { inviteErrorCopy } from "../utils/invite-error-copy";
+import { InviteQueryBoundary } from "./invite-query-boundary";
 
 type Labels = MessageCatalog["invite"];
 
@@ -24,9 +27,19 @@ export function InviteLead({
   if (code == null)
     return <InviteLead.Error labels={labels} failure="invalid_code" />;
   return (
-    <Suspense fallback={<InviteLead.Loading labels={labels} />}>
+    <InviteQueryBoundary
+      queryKey={inviteQueryKeys.preview(code)}
+      pendingFallback={<InviteLead.Loading labels={labels} />}
+      rejectedFallback={({ resetErrorBoundary }) => (
+        <InviteLead.Error
+          labels={labels}
+          failure="render_error"
+          onRetry={resetErrorBoundary}
+        />
+      )}
+    >
       <InviteLead.Contents labels={labels} code={code} />
-    </Suspense>
+    </InviteQueryBoundary>
   );
 }
 
@@ -50,15 +63,32 @@ function InviteLeadLoading({ labels }: { labels: Labels }) {
   return <p className={leadClass}>{labels.lead}</p>;
 }
 
+// 예상 밖 오류일 때만 onRetry를 받아 같은 높이 안에 다시 시도 버튼을 둔다.
 function InviteLeadError({
   labels,
   failure,
+  onRetry,
 }: {
   labels: Labels;
-  failure: InvitePreviewFailure;
+  failure: InvitePageFailure;
+  onRetry?: () => void;
 }) {
   return (
-    <p className={leadClass}>{inviteErrorCopy(labels, failure).description}</p>
+    <p className={leadClass}>
+      {inviteErrorCopy(labels, failure).description}
+      {onRetry == null ? null : (
+        <>
+          {" "}
+          <button
+            type="button"
+            onClick={onRetry}
+            className="font-semibold text-brand-deep underline underline-offset-3"
+          >
+            {labels.retry}
+          </button>
+        </>
+      )}
+    </p>
   );
 }
 

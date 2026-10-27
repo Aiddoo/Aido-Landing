@@ -1,13 +1,16 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Suspense } from "react";
 import { match } from "ts-pattern";
 import { HStack } from "@/components/ui/layout";
 import type { MessageCatalog } from "@/i18n/messages";
 import { useCopyInviteCode } from "../hooks/use-copy-invite-code";
 import { usableInviteCode } from "../models/invite-preview";
-import { getInvitePreviewQueryOptions } from "../queries/invite-queries";
+import {
+  getInvitePreviewQueryOptions,
+  inviteQueryKeys,
+} from "../queries/invite-queries";
 import type { InviteCode } from "../schemas/invite.schema";
+import { InviteQueryBoundary } from "./invite-query-boundary";
 
 const EMPTY_CODE = "······";
 
@@ -21,11 +24,15 @@ export function InviteCodeCopy({
   labels: Labels;
   code: InviteCode | null;
 }) {
-  if (code == null) return <CodeField labels={labels} code={null} />;
+  if (code == null) return <InviteCodeCopy.Error labels={labels} />;
   return (
-    <Suspense fallback={<InviteCodeCopy.Loading labels={labels} code={code} />}>
+    <InviteQueryBoundary
+      queryKey={inviteQueryKeys.preview(code)}
+      pendingFallback={<InviteCodeCopy.Loading labels={labels} code={code} />}
+      rejectedFallback={() => <InviteCodeCopy.Error labels={labels} />}
+    >
       <InviteCodeCopy.Contents labels={labels} code={code} />
-    </Suspense>
+    </InviteQueryBoundary>
   );
 }
 
@@ -53,8 +60,14 @@ function InviteCodeCopyLoading({
   return <CodeField labels={labels} code={code} />;
 }
 
+// 코드를 확인하지 못했으므로 숨기고 복사를 막는다.
+function InviteCodeCopyError({ labels }: { labels: Labels }) {
+  return <CodeField labels={labels} code={null} />;
+}
+
 InviteCodeCopy.Contents = InviteCodeCopyContents;
 InviteCodeCopy.Loading = InviteCodeCopyLoading;
+InviteCodeCopy.Error = InviteCodeCopyError;
 
 function CodeField({
   labels,

@@ -1,13 +1,16 @@
 "use client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Suspense } from "react";
 import type { MessageCatalog } from "@/i18n/messages";
 import { cn } from "@/lib/utils";
-import type { InvitePreviewFailure } from "../models/invite-preview";
-import { getInvitePreviewQueryOptions } from "../queries/invite-queries";
+import type { InvitePageFailure } from "../models/invite-preview";
+import {
+  getInvitePreviewQueryOptions,
+  inviteQueryKeys,
+} from "../queries/invite-queries";
 import type { InviteCode } from "../schemas/invite.schema";
 import { fillInviterName } from "../utils/format-invite-text";
 import { inviteErrorCopy } from "../utils/invite-error-copy";
+import { InviteQueryBoundary } from "./invite-query-boundary";
 import { InviterProfile } from "./inviter-profile";
 
 type Labels = MessageCatalog["invite"];
@@ -30,9 +33,15 @@ export function InviterCard({
   if (code == null)
     return <InviterCard.Error labels={labels} failure="invalid_code" />;
   return (
-    <Suspense fallback={<InviterCard.Loading labels={labels} />}>
+    <InviteQueryBoundary
+      queryKey={inviteQueryKeys.preview(code)}
+      pendingFallback={<InviterCard.Loading labels={labels} />}
+      rejectedFallback={() => (
+        <InviterCard.Error labels={labels} failure="render_error" />
+      )}
+    >
       <InviterCard.Contents labels={labels} code={code} />
-    </Suspense>
+    </InviteQueryBoundary>
   );
 }
 
@@ -93,7 +102,7 @@ function InviterCardError({
   failure,
 }: {
   labels: Labels;
-  failure: InvitePreviewFailure;
+  failure: InvitePageFailure;
 }) {
   return (
     <>
