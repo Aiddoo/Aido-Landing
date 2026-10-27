@@ -1,5 +1,6 @@
 "use client";
 import { match } from "ts-pattern";
+import { HStack } from "@/components/ui/layout";
 import type { MessageCatalog } from "@/i18n/messages";
 import { useCopyInviteCode } from "../hooks/use-copy-invite-code";
 import { useInviteCode } from "../hooks/use-invite-code";
@@ -36,22 +37,30 @@ function CodeField({
     .exhaustive();
   return (
     <>
-      <p className="invite-code-label">{labels.codeLabel}</p>
-      <div className="invite-code-row">
-        <span className="invite-code" data-empty={code ? undefined : ""}>
+      <p className="h-5 text-[0.8125rem] leading-5 font-semibold text-gray-8">
+        {labels.codeLabel}
+      </p>
+      <HStack align="center" justify="between" gap={3} className="h-13">
+        <span
+          data-empty={code ? undefined : ""}
+          className="font-mono text-[1.875rem] leading-none font-extrabold tracking-[0.12em] whitespace-nowrap text-ink select-all data-empty:text-muted-foreground data-empty:select-none"
+        >
           {code ?? EMPTY_CODE}
         </span>
         <button
           type="button"
-          className="invite-copy"
+          className="h-11 min-w-22 shrink-0 rounded-full bg-primary px-4 text-[0.9375rem] font-bold whitespace-nowrap text-primary-foreground shadow-press-brand transition-transform active:translate-y-0.5 active:shadow-none disabled:opacity-50 disabled:shadow-none"
           onClick={copy.copy}
           disabled={!code}
           aria-label={labels.codeCopyAria}
         >
           {copy.status === "copied" ? labels.codeCopied : labels.codeCopy}
         </button>
-      </div>
-      <p className="invite-hint" role="status">
+      </HStack>
+      <p
+        role="status"
+        className="mt-2 min-h-[calc(3*1.6em)] text-[0.8125rem] leading-[1.6] text-gray-8"
+      >
         {hint}
       </p>
     </>

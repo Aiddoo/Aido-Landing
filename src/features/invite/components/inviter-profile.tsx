@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Box, HStack } from "@/components/ui/layout";
 import type { MessageCatalog } from "@/i18n/messages";
 import { defaultInviterCat, getInviterCat } from "../data/inviter-cats";
 import type { InviteInviter } from "../schemas/invite.schema";
@@ -24,8 +25,8 @@ export function InviterProfile({
 }: InviterProfileProps) {
   const cat = inviter ? getInviterCat(inviter.profileImage) : defaultInviterCat;
   return (
-    <div className="invite-inviter">
-      <div className="invite-avatar wobbly-md">
+    <HStack align="center" gap={4} className="relative h-22">
+      <Box className="size-22 shrink-0 overflow-hidden rounded-[30%] bg-card shadow-card">
         <Image
           key={cat}
           src={cat}
@@ -43,17 +44,17 @@ export function InviterProfile({
           sizes={`${AVATAR_SIZE}px`}
           preload
           fetchPriority="high"
-          className="invite-avatar-image"
+          className="size-full object-cover"
         />
-      </div>
-      <div className="invite-inviter-text">
-        <p className="invite-name">
+      </Box>
+      <Box className="min-w-0 flex-1">
+        <p className="block h-7 truncate text-title-lg leading-7 font-bold text-ink">
           {isLoading ? (
-            <span className="invite-skeleton invite-bar-name" />
+            <span className="mt-1.5 block h-[1.1rem] w-[55%] animate-pulse rounded-full bg-muted" />
           ) : null}
           {inviter ? inviter.name : null}
         </p>
-      </div>
-    </div>
+      </Box>
+    </HStack>
   );
 }

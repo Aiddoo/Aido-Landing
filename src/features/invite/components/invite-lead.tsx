@@ -11,5 +11,9 @@ export function InviteLead({ labels }: { labels: MessageCatalog["invite"] }) {
     preview.status === "failed"
       ? inviteErrorCopy(labels, preview.failure).description
       : labels.lead;
-  return <p className="invite-lead">{text}</p>;
+  return (
+    <p className="relative mt-3.5 h-[calc(3*1.7em)] overflow-hidden text-[0.9375rem] leading-[1.7] text-gray-9 md:text-body-lg">
+      {text}
+    </p>
+  );
 }

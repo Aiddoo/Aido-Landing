@@ -19,6 +19,7 @@ export function InviteStoreLinks({ content }: InviteStoreLinksProps) {
     <StoreButtons
       content={content}
       placement="invite"
+      className="max-w-none min-[400px]:grid-cols-1"
       appStoreUrl={APP_STORE_INVITE_URL}
       playStoreUrl={buildPlayStoreInviteUrl(usableInviteCode(code, preview))}
     />
@@ -31,6 +32,7 @@ export function InviteStoreLinksLoading({ content }: InviteStoreLinksProps) {
     <StoreButtons
       content={content}
       placement="invite"
+      className="max-w-none min-[400px]:grid-cols-1"
       appStoreUrl={APP_STORE_INVITE_URL}
       playStoreUrl={buildPlayStoreInviteUrl(code)}
     />
