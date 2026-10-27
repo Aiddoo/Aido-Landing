@@ -64,7 +64,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
       >
         <ReadableContent
           render={<section id="top" aria-labelledby="hero-title" />}
-          className="grid items-center gap-14 pt-32 pb-section-sm lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:pt-40"
+          className="grid items-center gap-14 pt-32 pb-section-sm lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8 lg:pt-40"
         >
           <VStack
             align="center"
