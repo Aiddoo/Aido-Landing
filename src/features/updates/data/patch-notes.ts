@@ -28,6 +28,39 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.13.1",
+    date: "2026-11-02",
+    summary: {
+      ko: "할\u00a0일 날짜를 기기 시간대 하나로 맞추고, 앱 기반 라이브러리를 최신으로 올렸어요.",
+      en: "To-do dates now follow your device time zone everywhere, and the app runs on updated libraries.",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "할\u00a0일을 만들거나 옮길 때 날짜를 기기 시간대 기준 하나로 계산해요. 시간대를 바꾸거나 자정 무렵에 써도 날짜가 어긋나지\u00a0않아요.",
+            en: "Creating or moving to-dos now uses your device time zone for every date, so dates stay right around midnight or after changing time\u00a0zones.",
+          },
+          {
+            ko: "앱을 이루는 기반 라이브러리를 최신 버전으로\u00a0올렸어요.",
+            en: "We updated the libraries the app is built\u00a0on.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "할 일 날짜를 기기 시간대 기준 하나로 맞춰, 자정 무렵이나 시간대를 바꿔도 날짜가 어긋나지 않아요.",
+        "앱을 이루는 기반 라이브러리를 최신 버전으로 올렸어요.",
+      ],
+      en: [
+        "To-do dates follow your device time zone, so they stay right around midnight or after changing time zones.",
+        "We updated the libraries the app is built on.",
+      ],
+    },
+  },
+  {
     version: "1.13.0",
     date: "2026-10-27",
     summary: {
