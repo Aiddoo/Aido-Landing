@@ -28,6 +28,39 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.13.1",
+    date: "2026-11-02",
+    summary: {
+      ko: "해외에 있거나 기기 시간대를 바꿔도 할\u00a0일 날짜가 정확하게 표시되고, 앱을 더 안정적으로 다듬었어요.",
+      en: "To-do dates stay accurate when you travel or change time zones, and the app runs more\u00a0smoothly.",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "해외에 있거나 기기 시간대를 바꿔도 할\u00a0일 날짜가 정확하게\u00a0표시돼요.",
+            en: "To-do dates now stay accurate when you travel or change your device's time\u00a0zone.",
+          },
+          {
+            ko: "앱을 더 안정적으로 쓸 수 있도록 내부를\u00a0다듬었어요.",
+            en: "Behind-the-scenes improvements to keep the app running\u00a0smoothly.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "해외에 있거나 기기 시간대를 바꿔도 할 일 날짜가 정확하게 표시돼요.",
+        "앱을 더 안정적으로 쓸 수 있도록 내부를 다듬었어요.",
+      ],
+      en: [
+        "To-do dates now stay accurate when you travel or change your device's time zone.",
+        "Behind-the-scenes improvements to keep the app running smoothly.",
+      ],
+    },
+  },
+  {
     version: "1.13.0",
     date: "2026-10-27",
     summary: {
