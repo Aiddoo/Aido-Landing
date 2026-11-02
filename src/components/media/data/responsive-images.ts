@@ -901,6 +901,132 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/en/weather-briefing.webp": {
+    "sourceHash": "82838ab1ae79",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-briefing-48-881631c9b22e.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-briefing-96-bbd8f5110d16.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-briefing-160-9a2bad1af5d1.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-briefing-240-a6e8d1fb5b2d.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-briefing-320-ec11526371a9.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-briefing-480-3019fc94c527.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-briefing-640-058a6f85e006.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-forecast.webp": {
+    "sourceHash": "7bb68f15bac0",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-forecast-48-3645de8aaf1b.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-forecast-96-065c6cb97163.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-forecast-160-545951c5bfc8.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-forecast-240-c62e8edf8397.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-forecast-320-75178eaf42f8.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-forecast-480-1c738d95bd65.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-forecast-640-0232dd01f8ba.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-next-hour.webp": {
+    "sourceHash": "9c7beebeb1a9",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-next-hour-48-adb38358a4a5.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-next-hour-96-1701c7aef9bb.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-next-hour-160-8436ba374fb8.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-next-hour-240-93840d63570f.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-next-hour-320-ee7444da75d2.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-next-hour-480-3e3f92b7523e.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-next-hour-640-6bde928b4613.webp"
+      }
+    ]
+  },
   "/app-assets/guides/ko/friend-feed.webp": {
     "sourceHash": "9c7e5010a2f0",
     "width": 640,
@@ -1276,6 +1402,132 @@ export const responsiveImages = {
         "width": 640,
         "height": 1391,
         "src": "/responsive/voice-add-640-6d776e4a7183.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-briefing.webp": {
+    "sourceHash": "d7246ed1293e",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-briefing-48-9ccd9e0c3c02.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-briefing-96-ba975a641f33.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-briefing-160-919ab475b3d1.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-briefing-240-e8f679cfdd45.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-briefing-320-e47436fc7091.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-briefing-480-4bb9cc26c86b.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-briefing-640-e511fbd39521.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-forecast.webp": {
+    "sourceHash": "b061cf4c475a",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-forecast-48-1ff950e18457.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-forecast-96-628e0947ddd9.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-forecast-160-9a30b6325964.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-forecast-240-b6015d43d218.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-forecast-320-f2ba88d083af.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-forecast-480-97335bf95d1e.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-forecast-640-5e55b21e39e7.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-next-hour.webp": {
+    "sourceHash": "a9466c001f74",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-next-hour-48-23b789cf7bf7.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-next-hour-96-590b0f0c0e03.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-next-hour-160-0d1630ece380.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-next-hour-240-cbb1d547b692.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-next-hour-320-d04b3bf271d5.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-next-hour-480-a3f13870bfc2.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-next-hour-640-a7e3c05f5232.webp"
       }
     ]
   },
@@ -2865,39 +3117,39 @@ export const responsiveImages = {
     ]
   },
   "/app-assets/screenshots/en/android/weather.webp": {
-    "sourceHash": "077f5581ede2",
+    "sourceHash": "1aa3012ada68",
     "width": 480,
     "height": 1067,
     "variants": [
       {
         "width": 48,
         "height": 107,
-        "src": "/responsive/weather-48-8ef687c656d9.webp"
+        "src": "/responsive/weather-48-efbe296e85eb.webp"
       },
       {
         "width": 96,
         "height": 213,
-        "src": "/responsive/weather-96-1462515b4557.webp"
+        "src": "/responsive/weather-96-9d3ee93f1a29.webp"
       },
       {
         "width": 160,
         "height": 356,
-        "src": "/responsive/weather-160-d13c3d1271a2.webp"
+        "src": "/responsive/weather-160-d27fe2857f9d.webp"
       },
       {
         "width": 240,
         "height": 534,
-        "src": "/responsive/weather-240-65c18b2b1756.webp"
+        "src": "/responsive/weather-240-090a885ff96e.webp"
       },
       {
         "width": 320,
         "height": 711,
-        "src": "/responsive/weather-320-afd6be987ed7.webp"
+        "src": "/responsive/weather-320-851a94f11a0e.webp"
       },
       {
         "width": 480,
         "height": 1067,
-        "src": "/responsive/weather-480-7eae40c57688.webp"
+        "src": "/responsive/weather-480-e35df9f6af3d.webp"
       }
     ]
   },
@@ -3716,39 +3968,39 @@ export const responsiveImages = {
     ]
   },
   "/app-assets/screenshots/ko/android/weather.webp": {
-    "sourceHash": "1469022440a7",
+    "sourceHash": "789f842b9828",
     "width": 480,
     "height": 1067,
     "variants": [
       {
         "width": 48,
         "height": 107,
-        "src": "/responsive/weather-48-23a38f05fe37.webp"
+        "src": "/responsive/weather-48-d3671ca58db1.webp"
       },
       {
         "width": 96,
         "height": 213,
-        "src": "/responsive/weather-96-d99f86b919ed.webp"
+        "src": "/responsive/weather-96-376ddaf67c17.webp"
       },
       {
         "width": 160,
         "height": 356,
-        "src": "/responsive/weather-160-1efbe6041d15.webp"
+        "src": "/responsive/weather-160-5e4c9250fd8e.webp"
       },
       {
         "width": 240,
         "height": 534,
-        "src": "/responsive/weather-240-71b81478f382.webp"
+        "src": "/responsive/weather-240-956be7fb4c1a.webp"
       },
       {
         "width": 320,
         "height": 711,
-        "src": "/responsive/weather-320-1a678a14d1ac.webp"
+        "src": "/responsive/weather-320-83059d730b75.webp"
       },
       {
         "width": 480,
         "height": 1067,
-        "src": "/responsive/weather-480-ff2a2e22faa8.webp"
+        "src": "/responsive/weather-480-eb18c40ae4af.webp"
       }
     ]
   },

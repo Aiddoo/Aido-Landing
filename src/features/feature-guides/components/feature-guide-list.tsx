@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   CalendarDays,
+  CloudSun,
   Gift,
   type LucideIcon,
   Sparkles,
@@ -22,6 +23,7 @@ const guideIcons: Record<FeatureGuideSlug, LucideIcon> = {
   "recurring-todo": CalendarDays,
   "ai-todo": Sparkles,
   "friend-invite": Gift,
+  weather: CloudSun,
 };
 
 export type FeatureGuideListProps = Omit<GridProps, "children" | "render"> & {

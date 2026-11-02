@@ -28,6 +28,16 @@ export type FriendInviteGuideContent = Omit<FeatureGuideContent, "plans"> & {
   };
 };
 
+/** 날씨 가이드는 요금제 대신 화면 구성과 아이두 브리핑이 언제 무엇을 보여주는지 정리한다. */
+export type WeatherGuideContent = Omit<FeatureGuideContent, "plans"> & {
+  layout: { title: string; body: string }[];
+  briefing: {
+    introduction: string;
+    rows: { when: string; shows: string }[];
+    note: string;
+  };
+};
+
 /** 홈 고양이 고르기. 이름은 앱 app-icon.json의 icons와 같다. */
 export type CatPickerContent = {
   groupLabel: string;
@@ -187,6 +197,10 @@ export type MessageCatalog = {
     rewardsTitle: string;
     rewardsLimitsTitle: string;
     pawBoardLabel: string;
+    layoutTitle: string;
+    briefingTitle: string;
+    briefingWhenLabel: string;
+    briefingShowsLabel: string;
     faqTitle: string;
     relatedTitle: string;
     relatedDescription: string;
@@ -196,6 +210,7 @@ export type MessageCatalog = {
       "recurring-todo": FeatureGuideContent;
       "ai-todo": FeatureGuideContent;
       "friend-invite": FriendInviteGuideContent;
+      weather: WeatherGuideContent;
     };
   };
   services: {
@@ -495,9 +510,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
           title: "나가기 전에 날씨도 살펴요",
           description: "할\u00a0일을 확인하면서 현재 위치의 날씨도 함께 봐요.",
           details: [
-            "홈의 날씨 버튼에서 자세한 시간별·주간 예보를\u00a0열어요.",
+            "홈의 날씨 버튼에서 자세한 시간별·10일 예보를\u00a0열어요.",
             "위치 권한은 선택할 수 있고, 날씨가 준비되지 않아도 할\u00a0일은 계속 쓸 수\u00a0있어요.",
-            "현재 날씨 서비스는 대한민국 지역을 지원해요. 해외에서는 안내 화면을\u00a0보여드려요.",
+            "해외에서도 그곳의 날씨를 볼 수 있고, 아이두 브리핑이 오늘 할\u00a0일과 날씨를 맞춰\u00a0알려줘요.",
           ],
           captions: ["현재 날씨와 시간별 예보", "Android 날씨 화면"],
         },
@@ -580,6 +595,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
       rewardsTitle: "누가, 언제 받나요",
       rewardsLimitsTitle: "조건이 있어요",
       pawBoardLabel: "발자국 모으기 판",
+      layoutTitle: "위에서부터 이렇게 보여요",
+      briefingTitle: "아이두 브리핑은 언제 무엇을 알려주나요",
+      briefingWhenLabel: "이럴 때",
+      briefingShowsLabel: "이렇게 알려줘요",
       faqTitle: "자주 묻는 질문",
       relatedTitle: "다음으로 알아볼 기능",
       relatedDescription: "내 하루에 필요한 기능을 하나씩 더해 보세요.",
@@ -933,6 +952,160 @@ const catalogs: Record<Locale, MessageCatalog> = {
           cardDescription:
             "초대 링크로 친구를 불러요. 누가 언제 프리미엄을 받는지, 발자국 모으기까지\u00a0알아봐요.",
         },
+        weather: {
+          kicker: "날씨 사용설명서",
+          title: "날씨와 아이두 브리핑으로 하루 준비하기",
+          summary:
+            "아이두 날씨가 새로워졌어요. 전 세계 어디서나 지금 날씨와 시간별·10일 예보를 보고, 아이두 브리핑이 오늘 시간이 정해진 할\u00a0일과 날씨를 맞춰 알려줘요. 화면 구성과 브리핑이 언제 무엇을 보여주는지, 시간 옮기기와 알림까지\u00a0정리했어요.",
+          steps: [
+            {
+              title: "날씨 화면을 열어요",
+              body: "홈의 날씨 버튼을 눌러요. 위치 권한을 허용하면 지금 있는 곳의 날씨를 보여줘요. 오른쪽 위 새로고침 버튼으로 언제든 새로 불러올 수\u00a0있어요.",
+            },
+            {
+              title: "아이두 브리핑을 확인해요",
+              body: "지금 날씨 아래에서 오늘 시간이 정해진 할\u00a0일과 그 시간의 날씨를 함께 봐요. 브리핑에서 바로 할\u00a0일을 체크하고, ⋯ 버튼으로 수정할 수\u00a0있어요.",
+            },
+            {
+              title: "겹친 할\u00a0일은 시간을 옮겨요",
+              body: "비나 더위와 겹친 할\u00a0일이 있으면 ‘비 피해서 시간 옮기기’나 ‘더 선선한 시간으로 옮기기’를 눌러요. 비가 덜 오거나 덜 더운 시간을 추천받아 한 번에 옮기고, 마음이 바뀌면 되돌릴 수\u00a0있어요.",
+            },
+            {
+              title: "아침·저녁 날씨 알림을 받아요",
+              body: "날씨 알림을 켜 두면 아침과 저녁에 날씨를 알려줘요. 비나 더위와 겹친 할\u00a0일이 있으면 알림을 눌러 바로 시간을 옮길 수\u00a0있어요.",
+            },
+          ],
+          example: {
+            introduction:
+              "오후 3시에 강아지 산책을 잡아 둔 날, 비 소식이 있다면 이렇게\u00a0챙겨요.",
+            items: [
+              "산책 시간에 비 올 확률이 50% 이상이면 브리핑이 이 할\u00a0일을 가장 먼저\u00a0알려줘요.",
+              "‘비 피해서 시간 옮기기’를 누르면 비가 덜 오는 시간을 추천해 줘요. 고르면 바로 옮겨지고, 되돌릴 수도\u00a0있어요.",
+              "맑은 시간이 따로 있다면 그때 산책하라고 제안해요. 제안 버튼을 누르면 할\u00a0일 추가 창이 미리 채워져\u00a0열려요.",
+            ],
+            note: "사용 방법을 설명하기 위한 예시예요. 실제 안내는 그날의 예보와 할\u00a0일에 따라\u00a0달라져요.",
+          },
+          layout: [
+            {
+              title: "지금 날씨",
+              body: "위치 이름, 현재 기온과 하늘 상태, 오늘 최고·최저 기온이 보여요. 배경의 하늘·비·눈·번개가 날씨에 맞게\u00a0움직여요.",
+            },
+            {
+              title: "아이두 브리핑",
+              body: "오늘 시간이 정해진 할\u00a0일과 그 시간의 날씨를 맞춰 알려줘요. 무엇을 보여주는지는 아래 표에\u00a0정리했어요.",
+            },
+            {
+              title: "다음 1시간 강수",
+              body: "‘39분 뒤 비가 시작돼요’처럼 앞으로 1시간 동안의 비 소식을 분 단위로 알려줘요. 지원하는 지역에서만\u00a0보여요.",
+            },
+            {
+              title: "시간별·10일 예보",
+              body: "24시간 동안의 날씨와 기온, 비 올 확률을 옆으로 넘겨 봐요. 10일 예보에서는 날마다 최고·최저 기온을 보고, 할\u00a0일 있는 날을 점으로\u00a0구분해요.",
+            },
+            {
+              title: "자세한 날씨",
+              body: "체감 온도, 자외선, 바람, 습도, 가시거리, 기압, 구름, 해와 달(월출·월몰·달 모양)을 보여줘요. 한국에서는 대기질도 함께\u00a0봐요.",
+            },
+            {
+              title: "기상 특보와 데이터 출처",
+              body: "기상 특보가 있으면 함께 알려줘요. 날씨는 Apple 날씨 데이터를 쓰고, 화면에서 Apple 날씨 표기와 데이터 출처 링크를 확인할 수\u00a0있어요.",
+            },
+          ],
+          briefing: {
+            introduction:
+              "브리핑은 아래 순서대로 살펴보고, 가장 먼저 해당하는 내용을\u00a0보여줘요.",
+            rows: [
+              {
+                when: "할\u00a0일 시간에 비·눈·낙뢰 확률이 50% 이상일 때",
+                shows:
+                  "겹친 할\u00a0일을 먼저 알려주고, 시간 옮기기를\u00a0권해요.",
+              },
+              {
+                when: "낮 체감 온도가 33°C 이상일 때",
+                shows:
+                  "더위를 알려주고, 더위와 겹친 할\u00a0일은 시간 옮기기를\u00a0권해요.",
+              },
+              {
+                when: "곧 비가 올 때",
+                shows: "비가 오기 전에 할\u00a0일을 하도록\u00a0제안해요.",
+              },
+              {
+                when: "맑은 시간이 있을 때",
+                shows:
+                  "밖에서 하기 좋은 시간을 알려주고, 산책 할\u00a0일을\u00a0제안해요.",
+              },
+              {
+                when: "오늘 남은 할\u00a0일이 없을 때",
+                shows:
+                  "내일 아침 기온을 알려줘요. 10°C 이하면 쌀쌀하다고\u00a0알려줘요.",
+              },
+              {
+                when: "모두 괜찮을 때",
+                shows: "‘남은 할\u00a0일, 날씨 걱정 없어요’라고\u00a0알려줘요.",
+              },
+            ],
+            note: "날씨 위치와 기기 시간대가 다르면(해외 위치를 볼 때 등) 브리핑은 보이지\u00a0않아요.",
+          },
+          details: [
+            {
+              title: "위치를 못 찾을 때",
+              body: "날씨는 위치 권한을 허용해야 지금 있는 곳을 보여줘요. 위치를 찾지 못하면 기기 설정에서 아이두의 위치 권한과 위치 서비스가 켜져 있는지 확인하고, 새로고침 버튼을 눌러 주세요. 날씨가 없어도 할\u00a0일은 그대로 쓸 수\u00a0있어요.",
+            },
+            {
+              title: "해외에 있을 때",
+              body: "해외에서도 그곳의 날씨와 알림을 받아요. 기기 시간대와 다른 곳의 날씨는 ‘현지 오후 6시’처럼 현지 시각으로 보여줘요. 할\u00a0일 시간과 날씨 시간이 어긋나지 않도록 이때는 브리핑을\u00a0숨겨요.",
+            },
+            {
+              title: "인터넷이 끊겼을 때",
+              body: "화면 위쪽에 안내가 뜨고, 마지막으로 본 할\u00a0일과 날씨를 그대로 보여줘요. 다시 연결되면 자동으로 새로\u00a0불러와요.",
+            },
+            {
+              title: "위치 정보는 날씨에만 써요",
+              body: "정확한 위치 대신 약 5km 단위로 묶어 날씨를 가져와요. 위치 권한은 선택할 수 있고, 언제든 기기 설정에서 바꿀 수\u00a0있어요.",
+            },
+          ],
+          faq: [
+            {
+              question: "브리핑이 보이지 않아요",
+              answer:
+                "날씨 위치와 기기 시간대가 다르면 브리핑을 숨겨요. 해외 위치의 날씨를 보고 있다면 기기 시간대와 같은 곳에서 다시\u00a0확인해\u00a0주세요.",
+            },
+            {
+              question: "다음 1시간 강수가 안 보여요",
+              answer:
+                "분 단위 비 예보는 지원하는 지역에서만 보여요. 지원하지 않는 곳에서는 시간 단위로 비 소식을\u00a0알려줘요.",
+            },
+            {
+              question: "시간을 옮긴 할\u00a0일을 되돌릴 수 있나요?",
+              answer:
+                "네. 시간을 옮긴 뒤 되돌리기를 누르면 원래 시간으로 돌아가요. 할\u00a0일 상세에서 직접 시간을 바꿀 수도\u00a0있어요.",
+            },
+            {
+              question: "대기질은 어디서 보나요?",
+              answer:
+                "자세한 날씨에서 볼 수 있어요. 대기질은 한국에서만 제공하며 에어코리아 자료를\u00a0사용해요.",
+            },
+          ],
+          screens: [
+            {
+              alt: "현재 날씨 아래 아이두 브리핑과 오늘 할\u00a0일 3개가 보이는 아이두 날씨\u00a0화면",
+              caption:
+                "지금 날씨 아래에서 브리핑이 오늘 할\u00a0일과 날씨를 맞춰\u00a0줘요.",
+            },
+            {
+              alt: "‘앞으로 1시간 동안 비 소식이 없어요’ 안내와 1시간 강수 그래프가 보이는 런던 날씨\u00a0화면",
+              caption:
+                "지원 지역에서는 다음 1시간 비 소식을 분 단위로\u00a0알려줘요.",
+            },
+            {
+              alt: "현지 시각으로 시간별 예보와 10일 예보가 보이는 두바이 날씨\u00a0화면",
+              caption:
+                "해외에서는 현지 시각으로 시간별·10일 예보를\u00a0보여줘요.",
+            },
+          ],
+          cardDescription:
+            "지금 날씨와 예보를 보고, 아이두 브리핑으로 비·더위와 겹친 할\u00a0일을 미리\u00a0챙겨요.",
+        },
       },
     },
     meta: {
@@ -976,7 +1149,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.13.0 새 기능: 친구 초대와 발자국 판",
+        release: "1.14.0 새 기능: 날씨가 크게 좋아졌어요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -1553,9 +1726,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
           description:
             "Check the weather for your location alongside your\u00a0plans.",
           details: [
-            "Open hourly and weekly forecasts from the weather button at\u00a0home.",
+            "Open hourly and 10-day forecasts from the weather button at\u00a0home.",
             "Location access is your choice. To-dos keep working while weather is unavailable.",
-            "Weather currently supports locations in South Korea. An information screen is shown elsewhere.",
+            "Weather works anywhere in the world, and Aido briefing matches today’s to-dos with the\u00a0forecast.",
           ],
           captions: [
             "Current weather and hourly forecasts",
@@ -1641,6 +1814,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
       rewardsTitle: "Who gets what, and when",
       rewardsLimitsTitle: "Good to know",
       pawBoardLabel: "Paw print board",
+      layoutTitle: "From top to bottom",
+      briefingTitle: "What Aido briefing tells you, and when",
+      briefingWhenLabel: "When",
+      briefingShowsLabel: "What you see",
       faqTitle: "Questions",
       relatedTitle: "More ways to use Aido",
       relatedDescription: "Find the next feature that fits your\u00a0day.",
@@ -2002,6 +2179,162 @@ const catalogs: Record<Locale, MessageCatalog> = {
           cardDescription:
             "Invite friends with a link. See who gets Premium and when, and how paw prints\u00a0work.",
         },
+        weather: {
+          kicker: "Your weather guide",
+          title: "Plan your day with weather and Aido\u00a0briefing",
+          summary:
+            "Aido’s weather is all new. Check current conditions and hourly and 10-day forecasts anywhere in the world, while Aido briefing matches today’s scheduled to-dos with the weather. Here’s what each part of the screen shows, when the briefing says what, and how moving times and notifications\u00a0work.",
+          steps: [
+            {
+              title: "Open the weather screen",
+              body: "Tap the weather button on Home. Allow location access to see the weather where you are. Tap the refresh button at the top right to update it\u00a0anytime.",
+            },
+            {
+              title: "Check Aido briefing",
+              body: "Right below the current weather, see today’s scheduled to-dos alongside the weather at those times. Check off to-dos right there, or tap ⋯ to edit\u00a0them.",
+            },
+            {
+              title: "Move to-dos that clash",
+              body: "If a to-do clashes with rain or heat, tap “Move to a dry time” or “Move to cooler hours.” Pick a suggested time with less rain or heat to move them all at once, and undo if you change your\u00a0mind.",
+            },
+            {
+              title: "Get morning and evening weather notifications",
+              body: "Turn on weather notifications to hear about the weather each morning and evening. If a to-do clashes with rain or heat, tap the notification to move it right\u00a0away.",
+            },
+          ],
+          example: {
+            introduction:
+              "Say you’ve planned a dog walk at 3\u00a0PM and rain is on the way. Here’s how it\u00a0goes.",
+            items: [
+              "If there’s a 50% or higher chance of rain at 3\u00a0PM, the briefing shows that to-do\u00a0first.",
+              "Tap “Move to a dry time” for a time with less rain. Pick one and it moves right away, and you can undo\u00a0it.",
+              "If there’s a clear stretch, the briefing suggests a walk then. Tap the suggestion to open Add to-do already filled\u00a0in.",
+            ],
+            note: "This is an example of how it works. What you see depends on the day’s forecast and your\u00a0to-dos.",
+          },
+          layout: [
+            {
+              title: "Current weather",
+              body: "Your location, current temperature and conditions, and today’s high and low. The sky, rain, snow, and lightning in the background move with the\u00a0weather.",
+            },
+            {
+              title: "Aido briefing",
+              body: "Matches today’s scheduled to-dos with the weather at those times. The table below shows what it tells\u00a0you.",
+            },
+            {
+              title: "Next-hour precipitation",
+              body: "Tells you about rain over the next hour, minute by minute, like “Rain starts in 39\u00a0min.” Shown only in supported\u00a0areas.",
+            },
+            {
+              title: "Hourly and 10-day forecasts",
+              body: "Swipe through 24\u00a0hours of conditions, temperatures, and chances of rain. The 10-day forecast shows each day’s high and low, with a dot on days that have\u00a0to-dos.",
+            },
+            {
+              title: "Weather details",
+              body: "Feels-like temperature, UV index, wind, humidity, visibility, pressure, cloud cover, and sun and moon (moonrise, moonset, and moon phase). In Korea, air quality is shown\u00a0too.",
+            },
+            {
+              title: "Weather alerts and data sources",
+              body: "Weather alerts appear when there are any. Forecasts come from Apple Weather, and the screen shows the Apple Weather attribution and data source\u00a0links.",
+            },
+          ],
+          briefing: {
+            introduction:
+              "The briefing checks these in order and shows the first one that\u00a0applies.",
+            rows: [
+              {
+                when: "A 50% or higher chance of rain, snow, or lightning at a to-do’s\u00a0time",
+                shows:
+                  "Shows that to-do first and suggests moving its\u00a0time.",
+              },
+              {
+                when: "A daytime feels-like temperature of 33\u00a0°C (91\u00a0°F) or\u00a0higher",
+                shows:
+                  "Warns you about the heat and suggests moving to-dos that clash with\u00a0it.",
+              },
+              {
+                when: "Rain on the way soon",
+                shows:
+                  "Suggests getting a to-do done before the rain\u00a0starts.",
+              },
+              {
+                when: "A clear stretch of the day",
+                shows:
+                  "Tells you the best time to be outside and suggests adding a\u00a0walk.",
+              },
+              {
+                when: "No to-dos left today",
+                shows:
+                  "Shows tomorrow morning’s temperature, and lets you know if it’ll be chilly (10\u00a0°C / 50\u00a0°F or\u00a0below).",
+              },
+              {
+                when: "Everything looks fine",
+                shows:
+                  "Lets you know your remaining to-dos are clear of weather\u00a0worries.",
+              },
+            ],
+            note: "If the weather location is in a different time zone from your device, like when you check a place abroad, the briefing is\u00a0hidden.",
+          },
+          details: [
+            {
+              title: "If your location can’t be found",
+              body: "Weather needs location access to show where you are. If it can’t find you, make sure location access for Aido and location services are on in your device settings, then tap refresh. Your to-dos keep working without\u00a0weather.",
+            },
+            {
+              title: "When you’re abroad",
+              body: "You get the local weather and notifications abroad too. Weather for a place in a different time zone from your device shows local times, like “6\u00a0PM local time.” The briefing is hidden then, so to-do times and weather times never get mixed\u00a0up.",
+            },
+            {
+              title: "When you’re offline",
+              body: "A notice appears at the top, and your last-seen to-dos and weather stay on screen. Everything refreshes automatically once you’re back\u00a0online.",
+            },
+            {
+              title: "Your location is used only for weather",
+              body: "We look up weather by a roughly 5\u00a0km area instead of your exact spot. Location access is your choice, and you can change it anytime in your device\u00a0settings.",
+            },
+          ],
+          faq: [
+            {
+              question: "Why don’t I see the briefing?",
+              answer:
+                "The briefing is hidden when the weather location is in a different time zone from your device. If you’re viewing a place abroad, check again for a place in your device’s time\u00a0zone.",
+            },
+            {
+              question: "Why don’t I see next-hour precipitation?",
+              answer:
+                "Minute-by-minute rain forecasts are shown only in supported areas. Elsewhere, Aido tells you about rain hour by\u00a0hour.",
+            },
+            {
+              question: "Can I undo a moved to-do?",
+              answer:
+                "Yes. Tap undo after moving it, and it goes back to its original time. You can also change the time yourself in the to-do’s\u00a0details.",
+            },
+            {
+              question: "Where can I see air quality?",
+              answer:
+                "In the weather details. Air quality is available in Korea only and comes from\u00a0AirKorea.",
+            },
+          ],
+          screens: [
+            {
+              alt: "Aido weather screen with Aido briefing and three of today’s to-dos below the current\u00a0weather",
+              caption:
+                "Below the current weather, the briefing matches today’s to-dos with the\u00a0forecast.",
+            },
+            {
+              alt: "London weather screen showing “No precipitation in the next hour” with a next-hour precipitation\u00a0chart",
+              caption:
+                "In supported areas, see rain for the next hour, minute by\u00a0minute.",
+            },
+            {
+              alt: "Dubai weather with hourly and 10-day forecasts shown in local\u00a0time",
+              caption:
+                "Abroad, hourly and 10-day forecasts show local\u00a0time.",
+            },
+          ],
+          cardDescription:
+            "Check the weather and forecasts, and let Aido briefing flag to-dos that clash with rain or\u00a0heat.",
+        },
       },
     },
     meta: {
@@ -2044,7 +2377,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "New in 1.13.0: friend invites and paw\u00a0prints",
+        release: "New in 1.14.0: a big weather\u00a0upgrade",
         titleLead: "Put it off alone.",
         titleTail: "Get it done together.",
         description:

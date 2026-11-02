@@ -64,8 +64,8 @@ const paths = [
 ];
 assert.equal(
   paths.length * 2,
-  20,
-  "ko/en canonical pages: home, services, patch notes, 3 legal and 4 guides",
+  22,
+  "ko/en canonical pages: home, services, patch notes, 3 legal and 5 guides",
 );
 const decode = (text) =>
   text
@@ -265,15 +265,24 @@ for (const locale of ["ko", "en"]) {
         content.summary,
         ...("plans" in content
           ? [content.plans.free, content.plans.premium]
-          : [
-              ...content.rewards.items.flatMap((item) => [
-                item.who,
-                item.when,
-                item.reward,
-                item.condition,
+          : "rewards" in content
+            ? [
+                ...content.rewards.items.flatMap((item) => [
+                  item.who,
+                  item.when,
+                  item.reward,
+                  item.condition,
+                ]),
+                ...content.rewards.limits,
+              ]
+            : [
+                ...content.layout.flatMap((item) => [item.title, item.body]),
+                ...content.briefing.rows.flatMap((row) => [
+                  row.when,
+                  row.shows,
+                ]),
+                content.briefing.note,
               ]),
-              ...content.rewards.limits,
-            ]),
         ...content.screens.flatMap((screen) => [screen.caption]),
         ...content.steps.flatMap((step) => [step.title, step.body]),
         ...content.example.items,
