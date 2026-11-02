@@ -28,6 +28,84 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.14.0",
+    date: "2026-11-03",
+    summary: {
+      ko: "날씨가 크게 좋아졌어요. 해외에서도 날씨를 볼 수 있고, 아이두 브리핑이 오늘 할\u00a0일과 날씨를 맞춰 알려줘요. 비나 더위와 겹친 할\u00a0일은 한 번에 시간을\u00a0옮겨요.",
+      en: "Weather got a big upgrade. Check it anywhere in the world, and Aido briefing matches today's to-dos with the forecast and helps you move the ones that clash with rain or\u00a0heat.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "날씨 화면이 새로워졌어요. 해외에서도 지금 있는 곳의 날씨를 볼 수 있고, 하늘·비·눈·번개가 움직이는 배경과 함께 시간별(24시간)·10일 예보를\u00a0보여줘요.",
+            en: "The weather screen is all new. See the weather wherever you are, even abroad, with a sky that moves with rain, snow, and lightning, plus 24-hour and 10-day\u00a0forecasts.",
+          },
+          {
+            ko: "지원하는 지역에서는 다음 1시간 동안의 비 소식을 분 단위로 알려줘요. 체감 온도, 자외선, 바람, 습도, 해와 달, 대기질(한국)과 기상 특보도 한 화면에서 볼 수\u00a0있어요.",
+            en: "In supported areas, see rain for the next hour minute by minute. Feels-like temperature, UV, wind, humidity, sun and moon, air quality (Korea), and weather alerts are all on one\u00a0screen.",
+          },
+          {
+            ko: "‘아이두 브리핑’이 오늘 시간이 정해진 할\u00a0일과 날씨를 맞춰 알려줘요. 브리핑에서 바로 할\u00a0일을 체크하거나 수정하고, 제안을 눌러 할\u00a0일을 추가할 수\u00a0있어요.",
+            en: "Aido briefing matches today's scheduled to-dos with the weather. Check off or edit to-dos right from the briefing, or tap a suggestion to add a\u00a0to-do.",
+          },
+          {
+            ko: "비나 더위와 겹친 할\u00a0일은 날씨가 더 나은 시간을 추천받아 한 번에 옮길 수 있어요. 마음이 바뀌면 되돌릴 수도\u00a0있어요.",
+            en: "For to-dos that clash with rain or heat, get a better time suggested and move them all at once. Changed your mind? You can undo\u00a0it.",
+          },
+          {
+            ko: "아침·저녁 날씨 알림을 해외에서도 받아요. 비나 더위와 겹친 할\u00a0일이 있으면 알림을 눌러 바로 시간을 옮길 수\u00a0있어요.",
+            en: "Morning and evening weather notifications now arrive abroad too. If a to-do clashes with rain or heat, tap the notification to move it right\u00a0away.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "날씨 화면이 다크 모드, 큰 글씨, 태블릿과 폴더블 화면에 맞춰 보이고, 새로고침 버튼으로 바로 새로 불러올 수\u00a0있어요.",
+            en: "The weather screen now fits dark mode, larger text, tablets, and foldables, and a refresh button brings in the latest weather right\u00a0away.",
+          },
+          {
+            ko: "인터넷이 끊기면 위쪽에 안내가 뜨고, 마지막으로 본 할\u00a0일과 날씨를 그대로 보여줘요. 다시 연결되면 자동으로 새로 불러오고, 연결이 없어도 로그아웃할 수\u00a0있어요.",
+            en: "When you're offline, a notice appears at the top and your last-seen to-dos and weather stay on screen. They refresh automatically once you're back online, and you can sign out while\u00a0offline.",
+          },
+          {
+            ko: "위치는 날씨에만 쓰고, 정확한 위치 대신 약 5km 단위로 묶어 날씨를\u00a0가져와요.",
+            en: "Your location is used only for weather, and we look it up by a roughly 5\u00a0km area instead of your exact\u00a0spot.",
+          },
+          {
+            ko: "스토어에 문제가 있을 때 구독 화면에서 안내를 보고 바로 문의할 수\u00a0있어요.",
+            en: "If the store has a problem, the Subscription screen explains what's happening and lets you contact us right\u00a0away.",
+          },
+          {
+            ko: "친구 초대 안내를 닫을 수 있고, 시작하기 체크리스트의 보상 표시를 깔끔하게\u00a0다듬었어요.",
+            en: "You can now dismiss the friend invite banner, and rewards on the getting-started checklist are easier to\u00a0read.",
+          },
+          {
+            ko: "알림 문구를 더 다정한 말투로\u00a0다듬었어요.",
+            en: "Notifications now sound warmer and\u00a0friendlier.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "날씨 화면이 새로워졌어요. 해외에서도 시간별·10일 예보를 보고, 지원 지역에서는 다음 1시간 비 소식도 알려줘요.",
+        "아이두 브리핑이 오늘 할 일과 날씨를 맞춰 알려줘요.",
+        "비나 더위와 겹친 할 일은 한 번에 시간을 옮기고 되돌릴 수 있어요.",
+        "날씨 알림을 해외에서도 받고, 인터넷이 끊겨도 마지막으로 본 할 일과 날씨를 보여줘요.",
+      ],
+      en: [
+        "All-new weather with 24-hour and 10-day forecasts worldwide, plus next-hour rain in supported areas.",
+        "Aido briefing matches today's to-dos with the weather.",
+        "Move to-dos that clash with rain or heat in one go, and undo anytime.",
+        "Weather notifications work abroad, and your to-dos and weather stay visible offline.",
+      ],
+    },
+  },
+  {
     version: "1.13.1",
     date: "2026-11-02",
     summary: {
