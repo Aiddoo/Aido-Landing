@@ -49,7 +49,9 @@ const sources = [
       ),
     ),
     ...["ko", "en"].flatMap((locale) =>
-      guideScreenFiles.map((key) => getGuideScreen(locale, key).src),
+      Object.keys(guideScreenFiles).map(
+        (key) => getGuideScreen(locale, key).src,
+      ),
     ),
   ]),
 ].sort();

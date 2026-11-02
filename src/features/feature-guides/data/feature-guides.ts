@@ -28,6 +28,12 @@ export const featureGuides = [
     updatedAt: "2026-10-27",
     screens: ["invite-home", "paw-board", "invite-card"],
   },
+  {
+    slug: "weather",
+    path: "/features/weather",
+    updatedAt: "2026-11-03",
+    screens: ["weather-briefing", "weather-next-hour", "weather-forecast"],
+  },
 ] as const satisfies ReadonlyArray<{
   slug: string;
   path: `/features/${string}`;

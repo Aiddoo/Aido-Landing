@@ -20,6 +20,7 @@ for (const locale of ["ko", "en"]) {
     "/features/recurring-todo",
     "/features/ai-todo",
     "/features/friend-invite",
+    "/features/weather",
     "/privacy",
     "/terms",
     "/account-deletion",

@@ -27,6 +27,7 @@ import {
   type FriendInviteGuideContent,
   getMessages,
   type MessageCatalog,
+  type WeatherGuideContent,
 } from "@/i18n/messages";
 import { formatContentDate } from "@/lib/format-content-date";
 import { localizedPath } from "@/lib/public-routes";
@@ -97,6 +98,18 @@ export function FeatureGuidePage({
                   content={labels.guides["friend-invite"]}
                   labels={labels}
                 />
+              ))
+              .with("weather", () => (
+                <>
+                  <WeatherLayout
+                    content={labels.guides.weather}
+                    labels={labels}
+                  />
+                  <WeatherBriefing
+                    content={labels.guides.weather}
+                    labels={labels}
+                  />
+                </>
               ))
               .with("shared-todo", "recurring-todo", "ai-todo", (slug) => (
                 <GuidePlans plans={labels.guides[slug].plans} labels={labels} />
@@ -330,6 +343,88 @@ function GuideRewards({
           </Link>
         </p>
       </VStack>
+    </VStack>
+  );
+}
+
+interface WeatherBlockProps {
+  content: WeatherGuideContent;
+  labels: GuideLabels;
+}
+
+function WeatherLayout({ content, labels }: WeatherBlockProps) {
+  return (
+    <VStack render={<section aria-labelledby="layout-title" />} gap={6}>
+      <h2 id="layout-title" className="text-display-md text-ink">
+        {labels.layoutTitle}
+      </h2>
+      <VStack render={<ol />} gap={3}>
+        {content.layout.map((item, index) => (
+          <ListRow
+            key={item.title}
+            render={<li />}
+            leftAlignment="top"
+            verticalPadding="small"
+            className="items-start gap-4 rounded-xl bg-card px-5 py-4 shadow-card"
+            left={
+              <Centered className="size-8 rounded-full bg-brand-soft font-display text-brand-deep">
+                {index + 1}
+              </Centered>
+            }
+            contents={
+              <VStack gap={1}>
+                <h3 className="text-title text-ink">{item.title}</h3>
+                <p className="text-gray-9">{item.body}</p>
+              </VStack>
+            }
+          />
+        ))}
+      </VStack>
+    </VStack>
+  );
+}
+
+function WeatherBriefing({ content, labels }: WeatherBlockProps) {
+  const { briefing } = content;
+  return (
+    <VStack render={<section aria-labelledby="briefing-title" />} gap={6}>
+      <VStack gap={3}>
+        <h2 id="briefing-title" className="text-display-md text-ink">
+          {labels.briefingTitle}
+        </h2>
+        <p className="text-gray-9">{briefing.introduction}</p>
+      </VStack>
+      <Box className="overflow-x-auto rounded-xl bg-card shadow-card">
+        <table className="w-full border-collapse text-left">
+          <thead className="bg-brand-soft text-caption text-ink">
+            <tr>
+              <th scope="col" className="px-4 py-3 font-bold">
+                {labels.briefingWhenLabel}
+              </th>
+              <th scope="col" className="px-4 py-3 font-bold">
+                {labels.briefingShowsLabel}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {briefing.rows.map((row, index) => (
+              <tr key={row.when} className="border-b last:border-b-0">
+                <th
+                  scope="row"
+                  className="w-2/5 px-4 py-4 align-top font-semibold text-ink"
+                >
+                  <span className="mr-2 font-display text-brand-deep">
+                    {index + 1}
+                  </span>
+                  {row.when}
+                </th>
+                <td className="px-4 py-4 align-top text-gray-9">{row.shows}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Box>
+      <p className="text-caption text-gray-8">{briefing.note}</p>
     </VStack>
   );
 }
