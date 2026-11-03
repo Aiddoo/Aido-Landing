@@ -31,6 +31,8 @@ export type FriendInviteGuideContent = Omit<FeatureGuideContent, "plans"> & {
 /** 날씨 가이드는 요금제 대신 화면 구성과 아이두 브리핑이 언제 무엇을 보여주는지 정리한다. */
 export type WeatherGuideContent = Omit<FeatureGuideContent, "plans"> & {
   layout: { title: string; body: string }[];
+  /** 상황별 실제 화면. data/guide-screens.ts의 weatherCaseScreens와 같은 순서다. */
+  cases: { title: string; body: string; points: string[]; alt: string }[];
   briefing: {
     introduction: string;
     rows: { when: string; shows: string }[];
@@ -198,6 +200,8 @@ export type MessageCatalog = {
     rewardsLimitsTitle: string;
     pawBoardLabel: string;
     layoutTitle: string;
+    casesTitle: string;
+    casesDescription: string;
     briefingTitle: string;
     briefingWhenLabel: string;
     briefingShowsLabel: string;
@@ -596,6 +600,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       rewardsLimitsTitle: "조건이 있어요",
       pawBoardLabel: "발자국 모으기 판",
       layoutTitle: "위에서부터 이렇게 보여요",
+      casesTitle: "상황별 실제 화면",
+      casesDescription:
+        "비·더위·맑은 날, 해외와 오프라인까지 날씨 화면이 상황마다 무엇을 알려주는지 실제 화면으로\u00a0모았어요.",
       briefingTitle: "아이두 브리핑은 언제 무엇을 알려주나요",
       briefingWhenLabel: "이럴 때",
       briefingShowsLabel: "이렇게 알려줘요",
@@ -1004,11 +1011,119 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "자세한 날씨",
-              body: "체감 온도, 자외선, 바람, 습도, 가시거리, 기압, 구름, 해와 달(월출·월몰·달 모양)을 보여줘요. 한국에서는 대기질도 함께\u00a0봐요.",
+              body: "체감 온도, 자외선, 바람, 강수량, 습도, 가시거리, 기압, 구름, 해와 달(월출·월몰·달 모양)을 보여줘요. 한국에서는 대기질도 함께\u00a0봐요.",
             },
             {
               title: "기상 특보와 데이터 출처",
               body: "기상 특보가 있으면 함께 알려줘요. 날씨는 Apple 날씨 데이터를 쓰고, 화면에서 Apple 날씨 표기와 데이터 출처 링크를 확인할 수\u00a0있어요.",
+            },
+          ],
+          cases: [
+            {
+              title: "비가 할\u00a0일과 겹칠 때",
+              body: "할\u00a0일 시간에 비 올 확률이 50% 이상이면 브리핑이 겹친 할\u00a0일을 먼저 모아\u00a0보여줘요.",
+              points: [
+                "할\u00a0일마다 그 시간의 강수 확률과 비가 그치는 시간",
+                "‘비 피해서 시간 옮기기’ 버튼",
+                "지금 비 올 확률과 비가 그치는\u00a0시간",
+              ],
+              alt: "산호세 날씨에서 아이두 브리핑이 ‘할\u00a0일 3개가 비와 겹쳐요’라고 알려주는\u00a0화면",
+            },
+            {
+              title: "비 피해서 시간 옮기기",
+              body: "비가 덜 오는 시간을 추천해 줘요. 할\u00a0일마다 시간을 골라 한 번에 옮기고, 옮긴 뒤에도 되돌릴 수\u00a0있어요.",
+              points: [
+                "앞으로 몇 시간의 비를 막대로 한눈에",
+                "시간마다 강수 확률과 ‘추천’ 표시",
+                "옮기지 않을 할\u00a0일은 그대로\u00a0두기",
+              ],
+              alt: "‘비 피해서 시간 옮기기’ 창에서 할\u00a0일마다 비가 덜 오는 시간을 고르는\u00a0화면",
+            },
+            {
+              title: "더위와 겹칠 때",
+              body: "낮 체감 온도가 33°C 이상이면 더운 시간과 겹친 할\u00a0일을 알려주고, 더 선선한 시간을\u00a0짚어줘요.",
+              points: [
+                "체감 온도가 가장 높은 시간대",
+                "더위와 겹친 할\u00a0일과 그 시간 체감 온도",
+                "‘더 선선한 시간으로 옮기기’\u00a0버튼",
+              ],
+              alt: "마나우스 날씨에서 브리핑이 ‘한낮 야외 할\u00a0일은 피해요’라고 알려주는\u00a0화면",
+            },
+            {
+              title: "더 선선한 시간으로 옮기기",
+              body: "시간마다 체감 온도를 보여주고, 가장 선선한 시간을 추천해 줘요. 고르면 바로\u00a0옮겨져요.",
+              points: [
+                "시간별 체감 온도",
+                "가장 선선한 시간의 ‘추천’ 표시",
+                "Apple 날씨 표기와 업데이트\u00a0시각",
+              ],
+              alt: "‘더 선선한 시간으로 옮기기’ 창에서 시간마다 체감 온도를 보여주는\u00a0화면",
+            },
+            {
+              title: "맑은 날",
+              body: "비 걱정이 없는 날엔 밖에서 하기 좋은 시간을 알려주고, 할\u00a0일마다 날씨 걱정이 없다고\u00a0표시해요.",
+              points: [
+                "하루 중 가장 따뜻한 시간대",
+                "할\u00a0일마다 ‘오늘 가장 좋은 시간’·‘비 걱정 없어요’",
+                "산책 할\u00a0일을 바로 추가하는\u00a0버튼",
+              ],
+              alt: "서울 맑은 날 브리핑이 ‘오늘은 밖에서 하기 좋은 날’이라고 알려주는\u00a0화면",
+            },
+            {
+              title: "해외에 있을 때",
+              body: "기기 시간대와 다른 곳의 날씨는 현지 시각으로 보여줘요. 할\u00a0일 시간과 헷갈리지 않도록 브리핑은\u00a0숨겨요.",
+              points: [
+                "다음 1시간 강수 그래프",
+                "‘현지 오후 8시까지’처럼 현지 시각 예보",
+                "현지 날짜 기준 10일\u00a0예보",
+              ],
+              alt: "뉴욕 날씨를 현지 시각으로 보여주는 화면과 다음 1시간 강수\u00a0그래프",
+            },
+            {
+              title: "10일 예보 펼쳐 보기",
+              body: "날짜를 누르면 그날의 낮·밤 날씨와 강수량, 바람, 자외선, 해 뜨고 지는 시간을 펼쳐\u00a0봐요.",
+              points: [
+                "낮·밤 날씨와 최고·최저 기온",
+                "강수량·최대 바람·최대 자외선",
+                "할\u00a0일 있는 날은 점으로\u00a0표시",
+              ],
+              alt: "10일 예보에서 오늘을 펼쳐 낮·밤 날씨와 강수량을 보여주는\u00a0화면",
+            },
+            {
+              title: "자세한 날씨",
+              body: "지금 날씨를 타일로 나눠 보여줘요. 숫자 아래 한 줄로 오늘 어떻게 하면 좋을지도\u00a0알려줘요.",
+              points: [
+                "체감 온도와 자외선(선크림 바를 시간)",
+                "바람 방향·돌풍, 앞으로 24시간 강수량",
+                "습도·이슬점, 가시거리, 기압, 구름",
+              ],
+              alt: "체감 온도·자외선·바람·강수량·습도·가시거리·기압·구름 타일이 보이는 자세한 날씨\u00a0화면",
+            },
+            {
+              title: "해와 달, 대기질",
+              body: "해 뜨고 지는 시간과 낮 길이, 달 모양을 보여줘요. 한국에서는 미세먼지와 초미세먼지도 함께\u00a0봐요.",
+              points: [
+                "일출·일몰과 낮 길이",
+                "달 모양과 월출·월몰",
+                "대기질은 한국에서만, 에어코리아\u00a0자료",
+              ],
+              alt: "해와 달 카드와 미세먼지·초미세먼지 대기질, Apple 날씨 표기가 보이는\u00a0화면",
+            },
+            {
+              title: "인터넷이 끊겼을 때",
+              body: "화면 위쪽에 오프라인 안내가 뜨고, 마지막으로 본 날씨와 브리핑을 그대로 보여줘요. 다시 연결되면 자동으로 새로\u00a0불러와요.",
+              points: ["오프라인 안내", "마지막으로 받은 날씨와 브리핑 유지"],
+              alt: "‘오프라인이에요. 연결되면 자동으로 다시 불러와요’ 안내가 위쪽에 뜬 날씨\u00a0화면",
+            },
+            {
+              title: "날씨 알림",
+              body: "날씨 화면 오른쪽 위 종 버튼에서 날씨 알림을 켜고, 아침·저녁 알림 시간을 내 하루에\u00a0맞춰요.",
+              points: [
+                "오전 알림은 오늘 날씨",
+                "오후 알림은 내일 날씨",
+                "시간은 언제든 바꿀 수\u00a0있어요",
+              ],
+              alt: "날씨 알림을 켜고 오전 7시, 오후 5시 30분 알림 시간이 보이는 설정\u00a0화면",
             },
           ],
           briefing: {
@@ -1815,6 +1930,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
       rewardsLimitsTitle: "Good to know",
       pawBoardLabel: "Paw print board",
       layoutTitle: "From top to bottom",
+      casesTitle: "Real screens, case by case",
+      casesDescription:
+        "Rain, heat, clear skies, abroad and offline: here’s what the weather screen tells you in each\u00a0case.",
       briefingTitle: "What Aido briefing tells you, and when",
       briefingWhenLabel: "When",
       briefingShowsLabel: "What you see",
@@ -2231,11 +2349,122 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "Weather details",
-              body: "Feels-like temperature, UV index, wind, humidity, visibility, pressure, cloud cover, and sun and moon (moonrise, moonset, and moon phase). In Korea, air quality is shown\u00a0too.",
+              body: "Feels-like temperature, UV index, wind, precipitation, humidity, visibility, pressure, cloud cover, and sun and moon (moonrise, moonset, and moon phase). In Korea, air quality is shown\u00a0too.",
             },
             {
               title: "Weather alerts and data sources",
               body: "Weather alerts appear when there are any. Forecasts come from Apple Weather, and the screen shows the Apple Weather attribution and data source\u00a0links.",
+            },
+          ],
+          cases: [
+            {
+              title: "When rain overlaps your to-dos",
+              body: "If there’s a 50% or higher chance of rain at a to-do’s time, the briefing lists those to-dos\u00a0first.",
+              points: [
+                "Each to-do’s chance of rain and when it dries up",
+                "A ‘Move to a dry time’ button",
+                "The chance of rain right now and when it\u00a0stops",
+              ],
+              alt: "San José weather where Aido briefing says ‘3 to-dos overlap with rain’",
+            },
+            {
+              title: "Move to a dry time",
+              body: "Get a suggested time with less rain for each to-do and move them all at once. You can undo it\u00a0anytime.",
+              points: [
+                "Upcoming rain at a glance as bars",
+                "Chance of rain for each hour, with a ‘Recommended’ pick",
+                "Leave a to-do as it is if you\u00a0like",
+              ],
+              alt: "The ‘Move to a dry time’ sheet suggesting a drier time for each to-do",
+            },
+            {
+              title: "When it’s too hot",
+              body: "When it feels like 33°C (91°F) or hotter during the day, the briefing flags to-dos in the heat and points to a cooler\u00a0time.",
+              points: [
+                "The hottest hours of the day",
+                "To-dos in the heat with their feels-like temperature",
+                "A ‘Move to cooler hours’\u00a0button",
+              ],
+              alt: "Manaus weather where Aido briefing says ‘Avoid outdoor to-dos midday’",
+            },
+            {
+              title: "Move to cooler hours",
+              body: "See the feels-like temperature for each hour and pick the recommended cooler time. It moves right\u00a0away.",
+              points: [
+                "Feels-like temperature by hour",
+                "A ‘Recommended’ pick for the coolest time",
+                "Apple Weather attribution and last\u00a0update",
+              ],
+              alt: "The ‘Move to cooler hours’ sheet showing the feels-like temperature for each hour",
+            },
+            {
+              title: "On a clear day",
+              body: "With no weather worries, the briefing tells you the best time to be outside and marks each to-do as all\u00a0clear.",
+              points: [
+                "The warmest hours of the day",
+                "‘Best time today’ and ‘No rain expected’ on each to-do",
+                "A button to add a walk right\u00a0away",
+              ],
+              alt: "Seoul on a clear day where the briefing says ‘A great day to be outside’",
+            },
+            {
+              title: "When you’re abroad",
+              body: "Weather in a different time zone from your device shows local times. The briefing is hidden so to-do times don’t get mixed\u00a0up.",
+              points: [
+                "A next-hour precipitation chart",
+                "Forecasts in local time, like ‘Until 8\u00a0PM local time’",
+                "A 10-day forecast by local\u00a0date",
+              ],
+              alt: "New York weather in local time with the next-hour precipitation chart",
+            },
+            {
+              title: "Open a day in the 10-day forecast",
+              body: "Tap a day to see its day and night conditions, precipitation, wind, UV index, and sunrise and\u00a0sunset.",
+              points: [
+                "Day and night conditions with highs and lows",
+                "Precipitation, max wind and max UV index",
+                "A dot on days with\u00a0to-dos",
+              ],
+              alt: "Today expanded in the 10-day forecast with day and night conditions and precipitation",
+            },
+            {
+              title: "Weather details",
+              body: "Today’s conditions are split into tiles, each with a short tip on what it means for your\u00a0day.",
+              points: [
+                "Feels-like temperature and UV index (when to wear sunscreen)",
+                "Wind direction and gusts, precipitation over the next 24\u00a0hours",
+                "Humidity and dew point, visibility, pressure and cloud\u00a0cover",
+              ],
+              alt: "Weather details with feels-like, UV, wind, precipitation, humidity, visibility, pressure and cloud cover tiles",
+            },
+            {
+              title: "Sun, moon and air quality",
+              body: "See sunrise, sunset and daylight, plus the moon phase. In Korea, PM10 and PM2.5 air quality appear\u00a0too.",
+              points: [
+                "Sunrise, sunset and hours of daylight",
+                "Moon phase with moonrise and moonset",
+                "Air quality in Korea only, from\u00a0AirKorea",
+              ],
+              alt: "Sun and moon card with PM10 and PM2.5 air quality and the Apple Weather attribution",
+            },
+            {
+              title: "When you’re offline",
+              body: "A notice appears at the top, and your last-seen weather and briefing stay on screen. Everything refreshes once you’re back\u00a0online.",
+              points: [
+                "An offline notice at the top",
+                "Your last weather and briefing stay\u00a0visible",
+              ],
+              alt: "Weather screen with ‘You’re offline. We’ll reload when you’re back online.’ at the top",
+            },
+            {
+              title: "Weather notifications",
+              body: "Tap the bell at the top right of the weather screen to turn on weather notifications and set morning and evening\u00a0times.",
+              points: [
+                "Morning notification: today’s weather",
+                "Evening notification: tomorrow’s weather",
+                "Change the times\u00a0anytime",
+              ],
+              alt: "Weather notification settings turned on with 7:00\u00a0AM and 5:30\u00a0PM times",
             },
           ],
           briefing: {

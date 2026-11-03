@@ -901,6 +901,90 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/en/weather-abroad.webp": {
+    "sourceHash": "e09b1bc05d1c",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-abroad-48-00b7a98c815a.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-abroad-96-ea899dd27b9f.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-abroad-160-202873749eee.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-abroad-240-1ab3a1a64ceb.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-abroad-320-515f16d746ea.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-abroad-480-73d433e33c3a.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-abroad-640-c97778446055.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-alerts.webp": {
+    "sourceHash": "47eb9d2e2670",
+    "width": 640,
+    "height": 711,
+    "variants": [
+      {
+        "width": 48,
+        "height": 53,
+        "src": "/responsive/weather-alerts-48-26c9ff5ac549.webp"
+      },
+      {
+        "width": 96,
+        "height": 107,
+        "src": "/responsive/weather-alerts-96-51ad418b063d.webp"
+      },
+      {
+        "width": 160,
+        "height": 178,
+        "src": "/responsive/weather-alerts-160-4d68c26e5cc8.webp"
+      },
+      {
+        "width": 240,
+        "height": 267,
+        "src": "/responsive/weather-alerts-240-74ef5205e584.webp"
+      },
+      {
+        "width": 320,
+        "height": 356,
+        "src": "/responsive/weather-alerts-320-f4cae183da41.webp"
+      },
+      {
+        "width": 480,
+        "height": 533,
+        "src": "/responsive/weather-alerts-480-70daf6072bd4.webp"
+      },
+      {
+        "width": 640,
+        "height": 711,
+        "src": "/responsive/weather-alerts-640-d103dd2ab8e4.webp"
+      }
+    ]
+  },
   "/app-assets/guides/en/weather-briefing.webp": {
     "sourceHash": "82838ab1ae79",
     "width": 640,
@@ -940,6 +1024,132 @@ export const responsiveImages = {
         "width": 640,
         "height": 1422,
         "src": "/responsive/weather-briefing-640-058a6f85e006.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-clear-day.webp": {
+    "sourceHash": "b2835c44186a",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-clear-day-48-f2c4479b0f64.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-clear-day-96-3e851d0bab8b.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-clear-day-160-cec5aae1b041.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-clear-day-240-481a2f7df023.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-clear-day-320-7de9c97883e5.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-clear-day-480-8993bd5a1833.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-clear-day-640-74787dcb69f7.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-daily-detail.webp": {
+    "sourceHash": "e38a7baf4f20",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-daily-detail-48-788569404adb.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-daily-detail-96-540274eba220.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-daily-detail-160-62932e048bae.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-daily-detail-240-f912ef53e23f.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-daily-detail-320-c1fbd4388fa5.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-daily-detail-480-03851142dad3.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-daily-detail-640-473e126200b3.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-detail-tiles.webp": {
+    "sourceHash": "0d00e7bed7d4",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-detail-tiles-48-c5fc14339c65.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-detail-tiles-96-bff3386dd02b.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-detail-tiles-160-d370da95ffc0.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-detail-tiles-240-9ddfaa6e75f2.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-detail-tiles-320-a7a2f0666408.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-detail-tiles-480-49d239e96943.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-detail-tiles-640-d806dcf7dc2a.webp"
       }
     ]
   },
@@ -985,6 +1195,90 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/en/weather-heat-briefing.webp": {
+    "sourceHash": "e085679a82b9",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-heat-briefing-48-3d31a40f4113.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-heat-briefing-96-d8170f221ca2.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-heat-briefing-160-1c3cd77f96b0.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-heat-briefing-240-7ea4d5544127.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-heat-briefing-320-a70dd60f221c.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-heat-briefing-480-2f712c251d01.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-heat-briefing-640-ac0233fcf3e2.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-heat-reschedule.webp": {
+    "sourceHash": "063eed05865b",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-heat-reschedule-48-b4caa212607f.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-heat-reschedule-96-4a75ffaad59b.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-heat-reschedule-160-9956650cf9b9.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-heat-reschedule-240-a43022051e10.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-heat-reschedule-320-0b26d868b5ec.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-heat-reschedule-480-94a868e87eb8.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-heat-reschedule-640-b3cd3af92cfd.webp"
+      }
+    ]
+  },
   "/app-assets/guides/en/weather-next-hour.webp": {
     "sourceHash": "9c7beebeb1a9",
     "width": 640,
@@ -1024,6 +1318,174 @@ export const responsiveImages = {
         "width": 640,
         "height": 1422,
         "src": "/responsive/weather-next-hour-640-6bde928b4613.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-offline.webp": {
+    "sourceHash": "af9bad1fe0d6",
+    "width": 640,
+    "height": 1126,
+    "variants": [
+      {
+        "width": 48,
+        "height": 84,
+        "src": "/responsive/weather-offline-48-9adc865dc416.webp"
+      },
+      {
+        "width": 96,
+        "height": 169,
+        "src": "/responsive/weather-offline-96-7fec6b7f081d.webp"
+      },
+      {
+        "width": 160,
+        "height": 282,
+        "src": "/responsive/weather-offline-160-2926425078c5.webp"
+      },
+      {
+        "width": 240,
+        "height": 422,
+        "src": "/responsive/weather-offline-240-dfe04eee8192.webp"
+      },
+      {
+        "width": 320,
+        "height": 563,
+        "src": "/responsive/weather-offline-320-0d6b996c5f47.webp"
+      },
+      {
+        "width": 480,
+        "height": 844,
+        "src": "/responsive/weather-offline-480-cef57b884e98.webp"
+      },
+      {
+        "width": 640,
+        "height": 1126,
+        "src": "/responsive/weather-offline-640-bdefb3bdfc57.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-rain-briefing.webp": {
+    "sourceHash": "42486e63b974",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-rain-briefing-48-4abe87146584.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-rain-briefing-96-e893166d5a98.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-rain-briefing-160-430a0f16b024.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-rain-briefing-240-b39705b987b4.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-rain-briefing-320-7b99d7128e21.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-rain-briefing-480-93178256ba3f.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-rain-briefing-640-3315823564ed.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-rain-reschedule.webp": {
+    "sourceHash": "6cedf3ad6cff",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-rain-reschedule-48-a81b7e4282fd.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-rain-reschedule-96-897d982db20b.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-rain-reschedule-160-b3279681729c.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-rain-reschedule-240-042da9b84e7f.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-rain-reschedule-320-a0734b36d9e0.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-rain-reschedule-480-64061f3c862f.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-rain-reschedule-640-a2e4d643e629.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-sun-air.webp": {
+    "sourceHash": "082612d2eea7",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-sun-air-48-b75c214515df.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-sun-air-96-df35c0f745ed.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-sun-air-160-be2a0cc32faf.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-sun-air-240-b8bb1db05e95.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-sun-air-320-a6b1b43f0b83.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-sun-air-480-1267c79c35e8.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-sun-air-640-b494f3ac44d3.webp"
       }
     ]
   },
@@ -1405,6 +1867,90 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/ko/weather-abroad.webp": {
+    "sourceHash": "5696b9d681d1",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-abroad-48-1a10f63383cf.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-abroad-96-4b7636875ea5.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-abroad-160-462486c61123.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-abroad-240-441594fb2bc2.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-abroad-320-1bc0b3b6f818.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-abroad-480-4aa9ec9c3380.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-abroad-640-e384019c3a6e.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-alerts.webp": {
+    "sourceHash": "cb2f46cdb40c",
+    "width": 640,
+    "height": 711,
+    "variants": [
+      {
+        "width": 48,
+        "height": 53,
+        "src": "/responsive/weather-alerts-48-139343146446.webp"
+      },
+      {
+        "width": 96,
+        "height": 107,
+        "src": "/responsive/weather-alerts-96-8adb5995a637.webp"
+      },
+      {
+        "width": 160,
+        "height": 178,
+        "src": "/responsive/weather-alerts-160-c40689029394.webp"
+      },
+      {
+        "width": 240,
+        "height": 267,
+        "src": "/responsive/weather-alerts-240-832e1167949b.webp"
+      },
+      {
+        "width": 320,
+        "height": 356,
+        "src": "/responsive/weather-alerts-320-1069a60e7047.webp"
+      },
+      {
+        "width": 480,
+        "height": 533,
+        "src": "/responsive/weather-alerts-480-266f0ad99540.webp"
+      },
+      {
+        "width": 640,
+        "height": 711,
+        "src": "/responsive/weather-alerts-640-8945fdbbfe9b.webp"
+      }
+    ]
+  },
   "/app-assets/guides/ko/weather-briefing.webp": {
     "sourceHash": "d7246ed1293e",
     "width": 640,
@@ -1444,6 +1990,132 @@ export const responsiveImages = {
         "width": 640,
         "height": 1422,
         "src": "/responsive/weather-briefing-640-e511fbd39521.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-clear-day.webp": {
+    "sourceHash": "ed9bac8edbb2",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-clear-day-48-63414f4c84cd.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-clear-day-96-bcbfd526fc14.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-clear-day-160-47523e8d3ebd.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-clear-day-240-3a5e1789ccd7.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-clear-day-320-7109e6e3ff69.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-clear-day-480-12763f3de9c6.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-clear-day-640-d3d55e48c7ea.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-daily-detail.webp": {
+    "sourceHash": "776ba2271147",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-daily-detail-48-e3326946237a.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-daily-detail-96-4d971f47f923.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-daily-detail-160-abb51fab69c4.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-daily-detail-240-aa1975cef2a2.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-daily-detail-320-85d26f3d738d.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-daily-detail-480-f753cd96285d.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-daily-detail-640-a02174024da3.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-detail-tiles.webp": {
+    "sourceHash": "2cb8f69ea26f",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-detail-tiles-48-cc72bb75802b.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-detail-tiles-96-cb2f40939fb2.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-detail-tiles-160-d9fe056dddf3.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-detail-tiles-240-5355dfef60bc.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-detail-tiles-320-2bf861b85d2b.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-detail-tiles-480-82796678532b.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-detail-tiles-640-e238d1a1619a.webp"
       }
     ]
   },
@@ -1489,6 +2161,90 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/ko/weather-heat-briefing.webp": {
+    "sourceHash": "b10c1427aee5",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-heat-briefing-48-fab5a12e5b87.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-heat-briefing-96-5945b591c363.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-heat-briefing-160-3e1936eb321d.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-heat-briefing-240-4298f3ed218c.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-heat-briefing-320-ab8a44d2fbae.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-heat-briefing-480-df4076f78738.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-heat-briefing-640-c9b658448d20.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-heat-reschedule.webp": {
+    "sourceHash": "79612a27d334",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-heat-reschedule-48-00ee3f5af881.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-heat-reschedule-96-fbcd29670287.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-heat-reschedule-160-317f13d6523f.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-heat-reschedule-240-1cf3583d543d.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-heat-reschedule-320-60efa69834d1.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-heat-reschedule-480-9c7816537959.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-heat-reschedule-640-8c60e1817527.webp"
+      }
+    ]
+  },
   "/app-assets/guides/ko/weather-next-hour.webp": {
     "sourceHash": "a9466c001f74",
     "width": 640,
@@ -1528,6 +2284,174 @@ export const responsiveImages = {
         "width": 640,
         "height": 1422,
         "src": "/responsive/weather-next-hour-640-a7e3c05f5232.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-offline.webp": {
+    "sourceHash": "240b417c267e",
+    "width": 640,
+    "height": 1126,
+    "variants": [
+      {
+        "width": 48,
+        "height": 84,
+        "src": "/responsive/weather-offline-48-d3b3ce342563.webp"
+      },
+      {
+        "width": 96,
+        "height": 169,
+        "src": "/responsive/weather-offline-96-5d1eb654eab6.webp"
+      },
+      {
+        "width": 160,
+        "height": 282,
+        "src": "/responsive/weather-offline-160-80dfa3de8232.webp"
+      },
+      {
+        "width": 240,
+        "height": 422,
+        "src": "/responsive/weather-offline-240-f295aebd29e3.webp"
+      },
+      {
+        "width": 320,
+        "height": 563,
+        "src": "/responsive/weather-offline-320-d1e1a6dda3e2.webp"
+      },
+      {
+        "width": 480,
+        "height": 844,
+        "src": "/responsive/weather-offline-480-6431168d4728.webp"
+      },
+      {
+        "width": 640,
+        "height": 1126,
+        "src": "/responsive/weather-offline-640-0f1ff11ac6ba.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-rain-briefing.webp": {
+    "sourceHash": "738bc431ae61",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-rain-briefing-48-bcd8a7d84354.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-rain-briefing-96-0d561de8ab0a.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-rain-briefing-160-471f0b178db8.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-rain-briefing-240-c9ca338e610a.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-rain-briefing-320-026f436c231a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-rain-briefing-480-e7991f93ae02.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-rain-briefing-640-f705d67f594a.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-rain-reschedule.webp": {
+    "sourceHash": "8dbd430fd4d4",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-rain-reschedule-48-006d8ba5d35f.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-rain-reschedule-96-06cd2f7ca682.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-rain-reschedule-160-339417d81bf6.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-rain-reschedule-240-3b0dc50f7c62.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-rain-reschedule-320-09e3e3434a91.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-rain-reschedule-480-5e925a31f508.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-rain-reschedule-640-c28e31e5b078.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-sun-air.webp": {
+    "sourceHash": "2b1be6e0541c",
+    "width": 640,
+    "height": 1422,
+    "variants": [
+      {
+        "width": 48,
+        "height": 107,
+        "src": "/responsive/weather-sun-air-48-3518e64a735d.webp"
+      },
+      {
+        "width": 96,
+        "height": 213,
+        "src": "/responsive/weather-sun-air-96-34cb93744a60.webp"
+      },
+      {
+        "width": 160,
+        "height": 356,
+        "src": "/responsive/weather-sun-air-160-bfa5e1c41a10.webp"
+      },
+      {
+        "width": 240,
+        "height": 533,
+        "src": "/responsive/weather-sun-air-240-87521d610c3b.webp"
+      },
+      {
+        "width": 320,
+        "height": 711,
+        "src": "/responsive/weather-sun-air-320-8f0840887fc9.webp"
+      },
+      {
+        "width": 480,
+        "height": 1066,
+        "src": "/responsive/weather-sun-air-480-f5a0565e3d74.webp"
+      },
+      {
+        "width": 640,
+        "height": 1422,
+        "src": "/responsive/weather-sun-air-640-11e205366d70.webp"
       }
     ]
   },
