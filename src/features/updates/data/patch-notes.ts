@@ -28,6 +28,72 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.14.1",
+    date: "2026-11-04",
+    summary: {
+      ko: "할 일 댓글을 한 화면에서 봐요. 답글은 그 자리에서 펼치고, 댓글을 톡톡 두 번 누르면 하트가 팡 터져요. 날씨는 18가지 장면이 실제처럼 움직여요.",
+      en: "Comments and replies now live on one screen, replies open in place, and a double-tap pops a heart. Weather comes alive with 18 lifelike scenes.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "할 일 상세 한 화면에서 댓글과 답글을 모두 볼 수 있어요. 답글은 화면을 옮기지 않고 그 자리에서 펼치고, 답글에 답해도 같은 묶음에 @이름과 함께 붙어요.",
+            en: "See every comment and reply on the to-do’s detail screen. Replies open right where they are, and a reply to a reply joins the same thread with an @name.",
+          },
+          {
+            ko: "댓글을 톡톡 두 번 눌러 보세요. 하트가 팡 터지며 좋아요가 남아요! 처음 한 번은 앱이 살짝 알려줘요.",
+            en: "Double-tap a comment and a heart pops as your like lands! The app shows a quick tip the first time.",
+          },
+          {
+            ko: "⋯ 버튼을 누르거나 댓글을 길게 눌러 수정·복사·삭제·신고·차단을 한곳에서 할 수 있어요.",
+            en: "Tap ⋯ or long-press a comment to edit, copy, delete, report, or block, all in one place.",
+          },
+          {
+            ko: "날씨 배경이 18가지 장면으로 실제처럼 움직여요. 비·눈·우박·천둥번개·안개·무더위·강추위까지, 낮에는 해가 밤에는 달이 떠요.",
+            en: "The weather background now moves through 18 lifelike scenes, from rain, snow, and hail to thunderstorms, fog, heat, and freezing cold, with the sun by day and the moon by night.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "답글 작성창이 키보드 바로 위에 붙고, 답글을 달 댓글이 가려지지 않게 위로 올라와요.",
+            en: "The reply box sits right above the keyboard, and the comment you’re replying to moves up so it stays in view.",
+          },
+          {
+            ko: "댓글 알림을 누르면 할 일 상세가 그 댓글 위치로 열리고 잠깐 강조해 줘요.",
+            en: "Tapping a comment notification opens the to-do right at that comment and highlights it for a moment.",
+          },
+          {
+            ko: "영하 기온의 기호와 °를 작게 다듬고, 큰 제목에는 도시 이름만 보여 긴 지역 이름도 깔끔하게 보여요.",
+            en: "Below-zero temperatures and the ° symbol look cleaner, and the big title shows just the city name so long place names fit nicely.",
+          },
+          {
+            ko: "날씨 이름을 더 쉽게 바꿨어요. ‘연무’는 ‘뿌연 하늘’, ‘뇌우’는 ‘천둥번개’로 보여요.",
+            en: "Weather names are easier to read. “Frigid” is now “Freezing.”",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "할 일 댓글과 답글을 한 화면에서 봐요. 답글은 그 자리에서 펼치고 @이름으로 이어져요.",
+        "댓글을 톡톡 두 번 눌러 보세요. 하트가 팡 터지며 좋아요가 남아요!",
+        "답글 작성창이 키보드 위에 딱 붙고, 댓글 알림을 누르면 그 댓글로 바로 가요.",
+        "날씨가 18가지 장면으로 실제처럼 움직이고, 낮엔 해가 밤엔 달이 떠요.",
+      ],
+      en: [
+        "See comments and replies on one screen. Replies open in place and continue with @names.",
+        "Double-tap a comment and a heart pops as your like lands!",
+        "The reply box hugs the keyboard, and comment notifications take you straight to the comment.",
+        "Weather moves through 18 lifelike scenes, with the sun by day and the moon by night.",
+      ],
+    },
+  },
+  {
     version: "1.14.0",
     date: "2026-11-03",
     summary: {
