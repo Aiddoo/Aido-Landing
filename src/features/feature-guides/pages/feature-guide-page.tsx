@@ -1,4 +1,19 @@
-import { Check } from "lucide-react";
+import { zip } from "es-toolkit";
+import {
+  Bell,
+  CalendarDays,
+  Check,
+  CloudRain,
+  Gauge,
+  Globe,
+  type LucideProps,
+  MoonStar,
+  Sun,
+  Thermometer,
+  ThermometerSun,
+  Umbrella,
+  WifiOff,
+} from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { match } from "ts-pattern";
@@ -7,6 +22,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { BrandMotif } from "@/components/marketing/brand-motif";
 import { DownloadCard } from "@/components/marketing/download-card";
 import { FaqList } from "@/components/marketing/faq-list";
+import { DeviceScreen } from "@/components/media/device-screen";
 import { BreadcrumbData } from "@/components/seo/breadcrumb-data";
 import { badgeVariants } from "@/components/ui/badge";
 import {
@@ -22,6 +38,10 @@ import { FeatureGuideList } from "@/features/feature-guides/components/feature-g
 import { GuideScreens } from "@/features/feature-guides/components/guide-screens";
 import { PawBoard } from "@/features/feature-guides/components/paw-board";
 import type { FeatureGuide } from "@/features/feature-guides/data/feature-guides";
+import {
+  getGuideScreen,
+  weatherCaseScreens,
+} from "@/features/feature-guides/data/guide-screens";
 import type { Locale } from "@/i18n/config";
 import {
   type FriendInviteGuideContent,
@@ -102,6 +122,11 @@ export function FeatureGuidePage({
               .with("weather", () => (
                 <>
                   <WeatherLayout
+                    content={labels.guides.weather}
+                    labels={labels}
+                  />
+                  <WeatherCases
+                    locale={locale}
                     content={labels.guides.weather}
                     labels={labels}
                   />
@@ -382,6 +407,93 @@ function WeatherLayout({ content, labels }: WeatherBlockProps) {
       </VStack>
     </VStack>
   );
+}
+
+/** 상황별 실제 화면. 좁은 화면은 화면과 설명을 나란히, 넓은 화면은 두 열 카드로 보여주고 홀수로 남은 마지막 카드는 한 줄을 채운다. */
+function WeatherCases({
+  locale,
+  content,
+  labels,
+}: WeatherBlockProps & { locale: Locale }) {
+  return (
+    <VStack render={<section aria-labelledby="cases-title" />} gap={6}>
+      <VStack gap={3}>
+        <h2 id="cases-title" className="text-display-md text-ink">
+          {labels.casesTitle}
+        </h2>
+        <p className="text-gray-9">{labels.casesDescription}</p>
+      </VStack>
+      <Grid render={<ol />} columns={2} gap={4}>
+        {zip(weatherCaseScreens, content.cases).map(([screen, item]) => (
+          <Box
+            key={screen}
+            render={<li />}
+            className="grid grid-cols-[7.5rem_minmax(0,1fr)] items-start gap-4 rounded-xl bg-card p-4 shadow-card sm:grid-cols-1 sm:gap-5 sm:p-6 sm:last:odd:col-span-2 sm:last:odd:grid-cols-[12rem_minmax(0,1fr)] sm:last:odd:items-center"
+          >
+            <DeviceScreen
+              {...getGuideScreen(locale, screen)}
+              alt={item.alt}
+              sizes="(min-width: 640px) 192px, 120px"
+              className="w-full sm:mx-auto sm:max-w-48"
+            />
+            <VStack gap={2}>
+              <HStack align="center" gap={2}>
+                <CaseIcon
+                  screen={screen}
+                  aria-hidden="true"
+                  className="size-5 shrink-0 text-brand-deep"
+                />
+                <h3 className="text-title text-ink">{item.title}</h3>
+              </HStack>
+              <p className="text-gray-9">{item.body}</p>
+              <VStack render={<ul />} gap={1} className="pt-1">
+                {item.points.map((point) => (
+                  <ListRow
+                    key={point}
+                    render={<li />}
+                    leftAlignment="top"
+                    verticalPadding="small"
+                    className="items-start gap-2 py-0"
+                    left={
+                      <Check
+                        aria-hidden="true"
+                        className="mt-1 size-3.5 shrink-0 text-brand-deep"
+                      />
+                    }
+                    contents={
+                      <span className="text-caption text-gray-9">{point}</span>
+                    }
+                  />
+                ))}
+              </VStack>
+            </VStack>
+          </Box>
+        ))}
+      </Grid>
+    </VStack>
+  );
+}
+
+const caseIcons = {
+  "weather-rain-briefing": CloudRain,
+  "weather-rain-reschedule": Umbrella,
+  "weather-heat-briefing": ThermometerSun,
+  "weather-heat-reschedule": Thermometer,
+  "weather-clear-day": Sun,
+  "weather-abroad": Globe,
+  "weather-daily-detail": CalendarDays,
+  "weather-detail-tiles": Gauge,
+  "weather-sun-air": MoonStar,
+  "weather-offline": WifiOff,
+  "weather-alerts": Bell,
+} as const satisfies Record<(typeof weatherCaseScreens)[number], unknown>;
+
+function CaseIcon({
+  screen,
+  ...props
+}: LucideProps & { screen: (typeof weatherCaseScreens)[number] }) {
+  const Icon = caseIcons[screen];
+  return <Icon {...props} />;
 }
 
 function WeatherBriefing({ content, labels }: WeatherBlockProps) {
