@@ -22,9 +22,13 @@ import { PageHeader } from "@/components/layout/page-header";
 import { BrandMotif } from "@/components/marketing/brand-motif";
 import { DownloadCard } from "@/components/marketing/download-card";
 import { FaqList } from "@/components/marketing/faq-list";
+import { AutoplayVideo } from "@/components/media/autoplay-video";
+import { appVideos } from "@/components/media/data/app-videos";
 import { DeviceScreen } from "@/components/media/device-screen";
+import { DeviceVideo } from "@/components/media/device-video";
 import { BreadcrumbData } from "@/components/seo/breadcrumb-data";
-import { badgeVariants } from "@/components/ui/badge";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Badge, badgeVariants } from "@/components/ui/badge";
 import {
   Box,
   Centered,
@@ -41,9 +45,15 @@ import type { FeatureGuide } from "@/features/feature-guides/data/feature-guides
 import {
   getGuideScreen,
   weatherCaseScreens,
+  weatherDeviceScreens,
 } from "@/features/feature-guides/data/guide-screens";
+import {
+  commentStoryVideos,
+  weatherSceneVideos,
+} from "@/features/feature-guides/data/guide-videos";
 import type { Locale } from "@/i18n/config";
 import {
+  type CommentsGuideContent,
   type FriendInviteGuideContent,
   getMessages,
   type MessageCatalog,
@@ -125,6 +135,11 @@ export function FeatureGuidePage({
                     content={labels.guides.weather}
                     labels={labels}
                   />
+                  <WeatherScenes
+                    locale={locale}
+                    content={labels.guides.weather}
+                    labels={labels}
+                  />
                   <WeatherCases
                     locale={locale}
                     content={labels.guides.weather}
@@ -134,7 +149,19 @@ export function FeatureGuidePage({
                     content={labels.guides.weather}
                     labels={labels}
                   />
+                  <WeatherDevices
+                    locale={locale}
+                    content={labels.guides.weather}
+                    labels={labels}
+                  />
                 </>
+              ))
+              .with("comments", () => (
+                <CommentStory
+                  locale={locale}
+                  content={labels.guides.comments}
+                  labels={labels}
+                />
               ))
               .with("shared-todo", "recurring-todo", "ai-todo", (slug) => (
                 <GuidePlans plans={labels.guides[slug].plans} labels={labels} />
@@ -496,6 +523,131 @@ function CaseIcon({
   return <Icon {...props} />;
 }
 
+/** 앱에서 녹화한 18가지 날씨 장면. 하늘 부분만 잘라 같은 크기의 타일로 반복 재생한다. */
+function WeatherScenes({
+  locale,
+  content,
+  labels,
+}: WeatherBlockProps & { locale: Locale }) {
+  const mediaLabels = getMessages(locale).media;
+  return (
+    <VStack render={<section aria-labelledby="scenes-title" />} gap={6}>
+      <Box className="grid items-center gap-6 sm:grid-cols-[minmax(0,1fr)_11rem]">
+        <VStack gap={3}>
+          <h2 id="scenes-title" className="text-display-md text-ink">
+            {labels.scenesTitle}
+          </h2>
+          <p className="text-gray-9">{labels.scenesDescription}</p>
+        </VStack>
+        <VStack render={<figure />} gap={2} className="mx-auto w-40 sm:w-44">
+          <DeviceVideo
+            locale={locale}
+            video="weather-phone-thunderstorms"
+            device="android"
+            label={content.scenePhone.alt}
+          />
+          <figcaption className="text-center text-caption text-gray-8">
+            {content.scenePhone.caption}
+          </figcaption>
+        </VStack>
+      </Box>
+      <Grid render={<ul />} columns={3} gap={3} className="grid-cols-2">
+        {zip(weatherSceneVideos, content.scenes).map(([scene, text]) => {
+          const video = appVideos[scene.video];
+          return (
+            <li key={scene.video} className="min-w-0">
+              <VStack render={<figure />} gap={2}>
+                <AspectRatio
+                  ratio={video.width / video.height}
+                  className="overflow-hidden rounded-xl bg-ink shadow-card"
+                >
+                  <AutoplayVideo
+                    webm={video.webm}
+                    mp4={video.mp4}
+                    poster={video.poster}
+                    aria-label={text.alt}
+                    labels={mediaLabels}
+                  />
+                </AspectRatio>
+                <HStack
+                  render={<figcaption />}
+                  align="center"
+                  justify="between"
+                  wrap="wrap"
+                  gap={1}
+                  className="px-1"
+                >
+                  <span className="min-w-0 text-caption font-semibold break-words text-ink">
+                    {text.name}
+                  </span>
+                  <Badge
+                    variant={scene.time === "night" ? "fish" : "soft"}
+                    className="gap-1"
+                  >
+                    {scene.time === "night" ? (
+                      <MoonStar aria-hidden="true" />
+                    ) : (
+                      <Sun aria-hidden="true" />
+                    )}
+                    {scene.time === "night"
+                      ? labels.nightLabel
+                      : labels.dayLabel}
+                  </Badge>
+                </HStack>
+              </VStack>
+            </li>
+          );
+        })}
+      </Grid>
+    </VStack>
+  );
+}
+
+/** iPhone Duo·iPad처럼 넓은 화면의 날씨. 좁은 Duo와 넓은 iPad를 한 줄에 나란히 둔다. */
+function WeatherDevices({
+  locale,
+  content,
+  labels,
+}: WeatherBlockProps & { locale: Locale }) {
+  return (
+    <VStack render={<section aria-labelledby="devices-title" />} gap={6}>
+      <VStack gap={3}>
+        <h2 id="devices-title" className="text-display-md text-ink">
+          {labels.devicesTitle}
+        </h2>
+        <p className="text-gray-9">{labels.devicesDescription}</p>
+      </VStack>
+      <Box
+        render={<ul />}
+        className="grid items-end gap-8 rounded-3xl bg-brand-soft p-6 sm:grid-cols-[12rem_minmax(0,1fr)] sm:p-8"
+      >
+        {zip(weatherDeviceScreens, content.devices).map(([screen, item]) => (
+          <VStack key={screen} render={<li />} gap={4}>
+            <DeviceScreen
+              {...getGuideScreen(locale, screen)}
+              alt={item.alt}
+              sizes={
+                screen === "weather-ipad"
+                  ? "(min-width: 1024px) 520px, 88vw"
+                  : "(min-width: 640px) 192px, 60vw"
+              }
+              className={
+                screen === "weather-ipad"
+                  ? "w-full"
+                  : "mx-auto w-[min(60vw,12rem)]"
+              }
+            />
+            <VStack gap={1}>
+              <h3 className="text-title text-ink">{item.name}</h3>
+              <p className="text-caption text-gray-9">{item.body}</p>
+            </VStack>
+          </VStack>
+        ))}
+      </Box>
+    </VStack>
+  );
+}
+
 function WeatherBriefing({ content, labels }: WeatherBlockProps) {
   const { briefing } = content;
   return (
@@ -537,6 +689,58 @@ function WeatherBriefing({ content, labels }: WeatherBlockProps) {
         </table>
       </Box>
       <p className="text-caption text-gray-8">{briefing.note}</p>
+    </VStack>
+  );
+}
+
+/** 댓글 가이드의 실제 녹화. 좁은 화면은 영상과 설명을 나란히, 넓은 화면은 두 열 카드로 보여 준다. */
+function CommentStory({
+  locale,
+  content,
+  labels,
+}: {
+  locale: Locale;
+  content: CommentsGuideContent;
+  labels: GuideLabels;
+}) {
+  return (
+    <VStack render={<section aria-labelledby="story-title" />} gap={6}>
+      <VStack gap={3}>
+        <h2 id="story-title" className="text-display-md text-ink">
+          {labels.storyTitle}
+        </h2>
+        <p className="text-gray-9">{labels.storyDescription}</p>
+      </VStack>
+      <Grid render={<ol />} columns={2} gap={4}>
+        {zip(commentStoryVideos, content.story).map(([video, item], index) => (
+          <Box
+            key={video}
+            render={<li />}
+            className="grid grid-cols-[7.5rem_minmax(0,1fr)] items-start gap-4 rounded-xl bg-card p-4 shadow-card sm:grid-cols-1 sm:gap-5 sm:p-6"
+          >
+            <DeviceVideo
+              locale={locale}
+              video={video}
+              device="iphone"
+              label={item.alt}
+              className="w-full sm:mx-auto sm:max-w-48"
+            />
+            <VStack gap={2}>
+              <HStack align="center" gap={2}>
+                <Centered className="size-7 shrink-0 rounded-full bg-brand-soft font-display text-brand-deep">
+                  {index + 1}
+                </Centered>
+                <h3 className="text-title text-ink">{item.title}</h3>
+              </HStack>
+              <p className="text-gray-9">{item.body}</p>
+            </VStack>
+          </Box>
+        ))}
+      </Grid>
+      <HStack align="center" gap={2} className="text-caption text-gray-8">
+        <BrandMotif motif="paw" className="size-3.5 text-brand-deep" />
+        {labels.videoNote}
+      </HStack>
     </VStack>
   );
 }

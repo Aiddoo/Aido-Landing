@@ -40,6 +40,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // 내용 해시를 붙인 앱 녹화 영상·포스터(pnpm videos:generate)
+      {
+        source: "/videos/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       {
         source: "/fonts/:path*",
         headers: [

@@ -29,6 +29,7 @@ pnpm dev        # http://localhost:3000
 | `pnpm test` / `pnpm test:watch` / `pnpm analytics:check` | Vitest 분석 경계·동의·공급자 DI 계약 검증 |
 | `pnpm test:browser` | Playwright 상호작용·동의·폰트 차단 검증 |
 | `pnpm images:generate` / `pnpm images:check` | 정적 반응형 이미지 생성 / 해시·치수 검사 |
+| `pnpm videos:generate -- <원본 폴더>` | 앱 녹화를 WebM·MP4·포스터로 변환(선택, ffmpeg 필요) — [렌더링과 SEO](docs/rendering-seo.md) |
 | `pnpm patch-notes:check` | 업데이트 기록·한영 문안·스토어 요약 500자 제한 검증 |
 | `pnpm seo:check` | 빌드 후 HTML·메타데이터·SSG·사이트맵 검증 |
 | `pnpm format` | 코드 포맷팅 |
@@ -68,7 +69,7 @@ src/
 | GA4·Search Console·동의·이벤트 | [검색·분석 운영](docs/analytics.md) |
 | 의존성·보안·shadcn·Issue·PR·CI·배포 | [기여와 배포](docs/contributing.md) |
 
-16개 한영 공개 페이지는 **SSG + Server Components**로 배포 시 생성합니다. 브라우저 상호작용에 작은 Client Components를 사용하고, Git 콘텐츠에는 ISR을 사용하지 않습니다. 폰트는 로컬 WOFF2로 제공하며 한국어 제목만 미리 받습니다. 자세한 판단 근거와 검증 범위는 해당 문서에서 관리합니다.
+24개 한영 공개 페이지는 **SSG + Server Components**로 배포 시 생성합니다. 브라우저 상호작용에 작은 Client Components를 사용하고, Git 콘텐츠에는 ISR을 사용하지 않습니다. 폰트는 로컬 WOFF2로 제공하며 한국어 제목만 미리 받습니다. 자세한 판단 근거와 검증 범위는 해당 문서에서 관리합니다.
 
 ## 기여 규칙
 

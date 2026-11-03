@@ -1,7 +1,13 @@
+import type { DeviceFrame } from "@/components/media/device-screen";
 import type { Locale } from "@/i18n/config";
 
-// 1.13.0 iPhone(6.3인치) 라이트 모드 실제 화면과 1.14.0 Android 날씨 화면.
-// 원본은 ko/en 캡처를 640px WebP로 줄였다.
+type GuideScreenDevice = Extract<
+  DeviceFrame,
+  "iphone" | "android" | "duo-open" | "ipad"
+>;
+
+// 1.13.0 iPhone(6.3인치) 라이트 모드 실제 화면, 1.14.0 Android 날씨 화면, 1.14.1 댓글·기기별 날씨 화면.
+// 원본은 ko/en 캡처를 640px(iPad는 1280px) WebP로 줄였다. 영어 캡처가 없는 하트·iPhone Duo·iPad는 한국어 화면을 함께 쓴다.
 export const guideScreenFiles = {
   "friend-feed": "iphone",
   "todo-nudge": "iphone",
@@ -26,7 +32,12 @@ export const guideScreenFiles = {
   "weather-sun-air": "android",
   "weather-offline": "android",
   "weather-alerts": "android",
-} as const satisfies Record<string, "iphone" | "android">;
+  "weather-duo": "duo-open",
+  "weather-ipad": "ipad",
+  "comments-thread": "iphone",
+  "comments-reply": "iphone",
+  "comments-heart": "iphone",
+} as const satisfies Record<string, GuideScreenDevice>;
 
 export type GuideScreenKey = keyof typeof guideScreenFiles;
 
@@ -45,15 +56,26 @@ export const weatherCaseScreens = [
   "weather-alerts",
 ] as const satisfies readonly GuideScreenKey[];
 
+/** 날씨 가이드의 기기별 화면. 문구의 weather.devices와 같은 순서다. */
+export const weatherDeviceScreens = [
+  "weather-duo",
+  "weather-ipad",
+] as const satisfies readonly GuideScreenKey[];
+
 const guideScreenSizes = {
   iphone: { width: 640, height: 1391 },
   android: { width: 640, height: 1422 },
-} as const;
+  "duo-open": { width: 640, height: 931 },
+  ipad: { width: 1280, height: 1707 },
+} as const satisfies Record<GuideScreenDevice, unknown>;
 
 /** 화면 위쪽만 잘라 쓴 캡처의 실제 높이 */
 const croppedScreenHeights: Partial<Record<GuideScreenKey, number>> = {
   "weather-offline": 1126,
   "weather-alerts": 711,
+  // 아래쪽 개발용 오류 알림을 뺀 iPhone Duo 화면, 위쪽 상태 막대·개발 버튼을 뺀 iPad 화면
+  "weather-duo": 806,
+  "weather-ipad": 552,
 };
 
 export function getGuideScreen(locale: Locale, key: GuideScreenKey) {

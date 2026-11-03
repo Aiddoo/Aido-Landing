@@ -1,4 +1,4 @@
-import { Crown } from "lucide-react";
+import { Crown, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
@@ -13,6 +13,7 @@ import {
   homeCatImages,
 } from "@/components/media/data/home-screens";
 import { DeviceScreen } from "@/components/media/device-screen";
+import { DeviceVideo } from "@/components/media/device-video";
 import { Badge } from "@/components/ui/badge";
 import {
   Box,
@@ -268,6 +269,103 @@ export function LandingPage({ locale }: { locale: Locale }) {
               </GuideLink>
             </HStack>
           </VStack>
+        </ReadableContent>
+
+        <ReadableContent
+          render={<section id="comments" aria-labelledby="comments-title" />}
+          data-motion-group
+          className="grid items-center gap-12 py-section lg:grid-cols-2 lg:gap-16"
+        >
+          <VStack
+            gap={6}
+            className="items-center text-center lg:items-start lg:text-left"
+          >
+            <Badge className="h-7 px-3 text-caption font-semibold">
+              {home.comments.badge}
+            </Badge>
+            <SectionKicker className="-mb-3">
+              {home.comments.kicker}
+            </SectionKicker>
+            <h2
+              id="comments-title"
+              data-motion="title"
+              className="text-display-lg"
+            >
+              {home.comments.title}
+            </h2>
+            <p className="max-w-[34rem] text-body-lg text-gray-9">
+              {home.comments.description}
+            </p>
+            <VStack
+              render={<ol />}
+              gap={2}
+              className="w-full max-w-md text-left"
+            >
+              {home.comments.steps.map((step, index) => (
+                <HStack
+                  key={step}
+                  render={<li />}
+                  align="center"
+                  gap={3}
+                  className="rounded-xl bg-paper px-4 py-3 shadow-card"
+                >
+                  <Centered className="size-7 shrink-0 rounded-full bg-brand-soft font-display text-brand-deep">
+                    {index + 1}
+                  </Centered>
+                  <span className="font-semibold text-ink">{step}</span>
+                  {index === home.comments.steps.length - 1 && (
+                    <Heart
+                      aria-hidden="true"
+                      className="ml-auto size-5 fill-brand text-brand"
+                    />
+                  )}
+                </HStack>
+              ))}
+            </VStack>
+            <HStack
+              gap={2}
+              wrap="wrap"
+              className="justify-center lg:justify-start"
+            >
+              <GuideLink
+                href={localizedPath(locale, "/features/comments")}
+                slug="comments"
+              >
+                {home.comments.guideLink}
+              </GuideLink>
+            </HStack>
+          </VStack>
+          <Centered className="relative">
+            <Box className="absolute top-[10%] right-[4%] hidden w-[200px] rotate-6 lg:block">
+              <DeviceVideo
+                locale={locale}
+                video="comments-reply-keyboard"
+                device="iphone"
+                label={home.comments.replyAlt}
+              />
+            </Box>
+            <DeviceVideo
+              locale={locale}
+              video="comments-heart"
+              device="iphone"
+              label={home.comments.heartAlt}
+              className="relative w-[min(72vw,18rem)] lg:mr-[28%]"
+            />
+            <HStack
+              aria-hidden="true"
+              align="center"
+              gap={2}
+              data-motion="float"
+              className="absolute bottom-[14%] left-0 -rotate-3 rounded-full bg-paper py-2 pr-4 pl-2.5 shadow-lift sm:left-[8%] lg:left-[2%]"
+            >
+              <Centered className="size-7 rounded-full bg-brand">
+                <Heart className="size-4 fill-ink text-ink" />
+              </Centered>
+              <span className="font-hand text-hand text-ink">
+                {home.comments.heartNote}
+              </span>
+            </HStack>
+          </Centered>
         </ReadableContent>
 
         <ReadableContent
@@ -676,7 +774,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
           <FeatureGuideList
             locale={locale}
             placement="home_guides"
-            columns={4}
+            columns={3}
             className="mt-10"
           />
         </ReadableContent>
