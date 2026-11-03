@@ -523,6 +523,132 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/en/comments-heart.webp": {
+    "sourceHash": "d7c640fa655b",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/comments-heart-48-5d98f876ca75.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/comments-heart-96-e4353200a562.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/comments-heart-160-9bc99fe35de6.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/comments-heart-240-d8c19e35a607.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/comments-heart-320-c3c73be549eb.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/comments-heart-480-8d159db1bd49.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/comments-heart-640-c14964ac6a9c.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/comments-reply.webp": {
+    "sourceHash": "ee341afd834d",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/comments-reply-48-7c132519ccde.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/comments-reply-96-6cc40692ed37.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/comments-reply-160-694d30d51290.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/comments-reply-240-30c08f599bd8.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/comments-reply-320-df8789a4ecda.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/comments-reply-480-a293c01fecd8.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/comments-reply-640-6236b67eaee8.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/comments-thread.webp": {
+    "sourceHash": "d10c878f086b",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/comments-thread-48-6345d39eb935.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/comments-thread-96-4fd5fac66c2f.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/comments-thread-160-020dbbab57ca.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/comments-thread-240-ad272a327c63.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/comments-thread-320-ae621c0334f7.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/comments-thread-480-ca6280b48056.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/comments-thread-640-0861f719b7bd.webp"
+      }
+    ]
+  },
   "/app-assets/guides/en/friend-feed.webp": {
     "sourceHash": "5b12f1e6a770",
     "width": 640,
@@ -1153,6 +1279,48 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/en/weather-duo.webp": {
+    "sourceHash": "cc01a07b304c",
+    "width": 640,
+    "height": 806,
+    "variants": [
+      {
+        "width": 48,
+        "height": 60,
+        "src": "/responsive/weather-duo-48-0fc221046807.webp"
+      },
+      {
+        "width": 96,
+        "height": 121,
+        "src": "/responsive/weather-duo-96-5bfb1b2ad99f.webp"
+      },
+      {
+        "width": 160,
+        "height": 202,
+        "src": "/responsive/weather-duo-160-032a0246de2d.webp"
+      },
+      {
+        "width": 240,
+        "height": 302,
+        "src": "/responsive/weather-duo-240-c74122098b27.webp"
+      },
+      {
+        "width": 320,
+        "height": 403,
+        "src": "/responsive/weather-duo-320-ae8d1f6e3f47.webp"
+      },
+      {
+        "width": 480,
+        "height": 604,
+        "src": "/responsive/weather-duo-480-e615fa741212.webp"
+      },
+      {
+        "width": 640,
+        "height": 806,
+        "src": "/responsive/weather-duo-640-d0058388de18.webp"
+      }
+    ]
+  },
   "/app-assets/guides/en/weather-forecast.webp": {
     "sourceHash": "7bb68f15bac0",
     "width": 640,
@@ -1276,6 +1444,58 @@ export const responsiveImages = {
         "width": 640,
         "height": 1422,
         "src": "/responsive/weather-heat-reschedule-640-b3cd3af92cfd.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/weather-ipad.webp": {
+    "sourceHash": "a9b9411d96e4",
+    "width": 1280,
+    "height": 552,
+    "variants": [
+      {
+        "width": 48,
+        "height": 21,
+        "src": "/responsive/weather-ipad-48-a331e4ecf9f4.webp"
+      },
+      {
+        "width": 96,
+        "height": 41,
+        "src": "/responsive/weather-ipad-96-f4c6a4264dd6.webp"
+      },
+      {
+        "width": 160,
+        "height": 69,
+        "src": "/responsive/weather-ipad-160-c033a15f7004.webp"
+      },
+      {
+        "width": 240,
+        "height": 104,
+        "src": "/responsive/weather-ipad-240-48567edd5024.webp"
+      },
+      {
+        "width": 320,
+        "height": 138,
+        "src": "/responsive/weather-ipad-320-4e0c95db3b7e.webp"
+      },
+      {
+        "width": 480,
+        "height": 207,
+        "src": "/responsive/weather-ipad-480-a71d74ba4599.webp"
+      },
+      {
+        "width": 640,
+        "height": 276,
+        "src": "/responsive/weather-ipad-640-f44557ef4fc7.webp"
+      },
+      {
+        "width": 960,
+        "height": 414,
+        "src": "/responsive/weather-ipad-960-394fb2e3ce5b.webp"
+      },
+      {
+        "width": 1280,
+        "height": 552,
+        "src": "/responsive/weather-ipad-1280-2fd1fa5a4960.webp"
       }
     ]
   },
@@ -1486,6 +1706,132 @@ export const responsiveImages = {
         "width": 640,
         "height": 1422,
         "src": "/responsive/weather-sun-air-640-b494f3ac44d3.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/comments-heart.webp": {
+    "sourceHash": "d7c640fa655b",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/comments-heart-48-5d98f876ca75.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/comments-heart-96-e4353200a562.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/comments-heart-160-9bc99fe35de6.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/comments-heart-240-d8c19e35a607.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/comments-heart-320-c3c73be549eb.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/comments-heart-480-8d159db1bd49.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/comments-heart-640-c14964ac6a9c.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/comments-reply.webp": {
+    "sourceHash": "00524290be93",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/comments-reply-48-54d2c9c91ca8.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/comments-reply-96-bacc0643da81.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/comments-reply-160-4ea8acd31ccf.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/comments-reply-240-c78fbaaac68f.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/comments-reply-320-6b85b4de4e2a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/comments-reply-480-12bc504d1470.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/comments-reply-640-3356f46050d5.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/comments-thread.webp": {
+    "sourceHash": "e0ddcd1de01c",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/comments-thread-48-773348db46f8.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/comments-thread-96-93fdfd146b2b.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/comments-thread-160-0d78360434a0.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/comments-thread-240-0e7800569823.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/comments-thread-320-f095107238ab.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/comments-thread-480-376754880d59.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/comments-thread-640-3a3c7815acfa.webp"
       }
     ]
   },
@@ -2119,6 +2465,48 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/ko/weather-duo.webp": {
+    "sourceHash": "cc01a07b304c",
+    "width": 640,
+    "height": 806,
+    "variants": [
+      {
+        "width": 48,
+        "height": 60,
+        "src": "/responsive/weather-duo-48-0fc221046807.webp"
+      },
+      {
+        "width": 96,
+        "height": 121,
+        "src": "/responsive/weather-duo-96-5bfb1b2ad99f.webp"
+      },
+      {
+        "width": 160,
+        "height": 202,
+        "src": "/responsive/weather-duo-160-032a0246de2d.webp"
+      },
+      {
+        "width": 240,
+        "height": 302,
+        "src": "/responsive/weather-duo-240-c74122098b27.webp"
+      },
+      {
+        "width": 320,
+        "height": 403,
+        "src": "/responsive/weather-duo-320-ae8d1f6e3f47.webp"
+      },
+      {
+        "width": 480,
+        "height": 604,
+        "src": "/responsive/weather-duo-480-e615fa741212.webp"
+      },
+      {
+        "width": 640,
+        "height": 806,
+        "src": "/responsive/weather-duo-640-d0058388de18.webp"
+      }
+    ]
+  },
   "/app-assets/guides/ko/weather-forecast.webp": {
     "sourceHash": "b061cf4c475a",
     "width": 640,
@@ -2242,6 +2630,58 @@ export const responsiveImages = {
         "width": 640,
         "height": 1422,
         "src": "/responsive/weather-heat-reschedule-640-8c60e1817527.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/weather-ipad.webp": {
+    "sourceHash": "a9b9411d96e4",
+    "width": 1280,
+    "height": 552,
+    "variants": [
+      {
+        "width": 48,
+        "height": 21,
+        "src": "/responsive/weather-ipad-48-a331e4ecf9f4.webp"
+      },
+      {
+        "width": 96,
+        "height": 41,
+        "src": "/responsive/weather-ipad-96-f4c6a4264dd6.webp"
+      },
+      {
+        "width": 160,
+        "height": 69,
+        "src": "/responsive/weather-ipad-160-c033a15f7004.webp"
+      },
+      {
+        "width": 240,
+        "height": 104,
+        "src": "/responsive/weather-ipad-240-48567edd5024.webp"
+      },
+      {
+        "width": 320,
+        "height": 138,
+        "src": "/responsive/weather-ipad-320-4e0c95db3b7e.webp"
+      },
+      {
+        "width": 480,
+        "height": 207,
+        "src": "/responsive/weather-ipad-480-a71d74ba4599.webp"
+      },
+      {
+        "width": 640,
+        "height": 276,
+        "src": "/responsive/weather-ipad-640-f44557ef4fc7.webp"
+      },
+      {
+        "width": 960,
+        "height": 414,
+        "src": "/responsive/weather-ipad-960-394fb2e3ce5b.webp"
+      },
+      {
+        "width": 1280,
+        "height": 552,
+        "src": "/responsive/weather-ipad-1280-2fd1fa5a4960.webp"
       }
     ]
   },

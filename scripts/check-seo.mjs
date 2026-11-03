@@ -25,6 +25,13 @@ const originalSource = (src) =>
   Object.entries(responsiveImages).find(([, image]) =>
     image.variants.some((variant) => variant.src === src),
   )?.[0] ?? src;
+// 영어 캡처가 없어 한영이 같은 바이트를 쓰면 반응형 파일도 하나를 함께 쓴다.
+const originalSources = (src) =>
+  Object.entries(responsiveImages)
+    .filter(([, image]) =>
+      image.variants.some((variant) => variant.src === src),
+    )
+    .map(([original]) => original);
 const read = (path) => readFile(path, "utf8");
 const app = ".next/server/app";
 const { koreanDisplayFont, englishDisplayFont } = await import(
@@ -64,8 +71,8 @@ const paths = [
 ];
 assert.equal(
   paths.length * 2,
-  22,
-  "ko/en canonical pages: home, services, patch notes, 3 legal and 5 guides",
+  24,
+  "ko/en canonical pages: home, services, patch notes, 3 legal and 6 guides",
 );
 const decode = (text) =>
   text
@@ -265,24 +272,28 @@ for (const locale of ["ko", "en"]) {
         content.summary,
         ...("plans" in content
           ? [content.plans.free, content.plans.premium]
-          : "rewards" in content
-            ? [
-                ...content.rewards.items.flatMap((item) => [
-                  item.who,
-                  item.when,
-                  item.reward,
-                  item.condition,
+          : "story" in content
+            ? content.story.flatMap((item) => [item.title, item.body])
+            : "rewards" in content
+              ? [
+                  ...content.rewards.items.flatMap((item) => [
+                    item.who,
+                    item.when,
+                    item.reward,
+                    item.condition,
+                  ]),
+                  ...content.rewards.limits,
+                ]
+              : [
+                  ...content.layout.flatMap((item) => [item.title, item.body]),
+                  ...content.briefing.rows.flatMap((row) => [
+                    row.when,
+                    row.shows,
+                  ]),
+                  content.briefing.note,
+                  ...content.scenes.map((scene) => scene.name),
+                  ...content.devices.flatMap((item) => [item.name, item.body]),
                 ]),
-                ...content.rewards.limits,
-              ]
-            : [
-                ...content.layout.flatMap((item) => [item.title, item.body]),
-                ...content.briefing.rows.flatMap((row) => [
-                  row.when,
-                  row.shows,
-                ]),
-                content.briefing.note,
-              ]),
         ...content.screens.flatMap((screen) => [screen.caption]),
         ...content.steps.flatMap((step) => [step.title, step.body]),
         ...content.example.items,
@@ -308,7 +319,11 @@ for (const locale of ["ko", "en"]) {
       for (const image of tags(html, "img").filter((image) =>
         originalSource(image.src)?.includes("/guides/"),
       ))
-        assert.ok(originalSource(image.src).includes(`/guides/${locale}/`));
+        assert.ok(
+          originalSources(image.src).some((original) =>
+            original.includes(`/guides/${locale}/`),
+          ),
+        );
       for (const related of featureGuides.filter(
         (item) => item.slug !== guide.slug,
       ))

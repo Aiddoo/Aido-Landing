@@ -11,6 +11,12 @@ export const featureGuides = [
     screens: ["friend-feed", "todo-nudge"],
   },
   {
+    slug: "comments",
+    path: "/features/comments",
+    updatedAt: "2026-11-04",
+    screens: ["comments-thread", "comments-reply", "comments-heart"],
+  },
+  {
     slug: "recurring-todo",
     path: "/features/recurring-todo",
     updatedAt: "2026-10-27",
@@ -31,7 +37,7 @@ export const featureGuides = [
   {
     slug: "weather",
     path: "/features/weather",
-    updatedAt: "2026-11-03",
+    updatedAt: "2026-11-04",
     screens: ["weather-briefing", "weather-next-hour", "weather-forecast"],
   },
 ] as const satisfies ReadonlyArray<{
