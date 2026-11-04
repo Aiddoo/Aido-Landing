@@ -1264,7 +1264,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.14.0 새 기능: 날씨가 크게 좋아졌어요",
+        release: "1.14.2 새 기능: 꺼 둔 알림을 쉽게 다시 켜요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -2606,7 +2606,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "New in 1.14.0: a big weather\u00a0upgrade",
+        release: "New in 1.14.2: turn notifications back on\u00a0easily",
         titleLead: "Put it off alone.",
         titleTail: "Get it done together.",
         description:
