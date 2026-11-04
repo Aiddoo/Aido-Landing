@@ -4,6 +4,7 @@ import {
   CloudSun,
   Gift,
   type LucideIcon,
+  MessageCircleHeart,
   Sparkles,
   Users,
 } from "lucide-react";
@@ -24,6 +25,7 @@ const guideIcons: Record<FeatureGuideSlug, LucideIcon> = {
   "ai-todo": Sparkles,
   "friend-invite": Gift,
   weather: CloudSun,
+  comments: MessageCircleHeart,
 };
 
 export type FeatureGuideListProps = Omit<GridProps, "children" | "render"> & {

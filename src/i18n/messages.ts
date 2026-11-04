@@ -38,6 +38,18 @@ export type WeatherGuideContent = Omit<FeatureGuideContent, "plans"> & {
     rows: { when: string; shows: string }[];
     note: string;
   };
+  /** 움직이는 날씨 장면. data/guide-videos.ts의 weatherSceneVideos와 같은 순서다. */
+  scenes: { name: string; alt: string }[];
+  /** 장면 옆의 Android 전체 화면 녹화 */
+  scenePhone: { alt: string; caption: string };
+  /** 기기별 화면. data/guide-screens.ts의 weatherDeviceScreens와 같은 순서다. */
+  devices: { name: string; body: string; alt: string }[];
+};
+
+/** 댓글 가이드는 요금제 대신 실제 녹화로 댓글·답글·하트·알림이 어떻게 움직이는지 보여 준다. */
+export type CommentsGuideContent = Omit<FeatureGuideContent, "plans"> & {
+  /** data/guide-videos.ts의 commentStoryVideos와 같은 순서다. */
+  story: { title: string; body: string; alt: string }[];
 };
 
 /** 홈 고양이 고르기. 이름은 앱 app-icon.json의 icons와 같다. */
@@ -95,6 +107,18 @@ type HomeCatalog = {
     nudgeAlt: string;
     nudgeName: string;
     nudgeText: string;
+    guideLink: string;
+  };
+  comments: {
+    badge: string;
+    kicker: string;
+    title: string;
+    description: string;
+    /** 할 일 만들기 → 친구 댓글 → 답글·멘션 → 더블탭 하트 */
+    steps: string[];
+    heartAlt: string;
+    replyAlt: string;
+    heartNote: string;
     guideLink: string;
   };
   invite: {
@@ -205,6 +229,16 @@ export type MessageCatalog = {
     briefingTitle: string;
     briefingWhenLabel: string;
     briefingShowsLabel: string;
+    scenesTitle: string;
+    scenesDescription: string;
+    dayLabel: string;
+    nightLabel: string;
+    devicesTitle: string;
+    devicesDescription: string;
+    storyTitle: string;
+    storyDescription: string;
+    /** 녹화 영상이 한국어 화면이라는 안내처럼, 영상 아래에 붙는 짧은 설명 */
+    videoNote: string;
     faqTitle: string;
     relatedTitle: string;
     relatedDescription: string;
@@ -215,8 +249,10 @@ export type MessageCatalog = {
       "ai-todo": FeatureGuideContent;
       "friend-invite": FriendInviteGuideContent;
       weather: WeatherGuideContent;
+      comments: CommentsGuideContent;
     };
   };
+  media: { play: string; pause: string };
   services: {
     kicker: string;
     title: string;
@@ -606,6 +642,18 @@ const catalogs: Record<Locale, MessageCatalog> = {
       briefingTitle: "아이두 브리핑은 언제 무엇을 알려주나요",
       briefingWhenLabel: "이럴 때",
       briefingShowsLabel: "이렇게 알려줘요",
+      scenesTitle: "18가지 날씨가 화면에서 움직여요",
+      scenesDescription:
+        "비·눈·우박·천둥번개·안개·무더위·강추위까지, 날씨마다 하늘이 실제처럼 움직여요. 낮에는 해가, 밤에는 달이 떠요. 모두 앱에서 녹화한 실제\u00a0화면이에요.",
+      dayLabel: "낮",
+      nightLabel: "밤",
+      devicesTitle: "넓은 화면에서도 날씨가 넉넉해요",
+      devicesDescription:
+        "iPhone·Android는 물론, iPhone\u00a0Duo와 iPad처럼 넓은 화면에서는 지금 날씨와 예보를 나란히 보여줘요. 폴더블을 펼쳐도 두 칸으로 넓게\u00a0봐요.",
+      storyTitle: "실제로 이렇게 움직여요",
+      storyDescription:
+        "앱에서 그대로 녹화한 화면이에요. 답글을 펼치고, 키보드 위에서 답글을 쓰고, 하트를 누르고, 알림으로 그 댓글을 찾아가는 모습을\u00a0담았어요.",
+      videoNote: "소리 없이 반복되는 실제 앱 녹화예요.",
       faqTitle: "자주 묻는 질문",
       relatedTitle: "다음으로 알아볼 기능",
       relatedDescription: "내 하루에 필요한 기능을 하나씩 더해 보세요.",
@@ -995,7 +1043,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           layout: [
             {
               title: "지금 날씨",
-              body: "위치 이름, 현재 기온과 하늘 상태, 오늘 최고·최저 기온이 보여요. 배경의 하늘·비·눈·번개가 날씨에 맞게\u00a0움직여요.",
+              body: "위치 이름, 현재 기온과 하늘 상태, 오늘 최고·최저 기온이 보여요. 배경은 18가지 날씨 장면으로 실제처럼 움직이고, 낮에는 해가 밤에는 달이 떠요. 영하 기온의 기호와 °는 작게, 큰 제목에는 도시 이름만 보여 깔끔하게\u00a0읽혀요.",
             },
             {
               title: "아이두 브리핑",
@@ -1220,9 +1268,207 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           cardDescription:
             "지금 날씨와 예보를 보고, 아이두 브리핑으로 비·더위와 겹친 할\u00a0일을 미리\u00a0챙겨요.",
+          scenes: [
+            {
+              name: "맑음",
+              alt: "밤하늘에 달과 별이 뜬 ‘맑음’ 날씨\u00a0장면",
+            },
+            {
+              name: "대체로 맑음",
+              alt: "파란 하늘에 해가 비치는 ‘대체로 맑음’ 날씨\u00a0장면",
+            },
+            {
+              name: "구름 조금",
+              alt: "파란 하늘에 구름이 조금 흘러가는 ‘구름 조금’ 날씨\u00a0장면",
+            },
+            {
+              name: "구름 많음",
+              alt: "구름이 하늘을 덮어 가는 ‘구름 많음’ 날씨\u00a0장면",
+            },
+            {
+              name: "흐림",
+              alt: "회색 구름이 낮게 깔린 ‘흐림’ 날씨\u00a0장면",
+            },
+            {
+              name: "안개",
+              alt: "뿌연 안개가 천천히 흘러가는 ‘안개’ 날씨\u00a0장면",
+            },
+            {
+              name: "뿌연 하늘",
+              alt: "누런 먼지가 떠다니는 ‘뿌연 하늘’ 날씨\u00a0장면",
+            },
+            {
+              name: "강한 바람",
+              alt: "나뭇잎이 바람에 날리는 ‘강한 바람’ 날씨\u00a0장면",
+            },
+            {
+              name: "이슬비",
+              alt: "가는 빗방울이 떨어지는 ‘이슬비’ 날씨\u00a0장면",
+            },
+            {
+              name: "비",
+              alt: "어두운 밤에 빗줄기가 내리는 ‘비’ 날씨\u00a0장면",
+            },
+            {
+              name: "폭우",
+              alt: "굵은 빗줄기가 쏟아지는 ‘폭우’ 날씨\u00a0장면",
+            },
+            {
+              name: "천둥번개",
+              alt: "밤하늘에 번개가 번쩍이는 ‘천둥번개’ 날씨\u00a0장면",
+            },
+            {
+              name: "진눈깨비",
+              alt: "비와 눈이 섞여 내리는 ‘진눈깨비’ 날씨\u00a0장면",
+            },
+            { name: "눈", alt: "눈송이가 천천히 내리는 ‘눈’ 날씨\u00a0장면" },
+            { name: "폭설", alt: "큰 눈송이가 쏟아지는 ‘폭설’ 날씨\u00a0장면" },
+            {
+              name: "우박",
+              alt: "얼음 알갱이가 튀어 떨어지는 ‘우박’ 날씨\u00a0장면",
+            },
+            {
+              name: "무더위",
+              alt: "붉은 하늘에 해가 이글거리는 ‘무더위’ 날씨\u00a0장면",
+            },
+            {
+              name: "강추위",
+              alt: "가장자리에 성에가 끼고 눈꽃이 날리는 ‘강추위’ 날씨\u00a0장면",
+            },
+          ],
+          scenePhone: {
+            alt: "천둥번개가 치는 밤, 시간별 예보와 10일 예보가 보이는 Android 아이두 날씨 전체\u00a0화면",
+            caption: "Android에서 본 천둥번개 치는\u00a0밤",
+          },
+          devices: [
+            {
+              name: "iPhone\u00a0Duo",
+              body: "펼친 화면에서는 버튼을 오른쪽에 모으고, 지금 날씨와 예보를 넓게\u00a0보여줘요.",
+              alt: "iPhone\u00a0Duo를 펼친 화면에서 지금 날씨와 시간별 예보가 보이고 오른쪽에 버튼이 모인 아이두 날씨\u00a0화면",
+            },
+            {
+              name: "iPad",
+              body: "왼쪽엔 지금 날씨와 시간별 예보, 오른쪽엔 10일 예보가 나란히\u00a0보여요.",
+              alt: "iPad에서 왼쪽에 달이 뜬 맑은 밤 날씨, 오른쪽에 10일 예보가 나란히 보이는 아이두 날씨\u00a0화면",
+            },
+          ],
+        },
+        comments: {
+          kicker: "댓글 사용설명서",
+          title: "댓글·답글로 친구와 이야기 나누기",
+          summary:
+            "할\u00a0일 상세 한 화면에서 댓글과 답글을 모두 봐요. 답글은 그 자리에서 펼치고, @이름으로 누구에게 단 답글인지 바로 알 수 있어요. 마음에 드는 댓글은 톡톡 두 번 눌러 하트를\u00a0남겨요.",
+          steps: [
+            {
+              title: "할\u00a0일을 만들고 친구에게 보여줘요",
+              body: "할\u00a0일을 추가할 때 친구에게 공개할지 골라요. 공개한 할\u00a0일은 친구 캘린더에 보이고, 친구가 할\u00a0일 상세에서 댓글을 남길 수\u00a0있어요.",
+            },
+            {
+              title: "친구가 댓글을 남겨요",
+              body: "내 할\u00a0일에 댓글이 달리면 알림이 와요. 알림을 누르면 할\u00a0일 상세가 그 댓글 위치로 열리고, 잠깐 강조해서 바로 찾을 수\u00a0있어요.",
+            },
+            {
+              title: "답글과 @멘션으로 이어 가요",
+              body: "댓글 아래 ‘답글 달기’를 누르면 작성창이 키보드 바로 위에 붙고, 누구에게 답하는지 함께 보여요. 답글에 답해도 같은 묶음 아래 @이름과 함께\u00a0붙어요.",
+            },
+            {
+              title: "톡톡 두 번, 하트가 팡",
+              body: "댓글을 톡톡 두 번 눌러 보세요. 하트가 팡 터지며 좋아요가 남아요! 하트 버튼을 눌러도 되고, 버튼을 한 번 더 누르면 좋아요가\u00a0취소돼요.",
+            },
+          ],
+          example: {
+            introduction:
+              "‘오늘 수영 간다!’ 할\u00a0일 하나에서 이런 대화가\u00a0이어져요.",
+            items: [
+              "지환이 ‘오늘 수영 간다!’를 친구에게\u00a0공개해요.",
+              "친구 매튜가 ‘몇 시에 가?’ 댓글을 남기면 지환에게 알림이\u00a0가요.",
+              "지환이 ‘7시!’라고 답글을 달고, 다른 친구가 그 답글에 ‘@지환 나도 갈래’라고 이어\u00a0붙여요.",
+              "응원하고 싶은 댓글은 톡톡 두 번 눌러 하트를\u00a0남겨요.",
+            ],
+            note: "사용 방법을 설명하기 위한 예시예요. 이름과 내용은 실제와\u00a0달라요.",
+          },
+          details: [
+            {
+              title: "답글은 한 단계만 들여써요",
+              body: "댓글 아래 대표 답글 하나가 보이고, ‘답글 N개 더 보기’를 누르면 10개씩 펼쳐져요. 다 읽었다면 ‘답글 숨기기’로\u00a0접어요.",
+            },
+            {
+              title: "⋯ 버튼이나 길게 눌러 메뉴를 열어요",
+              body: "내 댓글은 수정·복사·삭제, 친구 댓글은 복사·신고·차단을 한곳에서 골라요. 삭제할 때는 한 번 더\u00a0확인해요.",
+            },
+            {
+              title: "지워진 댓글도 대화는 이어져요",
+              body: "답글이 달린 댓글을 지우면 ‘삭제된 댓글이에요’로 자리를 지켜 대화 흐름이 끊기지 않아요. 답글이 없으면 그 줄이\u00a0사라져요.",
+            },
+            {
+              title: "글씨 크기와 긴 이름도 깔끔하게",
+              body: "큰 글씨에서도 줄이 겹치지 않고, 이름이 길면 이름과 태그 순서로 줄여 시간과 ⋯ 버튼은 그대로\u00a0보여요.",
+            },
+          ],
+          faq: [
+            {
+              question: "댓글과 답글은 무료인가요?",
+              answer: "네. 댓글, 답글, 하트는 모두 무료로 쓸 수\u00a0있어요.",
+            },
+            {
+              question: "하트를 잘못 눌렀어요.",
+              answer:
+                "두 번 탭은 좋아요만 남겨요. 취소하려면 댓글 아래 하트 버튼을 한 번 더\u00a0누르세요.",
+            },
+            {
+              question: "답글에 답하면 어떻게 보이나요?",
+              answer:
+                "답글은 한 단계까지만 들여써요. 답글에 다시 답하면 같은 묶음 아래에 붙고, 본문 앞에 @이름이 붙어 누구에게 단 답글인지 알 수\u00a0있어요.",
+            },
+            {
+              question: "예전 버전을 쓰는 친구와도 댓글을 나눌 수 있나요?",
+              answer:
+                "네. 1.14.0 이하 앱에서도 댓글과 답글을 그대로 보고 쓸 수 있어요. 한 화면 보기와 더블탭 하트는 1.14.1부터 쓸 수\u00a0있어요.",
+            },
+          ],
+          screens: [
+            {
+              alt: "할\u00a0일 상세 아래 댓글과 답글이 한 화면에 이어진 아이두 댓글\u00a0목록",
+              caption:
+                "할\u00a0일 상세 한 화면에서 댓글과 답글을 모두\u00a0봐요.",
+            },
+            {
+              alt: "‘○○님에게 답글 남기는 중’ 안내와 함께 키보드 바로 위에 답글 작성창이 붙은 아이두\u00a0화면",
+              caption: "답글 작성창은 키보드 바로 위에\u00a0붙어요.",
+            },
+            {
+              alt: "댓글 위로 큰 하트가 터지며 좋아요가 남는 아이두 댓글\u00a0화면",
+              caption: "톡톡 두 번이면 하트가 팡\u00a0터져요.",
+            },
+          ],
+          story: [
+            {
+              title: "답글은 그 자리에서 펼쳐요",
+              body: "‘답글 더 보기’를 누르면 화면을 옮기지 않고 바로 아래에 답글이 열려요. @이름으로 누구에게 단 답글인지\u00a0보여요.",
+              alt: "‘답글 더 보기’를 눌러 댓글 아래에 @멘션이 붙은 답글들이 펼쳐지는 아이두 댓글 녹화\u00a0화면",
+            },
+            {
+              title: "작성창은 키보드 위에 딱 붙어요",
+              body: "‘답글 달기’를 누르면 누구에게 답하는지 안내가 뜨고, 작성창이 키보드 바로 위로\u00a0올라와요.",
+              alt: "답글 달기를 누르자 키보드가 올라오고 그 위에 답글 작성창과 답글 대상 안내가 붙는 아이두 녹화\u00a0화면",
+            },
+            {
+              title: "톡톡 두 번, 하트가 팡",
+              body: "댓글을 두 번 누르면 하트가 터지며 좋아요가 남아요. 처음 한 번은 앱이 살짝\u00a0알려줘요.",
+              alt: "댓글을 두 번 눌러 큰 하트가 터지고 좋아요가 남는 아이두 녹화\u00a0화면",
+            },
+            {
+              title: "알림은 그 댓글로 바로",
+              body: "댓글 알림을 누르면 할\u00a0일 상세가 열리고 그 댓글까지 내려가 잠깐\u00a0강조해요.",
+              alt: "알림으로 열린 할\u00a0일 상세에서 해당 답글이 주황색으로 잠깐 강조되는 아이두 녹화\u00a0화면",
+            },
+          ],
+          cardDescription:
+            "친구 할\u00a0일에 댓글을 남기고, 답글과 @멘션으로 이어 가고, 톡톡 두 번 눌러 하트를\u00a0보내요.",
         },
       },
     },
+    media: { play: "영상 재생", pause: "영상 일시정지" },
     meta: {
       title: "아이두(Aido) | 친구와 함께 끝내는 AI 투두\u00a0플래너",
       description:
@@ -1264,7 +1510,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.14.2 새 기능: 꺼 둔 알림을 쉽게 다시 켜요",
+        release: "1.14.2 새 기능: 꺼 둔 알림을 쉽게 다시\u00a0켜요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -1314,6 +1560,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
         nudgeName: "치즈",
         nudgeText: "콕! 오늘 하체 운동 잊지\u00a0마",
         guideLink: "함께하는 할\u00a0일 사용법",
+      },
+      comments: {
+        badge: "1.14.1 새 기능",
+        kicker: "톡톡 두 번이면 하트가 팡",
+        title: "댓글이 달리면, 같이 하는 재미가 생겨요",
+        description:
+          "친구가 공개한 할\u00a0일에 댓글을 남기고, 답글과 @멘션으로 이야기를 이어 가요. 마음에 드는 댓글은 톡톡 두 번 눌러 하트를\u00a0남겨요.",
+        steps: [
+          "할\u00a0일을 만들고 친구에게 보여줘요",
+          "친구가 댓글로 응원해요",
+          "답글과 @멘션으로 이야기를 이어 가요",
+          "톡톡 두 번, 하트가 팡 터져요",
+        ],
+        heartAlt:
+          "댓글을 두 번 눌러 큰 하트가 터지고 좋아요가 남는 아이두 녹화\u00a0화면",
+        replyAlt:
+          "답글 달기를 누르자 키보드 위에 답글 작성창이 붙는 아이두 녹화\u00a0화면",
+        heartNote: "하트\u00a0팡!",
+        guideLink: "댓글 사용법",
       },
       invite: {
         badge: "새 기능",
@@ -1936,6 +2201,18 @@ const catalogs: Record<Locale, MessageCatalog> = {
       briefingTitle: "What Aido briefing tells you, and when",
       briefingWhenLabel: "When",
       briefingShowsLabel: "What you see",
+      scenesTitle: "18 kinds of weather, in motion",
+      scenesDescription:
+        "From rain, snow, and hail to thunderstorms, fog, heat, and freezing cold, the sky moves just like the real thing. The sun shows by day and the moon by night. Every scene is recorded in the app (Korean\u00a0UI).",
+      dayLabel: "Day",
+      nightLabel: "Night",
+      devicesTitle: "Room to breathe on bigger screens",
+      devicesDescription:
+        "Beyond iPhone and Android, bigger screens like iPhone\u00a0Duo and iPad show current weather and forecasts side by side. Unfold a foldable for two roomy panes,\u00a0too.",
+      storyTitle: "See it in action",
+      storyDescription:
+        "Recorded straight from the app: opening replies, writing a reply above the keyboard, leaving a heart, and jumping to a comment from a\u00a0notification.",
+      videoNote: "Silent, looping recordings of the app (Korean\u00a0UI).",
       faqTitle: "Questions",
       relatedTitle: "More ways to use Aido",
       relatedDescription: "Find the next feature that fits your\u00a0day.",
@@ -2333,7 +2610,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           layout: [
             {
               title: "Current weather",
-              body: "Your location, current temperature and conditions, and today’s high and low. The sky, rain, snow, and lightning in the background move with the\u00a0weather.",
+              body: "Your location, current temperature and conditions, and today’s high and low. The background moves through 18 lifelike weather scenes, with the sun by day and the moon by night. Below-zero signs and the ° symbol are smaller, and the big title shows just the city\u00a0name.",
             },
             {
               title: "Aido briefing",
@@ -2563,9 +2840,212 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
           cardDescription:
             "Check the weather and forecasts, and let Aido briefing flag to-dos that clash with rain or\u00a0heat.",
+          scenes: [
+            {
+              name: "Clear",
+              alt: "“Clear” weather scene with the moon and stars in the night\u00a0sky",
+            },
+            {
+              name: "Mostly clear",
+              alt: "“Mostly clear” weather scene with the sun in a blue\u00a0sky",
+            },
+            {
+              name: "Partly cloudy",
+              alt: "“Partly cloudy” weather scene with a few clouds drifting\u00a0by",
+            },
+            {
+              name: "Mostly cloudy",
+              alt: "“Mostly cloudy” weather scene with clouds filling the\u00a0sky",
+            },
+            {
+              name: "Cloudy",
+              alt: "“Cloudy” weather scene with low gray\u00a0clouds",
+            },
+            {
+              name: "Foggy",
+              alt: "“Foggy” weather scene with mist slowly drifting\u00a0by",
+            },
+            {
+              name: "Hazy",
+              alt: "“Hazy” weather scene with dust floating in a yellowish\u00a0sky",
+            },
+            {
+              name: "Windy",
+              alt: "“Windy” weather scene with leaves blowing in the\u00a0wind",
+            },
+            {
+              name: "Drizzle",
+              alt: "“Drizzle” weather scene with fine\u00a0raindrops",
+            },
+            {
+              name: "Rain",
+              alt: "“Rain” weather scene with rain falling at\u00a0night",
+            },
+            {
+              name: "Heavy rain",
+              alt: "“Heavy rain” weather scene with heavy rain pouring\u00a0down",
+            },
+            {
+              name: "Thunderstorms",
+              alt: "“Thunderstorms” weather scene with lightning flashing in the night\u00a0sky",
+            },
+            {
+              name: "Sleet",
+              alt: "“Sleet” weather scene with rain and snow falling\u00a0together",
+            },
+            {
+              name: "Snow",
+              alt: "“Snow” weather scene with snowflakes drifting\u00a0down",
+            },
+            {
+              name: "Heavy snow",
+              alt: "“Heavy snow” weather scene with big snowflakes pouring\u00a0down",
+            },
+            {
+              name: "Hail",
+              alt: "“Hail” weather scene with ice pellets\u00a0bouncing",
+            },
+            {
+              name: "Hot",
+              alt: "“Hot” weather scene with a blazing sun in a red\u00a0sky",
+            },
+            {
+              name: "Freezing",
+              alt: "“Freezing” weather scene with frost at the edges and snowflakes\u00a0swirling",
+            },
+          ],
+          scenePhone: {
+            alt: "Full Aido weather screen on Android on a stormy night, with hourly and 10-day\u00a0forecasts",
+            caption: "A thunderstorm night on\u00a0Android",
+          },
+          devices: [
+            {
+              name: "iPhone\u00a0Duo",
+              body: "Unfolded, the buttons move to the right side so current weather and forecasts get more\u00a0room.",
+              alt: "Aido weather on an unfolded iPhone\u00a0Duo, with current weather and hourly forecast and buttons along the right\u00a0side",
+            },
+            {
+              name: "iPad",
+              body: "Current weather and the hourly forecast sit on the left, with the 10-day forecast on the\u00a0right.",
+              alt: "Aido weather on iPad with a clear night and the moon on the left and the 10-day forecast on the\u00a0right",
+            },
+          ],
+        },
+        comments: {
+          kicker: "Your comments guide",
+          title: "Chat with friends in comments and\u00a0replies",
+          summary:
+            "See every comment and reply on one to-do screen. Replies open right where they are, and @names show who each reply is for. Double-tap a comment you love to leave a\u00a0heart.",
+          steps: [
+            {
+              title: "Create a to-do and share it",
+              body: "When you add a to-do, choose whether friends can see it. Shared to-dos appear in your friends’ calendars, and they can comment on the to-do’s detail\u00a0screen.",
+            },
+            {
+              title: "A friend leaves a comment",
+              body: "You get a notification when someone comments on your to-do. Tap it to open the to-do right at that comment, briefly highlighted so it’s easy to\u00a0spot.",
+            },
+            {
+              title: "Keep it going with replies and @mentions",
+              body: "Tap Reply under a comment and the reply box sits right above the keyboard, showing who you’re replying to. Reply to a reply and it joins the same thread with an\u00a0@name.",
+            },
+            {
+              title: "Double-tap for a heart",
+              body: "Double-tap a comment and a heart pops as your like lands! You can also tap the heart button, and tap it again to take your like\u00a0back.",
+            },
+          ],
+          example: {
+            introduction:
+              "Here’s how one to-do, “Swimming today!”, turns into a\u00a0chat.",
+            items: [
+              "Jihwan shares “Swimming today!” with\u00a0friends.",
+              "Matthew comments “What time?” and Jihwan gets a\u00a0notification.",
+              "Jihwan replies “7!”, and another friend adds “@Jihwan count me in” under that\u00a0reply.",
+              "Double-tap any comment you want to cheer to leave a\u00a0heart.",
+            ],
+            note: "This is an example of how it works. Names and messages are made\u00a0up.",
+          },
+          details: [
+            {
+              title: "Replies indent just one level",
+              body: "One reply shows under each comment. Tap “View more replies” to open 10 at a time, then “Hide replies” when you’re\u00a0done.",
+            },
+            {
+              title: "Tap ⋯ or long-press for the menu",
+              body: "Edit, copy, or delete your own comments, or copy, report, or block on a friend’s, all in one place. Deleting always asks you to\u00a0confirm.",
+            },
+            {
+              title: "Deleted comments keep the thread together",
+              body: "Delete a comment that has replies and it stays as “This comment was deleted,” so the conversation still makes sense. Without replies, the row\u00a0disappears.",
+            },
+            {
+              title: "Tidy with large text and long names",
+              body: "Rows don’t overlap with larger text, and long names shorten name-first and then the tag, so the time and ⋯ button always stay\u00a0visible.",
+            },
+          ],
+          faq: [
+            {
+              question: "Are comments and replies free?",
+              answer: "Yes. Comments, replies, and hearts are all\u00a0free.",
+            },
+            {
+              question: "I left a heart by mistake.",
+              answer:
+                "A double-tap only adds a like. To take it back, tap the heart button under the comment\u00a0again.",
+            },
+            {
+              question: "What happens when I reply to a reply?",
+              answer:
+                "Replies indent just one level. A reply to a reply joins the same thread with an @name in front, so you can tell who it’s\u00a0for.",
+            },
+            {
+              question: "Can I comment with friends on an older version?",
+              answer:
+                "Yes. Friends on 1.14.0 or earlier can still read and write comments and replies. The one-screen view and double-tap hearts need\u00a01.14.1.",
+            },
+          ],
+          screens: [
+            {
+              alt: "Aido to-do details with comments and replies together on one\u00a0screen",
+              caption: "See every comment and reply on one\u00a0screen.",
+            },
+            {
+              alt: "Aido screen with “Replying to” above a reply box that sits right on top of the\u00a0keyboard",
+              caption: "The reply box sits right above the\u00a0keyboard.",
+            },
+            {
+              alt: "Aido comment with a big heart popping after a double-tap (Korean\u00a0UI)",
+              caption: "Double-tap and a heart\u00a0pops.",
+            },
+          ],
+          story: [
+            {
+              title: "Replies open in place",
+              body: "Tap “View more replies” and they open right below, no new screen. @names show who each reply is\u00a0for.",
+              alt: "Recording of Aido comments where tapping “View more replies” opens replies with @mentions below the\u00a0comment",
+            },
+            {
+              title: "The reply box hugs the keyboard",
+              body: "Tap Reply to see who you’re replying to, with the reply box right above the\u00a0keyboard.",
+              alt: "Recording of Aido where tapping Reply raises the keyboard with the reply box and reply target just above\u00a0it",
+            },
+            {
+              title: "Double-tap, heart pops",
+              body: "Double-tap a comment and a heart bursts as your like lands. The app shows a quick tip the first\u00a0time.",
+              alt: "Recording of Aido where double-tapping a comment pops a big heart and adds a\u00a0like",
+            },
+            {
+              title: "Notifications take you there",
+              body: "Tap a comment notification to open the to-do, scroll to that comment, and highlight it for a\u00a0moment.",
+              alt: "Recording of Aido opening a to-do from a notification and briefly highlighting the reply in\u00a0orange",
+            },
+          ],
+          cardDescription:
+            "Comment on friends’ to-dos, keep chatting with replies and @mentions, and double-tap to send a\u00a0heart.",
         },
       },
     },
+    media: { play: "Play video", pause: "Pause video" },
     meta: {
       title: "Aido | AI To-Do Planner You Finish with\u00a0Friends",
       description:
@@ -2657,6 +3137,25 @@ const catalogs: Record<Locale, MessageCatalog> = {
         nudgeName: "Cheese",
         nudgeText: "Nudge! Leg day today",
         guideLink: "How shared to-dos work",
+      },
+      comments: {
+        badge: "New in 1.14.1",
+        kicker: "Double-tap, heart pops",
+        title: "Comments make doing it together more\u00a0fun",
+        description:
+          "Comment on the to-dos friends share, then keep the chat going with replies and @mentions. Double-tap a comment you love to leave a\u00a0heart.",
+        steps: [
+          "Create a to-do and share it",
+          "A friend cheers you on in the comments",
+          "Keep chatting with replies and @mentions",
+          "Double-tap and a heart pops",
+        ],
+        heartAlt:
+          "Recording of Aido where double-tapping a comment pops a big heart and adds a\u00a0like",
+        replyAlt:
+          "Recording of Aido where tapping Reply raises the keyboard with the reply box right above\u00a0it",
+        heartNote: "Heart\u00a0pop!",
+        guideLink: "How comments work",
       },
       invite: {
         badge: "New",

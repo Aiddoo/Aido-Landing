@@ -82,14 +82,44 @@ export function DeviceScreen({
 }: DeviceScreenProps) {
   const { src, device, width, height, imageProps } = resolveDeviceScreen(props);
   return (
+    <DeviceBezel
+      device={device}
+      tone={tone}
+      ratio={width / height}
+      className={className}
+    >
+      <Image src={src} fill className="object-cover" {...imageProps} />
+      {overlay}
+    </DeviceBezel>
+  );
+}
+
+export type DeviceBezelProps = {
+  device: DeviceFrame;
+  /** 화면의 가로/세로 비율. 내용이 오기 전에도 자리를 차지한다. */
+  ratio: number;
+  tone?: "ink" | "graphite" | undefined;
+  /** 기기 바깥 틀의 className */
+  className?: string | undefined;
+  children: ReactNode;
+};
+
+/** 기기 틀과 비율 상자. 이미지(DeviceScreen)와 영상(DeviceVideo)이 같은 틀을 쓴다. */
+export function DeviceBezel({
+  device,
+  ratio,
+  tone = "ink",
+  className,
+  children,
+}: DeviceBezelProps) {
+  return (
     <Box data-device={device} className={cn("@container", className)}>
       <Box className={cn(bezelVariants({ device, tone }), "shadow-lift")}>
         <AspectRatio
-          ratio={width / height}
+          ratio={ratio}
           className={cn("overflow-hidden bg-paper", screenRadius[device])}
         >
-          <Image src={src} fill className="object-cover" {...imageProps} />
-          {overlay}
+          {children}
         </AspectRatio>
         {match(device)
           .with("iphone", () => (
