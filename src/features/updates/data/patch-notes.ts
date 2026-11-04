@@ -28,6 +28,69 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.14.2",
+    date: "2026-11-04",
+    summary: {
+      ko: "알림을 꺼 둔 분도 홈과 설정에서 쉽게 다시 켤 수 있어요. 리마인더와 알림이 더 안정적으로 도착하고, iOS 16.4~17 일부 기기에서 앱이 바로 꺼지던 문제를 고쳤어요.",
+      en: "Turning notifications back on is now easy from Home and Settings. Reminders arrive more reliably, and we fixed the app closing right after launch on some iOS 16.4–17 devices.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "알림을 꺼 둔 경우 홈에 안내 카드가 보이고, 알림 설정 맨 위에서 ‘기기 알림 권한’ 상태를 확인한 뒤 ‘설정 열기’로 바로 이동할 수 있어요. 기기 설정에서 켜고 돌아오면 바로 반영돼요.",
+            en: "If notifications are off, Home now shows a card, and the top of Notification settings shows your device permission with an Open Settings button. Turn it on in your device settings and come back to see it update right away.",
+          },
+          {
+            ko: "앱 푸시를 꺼 둔 경우 홈에서 바로 켤 수 있도록 안내해요. 마케팅 알림 배너와는 겹치지 않아요.",
+            en: "If app push notifications are off, Home now lets you turn them on right there, without overlapping the marketing notification banner.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "알림 권한을 처음 물을 때 앱에서 왜 필요한지 먼저 알려주고, 원할 때만 시스템 권한 창을 띄워요.",
+            en: "Before asking for notification permission for the first time, the app explains why it's needed, and the system prompt appears only if you want it.",
+          },
+          {
+            ko: "리마인더와 알림이 더 안정적으로 도착해요. 앱을 다시 열거나 기기를 바꾸거나 재설치해도 알림 수신 정보가 자동으로 맞춰지고, 로그아웃한 기기로는 알림이 가지 않아요.",
+            en: "Reminders and notifications arrive more reliably. Your notification settings sync automatically when you reopen the app, switch devices, or reinstall, and signed-out devices no longer get notifications.",
+          },
+          {
+            ko: "그 밖에 앱의 안정성과 성능을 다듬었어요.",
+            en: "Other stability and performance improvements.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "iOS 16.4~17 일부 기기에서 앱을 열자마자 꺼지던 문제를 고쳤어요.",
+            en: "Fixed the app closing right after launch on some iOS 16.4–17 devices.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "알림을 꺼 둔 분도 홈 안내 카드와 알림 설정에서 쉽게 다시 켤 수 있어요.",
+        "알림 권한을 묻기 전에 왜 필요한지 먼저 안내해요.",
+        "리마인더와 알림이 더 안정적으로 도착해요.",
+        "iOS 16.4~17 일부 기기에서 앱이 바로 꺼지던 문제를 고쳤어요.",
+      ],
+      en: [
+        "Turn notifications back on easily from the Home card and Notification settings.",
+        "The app now explains why notifications are needed before asking.",
+        "Reminders and notifications arrive more reliably.",
+        "Fixed the app closing right after launch on some iOS 16.4–17 devices.",
+      ],
+    },
+  },
+  {
     version: "1.14.0",
     date: "2026-11-03",
     summary: {
