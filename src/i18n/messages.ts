@@ -505,17 +505,18 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
         },
         ai: {
-          navigationLabel: "AI 입력",
-          title: "생각나는 대로 적거나 말해요",
-          description: "자연스러운 문장과 음성으로 할\u00a0일을 입력해요.",
+          navigationLabel: "AI 할\u00a0일",
+          title: "생각나는 대로 말하거나 적어 두세요",
+          description:
+            "길게 말하거나 적어 둔 메모를 AI가 할\u00a0일 여러 개로\u00a0나눠요.",
           details: [
-            "날짜와 시간을 함께 적으면 AI가 계획으로 정리해요.",
-            "메모에서 나눈 할\u00a0일은 결과를 살펴보고 선택해\u00a0추가해요.",
-            "AI 입력의 이용 한도는 앱의 현재 요금제 안내에서 확인할 수\u00a0있어요.",
+            "말로 할\u00a0일 만들기: 말하면 AI가 날짜·시간·반복까지 채워\u00a0나눠요.",
+            "메모에서 ‘AI로 할\u00a0일 나누기’를 누르면 같은 화면에서 골라\u00a0추가해요.",
+            "무료는 월 10회, 프리미엄은 월 1,000회까지 쓰고, 남은 횟수는 AI 칩에서\u00a0보여요.",
           ],
           captions: [
-            "날짜와 시간, AI 입력이 있는 할\u00a0일 추가",
-            "메모에서 AI 할\u00a0일 정리 시작",
+            "말한 내용을 AI가 나눈 할\u00a0일 고르기",
+            "메모를 AI가 할\u00a0일 4개로 나눈 결과",
           ],
         },
         friends: {
@@ -675,45 +676,52 @@ const catalogs: Record<Locale, MessageCatalog> = {
       guides: {
         "ai-todo": {
           kicker: "말 한마디면 정리 끝",
-          title: "메모와 음성을 AI로 할\u00a0일로 정리하기",
+          title: "말과 메모를 AI로 할\u00a0일로 정리하기",
           summary:
-            "아이두는 떠오르는 생각을 메모로 남기고, AI로 여러 할\u00a0일과 체크리스트 항목으로 정리할 수 있는 투두 리스트 앱이에요. 문장을 입력하거나 말로 할\u00a0일을 만들 수도 있어요. 정리된 결과를 확인한 뒤 내 계획에 맞게 선택하고\u00a0수정해요.",
+            "아이두는 길게 말하거나 적어 둔 메모를 AI가 할\u00a0일 여러 개로 나누고 날짜·시간·반복까지 채워 주는 투두 리스트 앱이에요. 나눈 할\u00a0일은 추가하기 전에 하나씩 확인하고 고칠 수 있어서, 원하는 것만 내 계획에\u00a0담겨요.",
           steps: [
             {
-              title: "생각나는 내용을 메모해요",
-              body: "하단의 메모 탭에서 새 메모를 만들어요. 여행 준비처럼 한 번에 정리하기 어려운 일도 떠오르는 순서대로 적어\u00a0보세요.",
+              title: "할\u00a0일 추가 시트의 마이크를 눌러요",
+              body: "할\u00a0일 탭에서 할\u00a0일 추가 시트를 열고 마이크를 눌러요. 처음 한 번은 AI 동의 시트에서 보내는 내용과 받는 곳을 확인하고 ‘동의하고 계속’을 누른 뒤 마이크 권한을\u00a0허용해요.",
             },
             {
-              title: "메모 상단의 로봇 아이콘을 눌러요",
-              body: "AI 이용 횟수와 안내를 확인하고 시작하기를 눌러요. 결과가 나올 때까지 화면에서 기다려\u00a0주세요.",
+              title: "하고 싶은 일을 이어서 말해요",
+              body: "‘내일 아침 7시 헬스장, 금요일 저녁 8시 케이크 픽업’처럼 한 번에 말해도 돼요. 들은 말은 바로 글자로 보이고, ‘다 말했어요’를 누르거나 말이 멈추면 AI가 할\u00a0일로\u00a0나눠요.",
             },
             {
-              title: "필요한 할\u00a0일만 남기고 다듬어요",
-              body: "AI가 정리한 제목과 체크리스트 항목을 읽어봐요. 필요 없는 할\u00a0일은 닫기 버튼으로 제외하고, 제목, 날짜, 시간, 카테고리를 내 계획에 맞게\u00a0수정해요.",
+              title: "추가할 것만 고르고 고쳐요",
+              body: "체크한 할\u00a0일만 추가돼요. 할\u00a0일을 누르면 제목·날짜·시간·반복을 고칠 수 있고, 이미 있는 할\u00a0일은 ‘이미 있어요’로 알려 주고 처음엔 체크하지\u00a0않아요.",
             },
             {
-              title: "할\u00a0일로 만들고 하나씩 끝내요",
-              body: "남겨 둔 할\u00a0일을 생성해요. 할\u00a0일 상세의 수정하기에서 내용을 다시 다듬을 수 있고, 끝낸 일은 완료로\u00a0표시해요.",
+              title: "‘할\u00a0일 N개 추가’를 눌러요",
+              body: "버튼을 누르기 전에는 아무것도 저장되지 않아요. 추가한 할\u00a0일은 바로 목록에 들어가고, 다시 하고 싶으면 ‘다시 말하기’를\u00a0눌러요.",
             },
           ],
           example: {
-            introduction:
-              "여행 전에 머릿속이 복잡하다면, 먼저 메모에 준비할\u00a0일을 모아\u00a0보세요.",
+            introduction: "바쁜 하루를 한 번에 말해\u00a0보세요.",
             items: [
-              "메모 예시: 제주 여행 전에 항공권을 확인하고, 숙소를 예약하고, 짐을 챙겨야\u00a0해요.",
-              "정리 예시: 항공권 확인하기, 숙소 예약하기, 짐\u00a0챙기기.",
-              "짐 챙기기에 충전기, 세면도구 같은 체크리스트 항목을\u00a0더해요.",
+              "말한 내용: 내일 아침 7시에 헬스장 가고 금요일 저녁 8시에 엄마 생신 케이크 픽업, 그리고 매주 월수금에는 영어 단어 30개\u00a0외우기.",
+              "AI가 나눈 할\u00a0일: 헬스장 가기(내일 오전 7:00), 엄마 생신 케이크 픽업(금요일 오후 8:00), 영어 단어 30개 외우기(매주\u00a0월·수·금).",
+              "필요 없는 할\u00a0일은 체크를 풀고, 나머지만\u00a0추가해요.",
             ],
-            note: "사용 방법을 설명하기 위한 예시예요. AI 결과는 입력 내용에 따라 달라지므로 생성 전에 확인해\u00a0주세요.",
+            note: "사용 방법을 설명하기 위한 예시예요. AI 결과는 말한 내용에 따라 달라지므로 추가하기 전에 확인해\u00a0주세요.",
           },
           details: [
             {
-              title: "짧은 할\u00a0일은 마이크 버튼으로 말해요",
-              body: "할\u00a0일 추가 화면의 마이크 버튼을 눌러요. ‘이번 주 금요일 저녁 7시 약속’처럼 날짜와 시간을 함께 말해 보세요. AI가 채운 내용은 저장 전에 확인해요. 음성 입력에는 기기의 마이크와 음성 인식 권한이 필요할 수\u00a0있어요.",
+              title: "적어 둔 메모도 AI로 나눠요",
+              body: "메모 탭에서 메모를 열고 더보기(⋯) > ‘AI로 할\u00a0일 나누기’를 눌러요. 말로 할\u00a0일 만들기와 같은 화면에서 추가할 것만 골라요. 메모를 할\u00a0일 하나로 옮기려면 ‘할\u00a0일로 바꾸기’를\u00a0써요.",
             },
             {
-              title: "AI 없이 직접 정리해도 괜찮아요",
-              body: "한 가지 할\u00a0일은 직접 입력하고 날짜, 시간, 반복, 공개 범위와 카테고리를 설정할 수 있어요. 메모 상세의 할\u00a0일로 변환을 이용하면 메모를 한 개의 할\u00a0일로 옮길 수도\u00a0있어요.",
+              title: "남은 횟수는 AI 칩에서 봐요",
+              body: "할\u00a0일 추가 시트의 ‘AI로 할\u00a0일 만들기’ 옆 칩에 이번 달 남은 횟수가 보여요. ⓘ를 누르면 알아듣는 말의 예와 다시 채워지는 날을 볼 수 있어요. 잘 안 되면 횟수는 차감되지 않고, 직접 입력은 계속\u00a0무료예요.",
+            },
+            {
+              title: "AI에 보내는 내용을 먼저 알려 드려요",
+              body: "AI가 처음 무언가를 보내기 전에 동의 시트로 보내는 내용(입력하거나 말한 글, 할\u00a0일 기록, 날짜·시간대), 받는 곳(글자는 Anthropic·Google·OpenAI, 음성은 Apple·Google 음성 인식), 쓰는 곳(AI 기능에만, 광고에는 쓰지 않음)을 알려요. 이름·이메일·친구 정보·녹음 파일은 보내지 않아요. ‘나중에’를 누르면 아무것도 보내지 않고 직접 입력할 수\u00a0있어요.",
+            },
+            {
+              title: "긴 회의는 말로 메모하기로",
+              body: "회의나 수업처럼 긴 이야기는 메모 탭의 ‘말로 메모’로 녹음해요. AI가 요약과 핵심 포인트, 할\u00a0일을 찾아 주고, 녹음 파일은 기기에 저장되며 아이두 서버로 보내지\u00a0않아요.",
             },
           ],
           plans: {
@@ -723,33 +731,46 @@ const catalogs: Record<Locale, MessageCatalog> = {
           },
           faq: [
             {
-              question: "AI가 만든 할\u00a0일을 수정할 수 있나요?",
+              question: "AI가 나눈 할\u00a0일을 고칠 수 있나요?",
               answer:
-                "네. 생성 전에 필요 없는 할\u00a0일을 제외하고 제목, 날짜, 시간, 카테고리를 수정할 수 있어요. 생성한 뒤에도 할\u00a0일 상세에서 수정하기를 눌러 내용을 바꿀 수\u00a0있어요.",
+                "네. 추가하기 전에 할\u00a0일을 눌러 제목·날짜·시간·반복을 고치고, 필요 없는 건 체크를 풀어요. 추가한 뒤에도 할\u00a0일 상세에서 다시 고칠 수\u00a0있어요.",
             },
             {
-              question: "메모마다 AI를 꼭 사용해야 하나요?",
+              question: "녹음 파일도 AI 업체로 보내나요?",
               answer:
-                "아니에요. 메모만 남겨 두거나 직접 할\u00a0일을 만들 수 있어요. 메모 상세의 할\u00a0일로 변환으로 한 개의 할\u00a0일로 옮기는 방법도\u00a0있어요.",
+                "아니요. 말한 내용은 음성 인식이 글자로 바꾸고, AI 업체에는 그 글자만 보내요. 말로 메모하기의 녹음 파일은 기기에 저장되고 아이두 서버로 보내지\u00a0않아요.",
             },
             {
-              question: "음성으로 날짜와 시간도 입력할 수 있나요?",
+              question: "횟수는 언제 차감되나요?",
               answer:
-                "네. 할\u00a0일 추가 화면의 마이크 버튼을 눌러 날짜와 시간을 포함해 말할 수 있어요. 인식한 내용과 AI가 정리한 일정을 확인한 뒤 저장해\u00a0주세요.",
+                "AI가 할\u00a0일로 정리할 때 1회 차감돼요. 잘 안 되면 차감되지 않고, 할\u00a0일을 추가하는 것은 횟수를 쓰지 않아요. 무료는 글·말·메모를 합쳐 월 10회이고 매월 1일에 다시\u00a0채워져요.",
+            },
+            {
+              question: "AI 동의를 철회할 수 있나요?",
+              answer:
+                "네. 마이 탭 > 약관 및 정책 > AI 기능 데이터 제공에서 언제든 끌 수\u00a0있어요.",
             },
           ],
           screens: [
             {
-              alt: "‘말로 할\u00a0일을 추가해요’ 안내가 보이는 아이두 할\u00a0일 추가\u00a0화면",
-              caption: "마이크 버튼을 누르고 날짜와 시간을 함께 말해요.",
+              alt: "말한 내용을 AI가 할\u00a0일 3개로 나누고 날짜·시간·반복을 채운 아이두 할\u00a0일 고르기\u00a0화면",
+              caption: "AI가 나눈 할\u00a0일에서 추가할 것만 골라요.",
             },
             {
-              alt: "AI가 메모를 할\u00a0일 4개로 나눈 아이두 결과 화면",
-              caption: "AI가 나눈 할\u00a0일을 확인하고, 필요 없는 건 빼요.",
+              alt: "이사 준비 메모를 AI가 할\u00a0일 4개로 나눈 아이두\u00a0화면",
+              caption: "적어 둔 메모도 AI가 할\u00a0일로 나눠요.",
+            },
+            {
+              alt: "할\u00a0일 추가 시트의 AI 칩과 설명에 이번 달 남은 횟수와 초기화 날이 보이는 아이두\u00a0화면",
+              caption: "AI 칩에서 남은 횟수를 확인해요.",
+            },
+            {
+              alt: "AI로 정리하기 전에 보내는 내용·받는 곳·쓰는 곳을 알려 주는 아이두 동의\u00a0시트",
+              caption: "처음 한 번, 보내는 내용을 확인하고 동의해요.",
             },
           ],
           cardDescription:
-            "메모를 여러 할\u00a0일로 나누거나 말로 입력해요. AI가 정리한 내용을 확인하고 내 계획에\u00a0더해요.",
+            "말하거나 적어 둔 메모를 AI가 할\u00a0일 여러 개로 나눠요. 추가할 것만 골라 내 계획에\u00a0더해요.",
         },
         "recurring-todo": {
           kicker: "매일 조금씩, 꾸준히",
@@ -763,7 +784,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "반복할 요일과 기간을 골라요",
-              body: "반복을 눌러 매일, 주중, 주말 중 하나를 고르거나 원하는 요일을 선택해요. 캘린더에서 시작일과 종료일을 정한 뒤 선택을\u00a0완료해요.",
+              body: "반복을 눌러 매일, 주중, 주말 중 하나를 고르거나 원하는 요일을 선택해요. 반복 기간을 정하거나, 끝을 정하지 않으려면 ‘계속 반복’을\u00a0골라요.",
             },
             {
               title: "캘린더에서 계획을 확인해요",
@@ -785,6 +806,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
             note: "위젯은 확인을 돕는 기능이에요. 표시 갱신 시점은 기기의 운영체제에 따라 달라질 수\u00a0있어요.",
           },
           details: [
+            {
+              title: "반복 할\u00a0일을 고치거나 지울 때",
+              body: "이 할\u00a0일만, 이 할\u00a0일과 이후 할\u00a0일, 이 반복 전체 중에서 골라요. ‘이 반복 전체’를 지우면 지난 할\u00a0일과 완료 기록도 함께 지워져요. ‘매주 월수금 운동’처럼 말로 할\u00a0일 만들기로 말해도 반복 할\u00a0일이\u00a0돼요.",
+            },
             {
               title: "iPhone에서 위젯 추가하기",
               body: "홈 화면의 빈 공간을 길게 누르고 편집 메뉴에서 위젯 추가를 선택해요. 아이두를 검색한 뒤 원하는 크기를 골라 추가해요. 기기의 iOS 버전에 따라 메뉴 위치가 조금 다를 수\u00a0있어요.",
@@ -1540,7 +1565,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         kicker: "말하면 뚝딱, 할\u00a0일은 바로",
         title: "말만 하면, 할\u00a0일이 돼요",
         description:
-          "말하거나 적기만 하면 날짜와 시간, 반복까지 알아서 채워져요. 긴 메모도 AI가 할\u00a0일 여러 개로\u00a0나눠줘요.",
+          "길게 말하면 AI가 할\u00a0일 여러 개로 나누고 날짜와 시간, 반복까지 채워요. 적어 둔 메모도 AI가 할\u00a0일로 나눠주고, 추가할 것만 골라\u00a0담아요.",
         exampleLabel: "AI가 할\u00a0일을 정리하는 예시",
         examples: [
           {
@@ -1555,8 +1580,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
           },
         ],
         voiceAlt:
-          "말로 할\u00a0일을 추가하는 방법을 알려 주는 아이두 할\u00a0일 추가\u00a0화면",
-        parseAlt: "메모 한 개에서 AI가 할\u00a0일 4개를 만든 아이두\u00a0화면",
+          "말한 내용을 AI가 할\u00a0일 3개로 나누고 날짜·시간·반복을 채운 아이두 할\u00a0일 고르기\u00a0화면",
+        parseAlt:
+          "이사 준비 메모를 AI가 할\u00a0일 4개로 나눈 아이두\u00a0화면",
         repeatAlt:
           "필라테스 할\u00a0일에 날짜와 시간이 채워진 아이두 할\u00a0일 추가\u00a0화면",
         guideLink: "AI 할\u00a0일 사용법",
@@ -1776,7 +1802,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
         ],
       },
       appFeatures: [
-        "말하거나 적으면 AI가 날짜·시간·반복을 채우는 할\u00a0일\u00a0만들기",
+        "말하면 AI가 할\u00a0일 여러 개로 나누고 날짜·시간·반복을 채우는 말로 할\u00a0일\u00a0만들기",
+        "회의·수업 녹음을 AI가 요약하고 할\u00a0일을 찾아 주는 말로\u00a0메모하기",
         "친구와 할\u00a0일을 나누고 콕과 댓글로 응원하기",
         "친구 초대와 12칸 발자국 판",
         "iOS·Android 홈 화면 위젯",
@@ -1802,7 +1829,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "AI가 메모와 음성을 어떻게 정리해주나요?",
           answer:
-            "자연스러운 문장으로 할\u00a0일을 적거나 음성으로 입력할 수 있어요. 메모 AI는 떠오르는 내용을 실행할 여러 할\u00a0일로 나눠줘요. 정리된 내용을 확인하고 나에게 맞게 수정해 사용해\u00a0보세요.",
+            "할\u00a0일 추가 시트의 마이크를 누르고 길게 말하면, AI가 할\u00a0일 여러 개로 나누고 날짜·시간·반복까지 채워요. 적어 둔 메모는 ‘AI로 할\u00a0일 나누기’로 나눌 수 있어요. 추가하기 전에 하나씩 확인하고 고칠 수 있고, 회의나 수업은 말로 메모하기로 녹음하면 요약과 할\u00a0일을 찾아\u00a0줘요.",
         },
         {
           question: "매일 반복되는 할\u00a0일도 만들 수 있나요?",
@@ -2070,18 +2097,18 @@ const catalogs: Record<Locale, MessageCatalog> = {
           ],
         },
         ai: {
-          navigationLabel: "AI input",
-          title: "Type it as you think it. Say it as you\u00a0go.",
+          navigationLabel: "AI to-dos",
+          title: "Say it or jot it down as you\u00a0think",
           description:
-            "Add to-dos in everyday language or with voice\u00a0input.",
+            "AI splits what you say or a note you wrote into several\u00a0to-dos.",
           details: [
-            "Include a date and time, and AI helps turn your words into a\u00a0plan.",
-            "Review the to-dos extracted from a note before adding\u00a0them.",
-            "Check the app’s current plan information for AI input\u00a0limits.",
+            "Speak to add: talk, and AI splits it into to-dos with dates, times and repeats filled\u00a0in.",
+            "Tap Split into to-dos with AI on a note and pick what to add on the same\u00a0screen.",
+            "Free includes 10 a month and Premium up to 1,000 a month. The AI chip shows uses\u00a0left.",
           ],
           captions: [
-            "Adding a to-do with dates, times and AI\u00a0input",
-            "Starting AI planning from a note",
+            "Picking from the to-dos AI split from what you\u00a0said",
+            "A note AI split into 4\u00a0to-dos",
           ],
         },
         friends: {
@@ -2248,45 +2275,52 @@ const catalogs: Record<Locale, MessageCatalog> = {
       guides: {
         "ai-todo": {
           kicker: "Just say it",
-          title: "Turn notes into to-dos with AI",
+          title: "Turn what you say and write into to-dos with\u00a0AI",
           summary:
-            "Aido is a to-do list app that can turn a note into several to-dos and checklist items with AI. You can also type a sentence or speak to create a to-do. Review the results, select what you need and adjust the plan before you get\u00a0started.",
+            "Aido is a to-do list app where AI splits what you say or a note you wrote into several to-dos and fills in dates, times and repeats. You check and edit each to-do before adding it, so only what you want goes into your\u00a0plan.",
           steps: [
             {
-              title: "Capture your thoughts in a note",
-              body: "Open the notes tab and create a note. Write down what comes to mind, such as everything you need to prepare for a\u00a0trip.",
+              title: "Tap the mic on the add sheet",
+              body: "Open the add sheet on the To-dos tab and tap the mic. The first time, check what's sent and who processes it on the AI consent sheet, tap Agree, then allow microphone\u00a0access.",
             },
             {
-              title: "Tap the robot icon at the top",
-              body: "Check your remaining AI uses and the instructions, then start. Stay on the screen while Aido prepares the\u00a0results.",
+              title: "Say everything on your mind",
+              body: "Say it all at once, like “gym at 7 tomorrow morning, pick up the cake at 8 on Friday.” Your words appear as text, and when you tap Done or stop talking, AI splits them into\u00a0to-dos.",
             },
             {
-              title: "Keep and adjust the to-dos you need",
-              body: "Read the suggested titles and checklist items. Remove unwanted to-dos with the close button, then edit titles, dates, times and categories to fit your\u00a0plan.",
+              title: "Pick and edit what to add",
+              body: "Only checked to-dos are added. Tap one to edit its title, date, time or repeat. To-dos you already have are marked and left unchecked at\u00a0first.",
             },
             {
-              title: "Create your to-dos and get started",
-              body: "Create the remaining to-dos. Use Edit in a to-do's detail screen to make further changes, and mark it complete when you\u00a0finish.",
+              title: "Tap Add to finish",
+              body: "Nothing is saved until you tap the button. Added to-dos go straight to your list, and you can tap Say it again to start\u00a0over.",
             },
           ],
           example: {
-            introduction:
-              "Before a trip, collect the things you need to do in one\u00a0note.",
+            introduction: "Say your busy day in one\u00a0go.",
             items: [
-              "Example note: Before my Jeju trip, I need to check flights, book a hotel and\u00a0pack.",
-              "Example to-dos: Check flights. Book a hotel. Pack for the\u00a0trip.",
-              "Add checklist items such as a charger and toiletries to the packing\u00a0to-do.",
+              "What you say: Gym at 7 tomorrow morning, pick up Mom's birthday cake at 8 on Friday evening, and memorize 30 English words every Mon, Wed and\u00a0Fri.",
+              "To-dos AI suggests: Go to the gym (tomorrow, 7:00 AM), Pick up the birthday cake (Friday, 8:00 PM), Memorize 30 words (every Mon, Wed and\u00a0Fri).",
+              "Uncheck what you don't need and add the\u00a0rest.",
             ],
-            note: "This example illustrates the workflow. AI results depend on your input, so review them before creating\u00a0to-dos.",
+            note: "This example illustrates the workflow. AI results depend on what you say, so review them before\u00a0adding.",
           },
           details: [
             {
-              title: "Use the microphone for a short to-do",
-              body: "Tap the microphone button on the Add to-do screen. Say a date and time, such as 'Meet on Friday at 7 p.m.' Review the details AI fills in before saving. Voice input may require microphone and speech recognition permissions on your\u00a0device.",
+              title: "AI can split your notes, too",
+              body: "Open a note on the Notes tab and tap More (⋯) > Split into to-dos with AI. Pick what to add on the same screen as Speak to add. To move a note into a single to-do, use Convert to\u00a0to-do.",
             },
             {
-              title: "Organize things yourself, too",
-              body: "You can add a to-do directly and set its date, time, repeat schedule, visibility and category. Use Convert to to-do in a note's detail screen to move the note into a single\u00a0to-do.",
+              title: "See uses left on the AI chip",
+              body: "The chip next to Make to-dos with AI on the add sheet shows how many uses are left this month. Tap ⓘ for examples it understands and when uses refill. Failed attempts don't count, and typing to-dos yourself stays\u00a0free.",
+            },
+            {
+              title: "We tell you what AI receives first",
+              body: "Before AI sends anything for the first time, a consent sheet shows what's sent (what you type or say, your to-dos, the date and time zone), who processes it (Anthropic, Google and OpenAI for text; Apple or Google speech recognition for voice) and how it's used (only for AI features, never for ads). Your name, email, friends and audio files aren't sent. Tap Not now to send nothing and type to-dos\u00a0yourself.",
+            },
+            {
+              title: "Use Voice notes for long meetings",
+              body: "For long talks like meetings or classes, record with Voice notes on the Notes tab. AI finds a summary, key points and to-dos, and audio files are saved on your device and aren't sent to Aido's\u00a0servers.",
             },
           ],
           plans: {
@@ -2296,35 +2330,46 @@ const catalogs: Record<Locale, MessageCatalog> = {
           },
           faq: [
             {
-              question: "Can I edit the to-dos AI creates?",
+              question: "Can I edit the to-dos AI suggests?",
               answer:
-                "Yes. Remove unwanted to-dos and edit titles, dates, times and categories before creating them. After creation, open a to-do's detail screen and use Edit to adjust\u00a0it.",
+                "Yes. Before adding, tap a to-do to edit its title, date, time or repeat, and uncheck what you don't need. You can still edit it later from the to-do's detail\u00a0screen.",
             },
             {
-              question: "Do I need AI for every note?",
+              question: "Are audio files sent to AI providers?",
               answer:
-                "No. Keep a note as it is or create to-dos yourself. You can also use Convert to to-do in the note's detail screen to move it into one\u00a0to-do.",
+                "No. Speech recognition turns what you say into text, and only that text goes to AI providers. Voice notes recordings are saved on your device and aren't sent to Aido's\u00a0servers.",
             },
             {
-              question: "Can I include dates and times in voice\u00a0input?",
+              question: "When does a use count?",
               answer:
-                "Yes. Tap the microphone button on the Add to-do screen and include dates and times when speaking. Check the recognized text and the resulting schedule before\u00a0saving.",
+                "One use counts when AI sorts things into to-dos. Failed attempts don't count, and adding to-dos doesn't use any. Free includes 10 a month across text, voice and notes, refilled on the 1st of each\u00a0month.",
+            },
+            {
+              question: "Can I withdraw AI consent?",
+              answer:
+                "Yes. Turn it off anytime in Me > Terms & policies > AI data\u00a0sharing.",
             },
           ],
           screens: [
             {
-              alt: "Aido Add to-do screen with the “Add to-dos by voice”\u00a0tip",
-              caption:
-                "Tap the microphone and say the date and time,\u00a0too.",
+              alt: "Aido review screen where AI split what was said into 3 to-dos with dates, times and repeats filled\u00a0in",
+              caption: "Pick what to add from the to-dos AI\u00a0suggests.",
             },
             {
-              alt: "Aido screen where AI split a note into 4\u00a0to-dos",
-              caption:
-                "Review the to-dos AI suggests and remove what you don’t\u00a0need.",
+              alt: "Aido screen where AI split a moving checklist note into 4\u00a0to-dos",
+              caption: "AI splits your written notes into to-dos,\u00a0too.",
+            },
+            {
+              alt: "Aido add sheet showing the AI chip and a tip with uses left this month and the reset\u00a0date",
+              caption: "Check uses left on the AI\u00a0chip.",
+            },
+            {
+              alt: "Aido consent sheet explaining what's sent, who processes it and how it's used before AI organizes\u00a0anything",
+              caption: "Agree once after checking what's\u00a0sent.",
             },
           ],
           cardDescription:
-            "Turn notes into to-dos or add them by voice. Review the AI results before adding them to your\u00a0plans.",
+            "AI splits what you say or a note into several to-dos. Pick what to add to your\u00a0plan.",
         },
         "recurring-todo": {
           kicker: "A little every day",
@@ -2338,7 +2383,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "Choose the days and date range",
-              body: "Open Repeat and select daily, weekdays, weekends or individual days. Choose a start and end date in the calendar, then confirm your selection.",
+              body: "Open Repeat and select daily, weekdays, weekends or individual days. Set how long it repeats, or choose Repeat forever to keep it\u00a0going.",
             },
             {
               title: "Review the plan in your calendar",
@@ -2360,6 +2405,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
             note: "Widgets help you check your day. Refresh timing can vary with your device's operating\u00a0system.",
           },
           details: [
+            {
+              title: "Editing or deleting a repeating to-do",
+              body: "Choose Just this one, This and following, or All in this repeat. Deleting All in this repeat also removes past and completed ones. You can also say “work out every Mon, Wed and Fri” with Speak to add to create a repeating\u00a0to-do.",
+            },
             {
               title: "Add a widget on iPhone",
               body: "Touch and hold an empty area on your home screen. Open Edit and choose Add Widget. Search for Aido, choose a size and add it. Menu locations may vary with your iOS\u00a0version.",
@@ -3130,7 +3179,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         kicker: "Say it, and it’s on your list",
         title: "Just say it. It’s a to-do.",
         description:
-          "Say it or type it, and the date, time and repeat fill themselves in. AI can also split a long note into separate\u00a0to-dos.",
+          "Talk as long as you like, and AI splits it into to-dos with the date, time and repeat filled in. It can split a note you wrote, too, and you add only what you\u00a0pick.",
         exampleLabel: "Examples of AI organizing a to-do",
         examples: [
           {
@@ -3374,7 +3423,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
         ],
       },
       appFeatures: [
-        "AI to-dos that fill in the date, time and repeat from what you say or\u00a0type",
+        "Speak to add: AI splits what you say into to-dos with the date, time and repeat filled\u00a0in",
+        "Voice notes: AI sums up meetings and classes and finds\u00a0to-dos",
         "Share to-dos with friends and cheer them on with nudges and comments",
         "Friend invites with a 12-cell paw print\u00a0board",
         "Home screen widgets on iOS and Android",
@@ -3400,7 +3450,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         {
           question: "How does AI work with notes and voice\u00a0input?",
           answer:
-            "Enter tasks in everyday language or use voice input. Memo AI can turn a note into multiple actionable to-dos. Review the results and adjust them to fit your\u00a0plans.",
+            "Tap the mic on the add sheet and talk as long as you like. AI splits it into several to-dos and fills in dates, times and repeats. Use Split into to-dos with AI for notes you wrote. You check and edit each one before adding, and Voice notes sum up meetings and classes and find\u00a0to-dos.",
         },
         {
           question: "Can I create recurring tasks?",

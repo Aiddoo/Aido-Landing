@@ -6,7 +6,8 @@ type GuideScreenDevice = Extract<
   "iphone" | "android" | "duo-open" | "ipad"
 >;
 
-// 1.13.0 iPhone(6.3인치) 라이트 모드 실제 화면, 1.14.0 Android 날씨 화면, 1.14.1 댓글·기기별 날씨 화면.
+// 1.13.0 iPhone(6.3인치) 라이트 모드 실제 화면, 1.14.0 Android 날씨 화면, 1.14.1 댓글·기기별 날씨 화면,
+// 1.15.0 AI 할 일 화면(ai-*, 한국어 캡처를 영어 페이지에도 쓴다). voice-add·memo-ai는 1.15.0 소개 페이지의 이전 화면 비교에 남겨 둔다.
 // 원본은 ko/en 캡처를 640px(iPad는 1280px) WebP로 줄였다. 영어 캡처가 없는 하트·iPhone Duo·iPad는 한국어 화면을 함께 쓴다.
 export const guideScreenFiles = {
   "friend-feed": "iphone",
@@ -15,6 +16,10 @@ export const guideScreenFiles = {
   "home-widgets": "iphone",
   "voice-add": "iphone",
   "memo-ai": "iphone",
+  "ai-speak-review": "iphone",
+  "ai-memo-split": "iphone",
+  "ai-quota-info": "iphone",
+  "ai-consent": "iphone",
   "invite-home": "iphone",
   "paw-board": "iphone",
   "invite-card": "iphone",

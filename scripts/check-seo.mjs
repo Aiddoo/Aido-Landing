@@ -276,8 +276,11 @@ for (const locale of ["ko", "en"]) {
       for (const image of tags(html, "img").filter((image) =>
         originalSource(image.src)?.includes("/screenshots/"),
       )) {
+        // 영어 캡처가 없는 화면은 한영이 같은 바이트라 반응형 파일을 함께 쓴다.
         assert.ok(
-          originalSource(image.src).includes(`/screenshots/${locale}/`),
+          originalSources(image.src).some((original) =>
+            original.includes(`/screenshots/${locale}/`),
+          ),
         );
         // 치수가 있거나, 비율 상자(AspectRatio) 안을 채우는 fill 이미지여야 CLS가 없다.
         assert.ok(

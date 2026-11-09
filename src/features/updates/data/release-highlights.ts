@@ -188,17 +188,6 @@ export const releaseHighlights = [
         },
         screens: [
           {
-            key: "voice-note-start",
-            alt: {
-              ko: "메모 탭의 말로 메모 버튼 옆에 ‘말로 메모해보세요’ 안내가 뜬 아이두\u00a0화면",
-              en: "Aido Notes tab with a tip next to the voice note button that invites you to record a\u00a0meeting",
-            },
-            caption: {
-              ko: "메모 탭에서 말로 메모를 눌러요.",
-              en: "Tap Voice notes on the Notes\u00a0tab.",
-            },
-          },
-          {
             key: "voice-note-record",
             alt: {
               ko: "회의를 녹음하며 중요한 순간을 표시하는 아이두 말로 메모하기 녹음 화면",
@@ -207,6 +196,17 @@ export const releaseHighlights = [
             caption: {
               ko: "녹음하며 중요한 순간을 표시해요.",
               en: "Mark important moments as you record.",
+            },
+          },
+          {
+            key: "voice-note-result",
+            alt: {
+              ko: "AI가 정리한 회의 요약과 시간이 붙은 핵심 포인트가 보이는 아이두 말로 메모하기 결과 화면",
+              en: "Aido Voice notes result with an AI meeting summary and time-stamped key points",
+            },
+            caption: {
+              ko: "요약과 핵심 포인트, 할 일을 찾아 줘요.",
+              en: "Get a summary, key points and to-dos.",
             },
           },
         ],
@@ -224,19 +224,25 @@ export const releaseHighlights = [
           en: "Tap “Split into to-dos with AI” on a note, and AI splits what you wrote into to-dos. Just like Speak to add, pick and edit the ones you want.",
         },
         points: { ko: [], en: [] },
-        screens: [
-          {
-            key: "memo-ai-menu",
+        screens: [],
+        comparison: {
+          before: {
+            key: "memo-ai",
+            label: { ko: "1.14.2까지", en: "Up to 1.14.2" },
             alt: {
-              ko: "메모의 더보기 메뉴에 ‘AI로 할\u00a0일 나누기’와 이번 달 남은 횟수가 보이는 아이두\u00a0화면",
-              en: "Aido note menu showing Split into to-dos with AI and the uses left this\u00a0month",
-            },
-            caption: {
-              ko: "메모의 더보기에서 골라요.",
-              en: "Find it in the note's More\u00a0menu.",
+              ko: "1.14.2까지의 아이두 메모 AI 결과 화면",
+              en: "Aido note AI results screen up to 1.14.2",
             },
           },
-        ],
+          after: {
+            key: "memo-ai-review",
+            label: { ko: "1.15.0부터", en: "From 1.15.0" },
+            alt: {
+              ko: "이사 준비 메모를 AI가 할 일 4개로 나누고 추가할 것을 고르는 아이두 1.15.0 화면",
+              en: "Aido 1.15.0 screen where AI splits a moving checklist note into 4 to-dos to pick from",
+            },
+          },
+        },
       },
       {
         id: "repeating-todos",
