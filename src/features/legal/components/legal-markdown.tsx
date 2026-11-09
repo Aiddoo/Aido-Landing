@@ -1,16 +1,33 @@
+import type { ReactNode } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Box, VStack } from "@/components/ui/layout";
 
 // Git-owned Markdown is rendered on the server; raw HTML stays disabled.
+// "## 제7조 (개인정보의 국외이전) {#overseas-transfer}"처럼 조항 제목 끝에 고정 앵커를 둘 수 있다.
+// 앱이 이 주소로 바로 이동하므로 조항 번호나 제목이 바뀌어도 id는 유지한다.
+const HEADING_ANCHOR = /\s*\{#([a-z0-9-]+)\}$/;
+function splitHeadingAnchor(children: ReactNode) {
+  if (typeof children !== "string") return { text: children, id: undefined };
+  const id = children.match(HEADING_ANCHOR)?.[1];
+  return { text: children.replace(HEADING_ANCHOR, ""), id };
+}
 // The surrounding document page owns h1, so Markdown headings start at h2.
 const components = {
   h1: ({ children }) => (
     <h2 className="pt-6 text-display-md text-ink first:pt-0">{children}</h2>
   ),
-  h2: ({ children }) => (
-    <h3 className="pt-2 text-title-lg font-bold text-ink">{children}</h3>
-  ),
+  h2: ({ children }) => {
+    const { text, id } = splitHeadingAnchor(children);
+    return (
+      <h3
+        id={id}
+        className="scroll-mt-24 pt-2 text-title-lg font-bold text-ink"
+      >
+        {text}
+      </h3>
+    );
+  },
   h3: ({ children }) => (
     <h4 className="pt-2 text-title font-bold text-ink">{children}</h4>
   ),

@@ -256,6 +256,14 @@ for (const locale of ["ko", "en"]) {
         `${SITE_URL}${route}`,
       );
     }
+    if (path === "/privacy")
+      // 앱의 AI 동의 시트가 국외 이전 조항(제7조)으로 바로 이동한다. id를 바꾸지 않는다.
+      assert.equal(
+        tags(html, "h3").filter((heading) => heading.id === "overseas-transfer")
+          .length,
+        1,
+        `${route}: stable #overseas-transfer anchor`,
+      );
     if (path === "/services") {
       assert.ok(visibleHtml.includes(messages.services.screenshotNote));
       for (const { id, screenshots } of serviceFeatures) {

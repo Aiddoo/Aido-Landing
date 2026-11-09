@@ -184,7 +184,7 @@ Entrustment contracts specify restrictions on processing personal information be
 
 ---
 
-## Article 7 (Cross-Border Transfer of Personal Information)
+## Article 7 (Cross-Border Transfer of Personal Information) {#overseas-transfer}
 
 The Company transfers personal information overseas for service provision as follows:
 
