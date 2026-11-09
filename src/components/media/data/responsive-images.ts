@@ -4184,6 +4184,1034 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/releases/en/memo-ai-menu.webp": {
+    "sourceHash": "618207e09752",
+    "width": 640,
+    "height": 501,
+    "variants": [
+      {
+        "width": 48,
+        "height": 38,
+        "src": "/responsive/memo-ai-menu-48-4b1a6804ea6c.webp"
+      },
+      {
+        "width": 96,
+        "height": 75,
+        "src": "/responsive/memo-ai-menu-96-8b4a9b7bcb67.webp"
+      },
+      {
+        "width": 160,
+        "height": 125,
+        "src": "/responsive/memo-ai-menu-160-42c9b496b60c.webp"
+      },
+      {
+        "width": 240,
+        "height": 188,
+        "src": "/responsive/memo-ai-menu-240-04e8349b8ae9.webp"
+      },
+      {
+        "width": 320,
+        "height": 250,
+        "src": "/responsive/memo-ai-menu-320-9b33c036789d.webp"
+      },
+      {
+        "width": 480,
+        "height": 376,
+        "src": "/responsive/memo-ai-menu-480-952bdf247519.webp"
+      },
+      {
+        "width": 640,
+        "height": 501,
+        "src": "/responsive/memo-ai-menu-640-c56b78e78054.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/mypage-two-pane.webp": {
+    "sourceHash": "c3e2796ab0a9",
+    "width": 1280,
+    "height": 648,
+    "variants": [
+      {
+        "width": 48,
+        "height": 24,
+        "src": "/responsive/mypage-two-pane-48-1d7c7334b744.webp"
+      },
+      {
+        "width": 96,
+        "height": 49,
+        "src": "/responsive/mypage-two-pane-96-a21ea6abce95.webp"
+      },
+      {
+        "width": 160,
+        "height": 81,
+        "src": "/responsive/mypage-two-pane-160-1c5badd429a7.webp"
+      },
+      {
+        "width": 240,
+        "height": 122,
+        "src": "/responsive/mypage-two-pane-240-20412959624a.webp"
+      },
+      {
+        "width": 320,
+        "height": 162,
+        "src": "/responsive/mypage-two-pane-320-ebc6fe236ff7.webp"
+      },
+      {
+        "width": 480,
+        "height": 243,
+        "src": "/responsive/mypage-two-pane-480-cf9b6c952569.webp"
+      },
+      {
+        "width": 640,
+        "height": 324,
+        "src": "/responsive/mypage-two-pane-640-ca9e5e6fdb19.webp"
+      },
+      {
+        "width": 960,
+        "height": 486,
+        "src": "/responsive/mypage-two-pane-960-7e8bb5ec376d.webp"
+      },
+      {
+        "width": 1280,
+        "height": 648,
+        "src": "/responsive/mypage-two-pane-1280-6ba04708a96f.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/notification-intro.webp": {
+    "sourceHash": "739fda6d1c81",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/notification-intro-48-83bf129f7dd0.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/notification-intro-96-03a37d0d83b4.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/notification-intro-160-04626d676454.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/notification-intro-240-c3c3c6b3b29b.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/notification-intro-320-2c29d13b4d4a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/notification-intro-480-3b8d775ea9ed.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/notification-intro-640-0951c2085bcd.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/paywall-benefits.webp": {
+    "sourceHash": "2def1bd722c9",
+    "width": 640,
+    "height": 835,
+    "variants": [
+      {
+        "width": 48,
+        "height": 63,
+        "src": "/responsive/paywall-benefits-48-fbef72757aa6.webp"
+      },
+      {
+        "width": 96,
+        "height": 125,
+        "src": "/responsive/paywall-benefits-96-429714e2e534.webp"
+      },
+      {
+        "width": 160,
+        "height": 209,
+        "src": "/responsive/paywall-benefits-160-59a8202003ba.webp"
+      },
+      {
+        "width": 240,
+        "height": 313,
+        "src": "/responsive/paywall-benefits-240-295bb16b0c30.webp"
+      },
+      {
+        "width": 320,
+        "height": 418,
+        "src": "/responsive/paywall-benefits-320-f9a5d9953478.webp"
+      },
+      {
+        "width": 480,
+        "height": 626,
+        "src": "/responsive/paywall-benefits-480-ca29fd262837.webp"
+      },
+      {
+        "width": 640,
+        "height": 835,
+        "src": "/responsive/paywall-benefits-640-2f4cb5398716.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/paywall-compare.webp": {
+    "sourceHash": "430d0f45da7e",
+    "width": 640,
+    "height": 1071,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/paywall-compare-48-218b3b09bbd4.webp"
+      },
+      {
+        "width": 96,
+        "height": 161,
+        "src": "/responsive/paywall-compare-96-fbda6b12bd41.webp"
+      },
+      {
+        "width": 160,
+        "height": 268,
+        "src": "/responsive/paywall-compare-160-a56215877b41.webp"
+      },
+      {
+        "width": 240,
+        "height": 402,
+        "src": "/responsive/paywall-compare-240-240af4e56d3b.webp"
+      },
+      {
+        "width": 320,
+        "height": 536,
+        "src": "/responsive/paywall-compare-320-5712c70c8448.webp"
+      },
+      {
+        "width": 480,
+        "height": 803,
+        "src": "/responsive/paywall-compare-480-f425305c3ff7.webp"
+      },
+      {
+        "width": 640,
+        "height": 1071,
+        "src": "/responsive/paywall-compare-640-696140d012f9.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/repeat-weekdays.webp": {
+    "sourceHash": "d7bcffd2b536",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/repeat-weekdays-48-4bff80ee868a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/repeat-weekdays-96-ced83b0f5452.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/repeat-weekdays-160-fb1d0b07d020.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/repeat-weekdays-240-969532a5ec12.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/repeat-weekdays-320-a2d0b9fe900a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/repeat-weekdays-480-b9a0a5c6e2fd.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/repeat-weekdays-640-1c96eb60e796.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/speak-ai-info.webp": {
+    "sourceHash": "ac29b4202101",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/speak-ai-info-48-150a19d97359.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/speak-ai-info-96-88fcc41e7a3a.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/speak-ai-info-160-489a7d0e6a06.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/speak-ai-info-240-4e6b08936dd0.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/speak-ai-info-320-744133434e21.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/speak-ai-info-480-375c589daad6.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/speak-ai-info-640-74d9a7a9f31b.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/speak-listening.webp": {
+    "sourceHash": "a9bee91d0ea7",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/speak-listening-48-3c8075e303fc.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/speak-listening-96-a0fab6f7c544.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/speak-listening-160-532434ff6f2c.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/speak-listening-240-54c3607fa89b.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/speak-listening-320-f3cdf474aa39.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/speak-listening-480-c13d1cee7306.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/speak-listening-640-699538bbae14.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/speak-review.webp": {
+    "sourceHash": "0717dd4d3040",
+    "width": 640,
+    "height": 853,
+    "variants": [
+      {
+        "width": 48,
+        "height": 64,
+        "src": "/responsive/speak-review-48-a0c0c9dd7a2b.webp"
+      },
+      {
+        "width": 96,
+        "height": 128,
+        "src": "/responsive/speak-review-96-0c563c83c2cb.webp"
+      },
+      {
+        "width": 160,
+        "height": 213,
+        "src": "/responsive/speak-review-160-f5d0e203d902.webp"
+      },
+      {
+        "width": 240,
+        "height": 320,
+        "src": "/responsive/speak-review-240-588776d44055.webp"
+      },
+      {
+        "width": 320,
+        "height": 426,
+        "src": "/responsive/speak-review-320-3fc7ddcbb71a.webp"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "src": "/responsive/speak-review-480-e2d42325e78e.webp"
+      },
+      {
+        "width": 640,
+        "height": 853,
+        "src": "/responsive/speak-review-640-32e80d0dfedd.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/usage-card.webp": {
+    "sourceHash": "13cb82e26677",
+    "width": 640,
+    "height": 724,
+    "variants": [
+      {
+        "width": 48,
+        "height": 54,
+        "src": "/responsive/usage-card-48-f684d1c3c562.webp"
+      },
+      {
+        "width": 96,
+        "height": 109,
+        "src": "/responsive/usage-card-96-a86ad123c759.webp"
+      },
+      {
+        "width": 160,
+        "height": 181,
+        "src": "/responsive/usage-card-160-eb864b629faf.webp"
+      },
+      {
+        "width": 240,
+        "height": 272,
+        "src": "/responsive/usage-card-240-378e40975f7b.webp"
+      },
+      {
+        "width": 320,
+        "height": 362,
+        "src": "/responsive/usage-card-320-7ad905b91254.webp"
+      },
+      {
+        "width": 480,
+        "height": 543,
+        "src": "/responsive/usage-card-480-d5357d2d5d13.webp"
+      },
+      {
+        "width": 640,
+        "height": 724,
+        "src": "/responsive/usage-card-640-fc925ef4a4d5.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/voice-note-record.webp": {
+    "sourceHash": "abc6541d97a3",
+    "width": 640,
+    "height": 853,
+    "variants": [
+      {
+        "width": 48,
+        "height": 64,
+        "src": "/responsive/voice-note-record-48-a5699e43d11e.webp"
+      },
+      {
+        "width": 96,
+        "height": 128,
+        "src": "/responsive/voice-note-record-96-f752e4a084c0.webp"
+      },
+      {
+        "width": 160,
+        "height": 213,
+        "src": "/responsive/voice-note-record-160-9d836f37b59f.webp"
+      },
+      {
+        "width": 240,
+        "height": 320,
+        "src": "/responsive/voice-note-record-240-bab7e350b62c.webp"
+      },
+      {
+        "width": 320,
+        "height": 426,
+        "src": "/responsive/voice-note-record-320-197bdcbed7d0.webp"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "src": "/responsive/voice-note-record-480-3d54ecf13227.webp"
+      },
+      {
+        "width": 640,
+        "height": 853,
+        "src": "/responsive/voice-note-record-640-d8a057a72d31.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/voice-note-start.webp": {
+    "sourceHash": "98be1adf4c4d",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/voice-note-start-48-930a032a09d1.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/voice-note-start-96-11216f6a6668.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/voice-note-start-160-51aeb2a52e14.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/voice-note-start-240-e65448cb8e90.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/voice-note-start-320-07705465b9ee.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/voice-note-start-480-0e3cbd72c106.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/voice-note-start-640-2a2ef006b5a3.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/memo-ai-menu.webp": {
+    "sourceHash": "618207e09752",
+    "width": 640,
+    "height": 501,
+    "variants": [
+      {
+        "width": 48,
+        "height": 38,
+        "src": "/responsive/memo-ai-menu-48-4b1a6804ea6c.webp"
+      },
+      {
+        "width": 96,
+        "height": 75,
+        "src": "/responsive/memo-ai-menu-96-8b4a9b7bcb67.webp"
+      },
+      {
+        "width": 160,
+        "height": 125,
+        "src": "/responsive/memo-ai-menu-160-42c9b496b60c.webp"
+      },
+      {
+        "width": 240,
+        "height": 188,
+        "src": "/responsive/memo-ai-menu-240-04e8349b8ae9.webp"
+      },
+      {
+        "width": 320,
+        "height": 250,
+        "src": "/responsive/memo-ai-menu-320-9b33c036789d.webp"
+      },
+      {
+        "width": 480,
+        "height": 376,
+        "src": "/responsive/memo-ai-menu-480-952bdf247519.webp"
+      },
+      {
+        "width": 640,
+        "height": 501,
+        "src": "/responsive/memo-ai-menu-640-c56b78e78054.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/mypage-two-pane.webp": {
+    "sourceHash": "c3e2796ab0a9",
+    "width": 1280,
+    "height": 648,
+    "variants": [
+      {
+        "width": 48,
+        "height": 24,
+        "src": "/responsive/mypage-two-pane-48-1d7c7334b744.webp"
+      },
+      {
+        "width": 96,
+        "height": 49,
+        "src": "/responsive/mypage-two-pane-96-a21ea6abce95.webp"
+      },
+      {
+        "width": 160,
+        "height": 81,
+        "src": "/responsive/mypage-two-pane-160-1c5badd429a7.webp"
+      },
+      {
+        "width": 240,
+        "height": 122,
+        "src": "/responsive/mypage-two-pane-240-20412959624a.webp"
+      },
+      {
+        "width": 320,
+        "height": 162,
+        "src": "/responsive/mypage-two-pane-320-ebc6fe236ff7.webp"
+      },
+      {
+        "width": 480,
+        "height": 243,
+        "src": "/responsive/mypage-two-pane-480-cf9b6c952569.webp"
+      },
+      {
+        "width": 640,
+        "height": 324,
+        "src": "/responsive/mypage-two-pane-640-ca9e5e6fdb19.webp"
+      },
+      {
+        "width": 960,
+        "height": 486,
+        "src": "/responsive/mypage-two-pane-960-7e8bb5ec376d.webp"
+      },
+      {
+        "width": 1280,
+        "height": 648,
+        "src": "/responsive/mypage-two-pane-1280-6ba04708a96f.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/notification-intro.webp": {
+    "sourceHash": "739fda6d1c81",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/notification-intro-48-83bf129f7dd0.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/notification-intro-96-03a37d0d83b4.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/notification-intro-160-04626d676454.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/notification-intro-240-c3c3c6b3b29b.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/notification-intro-320-2c29d13b4d4a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/notification-intro-480-3b8d775ea9ed.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/notification-intro-640-0951c2085bcd.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/paywall-benefits.webp": {
+    "sourceHash": "2def1bd722c9",
+    "width": 640,
+    "height": 835,
+    "variants": [
+      {
+        "width": 48,
+        "height": 63,
+        "src": "/responsive/paywall-benefits-48-fbef72757aa6.webp"
+      },
+      {
+        "width": 96,
+        "height": 125,
+        "src": "/responsive/paywall-benefits-96-429714e2e534.webp"
+      },
+      {
+        "width": 160,
+        "height": 209,
+        "src": "/responsive/paywall-benefits-160-59a8202003ba.webp"
+      },
+      {
+        "width": 240,
+        "height": 313,
+        "src": "/responsive/paywall-benefits-240-295bb16b0c30.webp"
+      },
+      {
+        "width": 320,
+        "height": 418,
+        "src": "/responsive/paywall-benefits-320-f9a5d9953478.webp"
+      },
+      {
+        "width": 480,
+        "height": 626,
+        "src": "/responsive/paywall-benefits-480-ca29fd262837.webp"
+      },
+      {
+        "width": 640,
+        "height": 835,
+        "src": "/responsive/paywall-benefits-640-2f4cb5398716.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/paywall-compare.webp": {
+    "sourceHash": "430d0f45da7e",
+    "width": 640,
+    "height": 1071,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/paywall-compare-48-218b3b09bbd4.webp"
+      },
+      {
+        "width": 96,
+        "height": 161,
+        "src": "/responsive/paywall-compare-96-fbda6b12bd41.webp"
+      },
+      {
+        "width": 160,
+        "height": 268,
+        "src": "/responsive/paywall-compare-160-a56215877b41.webp"
+      },
+      {
+        "width": 240,
+        "height": 402,
+        "src": "/responsive/paywall-compare-240-240af4e56d3b.webp"
+      },
+      {
+        "width": 320,
+        "height": 536,
+        "src": "/responsive/paywall-compare-320-5712c70c8448.webp"
+      },
+      {
+        "width": 480,
+        "height": 803,
+        "src": "/responsive/paywall-compare-480-f425305c3ff7.webp"
+      },
+      {
+        "width": 640,
+        "height": 1071,
+        "src": "/responsive/paywall-compare-640-696140d012f9.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/repeat-weekdays.webp": {
+    "sourceHash": "d7bcffd2b536",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/repeat-weekdays-48-4bff80ee868a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/repeat-weekdays-96-ced83b0f5452.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/repeat-weekdays-160-fb1d0b07d020.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/repeat-weekdays-240-969532a5ec12.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/repeat-weekdays-320-a2d0b9fe900a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/repeat-weekdays-480-b9a0a5c6e2fd.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/repeat-weekdays-640-1c96eb60e796.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/speak-ai-info.webp": {
+    "sourceHash": "ac29b4202101",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/speak-ai-info-48-150a19d97359.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/speak-ai-info-96-88fcc41e7a3a.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/speak-ai-info-160-489a7d0e6a06.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/speak-ai-info-240-4e6b08936dd0.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/speak-ai-info-320-744133434e21.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/speak-ai-info-480-375c589daad6.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/speak-ai-info-640-74d9a7a9f31b.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/speak-listening.webp": {
+    "sourceHash": "a9bee91d0ea7",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/speak-listening-48-3c8075e303fc.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/speak-listening-96-a0fab6f7c544.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/speak-listening-160-532434ff6f2c.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/speak-listening-240-54c3607fa89b.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/speak-listening-320-f3cdf474aa39.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/speak-listening-480-c13d1cee7306.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/speak-listening-640-699538bbae14.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/speak-review.webp": {
+    "sourceHash": "bab4176a3c64",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/speak-review-48-4d45bacb7f6e.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/speak-review-96-073acfbbc0aa.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/speak-review-160-344cf6f4ef78.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/speak-review-240-0c0b3ebf77f1.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/speak-review-320-1b777c5b78bf.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/speak-review-480-bd20ac8b4065.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/speak-review-640-705d445bfe7a.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/usage-card.webp": {
+    "sourceHash": "13cb82e26677",
+    "width": 640,
+    "height": 724,
+    "variants": [
+      {
+        "width": 48,
+        "height": 54,
+        "src": "/responsive/usage-card-48-f684d1c3c562.webp"
+      },
+      {
+        "width": 96,
+        "height": 109,
+        "src": "/responsive/usage-card-96-a86ad123c759.webp"
+      },
+      {
+        "width": 160,
+        "height": 181,
+        "src": "/responsive/usage-card-160-eb864b629faf.webp"
+      },
+      {
+        "width": 240,
+        "height": 272,
+        "src": "/responsive/usage-card-240-378e40975f7b.webp"
+      },
+      {
+        "width": 320,
+        "height": 362,
+        "src": "/responsive/usage-card-320-7ad905b91254.webp"
+      },
+      {
+        "width": 480,
+        "height": 543,
+        "src": "/responsive/usage-card-480-d5357d2d5d13.webp"
+      },
+      {
+        "width": 640,
+        "height": 724,
+        "src": "/responsive/usage-card-640-fc925ef4a4d5.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/voice-note-record.webp": {
+    "sourceHash": "abc6541d97a3",
+    "width": 640,
+    "height": 853,
+    "variants": [
+      {
+        "width": 48,
+        "height": 64,
+        "src": "/responsive/voice-note-record-48-a5699e43d11e.webp"
+      },
+      {
+        "width": 96,
+        "height": 128,
+        "src": "/responsive/voice-note-record-96-f752e4a084c0.webp"
+      },
+      {
+        "width": 160,
+        "height": 213,
+        "src": "/responsive/voice-note-record-160-9d836f37b59f.webp"
+      },
+      {
+        "width": 240,
+        "height": 320,
+        "src": "/responsive/voice-note-record-240-bab7e350b62c.webp"
+      },
+      {
+        "width": 320,
+        "height": 426,
+        "src": "/responsive/voice-note-record-320-197bdcbed7d0.webp"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "src": "/responsive/voice-note-record-480-3d54ecf13227.webp"
+      },
+      {
+        "width": 640,
+        "height": 853,
+        "src": "/responsive/voice-note-record-640-d8a057a72d31.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/voice-note-start.webp": {
+    "sourceHash": "98be1adf4c4d",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/voice-note-start-48-930a032a09d1.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/voice-note-start-96-11216f6a6668.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/voice-note-start-160-51aeb2a52e14.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/voice-note-start-240-e65448cb8e90.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/voice-note-start-320-07705465b9ee.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/voice-note-start-480-0e3cbd72c106.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/voice-note-start-640-2a2ef006b5a3.webp"
+      }
+    ]
+  },
   "/app-assets/screenshots/en/android/app-icons.webp": {
     "sourceHash": "5efe95bc93cb",
     "width": 480,

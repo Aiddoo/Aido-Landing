@@ -1,11 +1,13 @@
 import { groupBy } from "es-toolkit";
 import {
+  ArrowRight,
   Bug,
   ChevronDown,
   type LucideIcon,
   Sparkles,
   Wand2,
 } from "lucide-react";
+import Link from "next/link";
 import { match } from "ts-pattern";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
 import { PageHeader } from "@/components/layout/page-header";
@@ -23,10 +25,12 @@ import {
   type UpdateNote,
   updateNotes,
 } from "@/features/updates/data/patch-notes";
+import { getReleaseHighlightByVersion } from "@/features/updates/data/release-highlights";
 import { keepPhrasesTogether } from "@/features/updates/utils/keep-phrases-together";
 import type { Locale } from "@/i18n/config";
 import { getMessages, type MessageCatalog } from "@/i18n/messages";
 import { formatContentDate } from "@/lib/format-content-date";
+import { localizedPath } from "@/lib/public-routes";
 import { cn } from "@/lib/utils";
 
 type PatchNotesLabels = MessageCatalog["patchNotes"];
@@ -237,6 +241,13 @@ function UpdateCard({
       </summary>
       <VStack gap={6} className={latest ? "px-6 pb-8 sm:px-8" : "px-5 pb-6"}>
         {release.kind === "app" && (
+          <HighlightsLink
+            version={release.version}
+            locale={locale}
+            label={labels.highlightsLink}
+          />
+        )}
+        {release.kind === "app" && (
           <VStack
             render={<section />}
             gap={3}
@@ -301,5 +312,29 @@ function ReleaseItem({ children }: { children: string }) {
       />
       <span>{children}</span>
     </HStack>
+  );
+}
+
+/** 실제 화면으로 소개하는 페이지가 있는 버전만 링크를 보인다. */
+function HighlightsLink({
+  version,
+  locale,
+  label,
+}: {
+  version: string;
+  locale: Locale;
+  label: string;
+}) {
+  const highlight = getReleaseHighlightByVersion(version);
+  if (!highlight) return null;
+  return (
+    <Link
+      href={localizedPath(locale, highlight.path)}
+      data-slot="release-highlights-link"
+      className="inline-flex min-h-11 w-fit items-center gap-1.5 rounded-full bg-brand-soft px-4 text-caption font-semibold text-brand-deep transition-colors hover:bg-brand/20"
+    >
+      {label}
+      <ArrowRight aria-hidden="true" className="size-4" />
+    </Link>
   );
 }

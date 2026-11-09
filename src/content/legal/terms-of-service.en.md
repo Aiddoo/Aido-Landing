@@ -1,6 +1,6 @@
 # Aido Terms of Service
 
-**Effective Date: April 19, 2026** · **Last Revised: October 26, 2026** (Article 13-2 Friend Invite Rewards Program and Article 13-3 Blocking and Reporting added)
+**Effective Date: April 19, 2026** · **Last Revised: November 10, 2026** (plan usage limits, the yearly plan free trial, Speak to add, Voice notes and new AI providers)
 
 ---
 
@@ -20,7 +20,7 @@ The definitions of terms used in these Terms are as follows:
 4. **"Paid Service"**: Refers to features offered by the Company on a paid basis, such as the Pro subscription. In the app, the Pro subscription is shown as **"Aido Premium"** (Premium).
 5. **"Social Login"**: Refers to registration and login through third-party authentication services such as Google, Kakao, Naver, and Apple.
 6. **"Subscription"**: Refers to a paid service agreement that auto-renews on a periodic basis.
-7. **"AI Features"**: Refers to features utilizing artificial intelligence technology, such as automatic to-do parsing, weekly and monthly AI reports, recurring pattern analysis and suggestions.
+7. **"AI Features"**: Refers to features utilizing artificial intelligence technology, such as organizing sentences and memos into to-dos, Speak to add, Voice notes, weekly and monthly AI reports, and recurring to-do suggestions.
 
 ---
 
@@ -66,11 +66,11 @@ The main features provided by the Company are as follows:
 
 1. **Task Management**: Creating, editing, deleting, completing to-dos, setting recurring tasks, and category organization
 2. **Calendar and Schedule Management**: Schedule management through weekly/monthly calendar views
-3. **AI Features**: AI-powered automatic to-do parsing, weekly and monthly AI reports (achievement analysis and personalized tips), recurring pattern detection and automatic suggestions, voice input for to-do creation
+3. **AI Features**: Organizing sentences and memos into to-dos, Speak to add (turning what you say into a to-do plan), Voice notes (turning long recordings into summaries, key points and to-dos), weekly and monthly AI reports (achievement analysis and personalized tips), and recurring to-do suggestions
 4. **Social Features**: Adding friends (mutual follow-based), sharing to-dos, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, and blocking and reporting users
 5. **Streaks**: Tracking consecutive task completion records and displaying achievement status
 6. **Subscription Service**: Premium features through the Pro plan
-7. **Notification Service**: Automatic to-do reminders (1&nbsp;hour and 10 minutes before scheduled time), morning and evening reminders, streak maintenance reminders, social notifications (friend requests, Nudge, Cheer, social digest, etc.), Nudge encouragement notifications (prompting users to send Nudges to inactive friends), Win-back notifications (encouraging inactive users to return to the Service)
+7. **Notification Service**: Automatic to-do reminders (1&nbsp;hour and 10 minutes before scheduled time), morning and evening reminders, weather notifications, social notifications (friend requests, Nudge, Cheer, etc.), and billing and subscription notices (3&nbsp;days before a free trial ends, 7&nbsp;days before a yearly subscription renews, and before reward Premium ends). Promotional notifications, such as event and offer news, come-back reminders, streak-at-risk and lunchtime reminders, Nudge suggestions, social digests and AI recurring to-do suggestion alerts, are sent only to Members who separately opt in to promotional push notifications.
 8. **Personalization Settings**: App icon customization (premium), dark mode, light mode, and system theme selection
 9. Other features developed or provided through partnerships by the Company
 
@@ -97,9 +97,13 @@ The main features provided by the Company are as follows:
 
    | Plan | Price | Key Benefits |
    |------|-------|-------------|
-   | Free | Free | AI parsing 5 times/month (resets at 00:00 KST on the 1st), Nudge 3 times/day, Cheer 3 times/day, up to 5 friends, up to 3 categories |
-   | Pro Monthly | KRW 3,900/month | Unlimited AI parsing, Nudge & Cheer, unlimited friends, up to 30 categories, weekly & monthly AI reports, AI recurring pattern suggestions, custom reminder times, premium app icons |
-   | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly |
+   | Free | Free | 10 AI to-dos a month (shared by text, voice and memos), 3 voice notes a month (up to 3 minutes each), 3 Nudges and 3 Cheers a day, up to 5 friends (plus 1 for each qualifying friend invite; see Article 13-2), up to 3 categories |
+   | Pro Monthly | KRW 3,900/month | Up to 1,000 AI to-dos a month (fair use limit), 100 voice notes a month (up to 30 minutes each), unlimited Nudges, Cheers and friends, up to 30 categories, weekly & monthly AI reports, AI recurring to-do suggestions, custom reminder times, premium app icons |
+   | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly. A first yearly subscription may come with a 1-month free trial (Article 10) |
+
+   - Monthly counts reset at 00:00 Korea time on the 1st of each month. Adding and completing to-dos and replaying recordings are available on every plan.
+   - A use isn't counted if the AI request fails, times out or returns nothing. Speak to add isn't counted if no to-dos are created; a voice note counts once if a summary or key points are created, even with no to-dos.
+   - AI to-dos on Premium have a fair use limit (1,000 a month) for normal use, and the app doesn't describe them as "unlimited."
 
 2. The above prices include VAT. Actual charges may vary due to exchange rates, taxes, or fees depending on the country and store policies.
 3. Payments for Paid Services are processed through in-app purchases on the Apple App&nbsp;Store or Google&nbsp;Play Store, and charges are billed to the payment method registered with the Member's Apple&nbsp;ID or Google account.
@@ -114,18 +118,21 @@ The main features provided by the Company are as follows:
 2. **Pro Monthly** (KRW 3,900/month) and **Pro Annual** (KRW 29,900/year) subscriptions will automatically renew at the same price and duration unless canceled at least **24&nbsp;hours before** the end of the current subscription period.
 3. Renewal charges will be billed to the payment method registered with the Member's Apple&nbsp;ID or Google account within 24&nbsp;hours before the end of the subscription period.
 4. Subscription management and auto-renewal cancellation can be done through the following paths:
-   - **iOS**: Device Settings > Apple&nbsp;ID > Subscriptions
-   - **Android**: Google&nbsp;Play app > Menu > Subscriptions
+   - **iPhone and iPad**: Settings > Apple Account (your name) > Subscriptions > Aido
+   - **Android**: Google&nbsp;Play app > Profile > Payments & subscriptions > Subscriptions > Aido
 5. Even after cancellation, Pro features remain available until the end of the already-paid subscription period.
+6. The Company notifies you of the billing date by push notification and in the in-app notification center **7&nbsp;days before** a yearly subscription renews (if notifications are allowed on your device). Monthly subscriptions renew each month without a separate notice. You can also check the billing date and amount in your store's subscription settings.
+7. The actual price and period are shown on the in-app payment screen and in the store's purchase sheet before you buy, and that amount is what you're charged.
 
 ---
 
 ## Article 10 (Free Trial)
 
-1. The Company may offer a free trial period for Paid Services.
-2. If the subscription is not canceled at least 24&nbsp;hours before the end of the free trial period, it will **automatically convert to a paid subscription** and charges will apply.
-3. During the free trial period, the subscription may be canceled at any time through the device's App&nbsp;Store or Google&nbsp;Play account settings. Upon cancellation, the Service remains available until the end of the trial period.
-4. The free trial is available only once per account.
+1. The Company may offer a **1-month free trial** to Members starting a Pro Annual subscription for the first time. Apple and Google decide whether you're eligible based on your store account's subscription history, and the trial length, the billing date after the trial and the yearly price are shown on the payment screen only if you're eligible.
+2. You aren't charged during the trial. Unless you cancel at least **24&nbsp;hours** before the trial ends, it **automatically converts to a Pro Annual subscription**: the yearly price shown on the payment screen is charged when the trial ends, and the subscription then renews every year under Article 9.
+3. The Company notifies you of the billing date by push notification and in the in-app notification center **3&nbsp;days before** the trial ends (if notifications are allowed on your device). During the trial, you can see the trial end date and first billing date under **Me** tab > **Manage subscription** in the app.
+4. You can cancel at any time during the trial through the paths in Article 9(4), and you won't be charged. After canceling you can usually keep using the trial until it ends, but depending on the store's policy the trial may end as soon as you cancel.
+5. Each free trial can be received only once, under the store's criteria (for example, per Apple Account or Google account).
 
 ---
 
@@ -144,15 +151,28 @@ The main features provided by the Company are as follows:
 
 ## Article 12 (AI Features and Disclaimer)
 
-1. The Service utilizes external AI models such as Google&nbsp;Gemini to provide the following features:
-   - **Automatic To-Do Parsing**: Automatically extracts title, date, category, and other details from text input
+1. The Service uses external AI models such as Anthropic Claude, Google&nbsp;Gemini and OpenAI, together with your device's speech recognition (Apple or Google), to provide the following features:
+   - **Organizing to-dos**: Extracts the title, date, time, category and other details from a sentence or memo you type and turns them into to-dos
+   - **Speak to add**: Turns what you say into text, then into a to-do plan. Only the to-dos you check and pick are saved
+   - **Voice notes**: Turns a long recording into text, then into a summary, key points and to-dos
    - **Weekly & Monthly AI Reports**: Provides task completion rates, category-based analysis, day-of-week and time-of-day pattern analysis, and personalized tips
-   - **Recurring Pattern Suggestions**: Analyzes the user's task history and automatically suggests recurring tasks
-2. AI-generated results (parsing results, reports, suggestions, etc.) are **for reference only**, and their **accuracy, completeness, or suitability is not guaranteed**.
-3. Members must review AI results before using them for final decision-making.
-4. To provide AI features, certain data such as to-do text and task statistics may be transmitted to external AI services. Details are provided in the Privacy Policy.
+   - **Recurring to-do suggestions**: Analyzes your to-do history and suggests recurring to-dos
+2. AI-generated results (organized to-dos, summaries, reports, suggestions, etc.) are **for reference only**, and their **accuracy, completeness, or suitability is not guaranteed**. AI and speech recognition can mishear words, dates or times, or produce content that isn't accurate.
+3. Members must review AI results before saving them or using them for final decision-making. AI features don't replace professional judgment, such as medical, legal or financial advice.
+4. To provide AI features, certain data such as what you type or say and your to-do history may be transmitted to external AI services. Details are provided in the Privacy Policy.
 5. The Company is not liable for damages arising from the use of AI-generated results, except in cases of willful misconduct or gross negligence.
-6. From app version 1.13.0, Members must agree to AI data sharing (sending data to Google&nbsp;Gemini) to use AI features in the app. Members may decline, or withdraw consent at any time after agreeing; in that case only AI features become unavailable, and other features such as adding to-dos manually remain available. The data sent and how scheduled features are handled are described in the Privacy Policy.
+6. From app version 1.13.0, Members must agree to AI data sharing to use AI features in the app. The notice in app 1.15.0 (November 4, 2026) covers sending data to Anthropic, Google and OpenAI and the use of Apple or Google speech recognition; data of Members who agreed only to an earlier notice is sent only to Google&nbsp;Gemini until they agree to the new notice. Members may decline, or withdraw consent at any time after agreeing under **Me** tab > **Terms & policies** > **AI data sharing** in the app; in that case only AI features become unavailable, and other features such as adding to-dos manually remain available. The data sent and how scheduled features are handled are described in the Privacy Policy.
+7. The number of AI uses follows the plan limits in Article 8. To keep the Service stable, the Company may restrict abnormal use such as automated bulk requests.
+8. If you find an inappropriate or wrong AI result, please let us know through **Contact us** in the app or by email under Article 22. The Company will review it and take the necessary steps to improve results.
+
+---
+
+## Article 12-2 (Voice Notes and Recordings)
+
+1. Voice note audio files, transcripts and summaries are stored on the Member's device and are not sent to the Company's servers. They are deleted automatically 30&nbsp;days after they're created, and the Member can delete them sooner under **Me** tab > **Recording storage** in the app.
+2. Because the Company can't keep or restore recordings stored only on your device, recordings lost through automatic deletion, deleting the app or losing the device can't be recovered. Save anything you want to keep as a memo or to-do.
+3. When recording other people, Members must follow applicable laws, such as the Protection of Communications Secrets Act, and get consent in advance where required. Members must not use this feature for recordings that infringe on other people's rights.
+4. The length of each recording and the number of uses per month follow the plan limits in Article 8.
 
 ---
 
@@ -299,3 +319,4 @@ Inquiries regarding these Terms, subscriptions, and complaints may be submitted 
 2. The previous Terms of Service (effective March 13, 2026) shall cease to have effect upon the implementation of these Terms.
 3. Article 2 items 3 and 4, Article 13 paragraphs 7 and 8, and Article 13-2 (Friend Invite Rewards Program) were revised or added on October 26, 2026. Article 13-2 applies from the day the friend invite feature becomes available in the Aido app (the release date of app version 1.13.0).
 4. Article 6 item 4, Article 7 paragraph 1, Article 12 paragraph 6, Article 13 paragraph 8, and Article 13-3 (Blocking and Reporting) were revised or added and published in advance on October 26, 2026. They apply from the day blocking, reporting and AI data sharing consent become available in the Aido app (the release date of app version 1.13.0).
+5. Article 2 item 7, Article 6 items 3 and 7, Article 8 paragraph 1, Article 9 paragraphs 4, 6 and 7, Article 10, Article 12 and Article 12-2 (Voice Notes and Recordings) were revised or added on November 10, 2026 and take effect the same day (the release date of app version 1.15.0). With this revision, the Free plan's AI to-do limit increased from 5 to 10 a month, and a fair use limit (1,000 a month) was set for AI to-dos on Premium.

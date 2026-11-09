@@ -43,6 +43,8 @@ import { PremiumBenefitList } from "@/features/landing/components/premium-benefi
 import { SectionKicker } from "@/features/landing/components/section-kicker";
 import { SupportedDeviceList } from "@/features/landing/components/supported-device-list";
 import { nudgeCats } from "@/features/landing/data/home-cats";
+import { releaseNotes } from "@/features/updates/data/patch-notes";
+import { getReleaseHighlightByVersion } from "@/features/updates/data/release-highlights";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { localizedPath } from "@/lib/public-routes";
@@ -73,7 +75,11 @@ export function LandingPage({ locale }: { locale: Locale }) {
             className="text-center lg:items-start lg:text-left"
           >
             <Link
-              href={localizedPath(locale, "/patch-notes")}
+              href={localizedPath(
+                locale,
+                getReleaseHighlightByVersion(releaseNotes[0].version)?.path ??
+                  "/patch-notes",
+              )}
               className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-4 text-caption font-semibold shadow-card transition-colors hover:bg-brand-soft"
             >
               <Box

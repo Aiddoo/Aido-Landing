@@ -6,30 +6,30 @@ export function BreadcrumbData({
   locale,
   path,
   title,
+  parents = [],
 }: {
   locale: Locale;
   path: string;
   title: string;
+  /** 홈과 현재 페이지 사이의 상위 페이지(예: 패치노트 > 1.15.0) */
+  parents?: readonly { name: string; path: string }[];
 }) {
+  const trail = [
+    { name: getMessages(locale).accessibility.home, path: "" },
+    ...parents,
+    { name: title, path },
+  ];
   return (
     <StructuredData
       data={{
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: getMessages(locale).accessibility.home,
-            item: `${SITE_URL}/${locale}`,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: title,
-            item: `${SITE_URL}/${locale}${path}`,
-          },
-        ],
+        itemListElement: trail.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: `${SITE_URL}/${locale}${item.path}`,
+        })),
       }}
     />
   );

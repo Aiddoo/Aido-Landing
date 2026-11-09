@@ -349,6 +349,20 @@ export type MessageCatalog = {
     expand: string;
     collapse: string;
     initialNote: string;
+    /** 큰 업데이트의 실제 화면 소개 페이지(/patch-notes/{slug})로 가는 링크 */
+    highlightsLink: string;
+  };
+  releaseHighlights: {
+    breadcrumbLabel: string;
+    releasedLabel: string;
+    contentsLabel: string;
+    screenNote: string;
+    freeLabel: string;
+    premiumLabel: string;
+    featureLabel: string;
+    allNotesTitle: string;
+    allNotesDescription: string;
+    allNotesLink: string;
   };
   languageSwitcher: {
     ko: string;
@@ -703,9 +717,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
           ],
           plans: {
-            free: "메모 작성과 기본 할\u00a0일 관리를 무료로 시작할 수 있어요. AI로 할\u00a0일을 정리하는 기능은 메모 AI와 함께 월 5회 한도를 사용하며, 매월 1일 0시(한국 시간)에\u00a0초기화돼요.",
+            free: "메모 작성과 기본 할\u00a0일 관리를 무료로 시작할 수 있어요. AI 할\u00a0일 만들기는 글·말·메모를 합쳐 월 10회, 말로 메모하기는 월 3회(회당 3분까지) 쓸 수 있고, 잘 안 되면 횟수는 차감되지\u00a0않아요.",
             premium:
-              "AI 할\u00a0일 정리를 횟수 제한 없이 이용할 수 있어요. AI 주간·월간 리포트와 반복 할\u00a0일 제안도 프리미엄에서\u00a0제공해요.",
+              "AI 할\u00a0일 만들기를 월 1,000회까지 넉넉하게, 말로 메모하기를 월 100회(회당 30분까지) 쓸 수 있어요. AI 주간·월간 리포트와 반복 할\u00a0일 제안도 프리미엄에서\u00a0제공해요.",
           },
           faq: [
             {
@@ -1510,7 +1524,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.14.2 새 기능: 꺼 둔 알림을 쉽게 다시\u00a0켜요",
+        release: "1.15.0 새 기능: 말하면 AI가 할\u00a0일로 나눠요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -1720,9 +1734,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
         benefits: [
           {
             id: "aiParsing",
-            title: "AI 할\u00a0일 만들기 무제한",
+            title: "AI 할\u00a0일 만들기 넉넉하게",
             description:
-              "월 5회 제한 없이, 자연어로 할\u00a0일을 마음껏\u00a0정리해요",
+              "무료 월 10회에서 프리미엄 월 1,000회까지 넉넉하게\u00a0써요",
           },
           {
             id: "nudge",
@@ -1968,6 +1982,20 @@ const catalogs: Record<Locale, MessageCatalog> = {
       initialNote:
         "아이두의 첫 번째 출시 기록이에요. 함께 시작해주셔서\u00a0고마워요.",
       closingNote: "더 좋은 하루를 위해, 조금씩 다듬고 있어요. 🐾",
+      highlightsLink: "실제 화면으로 자세히 보기",
+    },
+    releaseHighlights: {
+      breadcrumbLabel: "패치노트",
+      releasedLabel: "출시일",
+      contentsLabel: "이번 업데이트 한눈에 보기",
+      screenNote: "실제 앱 화면이에요",
+      freeLabel: "무료",
+      premiumLabel: "프리미엄",
+      featureLabel: "기능",
+      allNotesTitle: "바뀐 점을 모두 보고 싶다면",
+      allNotesDescription:
+        "고친 문제와 작은 개선까지 패치노트에 빠짐없이\u00a0적어\u00a0뒀어요.",
+      allNotesLink: "전체 패치노트 보기",
     },
     languageSwitcher: {
       ko: "KO",
@@ -2262,9 +2290,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
           ],
           plans: {
-            free: "Start free with notes and basic to-do management. AI to-do creation and note organization share five uses per month. The limit resets at 00:00 Korea time on the first of each\u00a0month.",
+            free: "Start free with notes and basic to-do management. AI to-dos from text, voice and notes share 10 uses a month, and Voice notes include 3 a month (up to 3 minutes each). Failed attempts don't\u00a0count.",
             premium:
-              "Use AI to-do organization without a usage limit. Premium also includes weekly and monthly AI reports and recurring to-do suggestions.",
+              "Get up to 1,000 AI to-dos and 100 voice notes (up to 30 minutes each) a month. Premium also includes weekly and monthly AI reports and recurring to-do suggestions.",
           },
           faq: [
             {
@@ -3086,7 +3114,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "New in 1.14.2: turn notifications back on\u00a0easily",
+        release: "New in 1.15.0: talk, and AI makes your\u00a0to-dos",
         titleLead: "Put it off alone.",
         titleTail: "Get it done together.",
         description:
@@ -3302,9 +3330,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
         benefits: [
           {
             id: "aiParsing",
-            title: "Unlimited AI to-dos",
+            title: "Plenty of AI to-dos",
             description:
-              "Organize to-dos in natural language, without the 5-per-month\u00a0limit",
+              "Go from 10 a month on Free to up to 1,000 a month on\u00a0Premium",
           },
           {
             id: "nudge",
@@ -3552,6 +3580,20 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "This is Aido's very first release. Thanks for taking the first step with\u00a0us.",
       closingNote:
         "We keep making little improvements for better days.\u00a0🐾",
+      highlightsLink: "See it in real app screens",
+    },
+    releaseHighlights: {
+      breadcrumbLabel: "Patch Notes",
+      releasedLabel: "Released",
+      contentsLabel: "In this update",
+      screenNote: "Real app screens",
+      freeLabel: "Free",
+      premiumLabel: "Premium",
+      featureLabel: "Feature",
+      allNotesTitle: "Want every change?",
+      allNotesDescription:
+        "The patch notes list every fix and small improvement in this\u00a0update.",
+      allNotesLink: "Read the full patch notes",
     },
     languageSwitcher: {
       ko: "KO",

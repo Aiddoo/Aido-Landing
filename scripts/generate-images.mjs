@@ -28,6 +28,10 @@ import {
   deviceShowcaseScreens,
   getDeviceShowcaseScreen,
 } from "../src/features/landing/data/supported-devices.ts";
+import {
+  getReleaseScreen,
+  releaseScreenFiles,
+} from "../src/features/updates/data/release-screens.ts";
 
 const check = process.argv.includes("--check");
 const sources = [
@@ -51,6 +55,11 @@ const sources = [
     ...["ko", "en"].flatMap((locale) =>
       Object.keys(guideScreenFiles).map(
         (key) => getGuideScreen(locale, key).src,
+      ),
+    ),
+    ...["ko", "en"].flatMap((locale) =>
+      Object.keys(releaseScreenFiles).map(
+        (key) => getReleaseScreen(locale, key).src,
       ),
     ),
   ]),

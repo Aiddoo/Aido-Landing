@@ -5,6 +5,7 @@ import {
   patchNotesUpdatedAt,
   releaseNotes,
 } from "@/features/updates/data/patch-notes";
+import { releaseHighlights } from "@/features/updates/data/release-highlights";
 import { defaultLocale, locales } from "@/i18n/config";
 import { HOME_CONTENT_UPDATED_AT, SITE_URL } from "@/lib/seo";
 
@@ -21,12 +22,13 @@ const homeLastModifiedDate = new Date(
     Date.parse(releaseNotes[0].date),
   ),
 );
-// Effective date stays 2026-04-19; Articles 13-2 (invite rewards) and 13-3 (block/report) were added on 2026-10-26.
-const termsLastModifiedDate = new Date("2026-10-26");
-// Invite abuse-prevention, block/report and AI data sharing consent notes added on 2026-10-26; the website analytics notice
-// moved to Consent Mode and always-on Vercel Analytics on 2026-10-27. The effective date is unchanged.
-const privacyLastModifiedDate = new Date("2026-10-27");
-const accountDeletionLastModifiedDate = new Date("2026-10-26");
+// Effective date stays 2026-04-19; plan limits, the yearly free trial, AI (Article 12) and voice notes (Article 12-2)
+// were revised on 2026-11-10 for app 1.15.0.
+const termsLastModifiedDate = new Date("2026-11-10");
+// New version effective 2026-11-10 (app 1.15.0): voice features, AI providers, free trial and notification consent.
+const privacyLastModifiedDate = new Date("2026-11-10");
+// Free trial cancellation and on-device voice note recordings added on 2026-11-10.
+const accountDeletionLastModifiedDate = new Date("2026-11-10");
 
 // 정규 URL은 로케일 세그먼트가 붙은 /{locale}{path} 뿐이다. bare "/"는
 // 로케일로 리다이렉트되는 비정규 스텁이라 사이트맵에 넣지 않는다.
@@ -55,6 +57,12 @@ const routes: Route[] = [
     priority: 0.7,
     lastModified: new Date(patchNotesUpdatedAt),
   },
+  ...releaseHighlights.map((highlight) => ({
+    path: highlight.path,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+    lastModified: new Date(highlight.updatedAt),
+  })),
   {
     path: "/terms",
     changeFrequency: "monthly",
