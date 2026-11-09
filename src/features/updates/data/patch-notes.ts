@@ -28,6 +28,127 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.15.0",
+    date: "2026-11-10",
+    summary: {
+      ko: "길게 말하면 AI가 할 일 여러 개로 나눠 주는 말로 할 일 만들기와, 회의·수업 녹음을 요약해 주는 말로 메모하기가 생겼어요. 반복 할 일과 프리미엄 화면도 새로 다듬었어요.",
+      en: "Talk, and AI makes your to-dos.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "말로 할 일 만들기가 새로워졌어요. 할 일 추가 화면에서 마이크를 누르고 길게 말하면, 음성 인식이 말을 글자로 바꾸고 AI가 그 글을 할 일 여러 개로 나눠요. 날짜·시간·반복·카테고리·나만 보기까지 채워요.",
+            en: "Speak to add is all new. Tap the mic on the add screen and talk as long as you like. Speech recognition turns your words into text, and AI splits that text into several to-dos with dates, times, repeats, categories, and private settings filled in.",
+          },
+          {
+            ko: "추가하기 전에 고를 수 있어요. 추가할 할 일만 체크하고, 할 일을 누르면 제목·날짜·시간·반복을 고칠 수 있어요. 이미 있는 할 일은 ‘이미 있어요’로 알려 주고, 아래 버튼을 누르기 전에는 저장되지 않아요.",
+            en: "Pick before you add. Check only the to-dos you want, and tap one to edit its title, date, time, or repeat. To-dos you already have are marked, and nothing is saved until you tap the button at the bottom.",
+          },
+          {
+            ko: "말로 메모하기가 새로 생겼어요. 회의나 수업을 녹음하면 AI가 요약과 핵심 포인트, 할 일을 찾아 줘요. 중요한 순간에는 표시를 남기고, 핵심 포인트를 누르면 그 지점부터 다시 들을 수 있어요.",
+            en: "New Voice notes. Record a meeting or class, and AI finds a summary, key points, and to-dos. Mark important moments as you go, and tap a key point to listen from there.",
+          },
+          {
+            ko: "녹음 파일은 기기에 저장되고 아이두 서버로 보내지 않아요. 30일이 지나면 자동으로 지워지고, 마이 탭 > 녹음 저장 공간에서 언제든 지울 수 있어요.",
+            en: "Audio files are saved on your device and aren't sent to Aido's servers. They're deleted automatically after 30 days, and you can delete them anytime in Me > Recording storage.",
+          },
+          {
+            ko: "메모에 적어 둔 글도 ‘AI로 할 일 나누기’를 누르면 AI가 할 일로 정리해요. 같은 화면에서 골라 추가할 수 있어요.",
+            en: "Tap “Split into to-dos with AI” on a note, and AI turns what you wrote into to-dos you can pick from on the same screen.",
+          },
+          {
+            ko: "연간 구독을 처음 시작하면 1개월 무료 체험을 받을 수 있어요(스토어가 대상으로 정한 계정). 체험이 끝나기 3일 전에 알려 드려요.",
+            en: "New yearly subscribers can get 1 month free (accounts the store marks as eligible). We'll remind you 3 days before the trial ends.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "반복 할 일을 매일·평일·매주·격주·매월로 만들고, 기간을 정하거나 계속 반복할 수 있어요. 고치거나 지울 때는 이 할 일만, 이 할 일과 이후 할 일, 이 반복 전체 중에서 골라요.",
+            en: "Repeat to-dos daily, on weekdays, weekly, every other week, or monthly, for a set period or with no end. When you edit or delete one, choose Just this one, This and following, or All in this repeat.",
+          },
+          {
+            ko: "프리미엄 화면을 새로 만들었어요. 혜택을 넘겨 보고, 무료와 프리미엄을 표로 비교할 수 있어요. 결제가 끝나면 바로 써 볼 수 있는 시작 화면을 보여 줘요.",
+            en: "The Premium screen is new. Swipe through the benefits and compare Free and Premium in a table. After you subscribe, a welcome screen helps you get started.",
+          },
+          {
+            ko: "AI를 쓰는 곳에는 이번 달 남은 횟수가 보이고, 횟수를 다 쓰면 몇 회 썼는지와 언제 초기화되는지 알려 드려요. 잘 안 되면 횟수는 차감되지 않고, 할 일 추가와 완료는 무료에서도 그대로 써요.",
+            en: "Places that use AI show how many uses are left this month. Run out? See your usage and when it resets. Failed attempts don't count, and adding and completing to-dos stays free.",
+          },
+          {
+            ko: "무료에서는 AI 할 일 만들기를 월 10회, 말로 메모하기를 월 3회(회당 3분까지) 쓸 수 있어요. 프리미엄은 AI 할 일 만들기를 월 1,000회까지 넉넉하게, 말로 메모하기를 월 100회(회당 30분까지) 써요.",
+            en: "Free includes 10 AI to-dos and 3 voice notes (up to 3 minutes each) a month. Premium gives you up to 1,000 AI to-dos and 100 voice notes (up to 30 minutes each) a month.",
+          },
+          {
+            ko: "연간 구독은 갱신 7일 전에 알려 드려요.",
+            en: "We'll let you know 7 days before your yearly plan renews.",
+          },
+          {
+            ko: "알림은 가입 직후 한 번만 묻고, 위치는 날씨를 볼 때만 물어요. 알림을 꺼 둔 채 할 일 시간을 정하면 그 자리에서 알려 드려요.",
+            en: "We ask for notifications once at sign-up and for location only when you check the weather. If notifications are off when you set a time for a to-do, we'll tell you right there.",
+          },
+          {
+            ko: "iPad, 접는 폰, 펼친 iPhone Duo처럼 넓은 화면에서는 마이 탭이 두 칸으로 보여요. 왼쪽 메뉴는 그대로 두고 오른쪽 화면만 바뀌어요.",
+            en: "On wide screens like iPad, foldable phones, and an unfolded iPhone Duo, the Me tab shows two panes. The menu stays on the left while the right side changes.",
+          },
+          {
+            ko: "해외에 가도 할 일 시간이 그대로예요. 한국에서 오전 10시로 정한 할 일은 다른 나라에서도 오전 10시에 알려 드려요.",
+            en: "To-do times stay put when you travel. A to-do set for 10 AM in Korea still reminds you at 10 AM local time abroad.",
+          },
+          {
+            ko: "읽지 않은 알림이 있으면 채운 종과 주황 점으로 알려 줘요.",
+            en: "A filled bell with an orange dot shows when you have unread notifications.",
+          },
+          {
+            ko: "그 밖에 앱의 안정성과 성능을 다듬었어요.",
+            en: "Other stability and performance improvements.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "숨길 답글이 없는데도 ‘답글 숨기기’가 보이던 문제를 고쳤어요.",
+            en: "Fixed “Hide replies” showing when there was nothing to hide.",
+          },
+          {
+            ko: "앱이 꺼져 있을 때 알림을 누르면 알림 내용 대신 할 일 탭이 열리던 문제를 고쳤어요.",
+            en: "Fixed tapping a notification while the app was closed opening the to-do tab instead of the notification's screen.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "말로 할 일 만들기: 말하면 AI가 할 일로 나눠요. 저장 전에 하나씩 확인해요.",
+        "말로 메모하기: 긴 이야기를 요약과 핵심 포인트, 할 일로 정리해요.",
+        "핵심 포인트를 누르면 그 지점부터 다시 들을 수 있어요.",
+        "연간 구독을 처음 시작하면 1개월 무료 체험을 받을 수 있어요.",
+        "반복 할 일은 이 할 일만, 이후 할 일까지, 반복 전체 중에 골라 고치거나 지울 수 있어요.",
+        "횟수를 다 쓰면 몇 회 썼는지와 언제 초기화되는지 알려 드려요.",
+        "프리미엄은 AI 할 일 만들기를 월 1,000회까지 넉넉하게 써요.",
+        "알림은 가입 직후 한 번만 묻고, 위치는 날씨를 볼 때만 물어요.",
+        "숨길 답글이 없는데도 '답글 숨기기'가 보이던 문제를 고쳤어요.",
+      ],
+      en: [
+        "Speak to add: AI drafts to-dos you check before saving.",
+        "Voice notes: summaries, key points, and to-dos.",
+        "Tap a key point to listen from there.",
+        "New yearly subscribers can get 1 month free.",
+        "Edit or delete one repeat, the ones after it, or all.",
+        "Run out? See your usage and when it resets.",
+        "Up to 1,000 AI to-dos a month on Premium.",
+        "We ask for notifications once at sign-up, location only for weather.",
+        '"Hide replies" no longer shows with nothing to hide.',
+      ],
+    },
+  },
+  {
     version: "1.14.2",
     date: "2026-11-04",
     summary: {
