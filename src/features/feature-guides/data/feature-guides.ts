@@ -19,14 +19,19 @@ export const featureGuides = [
   {
     slug: "recurring-todo",
     path: "/features/recurring-todo",
-    updatedAt: "2026-10-27",
+    updatedAt: "2026-11-10",
     screens: ["repeat-edit", "home-widgets"],
   },
   {
     slug: "ai-todo",
     path: "/features/ai-todo",
     updatedAt: "2026-11-10",
-    screens: ["voice-add", "memo-ai"],
+    screens: [
+      "ai-speak-review",
+      "ai-memo-split",
+      "ai-quota-info",
+      "ai-consent",
+    ],
   },
   {
     slug: "friend-invite",

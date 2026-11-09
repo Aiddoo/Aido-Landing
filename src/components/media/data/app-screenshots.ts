@@ -7,7 +7,9 @@ export const screenshotFiles = {
   repeat: ["android", "repeat-picker"],
   notes: ["ios", "memo-list"],
   note: ["android", "memo-detail"],
-  add: ["ios", "add-todo-filled"],
+  // 1.15.0 말로 할 일 만들기·메모 AI 화면. 영어 캡처가 없어 한국어 화면을 함께 쓴다.
+  voicePlan: ["ios", "voice-plan-review"],
+  noteSplit: ["ios", "memo-ai-split"],
   friend: ["ios", "friend-feed"],
   sent: ["android", "sent-nudges"],
   reply: ["ios", "nudge-detail"],
@@ -27,7 +29,7 @@ export const screenshotFiles = {
 } as const;
 
 export type AppScreenshotKey = keyof typeof screenshotFiles;
-export const SERVICE_CONTENT_UPDATED_AT = "2026-11-03";
+export const SERVICE_CONTENT_UPDATED_AT = "2026-11-10";
 
 export function getAppScreenshot(locale: Locale, key: AppScreenshotKey) {
   const [platform, filename] = screenshotFiles[key];

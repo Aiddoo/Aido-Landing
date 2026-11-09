@@ -99,7 +99,7 @@ The main features provided by the Company are as follows:
    |------|-------|-------------|
    | Free | Free | 10 AI to-dos a month (shared by text, voice and memos), 3 voice notes a month (up to 3 minutes each), 3 Nudges and 3 Cheers a day, up to 5 friends (plus 1 for each qualifying friend invite; see Article 13-2), up to 3 categories |
    | Pro Monthly | KRW 3,900/month | Up to 1,000 AI to-dos a month (fair use limit), 100 voice notes a month (up to 30 minutes each), unlimited Nudges, Cheers and friends, up to 30 categories, weekly & monthly AI reports, AI recurring to-do suggestions, custom reminder times, premium app icons |
-   | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly. A first yearly subscription may come with a 1-month free trial (Article 10) |
+   | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly. A first yearly subscription may come with a 2-week free trial (Article 10) |
 
    - Monthly counts reset at 00:00 Korea time on the 1st of each month. Adding and completing to-dos and replaying recordings are available on every plan.
    - A use isn't counted if the AI request fails, times out or returns nothing. Speak to add isn't counted if no to-dos are created; a voice note counts once if a summary or key points are created, even with no to-dos.
@@ -128,7 +128,7 @@ The main features provided by the Company are as follows:
 
 ## Article 10 (Free Trial)
 
-1. The Company may offer a **1-month free trial** to Members starting a Pro Annual subscription for the first time. Apple and Google decide whether you're eligible based on your store account's subscription history, and the trial length, the billing date after the trial and the yearly price are shown on the payment screen only if you're eligible.
+1. The Company may offer a **2-week free trial** to Members starting a Pro Annual subscription for the first time. Apple and Google decide whether you're eligible based on your store account's subscription history, and the trial length, the billing date after the trial and the yearly price are shown on the payment screen only if you're eligible.
 2. You aren't charged during the trial. Unless you cancel at least **24&nbsp;hours** before the trial ends, it **automatically converts to a Pro Annual subscription**: the yearly price shown on the payment screen is charged when the trial ends, and the subscription then renews every year under Article 9.
 3. The Company notifies you of the billing date by push notification and in the in-app notification center **3&nbsp;days before** the trial ends (if notifications are allowed on your device). During the trial, you can see the trial end date and first billing date under **Me** tab > **Manage subscription** in the app.
 4. You can cancel at any time during the trial through the paths in Article 9(4), and you won't be charged. After canceling you can usually keep using the trial until it ends, but depending on the store's policy the trial may end as soon as you cancel.

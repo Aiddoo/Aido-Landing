@@ -9,9 +9,9 @@ export const releaseScreenFiles = {
   "speak-listening": "iphone",
   "speak-ai-info": "iphone",
   "speak-review": "iphone",
-  "voice-note-start": "iphone",
   "voice-note-record": "iphone",
-  "memo-ai-menu": "iphone",
+  "voice-note-result": "iphone",
+  "memo-ai-review": "iphone",
   "repeat-weekdays": "iphone",
   "paywall-benefits": "iphone",
   "paywall-compare": "iphone",
@@ -35,10 +35,8 @@ const localeScreenHeights: Partial<
   "speak-review": { ko: 1391, en: 853 },
 };
 
-/** 일부만 쓴 캡처의 실제 높이. 말로 메모 녹음은 아래쪽, 메모 메뉴는 위쪽, 결제 화면은 가격 카드·구매 버튼 위까지다. */
+/** 일부만 쓴 캡처의 실제 높이. 결제 화면은 가격 카드·구매 버튼 위까지다. */
 const croppedScreenHeights: Partial<Record<ReleaseScreenKey, number>> = {
-  "voice-note-record": 853,
-  "memo-ai-menu": 501,
   "paywall-benefits": 835,
   "paywall-compare": 1071,
   "usage-card": 724,

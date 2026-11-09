@@ -256,6 +256,14 @@ for (const locale of ["ko", "en"]) {
         `${SITE_URL}${route}`,
       );
     }
+    if (path === "/privacy")
+      // 앱의 AI 동의 시트가 국외 이전 조항(제7조)으로 바로 이동한다. id를 바꾸지 않는다.
+      assert.equal(
+        tags(html, "h3").filter((heading) => heading.id === "overseas-transfer")
+          .length,
+        1,
+        `${route}: stable #overseas-transfer anchor`,
+      );
     if (path === "/services") {
       assert.ok(visibleHtml.includes(messages.services.screenshotNote));
       for (const { id, screenshots } of serviceFeatures) {
@@ -268,8 +276,11 @@ for (const locale of ["ko", "en"]) {
       for (const image of tags(html, "img").filter((image) =>
         originalSource(image.src)?.includes("/screenshots/"),
       )) {
+        // 영어 캡처가 없는 화면은 한영이 같은 바이트라 반응형 파일을 함께 쓴다.
         assert.ok(
-          originalSource(image.src).includes(`/screenshots/${locale}/`),
+          originalSources(image.src).some((original) =>
+            original.includes(`/screenshots/${locale}/`),
+          ),
         );
         // 치수가 있거나, 비율 상자(AspectRatio) 안을 채우는 fill 이미지여야 CLS가 없다.
         assert.ok(

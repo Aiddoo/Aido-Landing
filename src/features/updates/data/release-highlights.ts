@@ -67,8 +67,8 @@ export const releaseHighlights = [
       en: "Aido 1.15.0: Speak to add to-dos and AI meeting summaries",
     },
     description: {
-      ko: "길게 말하면 AI가 할 일 여러 개로 나누고 날짜·시간·반복까지 채워요. 회의·수업 녹음을 요약해 주는 말로 메모하기, 반복 할 일, 새 프리미엄 화면과 연간 구독 1개월 무료 체험까지 실제 화면으로 소개해요.",
-      en: "Talk as long as you like and AI splits it into to-dos with dates, times and repeats filled in. See the new Voice notes for meetings and classes, repeating to-dos, the new Premium screen and a 1-month free trial on yearly plans in real app screens.",
+      ko: "길게 말하면 AI가 할 일 여러 개로 나누고 날짜·시간·반복까지 채워요. 회의·수업 녹음을 요약해 주는 말로 메모하기, 반복 할 일, 새 프리미엄 화면과 연간 구독 2주 무료 체험까지 실제 화면으로 소개해요.",
+      en: "Talk as long as you like and AI splits it into to-dos with dates, times and repeats filled in. See the new Voice notes for meetings and classes, repeating to-dos, the new Premium screen and a 2-week free trial on yearly plans in real app screens.",
     },
     sections: [
       {
@@ -188,17 +188,6 @@ export const releaseHighlights = [
         },
         screens: [
           {
-            key: "voice-note-start",
-            alt: {
-              ko: "메모 탭의 말로 메모 버튼 옆에 ‘말로 메모해보세요’ 안내가 뜬 아이두\u00a0화면",
-              en: "Aido Notes tab with a tip next to the voice note button that invites you to record a\u00a0meeting",
-            },
-            caption: {
-              ko: "메모 탭에서 말로 메모를 눌러요.",
-              en: "Tap Voice notes on the Notes\u00a0tab.",
-            },
-          },
-          {
             key: "voice-note-record",
             alt: {
               ko: "회의를 녹음하며 중요한 순간을 표시하는 아이두 말로 메모하기 녹음 화면",
@@ -207,6 +196,17 @@ export const releaseHighlights = [
             caption: {
               ko: "녹음하며 중요한 순간을 표시해요.",
               en: "Mark important moments as you record.",
+            },
+          },
+          {
+            key: "voice-note-result",
+            alt: {
+              ko: "AI가 정리한 회의 요약과 시간이 붙은 핵심 포인트가 보이는 아이두 말로 메모하기 결과 화면",
+              en: "Aido Voice notes result with an AI meeting summary and time-stamped key points",
+            },
+            caption: {
+              ko: "요약과 핵심 포인트, 할 일을 찾아 줘요.",
+              en: "Get a summary, key points and to-dos.",
             },
           },
         ],
@@ -224,19 +224,25 @@ export const releaseHighlights = [
           en: "Tap “Split into to-dos with AI” on a note, and AI splits what you wrote into to-dos. Just like Speak to add, pick and edit the ones you want.",
         },
         points: { ko: [], en: [] },
-        screens: [
-          {
-            key: "memo-ai-menu",
+        screens: [],
+        comparison: {
+          before: {
+            key: "memo-ai",
+            label: { ko: "1.14.2까지", en: "Up to 1.14.2" },
             alt: {
-              ko: "메모의 더보기 메뉴에 ‘AI로 할\u00a0일 나누기’와 이번 달 남은 횟수가 보이는 아이두\u00a0화면",
-              en: "Aido note menu showing Split into to-dos with AI and the uses left this\u00a0month",
-            },
-            caption: {
-              ko: "메모의 더보기에서 골라요.",
-              en: "Find it in the note's More\u00a0menu.",
+              ko: "1.14.2까지의 아이두 메모 AI 결과 화면",
+              en: "Aido note AI results screen up to 1.14.2",
             },
           },
-        ],
+          after: {
+            key: "memo-ai-review",
+            label: { ko: "1.15.0부터", en: "From 1.15.0" },
+            alt: {
+              ko: "이사 준비 메모를 AI가 할 일 4개로 나누고 추가할 것을 고르는 아이두 1.15.0 화면",
+              en: "Aido 1.15.0 screen where AI splits a moving checklist note into 4 to-dos to pick from",
+            },
+          },
+        },
       },
       {
         id: "repeating-todos",
@@ -279,8 +285,8 @@ export const releaseHighlights = [
         navLabel: { ko: "프리미엄·무료 체험", en: "Premium and free trial" },
         icon: "crown",
         title: {
-          ko: "새 프리미엄 화면과 연간 구독 1개월 무료 체험",
-          en: "A new Premium screen and 1 month free on yearly plans",
+          ko: "새 프리미엄 화면과 연간 구독 2주 무료 체험",
+          en: "A new Premium screen and 2 weeks free on yearly plans",
         },
         body: {
           ko: "혜택을 한 장씩 넘겨 보고, 무료와 프리미엄을 표로 비교해요. 항목 이름을 누르면 설명이 나와요. 결제가 끝나면 방금 고른 요금제로 바로 써 볼 수 있는 시작 화면을 보여 줘요.",
@@ -288,12 +294,12 @@ export const releaseHighlights = [
         },
         points: {
           ko: [
-            "연간 구독을 처음 시작하면 1개월 무료 체험을 받을 수 있어요(스토어가 대상으로 정한 계정).",
+            "연간 구독을 처음 시작하면 2주 무료 체험을 받을 수 있어요(스토어가 대상으로 정한 계정).",
             "무료 체험은 끝나기 3일 전에, 연간 구독은 갱신 7일 전에 알려 드려요.",
             "AI를 쓰는 곳에는 이번 달 남은 횟수가 보이고, 다 쓰면 몇 회 썼는지와 언제 초기화되는지 알려 드려요.",
           ],
           en: [
-            "New yearly subscribers can get 1 month free (accounts the store marks as eligible).",
+            "New yearly subscribers can get 2 weeks free (accounts the store marks as eligible).",
             "We'll remind you 3 days before a free trial ends and 7 days before a yearly plan renews.",
             "Places that use AI show how many uses are left this month. Run out? See your usage and when it resets.",
           ],
