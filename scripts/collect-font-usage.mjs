@@ -4,6 +4,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
 import { featureGuides } from "../src/features/feature-guides/data/feature-guides.ts";
+import { releaseHighlights } from "../src/features/updates/data/release-highlights.ts";
 
 const origin = process.env.FONT_USAGE_ORIGIN ?? "http://localhost:3217";
 const inputs = JSON.parse(
@@ -15,6 +16,7 @@ const paths = [
   "/invite",
   ...featureGuides.map((guide) => guide.path),
   "/patch-notes",
+  ...releaseHighlights.map((highlight) => highlight.path),
   "/terms",
   "/privacy",
   "/account-deletion",

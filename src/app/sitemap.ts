@@ -5,6 +5,7 @@ import {
   patchNotesUpdatedAt,
   releaseNotes,
 } from "@/features/updates/data/patch-notes";
+import { releaseHighlights } from "@/features/updates/data/release-highlights";
 import { defaultLocale, locales } from "@/i18n/config";
 import { HOME_CONTENT_UPDATED_AT, SITE_URL } from "@/lib/seo";
 
@@ -55,6 +56,12 @@ const routes: Route[] = [
     priority: 0.7,
     lastModified: new Date(patchNotesUpdatedAt),
   },
+  ...releaseHighlights.map((highlight) => ({
+    path: highlight.path,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+    lastModified: new Date(highlight.updatedAt),
+  })),
   {
     path: "/terms",
     changeFrequency: "monthly",

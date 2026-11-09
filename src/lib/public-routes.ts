@@ -1,4 +1,5 @@
 import { featureGuides } from "@/features/feature-guides/data/feature-guides";
+import { releaseHighlights } from "@/features/updates/data/release-highlights";
 import type { Locale } from "@/i18n/config";
 import {
   INVITE_LINK_PATTERN,
@@ -13,6 +14,7 @@ export const publicPaths = [
   "/account-deletion",
   "/invite",
   ...featureGuides.map((guide) => guide.path),
+  ...releaseHighlights.map((highlight) => highlight.path),
 ] as const;
 export type PublicPath = (typeof publicPaths)[number];
 // 초대 링크 /i/{코드}와 그 실제 경로 /{locale}/invite/{코드}는 코드를 버리고 /invite 한 경로로만 집계한다.

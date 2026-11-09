@@ -2,6 +2,7 @@
   "patterns": [
     "src/i18n/messages.ts",
     "src/features/updates/data/patch-notes.ts",
+    "src/features/updates/data/release-highlights.ts",
     "src/content/legal/*.md"
   ],
   "slices": [
@@ -15,7 +16,7 @@
     },
     {
       "name": "updates",
-      "pages": ["/ko/patch-notes"]
+      "pages": ["/ko/patch-notes", "/ko/patch-notes/*"]
     },
     {
       "name": "legal",

@@ -11,6 +11,7 @@ import {
   releaseNotes,
   updateNotes,
 } from "../src/features/updates/data/patch-notes.ts";
+import { releaseHighlights } from "../src/features/updates/data/release-highlights.ts";
 import { getMessages } from "../src/i18n/messages.ts";
 import {
   APP_STORE_URL,
@@ -68,11 +69,12 @@ const paths = [
   "/privacy",
   "/account-deletion",
   ...featureGuides.map((guide) => guide.path),
+  ...releaseHighlights.map((highlight) => highlight.path),
 ];
 assert.equal(
   paths.length * 2,
-  24,
-  "ko/en canonical pages: home, services, patch notes, 3 legal and 6 guides",
+  26,
+  "ko/en canonical pages: home, services, patch notes, 3 legal, 6 guides and 1 release highlight",
 );
 const decode = (text) =>
   text
@@ -101,6 +103,11 @@ assert.equal(
   prerender.dynamicRoutes["/[locale]/features/[slug]"].fallback,
   false,
   "Unknown guide slugs must not use a dynamic fallback",
+);
+assert.equal(
+  prerender.dynamicRoutes["/[locale]/patch-notes/[slug]"].fallback,
+  false,
+  "Unknown release highlight slugs must not use a dynamic fallback",
 );
 for (const locale of ["ko", "en"]) {
   const messages = getMessages(locale);
@@ -230,11 +237,24 @@ for (const locale of ["ko", "en"]) {
         `${route}: FAQPage matches the visible FAQ`,
       );
       assert.deepEqual(application.featureList, messages.home.appFeatures);
+      const latestHighlight = releaseHighlights.find(
+        (highlight) => highlight.version === releaseNotes[0].version,
+      );
+      if (latestHighlight)
+        assert.ok(
+          tags(html, "a").some(
+            (link) => link.href === `/${locale}${latestHighlight.path}`,
+          ),
+          `${route}: hero news links to the ${latestHighlight.version} highlights`,
+        );
     } else {
       const breadcrumb = jsonLd.find(
         (data) => data["@type"] === "BreadcrumbList",
       );
-      assert.equal(breadcrumb.itemListElement[1].item, `${SITE_URL}${route}`);
+      assert.equal(
+        breadcrumb.itemListElement.at(-1).item,
+        `${SITE_URL}${route}`,
+      );
     }
     if (path === "/services") {
       assert.ok(visibleHtml.includes(messages.services.screenshotNote));
@@ -338,7 +358,92 @@ for (const locale of ["ko", "en"]) {
         tags(html, "a").some((link) => link.href?.startsWith(PLAY_STORE_URL)),
       );
     }
+    const highlight = releaseHighlights.find((item) => item.path === path);
+    if (highlight) {
+      const release = releaseNotes.find(
+        (item) => item.version === highlight.version,
+      );
+      assert.ok(release, `${highlight.version} must be a released version`);
+      assert.equal(
+        decode(html.match(/<title>(.+?)<\/title>/)?.[1]),
+        `${highlight.metaTitle[locale]} | Aido`,
+      );
+      assert.equal(value("description"), highlight.description[locale]);
+      assert.equal(value("og:title"), highlight.metaTitle[locale]);
+      const breadcrumb = jsonLd.find(
+        (data) => data["@type"] === "BreadcrumbList",
+      );
+      assert.deepEqual(
+        breadcrumb.itemListElement.map((item) => item.item),
+        [
+          `${SITE_URL}/${locale}`,
+          `${SITE_URL}/${locale}/patch-notes`,
+          `${SITE_URL}${route}`,
+        ],
+      );
+      assert.ok(
+        tags(html, "time").some((time) => time.datetime === release.date),
+        `${route}: release date`,
+      );
+      const screens = [
+        ...highlight.sections.flatMap((section) => [
+          ...section.screens,
+          ...("comparison" in section
+            ? [section.comparison.before, section.comparison.after]
+            : []),
+        ]),
+        highlight.plans.screen,
+      ];
+      for (const text of [
+        highlight.title[locale],
+        highlight.description[locale],
+        ...highlight.sections.flatMap((section) => [
+          section.title[locale],
+          section.body[locale],
+          ...section.points[locale],
+          ...section.screens.map((screen) => screen.caption[locale]),
+        ]),
+        highlight.plans.title[locale],
+        ...highlight.plans.rows.flatMap((row) => [
+          row.label[locale],
+          row.free[locale],
+          row.premium[locale],
+        ]),
+        highlight.plans.note[locale],
+      ])
+        assert.ok(
+          visibleHtml.includes(text),
+          `${route}: highlight content in SSR HTML: ${text.slice(0, 40)}`,
+        );
+      const imageAlts = tags(html, "img").map((image) => image.alt);
+      for (const screen of screens)
+        assert.ok(
+          imageAlts.includes(screen.alt[locale]),
+          `${route}: screen alt ${screen.key}`,
+        );
+      for (const image of tags(html, "img").filter((image) =>
+        originalSource(image.src)?.includes("/releases/"),
+      ))
+        assert.ok(
+          originalSources(image.src).some((original) =>
+            original.includes(`/releases/${locale}/`),
+          ),
+        );
+      assert.ok(
+        tags(html, "a").some((link) => link.href === `/${locale}/patch-notes`),
+        `${route}: link back to the patch notes`,
+      );
+    }
     if (path === "/patch-notes") {
+      for (const item of releaseHighlights)
+        assert.ok(
+          tags(html, "a").some(
+            (link) =>
+              link["data-slot"] === "release-highlights-link" &&
+              link.href === `/${locale}${item.path}`,
+          ),
+          `${route}: ${item.version} links to its highlights`,
+        );
       const details = tags(html, "details");
       const updates = details.filter((item) => item["data-update-id"]);
       assert.deepEqual(
@@ -442,11 +547,15 @@ for (const locale of ["ko", "en"])
           ? "2026-10-26"
           : path === "/patch-notes"
             ? patchNotesUpdatedAt
-            : path === "/privacy"
-              ? "2026-10-27"
-              : (featureGuides.find((guide) => guide.path === path)
-                  ?.updatedAt ??
-                [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
+            : releaseHighlights.some((item) => item.path === path)
+              ? releaseHighlights.find((item) => item.path === path).updatedAt
+              : path === "/privacy"
+                ? "2026-10-27"
+                : (featureGuides.find((guide) => guide.path === path)
+                    ?.updatedAt ??
+                  [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date]
+                    .sort()
+                    .at(-1));
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(

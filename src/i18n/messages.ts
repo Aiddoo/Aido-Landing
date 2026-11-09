@@ -349,6 +349,20 @@ export type MessageCatalog = {
     expand: string;
     collapse: string;
     initialNote: string;
+    /** 큰 업데이트의 실제 화면 소개 페이지(/patch-notes/{slug})로 가는 링크 */
+    highlightsLink: string;
+  };
+  releaseHighlights: {
+    breadcrumbLabel: string;
+    releasedLabel: string;
+    contentsLabel: string;
+    screenNote: string;
+    freeLabel: string;
+    premiumLabel: string;
+    featureLabel: string;
+    allNotesTitle: string;
+    allNotesDescription: string;
+    allNotesLink: string;
   };
   languageSwitcher: {
     ko: string;
@@ -1968,6 +1982,20 @@ const catalogs: Record<Locale, MessageCatalog> = {
       initialNote:
         "아이두의 첫 번째 출시 기록이에요. 함께 시작해주셔서\u00a0고마워요.",
       closingNote: "더 좋은 하루를 위해, 조금씩 다듬고 있어요. 🐾",
+      highlightsLink: "실제 화면으로 자세히 보기",
+    },
+    releaseHighlights: {
+      breadcrumbLabel: "패치노트",
+      releasedLabel: "출시일",
+      contentsLabel: "이번 업데이트 한눈에 보기",
+      screenNote: "실제 앱 화면이에요",
+      freeLabel: "무료",
+      premiumLabel: "프리미엄",
+      featureLabel: "기능",
+      allNotesTitle: "바뀐 점을 모두 보고 싶다면",
+      allNotesDescription:
+        "고친 문제와 작은 개선까지 패치노트에 빠짐없이\u00a0적어\u00a0뒀어요.",
+      allNotesLink: "전체 패치노트 보기",
     },
     languageSwitcher: {
       ko: "KO",
@@ -3552,6 +3580,20 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "This is Aido's very first release. Thanks for taking the first step with\u00a0us.",
       closingNote:
         "We keep making little improvements for better days.\u00a0🐾",
+      highlightsLink: "See it in real app screens",
+    },
+    releaseHighlights: {
+      breadcrumbLabel: "Patch Notes",
+      releasedLabel: "Released",
+      contentsLabel: "In this update",
+      screenNote: "Real app screens",
+      freeLabel: "Free",
+      premiumLabel: "Premium",
+      featureLabel: "Feature",
+      allNotesTitle: "Want every change?",
+      allNotesDescription:
+        "The patch notes list every fix and small improvement in this\u00a0update.",
+      allNotesLink: "Read the full patch notes",
     },
     languageSwitcher: {
       ko: "KO",

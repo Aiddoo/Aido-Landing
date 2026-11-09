@@ -21,7 +21,7 @@ src/
     landing/{pages,components,data}
     services/{pages,components,data}
     feature-guides/{pages,components,data}   # data: 가이드 목록·실제 화면 카탈로그
-    updates/{pages,components,data,hooks,utils}
+    updates/{pages,components,data,hooks,utils}   # data: 패치노트·업데이트 소개(release-highlights)·소개 화면 카탈로그
     legal/{pages,components,data}
     invite/{pages,components,hooks,api,queries,providers,models,schemas,utils,data,tests}  # /i/{코드}, 요청마다 SSR + TanStack Query
     analytics/
