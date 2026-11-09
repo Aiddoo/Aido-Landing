@@ -10,7 +10,7 @@ RedBand (hereinafter "Company") complies with the Personal Information Protectio
 
 - **Speak to add and Voice notes**: Where speech is turned into text, how audio files stay on your device and are deleted after 30&nbsp;days, and that our server doesn't store transcripts (Articles 2, 4 and 8-2).
 - **AI providers**: In addition to Google, Anthropic and OpenAI may process AI features. This applies only to Members who agree to the new notice, and we list each provider's retention period and whether data is used for training (Articles 6, 7 and 8).
-- **Subscriptions**: The information we process for the 1-month free trial on the yearly plan and for reminders 3&nbsp;days before a trial ends and 7&nbsp;days before a yearly renewal (Articles 2 and 3).
+- **Subscriptions**: The information we process for the 2-week free trial on the yearly plan and for reminders 3&nbsp;days before a trial ends and 7&nbsp;days before a yearly renewal (Articles 2 and 3).
 - **Notifications**: We separate service and transactional notifications from promotional ones, and send promotional notifications only to Members who opt in separately (Article 10-2).
 - **List updates**: Amazon Web Services (server hosting) and Discord (operator alerts) were added to the processor and cross-border transfer lists, and Firebase Crashlytics and camera access, which we no longer use, were removed. AI provider retention periods now match each provider's current policy.
 
