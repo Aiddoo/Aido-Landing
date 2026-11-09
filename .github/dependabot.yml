@@ -26,6 +26,11 @@ updates:
     labels: ["type: deps"]
     commit-message:
       prefix: "chore(deps)"
+    # @types/node 메이저는 런타임 Node 메이저(engines·CI·Vercel 모두 24)와 맞춘다.
+    # Node를 올릴 때 engines·CI node-version과 함께 직접 올린다.
+    ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       minor-and-patch:
         update-types: [minor, patch]
