@@ -29,15 +29,17 @@ Deleting your account doesn't stop Apple or Google subscription billing. To avoi
 
 - **iPhone or iPad**: Settings > your Apple&nbsp;Account (name) > Subscriptions > Aido
 - **Android**: Google&nbsp;Play app > Profile > Payments & subscriptions > Subscriptions > Aido
+- Even during a yearly plan free trial, the yearly price is charged when the trial ends unless you cancel.
 
 ---
 
 ## What gets deleted and what's kept
 
 - Once you request deletion, your account can no longer be used, and the data below is permanently deleted after a **30-day grace period**. If you sign in again with the same account during the grace period, your account is restored.
-- **Deleted**: account information such as email, name (nickname), profile image, and user tag; to-dos, subtasks, memos, comments, and categories; friends, nudges, and cheers; daily completion and weekly achievement records; AI reports; location; notification settings and push tokens; and friend invite and reward records, including remaining reward Premium
+- **Deleted**: account information such as email, name (nickname), profile image, and user tag; to-dos, subtasks, memos, comments, and categories; friends, nudges, and cheers; daily completion and weekly achievement records; AI reports and AI usage records; location; notification settings and push tokens; AI data sharing and marketing consent records; subscription information; and friend invite and reward records, including remaining reward Premium
 - **Kept as required by law**: records such as payment and order cancellation records (5&nbsp;years), consumer complaint and dispute records (3&nbsp;years), and service access logs (3&nbsp;months) are stored separately for the legally required period and then deleted.
 - **Kept to prevent abuse**: hash values that stop friend invite rewards from being claimed repeatedly aren't linked to your account, can't identify you, and are kept after account deletion.
+- **Recordings kept only on your device**: Voice note recordings, transcripts and summaries aren't on Aido's servers, so deleting your account doesn't remove them. They're deleted automatically 30&nbsp;days after they're created, or right away if you delete them under **Me** tab > **Recording storage** or delete the app.
 - For details, see our [Privacy Policy](/en/privacy).
 
 ---

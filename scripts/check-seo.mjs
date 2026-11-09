@@ -543,19 +543,17 @@ for (const locale of ["ko", "en"])
     const date =
       path === "/services"
         ? SERVICE_CONTENT_UPDATED_AT
-        : path === "/terms" || path === "/account-deletion"
-          ? "2026-10-26"
+        : path === "/terms" ||
+            path === "/account-deletion" ||
+            path === "/privacy"
+          ? "2026-11-10"
           : path === "/patch-notes"
             ? patchNotesUpdatedAt
             : releaseHighlights.some((item) => item.path === path)
               ? releaseHighlights.find((item) => item.path === path).updatedAt
-              : path === "/privacy"
-                ? "2026-10-27"
-                : (featureGuides.find((guide) => guide.path === path)
-                    ?.updatedAt ??
-                  [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date]
-                    .sort()
-                    .at(-1));
+              : (featureGuides.find((guide) => guide.path === path)
+                  ?.updatedAt ??
+                [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(
