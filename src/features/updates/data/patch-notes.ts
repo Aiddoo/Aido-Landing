@@ -2360,8 +2360,10 @@ export const updateNotes: UpdateNote[] = [
   ...serviceUpdates.map((update) => ({ ...update, kind: "service" as const })),
 ].sort((a, b) => b.date.localeCompare(a.date));
 
+// 날짜는 YYYY-MM-DD 문자열이라 Math.max가 아니라 위 정렬과 같은 문자열 비교로 고른다.
 export const patchNotesUpdatedAt = updateNotes.reduce(
-  (date, update) => (update.date > date ? update.date : date),
+  (latest, update) =>
+    update.date.localeCompare(latest) > 0 ? update.date : latest,
   PATCH_NOTES_EDITED_AT,
 );
 
