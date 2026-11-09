@@ -25,7 +25,7 @@ export const featureGuides = [
   {
     slug: "ai-todo",
     path: "/features/ai-todo",
-    updatedAt: "2026-10-27",
+    updatedAt: "2026-11-10",
     screens: ["voice-add", "memo-ai"],
   },
   {
