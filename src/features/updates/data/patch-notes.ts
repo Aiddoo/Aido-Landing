@@ -28,6 +28,185 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.15.1",
+    date: "2026-11-11",
+    summary: {
+      ko: "카테고리를 지울 때 안의 할 일을 어떻게 할지 고를 수 있어요. 서버를 새로 정비해 알림은 제시간에, 저장은 더 든든하게 다듬었어요.",
+      en: "Delete categories your way.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "카테고리를 지울 때 안에 있는 할 일을 다른 카테고리로 옮길지, 함께 지울지 고를 수 있어요. 지우기 전에 할 일과 반복 할 일이 몇 개 있는지 먼저 보여 드리고, 지운 뒤에는 어떻게 처리됐는지 알려 드려요.",
+            en: "When you delete a category, choose whether to move its to-dos to another category or delete them too. You'll see how many to-dos and repeating to-dos it has before you decide, and what happened once it's done.",
+          },
+          {
+            ko: "할 일이 없는 카테고리는 확인 한 번으로 지워져요. 마지막 남은 카테고리는 왜 지울 수 없는지 알려 드려요.",
+            en: "Empty categories are deleted after a quick confirmation. If it's your last category, we'll explain why it can't be deleted.",
+          },
+          {
+            ko: "마이 탭 > 새로운 기능에서 지난 업데이트를 버전과 날짜별로 다시 볼 수 있어요. 맨 아래 ‘전체 업데이트 내역’을 누르면 모든 기록을 볼 수 있어요.",
+            en: "Me > What's new now lists past updates by version and date. Tap All updates at the bottom to see the full history.",
+          },
+          {
+            ko: "새로운 기능의 말로 할 일 만들기 카드를 누르면 오늘 화면에서 바로 말로 할 일을 만들 수 있어요.",
+            en: "Tap the Speak to add card in What's new to start right from today's screen.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "같은 시각에 할 일 알림이 많이 몰려도 늦거나 빠지지 않고 제시간에 와요. 한 시간에 할 일이 많아도 시각을 정한 할 일 알림은 모두 받아요.",
+            en: "To-do reminders arrive on time even when many are due at once, and every to-do you set a time for gets its reminder, even in a busy hour.",
+          },
+          {
+            ko: "할 일이 이미 시작됐다면 ‘10분 뒤 시작’ 알림을 보내지 않아요.",
+            en: "We no longer send the “starts in 10 minutes” reminder once a to-do has already started.",
+          },
+          {
+            ko: "야간 알림을 꺼 두어도 직접 시각을 정한 할 일 알림과 프리미엄 아침·저녁 알림은 제시간에 와요. 혜택·친구 알림의 야간 설정은 그대로예요.",
+            en: "Reminders for to-dos you set a time for, and Premium morning and evening reminders, now arrive even with night notifications off. Night settings for offers and friend notifications stay the same.",
+          },
+          {
+            ko: "휴대폰이 꺼져 있다가 다시 켜져도 이미 지난 할 일 알림이 한꺼번에 쏟아지지 않아요.",
+            en: "When your phone comes back on, reminders that have already passed don't pile up.",
+          },
+          {
+            ko: "서버를 새로 정비했어요. 할 일을 저장하면 알림 예약도 같은 순간에 함께 저장돼서, 서버에 문제가 생겨도 알림이 사라지지 않아요.",
+            en: "We rebuilt much of our server. Saving a to-do now saves its reminder at the same moment, so reminders aren't lost even if something goes wrong on our end.",
+          },
+          {
+            ko: "서버를 업데이트하는 동안 울려야 했던 알림도 놓치지 않고, 업데이트가 끝나는 대로 보내 드려요. 15분 넘게 늦어진 알림은 헷갈리지 않도록 보내지 않아요.",
+            en: "Reminders due while we update the server are sent as soon as it's back. Reminders that would arrive more than 15 minutes late are skipped so they don't confuse you.",
+          },
+          {
+            ko: "많은 분께 소식을 한꺼번에 보내는 중에도 내 할 일 알림이 먼저 가요.",
+            en: "Your to-do reminders go out first, even while we're sending news to many people at once.",
+          },
+          {
+            ko: "로그아웃했거나 오래 접속하지 않아 로그인이 끝난 기기에는 더 이상 알림이 가지 않아요.",
+            en: "Devices that are signed out, or whose sign-in has expired, no longer get notifications.",
+          },
+          {
+            ko: "앱 아이콘의 배지 숫자가 읽지 않은 알림 수와 같아지고, 다른 기기에서 읽은 알림도 반영돼요. 알림을 한 번 누르면 화면도 한 번만 열려요.",
+            en: "The app icon badge now matches your unread notifications, including ones read on another device, and tapping a notification opens it only once.",
+          },
+          {
+            ko: "할 일·하위 할 일·카테고리를 바꾸면 화면에 바로 보여요. 저장에 실패하면 실패한 그 변경만 되돌리고, 그사이 바꾼 다른 내용은 그대로 둬요. 카테고리를 만들거나 고친 뒤 시트도 더 빨리 닫혀요.",
+            en: "Changes to to-dos, checklist items, and categories show up right away. If one fails to save, only that change is undone and everything else stays. The category sheet also closes faster after you save.",
+          },
+          {
+            ko: "접은 iPhone Duo나 iPhone SE처럼 화면이 낮아도, 키보드가 올라온 카테고리 시트에서 이름·색·확인 버튼이 함께 보여요. 색은 한 줄로 정리했어요.",
+            en: "On short screens like a folded iPhone Duo or iPhone SE, the category sheet keeps the name, colors, and confirm button visible above the keyboard, with colors in a single row.",
+          },
+          {
+            ko: "Android 태블릿과 접는 폰의 큰 화면에서는 가로로도 쓸 수 있고, 화면을 접거나 펴도 보던 화면과 입력한 내용이 그대로 남아요. iPad에서 사이드바를 열어도 목록과 상세 칸이 짓눌리지 않아요.",
+            en: "Android tablets and foldables can use landscape on the big screen, and folding or unfolding keeps what you were viewing and typing. On iPad, opening the sidebar no longer squeezes the list and detail panes.",
+          },
+          {
+            ko: "영어나 큰 글자에서는 달력 머리가 두 줄로 나뉘어 버튼이 겹치지 않아요.",
+            en: "With English or large text, the calendar header splits into two tidy rows so buttons don't overlap.",
+          },
+          {
+            ko: "여러 날에 걸친 할 일을 시작일만이 아니라 기간 안의 모든 날에 세요. 여러 날 할 일이 있다면 연속 기록과 완료율, 주간 성취 숫자가 달라질 수 있어요.",
+            en: "To-dos that span several days now count on every day in their range, so your streak, completion rate, and weekly achievements may change if you have them.",
+          },
+          {
+            ko: "카테고리 이름·색·순서를 바꾸면 친구가 보는 화면에도 바로 반영돼요.",
+            en: "Category name, color, and order changes now show up right away for friends.",
+          },
+          {
+            ko: "매일 오는 AI 제안이 해외에서도 그곳의 아침에 도착해요.",
+            en: "Daily AI suggestions now arrive in your local morning, even abroad.",
+          },
+          {
+            ko: "오류 화면에서 ‘다시 시도’를 눌러도 로그인이 풀리지 않아요.",
+            en: "Tapping Try again on the error screen no longer signs you out.",
+          },
+          {
+            ko: "서버가 잠시 응답하지 않을 때 앱이 하염없이 기다리지 않고, 잠시 뒤 다시 시도해 달라고 바로 알려 드려요.",
+            en: "If our server is briefly unavailable, the app tells you right away to try again shortly instead of waiting with no end.",
+          },
+          {
+            ko: "계정을 더 안전하게 지키도록 로그인 확인과 서버 사이의 연결 확인을 더 꼼꼼하게 했어요.",
+            en: "We now check sign-ins and our server connections more strictly to keep your account safer.",
+          },
+          {
+            ko: "알림·리포트처럼 정해진 시간에 도는 작업이 멈추면 저희가 바로 알 수 있게 했어요. 문제가 생겨도 더 빨리 고칠 수 있어요.",
+            en: "We now get alerted right away if scheduled work like reminders and reports stops, so we can fix problems faster.",
+          },
+          {
+            ko: "그 밖에 앱의 안정성과 성능을 다듬었어요.",
+            en: "Other stability and performance improvements.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "할 일을 완료하자마자 ‘고마움 현황을 불러오지 못했어요’ 카드가 뜨던 문제를 고쳤어요.",
+            en: "Fixed “Couldn't load thanks” appearing right after completing a to-do.",
+          },
+          {
+            ko: "하위 할 일을 만들자마자 순서를 바꾸면 저장되지 않던 문제를 고쳤어요.",
+            en: "Fixed reordering a checklist item right after adding it.",
+          },
+          {
+            ko: "친구가 친구를 끊은 뒤 그 친구의 피드를 열면 오류 화면이 보이던 문제를 고쳤어요. 이제 ‘이제 친구 피드를 볼 수 없어요’ 안내와 ‘내 피드로 가기’ 버튼을 보여 드려요.",
+            en: "Fixed an error screen when opening the feed of a friend who removed you. You'll now see a short note and a Go to my feed button.",
+          },
+          {
+            ko: "최근 매일 AI 제안과 AI 리포트가 오지 않던 문제를 고쳤어요.",
+            en: "Fixed daily AI suggestions and AI reports not arriving recently.",
+          },
+          {
+            ko: "알림을 허용했는데도 어느 순간부터 알림이 오지 않던 문제를 고쳤어요.",
+            en: "Fixed notifications sometimes stopping even though they were allowed.",
+          },
+          {
+            ko: "프리미엄을 시작하거나 바꾼 직후 잠깐 이전 요금제로 보이던 문제를 고쳤어요.",
+            en: "Fixed your previous plan briefly showing right after starting or changing Premium.",
+          },
+          {
+            ko: "메모를 고치는 동시에 순서를 바꾸거나, 콕에 답장하는 순간 읽음 처리가 겹치면 내용이 사라질 수 있던 문제를 고쳤어요.",
+            en: "Fixed edits to a note, or a reply to a nudge, that could be lost when another change happened at the same moment.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "카테고리를 지울 때 안의 할 일을 함께 지울지, 다른 카테고리로 옮길지 고를 수 있어요.",
+        "마이 > 새로운 기능에서 지난 업데이트를 버전별로 다시 볼 수 있어요.",
+        "할 일·하위 할 일·카테고리 변경이 바로 보이고, 저장에 실패하면 그 변경만 되돌려요.",
+        "접는 휴대폰과 태블릿에서 화면과 시트가 더 알맞게 보여요.",
+        "키보드가 올라와도 입력칸과 확인 버튼이 가려지지 않아요.",
+        "할 일 알림이 한꺼번에 몰려도 제시간에 와요.",
+        "로그아웃한 기기에는 알림이 오지 않아요.",
+        "할 일을 완료한 직후 '고마움 현황을 불러오지 못했어요'가 뜨던 문제를 고쳤어요.",
+        "하위 할 일을 만들자마자 순서를 바꾸면 저장되지 않던 문제를 고쳤어요.",
+        "큰 글자에서 달력 머리가 어긋나던 문제를 고쳤어요.",
+      ],
+      en: [
+        "Deleting a category? Delete its to-dos or move them.",
+        "Past updates are now in Me > What's new.",
+        "To-dos and categories update instantly.",
+        "Better layouts on foldables and tablets.",
+        "The keyboard no longer covers fields or buttons.",
+        "Reminders arrive on time, even at busy times.",
+        "Signed-out devices no longer get notifications.",
+        'Fixed "Couldn\'t load thanks" after completing a to-do.',
+        "Fixed reordering a new subtask.",
+        "Fixed the calendar header with large text.",
+      ],
+    },
+  },
+  {
     version: "1.15.0",
     date: "2026-11-10",
     summary: {
