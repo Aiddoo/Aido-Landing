@@ -28,6 +28,197 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.15.2",
+    date: "2026-11-13",
+    summary: {
+      ko: "쓰던 글은 앱을 다시 열어도 그대로 남고, 알림이나 다른 탭에서 연 화면도 뒤로 가면 보던 곳으로 돌아와요. 오래 쉬었다 열어도 화면이 로딩에서 멈추지 않아요.",
+      en: "Drafts stay, and back goes where you expect.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "iPhone에서 메모 카드나 말로 남긴 메모를 길게 누르면 미리보기와 메뉴가 떠요. 메모를 열지 않고도 바로 고정하거나 지울 수 있어요.",
+            en: "On iPhone, long-press a note card or voice note to preview it and open a menu. Pin or delete a note without opening it.",
+          },
+          {
+            ko: "친구 피드에서 그동안 눌러도 반응이 없던 할 일도 누르면 상세가 열려요. 마이 > 친구 관리에서 친구를 누르면 그 친구의 피드로 가고, iPhone에서는 길게 눌러 콕 찌르기 같은 메뉴를 바로 쓸 수 있어요.",
+            en: "In a friend's feed, to-dos that used to do nothing when tapped now open. Tap a friend in Me > Manage friends to see their feed, and on iPhone, long-press for quick actions like sending a nudge.",
+          },
+          {
+            ko: "VoiceOver·TalkBack의 동작 메뉴로 메모를 고정하거나 지우고, 말로 남긴 메모를 지울 수 있어요.",
+            en: "With VoiceOver or TalkBack, use the actions menu to pin or delete notes and delete voice notes.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "메모·할 일·카테고리·하위 할 일·이름을 고치는 동안 앱이 새 내용을 받아 와도 쓰던 글은 그대로예요. 손대지 않은 칸만 새 내용으로 바뀌어서, 예전 글로 덮어 저장되지 않아요.",
+            en: "While you edit a note, to-do, category, checklist item, or your name, incoming updates no longer replace what you're typing. Only the fields you haven't touched update, so old text won't overwrite your changes.",
+          },
+          {
+            ko: "다른 탭의 화면을 열었다가 뒤로 가면 보던 탭으로 돌아와요. 할 일 탭에서 초대하기를 누르고 뒤로 가면 이제 마이가 아니라 할 일 탭이에요.",
+            en: "Going back from a screen opened from another tab now returns you to the tab you were on. Tap Invite on the to-do tab and go back, and you're on the to-do tab, not Me.",
+          },
+          {
+            ko: "알림함이 지금 보던 탭 안에서 탭 바와 함께 열려요. 알림함에서 연 화면에서 뒤로 가면 알림함으로 돌아와요.",
+            en: "Notifications now open inside the tab you're on, with the tab bar showing. Going back from something you opened there returns you to your notifications.",
+          },
+          {
+            ko: "앱을 쓰는 중에 알림을 누르면 보던 화면 위에 열리고, 뒤로 가면 보던 화면으로 돌아와요. 앱이 꺼져 있을 때도 알맞은 화면으로 열리고, 같은 화면이 두 번 쌓이지 않아요.",
+            en: "Tap a notification while using the app and it opens on top of what you were viewing; go back to return there. It also opens in the right place when the app is closed, and the same screen no longer opens twice.",
+          },
+          {
+            ko: "알림이나 링크로 바로 연 할 일·메모에서 뒤로 가면 피드나 메모 탭으로 가요. 날씨를 보는 중에 날씨 알림이나 위젯으로 다시 열어도 날씨 화면이 하나 더 쌓이지 않아요.",
+            en: "Going back from a to-do or note opened from a notification or link takes you to your feed or the notes tab. Reopening weather from a notification or widget while you're viewing it no longer opens a second weather screen.",
+          },
+          {
+            ko: "초대 링크로 가입하거나 로그인하면 피드가 잠깐 비치지 않고 바로 초대로 가요. 초대를 받아들인 뒤 뒤로 가도 끝난 초대 카드로 돌아가지 않아요.",
+            en: "Sign up or log in from an invite link and you go straight to the invite, without the feed flashing first. After you accept, going back no longer returns to the finished invite card.",
+          },
+          {
+            ko: "시트를 열어 둔 채로도 안내 메시지가 시트 뒤에 가려지지 않고 위에 보이고, VoiceOver도 읽어 줘요. 할 일을 저장하며 시트가 닫힐 때는 완료 안내가 한 번만 깔끔하게 떠요.",
+            en: "Status messages now appear above an open sheet instead of hiding behind it, and VoiceOver reads them. When saving a to-do closes the sheet, the confirmation shows just once.",
+          },
+          {
+            ko: "지우기·차단·친구 끊기처럼 확인을 누른 요청이 실패하면 확인 창이 닫히지 않고 남아, 다시 누르거나 취소할 수 있어요.",
+            en: "If an action like deleting, blocking, or removing a friend fails after you confirm, the dialog stays open so you can try again or cancel.",
+          },
+          {
+            ko: "알림 권한 창에서 허용이나 거절을 누르면 기다리지 않고 바로 다음으로 넘어가요.",
+            en: "After you allow or deny notifications, the app moves on right away instead of making you wait.",
+          },
+          {
+            ko: "로그아웃하거나 탈퇴하면, 또는 로그인이 끝나면 기기에 남은 아이두 알림을 지워요. 탈퇴하면 이 기기에 남아 있던 계정 기록도 함께 지워요.",
+            en: "When you sign out, delete your account, or your sign-in expires, Aido notifications left on your device are cleared. Deleting your account also clears its records from this device.",
+          },
+          {
+            ko: "달력·홈 화면 위젯·주간 성취·AI 리포트가 주차를 같은 기준으로 세요. 그 주의 가운데 날이 속한 달로 세기 때문에 달이 바뀌는 주는 이름이 달라질 수 있어요(예: 11월 5주차 → 12월 1주차). 리포트도 ‘49주차’ 대신 ‘12월 1주차’처럼 보여요.",
+            en: "The calendar, home screen widget, weekly achievements, and AI reports now number weeks the same way, by the month of the week's middle day. Some weeks that span two months get a new name (for example, Week 5 of Nov becomes Week 1 of Dec), and reports show “Week 1 of Dec” instead of “Week 49.”",
+          },
+          {
+            ko: "할 일 날짜에 ‘내일’이 보이고, 알림·댓글 시간은 ‘1일 전’ 대신 ‘어제’로 보여요. 피드 달력에서 달을 넘겨도 점이 비지 않고 바로 보여요.",
+            en: "To-do dates now say “Tomorrow,” and notification and comment times say “yesterday” instead of “1 day ago.” Dots on the feed calendar show up right away when you switch months.",
+          },
+          {
+            ko: "초대·달성 배지 화면에서 일부만 불러오지 못해도 화면 전체가 오류로 바뀌지 않고, 그 부분만 다시 시도할 수 있어요. 프리미엄 비교표와 마이 탭 요금제 카드는 불러오는 동안에도 크기가 그대로라 화면이 밀리지 않아요.",
+            en: "If only part of the invite or achievement badge screens fails to load, the rest stays and you can retry just that part. The Premium comparison table and the plan card in Me keep their size while loading, so nothing jumps.",
+          },
+          {
+            ko: "문제가 생기면 원인에 맞는 안내를 보여 드려요. 오류 화면에서 ‘문의하기’를 누르면 문제를 찾는 데 필요한 정보가 담긴 초안으로 문의 화면이 열려요.",
+            en: "Error messages now better match what went wrong. Tap Contact us on an error screen to start a message that already includes the details we need to help.",
+          },
+          {
+            ko: "비밀번호에 쓸 수 없는 문자가 있으면 규칙 아래에 그 이유와 쓸 수 있는 특수문자(@$!%*#?&)를 알려 드려요. 가입·비밀번호 재설정·변경 모두 같고, 재설정 마지막 단계에서 인증 코드가 맞지 않으면 코드 입력 단계로 돌아가 바로 고칠 수 있어요.",
+            en: "If your password has a character that can't be used, a line under the rules now says so and lists the allowed symbols (@$!%*#?&), on sign-up, password reset, and password change. If the code is rejected at the last step of a reset, you go back to the code step to fix it.",
+          },
+          {
+            ko: "초대 코드를 입력할 때 헷갈리기 쉬운 글자(0·O·1·I·L)나 쓸 수 없는 글자를 넣으면 바로 어느 칸이 틀렸는지 알려 드려요.",
+            en: "When you enter an invite code, easy-to-confuse characters (0, O, 1, I, L) and invalid ones are flagged right away, so you can see which box to fix.",
+          },
+          {
+            ko: "메모 AI 정리를 기다리다 다른 화면으로 가도 결과 화면이 갑자기 열리지 않아요. 결과는 남아 있어서 그 메모에서 다시 누르면 횟수 차감 없이 바로 열려요.",
+            en: "If you leave while AI is organizing a note, the result no longer pops up over what you're doing. It's kept, so tap again on that note to open it without using another try.",
+          },
+          {
+            ko: "iPadOS 26 이상에서 탭 사이드바를 열어도 목록 칸이 좁아지지 않아요. Mac·iPad에서 창 크기를 바꿀 때도 달력이 더 매끄럽게 따라와요.",
+            en: "On iPadOS 26 or later, opening the tab sidebar no longer squeezes the list pane, and resizing the window on Mac or iPad is smoother.",
+          },
+          {
+            ko: "날씨 장면과 말로 메모하기 녹음 화면을 오래 켜 둬도 가볍고 부드럽게 움직여요. 메모리가 적은 Android 기기에서는 무더위 장면의 아지랑이 효과만 꺼요. 메모 카드도 탭을 바꾸거나 화면 폭이 바뀔 때 옆에서 날아 들어오지 않아요.",
+            en: "Weather scenes and the voice note recorder stay light and smooth even when left on. On Android devices with less memory, only the heat-haze effect in hot weather is turned off. Note cards also no longer fly in from the side when you switch tabs or resize.",
+          },
+          {
+            ko: "앱의 글꼴 크기를 바꾸면 아이콘도 함께 커지고 작아져요(기본 크기에서는 그대로예요). 스크린리더가 피드 달력 주 보기의 화살표를 ‘이전 주’·‘다음 주’로 읽고, 계속 움직이는 효과는 다른 앱으로 넘어가거나 기기에서 동작 줄이기를 켜면 멈춰요.",
+            en: "Icons now scale with the app's font size (nothing changes at the default size). Screen readers read the week arrows on the feed calendar as “Previous week” and “Next week,” and looping animations pause in the background or with Reduce Motion on.",
+          },
+          {
+            ko: "그 밖에 앱의 안정성과 성능을 다듬었어요.",
+            en: "Other stability and performance improvements.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "할 일에 쓰던 댓글이 앱을 다시 열면 사라지던 문제를 고쳤어요. 이제 같은 할 일을 열면 쓰던 댓글이 그대로 있어요.",
+            en: "Fixed a comment you were writing disappearing after reopening the app. Open the same to-do and your draft is still there.",
+          },
+          {
+            ko: "메모 저장이 늦어져 다시 저장하면 같은 메모가 두 개 생기던 문제를 고쳤어요.",
+            en: "Fixed a note being created twice when you saved again after a slow save.",
+          },
+          {
+            ko: "오래 쓰지 않다가 앱을 열면 화면이 로딩에서 멈출 수 있던 문제를 고쳤어요. 서버 응답이 늦어지면 하염없이 기다리지 않고 다시 시도할 수 있는 화면을 보여 드려요.",
+            en: "Fixed screens that could get stuck loading when you opened the app after a while. If our server is slow to respond, you'll see a retry screen instead of loading forever.",
+          },
+          {
+            ko: "계정을 바꾼 직후 결제하면 이전 계정에 구독이 잡힐 수 있던 문제를 고쳤어요. 결제·복원 버튼을 빠르게 두 번 누르거나 구독 시작 화면의 ‘완료’를 여러 번 눌러도 이제 한 번만 처리돼요.",
+            en: "Fixed a purchase made right after switching accounts possibly going to the previous account. Double-tapping purchase or restore, or tapping Done repeatedly after subscribing, now only counts once.",
+          },
+          {
+            ko: "Android에서 카카오·구글·네이버로 로그인할 때 로그인 화면이 두 번 보이거나, 설정에서 계정을 연결하면 피드로 넘어가던 문제를 고쳤어요. 알림이나 초대 링크로 들어와 로그인하면 바로 그 화면이 열려요.",
+            en: "Fixed Kakao, Google, and Naver sign-in on Android showing the login screen twice, and linking an account in Settings jumping to the feed. Signing in from a notification or invite link now takes you straight there.",
+          },
+          {
+            ko: "시트나 할 일 상세를 연 채 Android 위젯을 누르면 화면이 겹겹이 쌓이던 문제를 고쳤어요.",
+            en: "Fixed screens piling up when you tapped an Android widget with a sheet or to-do open.",
+          },
+          {
+            ko: "구독이 끝난 직후 피드의 AI 제안을 열면 다른 화면에 잠깐 프리미엄으로 남아 보이던 문제를 고쳤어요.",
+            en: "Fixed Premium briefly still showing elsewhere in the app after your subscription ended and you opened AI suggestions on the feed.",
+          },
+          {
+            ko: "인증 코드를 다시 보낼 때 남은 시간이 보이지 않던 문제를 고쳤어요.",
+            en: "Fixed the countdown not showing when resending a verification code.",
+          },
+          {
+            ko: "서머타임이 시작되는 날이나 기기와 앱의 시간대가 다를 때 고른 시각이 바뀌던 문제를 고쳤어요.",
+            en: "Fixed a chosen time shifting on the day daylight saving time starts, or when your device and the app use different time zones.",
+          },
+          {
+            ko: "메모를 고치는 중에 고정하면 고정이 풀려 보이거나, 하위 할 일 하나가 저장에 실패하면 다른 체크까지 되돌아가던 문제를 고쳤어요. 하위 할 일을 말로 받아쓴 글이 사라질 수 있던 문제도 고쳤어요.",
+            en: "Fixed a note looking unpinned when you pinned it mid-edit, other checklist items reverting when one failed to save, and dictated checklist text getting lost.",
+          },
+          {
+            ko: "콕이나 신고를 빠르게 두 번 누르면 두 번 보내지거나, 친구를 끊은 뒤 친구 목록이 중간에 끝나던 문제를 고쳤어요. 친구 할 일 상세에서 차단하면 이제 바로 볼 수 없다고 알려 드려요.",
+            en: "Fixed double taps sending a nudge or report twice, and the friends list ending early after removing a friend. Blocking someone from their to-do now shows right away that it's no longer available.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "할 일에 쓰던 댓글이 앱을 다시 열어도 그대로 있어요.",
+        "메모나 할 일을 고치는 동안 쓰던 글이 사라지지 않고, 저장을 다시 눌러도 메모는 하나만 생겨요.",
+        "다른 탭이나 알림에서 연 화면도 뒤로 가면 보던 곳으로 돌아와요.",
+        "알림함이 지금 보던 탭 안에서 열려요.",
+        "초대 링크로 가입하거나 로그인하면 바로 초대로 이어져요.",
+        "오래 쉬었다 열어도 화면이 로딩에서 멈추지 않아요.",
+        "달력과 위젯, 리포트의 주차를 같은 기준으로 보여 드려요.",
+        "iPhone에서 메모 카드를 길게 누르면 바로 고정하거나 지울 수 있어요.",
+        "글꼴 크기를 키우면 아이콘도 함께 커져요.",
+        "계정을 바꾼 직후 결제가 이전 계정에 잡힐 수 있던 문제를 고쳤어요.",
+      ],
+      en: [
+        "Comment drafts come back after reopening.",
+        "Edits stay safe, and notes aren't saved twice.",
+        "Back returns you to where you were.",
+        "Notifications open in the tab you're on.",
+        "Invite links go straight to the invite.",
+        "No more endless loading after a break.",
+        "Calendar, widgets, and reports count weeks alike.",
+        "On iPhone, long-press a note to pin or delete it.",
+        "Icons scale with your font size.",
+        "Fixed purchases going to a previous account.",
+      ],
+    },
+  },
+  {
     version: "1.15.1",
     date: "2026-11-11",
     summary: {
