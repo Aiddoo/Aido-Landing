@@ -20,7 +20,7 @@ Issue에는 사용자가 겪는 문제와 완료 조건을, PR에는 최종 변�
 
 ## 배포
 
-Vercel Git 연동을 사용합니다. PR/브랜치 push는 Preview, main 반영은 Production 배포를 시작합니다. 수동 `vercel --prod`는 사용하지 않습니다. 루트 문서만 바뀐 커밋은 CI·배포를 건너뜁니다.
+Vercel Git 연동을 사용합니다. PR/브랜치 push는 Preview, main 반영은 Production 배포를 시작합니다. 수동 `vercel --prod`는 사용하지 않습니다. CI는 PR에서만 돌고, 루트 문서와 `docs/`만 바뀐 PR은 CI를 건너뜁니다.
 
 머지 전 GitHub Actions CI가 성공했는지 확인합니다. 머지가 완료되어도 배포 성공과는 다르므로 배포 상태를 별도로 확인하고 실패나 대기 상태를 그대로 기록합니다. 운영 배포 후 공개 URL에서 핵심 변경과 메타데이터를 확인합니다.
 
@@ -38,17 +38,17 @@ Next.js 권장 작업은 공식 CLI `next typegen`, `next build`, `next start`�
 | generate-images.mjs | 공식 Next custom loader용 정적 Sharp 변형 생성 및 해시/치수 검증 |
 | generate-fonts.py | 선택적인 fontTools 병합/공개 문구 서브셋 재생성, CI/앱 런타임에서 실행하지 않음 |
 
-CI는 frozen install → pnpm audit → lint → typecheck → unit tests → 이미지/출시 기록 검사 → production 테스트 설정 빌드 → SEO 순서입니다. Playwright 브라우저 검사는 Actions 비용을 줄이려고 CI에서 빼고, PR을 올리기 전 로컬 `pnpm check`로 돌립니다. audit는 개발·간접 의존성도 포함하며 등록된 취약점이 있으면 실패합니다. 브라우저 검사는 Google/Vercel 요청을 mock하며 CI에 사용하는 G-TEST123은 실제 운영 ID가 아닙니다. Vercel 배포 빌드는 플랫폼의 실제 환경변수를 사용합니다.
+CI는 의존성 검토(dependency-review-action, high 이상 실패) → frozen install → pnpm audit → lint → typecheck → unit tests → 이미지/출시 기록 검사 → production 테스트 설정 빌드 → SEO 순서입니다. Playwright 브라우저 검사는 Actions 비용을 줄이려고 CI에서 빼고, PR을 올리기 전 로컬 `pnpm check`로 돌립니다. audit는 개발·간접 의존성도 포함하며 등록된 취약점이 있으면 실패합니다. 브라우저 검사는 Google/Vercel 요청을 mock하며 CI에 사용하는 G-TEST123은 실제 운영 ID가 아닙니다. Vercel 배포 빌드는 플랫폼의 실제 환경변수를 사용합니다.
 
-`pnpm check`는 위 CI 순서(frozen install 제외)에 Playwright까지 로컬에서 실행하며 production 테스트 환경변수를 내부에서 설정합니다. Playwright는 3217 포트를 쓰므로 비어 있어야 합니다. PR의 의존성 변경은 `dependency-review.yml`이 high 이상 취약점을 검토합니다. Dependabot(`.github/dependabot.yml`)은 매달 Actions와 npm을 각각 한 그룹으로 묶어 `chore(deps)` PR로 올립니다. CI는 같은 PR에 새 커밋이 오면 앞선 실행을 취소하고(`concurrency`), main push 실행은 취소하지 않습니다. `pnpm fonts:generate`는 `fonttools[woff]`가 설치된 venv의 python3로 실행합니다(절차는 폰트 안내 참고).
+`pnpm check`는 위 CI 순서(frozen install 제외)에 Playwright까지 로컬에서 실행하며 production 테스트 환경변수를 내부에서 설정합니다. Playwright는 3217 포트를 쓰므로 비어 있어야 합니다. PR의 새 의존성은 CI 첫 단계의 dependency-review-action이 high 이상 취약점을 검토합니다(별도 워크플로를 띄우지 않아 러너를 아낍니다). Dependabot(`.github/dependabot.yml`)은 매달 Actions와 npm을 각각 한 그룹으로 묶어 `chore(deps)` PR로 올립니다. CI는 같은 PR에 새 커밋이 오면 앞선 실행을 취소합니다(`concurrency`). main은 PR로만 바뀌므로 main push에서 같은 검사를 다시 돌리지 않습니다. `pnpm fonts:generate`는 `fonttools[woff]`가 설치된 venv의 python3로 실행합니다(절차는 폰트 안내 참고).
 
 로컬 `pnpm test:browser`는 테스트 Production 빌드와 서버를 직접 관리합니다. `pnpm exec playwright install chromium`으로 브라우저를 준비합니다. 설치된 Chrome을 쓰려면 `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`를 실행합니다. 공급자 회귀에 한해 `PLAYWRIGHT_DEV=1 PLAYWRIGHT_CHANNEL=chrome pnpm test:browser --grep "one initialization|no provider requests|script failure" --workers 1`로 개발 StrictMode 재실행도 확인합니다. 운영 DebugView 확인은 모의 테스트와 구분합니다.
 
 ## 의존성·보안 업데이트
 
-현재 버전은 `package.json`/`pnpm-lock.yaml`에서 관리하고 별도의 버전 표를 중복 유지하지 않습니다. npm stable/공식 보안 공지/peer 범위를 확인한 뒤 정확한 버전을 적용하고 위 CI로 검증합니다. Node 타입은 런타임과 같은 24 major를 유지합니다. 2026-10-10 점검에서 Next 16.4.0·React 19.3.0은 latest stable이고 `pnpm audit --json`의 등록된 취약점은 전체 326개 의존성에서 0개였습니다. 등록 전 문제나 모든 환경의 안전성을 보장하는 결과는 아닙니다.
+현재 버전은 `package.json`/`pnpm-lock.yaml`에서 관리하고 별도의 버전 표를 중복 유지하지 않습니다. npm stable/공식 보안 공지/peer 범위를 확인한 뒤 정확한 버전을 적용하고 위 CI로 검증합니다. Node 타입은 런타임과 같은 24 major를 유지합니다. 2026-11-14 점검에서 Next 16.4.6·React 19.3.1이 latest stable이고, `pnpm audit`의 등록된 취약점은 전체 334개 의존성에서 0개였습니다. 등록 전 문제나 모든 환경의 안전성을 보장하는 결과는 아닙니다.
 
-Next.js [10월 14일 보안 업데이트](https://nextjs.org/blog/upcoming-nextjs-security-update-october-2026)의 Critical 2건(GHSA-2464-fhr4-w9xw, GHSA-673q-mjm6-r5xr)·High 1건(GHSA-p3m5-59mp-jv5r)은 16.4.1부터 수정됐습니다. 2026-10-24에 pnpm 최소 공개 기간을 충족한 16.4.2로 올렸고 `pnpm audit`의 등록된 취약점은 0개입니다. 이후 advisory도 npm dist-tags와 공식 수정 버전을 대조해 package/lockfile → CI → 리뷰 → Vercel Git 배포 순서로 처리하며, 근거 없이 canary나 개별 transitive override로 대체하지 않습니다.
+보안 advisory는 npm dist-tags와 공식 수정 버전을 대조해 package/lockfile → CI → 리뷰 → Vercel Git 배포 순서로 처리하며, 근거 없이 canary나 개별 transitive override로 대체하지 않습니다.
 
 공식 GitHub Dependabot alerts/security updates로 공개된 취약점의 수정 PR을 받고, Secret scanning/Push protection으로 지원되는 인증 정보 패턴을 검사합니다. 저장소 설정은 GitHub에서 관리하며 같은 기능의 자체 scripts를 추가하지 않습니다. 자동 머지는 사용하지 않습니다. 아직 advisory에 없는 사전 공지는 별도 P1 이슈로 추적합니다.
 
