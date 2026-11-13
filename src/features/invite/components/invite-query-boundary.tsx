@@ -8,7 +8,6 @@ import {
   type ComponentProps,
   type ReactNode,
   Suspense,
-  useCallback,
   useSyncExternalStore,
 } from "react";
 import { ErrorBoundary, type FallbackProps } from "react-error-boundary";
@@ -51,10 +50,9 @@ export function InviteQueryBoundary({
 
 function useQueryDataUpdatedAt(queryKey: QueryKey) {
   const queryClient = useQueryClient();
-  const subscribe = useCallback(
-    (onChange: () => void) => queryClient.getQueryCache().subscribe(onChange),
-    [queryClient],
-  );
+  // React Compiler가 subscribe를 queryClient 기준으로 메모해 매 렌더 다시 구독하지 않는다
+  const subscribe = (onChange: () => void) =>
+    queryClient.getQueryCache().subscribe(onChange);
   const read = () => queryClient.getQueryState(queryKey)?.dataUpdatedAt ?? 0;
   return useSyncExternalStore(subscribe, read, read);
 }
