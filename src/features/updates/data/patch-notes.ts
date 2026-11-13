@@ -28,6 +28,56 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.15.3",
+    date: "2026-11-14",
+    summary: {
+      ko: "친구 알림과 연속 기록이 빠지지 않고 남고, 친구 추가 화면에서 키보드를 쉽게 내릴 수 있어요.",
+      en: "Friend alerts and streaks you can count on.",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "친구 요청·응원·콕 알림과 할 일을 끝냈을 때의 연속 기록·달성 알림이 드물게 빠지던 경우가 없도록 다듬었어요.",
+            en: "Friend request, cheer, and nudge alerts, plus streaks and achievement alerts when you finish to-dos, no longer go missing in rare cases.",
+          },
+          {
+            ko: "이름을 정하지 않은 친구도 댓글·답글과 댓글 알림에서 해시태그로 알아볼 수 있어요.",
+            en: "Friends who haven't set a name now show their hashtag in comments, replies, and comment alerts.",
+          },
+          {
+            ko: "할 일 순서를 바꾸거나 친구를 찾을 때 더 빨라졌어요.",
+            en: "Reordering to-dos and searching for friends is faster.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "친구 추가 화면에서 빈 곳을 눌러도 키보드가 내려가지 않고, 쓸 수 없는 해시태그에서 완료 키를 눌러도 아무 일이 없던 문제를 고쳤어요.",
+            en: "Fixed the keyboard staying open when you tapped an empty area on the Add friend screen, and the Done key doing nothing for a hashtag that can't be used.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "친구 요청·응원·콕 알림과 연속 기록·달성 알림이 빠지지 않고 남아요.",
+        "할 일 순서 바꾸기와 친구 찾기가 더 빨라졌어요.",
+        "이름을 정하지 않은 친구는 댓글과 알림에 해시태그로 보여요.",
+        "친구 추가 화면에서 빈 곳을 누르면 키보드가 내려가요.",
+      ],
+      en: [
+        "Friend, cheer, and nudge alerts and streaks stay saved.",
+        "Reordering to-dos and finding friends is faster.",
+        "Unnamed friends show their hashtag in comments.",
+        "Tap outside to close the keyboard when adding friends.",
+      ],
+    },
+  },
+  {
     version: "1.15.2",
     date: "2026-11-13",
     summary: {
