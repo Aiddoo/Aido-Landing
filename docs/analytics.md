@@ -16,13 +16,13 @@
 |---|---|---|
 | `page_view` | 초기 방문과 실제 페이지 이동(코드가 직접 전송) | `page_location`, `page_path`, `page_type`, `site_locale`, `feature_slug` |
 | `download_click` | App Store/Google Play 버튼 클릭 | `store`: `app_store`/`google_play`, `cta_placement`: `hero`/`download`/`invite` |
-| `select_content` | 기능 사용법 카드 선택 | `content_type`: `feature_guide`, `item_id`, `cta_placement`: `home_guides`/`related_guides` |
+| `select_content` | 기능 사용법 카드 선택 | `content_type`: `feature_guide`, `item_id`, `cta_placement`: `home_guides`/`related_guides`/`features_hub` |
 | `language_switch` | 다른 언어로 전환(같은 언어는 버림) | `target_locale` |
 | `invite_code_copy` | 초대 코드 복사 버튼 | `copy_result`: `copied`/`manual`(코드 값은 보내지 않음) |
 
 GA4에는 이벤트 파라미터에 현재 페이지 파라미터를 더해 보낸다. Server Component 링크는 `analyticsAttributes(event)`로 `data-analytics`에 이벤트 JSON을 싣고, 문서 클릭 리스너가 스키마로 다시 검증해 `track()`을 부른다. 클라이언트 코드는 `track()`을 직접 부른다(예: 초대 코드 복사).
 
-페이지 종류는 `home`, `services`, `feature_guide`, `patch_notes`, `terms`, `privacy`, `account_deletion`, `invite`이다. 초대 링크 `/i/{코드}`와 실제 경로 `/{locale}/invite/{코드}`는 코드를 버리고 `/{locale}/invite`로만 집계한다(`getPublicPath`). 주소에 언어가 있으면 그 언어, 없으면(`/`, `/i/{코드}`) 화면 언어로 집계한다. `feature_slug`는 현재 보고 있는 사용법이며, `select_content.item_id`는 이동할 사용법이다. 사용법 화면의 하단 CTA는 `cta_placement=download`이고 `page_type=feature_guide`로 홈 하단과 구분한다.
+페이지 종류는 `home`, `features`, `compare`, `feature_guide`, `patch_notes`, `terms`, `privacy`, `account_deletion`, `invite`이다. 초대 링크 `/i/{코드}`와 실제 경로 `/{locale}/invite/{코드}`는 코드를 버리고 `/{locale}/invite`로만 집계한다(`getPublicPath`). 주소에 언어가 있으면 그 언어, 없으면(`/`, `/i/{코드}`) 화면 언어로 집계한다. `feature_slug`는 현재 보고 있는 사용법이며, `select_content.item_id`는 이동할 사용법이다. 사용법 화면의 하단 CTA는 `cta_placement=download`이고 `page_type=feature_guide`로 홈 하단과 구분한다.
 
 `download_click`은 웹사이트의 주요 이벤트로 등록하며 주요 이벤트 수는 세션당 1회 집계한다. 원시 이벤트 수는 모든 클릭을 포함한다. 기본 금액은 지정하지 않는다. **실제 설치·가입·구매가 아니다.** 실제 설치는 기존 앱의 `first_open`, 가입·구매는 앱에서 확인한다. iOS/Android 스토어 경계를 넘는 동일 사용자 연결이나 광고 설치 귀속은 이 구현에서 보장하지 않는다. URL 쿼리나 사용자 ID로 임의 연결하지 않는다.
 

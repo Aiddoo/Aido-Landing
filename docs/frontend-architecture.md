@@ -19,7 +19,8 @@ src/
   app/[locale]/...       # Next.js 라우팅·SSG·metadata
   features/
     landing/{pages,components,data}
-    services/{pages,components,data}
+    services/{components,data}       # 기능 소개의 실제 화면 갤러리
+    compare/{pages,data}
     feature-guides/{pages,components,data}   # data: 가이드 목록·실제 화면 카탈로그
     updates/{pages,components,data,hooks,utils}   # data: 패치노트·업데이트 소개(release-highlights)·소개 화면 카탈로그
     legal/{pages,components,data}
@@ -64,7 +65,7 @@ src/
 
 토큰은 `src/app/globals.css` 한 곳에 있습니다. 색은 `brand`(#ff6b43, 행동·강조), `brand-deep`(#c2410c, 크림 위 글자·링크·포커스), `brand-soft`, `fish`(#23a2ff, 친구·소셜), `bone`, `cream`(페이지 바탕), `paper`(카드), `ink`(#222), 앱과 같은 `gray-1…10`입니다. shadcn 의미 토큰(`primary`, `muted`, `accent`, `border`, `ring`…)은 이 값을 가리킵니다. 주황 바탕의 글자는 대비 때문에 흰색이 아닌 `ink`입니다. 서체는 `font-display`(Jua, h1·h2, shadcn `font-heading`), `font-sans`(Wanted Sans), `font-hand`(나눔손글씨 펜, 짧은 메모만)입니다. 크기는 `text-display-xl|lg|md`, `text-title-lg|title`, `text-body-lg|body`, `text-caption|micro`, `text-hand|hand-lg`, 간격은 Tailwind 4px 단계 + `px-gutter`·`py-section`·`py-section-sm`, 폭은 `max-w-page|narrow|reading`입니다. 둥글기는 칩(`rounded-sm`) < 버튼(`rounded-lg`, xl 버튼은 pill) < 카드(`rounded-xl`) < 큰 패널(`rounded-3xl`), 그림자는 `shadow-card`·`shadow-lift`(따뜻한 그림자)와 눌리는 버튼 아랫단 `shadow-press-*`입니다. `cn`(`src/lib/utils.ts`)은 `next.config.ts`의 `withCn`이 소스와 `globals.css`의 `@theme`으로 빌드 때 만든 병합 표(`cn-tables.ts`, 생성물)를 씁니다. 새 토큰은 `@theme`에 두면 자동으로 알맞은 그룹에 들어가며, 생성 표는 직접 고치지 않습니다. 다크 모드는 shadcn Next.js 방식입니다. 로케일 레이아웃의 `ThemeProvider`(next-themes, `attribute="class"`·`defaultTheme="system"`·`disableTransitionOnChange`)가 첫 그리기 전에 `<html class="dark">`를 붙이고(`suppressHydrationWarning`), `globals.css`의 `.dark`가 토큰을, `@custom-variant dark (&:is(.dark *))`가 `dark:` 변형을 정합니다. 다크 바탕은 앱처럼 따뜻한 짙은 회색, 강조는 같은 주황입니다. 반전 패널은 `data-surface="inverse"`, 기기 틀(`[data-device]`)은 어느 모드에서도 어둡게 유지합니다. 고르는 곳은 `ThemeToggle`(shadcn DropdownMenu, 밝게·어둡게·기기 설정대로)로 데스크톱 머리글의 언어 전환 옆과 모바일 Sheet 메뉴에 있고, 아이콘은 `dark:` 클래스로 바뀌어 하이드레이션 전후가 같습니다. 메뉴 코드(`theme-menu.tsx`)는 모바일 Sheet처럼 처음 열 때 불러옵니다.
 
-UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest view <이름>`) CLI로 추가합니다. 현재 Button·Card·Badge·Tabs·Accordion·Sheet·DropdownMenu·Separator·AspectRatio·Carousel·Skeleton·Breadcrumb·Textarea·RadioGroup이 있습니다. 생성물은 원본 그대로 두고 브랜드 변형만 cva에 더합니다(Button `ink`·`soft`·`xl`, Card `elevated`·`soft`, Badge `soft`·`fish`). 목적이 있는 확장은 `목적-원본.tsx`(예: `download-dialog.tsx`, `store-badge-button.tsx`)로 새 파일을 만들고 `Omit<ComponentProps<typeof Dialog>, "…">`처럼 원본 Props(open/onOpenChange, className, ...rest)를 그대로 받습니다. Button은 이벤트 연결 전 클릭을 막지만(`useHydrated`) 비활성 모양으로 바뀌지 않아 서버 HTML과 첫 화면이 같습니다. shadcn 생성물의 영어 낭독 문구(Sheet "Close", Carousel "Previous/Next slide")는 쓰는 쪽에서 한영 문구로 바꿉니다.
+UI는 **shadcn 레지스트리를 먼저 확인**하고(`pnpm dlx shadcn@latest view <이름>`) CLI로 추가합니다. 현재 Button·Card·Badge·Tabs·Accordion·Sheet·DropdownMenu·Separator·AspectRatio·Carousel·Skeleton·Breadcrumb·Textarea·RadioGroup·Table이 있습니다. Table은 표시만 하므로 생성물의 `"use client"`를 빼고 다른 생성물처럼 `@/lib/utils`의 `cn`을 써 Server Component로 둡니다. 생성물은 원본 그대로 두고 브랜드 변형만 cva에 더합니다(Button `ink`·`soft`·`xl`, Card `elevated`·`soft`, Badge `soft`·`fish`). 목적이 있는 확장은 `목적-원본.tsx`(예: `download-dialog.tsx`, `store-badge-button.tsx`)로 새 파일을 만들고 `Omit<ComponentProps<typeof Dialog>, "…">`처럼 원본 Props(open/onOpenChange, className, ...rest)를 그대로 받습니다. Button은 이벤트 연결 전 클릭을 막지만(`useHydrated`) 비활성 모양으로 바뀌지 않아 서버 HTML과 첫 화면이 같습니다. shadcn 생성물의 영어 낭독 문구(Sheet "Close", Carousel "Previous/Next slide")는 쓰는 쪽에서 한영 문구로 바꿉니다.
 
 ### 레이아웃 원시 컴포넌트 (`@/components/ui/layout`)
 

@@ -6,13 +6,14 @@
 
 | 대상 | 전략 | 이유와 갱신 방식 |
 |---|---|---|
-| 한영 홈·서비스 소개·사용법·패치노트·업데이트 소개·법적 문서, 총 26개 정규 페이지 | **SSG + Server Components** | 모두 공개 파일 기반 콘텐츠입니다. 배포할 때 HTML을 만들고 캐시하며, 방문마다 서버에서 본문을 다시 만들지 않습니다. |
+| 한영 홈·기능 소개·앱 비교·기능 가이드 13개·패치노트·업데이트 소개·법적 문서, 총 42개 정규 페이지 | **SSG + Server Components** | 모두 공개 파일 기반 콘텐츠입니다. 배포할 때 HTML을 만들고 캐시하며, 방문마다 서버에서 본문을 다시 만들지 않습니다. |
 | 복사·언어 전환·모바일 메뉴·분석 동의 | **작은 Client Components** | 초기 HTML에 포함한 뒤 필요한 부분만 하이드레이션합니다. 페이지 본문과 전체 한영 카탈로그를 클라이언트에서 다시 조립하지 않습니다. |
 | 친구 초대 코드 페이지 | **요청마다 SSR(스트리밍)** | 초대한 친구가 코드마다 다르고 바뀔 수 있습니다. 아래 [친구 초대 링크](#친구-초대-링크-i코드)를 참고합니다. |
 | 로케일 없는 주소 | **Proxy의 요청 시 언어 선택** | 쿠키·언어 헤더로 기존 정적 한영 페이지를 선택합니다. 보조 리다이렉트 경로의 동적 처리는 공개 본문의 SSR과 별개입니다. |
+| 공유 이미지·RSS·llms.txt | **빌드 때 정적 생성** | `opengraph-image.tsx`·`feed.xml/route.ts`·`llms.txt/route.ts`는 Route Handler지만 `generateStaticParams`·`force-static`으로 빌드 때 한 번 만들고 CDN이 정적 파일로 냅니다. 요청마다 함수가 돌지 않습니다. |
 | ISR | **사용하지 않음** | 원본이 Git 안에 있으므로 주기적으로 다시 만들어도 새 내용이 생기지 않습니다. 변경은 Vercel Git 배포로 반영합니다. |
 
-`[locale]/(static)/layout.tsx`의 `dynamic = "error"`는 요청 시 API나 캐시하지 않는 데이터가 공개 페이지에 들어오면 빌드를 실패시킵니다. `dynamicParams = false`는 등록하지 않은 언어·사용법·업데이트 소개 경로의 요청 시 생성을 막습니다. `pnpm seo:check`는 실제 빌드 결과에서 26개 페이지의 정적 생성·ISR 미사용, 본문의 초기 HTML 포함, canonical·hreflang·OG/Twitter·JSON-LD·실제 변경일의 사이트맵을 확인합니다. 패치노트와 FAQ는 브라우저 기본 `<details>`를 사용해 JavaScript 없이도 펼칠 수 있습니다.
+`[locale]/(static)/layout.tsx`의 `dynamic = "error"`는 요청 시 API나 캐시하지 않는 데이터가 공개 페이지에 들어오면 빌드를 실패시킵니다. `dynamicParams = false`는 등록하지 않은 언어·사용법·업데이트 소개 경로의 요청 시 생성을 막습니다. `pnpm seo:check`는 실제 빌드 결과에서 42개 페이지의 정적 생성·ISR 미사용, 본문의 초기 HTML 포함, canonical·hreflang·OG/Twitter·JSON-LD·실제 변경일의 사이트맵을 확인합니다. 패치노트와 FAQ는 브라우저 기본 `<details>`를 사용해 JavaScript 없이도 펼칠 수 있습니다.
 
 ## 친구 초대 링크 (/i/{코드})
 
@@ -31,22 +32,24 @@
 - 정규 주소는 `https://aido.kr/{ko|en}/...`입니다. 로케일 없는 경로와 www 주소는 사이트맵·내부 링크에 넣지 않습니다. 도메인·스토어·SNS 상수는 `src/lib/seo.ts`에서 가져옵니다.
 - `generateMetadata()`에서 `buildPageMetadata()`로 title·description·canonical·ko/en/x-default hreflang을 작성하고 `buildSocialMetadata()`를 함께 사용합니다. Next.js는 부모의 openGraph 객체를 깊게 병합하지 않으므로 일부 값만 덮으면 홈의 og:url 등이 남을 수 있습니다.
 - Organization·WebSite JSON-LD는 로케일 레이아웃, MobileApplication은 홈, BreadcrumbList는 하위 페이지에서 제공합니다. 업데이트 소개(`/patch-notes/{버전}`)는 홈 > 패치노트 > 버전의 세 단계입니다. 공식 채널 변경은 Organization의 sameAs에도 반영합니다.
-- `src/app/sitemap.ts`에 페이지와 실제 변경일을 추가합니다. 홈은 최신 앱 출시일, 패치노트는 기록일과 편집일 중 최신 날짜, 서비스·사용법·업데이트 소개는 콘텐츠 변경일, 법적 문서는 시행일을 사용합니다. 빌드할 때마다 현재 날짜로 갱신하지 않습니다.
+- 기능 소개(`/features`)는 `featureGuides`의 그룹(`plan`·`memo`·`friends`·`daily`·`me`) 순서로 가이드 카드를 보여 주고 `ItemList` JSON-LD를 둡니다. 기능 가이드는 홈 > 기능 소개 > 가이드의 BreadcrumbList입니다. 예전 `/services`는 `next.config.ts`의 `redirects`로 `/features`에 영구 이동(308)합니다. 앱 비교(`/compare`)는 경쟁 앱 이름을 공식 웹사이트·App Store에서 확인한 사실로만 쓰고 확인일(`COMPARE_CHECKED_AT`)과 출처 링크(`rel=nofollow`)를 함께 둡니다. 다시 확인하면 확인일을 바꿉니다.
+- `src/app/sitemap.ts`에 페이지와 실제 변경일을 추가합니다. 홈은 홈 문구 변경일과 최신 앱 출시일 중 늦은 날, 패치노트는 기록일과 편집일 중 최신 날짜, 기능 소개는 가이드·실제 화면 중 가장 늦은 변경일, 앱 비교는 확인일, 기능 가이드·업데이트 소개는 콘텐츠 변경일, 법적 문서는 시행일을 사용합니다. 빌드할 때마다 현재 날짜로 갱신하지 않습니다.
 - Preview는 noindex·robots disallow, Production은 index를 유지합니다. Google/네이버 소유확인 HTML 파일은 보존합니다. 현재 파일 방식이므로 verification 환경변수가 비어 있어도 정상입니다.
-- Next Image의 공식 custom loaderFile로 미리 생성한 WebP srcset을 제공합니다. Vercel의 요청 시 이미지 최적화 API를 호출하지 않습니다. 화면용 원본 178개(로고 1개·고양이 10개·폴더블 4개·한영 홈 화면 27개·한영 스크린샷 48개·한영 기능 가이드 실제 화면 64개·한영 1.15.0 업데이트 소개 실제 화면 24개)는 모두 WebP이며 재생성 입력으로 유지합니다. 카탈로그에서 사용하지 않는 이전 PNG/WebP 10개, 총 565,524바이트를 제거했습니다.
-- 이미지 변경 후 `pnpm images:generate`로 크기별 WebP와 내용 해시 manifest를 갱신합니다. `public/responsive/`는 생성기 전용이며 재생성 때 이전 manifest에서만 쓰던 WebP를 정리합니다. CI의 `pnpm images:check`는 카탈로그에 없는 앱 이미지·남은 파생 파일·원본/치수/해시 불일치를 확인합니다. OG·구조화 데이터 로고·favicon·Apple/PWA 아이콘 PNG는 화면용 이미지와 구분한 메타데이터 자원으로 유지합니다. 홈 OG 이미지는 언어별 `public/og-image-{ko,en}.png`(1200×630)이며 `pnpm images:og`로 다시 만들고, 초대 공유 이미지는 `pnpm images:invite-share`로 만듭니다. 둘 다 `images:check`가 규격·용량을 확인합니다.
+- Next Image의 공식 custom loaderFile로 미리 생성한 WebP srcset을 제공합니다. Vercel의 요청 시 이미지 최적화 API를 호출하지 않습니다. 화면용 원본은 모두 WebP이며 재생성 입력으로 유지합니다. 1.15.2 iPhone 캡처(PNG 1206×2622)는 640px WebP(quality 85)로 줄여 `public/app-assets/guides/ko/`에 두고, 영어 캡처가 아직 없는 화면은 `guide-screens.ts`의 `koreanOnlyScreens`가 영어 페이지에서도 한국어 파일을 고르게 합니다(영어 캡처를 `guides/en/`에 넣으면 목록에서 지웁니다).
+- 이미지 변경 후 `pnpm images:generate`로 크기별 WebP와 내용 해시 manifest를 갱신합니다. `public/responsive/`는 생성기 전용이며 재생성 때 이전 manifest에서만 쓰던 WebP를 정리합니다. CI의 `pnpm images:check`는 카탈로그에 없는 앱 이미지·남은 파생 파일·원본/치수/해시 불일치를 확인합니다. 구조화 데이터 로고·favicon·Apple/PWA 아이콘 PNG는 화면용 이미지와 구분한 메타데이터 자원으로 유지합니다. 초대 공유 이미지(카카오톡 2:1)는 `pnpm images:invite-share`로 만들고 `images:check`가 규격·용량을 확인합니다.
+- 공유 이미지(OG)는 Next 공식 file convention `opengraph-image.tsx`로 빌드 때 1200×630 PNG를 만듭니다(`src/lib/og-image.tsx`, `next/og` `ImageResponse`). 1.91:1은 Facebook·Threads·LinkedIn·X·Slack·Discord 규격이고, 카카오톡·X가 2:1로 잘라도 글자가 남도록 위아래 여백을 둡니다. 크롤러 호환 때문에 OG는 PNG, 화면 이미지는 WebP입니다. `[locale]/opengraph-image`가 기본 이미지이고 `buildSocialMetadata()`가 `/{locale}/opengraph-image`를 가리킵니다. 기능 소개·가이드·비교는 폴더마다 자기 `opengraph-image`가 있고 `buildPageMetadata({ ownImage: true })`로 기본 이미지를 넣지 않아 file 메타데이터가 쓰입니다(Next가 URL에 내용 해시를 붙여 SNS 캐시도 갱신됩니다). 이미지 Route Handler는 레이아웃의 `generateStaticParams`를 물려받지 않으므로 각 파일이 언어·slug를 직접 내보냅니다. `ImageResponse`는 woff2를 읽지 못해 사이트 글꼴(Jua·Wanted Sans SemiBold, OFL)을 WOFF로 바꾸고 opentype.js가 읽지 못하는 GSUB 표를 뺀 `assets/og-fonts/`를 씁니다(한글 완성형·라틴에는 영향 없음). 앱 화면 WebP는 resvg가 그리지 못해 빌드 때 sharp로 PNG로 바꿔 넣습니다.
 - 앱 녹화 영상은 `<video>`(소리 없음·반복·`playsInline`·`preload="none"`)로 넣고 GIF를 쓰지 않습니다. `pnpm videos:generate -- <원본 폴더>`가 저장소 밖 녹화를 `scripts/generate-videos.mjs`의 자르기·구간대로 VP9 WebM + H.264 MP4 + WebP 포스터로 만들고 내용 해시 이름으로 `public/videos/`(1년 immutable 캐시)에 저장하며, 카탈로그 `app-videos.ts`를 다시 씁니다(ffmpeg 필요, CI에서는 실행하지 않음). 녹화의 오프라인 안내·DEV 배지·설정 버튼·오류 토스트는 crop·구간으로 빼고 결과 프레임을 사람이 확인합니다. iOS 화면 녹화는 화면이 바뀔 때만 프레임을 남겨 `-ss`·fps 필터로 자르면 몇 초씩 어긋나므로 원본 pts 기준 `trim`을 씁니다. `AutoplayVideo`는 화면 근처에서만 내려받아 재생하고, 동작 줄이기 설정에서는 포스터만 보여 주며, 재생·일시정지 버튼을 둡니다. 비율 상자 안에 넣어 CLS가 없고, `pnpm test`가 파일 존재·크기 예산(영상 1MB, 포스터 60KB)·남은 파일을 확인합니다.
 
 ## 검증 범위
 
-렌더링·메타데이터·폰트를 바꿨다면 `pnpm build` 후 `pnpm seo:check`로 실제 생성 HTML과 manifest를 확인합니다. 검사는 26개 정규 페이지의 SSG·ISR 미사용, 미등록 경로의 동적 생성 차단, 본문·메타데이터·사이트맵·이미지·폰트를 다룹니다. 새 경로를 만들면 검사 대상도 함께 갱신합니다.
+렌더링·메타데이터·폰트를 바꿨다면 `pnpm build` 후 `pnpm seo:check`로 실제 생성 HTML과 manifest를 확인합니다. 검사는 42개 정규 페이지의 SSG·ISR 미사용, 미등록 경로의 동적 생성 차단, 본문·메타데이터·사이트맵·이미지·폰트를 다룹니다. 새 경로를 만들면 검사 대상도 함께 갱신합니다.
 
 정적 HTML 제공은 검색 접근성을 위한 조건이며 검색 순위나 AI 인용을 보장하지 않습니다. 성능 비교에서는 불필요한 리소스 제거처럼 확인한 사실과 실제 방문자 LCP/CLS 측정 결과를 구분합니다. 검색·방문 측정 운영은 [분석 안내](analytics.md)를 참고합니다.
 
 ## Google AI 검색 / GEO
 
-Google의 [AI 기능 공식 지침](https://developers.google.com/search/docs/appearance/ai-features)에 따라 일반 검색의 기술 요건을 적용합니다. 공개 페이지는 robots.txt에서 크롤링을 허용하고, Googlebot의 snippet을 허용하며, 중요한 설명·사용 단계·FAQ는 초기 HTML의 텍스트입니다. 홈/서비스/관련 사용법 링크는 실제 a href로 연결하고 canonical/hreflang과 사이트맵은 26개 실제 페이지를 가리킵니다. 제목/설명/H1은 페이지 목적을 설명하며 키워드를 반복하기 위해 가짜 페이지를 만들지 않습니다.
+Google의 [AI 기능 공식 지침](https://developers.google.com/search/docs/appearance/ai-features)에 따라 일반 검색의 기술 요건을 적용합니다. 공개 페이지는 robots.txt에서 크롤링을 허용하고, Googlebot의 snippet을 허용하며, 중요한 설명·사용 단계·FAQ는 초기 HTML의 텍스트입니다. 홈/기능 소개/관련 가이드 링크는 실제 a href로 연결하고 canonical/hreflang과 사이트맵은 42개 실제 페이지를 가리킵니다. 제목/설명/H1은 페이지 목적을 설명하며 키워드를 반복하기 위해 가짜 페이지를 만들지 않습니다.
 
-Organization/WebSite/MobileApplication/BreadcrumbList JSON-LD는 실제 공개 내용과 맞추고 schema-dts로 타입 검사합니다. 허위 별점·리뷰·AI 전용 스키마나 상업용 FAQ의 rich result 자격을 주장하지 않습니다. Google은 AI Overviews/AI Mode를 위해 llms.txt 등 새로운 AI 텍스트 파일이나 특수 스키마가 필요하지 않다고 명시합니다. robots.txt의 `User-Agent: * / Allow: /`가 Google 검색 크롤러 접근을 허용하며, 별도 Google-Extended 학습 제어는 검색 AI 노출 제어와 구분합니다.
+Organization/WebSite/MobileApplication/BreadcrumbList JSON-LD는 실제 공개 내용과 맞추고 schema-dts로 타입 검사합니다. 허위 별점·리뷰·AI 전용 스키마나 상업용 FAQ의 rich result 자격을 주장하지 않습니다. Google은 AI Overviews/AI Mode를 위해 llms.txt 등 새로운 AI 텍스트 파일이나 특수 스키마가 필요하지 않다고 명시합니다. 그래도 다른 AI 검색 도구의 안내용으로 [llmstxt.org](https://llmstxt.org) 형식의 `/llms.txt`를 화면 문구에서 빌드 때 만들어 둡니다(정적 파일이라 비용이 없고 순위를 보장하지 않습니다). 네이버 서치어드바이저 제출용으로 언어별 RSS 2.0 `/{ko|en}/feed.xml`(업데이트·기능 가이드)을 Next 공식 예제처럼 Route Handler로 만들고, 모든 페이지 `<head>`에 `alternates.types`로 알립니다. robots.txt의 `User-Agent: * / Allow: /`가 Google 검색 크롤러 접근을 허용하며, 별도 Google-Extended 학습 제어는 검색 AI 노출 제어와 구분합니다.
 
 [robots.txt 지침](https://developers.google.com/search/docs/crawling-indexing/robots/intro)에 따라 robots는 접근 제어/비밀 보호 수단으로 사용하지 않습니다. Preview는 noindex와 robots disallow를 유지하지만 민감한 데이터가 있다면 인증으로 보호해야 합니다. Production의 CDN/WAF 차단과 실제 Google 색인은 배포 뒤 Search Console URL Inspection으로 확인합니다. 로컬 검사 통과가 색인·순위·AI 인용을 보장하지 않습니다.

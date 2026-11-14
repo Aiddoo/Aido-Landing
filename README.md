@@ -40,12 +40,13 @@ pnpm dev        # http://localhost:3000
 ```
 src/
 ├── app/              # App Router — [locale]/ 하위가 정규 라우트
-│   ├── [locale]/     # 홈 · services · features/[slug] · patch-notes · terms · privacy (ko/en SSG)
+│   ├── [locale]/     # 홈 · features(기능 소개)·features/[slug] · compare · patch-notes · terms · privacy (ko/en SSG), opengraph-image, feed.xml
+│   ├── llms.txt/     # AI 검색 도구 안내(빌드 때 정적 생성)
 │   ├── robots.ts     # robots.txt
 │   └── sitemap.ts    # sitemap.xml (lastmod는 실제 변경일 기준)
 ├── components/       # 공용 layout/navigation/marketing/media/motion/seo/fonts/ui
 ├── content/legal/    # 약관·개인정보처리방침 (ko/en 마크다운)
-├── features/         # landing/services/feature-guides/updates/legal/analytics
+├── features/         # landing/feature-guides/compare/services(실제 화면 갤러리)/updates/legal/analytics
 ├── i18n/             # 로케일 설정 · 메시지 카탈로그
 ├── lib/seo.ts        # 도메인·스토어 URL 상수, OG 메타데이터 헬퍼
 └── proxy.ts          # 로케일 라우팅 미들웨어
@@ -69,7 +70,7 @@ src/
 | GA4·Search Console·동의·이벤트 | [검색·분석 운영](docs/analytics.md) |
 | 의존성·보안·shadcn·Issue·PR·CI·배포 | [기여와 배포](docs/contributing.md) |
 
-26개 한영 공개 페이지는 **SSG + Server Components**로 배포 시 생성합니다. 브라우저 상호작용에 작은 Client Components를 사용하고, Git 콘텐츠에는 ISR을 사용하지 않습니다. 폰트는 로컬 WOFF2로 제공하며 한국어 제목만 미리 받습니다. 자세한 판단 근거와 검증 범위는 해당 문서에서 관리합니다.
+42개 한영 공개 페이지는 **SSG + Server Components**로 배포 시 생성합니다. 브라우저 상호작용에 작은 Client Components를 사용하고, Git 콘텐츠에는 ISR을 사용하지 않습니다. 폰트는 로컬 WOFF2로 제공하며 한국어 제목만 미리 받습니다. 자세한 판단 근거와 검증 범위는 해당 문서에서 관리합니다.
 
 ## 기여 규칙
 
