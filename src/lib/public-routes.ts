@@ -7,7 +7,8 @@ import {
 } from "./invite-link";
 export const publicPaths = [
   "",
-  "/services",
+  "/features",
+  "/compare",
   "/patch-notes",
   "/terms",
   "/privacy",

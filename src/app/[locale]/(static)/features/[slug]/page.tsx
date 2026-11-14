@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: guide.path,
     title: content.title,
     description: content.summary,
+    ownImage: true,
   });
 }
 

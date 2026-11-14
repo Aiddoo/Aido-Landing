@@ -93,8 +93,10 @@ describe("public path normalization", () => {
   for (const locale of ["ko", "en"] as const) {
     for (const route of [
       "",
-      "/services",
+      "/features",
+      "/compare",
       "/features/ai-todo",
+      "/features/memo",
       "/patch-notes",
       "/privacy",
       "/account-deletion",
@@ -114,7 +116,9 @@ describe("public path normalization", () => {
     }
   }
   it("takes the locale from the path and falls back for unprefixed paths", () => {
-    expect(getAnalyticsPage("/en/services", "ko")?.path).toBe("/en/services");
+    expect(getAnalyticsPage("/en/features", "ko")?.path).toBe("/en/features");
+    expect(getAnalyticsPage("/en/features", "ko")?.type).toBe("features");
+    expect(getAnalyticsPage("/ko/services", "ko")).toBeNull();
     expect(getAnalyticsPage("/", "en")?.path).toBe("/en");
   });
   it("keeps valid campaign slugs only", () => {

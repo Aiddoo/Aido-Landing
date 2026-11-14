@@ -83,13 +83,27 @@ export function MobileMenuLinks({
             <ListRow
               render={
                 <Link
-                  href={localizedPath(locale, "/services")}
-                  aria-current={current(localizedPath(locale, "/services"))}
+                  href={localizedPath(locale, "/features")}
+                  aria-current={current(localizedPath(locale, "/features"))}
                   {...navigate}
                 />
               }
               className={rowClass}
-              contents={labels.services}
+              contents={labels.features}
+              right={<ChevronRight className="size-4" aria-hidden="true" />}
+            />
+          </li>
+          <li>
+            <ListRow
+              render={
+                <Link
+                  href={localizedPath(locale, "/compare")}
+                  aria-current={current(localizedPath(locale, "/compare"))}
+                  {...navigate}
+                />
+              }
+              className={rowClass}
+              contents={labels.compare}
               right={<ChevronRight className="size-4" aria-hidden="true" />}
             />
           </li>
