@@ -85,22 +85,49 @@ test("푸터 링크는 새 페이지 맨 위에서 시작해요", async ({ page 
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
 });
 
-test("다른 페이지에서 기능 가이드 앵커로 오면 새로고침 없이 제목이 헤더 아래에 보이고 포커스를 받아요", async ({
+test("다른 페이지에서 홈 앵커로 오면 새로고침 없이 제목이 헤더 아래에 보이고 포커스를 받아요", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/ko/services");
+  await page.goto("/ko/features");
   await markClientNavigation(page);
   await page
-    .getByRole("navigation", { name: "주요 메뉴" })
-    .getByRole("link", { name: "기능 가이드" })
+    .locator("[data-slot=site-header]")
+    .getByRole("link", { name: "앱 다운로드" })
     .click();
-  await expect(page).toHaveURL(/\/ko#guides$/);
+  await expect(page).toHaveURL(/\/ko#download$/);
   await expectClientNavigation(page);
-  const title = page.locator("#guides-title");
-  await expect(title).toBeFocused();
+  await expect(page.locator("#download h2")).toBeFocused();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(1000);
-  await expectBelowHeader(page, "#guides");
+  await expectBelowHeader(page, "#download");
+});
+
+test("기능 소개 메뉴는 허브에서 현재 위치를 알리고 그룹 목차로 이동해요", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/ko");
+  await page
+    .getByRole("navigation", { name: "주요 메뉴" })
+    .getByRole("link", { name: "기능 소개" })
+    .click();
+  await expect(page).toHaveURL(/\/ko\/features$/);
+  await expect(
+    page
+      .getByRole("navigation", { name: "주요 메뉴" })
+      .getByRole("link", { name: "기능 소개" }),
+  ).toHaveAttribute("aria-current", "page");
+  await page.getByRole("link", { name: "친구와 함께" }).first().click();
+  await expect(page).toHaveURL(/#group-friends$/);
+  await expectBelowHeader(page, "#group-friends");
+});
+
+test("예전 서비스 주소는 기능 소개로 영구 이동해요", async ({ page }) => {
+  const response = await page.goto("/ko/services");
+  expect(response?.url()).toMatch(/\/ko\/features$/);
+  expect(response?.request().redirectedFrom()?.url()).toMatch(
+    /\/ko\/services$/,
+  );
 });
 
 test("같은 페이지 앵커는 reduced-motion이면 즉시 이동하고 제목에 포커스를 줘요", async ({
@@ -110,16 +137,16 @@ test("같은 페이지 앵커는 reduced-motion이면 즉시 이동하고 제목
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/en");
   await page
-    .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "Guides" })
+    .locator("[data-slot=site-header]")
+    .getByRole("link", { name: "Get the app" })
     .click();
-  await expect(page).toHaveURL(/\/en#guides$/);
-  await expect(page.locator("#guides-title")).toBeFocused();
-  await expectBelowHeader(page, "#guides");
+  await expect(page).toHaveURL(/\/en#download$/);
+  await expect(page.locator("#download h2")).toBeFocused();
+  await expectBelowHeader(page, "#download");
 });
 
 test("건너뛰기 링크는 본문으로 포커스를 옮겨요", async ({ page }) => {
-  await page.goto("/ko/services");
+  await page.goto("/ko/features");
   await page.keyboard.press("Tab");
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/#content$/);
@@ -128,12 +155,12 @@ test("건너뛰기 링크는 본문으로 포커스를 옮겨요", async ({ page
 
 test("모바일 메뉴 링크는 메뉴를 닫고 이동해요", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/ko/services");
+  await page.goto("/ko/features");
   await markClientNavigation(page);
   await page.getByRole("button", { name: "메뉴 열기" }).click();
   const dialog = page.getByRole("dialog", { name: "메뉴" });
   await expect(
-    dialog.getByRole("link", { name: "서비스 둘러보기" }),
+    dialog.getByRole("link", { name: "기능 소개", exact: true }),
   ).toHaveAttribute("aria-current", "page");
   await dialog.getByRole("link", { name: "앱 다운로드" }).click();
   await expect(page).toHaveURL(/\/ko#download$/);

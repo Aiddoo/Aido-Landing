@@ -15,13 +15,21 @@ test.beforeEach(async ({ page }) => {
 for (const locale of ["ko", "en"]) {
   for (const path of [
     "",
-    "/services",
-    "/features/shared-todo",
+    "/features",
+    "/compare",
+    "/features/todo-calendar",
     "/features/recurring-todo",
     "/features/ai-todo",
-    "/features/friend-invite",
-    "/features/weather",
+    "/features/memo",
+    "/features/shared-todo",
+    "/features/nudge",
     "/features/comments",
+    "/features/friend-invite",
+    "/features/reminders",
+    "/features/weather",
+    "/features/ai-report",
+    "/features/customize",
+    "/features/premium",
     "/privacy",
     "/terms",
     "/account-deletion",
@@ -308,7 +316,7 @@ test("client navigation and repeated menu use leave no stray dialogs or warnings
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/ko/features/friend-invite");
   const trigger = page.getByRole("button", { name: "메뉴 열기" });
-  for (const name of ["서비스 둘러보기", "패치노트"]) {
+  for (const name of ["기능 소개", "패치노트"]) {
     await trigger.click();
     await page.getByRole("dialog").getByRole("link", { name }).click();
     await expect(page.getByRole("dialog")).toHaveCount(0);

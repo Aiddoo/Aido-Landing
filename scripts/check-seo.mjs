@@ -3,7 +3,21 @@ import { createHash } from "node:crypto";
 import { glob, readdir, readFile, stat } from "node:fs/promises";
 import { SERVICE_CONTENT_UPDATED_AT } from "../src/components/media/data/app-screenshots.ts";
 import { responsiveImages } from "../src/components/media/data/responsive-images.ts";
-import { featureGuides } from "../src/features/feature-guides/data/feature-guides.ts";
+import { COMPARE_CHECKED_AT } from "../src/features/compare/data/compare.ts";
+import {
+  featureGuides,
+  featuresHubUpdatedAt,
+} from "../src/features/feature-guides/data/feature-guides.ts";
+import {
+  getGuideScreen,
+  guideScreenFiles,
+} from "../src/features/feature-guides/data/guide-screens.ts";
+
+const guideScreenSources = (locale) =>
+  new Set(
+    Object.keys(guideScreenFiles).map((key) => getGuideScreen(locale, key).src),
+  );
+
 import { serviceFeatures } from "../src/features/services/data/service-features.ts";
 import {
   formatStoreNotes,
@@ -63,7 +77,8 @@ assert.equal(
 );
 const paths = [
   "",
-  "/services",
+  "/features",
+  "/compare",
   "/patch-notes",
   "/terms",
   "/privacy",
@@ -73,8 +88,8 @@ const paths = [
 ];
 assert.equal(
   paths.length * 2,
-  26,
-  "ko/en canonical pages: home, services, patch notes, 3 legal, 6 guides and 1 release highlight",
+  42,
+  "ko/en canonical pages: home, features, compare, patch notes, 3 legal, 13 guides and 1 release highlight",
 );
 const decode = (text) =>
   text
@@ -158,7 +173,26 @@ for (const locale of ["ko", "en"]) {
       );
     }
     assert.equal(value("og:url"), `${SITE_URL}${route}`);
-    assert.equal(value("og:image"), `${SITE_URL}/og-image-${locale}.png`);
+    const ogImage = new URL(value("og:image") ?? "");
+    const ownImage =
+      path === "/features" ||
+      path === "/compare" ||
+      featureGuides.some((guide) => guide.path === path);
+    assert.equal(ogImage.origin, SITE_URL, `${route}: og:image origin`);
+    if (ownImage)
+      assert.match(
+        ogImage.pathname,
+        new RegExp(`^/${locale}${path}/opengraph-image-\\w+$`),
+        `${route}: page opengraph-image`,
+      );
+    else assert.equal(ogImage.pathname, `/${locale}/opengraph-image`, route);
+    assert.ok(
+      prerender.routes[ogImage.pathname],
+      `${route}: og:image is prerendered at build time`,
+    );
+    assert.equal(value("og:image:width"), "1200", `${route}: og width`);
+    assert.equal(value("og:image:height"), "630", `${route}: og height`);
+    assert.equal(value("twitter:image"), value("og:image"), route);
     for (const key of [
       "og:title",
       "og:description",
@@ -264,7 +298,24 @@ for (const locale of ["ko", "en"]) {
         1,
         `${route}: stable #overseas-transfer anchor`,
       );
-    if (path === "/services") {
+    if (path === "/features") {
+      for (const guide of featureGuides)
+        assert.ok(
+          tags(html, "a").some(
+            (link) => link.href === `/${locale}${guide.path}`,
+          ),
+          `${route}: link to ${guide.path}`,
+        );
+      for (const item of messages.featureHub.summary)
+        assert.ok(visibleHtml.includes(item.title), `${route}: summary`);
+      assert.ok(
+        jsonLd.find(
+          (data) =>
+            data["@type"] === "ItemList" &&
+            data.itemListElement.length === featureGuides.length,
+        ),
+        `${route}: ItemList of guides`,
+      );
       assert.ok(visibleHtml.includes(messages.services.screenshotNote));
       for (const { id, screenshots } of serviceFeatures) {
         const feature = messages.services.features[id];
@@ -347,13 +398,16 @@ for (const locale of ["ko", "en"]) {
           screenAlts.includes(screen.alt),
           `${route}: guide screen alt`,
         );
+      // 영어 캡처가 아직 없는 화면은 getGuideScreen이 한국어 파일을 고른다. 그 선택과 같아야 한다.
+      const expectedScreens = guideScreenSources(locale);
       for (const image of tags(html, "img").filter((image) =>
         originalSource(image.src)?.includes("/guides/"),
       ))
         assert.ok(
           originalSources(image.src).some((original) =>
-            original.includes(`/guides/${locale}/`),
+            expectedScreens.has(original),
           ),
+          `${route}: guide screen file for ${locale}`,
         );
       for (const related of featureGuides.filter(
         (item) => item.slug !== guide.slug,
@@ -552,19 +606,23 @@ for (const locale of ["ko", "en"])
     );
     assert.ok(entry);
     const date =
-      path === "/services"
-        ? SERVICE_CONTENT_UPDATED_AT
-        : path === "/terms" ||
-            path === "/account-deletion" ||
-            path === "/privacy"
-          ? "2026-11-10"
-          : path === "/patch-notes"
-            ? patchNotesUpdatedAt
-            : releaseHighlights.some((item) => item.path === path)
-              ? releaseHighlights.find((item) => item.path === path).updatedAt
-              : (featureGuides.find((guide) => guide.path === path)
-                  ?.updatedAt ??
-                [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date].sort().at(-1));
+      path === "/features"
+        ? [featuresHubUpdatedAt, SERVICE_CONTENT_UPDATED_AT].sort().at(-1)
+        : path === "/compare"
+          ? COMPARE_CHECKED_AT
+          : path === "/terms" ||
+              path === "/account-deletion" ||
+              path === "/privacy"
+            ? "2026-11-10"
+            : path === "/patch-notes"
+              ? patchNotesUpdatedAt
+              : releaseHighlights.some((item) => item.path === path)
+                ? releaseHighlights.find((item) => item.path === path).updatedAt
+                : (featureGuides.find((guide) => guide.path === path)
+                    ?.updatedAt ??
+                  [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date]
+                    .sort()
+                    .at(-1));
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(
@@ -578,6 +636,27 @@ assert.ok(
     `Sitemap: ${SITE_URL}/sitemap.xml`,
   ),
 );
+assert.ok(prerender.routes["/llms.txt"], "llms.txt is static");
+const llms = await read(`${app}/llms.txt.body`);
+for (const locale of ["ko", "en"]) {
+  assert.ok(
+    prerender.routes[`/${locale}/feed.xml`],
+    `${locale} feed is static`,
+  );
+  const feed = await read(`${app}/${locale}/feed.xml.body`);
+  assert.match(feed, /^<\?xml[^>]*\?>\s*<rss version="2\.0"/);
+  for (const guide of featureGuides) {
+    const url = `${SITE_URL}/${locale}${guide.path}`;
+    assert.ok(llms.includes(`(${url})`), `llms.txt: ${url}`);
+    assert.ok(feed.includes(`<link>${url}</link>`), `feed: ${url}`);
+  }
+}
+const { redirects } = JSON.parse(await read(".next/routes-manifest.json"));
+for (const source of ["/:locale(ko|en)/services", "/services"])
+  assert.ok(
+    redirects.some((item) => item.source === source && item.statusCode === 308),
+    `${source} redirects permanently`,
+  );
 const manifest = JSON.parse(await read(`${app}/site.webmanifest.body`));
 assert.equal(manifest.start_url, "/ko");
 assert.equal(manifest.related_applications[0].url, PLAY_STORE_URL);
@@ -758,7 +837,7 @@ for (const locale of ["ko", "en"]) {
   assert.doesNotMatch(html, /rel="canonical"/, `${route}: no canonical`);
   // 한국어는 카카오톡 공유와 같은 초대 썸네일, 영어는 기본 OG 이미지를 쓴다.
   const inviteOgImage =
-    locale === "ko" ? "/images/invite-share.png" : "/og-image-en.png";
+    locale === "ko" ? "/images/invite-share.png" : "/en/opengraph-image";
   for (const [attribute, key] of [
     ["property", "og:image"],
     ["name", "twitter:image"],

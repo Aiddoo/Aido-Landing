@@ -18,7 +18,7 @@ export const analyticsEventSchema = z.discriminatedUnion("name", [
     name: z.literal("select_content"),
     content_type: z.literal("feature_guide"),
     item_id: featureSlugSchema,
-    cta_placement: z.enum(["home_guides", "related_guides"]),
+    cta_placement: z.enum(["home_guides", "related_guides", "features_hub"]),
   }),
   z.strictObject({
     name: z.literal("language_switch"),
@@ -38,7 +38,8 @@ export const analyticsPageSchema = z.strictObject({
   ),
   type: z.enum([
     "home",
-    "services",
+    "features",
+    "compare",
     "feature_guide",
     "patch_notes",
     "terms",

@@ -1,53 +1,73 @@
 import {
   ArrowRight,
-  CalendarDays,
+  BellRing,
+  CalendarCheck,
+  ChartColumn,
   CloudSun,
+  Crown,
   Gift,
+  HandHeart,
   type LucideIcon,
   MessageCircleHeart,
+  NotebookPen,
+  Palette,
+  Repeat,
   Sparkles,
   Users,
 } from "lucide-react";
 import Link from "next/link";
-import { Grid, type GridProps, VStack } from "@/components/ui/layout";
+import { badgeVariants } from "@/components/ui/badge";
+import { Grid, type GridProps, HStack, VStack } from "@/components/ui/layout";
 import { analyticsAttributes } from "@/features/analytics/utils/analytics-attributes";
 import {
+  type FeatureGuide,
   type FeatureGuideSlug,
   featureGuides,
+  premiumOnlyGuides,
 } from "@/features/feature-guides/data/feature-guides";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
 import { localizedPath } from "@/lib/public-routes";
 
-const guideIcons: Record<FeatureGuideSlug, LucideIcon> = {
-  "shared-todo": Users,
-  "recurring-todo": CalendarDays,
+export const guideIcons: Record<FeatureGuideSlug, LucideIcon> = {
+  "todo-calendar": CalendarCheck,
+  "recurring-todo": Repeat,
   "ai-todo": Sparkles,
-  "friend-invite": Gift,
-  weather: CloudSun,
+  memo: NotebookPen,
+  "shared-todo": Users,
+  nudge: HandHeart,
   comments: MessageCircleHeart,
+  "friend-invite": Gift,
+  reminders: BellRing,
+  weather: CloudSun,
+  "ai-report": ChartColumn,
+  customize: Palette,
+  premium: Crown,
 };
 
 export type FeatureGuideListProps = Omit<GridProps, "children" | "render"> & {
   locale: Locale;
+  guides?: readonly FeatureGuide[];
   /** 지금 보고 있는 가이드처럼 목록에서 뺄 가이드 */
   exclude?: FeatureGuideSlug;
-  placement: "home_guides" | "related_guides";
+  placement: "home_guides" | "related_guides" | "features_hub";
 };
 
 export function FeatureGuideList({
   locale,
+  guides = featureGuides,
   exclude,
   placement,
   columns = 3,
   gap = 4,
   ...props
 }: FeatureGuideListProps) {
-  const content = getMessages(locale).featureGuides;
-  const guides = featureGuides.filter((guide) => guide.slug !== exclude);
+  const messages = getMessages(locale);
+  const content = messages.featureGuides;
+  const visible = guides.filter((guide) => guide.slug !== exclude);
   return (
     <Grid render={<ul />} columns={columns} gap={gap} {...props}>
-      {guides.map((guide) => {
+      {visible.map((guide) => {
         const Icon = guideIcons[guide.slug];
         const text = content.guides[guide.slug];
         return (
@@ -67,10 +87,22 @@ export function FeatureGuideList({
               gap={3}
               className="group w-full rounded-xl bg-card p-6 shadow-card transition-[translate,box-shadow] hover:-translate-y-1 hover:shadow-lift"
             >
-              <Icon
-                aria-hidden="true"
-                className="size-10 rounded-lg bg-brand-soft p-2 text-brand-deep"
-              />
+              <HStack align="center" justify="between" gap={2}>
+                <Icon
+                  aria-hidden="true"
+                  className="size-10 rounded-lg bg-brand-soft p-2 text-brand-deep"
+                />
+                {premiumOnlyGuides.has(guide.slug) && (
+                  <span
+                    className={badgeVariants({
+                      variant: "soft",
+                      className: "h-6 px-2.5 text-micro",
+                    })}
+                  >
+                    {messages.featureHub.premiumBadge}
+                  </span>
+                )}
+              </HStack>
               <h3 className="text-title text-ink">{text.title}</h3>
               <p className="flex-1 text-caption text-gray-8">
                 {text.cardDescription}

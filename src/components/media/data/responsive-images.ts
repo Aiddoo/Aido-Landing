@@ -2171,6 +2171,174 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/ko/customize-app-icon.webp": {
+    "sourceHash": "4e3115bb0a25",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/customize-app-icon-48-3aa881acd8d8.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/customize-app-icon-96-8aa8fd2c543b.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/customize-app-icon-160-ad72bec212c2.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/customize-app-icon-240-e8015a85be7f.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/customize-app-icon-320-55468172960d.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/customize-app-icon-480-a293a30293ce.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/customize-app-icon-640-3b8b4fb60089.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/customize-badge.webp": {
+    "sourceHash": "23f3d73d7580",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/customize-badge-48-41c771519ebd.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/customize-badge-96-9988bc752d74.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/customize-badge-160-60092862fcc2.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/customize-badge-240-7c03b0c650bb.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/customize-badge-320-ce1405df15b2.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/customize-badge-480-9a069c7f8c23.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/customize-badge-640-e8a771c2d719.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/customize-dark.webp": {
+    "sourceHash": "d2ea83ae5ac8",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/customize-dark-48-ef7ecd82e3a8.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/customize-dark-96-8683d9668294.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/customize-dark-160-c0ec40222275.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/customize-dark-240-be2007de8e57.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/customize-dark-320-6716d2a2e1f1.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/customize-dark-480-ec4196485a80.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/customize-dark-640-556bf47e3daf.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/customize-font.webp": {
+    "sourceHash": "602ce3e71f9c",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/customize-font-48-c0586d004c1c.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/customize-font-96-92a3e05382d5.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/customize-font-160-3272646b56b1.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/customize-font-240-31ca276ef7aa.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/customize-font-320-d8463e781793.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/customize-font-480-476db8152f1c.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/customize-font-640-bd80da13d6ee.webp"
+      }
+    ]
+  },
   "/app-assets/guides/ko/friend-feed.webp": {
     "sourceHash": "9c7e5010a2f0",
     "width": 640,
@@ -2381,6 +2549,258 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/ko/memo-detail.webp": {
+    "sourceHash": "c12a01bf9092",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/memo-detail-48-0e405ad1a5e6.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/memo-detail-96-07249a7480a7.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/memo-detail-160-9a09bf9f024c.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/memo-detail-240-9254f98de62e.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/memo-detail-320-bc11b3395bd8.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/memo-detail-480-895063da7475.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/memo-detail-640-dc080630e70f.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/memo-list.webp": {
+    "sourceHash": "f2d8266abe52",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/memo-list-48-0331f8132980.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/memo-list-96-80be537722a5.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/memo-list-160-5e0c74ed65b9.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/memo-list-240-5e2aa5b2c900.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/memo-list-320-ee58bd4f55a3.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/memo-list-480-0347cf9812ba.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/memo-list-640-cf85c0754a9b.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/memo-split.webp": {
+    "sourceHash": "9668a681e33c",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/memo-split-48-3a7fc88867ac.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/memo-split-96-2cfd1d485ff1.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/memo-split-160-4b66aeaee0c8.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/memo-split-240-72c0db457a7d.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/memo-split-320-bf7ceecc66e2.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/memo-split-480-9414cbd1f71e.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/memo-split-640-5413fcdb7e34.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/nudge-banner.webp": {
+    "sourceHash": "290037c6c154",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/nudge-banner-48-74a211bdaebb.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/nudge-banner-96-c47167d08280.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/nudge-banner-160-dfad9b21b4f6.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/nudge-banner-240-34f9fd9e0afc.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/nudge-banner-320-c6017af7acd9.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/nudge-banner-480-b3abd2ada9ec.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/nudge-banner-640-40f5df686dfe.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/nudge-received.webp": {
+    "sourceHash": "118dd6e210fa",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/nudge-received-48-e3a682b542c8.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/nudge-received-96-9619b36bb434.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/nudge-received-160-bf2d2f80f30b.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/nudge-received-240-cbf52fa6eb32.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/nudge-received-320-d67dc7c0414e.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/nudge-received-480-107cb28141fd.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/nudge-received-640-1a2ae7a4849b.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/nudge-send.webp": {
+    "sourceHash": "463099574ce7",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/nudge-send-48-5db8345398be.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/nudge-send-96-b7269cc0d4cc.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/nudge-send-160-3f9c0b8f0afc.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/nudge-send-240-3b72e5c9fc36.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/nudge-send-320-dfd584ab2ef5.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/nudge-send-480-e0c27971b073.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/nudge-send-640-2ddc44c33daa.webp"
+      }
+    ]
+  },
   "/app-assets/guides/ko/paw-board.webp": {
     "sourceHash": "a0559f5e77dc",
     "width": 640,
@@ -2423,6 +2843,258 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/ko/premium-friend-limit.webp": {
+    "sourceHash": "30c5335c0274",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/premium-friend-limit-48-87816b8407a7.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/premium-friend-limit-96-fe4cf90a3847.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/premium-friend-limit-160-6dc9f2f4f502.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/premium-friend-limit-240-85346b72d84c.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/premium-friend-limit-320-6d9f751664a0.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/premium-friend-limit-480-5d5defae9a51.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/premium-friend-limit-640-d35222c53575.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/premium-mypage.webp": {
+    "sourceHash": "97548bac1fcd",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/premium-mypage-48-40f99bab3891.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/premium-mypage-96-a5955d8ae4f6.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/premium-mypage-160-f4a58c273a78.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/premium-mypage-240-6592fff63e68.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/premium-mypage-320-ad7b89aa9dfd.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/premium-mypage-480-42472b9615c0.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/premium-mypage-640-4dc592af2e46.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/premium-usage.webp": {
+    "sourceHash": "9802a7358e0d",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/premium-usage-48-8fdc123774c9.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/premium-usage-96-833a7d2a2aa9.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/premium-usage-160-d778ef3eef83.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/premium-usage-240-48eb42e4f8d1.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/premium-usage-320-e228d3655d69.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/premium-usage-480-2ca331c39043.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/premium-usage-640-dc9abcc273c5.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/reminder-inbox.webp": {
+    "sourceHash": "4b513bb01884",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/reminder-inbox-48-071b121f2e5a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/reminder-inbox-96-631f7cc4e103.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/reminder-inbox-160-3134861084ee.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/reminder-inbox-240-af74ad56af58.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/reminder-inbox-320-48948cd8ae5e.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/reminder-inbox-480-1ef4cda03141.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/reminder-inbox-640-2fb2c1230a5b.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/reminder-times.webp": {
+    "sourceHash": "ec6e2eccd335",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/reminder-times-48-d87e20d997c3.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/reminder-times-96-0b29032f8835.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/reminder-times-160-eb5bd5812381.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/reminder-times-240-db28c039548e.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/reminder-times-320-998746062f89.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/reminder-times-480-41c01ea9f64d.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/reminder-times-640-cf0dabb63033.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/reminder-weather.webp": {
+    "sourceHash": "6acadecd4d09",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/reminder-weather-48-7acdaf7b24f0.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/reminder-weather-96-a55b0ca3c67d.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/reminder-weather-160-2252d797053e.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/reminder-weather-240-ddbf4489c9e9.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/reminder-weather-320-05eaf95e19e3.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/reminder-weather-480-a07ad9ac6d5d.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/reminder-weather-640-39794534f64e.webp"
+      }
+    ]
+  },
   "/app-assets/guides/ko/repeat-edit.webp": {
     "sourceHash": "eaefefe37590",
     "width": 640,
@@ -2462,6 +3134,342 @@ export const responsiveImages = {
         "width": 640,
         "height": 1391,
         "src": "/responsive/repeat-edit-640-3f6baebada8e.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/report-home.webp": {
+    "sourceHash": "52ee7dc00c3d",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/report-home-48-8beb64934f78.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/report-home-96-ccf85017823a.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/report-home-160-08322c9c7cc0.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/report-home-240-4aace46e8f3e.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/report-home-320-bfbae447c847.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/report-home-480-d14a75915146.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/report-home-640-bed5b7e54573.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/report-monthly.webp": {
+    "sourceHash": "c326b4b69edb",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/report-monthly-48-fe8e453e9fa3.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/report-monthly-96-5af47616ec21.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/report-monthly-160-d6cea026a531.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/report-monthly-240-95eca8d00930.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/report-monthly-320-f0977323848a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/report-monthly-480-f18e0869e7e9.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/report-monthly-640-3b3c3bade35a.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/report-suggestions.webp": {
+    "sourceHash": "19a9a3b1faba",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/report-suggestions-48-c23f84f9765a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/report-suggestions-96-b38685e25416.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/report-suggestions-160-2153d85600e2.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/report-suggestions-240-713bbc3be877.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/report-suggestions-320-7c1ce179f173.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/report-suggestions-480-9591e6b251f1.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/report-suggestions-640-2994ac27a973.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/report-weekly.webp": {
+    "sourceHash": "92ad97bb13f1",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/report-weekly-48-ed8fdd7da11e.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/report-weekly-96-61df01c7d840.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/report-weekly-160-e11c9cc3934a.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/report-weekly-240-0c4705c38aa5.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/report-weekly-320-5ad5df778dcb.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/report-weekly-480-d307553e8b80.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/report-weekly-640-7bcb0eb628a8.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/todo-checklist.webp": {
+    "sourceHash": "88779be7229e",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/todo-checklist-48-ae98153dcd4c.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/todo-checklist-96-f81d1b06fe72.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/todo-checklist-160-b5d81a64c15c.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/todo-checklist-240-e49e80a6d120.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/todo-checklist-320-37f4609b8e9a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/todo-checklist-480-70952b1cdae3.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/todo-checklist-640-389afe73eff4.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/todo-compose.webp": {
+    "sourceHash": "c370398b8a49",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/todo-compose-48-35783553cc57.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/todo-compose-96-32f5b3d44304.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/todo-compose-160-0bc75fb67a0f.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/todo-compose-240-ec7d428e6dfb.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/todo-compose-320-b419f97ea6ac.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/todo-compose-480-233abbf5d7c8.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/todo-compose-640-9988a7803d8a.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/todo-home.webp": {
+    "sourceHash": "bd4e96c50d12",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/todo-home-48-4f80aa4a9709.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/todo-home-96-1b92a616aa26.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/todo-home-160-dbb635bcba19.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/todo-home-240-f9596fd5e600.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/todo-home-320-48e5bbc416b4.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/todo-home-480-a29a0ead58f9.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/todo-home-640-4587d3e908d5.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/ko/todo-month.webp": {
+    "sourceHash": "90bfbd6135a9",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/todo-month-48-a8bc501cb380.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/todo-month-96-ce1fa38f0dba.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/todo-month-160-c22820347fee.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/todo-month-240-2ca6b3beb9e5.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/todo-month-320-5ad869276735.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/todo-month-480-38a113a15cd8.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/todo-month-640-2e77f546a284.webp"
       }
     ]
   },

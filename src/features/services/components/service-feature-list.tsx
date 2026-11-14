@@ -24,7 +24,7 @@ export type ServiceFeatureListProps = Omit<
   locale: Locale;
 };
 
-/** 서비스 기능마다 설명과 실제 iOS·Android 화면을 번갈아 보여 준다. */
+/** 기능마다 설명과 실제 iOS·Android 화면을 번갈아 보여 준다. */
 export function ServiceFeatureList({
   locale,
   className,
@@ -68,12 +68,12 @@ export function ServiceFeatureList({
                   )}
                 </HStack>
               )}
-              <h2
+              <h3
                 id={`${feature.id}-title`}
                 className="text-display-md text-ink"
               >
                 {text.title}
-              </h2>
+              </h3>
               <p className="text-body-lg text-gray-9">{text.description}</p>
               <VStack render={<ul />} gap={2}>
                 {text.details.map((detail) => (

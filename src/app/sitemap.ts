@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SERVICE_CONTENT_UPDATED_AT } from "@/components/media/data/app-screenshots";
-import { featureGuides } from "@/features/feature-guides/data/feature-guides";
+import { COMPARE_CHECKED_AT } from "@/features/compare/data/compare";
+import {
+  featureGuides,
+  featuresHubUpdatedAt,
+} from "@/features/feature-guides/data/feature-guides";
 import {
   patchNotesUpdatedAt,
   releaseNotes,
@@ -34,10 +38,21 @@ const accountDeletionLastModifiedDate = new Date("2026-11-10");
 // 로케일로 리다이렉트되는 비정규 스텁이라 사이트맵에 넣지 않는다.
 const routes: Route[] = [
   {
-    path: "/services",
+    path: "/features",
     changeFrequency: "monthly",
     priority: 0.9,
-    lastModified: new Date(SERVICE_CONTENT_UPDATED_AT),
+    lastModified: new Date(
+      Math.max(
+        Date.parse(featuresHubUpdatedAt),
+        Date.parse(SERVICE_CONTENT_UPDATED_AT),
+      ),
+    ),
+  },
+  {
+    path: "/compare",
+    changeFrequency: "monthly",
+    priority: 0.7,
+    lastModified: new Date(COMPARE_CHECKED_AT),
   },
   ...featureGuides.map((guide) => ({
     path: guide.path,

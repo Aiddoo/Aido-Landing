@@ -42,6 +42,30 @@ export const guideScreenFiles = {
   "comments-thread": "iphone",
   "comments-reply": "iphone",
   "comments-heart": "iphone",
+  "todo-home": "iphone",
+  "todo-compose": "iphone",
+  "todo-month": "iphone",
+  "todo-checklist": "iphone",
+  "memo-list": "iphone",
+  "memo-detail": "iphone",
+  "memo-split": "iphone",
+  "nudge-banner": "iphone",
+  "nudge-send": "iphone",
+  "nudge-received": "iphone",
+  "reminder-inbox": "iphone",
+  "reminder-times": "iphone",
+  "reminder-weather": "iphone",
+  "report-home": "iphone",
+  "report-weekly": "iphone",
+  "report-monthly": "iphone",
+  "report-suggestions": "iphone",
+  "customize-app-icon": "iphone",
+  "customize-dark": "iphone",
+  "customize-font": "iphone",
+  "customize-badge": "iphone",
+  "premium-usage": "iphone",
+  "premium-friend-limit": "iphone",
+  "premium-mypage": "iphone",
 } as const satisfies Record<string, GuideScreenDevice>;
 
 export type GuideScreenKey = keyof typeof guideScreenFiles;
@@ -83,12 +107,41 @@ const croppedScreenHeights: Partial<Record<GuideScreenKey, number>> = {
   "weather-ipad": 552,
 };
 
+/** 영어 캡처가 아직 없는 화면. 영어 캡처를 guides/en/에 넣으면 여기서 지운다. */
+const koreanOnlyScreens: ReadonlySet<GuideScreenKey> = new Set([
+  "todo-home",
+  "todo-compose",
+  "todo-month",
+  "todo-checklist",
+  "memo-list",
+  "memo-detail",
+  "memo-split",
+  "nudge-banner",
+  "nudge-send",
+  "nudge-received",
+  "reminder-inbox",
+  "reminder-times",
+  "reminder-weather",
+  "report-home",
+  "report-weekly",
+  "report-monthly",
+  "report-suggestions",
+  "customize-app-icon",
+  "customize-dark",
+  "customize-font",
+  "customize-badge",
+  "premium-usage",
+  "premium-friend-limit",
+  "premium-mypage",
+] satisfies GuideScreenKey[]);
+
 export function getGuideScreen(locale: Locale, key: GuideScreenKey) {
   const device = guideScreenFiles[key];
   const size = guideScreenSizes[device];
+  const fileLocale = koreanOnlyScreens.has(key) ? "ko" : locale;
   return {
     device,
-    src: `/app-assets/guides/${locale}/${key}.webp`,
+    src: `/app-assets/guides/${fileLocale}/${key}.webp`,
     width: size.width,
     height: croppedScreenHeights[key] ?? size.height,
   };
