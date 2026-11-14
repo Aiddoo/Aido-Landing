@@ -41,6 +41,17 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   typedRoutes: true,
   poweredByHeader: false,
+  // 옛 서비스 둘러보기는 기능 소개로 합쳤다.
+  async redirects() {
+    return [
+      {
+        source: "/:locale(ko|en)/services",
+        destination: "/:locale/features",
+        permanent: true,
+      },
+      { source: "/services", destination: "/features", permanent: true },
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

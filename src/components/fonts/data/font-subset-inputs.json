@@ -12,7 +12,7 @@
     },
     {
       "name": "pages",
-      "pages": ["/ko/features/*", "/ko/services", "/ko/invite*"]
+      "pages": ["/ko/features", "/ko/features/*", "/ko/compare", "/ko/invite*"]
     },
     {
       "name": "updates",

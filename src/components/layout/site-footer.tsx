@@ -1,8 +1,8 @@
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { BrandLogo } from "@/components/marketing/brand-logo";
 import { BrandMotif } from "@/components/marketing/brand-motif";
+import { SocialLinks } from "@/components/marketing/social-links";
 import { StoreButtons } from "@/components/marketing/store-buttons";
 import {
   Grid,
@@ -15,8 +15,7 @@ import { AnalyticsSettingsButton } from "@/features/analytics/components/analyti
 import { getAnalyticsConfig } from "@/features/analytics/config/analytics-config.server";
 import type { Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n/messages";
-import { localizedHomeAnchor, localizedPath } from "@/lib/public-routes";
-import { INSTAGRAM_URL, LINK_HUB_URL } from "@/lib/seo";
+import { localizedPath } from "@/lib/public-routes";
 
 const linkClass =
   "inline-flex min-h-11 items-center gap-1 text-caption font-medium text-gray-9 transition-colors hover:text-brand-deep";
@@ -51,18 +50,18 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             <FooterColumn title={footer.serviceTitle}>
               <li>
                 <Link
-                  href={localizedPath(locale, "/services")}
+                  href={localizedPath(locale, "/features")}
                   className={linkClass}
                 >
-                  {nav.services}
+                  {nav.features}
                 </Link>
               </li>
               <li>
                 <Link
-                  href={localizedHomeAnchor(locale, "guides")}
+                  href={localizedPath(locale, "/compare")}
                   className={linkClass}
                 >
-                  {nav.guides}
+                  {nav.compare}
                 </Link>
               </li>
               <li>
@@ -123,24 +122,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                 </a>
               </li>
             </FooterColumn>
-            <FooterColumn title={footer.linkHubTitle}>
-              <li>
-                <ExternalLink
-                  href={INSTAGRAM_URL}
-                  newTabLabel={footer.externalLinkLabel}
-                >
-                  {footer.instagramLabel}
-                </ExternalLink>
-              </li>
-              <li>
-                <ExternalLink
-                  href={LINK_HUB_URL}
-                  newTabLabel={footer.externalLinkLabel}
-                >
-                  {footer.linkHubLabel}
-                </ExternalLink>
-              </li>
-            </FooterColumn>
+            <VStack render={<nav aria-label={footer.linkHubTitle} />} gap={2}>
+              <p className="text-caption font-bold text-ink">
+                {footer.linkHubTitle}
+              </p>
+              <SocialLinks locale={locale} />
+            </VStack>
           </Grid>
         </Stack>
         <StoreButtons content={messages.storeButtons} placement="download" />
@@ -197,28 +184,5 @@ function FooterColumn({
       <p className="text-caption font-bold text-ink">{title}</p>
       <VStack render={<ul />}>{children}</VStack>
     </VStack>
-  );
-}
-
-function ExternalLink({
-  href,
-  newTabLabel,
-  children,
-}: {
-  href: string;
-  newTabLabel: string;
-  children: ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={linkClass}
-    >
-      {children}
-      <ArrowUpRight className="size-3.5" aria-hidden="true" />
-      <span className="sr-only">({newTabLabel})</span>
-    </a>
   );
 }

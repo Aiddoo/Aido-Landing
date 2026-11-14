@@ -62,10 +62,11 @@ export function SiteHeader({
             className="hidden lg:flex"
           >
             <Link
-              href={localizedHomeAnchor(locale, "guides")}
+              href={localizedPath(locale, "/features")}
+              aria-current={current("/features")}
               className={navLinkClass}
             >
-              {nav.guides}
+              {nav.features}
             </Link>
             <Link
               href={localizedPath(locale, "/features/friend-invite")}
@@ -75,11 +76,11 @@ export function SiteHeader({
               {nav.invite}
             </Link>
             <Link
-              href={localizedPath(locale, "/services")}
-              aria-current={current("/services")}
+              href={localizedPath(locale, "/compare")}
+              aria-current={current("/compare")}
               className={navLinkClass}
             >
-              {nav.services}
+              {nav.compare}
             </Link>
             <Link
               href={localizedPath(locale, "/patch-notes")}

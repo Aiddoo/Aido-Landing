@@ -12,7 +12,8 @@ const inputs = JSON.parse(
 );
 const paths = [
   "",
-  "/services",
+  "/features",
+  "/compare",
   "/invite",
   ...featureGuides.map((guide) => guide.path),
   "/patch-notes",

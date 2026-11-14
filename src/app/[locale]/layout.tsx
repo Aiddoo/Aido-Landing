@@ -22,6 +22,7 @@ import {
   PLAY_STORE_URL,
   SITE_NAME,
   SITE_URL,
+  YOUTUBE_URL,
 } from "@/lib/seo";
 
 type LocaleLayoutProps = LayoutProps<"/[locale]">;
@@ -79,7 +80,13 @@ export default async function LocaleLayout({
     alternateName: locale === "ko" ? "RedBand" : "레드밴드",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    sameAs: [INSTAGRAM_URL, LINK_HUB_URL, APP_STORE_URL, PLAY_STORE_URL],
+    sameAs: [
+      YOUTUBE_URL,
+      INSTAGRAM_URL,
+      LINK_HUB_URL,
+      APP_STORE_URL,
+      PLAY_STORE_URL,
+    ],
     founder: {
       "@type": "Person",
       name: messages.footer.representativeValue,

@@ -1,4 +1,4 @@
-import { Crown, Heart } from "lucide-react";
+import { ArrowRight, Crown, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MarketingLayout } from "@/components/layout/marketing-layout";
@@ -23,7 +23,7 @@ import {
   ReadableContent,
   VStack,
 } from "@/components/ui/layout";
-import { FeatureGuideList } from "@/features/feature-guides/components/feature-guide-list";
+import { FeatureGroupIndex } from "@/features/feature-guides/components/feature-group-index";
 import { AiTodoExample } from "@/features/landing/components/ai-todo-example";
 import { CatPicker } from "@/features/landing/components/cat-picker";
 import { DeviceShowcase } from "@/features/landing/components/device-showcase";
@@ -777,12 +777,19 @@ export function LandingPage({ locale }: { locale: Locale }) {
           <h2 id="guides-title" className="text-center text-display-md">
             {messages.featureGuides.title}
           </h2>
-          <FeatureGuideList
-            locale={locale}
-            placement="home_guides"
-            columns={3}
-            className="mt-10"
-          />
+          <p className="mx-auto mt-3 max-w-reading text-center text-gray-9">
+            {messages.featureGuides.description}
+          </p>
+          <FeatureGroupIndex locale={locale} className="mt-10" />
+          <Centered className="mt-8">
+            <Link
+              href={localizedPath(locale, "/features")}
+              className="inline-flex h-12 items-center gap-2 rounded-full bg-card px-6 font-semibold text-brand-deep shadow-press-soft transition-colors hover:bg-brand-soft"
+            >
+              {messages.featureGuides.viewAll}
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
+          </Centered>
         </ReadableContent>
 
         <ReadableContent className="pb-section">

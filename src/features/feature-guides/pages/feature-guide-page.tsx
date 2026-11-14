@@ -38,6 +38,15 @@ import {
   ReadableContent,
   VStack,
 } from "@/components/ui/layout";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { FeatureGuideList } from "@/features/feature-guides/components/feature-guide-list";
 import { GuideScreens } from "@/features/feature-guides/components/guide-screens";
 import { PawBoard } from "@/features/feature-guides/components/paw-board";
@@ -57,6 +66,7 @@ import {
   type FriendInviteGuideContent,
   getMessages,
   type MessageCatalog,
+  type PremiumGuideContent,
   type WeatherGuideContent,
 } from "@/i18n/messages";
 import { formatContentDate } from "@/lib/format-content-date";
@@ -76,7 +86,12 @@ export function FeatureGuidePage({
   const content = labels.guides[guide.slug];
   return (
     <>
-      <BreadcrumbData locale={locale} path={guide.path} title={content.title} />
+      <BreadcrumbData
+        locale={locale}
+        path={guide.path}
+        title={content.title}
+        parents={[{ name: labels.breadcrumbLabel, path: "/features" }]}
+      />
       <MarketingLayout locale={locale} path={guide.path}>
         <ReadableContent
           render={<article />}
@@ -90,7 +105,7 @@ export function FeatureGuidePage({
             breadcrumbs={[
               {
                 label: labels.breadcrumbLabel,
-                anchorHref: `/${locale}#guides`,
+                anchorHref: localizedPath(locale, "/features"),
               },
             ]}
           >
@@ -163,9 +178,35 @@ export function FeatureGuidePage({
                   labels={labels}
                 />
               ))
-              .with("shared-todo", "recurring-todo", "ai-todo", (slug) => (
-                <GuidePlans plans={labels.guides[slug].plans} labels={labels} />
+              .with("premium", () => (
+                <>
+                  <GuidePlans
+                    plans={labels.guides.premium.plans}
+                    labels={labels}
+                  />
+                  <PremiumComparison
+                    content={labels.guides.premium}
+                    labels={labels}
+                  />
+                </>
               ))
+              .with(
+                "shared-todo",
+                "recurring-todo",
+                "ai-todo",
+                "todo-calendar",
+                "memo",
+                "nudge",
+                "reminders",
+                "ai-report",
+                "customize",
+                (slug) => (
+                  <GuidePlans
+                    plans={labels.guides[slug].plans}
+                    labels={labels}
+                  />
+                ),
+              )
               .exhaustive()}
             <GuideDetails content={content}>
               {guide.slug === "friend-invite" && (
@@ -322,6 +363,62 @@ function GuidePlans({
         </VStack>
       </Grid>
       <p className="text-caption text-gray-8">{labels.plansNote}</p>
+    </VStack>
+  );
+}
+
+function PremiumComparison({
+  content,
+  labels,
+}: {
+  content: PremiumGuideContent;
+  labels: GuideLabels;
+}) {
+  const { comparison } = content;
+  return (
+    <VStack render={<section aria-labelledby="comparison-title" />} gap={6}>
+      <h2 id="comparison-title" className="text-display-md text-ink">
+        {comparison.title}
+      </h2>
+      <div className="rounded-2xl bg-card shadow-card ring-1 ring-border">
+        <Table className="text-caption">
+          <TableCaption className="sr-only">{comparison.caption}</TableCaption>
+          <TableHeader>
+            <TableRow className="hover:bg-transparent">
+              <TableHead className="px-4 py-4 text-gray-8">
+                {comparison.featureLabel}
+              </TableHead>
+              <TableHead scope="col" className="px-4 py-4 text-title text-ink">
+                {labels.freeLabel}
+              </TableHead>
+              <TableHead
+                scope="col"
+                className="bg-brand-soft px-4 py-4 font-display text-title text-brand-deep"
+              >
+                {labels.premiumLabel}
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {comparison.rows.map((row) => (
+              <TableRow key={row.feature} className="hover:bg-transparent">
+                <TableHead
+                  scope="row"
+                  className="h-auto px-4 py-3 font-semibold whitespace-normal text-ink"
+                >
+                  {row.feature}
+                </TableHead>
+                <TableCell className="px-4 py-3 whitespace-normal text-gray-9">
+                  {row.free}
+                </TableCell>
+                <TableCell className="bg-brand-soft/60 px-4 py-3 font-semibold whitespace-normal text-ink">
+                  {row.premium}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </VStack>
   );
 }

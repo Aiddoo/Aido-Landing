@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useId } from "react";
 import { BrandMotif } from "@/components/marketing/brand-motif";
+import { SocialLinks } from "@/components/marketing/social-links";
 import { StoreButtons } from "@/components/marketing/store-buttons";
 import { Box, Stack, type StackProps, VStack } from "@/components/ui/layout";
 import type { Locale } from "@/i18n/config";
@@ -57,6 +58,19 @@ export function DownloadCard({
         />
         <p className="text-caption font-semibold text-gray-9">{cta.devices}</p>
         <p className="-mt-3 text-caption text-gray-8">{cta.closingNote}</p>
+        <VStack
+          gap={2}
+          className="mt-2 items-center border-t border-brand/15 pt-5 md:items-start"
+        >
+          <p className="font-hand text-hand text-brand-deep">
+            {cta.channelsLabel}
+          </p>
+          <SocialLinks
+            locale={locale}
+            variant="pill"
+            className="justify-center md:justify-start"
+          />
+        </VStack>
       </VStack>
       <Box className="relative mx-auto -mb-2 w-44 shrink-0 md:mx-0 md:mr-10 md:w-64">
         <Image

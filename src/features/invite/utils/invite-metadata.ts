@@ -25,7 +25,7 @@ export function buildInviteMetadata(locale: Locale): Metadata {
   });
 
   // 한국어 초대는 앱이 카카오톡 공유에 쓰는 초대 썸네일(2:1)을 링크 미리보기에도 쓴다.
-  // 썸네일 문구가 한국어라 영어 페이지는 기본 OG 이미지를 유지한다.
+  // 썸네일 문구가 한국어라 영어 페이지는 기본 공유 이미지(app/[locale]/opengraph-image)를 쓴다.
   const images =
     locale === "ko"
       ? [{ ...INVITE_SHARE_IMAGE, alt: title }]
