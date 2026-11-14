@@ -1,25 +1,16 @@
-# CI: 보안 감사 · 의존성 검토 · 린트 · 타입 · 테스트 · 정적 빌드/SEO
-# Playwright 브라우저 검사는 Actions 비용 때문에 로컬 `pnpm check`에서만 돌린다.
-# 배포(CD)는 Vercel Git 연동이 담당한다 — PR은 프리뷰, main은 프로덕션.
-# main은 PR로만 바뀌고 PR 실행이 같은 변경을 검사하므로 main push에서는 다시 돌리지 않는다.
+# CI: 보안 감사 · 린트 · 타입 · 테스트 · 정적 빌드/SEO
+# 비용을 아끼려고 자동 실행하지 않는다. 검사는 머지 전에 로컬 `pnpm check`(Playwright 포함)로 돌리고,
+# 이 워크플로는 로컬 환경이 없을 때만 Actions 탭에서 수동(workflow_dispatch)으로 실행한다.
+# 배포(CD)는 Vercel Git 연동이 담당하며 main(Production)만 빌드한다 — vercel.json ignoreCommand 참고.
 name: CI
 
-# 사이트에 쓰이지 않는 문서만 바뀐 PR은 CI를 태우지 않는다.
-# 주의: src/content/**/*.md(약관)는 사이트에 렌더링되므로 여기에 넣지 말 것.
 on:
-  pull_request:
-    paths-ignore:
-      - "README.md"
-      - "AGENTS.md"
-      - "CLAUDE.md"
-      - "docs/**"
-      - ".env.example"
-      - "LICENSE"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
-# 같은 PR에 새 커밋이 오면 앞선 실행을 취소한다.
+# 같은 브랜치에서 다시 실행하면 앞선 실행을 취소한다.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -39,11 +30,6 @@ jobs:
         with:
           persist-credentials: false
 
-      # 새로 들어온 의존성의 high 이상 취약점·라이선스 위험. 같은 job에서 돌려 러너를 따로 띄우지 않는다.
-      # 필요: 저장소 Settings > Advanced Security > Dependency graph 활성화
-      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
-        with:
-          fail-on-severity: high
 
       # pnpm 버전은 package.json의 packageManager 필드에서 읽는다
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
