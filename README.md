@@ -25,7 +25,7 @@ pnpm dev        # http://localhost:3000
 | `pnpm lint` / `pnpm lint:fix` | Biome 검사 / 자동 수정 |
 | `pnpm typecheck` | TypeScript 타입 검사 |
 | `pnpm audit` | 전체 의존성의 등록된 보안 취약점 검사 |
-| `pnpm check` | CI 검사 + Playwright까지 로컬 전체 검사(PR 전 필수, 포트 3217 사용) |
+| `pnpm check` | 감사·린트·타입·단위·이미지·빌드·SEO·Playwright 로컬 전체 검사(머지 전 필수, 포트 3217 사용) |
 | `pnpm test` / `pnpm test:watch` / `pnpm analytics:check` | Vitest 분석 경계·동의·공급자 DI 계약 검증 |
 | `pnpm test:browser` | Playwright 상호작용·동의·폰트 차단 검증 |
 | `pnpm images:generate` / `pnpm images:check` | 정적 반응형 이미지 생성 / 해시·치수 검사 |
@@ -53,9 +53,10 @@ src/
 
 ## 배포 & CI
 
-- **CD**: Vercel Git 연동 — `main` push는 프로덕션([aido.kr](https://aido.kr)), PR은 프리뷰 URL 자동 배포
-- **CI**: GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) — PR·main push에서 보안 감사 → 린트 → 타입체크 → 단위·이미지·패치노트 검사 → 빌드 → SEO·폰트 검증 → 브라우저 검사
-- 루트 문서(README, AGENTS.md 등)만 바뀐 커밋은 CI·배포를 건너뜁니다
+- **CD**: Vercel Git 연동 — `main` 반영만 프로덕션([aido.kr](https://aido.kr))으로 빌드합니다. 비용을 아끼려고 PR·브랜치 Preview는 빌드하지 않습니다(`vercel.json` `ignoreCommand`)
+- **검사**: 머지 전에 로컬에서 `pnpm check`를 돌립니다. 화면은 `pnpm build && pnpm start`로 확인합니다
+- **CI**: GitHub Actions([`ci.yml`](.github/workflows/ci.yml))는 자동 실행하지 않고, 로컬 환경이 없을 때만 수동(`workflow_dispatch`)으로 돌립니다
+- 루트 문서·`docs/`만 바뀐 main 커밋은 배포를 건너뜁니다
 
 ## 구현·운영 문서
 
