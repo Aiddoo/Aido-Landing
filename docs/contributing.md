@@ -50,6 +50,8 @@ Next.js 권장 작업은 공식 CLI `next typegen`, `next build`, `next start`�
 
 보안 advisory는 npm dist-tags와 공식 수정 버전을 대조해 package/lockfile → 로컬 `pnpm check` → 리뷰 → Vercel Git 배포 순서로 처리하며, 근거 없이 canary나 개별 transitive override로 대체하지 않습니다.
 
+보안 헤더는 `next.config.ts`의 `headers()`가 모든 경로에 붙입니다: `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`(+`frame-ancestors 'none'`), `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`(카메라·마이크·위치 등 차단), `Cross-Origin-Opener-Policy: same-origin`이며 `poweredByHeader: false`입니다. HSTS는 Vercel이 붙입니다. 공개 페이지가 SSG라 nonce를 쓸 수 없어 [Next 공식 CSP 가이드](https://nextjs.org/docs/app/guides/content-security-policy)의 "Without Nonces" 방식(`script-src 'self' 'unsafe-inline'`)을 쓰고, 외부 출처는 GA4(`*.googletagmanager.com`, `*.google-analytics.com`, `*.analytics.google.com`)와 `API_URL`만 허용합니다. 새 외부 스크립트·이미지·API를 쓰면 CSP에 출처를 추가하고, 로컬 production 빌드에서 콘솔의 `Content Security Policy` 위반이 없는지 확인합니다.
+
 공식 GitHub Dependabot alerts/security updates로 공개된 취약점의 수정 PR을 받고, Secret scanning/Push protection으로 지원되는 인증 정보 패턴을 검사합니다. 저장소 설정은 GitHub에서 관리하며 같은 기능의 자체 scripts를 추가하지 않습니다. 자동 머지는 사용하지 않습니다. 아직 advisory에 없는 사전 공지는 별도 P1 이슈로 추적합니다.
 
 CI Actions는 공식 저장소에서 확인한 전체 commit SHA로 고정하고 버전을 주석으로 남깁니다. annotated tag는 tag object가 아닌 최종 commit을 사용합니다. `contents: read`, 수동 `workflow_dispatch` 이벤트와 checkout의 `persist-credentials: false`를 유지하며 앱 검사에 Production 비밀을 전달하지 않습니다. [GitHub 보안 지침](https://docs.github.com/en/actions/reference/security/secure-use)에 따라 업데이트 때 새 공식 release commit과 변경 내용을 확인하고 PR과 수동 실행으로 검증합니다.
