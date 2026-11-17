@@ -289,7 +289,9 @@ function UpdateCard({
                 </CategoryHeading>
                 <VStack render={<ul />} gap={2}>
                   {category.items.map((item) => (
-                    <ReleaseItem key={item.ko}>{item[locale]}</ReleaseItem>
+                    <ReleaseItem key={item.ko}>
+                      {keepPhrasesTogether(item[locale])}
+                    </ReleaseItem>
                   ))}
                 </VStack>
               </VStack>

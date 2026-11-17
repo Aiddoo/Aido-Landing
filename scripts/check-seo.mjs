@@ -548,7 +548,7 @@ for (const locale of ["ko", "en"]) {
         for (const category of release.categories)
           for (const item of category.items)
             assert.ok(
-              visibleHtml.includes(item[locale]),
+              visibleText.includes(withPlainSpaces(item[locale])),
               `${route}: ${release.id} content in SSR HTML`,
             );
         if (release.kind === "app") {
