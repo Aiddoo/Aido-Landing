@@ -25,7 +25,11 @@ export type HighlightIcon =
   | "repeat"
   | "crown"
   | "tablet"
-  | "sparkles";
+  | "sparkles"
+  | "chart"
+  | "gift"
+  | "bell"
+  | "wrench";
 
 type HighlightSection = {
   /** 페이지 안 앵커. 공개 후 바꾸지 않는다. */
@@ -52,6 +56,242 @@ type PlanRow = {
  * updatedAt은 이 페이지 내용을 실제로 고친 날이며 사이트맵이 쓴다.
  */
 export const releaseHighlights = [
+  {
+    version: "1.16.0",
+    slug: "1-16-0",
+    path: "/patch-notes/1-16-0",
+    updatedAt: "2026-11-17",
+    kicker: { ko: "아이두 1.16.0 업데이트", en: "Aido 1.16.0 update" },
+    title: {
+      ko: "이유를 보여 주는 AI 제안, 차트로 보는 AI 리포트",
+      en: "AI suggestions that show why, AI reports in charts",
+    },
+    metaTitle: {
+      ko: "아이두 1.16.0 업데이트: 새로워진 AI 제안·AI 리포트",
+      en: "Aido 1.16.0: New AI suggestions and AI reports",
+    },
+    description: {
+      ko: "자주 하는 할 일을 최근 2주 기록과 함께 반복 할 일로 제안하고, AI 리포트는 날마다 끝낸 할 일과 주로 끝낸 시간을 차트로 보여 줘요. 무료로도 이번 주 내 기록을 보고, AI 제안과 AI 리포트를 예시로 미리 볼 수 있어요.",
+      en: "AI suggests to-dos you do often as repeating to-dos, with your last 2 weeks as the reason, and AI reports chart what you finish each day and when. On the free plan, see this week's record and preview both with sample data.",
+    },
+    sections: [
+      {
+        id: "ai-suggestions",
+        navLabel: { ko: "AI 제안", en: "AI suggestions" },
+        icon: "repeat",
+        title: {
+          ko: "AI 제안: 자주 하는 할 일을 반복으로 만들어요",
+          en: "AI suggestions: make what you do often repeat",
+        },
+        body: {
+          ko: "AI가 최근 2주 기록에서 자주 하는 할 일을 찾아, 만들어질 반복 할 일과 같은 모양으로 보여 줘요. ‘최근 2주 14번 중 13번 끝냈어요’처럼 이유를 보고 ‘반복으로 만들기’를 누르면 매번 적지 않아도 돼요. 프리미엄 기능이에요.",
+          en: "AI looks at your last 2 weeks, finds to-dos you do often and shows each one just like the repeating to-do it becomes. See why, like “Done 13 of 14 times in the last 2 weeks,” then tap Make it repeat so you never retype it. This is a Premium feature.",
+        },
+        points: {
+          ko: [
+            "‘오후 12:40 · 매주 월·화·목’처럼 시각과 반복이 할 일 목록과 똑같이 보여요.",
+            "아침 분석을 기다리지 않아도 돼요. 오늘 아직 분석 전이라면 ‘지금 분석 받기’로 바로 받아요.",
+            "제안이 없을 때도 살펴보는 중인지, 오늘 제안을 모두 정리했는지, 할 일이 더 필요한지와 다음에 살펴볼 시각을 알려 드려요.",
+            "띄어쓰기·이모지만 다른 제목은 하나로 묶고, 이미 반복 중인 할 일은 다시 제안하지 않아요.",
+          ],
+          en: [
+            "The time and repeat look just like your to-do list, like “12:40 PM · Weekly on Mon, Tue, Thu.”",
+            "No need to wait for the morning. If today's check hasn't run yet, tap Check now.",
+            "When there's nothing to suggest, you'll see whether we're still looking, you're all caught up, or we need more to-dos, plus when we'll look again.",
+            "Titles that differ only in spacing or emoji count as one, and to-dos that already repeat aren't suggested again.",
+          ],
+        },
+        screens: [
+          {
+            key: "suggestion-rows",
+            alt: {
+              ko: "‘영양제 먹기 · 오전 8:30 · 매일 · 최근 2주 14번 중 13번 끝냈어요’처럼 시각·반복·이유와 ‘필요 없어요’·‘반복으로 만들기’ 버튼이 보이는 아이두 AI 제안 예시 화면",
+              en: "Aido AI suggestions sample screen with “Take vitamins, 8:30 AM, Daily, Done 13 of 14 times in the last 2 weeks” and Not needed and Make it repeat buttons",
+            },
+            caption: {
+              ko: "제안마다 이유와 버튼 두 개가 붙어요(예시 화면).",
+              en: "Each suggestion comes with a reason and two buttons (sample screen).",
+            },
+          },
+        ],
+      },
+      {
+        id: "ai-reports",
+        navLabel: { ko: "AI 리포트", en: "AI reports" },
+        icon: "chart",
+        title: {
+          ko: "AI 리포트: 나아진 만큼 차트로 보여요",
+          en: "AI reports: see your progress in charts",
+        },
+        body: {
+          ko: "맨 위에서 달성률과 지난번보다 얼마나 바뀌었는지 먼저 보고, 날마다 끝낸 할 일 막대와 주로 끝낸 시간을 보여 주는 24시간 차트, 카테고리별 분석으로 이어져요. 끝에서는 AI 코치가 이번 기간을 짧게 돌아보고 다음에 해 볼 팁을 알려 줘요. 프리미엄 기능이에요.",
+          en: "Start with your completion rate and how much it changed, then see what you finished each day, a 24-hour chart of when you usually finish and a breakdown by category. At the end, your AI coach sums up the period and suggests what to try next. This is a Premium feature.",
+        },
+        points: {
+          ko: [
+            "막대를 누르면 그날 몇 개 중 몇 개를 끝냈는지 보여요.",
+            "리포트 목록 맨 위 카드에서 최근 8주 달성률 흐름을 선으로 보고, 누르거나 옆으로 밀어 주마다 확인해요.",
+            "주간 리포트는 월요일, 월간 리포트는 1일 오전 11시 30분에 도착해요.",
+            "AI가 글을 쓰지 못한 때에는 ‘AI 코치’ 대신 ‘이번 기간 요약’으로 보여 드려요.",
+          ],
+          en: [
+            "Tap a bar to see how many you finished that day.",
+            "The card at the top of your reports shows your completion over the last 8 weeks. Tap or slide across it to see each week.",
+            "Weekly reports arrive on Mondays and monthly reports on the 1st, at 11:30 AM.",
+            "If AI couldn't write a note, you'll see “Summary for this period” instead of “AI coach.”",
+          ],
+        },
+        screens: [
+          {
+            key: "report-summary",
+            alt: {
+              ko: "예시 데이터로 달성률 78%와 ‘6%p 올랐어요’, 완료 25/32, 날마다 끝낸 할 일 막대가 보이는 아이두 AI 리포트 예시 화면",
+              en: "Aido AI report sample screen with 78% completion, “Up 6 pts,” 25 of 32 done and bars for what you finished each day",
+            },
+            caption: {
+              ko: "달성률 변화와 날마다 끝낸 할 일",
+              en: "Your completion change and each day",
+            },
+          },
+          {
+            key: "report-charts",
+            alt: {
+              ko: "오전 7시에 가장 많이 끝낸 24시간 차트와 업무·공부·운동 카테고리별 분석이 보이는 아이두 AI 리포트 예시 화면",
+              en: "Aido AI report sample screen with a 24-hour chart peaking at 7 AM and a breakdown for Work, Study and Workout",
+            },
+            caption: {
+              ko: "주로 끝낸 시간과 카테고리별 분석",
+              en: "When you finish, and by category",
+            },
+          },
+        ],
+      },
+      {
+        id: "free",
+        navLabel: { ko: "무료로도", en: "On the free plan" },
+        icon: "gift",
+        title: {
+          ko: "무료로도 이번 주 내 기록을 봐요",
+          en: "See this week's record for free",
+        },
+        body: {
+          ko: "AI 리포트 화면에서 이번 주 요일마다 끝낸 할 일을 막대로 보여 드려요. 아직 오지 않은 날은 따로 표시하고, 막대를 누르면 그날 기록이 보여요. AI 분석과 코치 한마디는 프리미엄에서 받을 수 있어요.",
+          en: "The AI reports screen shows what you finished each day this week as bars. Days still ahead are marked, and you can tap a bar to see that day. AI analysis and coach notes come with Premium.",
+        },
+        points: {
+          ko: [
+            "AI 제안은 예시 4가지로, AI 리포트는 주간·월간 예시 리포트로 미리 볼 수 있어요.",
+            "예시 리포트는 실제 리포트와 같은 화면이라 AI 코치 글까지 모두 열어 볼 수 있어요.",
+          ],
+          en: [
+            "Preview AI suggestions with 4 examples, and AI reports with sample weekly and monthly reports.",
+            "Sample reports use the same screens as real ones, so you can open everything, coach notes included.",
+          ],
+        },
+        screens: [],
+      },
+      {
+        id: "notifications",
+        navLabel: { ko: "알림", en: "Alerts" },
+        icon: "bell",
+        title: {
+          ko: "AI 제안 알림은 오전 9시에",
+          en: "AI suggestion alerts at 9 AM",
+        },
+        body: {
+          ko: "새 제안을 찾으면 오전 9시에 ‘자주 하는 할 일을 찾았어요 ✨’ 알림으로 알려 드려요. ‘지금 분석 받기’로 받은 제안은 이미 보고 있으니 알림을 보내지 않아요.",
+          en: "When we find new suggestions, you'll get “We found to-dos you do often ✨” at 9 AM. Suggestions you get with Check now don't send an alert, since you're already looking at them.",
+        },
+        points: {
+          ko: [
+            "마이 > 알림 설정의 ‘AI 제안·리포트 알림’을 끄면 AI 제안과 주간·월간 리포트 푸시만 오지 않아요. 앱의 알림 목록에는 그대로 남아요.",
+            "AI 제안 알림은 광고성 알림이 아닌 서비스 알림이라 ‘(광고)’ 표시 없이 와요.",
+            "무료 사용자도 이 설정을 미리 꺼 둘 수 있어요.",
+          ],
+          en: [
+            "Turn off “AI suggestions & reports” in Me > Notifications to stop push alerts for AI suggestions and weekly and monthly reports only. They still show in Notifications in the app.",
+            "AI suggestion alerts are service notifications, not promotions.",
+            "Free users can turn it off ahead of time, too.",
+          ],
+        },
+        screens: [],
+      },
+      {
+        id: "fixes",
+        navLabel: { ko: "고친 점", en: "Fixes" },
+        icon: "wrench",
+        title: { ko: "고친 점", en: "Fixes" },
+        body: {
+          ko: "리포트와 제안에서 헷갈리던 부분을 고쳤어요.",
+          en: "We fixed a few confusing things in reports and suggestions.",
+        },
+        points: {
+          ko: [
+            "리포트 화면이 다음 리포트를 오전 8시에 온다고 안내하던 문제를 고쳤어요. 실제 도착 시각인 오전 11시 30분으로 보여요.",
+            "영어로 쓸 때 지운 카테고리가 리포트에 ‘기타’로 보이던 문제를 고쳤어요. 이제 ‘Other’로 보여요.",
+            "할 일이 아주 많으면 AI 제안을 받지 못하던 문제를 고쳤어요.",
+          ],
+          en: [
+            "The reports screen said your next report would come at 8 AM. It now shows the actual time, 11:30 AM.",
+            "Deleted categories in English reports showed as “기타.” They now show as “Other.”",
+            "AI suggestions now arrive even when you have a lot of to-dos.",
+          ],
+        },
+        screens: [],
+      },
+    ],
+    plans: {
+      navLabel: { ko: "무료와 프리미엄", en: "Free vs Premium" },
+      title: {
+        ko: "무료와 프리미엄, 이만큼 달라요",
+        en: "What Free and Premium include",
+      },
+      rows: [
+        {
+          label: { ko: "AI 제안", en: "AI suggestions" },
+          free: { ko: "예시로 미리 보기", en: "Preview with examples" },
+          premium: {
+            ko: "매일 오전 9시, 최근 2주 기록으로",
+            en: "Every day at 9 AM, from your last 2 weeks",
+          },
+        },
+        {
+          label: {
+            ko: "AI 주간·월간 리포트",
+            en: "AI weekly and monthly reports",
+          },
+          free: { ko: "예시로 미리 보기", en: "Preview with samples" },
+          premium: {
+            ko: "매주·매월 내 기록으로",
+            en: "Every week and month, from your to-dos",
+          },
+        },
+        {
+          label: { ko: "날마다 끝낸 할 일 막대", en: "Daily completion bars" },
+          free: { ko: "이번 주 내 기록", en: "This week's record" },
+          premium: {
+            ko: "리포트마다 기간 전체",
+            en: "The whole period in every report",
+          },
+        },
+      ],
+      note: {
+        ko: "할 일 추가와 완료, 직접 만드는 반복 할 일은 플랜과 상관없이 쓸 수 있어요. 구독 가격과 자세한 조건은 앱에서 확인할 수 있어요.",
+        en: "Adding and completing to-dos, and repeating to-dos you set up yourself, work on every plan. See prices and full terms in the app.",
+      },
+      screen: {
+        key: "report-coach",
+        alt: {
+          ko: "예시 데이터의 AI 코치 글과 팁 두 가지, ‘구독하고 리포트 받기’ 버튼이 보이는 아이두 AI 리포트 예시 화면",
+          en: "Aido AI report sample screen with a coach note, two tips and a Subscribe to get reports button",
+        },
+        caption: {
+          ko: "예시 리포트는 AI 코치 글까지 볼 수 있어요.",
+          en: "Sample reports include the coach note.",
+        },
+      },
+    },
+  },
   {
     version: "1.15.0",
     slug: "1-15-0",

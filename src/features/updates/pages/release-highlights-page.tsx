@@ -1,8 +1,11 @@
 import {
   ArrowRight,
   AudioLines,
+  Bell,
+  ChartColumn,
   Check,
   Crown,
+  Gift,
   ListChecks,
   type LucideIcon,
   Mic,
@@ -10,6 +13,7 @@ import {
   Repeat,
   Sparkles,
   TabletSmartphone,
+  Wrench,
 } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps } from "react";
@@ -191,6 +195,10 @@ const sectionIcons = {
   crown: Crown,
   tablet: TabletSmartphone,
   sparkles: Sparkles,
+  chart: ChartColumn,
+  gift: Gift,
+  bell: Bell,
+  wrench: Wrench,
 } as const satisfies Record<HighlightIcon, LucideIcon>;
 
 function SectionIcon({

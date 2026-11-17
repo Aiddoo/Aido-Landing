@@ -28,6 +28,135 @@ export const PATCH_NOTES_EDITED_AT = "2026-10-27";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.16.0",
+    date: "2026-11-17",
+    summary: {
+      ko: "AI 제안과 리포트가 이유와 차트로 한눈에 보여요.",
+      en: "AI suggestions and reports are clearer, with reasons and charts.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "AI 제안이 새로워졌어요(프리미엄). 최근 2주 기록에서 자주 하는 할 일을 찾고, ‘최근 2주 14번 중 13번 끝냈어요’처럼 왜 제안했는지 함께 보여 드려요.",
+            en: "AI suggestions are all new (Premium). AI finds to-dos you do often in your last 2 weeks and shows why, like “Done 13 of 14 times in the last 2 weeks.”",
+          },
+          {
+            ko: "제안은 만들어질 반복 할 일과 같은 모양으로 보여요. ‘오후 12:40 · 매주 월·화·목’처럼 시각과 반복을 확인하고 ‘반복으로 만들기’나 ‘필요 없어요’를 누르면 돼요.",
+            en: "Each suggestion looks just like the repeating to-do it becomes, with its time and repeat, like “12:40 PM · Weekly on Mon, Tue, Thu.” Tap Make it repeat or Not needed.",
+          },
+          {
+            ko: "아침 분석을 기다리지 않아도 돼요. 오늘 아직 분석 전이라면 ‘지금 분석 받기’를 눌러 바로 제안을 받아요.",
+            en: "No need to wait for the morning. If today's check hasn't run yet, tap Check now to get suggestions right away.",
+          },
+          {
+            ko: "제안이 없을 때도 빈 화면 대신 지금 상황을 알려 드려요. 살펴보는 중인지, 오늘 제안을 모두 정리했는지, 할 일이 더 필요한지와 다음에 살펴볼 시각을 보여 줘요.",
+            en: "When there's nothing to suggest, you'll see what's going on instead of an empty screen: whether we're still looking, you're all caught up for today, or we need more to-dos, and when we'll look again.",
+          },
+          {
+            ko: "AI 리포트를 한눈에 보이게 바꿨어요(프리미엄). 맨 위에서 달성률과 지난번보다 얼마나 바뀌었는지 보고, 날마다 끝낸 할 일 막대와 주로 끝낸 시간을 보여 주는 24시간 차트로 이어져요. 막대를 누르면 그날 기록이 보여요.",
+            en: "AI reports got a new look (Premium). See your completion rate and how it changed at the top, then what you finished each day and a 24-hour chart of when you usually finish. Tap a bar to see that day.",
+          },
+          {
+            ko: "리포트 목록 맨 위 카드에서 최근 8주 달성률 흐름을 선으로 봐요. 누르거나 옆으로 밀면 주마다 달성률이 보이고, 해가 바뀌어도 지난해 주를 이어서 보여 줘요.",
+            en: "The card at the top of your reports shows your completion over the last 8 weeks. Tap or slide across it to see each week, even across the new year.",
+          },
+          {
+            ko: "리포트 끝에서 AI 코치가 이번 기간을 짧게 돌아보고, 다음에 해 볼 만한 팁을 알려 줘요.",
+            en: "At the end of each report, your AI coach sums up the period and shares tips for what to try next.",
+          },
+          {
+            ko: "무료로도 이번 주 내 기록을 볼 수 있어요. AI 리포트 화면에서 요일마다 끝낸 할 일을 막대로 보여 드리고, 아직 오지 않은 날은 따로 표시해요.",
+            en: "Free users can now see their record for this week. The AI reports screen shows what you finished each day as bars, and days still ahead are marked.",
+          },
+          {
+            ko: "무료에서도 AI 제안과 AI 리포트를 예시로 미리 볼 수 있어요. 예시 리포트는 실제 리포트와 같은 화면이라 AI 코치 글까지 모두 볼 수 있어요.",
+            en: "On the free plan, preview AI suggestions and AI reports with sample data. Sample reports use the same screens as real ones, coach notes included.",
+          },
+          {
+            ko: "알림 설정에 ‘AI 제안·리포트 알림’이 생겼어요. 끄면 AI 제안과 주간·월간 리포트 푸시만 오지 않고, 앱의 알림 목록에는 그대로 남아요. 무료 사용자도 미리 꺼 둘 수 있어요.",
+            en: "Notification settings now have “AI suggestions & reports.” Turn it off to stop push alerts for AI suggestions and weekly and monthly reports only; they still show in Notifications in the app. Free users can turn it off ahead of time, too.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "띄어쓰기·문장부호·이모지·대소문자만 다른 제목은 하나로 묶어 제안해요. ‘운동하기’, ‘운동 하기’, ‘운동하기 🏃’는 한 번만 제안하고 기록도 합쳐서 세요.",
+            en: "Titles that differ only in spacing, punctuation, emoji, or capitalization are grouped into one suggestion, like “Yoga,” “yoga!” and “Yoga 🧘,” and their records count together.",
+          },
+          {
+            ko: "이미 반복 중인 할 일은 다시 제안하지 않아요.",
+            en: "To-dos that already repeat aren't suggested again.",
+          },
+          {
+            ko: "AI 제안 알림이 오전 9시에 와요. ‘지금 분석 받기’로 받은 제안은 이미 화면에서 보고 있으니 알림을 따로 보내지 않아요.",
+            en: "AI suggestion alerts now arrive at 9 AM. Suggestions you get with Check now don't send an alert, since you're already looking at them.",
+          },
+          {
+            ko: "AI 제안 알림은 이제 광고성 알림이 아닌 서비스 알림이에요. ‘(광고)’ 표시 없이 오고, 광고성 알림 수신에 동의하지 않아도 받아요.",
+            en: "AI suggestion alerts are now service notifications rather than promotions, so you get them without opting in to promotional push.",
+          },
+          {
+            ko: "AI 코치 글이 내 기록의 숫자와 어긋나지 않는지 한 번 더 확인해요. AI가 글을 쓰지 못한 때에는 ‘AI 코치’ 대신 ‘이번 기간 요약’으로 보여 드려요.",
+            en: "Coach notes are checked against your numbers before you see them. If AI couldn't write one, it says “Summary for this period” instead of “AI coach.”",
+          },
+          {
+            ko: "전에 받은 리포트도 새 화면으로 보여요. 날마다 끝낸 할 일 막대만 빠져요.",
+            en: "Reports you got before also open in the new layout, just without the daily bars.",
+          },
+          {
+            ko: "VoiceOver·TalkBack이 차트에서 고른 날짜와 시간의 값을 읽어 줘요.",
+            en: "VoiceOver and TalkBack read out the values for the day or hour you pick on a chart.",
+          },
+          {
+            ko: "업데이트하면 새로워진 AI 제안과 AI 리포트를 실제 화면처럼 소개해 드려요. 마이 > 새로운 기능에서 언제든 다시 볼 수 있어요.",
+            en: "After you update, a short tour shows the new AI suggestions and AI reports. Find it again anytime in Me > What's new.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "리포트 화면이 다음 리포트를 오전 8시에 온다고 안내했지만 실제로는 오전 11시 30분에 오던 문제를 고쳤어요. 이제 주간 리포트는 월요일, 월간 리포트는 1일 오전 11시 30분으로 맞게 보여요.",
+            en: "Fixed the reports screen saying your next report comes at 8 AM when it actually arrives at 11:30 AM. It now shows Monday at 11:30 AM for weekly reports and the 1st at 11:30 AM for monthly ones.",
+          },
+          {
+            ko: "영어로 쓸 때 지운 카테고리가 리포트에 ‘기타’로 보이던 문제를 고쳤어요. 이제 ‘Other’로 보여요.",
+            en: "Fixed deleted categories showing as “기타” in English reports. They now show as “Other.”",
+          },
+          {
+            ko: "할 일이 아주 많으면 AI 제안을 받지 못하던 문제를 고쳤어요.",
+            en: "Fixed AI suggestions not arriving when you have a lot of to-dos.",
+          },
+          {
+            ko: "영어로 쓸 때 AI 제안 이유가 ‘1 records’처럼 어색하게 보이던 문제를 고쳤어요.",
+            en: "Fixed awkward English suggestion reasons like “1 records.”",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "AI 제안이 최근 2주 기록을 이유로 보여 주고, 아침까지 기다리지 않고 바로 분석을 받을 수 있어요.",
+        "띄어쓰기나 이모지만 다른 할 일도 같은 반복 할 일 후보로 묶어 찾아요.",
+        "AI 리포트가 날마다 끝낸 할 일과 시간대 차트, 코치 한마디로 바뀌었어요.",
+        "무료 사용자도 이번 주 내 기록을 볼 수 있어요.",
+        "AI 제안 알림이 오전 9시에 도착해요.",
+      ],
+      en: [
+        "AI suggestions show why, and you get an analysis right away without waiting for the morning.",
+        "To-dos that differ only in spacing or emoji group together.",
+        "AI reports show daily progress, hourly charts, and a coach note.",
+        "Free plan shows your record for this week.",
+        "Suggestion alerts arrive at 9 AM.",
+      ],
+    },
+  },
+  {
     version: "1.15.3",
     date: "2026-11-14",
     summary: {

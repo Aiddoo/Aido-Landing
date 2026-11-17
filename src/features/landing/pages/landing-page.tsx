@@ -639,7 +639,12 @@ export function LandingPage({ locale }: { locale: Locale }) {
             {home.routine.title}
           </h2>
           <Grid columns={2} className="mx-auto mt-14 max-w-[56rem] gap-14">
-            <VStack align="center" gap={6} className="text-center">
+            <VStack
+              align="center"
+              justify="end"
+              gap={6}
+              className="text-center"
+            >
               <DeviceScreen
                 locale={locale}
                 screen="report"

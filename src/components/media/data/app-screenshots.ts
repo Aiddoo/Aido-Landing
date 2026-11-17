@@ -21,15 +21,22 @@ export const screenshotFiles = {
   iosWidgets: ["ios", "widgets"],
   androidWidgets: ["android", "widgets"],
   androidWidgetsSmall: ["android", "widgets-small"],
-  report: ["ios", "report-sample"],
-  suggestions: ["android", "suggestions"],
+  // 1.16.0 iPhone SE 무료 계정의 예시 리포트·예시 제안. 내비 헤더 아래부터 잘라 썼다(release-screens.ts).
+  report: ["ios", "report-summary"],
+  suggestions: ["ios", "suggestion-rows"],
   profile: ["ios", "profile-cats"],
   icons: ["android", "app-icons"],
   dark: ["ios", "home-dark"],
 } as const;
 
 export type AppScreenshotKey = keyof typeof screenshotFiles;
-export const SERVICE_CONTENT_UPDATED_AT = "2026-11-10";
+export const SERVICE_CONTENT_UPDATED_AT = "2026-11-17";
+
+/** 일부만 쓴 캡처의 실제 높이 */
+const croppedScreenHeights: Partial<Record<AppScreenshotKey, number>> = {
+  report: 796,
+  suggestions: 796,
+};
 
 export function getAppScreenshot(locale: Locale, key: AppScreenshotKey) {
   const [platform, filename] = screenshotFiles[key];
@@ -37,7 +44,7 @@ export function getAppScreenshot(locale: Locale, key: AppScreenshotKey) {
     device: platform === "ios" ? ("iphone" as const) : ("android" as const),
     src: `/app-assets/screenshots/${locale}/${platform}/${filename}.webp`,
     width: 480,
-    height: platform === "ios" ? 1044 : 1067,
+    height: croppedScreenHeights[key] ?? (platform === "ios" ? 1044 : 1067),
     platform,
   };
 }

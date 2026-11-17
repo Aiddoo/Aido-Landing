@@ -5,7 +5,13 @@ type ReleaseScreenDevice = Extract<DeviceFrame, "iphone" | "duo-open">;
 
 // 1.15.0 출시 화면. iPhone 라이트 모드 데모 계정 캡처를 640px(펼친 iPhone Duo는 1280px) WebP로 줄였다.
 // 영어 캡처는 말로 할 일 만들기 결과 시트뿐이라 나머지는 한국어 화면을 함께 쓴다(가이드 화면과 같은 방식).
+// 1.16.0 화면(suggestion-rows·report-*)은 iPhone SE 무료 계정의 예시 화면이다. 한영 캡처가 따로 있고,
+// 상태 막대·내비 헤더 아래부터 잘라 기기 틀의 섬 자리에 흰 띠를 두었다.
 export const releaseScreenFiles = {
+  "suggestion-rows": "iphone",
+  "report-summary": "iphone",
+  "report-charts": "iphone",
+  "report-coach": "iphone",
   "speak-listening": "iphone",
   "speak-ai-info": "iphone",
   "speak-review": "iphone",
@@ -35,8 +41,12 @@ const localeScreenHeights: Partial<
   "speak-review": { ko: 1391, en: 853 },
 };
 
-/** 일부만 쓴 캡처의 실제 높이. 결제 화면은 가격 카드·구매 버튼 위까지다. */
+/** 일부만 쓴 캡처의 실제 높이. 결제 화면은 가격 카드·구매 버튼 위까지, 1.16.0 화면은 내비 헤더 아래부터다. */
 const croppedScreenHeights: Partial<Record<ReleaseScreenKey, number>> = {
+  "suggestion-rows": 1062,
+  "report-summary": 1062,
+  "report-charts": 1062,
+  "report-coach": 1062,
   "paywall-benefits": 835,
   "paywall-compare": 1071,
   "usage-card": 724,

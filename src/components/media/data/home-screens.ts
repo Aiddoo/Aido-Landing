@@ -3,6 +3,7 @@ import type { Locale } from "@/i18n/config";
 // 홈에 쓰는 실제 앱 화면(라이트). iPhone 6.3·iPad 13은 캡처_원본/아이두_실화면_1.13.0에서,
 // 가로로 펼친 iPhone Duo는 1.12.0 랜딩의 가로 두 칸 캡처(foldable/todo-detail)에서 골라 WebP로 줄였다.
 // 한국어 ai-voice·ai-parse는 1.15.0 말로 할 일 만들기·메모 AI 화면으로 바꿨다(영어는 영어 캡처가 생길 때까지 1.13.0 화면).
+// report는 1.16.0 iPhone SE 예시 리포트를 내비 헤더 아래부터 잘라 썼다(release-screens.ts).
 // 기기 테두리는 CSS로 그린다.
 export const homeScreenDevices = {
   iphone: { width: 900, height: 1957 },
@@ -30,12 +31,19 @@ export const homeScreenFiles = {
 
 export type HomeScreenKey = keyof typeof homeScreenFiles;
 
+/** 기기 기본 크기와 다른 화면의 실제 크기 */
+const screenSizes: Partial<
+  Record<HomeScreenKey, { width: number; height: number }>
+> = {
+  report: { width: 750, height: 1244 },
+};
+
 export function getHomeScreen(locale: Locale, screen: HomeScreenKey) {
   const device = homeScreenFiles[screen];
   return {
     src: `/app-assets/home/${locale}/${screen}.webp`,
     device,
-    ...homeScreenDevices[device],
+    ...(screenSizes[screen] ?? homeScreenDevices[device]),
   } as const;
 }
 

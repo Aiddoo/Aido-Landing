@@ -88,8 +88,8 @@ const paths = [
 ];
 assert.equal(
   paths.length * 2,
-  42,
-  "ko/en canonical pages: home, features, compare, patch notes, 3 legal, 13 guides and 1 release highlight",
+  44,
+  "ko/en canonical pages: home, features, compare, patch notes, 3 legal, 13 guides and 2 release highlights",
 );
 const decode = (text) =>
   text
