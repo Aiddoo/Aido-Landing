@@ -399,7 +399,12 @@ export type MessageCatalog = {
   patchNotes: {
     kicker: string;
     title: string;
+    /** 검색 결과·공유 제목. 화면 제목(title)과 달리 서비스 이름을 넣는다. */
+    metaTitle: string;
     description: string;
+    /** 검색 결과 설명. {version}·{summary}에 최신 앱 출시를 넣어 배포마다 새 소식이 보이게 한다. */
+    metaDescription: string;
+    updatedLabel: string;
     appUpdate: string;
     serviceUpdate: string;
     noAppUpdateNeeded: string;
@@ -2955,8 +2960,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
     patchNotes: {
       kicker: "조금씩 자라는 아이두",
       title: "패치노트",
+      metaTitle: "아이두 패치노트: 앱 업데이트와 개선 기록",
       description:
         "아이두가 조금씩 달라지고 있어요. 앱 업데이트와, 따로 설치할 필요\u00a0없는 서비스\u00a0개선 소식을\u00a0모았어요.",
+      metaDescription:
+        "아이두의 앱 업데이트와 서비스 개선을 모두 모았어요. 최신 v{version}: {summary}",
+      updatedLabel: "최근 수정일",
       appUpdate: "앱 업데이트",
       serviceUpdate: "서비스 개선",
       noAppUpdateNeeded: "앱을 따로 업데이트하지 않아도 적용돼요.",
@@ -5479,8 +5488,12 @@ const catalogs: Record<Locale, MessageCatalog> = {
     patchNotes: {
       kicker: "Growing a little every day",
       title: "Patch Notes",
+      metaTitle: "Aido patch notes: app updates and improvements",
       description:
         "Aido keeps getting a little better. Catch up on app updates and on service improvements that need no new\u00a0installation.",
+      metaDescription:
+        "Every Aido app update and service improvement in one place. Latest v{version}: {summary}",
+      updatedLabel: "Last updated",
       appUpdate: "App update",
       serviceUpdate: "Service improvements",
       noAppUpdateNeeded: "These changes apply without an app\u00a0update.",

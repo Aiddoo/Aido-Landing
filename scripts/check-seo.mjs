@@ -177,6 +177,8 @@ for (const locale of ["ko", "en"]) {
     const ownImage =
       path === "/features" ||
       path === "/compare" ||
+      path === "/patch-notes" ||
+      releaseHighlights.some((highlight) => highlight.path === path) ||
       featureGuides.some((guide) => guide.path === path);
     assert.equal(ogImage.origin, SITE_URL, `${route}: og:image origin`);
     if (ownImage)
@@ -450,6 +452,10 @@ for (const locale of ["ko", "en"]) {
         tags(html, "time").some((time) => time.datetime === release.date),
         `${route}: release date`,
       );
+      const webPage = jsonLd.find((data) => data["@type"] === "WebPage");
+      assert.equal(webPage?.url, `${SITE_URL}${route}`);
+      assert.equal(webPage.datePublished, release.date);
+      assert.equal(webPage.dateModified, highlight.updatedAt);
       const screens = [
         ...highlight.sections.flatMap((section) => [
           ...section.screens,
@@ -500,6 +506,29 @@ for (const locale of ["ko", "en"]) {
       );
     }
     if (path === "/patch-notes") {
+      const latestRelease = releaseNotes[0];
+      assert.equal(
+        decode(html.match(/<title>(.+?)<\/title>/)?.[1]),
+        `${messages.patchNotes.metaTitle} | Aido`,
+      );
+      assert.ok(
+        value("description").includes(
+          `v${latestRelease.version}: ${latestRelease.summary[locale]}`,
+        ),
+        `${route}: description names the latest release`,
+      );
+      const collection = jsonLd.find(
+        (data) => data["@type"] === "CollectionPage",
+      );
+      assert.equal(collection?.url, `${SITE_URL}${route}`);
+      assert.equal(collection.dateModified, patchNotesUpdatedAt);
+      assert.equal(collection.description, value("description"));
+      assert.ok(
+        tags(html, "time").some(
+          (time) => time.datetime === patchNotesUpdatedAt,
+        ),
+        `${route}: visible last-updated date`,
+      );
       for (const item of releaseHighlights)
         assert.ok(
           tags(html, "a").some(
