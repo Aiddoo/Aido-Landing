@@ -24,7 +24,7 @@ export const featureGuides = [
     slug: "recurring-todo",
     path: "/features/recurring-todo",
     group: "plan",
-    updatedAt: "2026-11-10",
+    updatedAt: "2026-11-17",
     screens: ["repeat-edit", "home-widgets"],
   },
   {
@@ -92,12 +92,12 @@ export const featureGuides = [
     slug: "ai-report",
     path: "/features/ai-report",
     group: "daily",
-    updatedAt: "2026-11-14",
+    updatedAt: "2026-11-17",
     screens: [
-      "report-home",
-      "report-weekly",
-      "report-monthly",
-      "report-suggestions",
+      "report-summary",
+      "report-charts",
+      "report-coach",
+      "suggestion-rows",
     ],
   },
   {
@@ -116,7 +116,7 @@ export const featureGuides = [
     slug: "premium",
     path: "/features/premium",
     group: "me",
-    updatedAt: "2026-11-14",
+    updatedAt: "2026-11-17",
     screens: ["premium-usage", "premium-friend-limit", "premium-mypage"],
   },
 ] as const satisfies ReadonlyArray<{

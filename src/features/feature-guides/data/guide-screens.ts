@@ -9,6 +9,7 @@ type GuideScreenDevice = Extract<
 // 1.13.0 iPhone(6.3인치) 라이트 모드 실제 화면, 1.14.0 Android 날씨 화면, 1.14.1 댓글·기기별 날씨 화면,
 // 1.15.0 AI 할 일 화면(ai-*, 한국어 캡처를 영어 페이지에도 쓴다). voice-add·memo-ai는 1.15.0 소개 페이지의 이전 화면 비교에 남겨 둔다.
 // 원본은 ko/en 캡처를 640px(iPad는 1280px) WebP로 줄였다. 영어 캡처가 없는 하트·iPhone Duo·iPad는 한국어 화면을 함께 쓴다.
+// AI 리포트 가이드(report-*·suggestion-rows)는 1.16.0 소개 페이지와 같은 iPhone SE 예시 화면이다(release-screens.ts).
 export const guideScreenFiles = {
   "friend-feed": "iphone",
   "todo-nudge": "iphone",
@@ -55,10 +56,10 @@ export const guideScreenFiles = {
   "reminder-inbox": "iphone",
   "reminder-times": "iphone",
   "reminder-weather": "iphone",
-  "report-home": "iphone",
-  "report-weekly": "iphone",
-  "report-monthly": "iphone",
-  "report-suggestions": "iphone",
+  "report-summary": "iphone",
+  "report-charts": "iphone",
+  "report-coach": "iphone",
+  "suggestion-rows": "iphone",
   "customize-app-icon": "iphone",
   "customize-dark": "iphone",
   "customize-font": "iphone",
@@ -98,8 +99,12 @@ const guideScreenSizes = {
   ipad: { width: 1280, height: 1707 },
 } as const satisfies Record<GuideScreenDevice, unknown>;
 
-/** 화면 위쪽만 잘라 쓴 캡처의 실제 높이 */
+/** 화면 위쪽만 잘라 쓴 캡처와 내비 헤더 아래부터 쓴 1.16.0 캡처의 실제 높이 */
 const croppedScreenHeights: Partial<Record<GuideScreenKey, number>> = {
+  "report-summary": 1062,
+  "report-charts": 1062,
+  "report-coach": 1062,
+  "suggestion-rows": 1062,
   "weather-offline": 1126,
   "weather-alerts": 711,
   // 아래쪽 개발용 오류 알림을 뺀 iPhone Duo 화면, 위쪽 상태 막대·개발 버튼을 뺀 iPad 화면
@@ -122,10 +127,6 @@ const koreanOnlyScreens: ReadonlySet<GuideScreenKey> = new Set([
   "reminder-inbox",
   "reminder-times",
   "reminder-weather",
-  "report-home",
-  "report-weekly",
-  "report-monthly",
-  "report-suggestions",
   "customize-app-icon",
   "customize-dark",
   "customize-font",

@@ -660,15 +660,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
           navigationLabel: "리포트와 제안",
           title: "기록을 돌아보고 다음 계획을 세워요",
           description:
-            "AI 리포트와 반복 제안으로 나에게 맞는 패턴을\u00a0돌아봐요.",
+            "AI 리포트와 반복 제안으로 나에게 맞는 흐름을\u00a0찾아요.",
           details: [
-            "주간·월간 리포트에서 달성률과 카테고리별 기록을\u00a0확인해요.",
-            "반복되는 할\u00a0일은 AI 제안을 살펴보고 내 일정에\u00a0더해요.",
-            "아래 리포트와 제안은 기능 소개를 위한 예시예요.",
+            "주간·월간 리포트에서 달성률 변화와 날마다 끝낸 할\u00a0일, 주로 끝낸 시간을 차트로\u00a0봐요.",
+            "자주 하는 할\u00a0일은 최근 2주 기록을 이유로 AI가 반복 할\u00a0일로\u00a0제안해요.",
+            "아래 화면은 무료로 미리 보는 예시 리포트와 예시 제안이에요.",
           ],
           captions: [
-            "앱에서 제공하는 샘플 주간 리포트",
-            "반복 제안 예시와 수락·건너뛰기",
+            "달성률 변화와 날마다 끝낸 할\u00a0일",
+            "이유와 함께 오는 반복 할\u00a0일 제안",
           ],
         },
         personal: {
@@ -1088,35 +1088,35 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "한 주를 돌아보는 시간",
           title: "AI 리포트로 내 할\u00a0일 패턴\u00a0돌아보기",
           summary:
-            "아이두 AI 리포트는 한 주·한 달 동안의 할\u00a0일 기록을 분석해 달성률, 카테고리별 완료, 요일별 패턴, 활발한 시간대를 보여 주고 한 줄 요약을 써 줘요. 자주 반복한 일은 AI가 반복 할\u00a0일로 만들자고\u00a0제안해요.",
+            "아이두 AI 리포트는 한 주·한 달 동안의 할\u00a0일 기록으로 달성률과 지난번보다 바뀐 만큼, 날마다 끝낸 할\u00a0일, 주로 끝낸 시간, 카테고리별 완료를 차트로 보여 주고 AI 코치가 한마디를 남겨요. 자주 하는 할\u00a0일은 AI가 최근 2주 기록을 이유로 들어 반복 할\u00a0일로 만들자고\u00a0제안해요.",
           cardDescription:
-            "주간·월간 리포트로 달성률과 패턴을 보고, AI 반복 제안을\u00a0받아요.",
+            "달성률 변화와 날마다·시간대별 기록을 차트로 보고, AI 반복 제안을\u00a0받아요.",
           steps: [
             {
               title: "마이 탭에서 AI 리포트를 열어요",
-              body: "마이 탭 > 기록 > AI 리포트를 누르면 다음 주간·월간 리포트까지 남은 날이 D-4처럼\u00a0보여요.",
+              body: "마이 탭 > 기록 > AI 리포트에서 주간·월간을 고르면 다음 리포트까지 남은 날과 도착 시각(예: D-6 · 월 오전 11:30), 최근 리포트, 지난 리포트가 차례로\u00a0보여요.",
             },
             {
-              title: "주간·월간을 골라 읽어요",
-              body: "주간 리포트는 매주, 월간 리포트는 매달 도착해요. 달성률·완료한 할\u00a0일·연속 달성 일수를 먼저 보고 ‘자세히 보기’로\u00a0들어가요.",
+              title: "최근 8주 흐름을 봐요",
+              body: "최근 리포트 카드에서 달성률과 지난번보다 바뀐 만큼, 최근 8주 달성률 선을 봐요. 선을 누르거나 옆으로 밀면 주마다 달성률이\u00a0보여요.",
             },
             {
-              title: "패턴을 보고 다음 계획을 세워요",
-              body: "카테고리별 분석, 요일별 달성률, 활발한 시간대를 보고 잘 되는 요일·시간에 중요한 일을 놓아\u00a0봐요.",
+              title: "‘자세히 보기’에서 차트를 읽어요",
+              body: "날마다 끝낸 할\u00a0일 막대와 주로 끝낸 시간을 보여 주는 24시간 차트, 카테고리별 분석을 보고, 끝에서 AI 코치의 한마디와 팁을 읽어요. 막대를 누르면 그날 몇 개 중 몇 개를 끝냈는지\u00a0보여요.",
             },
             {
-              title: "AI 반복 제안을 수락해요",
-              body: "같은 일을 여러 번 끝냈다면 AI가 ‘토·일 오후 8:30 두부 발톱 깎아주기’처럼 반복 할\u00a0일을 제안해요. 수락하면 반복 할\u00a0일이 만들어지고, 원하지 않으면\u00a0거절해요.",
+              title: "AI 제안으로 반복 할\u00a0일을 만들어요",
+              body: "할\u00a0일 목록 맨 아래의 AI 제안 카드나 리포트 끝의 ‘반복하면 좋은 할\u00a0일’에서 제안을 열어요. ‘최근 2주 14번 중 13번 끝냈어요’ 같은 이유를 보고 ‘반복으로 만들기’나 ‘필요 없어요’를\u00a0눌러요.",
             },
           ],
           example: {
             introduction: "리포트에는 이런 내용이 담겨요.",
             items: [
-              "11월 1주차: 달성률 93%, 할\u00a0일 29개 중 27개 완료, 6일 연속\u00a0달성",
-              "카테고리별: 업무 7/8, 생활 7/7, 운동 6/6, 자기계발\u00a04/5",
-              "요약: ‘지난주보다 8%p 올랐어요. 생활·운동·두부 카테고리는 모두\u00a0끝냈어요.’",
+              "11월 2주차: 달성률 78%(6%p 올랐어요), 할\u00a0일 32개 중 25개 완료, 모두 끝낸 날\u00a03일",
+              "주로 끝낸 시간: 오전 7시에 가장 많이\u00a0끝냈어요",
+              "AI 코치: ‘운동은 아침 7시 할\u00a0일 바로 뒤에 붙여 두면 덜\u00a0밀려요.’",
             ],
-            note: "예시 계정의 실제 AI 리포트예요. 리포트 내용은 내 할\u00a0일 기록에 따라\u00a0달라져요.",
+            note: "앱에 있는 예시 리포트의 내용이에요. 리포트 내용은 내 할\u00a0일 기록에 따라\u00a0달라져요.",
           },
           details: [
             {
@@ -1124,24 +1124,24 @@ const catalogs: Record<Locale, MessageCatalog> = {
               body: "한 주를 마치면 그 주 완료율이 담긴 주간 달성 배지가 쌓여요. 마이 탭 > 달성 배지에서 모아 보고 공유할 수\u00a0있어요.",
             },
             {
-              title: "제안에는 근거가 함께 와요",
-              body: "AI 반복 제안에는 ‘토요일과 일요일에 2번 모두 완료했어요’처럼 왜 제안했는지와 신뢰도, 만료일이 함께\u00a0보여요.",
+              title: "제안에는 이유가 함께 와요",
+              body: "AI 제안은 최근 2주 동안 몇 번 중 몇 번 끝냈는지와 시각·반복을 함께 보여 줘요. 띄어쓰기·이모지만 다른 제목은 하나로 묶고, 이미 반복 중인 할\u00a0일은 다시 제안하지\u00a0않아요.",
             },
             {
-              title: "알림으로 도착을 알려요",
-              body: "새 AI 제안이 도착하면 알림함의 AI 알림으로 알려\u00a0줘요.",
+              title: "오전 9시에 알려 드려요",
+              body: "새 제안을 찾으면 오전 9시에 알림으로 알려 드려요. 오늘 아직 분석 전이라면 ‘지금 분석 받기’로 바로 받고, 마이 탭 > 알림 설정의 ‘AI 제안·리포트 알림’에서 이 알림만 끌 수\u00a0있어요.",
             },
           ],
           plans: {
-            free: "무료에서는 예시 리포트로 어떤 내용을 받는지 미리 볼 수\u00a0있어요.",
+            free: "AI 리포트 화면에서 이번 주 내 기록을 막대로 보고, AI 리포트와 AI 제안을 예시로 미리 볼 수\u00a0있어요.",
             premium:
-              "매주·매달 나만의 AI 리포트를 받고, AI 반복 할\u00a0일 제안을 받아 수락할 수\u00a0있어요.",
+              "매주·매달 나만의 AI 리포트와 AI 코치 한마디를 받고, 매일 최근 2주 기록으로 AI 반복 할\u00a0일 제안을\u00a0받아요.",
           },
           faq: [
             {
               question: "리포트는 언제 오나요?",
               answer:
-                "주간 리포트는 한 주가 끝난 뒤, 월간 리포트는 한 달이 끝난 뒤 도착해요. AI 리포트 화면에서 다음 리포트까지 남은 날을 볼 수\u00a0있어요.",
+                "주간 리포트는 매주 월요일, 월간 리포트는 매달 1일 오전 11시 30분에 도착해요. AI 리포트 화면에서 다음 리포트까지 남은 날과 도착 시각을 볼 수\u00a0있어요.",
             },
             {
               question: "할\u00a0일 내용이 AI 업체에\u00a0보내지나요?",
@@ -1149,27 +1149,27 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 "AI 기능에 쓰는 할\u00a0일 기록은 처음 AI를 쓸 때 동의 시트로 먼저 알려 드려요. 이름·이메일·친구 정보는 보내지 않고, AI 동의는 마이 탭 > 약관 및 정책에서 끌 수\u00a0있어요.",
             },
             {
-              question: "제안을 거절하면 다시 오나요?",
+              question: "제안은 언제까지 남아 있나요?",
               answer:
-                "제안마다 만료일이 있어요. 기록이 더 쌓이면 새 제안이 도착할 수\u00a0있어요.",
+                "제안은 2주가 지나면 사라져요. 할\u00a0일 기록이 더 쌓이면 다음 분석에서 새 제안이 올 수\u00a0있어요.",
             },
           ],
           screens: [
             {
-              alt: "다음 주간 리포트 D-4, 월간 리포트 D-19와 지난주 달성률 93%가 보이는 아이두 AI 리포트\u00a0화면",
-              caption: "다음 리포트까지 남은 날과 지난 리포트",
+              alt: "예시 데이터로 달성률 78%와 ‘6%p 올랐어요’, 완료 25/32, 날마다 끝낸 할\u00a0일 막대가 보이는 아이두 AI\u00a0리포트",
+              caption: "달성률 변화와 날마다 끝낸 할\u00a0일",
             },
             {
-              alt: "11월 1주차 달성률 93%, 카테고리별 분석과 요일별 패턴이 보이는 아이두 주간\u00a0리포트",
-              caption: "주간 리포트: 카테고리·요일별 패턴",
+              alt: "오전 7시에 가장 많이 끝낸 24시간 차트와 업무·공부·운동 카테고리별 분석이 보이는 아이두 AI\u00a0리포트",
+              caption: "주로 끝낸 시간과 카테고리",
             },
             {
-              alt: "2026년 10월 달성률 87%, 완료 79개, 카테고리별 분석이 보이는 아이두 월간\u00a0리포트",
-              caption: "월간 리포트로 한 달을 돌아봐요",
+              alt: "AI 코치 글과 팁 두 가지가 보이는 아이두 AI 리포트 예시\u00a0화면",
+              caption: "AI 코치의 한마디와 팁",
             },
             {
-              alt: "5개의 반복 할\u00a0일 제안과 요일·시간·근거·신뢰도, 거절·수락 버튼이 보이는 아이두 AI 제안\u00a0화면",
-              caption: "AI가 반복 할\u00a0일을 제안해요",
+              alt: "영양제 먹기·헬스장 가기 같은 예시 제안마다 시각·반복과 ‘최근 2주 14번 중 13번 끝냈어요’ 같은 이유가 보이는 아이두 AI 제안\u00a0화면",
+              caption: "이유를 보고 반복으로 만들어요",
             },
           ],
         },
@@ -1320,7 +1320,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
               },
               {
                 feature: "AI 반복 할\u00a0일 제안",
-                free: "없음",
+                free: "예시만",
                 premium: "제공",
               },
               { feature: "친구", free: "5명", premium: "무제한" },
@@ -1523,7 +1523,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           plans: {
             free: "반복 할\u00a0일을 직접 설정하고 주간·월간 캘린더에서 확인해요. iOS와 Android 홈 화면 위젯도 이용할 수\u00a0있어요.",
             premium:
-              "AI 주간·월간 리포트로 달성 기록을 돌아보고, AI가 제안한 반복 할\u00a0일 중 나에게 맞는 제안을 수락할 수\u00a0있어요.",
+              "AI 주간·월간 리포트로 달성 기록을 돌아보고, 자주 하는 할\u00a0일은 AI 제안으로 반복 할\u00a0일로 만들 수\u00a0있어요.",
           },
           faq: [
             {
@@ -2516,7 +2516,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.15.0 새 기능: 말하면 AI가 할\u00a0일로 나눠요",
+        release: "1.16.0 새 기능: 자주 하는 할\u00a0일, AI가 반복으로 만들어요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -2708,9 +2708,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
         title: "한 주를 돌아보고, 알림은 내 하루에 맞게",
         reportTitle: "AI 주간·월간 리포트",
         reportDescription:
-          "달성률과 카테고리별 기록, 요일별 패턴을 한눈에\u00a0돌아봐요.",
+          "달성률 변화와 날마다 끝낸 할\u00a0일, 주로 끝낸 시간을 차트로 보고 AI 코치의 한마디를\u00a0받아요.",
         reportAlt:
-          "주간 달성률 100%, 완료 25개, 연속 7일과 카테고리별 분석이 보이는 아이두 AI 리포트\u00a0화면",
+          "예시 데이터로 달성률 78%와 ‘6%p 올랐어요’, 완료 25/32, 날마다 끝낸 할\u00a0일 막대가 보이는 아이두 AI 리포트\u00a0화면",
         reminderTitle: "리마인드 알림",
         reminderDescription:
           "아침과 저녁에 오늘 할\u00a0일을 알려줘요. 프리미엄에서는 원하는 시간으로 바꿀 수\u00a0있어요.",
@@ -3156,15 +3156,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
           navigationLabel: "Reports & suggestions",
           title: "Look back on your days. Find your next\u00a0step.",
           description:
-            "Reflect on your patterns with AI reports and recurring suggestions.",
+            "Find what works for you with AI reports and repeat\u00a0suggestions.",
           details: [
-            "Weekly and monthly reports show completion rates and category patterns.",
-            "Review recurring suggestions and add the ones that fit your\u00a0routine.",
-            "The report and suggestions below are examples for this walkthrough.",
+            "Weekly and monthly reports chart your completion change, what you finished each day and when you usually\u00a0finish.",
+            "AI suggests turning to-dos you do often into repeating to-dos, with your last 2 weeks as the\u00a0reason.",
+            "The screens below are the sample report and sample suggestions you can preview for\u00a0free.",
           ],
           captions: [
-            "The sample weekly report available in the\u00a0app",
-            "Example recurring suggestions to accept or\u00a0skip",
+            "Your completion change and each\u00a0day",
+            "Repeat suggestions that show\u00a0why",
           ],
         },
         personal: {
@@ -3586,88 +3586,88 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "Time to look back",
           title: "Review your to-do patterns with AI\u00a0reports",
           summary:
-            "Aido’s AI report looks at a week or a month of your to-dos and shows your completion rate, progress by category, patterns by weekday and your most active hours, plus a short summary. When you keep doing the same thing, AI suggests turning it into a repeating\u00a0to-do.",
+            "Aido’s AI report turns a week or a month of your to-dos into charts: your completion rate and how it changed, what you finished each day, when you usually finish and progress by category, plus a note from your AI coach. When you keep doing the same thing, AI suggests turning it into a repeating to-do, with your last 2 weeks as the\u00a0reason.",
           cardDescription:
-            "Weekly and monthly reports on your progress, plus AI repeat\u00a0suggestions.",
+            "See your completion change in daily and hourly charts, plus AI repeat\u00a0suggestions.",
           steps: [
             {
-              title: "Open AI report from the My\u00a0tab",
-              body: "Go to My > Records > AI report to see how many days are left until your next weekly and monthly reports, like\u00a0D-4.",
+              title: "Open AI reports from the Me\u00a0tab",
+              body: "Go to Me > Records > AI reports and pick Weekly or Monthly. You’ll see when the next report arrives (like “Next report in 6 days · Mon, 11:30 AM”), your latest report and past\u00a0ones.",
             },
             {
-              title: "Read weekly or monthly",
-              body: "Weekly reports arrive every week and monthly reports every month. Check your completion rate, finished to-dos and streak, then tap See\u00a0details.",
+              title: "See your last 8\u00a0weeks",
+              body: "The latest report card shows your completion rate, how it changed and a line for the last 8 weeks. Tap or slide across the line to see each\u00a0week.",
             },
             {
-              title: "Plan around your patterns",
-              body: "Look at categories, weekdays and active hours, and put important tasks on the days and times that work best for\u00a0you.",
+              title: "Read the charts in View\u00a0details",
+              body: "See what you finished each day, a 24-hour chart of when you usually finish and a breakdown by category, then read your AI coach’s note and tips at the end. Tap a bar to see how many you finished that\u00a0day.",
             },
             {
-              title: "Accept AI repeat\u00a0suggestions",
-              body: "If you’ve done the same thing several times, AI suggests a repeating to-do such as “Trim Dubu’s claws, Sat & Sun 8:30 PM”. Accept to create it or decline if it’s not for\u00a0you.",
+              title: "Make repeating to-dos from AI\u00a0suggestions",
+              body: "Open suggestions from the AI suggestions card at the bottom of your to-do list or from “To-dos worth repeating” at the end of a report. See why, like “Done 13 of 14 times in the last 2 weeks,” then tap Make it repeat or Not\u00a0needed.",
             },
           ],
           example: {
             introduction: "Here’s what a report\u00a0includes:",
             items: [
-              "Week 1 of November: 93% complete, 27 of 29 to-dos done, 6-day\u00a0streak",
-              "By category: Work 7/8, Life 7/7, Exercise 6/6, Self-growth\u00a04/5",
-              "Summary: “Up 8 percentage points from last week. You finished everything in Life, Exercise and\u00a0Dubu.”",
+              "Week 2 of November: 78% complete (up 6 pts), 25 of 32 to-dos done, 3 perfect\u00a0days",
+              "When you usually finish: most around 7\u00a0AM",
+              "AI coach: “Put your workout right after your 7 AM to-do so it slips\u00a0less.”",
             ],
-            note: "A real AI report from a sample account. Your report depends on your own\u00a0to-dos.",
+            note: "From the sample report in the app. Your report depends on your own\u00a0to-dos.",
           },
           details: [
             {
               title: "Weekly achievement badges",
-              body: "Finish a week and you get a badge showing that week’s completion rate. Collect and share them in My >\u00a0Badges.",
+              body: "Finish a week and you get a badge showing that week’s completion rate. Collect and share them in Me > Achievement\u00a0badges.",
             },
             {
               title: "Suggestions come with\u00a0reasons",
-              body: "Each repeat suggestion shows why it was made (for example, “completed both times on Saturday and Sunday”), a confidence score and an expiry\u00a0date.",
+              body: "Each AI suggestion shows how many times you finished it in the last 2 weeks, plus its time and repeat. Titles that differ only in spacing or emoji count as one, and to-dos that already repeat aren’t suggested\u00a0again.",
             },
             {
-              title: "We let you know",
-              body: "When new AI suggestions arrive, you’ll see an AI notification in your\u00a0inbox.",
+              title: "Alerts at 9\u00a0AM",
+              body: "When we find new suggestions, we let you know at 9 AM. If today’s check hasn’t run yet, tap Check now. To turn off just these alerts, use “AI suggestions & reports” in Me >\u00a0Notifications.",
             },
           ],
           plans: {
-            free: "Free users can preview a sample report to see what’s\u00a0included.",
+            free: "See this week’s record as bars on the AI reports screen, and preview AI reports and AI suggestions with sample\u00a0data.",
             premium:
-              "Get your own AI report every week and month, and receive AI repeat suggestions you can\u00a0accept.",
+              "Get your own AI report and coach note every week and month, and AI repeat suggestions from your last 2 weeks every\u00a0day.",
           },
           faq: [
             {
               question: "When do reports arrive?",
               answer:
-                "Weekly reports arrive after each week ends, and monthly reports after each month ends. The AI report screen shows how many days are\u00a0left.",
+                "Weekly reports arrive every Monday and monthly reports on the 1st of each month, at 11:30 AM. The AI reports screen shows how long until the next one and what time it\u00a0arrives.",
             },
             {
               question: "Is my to-do data sent to AI\u00a0providers?",
               answer:
-                "The first time you use AI, a consent sheet explains which to-do records are used. Your name, email and friend information are never sent, and you can turn AI consent off in My > Terms and\u00a0policies.",
+                "The first time you use AI, a consent sheet explains which to-do records are used. Your name, email and friend information are never sent, and you can turn AI consent off in Me > Terms &\u00a0policies.",
             },
             {
               question: "Do suggestions expire?",
               answer:
-                "Yes, each suggestion has an expiry date. New suggestions can arrive as you keep adding\u00a0to-dos.",
+                "Yes. Suggestions go away after 2 weeks, and new ones can arrive at the next check as you keep adding\u00a0to-dos.",
             },
           ],
           screens: [
             {
-              alt: "Aido AI report screen showing D-4 until the next weekly report, D-19 until the monthly one and last week at 93% (Korean\u00a0UI)",
-              caption: "Days until the next report, and the last\u00a0one",
+              alt: "Aido AI report with sample data showing 78% completion, “Up 6 pts,” 25 of 32 done and bars for each\u00a0day",
+              caption: "Your completion change and each\u00a0day",
             },
             {
-              alt: "Aido weekly report for week 1 of November with 93% completion, category breakdown and weekday pattern (Korean\u00a0UI)",
-              caption: "Weekly report: categories and\u00a0weekdays",
+              alt: "Aido AI report with a 24-hour chart peaking at 7 AM and a breakdown for Work, Study and\u00a0Workout",
+              caption: "When you finish, and by\u00a0category",
             },
             {
-              alt: "Aido monthly report for October 2026 with 87% completion, 79 to-dos done and a category breakdown (Korean\u00a0UI)",
-              caption: "Look back on the whole\u00a0month",
+              alt: "Aido sample AI report with a coach note and two\u00a0tips",
+              caption: "Your AI coach’s note and\u00a0tips",
             },
             {
-              alt: "Aido AI suggestions screen with 5 repeating to-do suggestions, reasons, confidence and accept or decline buttons (Korean\u00a0UI)",
-              caption: "AI suggests repeating\u00a0to-dos",
+              alt: "Aido AI suggestions with sample to-dos like Take vitamins and Go to the gym, each with a time, repeat and a reason like “Done 13 of 14 times in the last 2\u00a0weeks”",
+              caption: "See why, then make it\u00a0repeat",
             },
           ],
         },
@@ -3819,7 +3819,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
               },
               {
                 feature: "AI repeat suggestions",
-                free: "Not included",
+                free: "Sample only",
                 premium: "Included",
               },
               { feature: "Friends", free: "5", premium: "Unlimited" },
@@ -4024,7 +4024,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           plans: {
             free: "Set recurring to-dos yourself, use weekly and monthly calendars, and add home screen widgets on iOS and\u00a0Android.",
             premium:
-              "Review your progress with weekly and monthly AI reports. Accept the AI's recurring to-do suggestions that fit your\u00a0routine.",
+              "Review your progress with weekly and monthly AI reports, and turn to-dos you do often into repeating ones with AI\u00a0suggestions.",
           },
           faq: [
             {
@@ -5033,7 +5033,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "New in 1.15.0: talk, and AI makes your\u00a0to-dos",
+        release:
+          "New in 1.16.0: AI turns what you do often into repeating\u00a0to-dos",
         titleLead: "Put it off alone.",
         titleTail: "Get it done together.",
         description:
@@ -5231,9 +5232,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
         title: "Look back on your week. Get reminders on your schedule.",
         reportTitle: "AI weekly and monthly reports",
         reportDescription:
-          "See your completion rate, categories and day-by-day patterns at a\u00a0glance.",
+          "Chart your completion change, what you finished each day and when you usually finish, plus a note from your AI\u00a0coach.",
         reportAlt:
-          "Aido AI report with a 100% weekly completion rate, 25 done, a 7-day streak and category breakdown",
+          "Aido AI report with sample data showing 78% completion, “Up 6 pts,” 25 of 32 done and bars for each\u00a0day",
         reminderTitle: "Reminders",
         reminderDescription:
           "Get today's to-dos in the morning and evening. With Premium, pick any time you\u00a0like.",

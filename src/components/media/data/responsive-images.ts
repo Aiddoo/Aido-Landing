@@ -1111,6 +1111,174 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/guides/en/report-charts.webp": {
+    "sourceHash": "ba9a1e63a83e",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-charts-48-a9ff6a153e69.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-charts-96-0c8f05a07e03.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-charts-160-810f74066a0a.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-charts-240-73794356be3e.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-charts-320-3d5560b1766e.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-charts-480-2a5f48dcd433.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-charts-640-2af02283eaf2.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/report-coach.webp": {
+    "sourceHash": "04c316cb9216",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-coach-48-b2eea5e74567.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-coach-96-191c0f4e7d0d.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-coach-160-2d9bd89d0cb4.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-coach-240-05f464e3eee4.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-coach-320-3c035f739c6c.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-coach-480-4c4b6ea02e9e.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-coach-640-453409f7e7ff.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/report-summary.webp": {
+    "sourceHash": "33f8feb6d83f",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-summary-48-c2cdcbc67ee6.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-summary-96-2cc74a122900.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-summary-160-d06cc911c0b9.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-summary-240-0ebd108be1b5.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-summary-320-a5fc214aabb5.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-summary-480-52c226ed34aa.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-summary-640-1d88e5b462ec.webp"
+      }
+    ]
+  },
+  "/app-assets/guides/en/suggestion-rows.webp": {
+    "sourceHash": "4a50f64e9f9c",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/suggestion-rows-48-04f14c0f3c91.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/suggestion-rows-96-3e20c76c2b3e.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/suggestion-rows-160-1e987b5b0c9f.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/suggestion-rows-240-d3ae8732c6f5.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/suggestion-rows-320-d59b73c487b1.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/suggestion-rows-480-38eb0f209740.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/suggestion-rows-640-481867f31576.webp"
+      }
+    ]
+  },
   "/app-assets/guides/en/todo-nudge.webp": {
     "sourceHash": "8257a8b45db2",
     "width": 640,
@@ -3137,171 +3305,171 @@ export const responsiveImages = {
       }
     ]
   },
-  "/app-assets/guides/ko/report-home.webp": {
-    "sourceHash": "52ee7dc00c3d",
+  "/app-assets/guides/ko/report-charts.webp": {
+    "sourceHash": "b14560e4f093",
     "width": 640,
-    "height": 1391,
+    "height": 1062,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-home-48-8beb64934f78.webp"
+        "height": 80,
+        "src": "/responsive/report-charts-48-04b025e368e2.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-home-96-ccf85017823a.webp"
+        "height": 159,
+        "src": "/responsive/report-charts-96-0db668d6461a.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-home-160-08322c9c7cc0.webp"
+        "height": 266,
+        "src": "/responsive/report-charts-160-7e0f3878da1b.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-home-240-4aace46e8f3e.webp"
+        "height": 398,
+        "src": "/responsive/report-charts-240-e387b3bb2a7c.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-home-320-bfbae447c847.webp"
+        "height": 531,
+        "src": "/responsive/report-charts-320-16a06c012e9a.webp"
       },
       {
         "width": 480,
-        "height": 1043,
-        "src": "/responsive/report-home-480-d14a75915146.webp"
+        "height": 796,
+        "src": "/responsive/report-charts-480-0b09095c8e40.webp"
       },
       {
         "width": 640,
-        "height": 1391,
-        "src": "/responsive/report-home-640-bed5b7e54573.webp"
+        "height": 1062,
+        "src": "/responsive/report-charts-640-c607d6980230.webp"
       }
     ]
   },
-  "/app-assets/guides/ko/report-monthly.webp": {
-    "sourceHash": "c326b4b69edb",
+  "/app-assets/guides/ko/report-coach.webp": {
+    "sourceHash": "097f64fad701",
     "width": 640,
-    "height": 1391,
+    "height": 1062,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-monthly-48-fe8e453e9fa3.webp"
+        "height": 80,
+        "src": "/responsive/report-coach-48-958f58ca92c3.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-monthly-96-5af47616ec21.webp"
+        "height": 159,
+        "src": "/responsive/report-coach-96-eaefc068a84b.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-monthly-160-d6cea026a531.webp"
+        "height": 266,
+        "src": "/responsive/report-coach-160-84591b63b8d2.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-monthly-240-95eca8d00930.webp"
+        "height": 398,
+        "src": "/responsive/report-coach-240-dbcbe590cc26.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-monthly-320-f0977323848a.webp"
+        "height": 531,
+        "src": "/responsive/report-coach-320-96c34769dbc9.webp"
       },
       {
         "width": 480,
-        "height": 1043,
-        "src": "/responsive/report-monthly-480-f18e0869e7e9.webp"
+        "height": 796,
+        "src": "/responsive/report-coach-480-0cbbdb42cfe2.webp"
       },
       {
         "width": 640,
-        "height": 1391,
-        "src": "/responsive/report-monthly-640-3b3c3bade35a.webp"
+        "height": 1062,
+        "src": "/responsive/report-coach-640-71194b052366.webp"
       }
     ]
   },
-  "/app-assets/guides/ko/report-suggestions.webp": {
-    "sourceHash": "19a9a3b1faba",
+  "/app-assets/guides/ko/report-summary.webp": {
+    "sourceHash": "db85c7066f12",
     "width": 640,
-    "height": 1391,
+    "height": 1062,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-suggestions-48-c23f84f9765a.webp"
+        "height": 80,
+        "src": "/responsive/report-summary-48-70e665803a7e.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-suggestions-96-b38685e25416.webp"
+        "height": 159,
+        "src": "/responsive/report-summary-96-26109bb7f1c3.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-suggestions-160-2153d85600e2.webp"
+        "height": 266,
+        "src": "/responsive/report-summary-160-7568b1b45f46.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-suggestions-240-713bbc3be877.webp"
+        "height": 398,
+        "src": "/responsive/report-summary-240-cfd5db91bb40.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-suggestions-320-7c1ce179f173.webp"
+        "height": 531,
+        "src": "/responsive/report-summary-320-5ffd36fc1850.webp"
       },
       {
         "width": 480,
-        "height": 1043,
-        "src": "/responsive/report-suggestions-480-9591e6b251f1.webp"
+        "height": 796,
+        "src": "/responsive/report-summary-480-705542787559.webp"
       },
       {
         "width": 640,
-        "height": 1391,
-        "src": "/responsive/report-suggestions-640-2994ac27a973.webp"
+        "height": 1062,
+        "src": "/responsive/report-summary-640-f72a06006519.webp"
       }
     ]
   },
-  "/app-assets/guides/ko/report-weekly.webp": {
-    "sourceHash": "92ad97bb13f1",
+  "/app-assets/guides/ko/suggestion-rows.webp": {
+    "sourceHash": "1544b65063d7",
     "width": 640,
-    "height": 1391,
+    "height": 1062,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-weekly-48-ed8fdd7da11e.webp"
+        "height": 80,
+        "src": "/responsive/suggestion-rows-48-ab37db8b8c59.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-weekly-96-61df01c7d840.webp"
+        "height": 159,
+        "src": "/responsive/suggestion-rows-96-81d59cf55a22.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-weekly-160-e11c9cc3934a.webp"
+        "height": 266,
+        "src": "/responsive/suggestion-rows-160-55bd70d37c26.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-weekly-240-0c4705c38aa5.webp"
+        "height": 398,
+        "src": "/responsive/suggestion-rows-240-aa742873e9a1.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-weekly-320-5ad5df778dcb.webp"
+        "height": 531,
+        "src": "/responsive/suggestion-rows-320-7d4507432f0b.webp"
       },
       {
         "width": 480,
-        "height": 1043,
-        "src": "/responsive/report-weekly-480-d307553e8b80.webp"
+        "height": 796,
+        "src": "/responsive/suggestion-rows-480-d43dbc3f372c.webp"
       },
       {
         "width": 640,
-        "height": 1391,
-        "src": "/responsive/report-weekly-640-7bcb0eb628a8.webp"
+        "height": 1062,
+        "src": "/responsive/suggestion-rows-640-d8ae9f2939c4.webp"
       }
     ]
   },
@@ -4762,49 +4930,49 @@ export const responsiveImages = {
     ]
   },
   "/app-assets/home/en/report.webp": {
-    "sourceHash": "68344467efc6",
-    "width": 900,
-    "height": 1957,
+    "sourceHash": "bc8fb5df0abb",
+    "width": 750,
+    "height": 1244,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-48-1637abf3484f.webp"
+        "height": 80,
+        "src": "/responsive/report-48-cca5645e0735.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-96-51f7bb71fddb.webp"
+        "height": 159,
+        "src": "/responsive/report-96-053016ff41a2.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-160-6959435d01f3.webp"
+        "height": 265,
+        "src": "/responsive/report-160-1535053fdbe9.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-240-5ba8aa80b853.webp"
+        "height": 398,
+        "src": "/responsive/report-240-5aa2db1c8c6a.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-320-f8390b9d0237.webp"
+        "height": 531,
+        "src": "/responsive/report-320-cf4262b7d963.webp"
       },
       {
         "width": 480,
-        "height": 1044,
-        "src": "/responsive/report-480-7a29882c3fc1.webp"
+        "height": 796,
+        "src": "/responsive/report-480-c07de4868545.webp"
       },
       {
         "width": 640,
-        "height": 1392,
-        "src": "/responsive/report-640-5902dc91b94d.webp"
+        "height": 1062,
+        "src": "/responsive/report-640-7686735d3bc9.webp"
       },
       {
-        "width": 900,
-        "height": 1957,
-        "src": "/responsive/report-900-ccef767cda63.webp"
+        "width": 750,
+        "height": 1244,
+        "src": "/responsive/report-750-637bded0800a.webp"
       }
     ]
   },
@@ -5388,49 +5556,49 @@ export const responsiveImages = {
     ]
   },
   "/app-assets/home/ko/report.webp": {
-    "sourceHash": "19eb05405906",
-    "width": 900,
-    "height": 1957,
+    "sourceHash": "2f847b681d29",
+    "width": 750,
+    "height": 1244,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-48-dc3f0fa7ef52.webp"
+        "height": 80,
+        "src": "/responsive/report-48-a86c7988f8e2.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-96-266e8f83c5a5.webp"
+        "height": 159,
+        "src": "/responsive/report-96-8fb3af008a04.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-160-978c6ebd1e84.webp"
+        "height": 265,
+        "src": "/responsive/report-160-936f8e5d90f4.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-240-30c2838b381c.webp"
+        "height": 398,
+        "src": "/responsive/report-240-172a132c1184.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-320-d1b49f020314.webp"
+        "height": 531,
+        "src": "/responsive/report-320-09cd54f34734.webp"
       },
       {
         "width": 480,
-        "height": 1044,
-        "src": "/responsive/report-480-dd500a6507ec.webp"
+        "height": 796,
+        "src": "/responsive/report-480-4cb7ff08abd9.webp"
       },
       {
         "width": 640,
-        "height": 1392,
-        "src": "/responsive/report-640-7068c36f1828.webp"
+        "height": 1062,
+        "src": "/responsive/report-640-637e303999df.webp"
       },
       {
-        "width": 900,
-        "height": 1957,
-        "src": "/responsive/report-900-2553721a0c3c.webp"
+        "width": 750,
+        "height": 1244,
+        "src": "/responsive/report-750-1ca70d009a84.webp"
       }
     ]
   },
@@ -5790,6 +5958,132 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/releases/en/report-charts.webp": {
+    "sourceHash": "ba9a1e63a83e",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-charts-48-a9ff6a153e69.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-charts-96-0c8f05a07e03.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-charts-160-810f74066a0a.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-charts-240-73794356be3e.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-charts-320-3d5560b1766e.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-charts-480-2a5f48dcd433.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-charts-640-2af02283eaf2.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/report-coach.webp": {
+    "sourceHash": "04c316cb9216",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-coach-48-b2eea5e74567.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-coach-96-191c0f4e7d0d.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-coach-160-2d9bd89d0cb4.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-coach-240-05f464e3eee4.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-coach-320-3c035f739c6c.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-coach-480-4c4b6ea02e9e.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-coach-640-453409f7e7ff.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/report-summary.webp": {
+    "sourceHash": "33f8feb6d83f",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-summary-48-c2cdcbc67ee6.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-summary-96-2cc74a122900.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-summary-160-d06cc911c0b9.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-summary-240-0ebd108be1b5.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-summary-320-a5fc214aabb5.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-summary-480-52c226ed34aa.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-summary-640-1d88e5b462ec.webp"
+      }
+    ]
+  },
   "/app-assets/releases/en/speak-ai-info.webp": {
     "sourceHash": "ac29b4202101",
     "width": 640,
@@ -5913,6 +6207,48 @@ export const responsiveImages = {
         "width": 640,
         "height": 853,
         "src": "/responsive/speak-review-640-32e80d0dfedd.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/suggestion-rows.webp": {
+    "sourceHash": "4a50f64e9f9c",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/suggestion-rows-48-04f14c0f3c91.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/suggestion-rows-96-3e20c76c2b3e.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/suggestion-rows-160-1e987b5b0c9f.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/suggestion-rows-240-d3ae8732c6f5.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/suggestion-rows-320-d59b73c487b1.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/suggestion-rows-480-38eb0f209740.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/suggestion-rows-640-481867f31576.webp"
       }
     ]
   },
@@ -6304,6 +6640,132 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/releases/ko/report-charts.webp": {
+    "sourceHash": "b14560e4f093",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-charts-48-04b025e368e2.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-charts-96-0db668d6461a.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-charts-160-7e0f3878da1b.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-charts-240-e387b3bb2a7c.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-charts-320-16a06c012e9a.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-charts-480-0b09095c8e40.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-charts-640-c607d6980230.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/report-coach.webp": {
+    "sourceHash": "097f64fad701",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-coach-48-958f58ca92c3.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-coach-96-eaefc068a84b.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-coach-160-84591b63b8d2.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-coach-240-dbcbe590cc26.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-coach-320-96c34769dbc9.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-coach-480-0cbbdb42cfe2.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-coach-640-71194b052366.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/report-summary.webp": {
+    "sourceHash": "db85c7066f12",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/report-summary-48-70e665803a7e.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/report-summary-96-26109bb7f1c3.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/report-summary-160-7568b1b45f46.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/report-summary-240-cfd5db91bb40.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/report-summary-320-5ffd36fc1850.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/report-summary-480-705542787559.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/report-summary-640-f72a06006519.webp"
+      }
+    ]
+  },
   "/app-assets/releases/ko/speak-ai-info.webp": {
     "sourceHash": "ac29b4202101",
     "width": 640,
@@ -6427,6 +6889,48 @@ export const responsiveImages = {
         "width": 640,
         "height": 1391,
         "src": "/responsive/speak-review-640-705d445bfe7a.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/suggestion-rows.webp": {
+    "sourceHash": "1544b65063d7",
+    "width": 640,
+    "height": 1062,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/suggestion-rows-48-ab37db8b8c59.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/suggestion-rows-96-81d59cf55a22.webp"
+      },
+      {
+        "width": 160,
+        "height": 266,
+        "src": "/responsive/suggestion-rows-160-55bd70d37c26.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/suggestion-rows-240-aa742873e9a1.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/suggestion-rows-320-7d4507432f0b.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/suggestion-rows-480-d43dbc3f372c.webp"
+      },
+      {
+        "width": 640,
+        "height": 1062,
+        "src": "/responsive/suggestion-rows-640-d8ae9f2939c4.webp"
       }
     ]
   },
@@ -6775,43 +7279,6 @@ export const responsiveImages = {
         "width": 480,
         "height": 1067,
         "src": "/responsive/sent-nudges-480-e9eae86a8764.webp"
-      }
-    ]
-  },
-  "/app-assets/screenshots/en/android/suggestions.webp": {
-    "sourceHash": "7a5575f41980",
-    "width": 480,
-    "height": 1067,
-    "variants": [
-      {
-        "width": 48,
-        "height": 107,
-        "src": "/responsive/suggestions-48-fe172b1b464a.webp"
-      },
-      {
-        "width": 96,
-        "height": 213,
-        "src": "/responsive/suggestions-96-553c36a5781b.webp"
-      },
-      {
-        "width": 160,
-        "height": 356,
-        "src": "/responsive/suggestions-160-efbbd598ea97.webp"
-      },
-      {
-        "width": 240,
-        "height": 534,
-        "src": "/responsive/suggestions-240-02981779d49d.webp"
-      },
-      {
-        "width": 320,
-        "height": 711,
-        "src": "/responsive/suggestions-320-9fc881eb249b.webp"
-      },
-      {
-        "width": 480,
-        "height": 1067,
-        "src": "/responsive/suggestions-480-6e931fda1903.webp"
       }
     ]
   },
@@ -7259,40 +7726,77 @@ export const responsiveImages = {
       }
     ]
   },
-  "/app-assets/screenshots/en/ios/report-sample.webp": {
-    "sourceHash": "db6154011983",
+  "/app-assets/screenshots/en/ios/report-summary.webp": {
+    "sourceHash": "f595a0081516",
     "width": 480,
-    "height": 1044,
+    "height": 796,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-sample-48-ed02367729b6.webp"
+        "height": 80,
+        "src": "/responsive/report-summary-48-f56eea2cd5c3.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-sample-96-ffa3b4622485.webp"
+        "height": 159,
+        "src": "/responsive/report-summary-96-a588642203da.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-sample-160-6dda0f2eeec8.webp"
+        "height": 265,
+        "src": "/responsive/report-summary-160-03c4c09099bf.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-sample-240-e958346d6073.webp"
+        "height": 398,
+        "src": "/responsive/report-summary-240-2e5f45fbce12.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-sample-320-6c5faa99858b.webp"
+        "height": 531,
+        "src": "/responsive/report-summary-320-5fcd18c59cfa.webp"
       },
       {
         "width": 480,
-        "height": 1044,
-        "src": "/responsive/report-sample-480-4721c54b47de.webp"
+        "height": 796,
+        "src": "/responsive/report-summary-480-c37e46182631.webp"
+      }
+    ]
+  },
+  "/app-assets/screenshots/en/ios/suggestion-rows.webp": {
+    "sourceHash": "27d451695919",
+    "width": 480,
+    "height": 796,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/suggestion-rows-48-d1cbc7ecf9a3.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/suggestion-rows-96-266f655c703d.webp"
+      },
+      {
+        "width": 160,
+        "height": 265,
+        "src": "/responsive/suggestion-rows-160-dc3f94cc9df8.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/suggestion-rows-240-cc955351308d.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/suggestion-rows-320-1e715750d243.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/suggestion-rows-480-3b4a6ef39360.webp"
       }
     ]
   },
@@ -7663,43 +8167,6 @@ export const responsiveImages = {
         "width": 480,
         "height": 1067,
         "src": "/responsive/sent-nudges-480-455e872f9283.webp"
-      }
-    ]
-  },
-  "/app-assets/screenshots/ko/android/suggestions.webp": {
-    "sourceHash": "67a9c29ac982",
-    "width": 480,
-    "height": 1067,
-    "variants": [
-      {
-        "width": 48,
-        "height": 107,
-        "src": "/responsive/suggestions-48-bfe68ae70b8e.webp"
-      },
-      {
-        "width": 96,
-        "height": 213,
-        "src": "/responsive/suggestions-96-5fbdff6c775a.webp"
-      },
-      {
-        "width": 160,
-        "height": 356,
-        "src": "/responsive/suggestions-160-8a32c4f0d1df.webp"
-      },
-      {
-        "width": 240,
-        "height": 534,
-        "src": "/responsive/suggestions-240-7091695434ac.webp"
-      },
-      {
-        "width": 320,
-        "height": 711,
-        "src": "/responsive/suggestions-320-ae7e64d4b471.webp"
-      },
-      {
-        "width": 480,
-        "height": 1067,
-        "src": "/responsive/suggestions-480-4324f014301a.webp"
       }
     ]
   },
@@ -8147,40 +8614,77 @@ export const responsiveImages = {
       }
     ]
   },
-  "/app-assets/screenshots/ko/ios/report-sample.webp": {
-    "sourceHash": "9049c15b9bfd",
+  "/app-assets/screenshots/ko/ios/report-summary.webp": {
+    "sourceHash": "75b975dd7875",
     "width": 480,
-    "height": 1044,
+    "height": 796,
     "variants": [
       {
         "width": 48,
-        "height": 104,
-        "src": "/responsive/report-sample-48-9b2af21b9f82.webp"
+        "height": 80,
+        "src": "/responsive/report-summary-48-c492ff9b5af2.webp"
       },
       {
         "width": 96,
-        "height": 209,
-        "src": "/responsive/report-sample-96-69a0de8e2ae5.webp"
+        "height": 159,
+        "src": "/responsive/report-summary-96-0e50dfdbab25.webp"
       },
       {
         "width": 160,
-        "height": 348,
-        "src": "/responsive/report-sample-160-2b5fd90d036a.webp"
+        "height": 265,
+        "src": "/responsive/report-summary-160-d79946627b98.webp"
       },
       {
         "width": 240,
-        "height": 522,
-        "src": "/responsive/report-sample-240-2f9285374ed3.webp"
+        "height": 398,
+        "src": "/responsive/report-summary-240-174e371bdfa5.webp"
       },
       {
         "width": 320,
-        "height": 696,
-        "src": "/responsive/report-sample-320-64ae04f11077.webp"
+        "height": 531,
+        "src": "/responsive/report-summary-320-ba9b25386e8c.webp"
       },
       {
         "width": 480,
-        "height": 1044,
-        "src": "/responsive/report-sample-480-4c260428b969.webp"
+        "height": 796,
+        "src": "/responsive/report-summary-480-d306e3ee6ab3.webp"
+      }
+    ]
+  },
+  "/app-assets/screenshots/ko/ios/suggestion-rows.webp": {
+    "sourceHash": "4e0e4a315a49",
+    "width": 480,
+    "height": 796,
+    "variants": [
+      {
+        "width": 48,
+        "height": 80,
+        "src": "/responsive/suggestion-rows-48-b3e6b8a4fd5c.webp"
+      },
+      {
+        "width": 96,
+        "height": 159,
+        "src": "/responsive/suggestion-rows-96-27668a38abe6.webp"
+      },
+      {
+        "width": 160,
+        "height": 265,
+        "src": "/responsive/suggestion-rows-160-fe34d34287f2.webp"
+      },
+      {
+        "width": 240,
+        "height": 398,
+        "src": "/responsive/suggestion-rows-240-dbe758b56f12.webp"
+      },
+      {
+        "width": 320,
+        "height": 531,
+        "src": "/responsive/suggestion-rows-320-a5e364b374ad.webp"
+      },
+      {
+        "width": 480,
+        "height": 796,
+        "src": "/responsive/suggestion-rows-480-dc563372a070.webp"
       }
     ]
   },
