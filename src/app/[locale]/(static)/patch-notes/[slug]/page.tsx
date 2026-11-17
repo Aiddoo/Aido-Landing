@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: highlight.path,
     title: highlight.metaTitle[locale],
     description: highlight.description[locale],
+    ownImage: true,
   });
 }
 

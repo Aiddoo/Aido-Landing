@@ -23,6 +23,7 @@ import { BrandMotif } from "@/components/marketing/brand-motif";
 import { DownloadCard } from "@/components/marketing/download-card";
 import { DeviceScreen } from "@/components/media/device-screen";
 import { BreadcrumbData } from "@/components/seo/breadcrumb-data";
+import { StructuredData } from "@/components/seo/structured-data";
 import { badgeVariants } from "@/components/ui/badge";
 import {
   Box,
@@ -43,6 +44,7 @@ import type { Locale } from "@/i18n/config";
 import { getMessages, type MessageCatalog } from "@/i18n/messages";
 import { formatContentDate } from "@/lib/format-content-date";
 import { localizedPath } from "@/lib/public-routes";
+import { SITE_URL } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 type HighlightLabels = MessageCatalog["releaseHighlights"];
@@ -71,6 +73,21 @@ export function ReleaseHighlightsPage({
         path={highlight.path}
         title={title}
         parents={[{ name: labels.breadcrumbLabel, path: "/patch-notes" }]}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `${SITE_URL}/${locale}${highlight.path}#webpage`,
+          url: `${SITE_URL}/${locale}${highlight.path}`,
+          name: highlight.metaTitle[locale],
+          description: highlight.description[locale],
+          inLanguage: locale === "ko" ? "ko-KR" : "en-US",
+          datePublished: release.date,
+          dateModified: highlight.updatedAt,
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          about: { "@id": `${SITE_URL}/#app` },
+        }}
       />
       <MarketingLayout locale={locale} path={highlight.path}>
         <ReadableContent

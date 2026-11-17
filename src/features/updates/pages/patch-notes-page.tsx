@@ -13,6 +13,7 @@ import { MarketingLayout } from "@/components/layout/marketing-layout";
 import { PageHeader } from "@/components/layout/page-header";
 import { DownloadCard } from "@/components/marketing/download-card";
 import { BreadcrumbData } from "@/components/seo/breadcrumb-data";
+import { StructuredData } from "@/components/seo/structured-data";
 import { badgeVariants } from "@/components/ui/badge";
 import { Box, HStack, ReadableContent, VStack } from "@/components/ui/layout";
 import {
@@ -21,7 +22,9 @@ import {
 } from "@/features/updates/components/copy-update-summary";
 import {
   formatStoreNotes,
+  patchNotesUpdatedAt,
   type ReleaseCategory,
+  releaseNotes,
   type UpdateNote,
   updateNotes,
 } from "@/features/updates/data/patch-notes";
@@ -31,9 +34,18 @@ import type { Locale } from "@/i18n/config";
 import { getMessages, type MessageCatalog } from "@/i18n/messages";
 import { formatContentDate } from "@/lib/format-content-date";
 import { localizedPath } from "@/lib/public-routes";
+import { SITE_URL } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 type PatchNotesLabels = MessageCatalog["patchNotes"];
+
+/** 검색 결과 설명. 최신 앱 출시를 넣어 배포마다 새 소식이 보이게 한다. */
+export function getPatchNotesMetaDescription(locale: Locale) {
+  const [release] = releaseNotes;
+  return getMessages(locale)
+    .patchNotes.metaDescription.replace("{version}", release.version)
+    .replace("{summary}", release.summary[locale]);
+}
 
 export function PatchNotesPage({ locale }: { locale: Locale }) {
   const labels = getMessages(locale).patchNotes;
@@ -46,12 +58,28 @@ export function PatchNotesPage({ locale }: { locale: Locale }) {
   };
   const [latest, ...older] = updateNotes;
   if (!latest) throw new Error("At least one update is required");
+  const pageUrl = `${SITE_URL}/${locale}/patch-notes`;
   return (
     <>
       <BreadcrumbData
         locale={locale}
         path="/patch-notes"
         title={labels.title}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "@id": `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: labels.metaTitle,
+          description: getPatchNotesMetaDescription(locale),
+          inLanguage: locale === "ko" ? "ko-KR" : "en-US",
+          datePublished: updateNotes.at(-1)?.date ?? latest.date,
+          dateModified: patchNotesUpdatedAt,
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          about: { "@id": `${SITE_URL}/#app` },
+        }}
       />
       <MarketingLayout locale={locale} path="/patch-notes">
         <ReadableContent
@@ -65,7 +93,14 @@ export function PatchNotesPage({ locale }: { locale: Locale }) {
             title={labels.title}
             description={labels.description}
             descriptionLayout="sentences"
-          />
+          >
+            <p className="text-caption text-gray-8">
+              {labels.updatedLabel}{" "}
+              <time dateTime={patchNotesUpdatedAt}>
+                {formatContentDate(patchNotesUpdatedAt, locale)}
+              </time>
+            </p>
+          </PageHeader>
           <UpdateCard
             release={latest}
             locale={locale}
@@ -289,7 +324,9 @@ function UpdateCard({
                 </CategoryHeading>
                 <VStack render={<ul />} gap={2}>
                   {category.items.map((item) => (
-                    <ReleaseItem key={item.ko}>{item[locale]}</ReleaseItem>
+                    <ReleaseItem key={item.ko}>
+                      {keepPhrasesTogether(item[locale])}
+                    </ReleaseItem>
                   ))}
                 </VStack>
               </VStack>
