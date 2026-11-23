@@ -28,6 +28,56 @@ export const PATCH_NOTES_EDITED_AT = "2026-11-17";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.16.1",
+    date: "2026-11-23",
+    summary: {
+      ko: "아래에서 올라오는 창이 기기 기본 시트로 바뀌고, iPad·Mac 친구 검색을 고쳤어요.",
+      en: "Sheets now use your device's native sheets, and friend search works on iPad and Mac.",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "아래에서 올라오는 창을 iPhone·Android 기본 시트로 바꿔, 끌어 내려 닫기와 키보드 입력을 다듬었어요.",
+            en: "Sheets that slide up from the bottom now use native iPhone and Android sheets, so swiping down to close and typing feel more natural.",
+          },
+          {
+            ko: "AI 리포트(프리미엄)의 ‘모두 끝낸 날’을 연속 기록과 같은 기준으로 세요. 가장 많이 끝낸 시간이 여럿이면 더 이른 시간을 보여 드려요.",
+            en: "AI reports (Premium) count “Perfect days” the same way as your streak. If several hours tie for the most to-dos finished, the earliest one shows.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "iPad·Mac에서 친구 검색을 열면 앱이 닫히던 문제를 고쳤어요.",
+            en: "Fixed the app closing when you opened friend search on iPad or Mac.",
+          },
+          {
+            ko: "자정 직후 홈 화면 위젯 요약을 불러올 때 생기던 오류를 고쳤어요.",
+            en: "Fixed an error when the home screen widget loaded its summary right after midnight.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "아래에서 올라오는 창이 기기 기본 시트로 바뀌어 더 자연스러워요.",
+        "AI 리포트의 ‘모두 끝낸 날’을 연속 기록과 같은 기준으로 세요.",
+        "iPad·Mac에서 친구 검색을 열면 앱이 닫히던 문제를 고쳤어요.",
+        "자정 직후 홈 화면 위젯 오류를 고쳤어요.",
+      ],
+      en: [
+        "Sheets now use native iPhone and Android sheets.",
+        "AI reports count Perfect days the same way as your streak.",
+        "Fixed the app closing on friend search on iPad and Mac.",
+        "Fixed a home screen widget error right after midnight.",
+      ],
+    },
+  },
+  {
     version: "1.16.0",
     date: "2026-11-17",
     summary: {
