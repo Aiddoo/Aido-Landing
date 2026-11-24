@@ -88,7 +88,7 @@ export const releaseHighlights = [
           en: "Pick calendars and a range",
         },
         body: {
-          ko: "마이 > 설정 > 캘린더 일정 가져오기를 열면 어떤 정보를 읽는지 먼저 알려 드려요. ‘다음’을 누른 뒤에만 캘린더 권한을 묻고, 이 기기에 이미 있는 iCloud·Google·Outlook 캘린더를 계정 이름별로 묶어 보여 줘요. 아이두에서 따로 로그인하지 않아요.",
+          ko: "마이 > 설정 > 캘린더 일정 가져오기를 열면 어떤 정보를 읽는지 먼저 알려 드려요. ‘계속’을 누른 뒤에만 캘린더 권한을 묻고, 이 기기에 이미 있는 iCloud·Google·Outlook 캘린더를 계정 이름별로 묶어 보여 줘요. 아이두에서 따로 로그인하지 않아요.",
           en: "Open Me > Settings > Import calendar events, and Aido first explains what it reads. Calendar permission is asked only after you tap Continue, and the iCloud, Google and Outlook calendars already on your device are listed under their account names. There's no separate sign-in inside Aido.",
         },
         points: {
@@ -111,7 +111,7 @@ export const releaseHighlights = [
           {
             key: "calendar-import-intro",
             alt: {
-              ko: "iCloud·Google·Outlook 캘린더에서 가져오고 일정의 제목·날짜·시간만 저장한다고 설명하고 ‘다음’ 버튼이 있는 아이두 캘린더 일정 가져오기 안내 화면",
+              ko: "iCloud·Google·Outlook 캘린더에서 가져오고 일정의 제목·날짜·시간만 저장한다고 설명하고 ‘계속’ 버튼이 있는 아이두 캘린더 일정 가져오기 안내 화면",
               en: "Aido's Import calendar events explanation screen saying it works with iCloud, Google and Outlook calendars and saves only titles, dates and times, with a Continue button",
             },
             caption: {
