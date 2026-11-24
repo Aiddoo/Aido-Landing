@@ -1,6 +1,6 @@
 # Aido Terms of Service
 
-**Effective Date: April 19, 2026** · **Last Revised: November 10, 2026** (plan usage limits, the yearly plan free trial, Speak to add, Voice notes and new AI providers)
+**Effective Date: April 19, 2026** · **Last Revised: effective December 1, 2026** (posted November 24, 2026; Import from Calendar and how far ahead each plan can import)
 
 ---
 
@@ -65,7 +65,7 @@ The definitions of terms used in these Terms are as follows:
 The main features provided by the Company are as follows:
 
 1. **Task Management**: Creating, editing, deleting, completing to-dos, setting recurring tasks, and category organization
-2. **Calendar and Schedule Management**: Schedule management through weekly/monthly calendar views
+2. **Calendar and Schedule Management**: Schedule management through weekly/monthly calendar views, and Import from Calendar (bringing device calendar events in as to-dos once, with undo within 7&nbsp;days)
 3. **AI Features**: Organizing sentences and memos into to-dos, Speak to add (turning what you say into a to-do plan), Voice notes (turning long recordings into summaries, key points and to-dos), weekly and monthly AI reports (achievement analysis and personalized tips), and recurring to-do suggestions
 4. **Social Features**: Adding friends (mutual follow-based), sharing to-dos, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, and blocking and reporting users
 5. **Streaks**: Tracking consecutive task completion records and displaying achievement status
@@ -97,8 +97,8 @@ The main features provided by the Company are as follows:
 
    | Plan | Price | Key Benefits |
    |------|-------|-------------|
-   | Free | Free | 10 AI to-dos a month (shared by text, voice and memos), 3 voice notes a month (up to 3 minutes each), 3 Nudges and 3 Cheers a day, up to 5 friends (plus 1 for each qualifying friend invite; see Article 13-2), up to 3 categories |
-   | Pro Monthly | KRW 3,900/month | Up to 1,000 AI to-dos a month (fair use limit), 100 voice notes a month (up to 30 minutes each), unlimited Nudges, Cheers and friends, up to 30 categories, weekly & monthly AI reports, AI recurring to-do suggestions, custom reminder times, premium app icons |
+   | Free | Free | 10 AI to-dos a month (shared by text, voice and memos), 3 voice notes a month (up to 3 minutes each), 3 Nudges and 3 Cheers a day, up to 5 friends (plus 1 for each qualifying friend invite; see Article 13-2), up to 3 categories, calendar import up to 30&nbsp;days ahead from today |
+   | Pro Monthly | KRW 3,900/month | Up to 1,000 AI to-dos a month (fair use limit), 100 voice notes a month (up to 30 minutes each), unlimited Nudges, Cheers and friends, up to 30 categories, weekly & monthly AI reports, AI recurring to-do suggestions, custom reminder times, premium app icons, calendar import up to 365&nbsp;days ahead |
    | Pro Annual | KRW 29,900/year | Same benefits as Pro Monthly. A first yearly subscription may come with a 2-week free trial (Article 10) |
 
    - Monthly counts reset at 00:00 Korea time on the 1st of each month. Adding and completing to-dos and replaying recordings are available on every plan.
@@ -320,3 +320,4 @@ Inquiries regarding these Terms, subscriptions, and complaints may be submitted 
 3. Article 2 items 3 and 4, Article 13 paragraphs 7 and 8, and Article 13-2 (Friend Invite Rewards Program) were revised or added on October 26, 2026. Article 13-2 applies from the day the friend invite feature becomes available in the Aido app (the release date of app version 1.13.0).
 4. Article 6 item 4, Article 7 paragraph 1, Article 12 paragraph 6, Article 13 paragraph 8, and Article 13-3 (Blocking and Reporting) were revised or added and published in advance on October 26, 2026. They apply from the day blocking, reporting and AI data sharing consent become available in the Aido app (the release date of app version 1.13.0).
 5. Article 2 item 7, Article 6 items 3 and 7, Article 8 paragraph 1, Article 9 paragraphs 4, 6 and 7, Article 10, Article 12 and Article 12-2 (Voice Notes and Recordings) were revised or added on November 10, 2026 and take effect the same day (the release date of app version 1.15.0). With this revision, the Free plan's AI to-do limit increased from 5 to 10 a month, and a fair use limit (1,000 a month) was set for AI to-dos on Premium.
+6. Article 6 item 2 and Article 8 paragraph 1 (Import from Calendar) were revised and published in advance on November 24, 2026, and take effect on December 1, 2026. Import from Calendar applies from the day the feature becomes available in the Aido app (the release date of app version 1.17.0).

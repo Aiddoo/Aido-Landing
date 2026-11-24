@@ -639,9 +639,9 @@ for (const locale of ["ko", "en"])
         ? [featuresHubUpdatedAt, SERVICE_CONTENT_UPDATED_AT].sort().at(-1)
         : path === "/compare"
           ? COMPARE_CHECKED_AT
-          : path === "/privacy"
+          : path === "/privacy" || path === "/terms"
             ? "2026-11-24"
-            : path === "/terms" || path === "/account-deletion"
+            : path === "/account-deletion"
               ? "2026-11-10"
               : path === "/patch-notes"
                 ? patchNotesUpdatedAt
