@@ -43,16 +43,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Import events from your device calendar as to-dos in Me > Settings > Import from Calendar. Holiday, birthday and subscribed calendars start unchecked.",
           },
           {
-            ko: "오늘부터 1주·1개월·3개월·6개월·1년 중에서 기간을 골라요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져올 수 있어요.",
-            en: "Pick a range starting today: 1 week, 1 month, 3 months, 6 months or 1 year. Free covers the next 30 days, Premium up to 365.",
+            ko: "오늘부터 가져올 기간의 시작일과 종료일을 직접 고르거나 바로 고를 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
+            en: "Choose start and end dates from today, or tap a quick preset. Free covers the next 30 days, Premium up to 365.",
           },
           {
-            ko: "캘린더마다 캘린더 이름·색의 새 카테고리나 기존 카테고리로 연결해요. ‘모두 한 카테고리에’로 한 번에 모을 수도 있어요.",
-            en: "Send each calendar to a new category with its name and color, or to one you have. “All in one category” puts everything together.",
+            ko: "캘린더마다 새 카테고리나 기존 카테고리로 연결해요. 새 카테고리는 캘린더 이름·색으로 시작해 바꿀 수 있고, ‘모두 한 카테고리에’로 모을 수도 있어요.",
+            en: "Send each calendar to a new category, which starts with the calendar's name and color that you can change, or to one you have. “Put all in one category” keeps everything together.",
           },
           {
             ko: "‘시간도 가져오기’를 끄면 날짜만 가져와 리마인드 알림이 오지 않아요. 가져온 할 일은 기본으로 비공개이고, ‘친구에게 공개’로 바꿀 수 있어요.",
-            en: "Turn off “Import times” to bring in dates only, with no reminders. Imported to-dos are private unless you turn on “Share with friends.”",
+            en: "Turn off “Include times” to bring in dates only, with no reminders. Imported to-dos are private unless you turn on “Share with friends.”",
           },
           {
             ko: "가져온 지 7일 안에는 아직 끝내지 않은 가져온 할 일을 한 번에 되돌릴 수 있어요.",
