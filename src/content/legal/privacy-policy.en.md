@@ -1,12 +1,12 @@
 # Aido Privacy Policy
 
-**Effective Date: December 1, 2026** (posted November 24, 2026; wording clarified November 25, 2026) · Previous policy: effective November 10, 2026
+**Effective Date: November 25, 2026** (posted November 24, 2026; wording clarified November 25, 2026) · Previous policy: effective November 10, 2026
 
 ---
 
 RedBand (hereinafter "Company") complies with the Personal Information Protection Act, the Act on Promotion of Information and Communications Network Utilization and Information Protection, and other applicable laws, and establishes and discloses this Privacy Policy to safely process users' personal information.
 
-### What changed in this revision (effective December 1, 2026, app 1.17.0)
+### What changed in this revision (effective November 25, 2026, app 1.17.0)
 
 - **Import calendar events**: What the app reads on your device and what it sends to our server when you import events from your device calendar as to-dos in one go (event titles, dates and start times, plus values computed from the calendar and event IDs with SHA-256 on your device instead of the original IDs), how long it's kept, the optional calendar permission and how to turn it off. Event data received through an import is used only to create the to-dos and isn't provided to third parties or transferred overseas. The to-dos it creates are handled like any other to-do: for example, if you agree to AI feature data sharing and use AI features, they're included just like your other to-dos (Articles 2, 3, 4, 7, 8, 8-3 and 12).
 
@@ -417,14 +417,14 @@ For reports or consultations regarding personal information breaches, you may co
 
 ## Addendum
 
-1. This Privacy Policy is posted in advance on November 24, 2026 and takes effect on **December 1, 2026**. The Import calendar events feature (Article 8-3) applies from the day the feature becomes available in the Aido app (the release date of app version 1.17.0).
+1. This Privacy Policy is posted on November 24, 2026 and takes effect on **November 25, 2026**. The Import calendar events feature (Article 8-3) applies from the day the feature becomes available in the Aido app (the release date of app version 1.17.0).
 2. The previous Privacy Policy (effective November 10, 2026) ceases to have effect when this Policy takes effect. If you need the previous policy, email matthew@redband.co.kr.
 
 ### Revision history
 
 | Effective date | Main changes |
 |----------------|--------------|
-| December 1, 2026 | Import calendar events (app 1.17.0): items collected, hashing on the device, retention periods, calendar permission and how to turn it off. The November 25 posting clarifies that imported event data is used only to create the to-dos, and that those to-dos are handled like any other to-do, and renames the feature to Import calendar events to match the app menu |
+| November 25, 2026 | Import calendar events (app 1.17.0): items collected, hashing on the device, retention periods, calendar permission and how to turn it off. The November 25 posting clarifies that imported event data is used only to create the to-dos, and that those to-dos are handled like any other to-do, and renames the feature to Import calendar events to match the app menu |
 | November 10, 2026 | Speak to add and Voice notes and how recordings are kept, new AI providers (Anthropic, OpenAI) and their retention periods, the yearly plan free trial and billing notices, separating service and transactional notifications from promotional ones, updated processor and cross-border transfer lists (AWS and Discord added, Firebase Crashlytics removed) |
 | October 27, 2026 | Website analytics notice updated for Consent Mode and Vercel Web Analytics |
 | October 26, 2026 | Friend invite reward abuse prevention, block and report, and AI data sharing consent notices added (applied from app 1.13.0) |
