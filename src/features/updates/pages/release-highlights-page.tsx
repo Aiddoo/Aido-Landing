@@ -2,6 +2,7 @@ import {
   ArrowRight,
   AudioLines,
   Bell,
+  CalendarArrowDown,
   ChartColumn,
   Check,
   Crown,
@@ -11,8 +12,11 @@ import {
   Mic,
   NotebookPen,
   Repeat,
+  SlidersHorizontal,
   Sparkles,
   TabletSmartphone,
+  Tags,
+  Undo2,
   Wrench,
 } from "lucide-react";
 import Link from "next/link";
@@ -216,6 +220,10 @@ const sectionIcons = {
   gift: Gift,
   bell: Bell,
   wrench: Wrench,
+  calendar: CalendarArrowDown,
+  tags: Tags,
+  sliders: SlidersHorizontal,
+  undo: Undo2,
 } as const satisfies Record<HighlightIcon, LucideIcon>;
 
 function SectionIcon({
