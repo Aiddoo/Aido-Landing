@@ -220,14 +220,14 @@ export const releaseHighlights = [
           ko: [
             "같은 일정은 다시 가져와도 두 번 들어오지 않아요.",
             "되돌리면 아직 끝내지 않은 가져온 할 일만 지우고, 끝낸 할 일은 남겨 둬요.",
-            "기기 캘린더에는 아무것도 쓰거나 지우지 않아요. 참석자·메모·장소·URL·알림은 읽지 않아요.",
-            "보낸 일정 정보는 AI 기능·분석·광고에 쓰지 않아요. 자세한 내용은 개인정보처리방침에 있어요.",
+            "기기 캘린더에는 아무것도 쓰거나 지우지 않아요. 참석자·메모·장소는 보내지 않아요.",
+            "가져오는 동안 받은 일정 정보는 할 일을 만드는 데만 써요. 자세한 내용은 개인정보처리방침에 있어요.",
           ],
           en: [
             "Importing the same events again won't add them twice.",
             "Undo removes only the imported to-dos you haven't finished. Completed ones stay.",
-            "Nothing in your device calendar is changed or deleted. Attendees, notes, locations, URLs and alerts aren't read.",
-            "Event details you send aren't used for AI features, analytics or ads. See the Privacy Policy for details.",
+            "Nothing in your device calendar is changed or deleted. Attendees, notes and locations are never sent.",
+            "Event details received during an import are used only to create your to-dos. See the Privacy Policy for details.",
           ],
         },
         screens: [
