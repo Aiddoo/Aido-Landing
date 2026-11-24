@@ -88,8 +88,8 @@ const paths = [
 ];
 assert.equal(
   paths.length * 2,
-  44,
-  "ko/en canonical pages: home, features, compare, patch notes, 3 legal, 13 guides and 2 release highlights",
+  46,
+  "ko/en canonical pages: home, features, compare, patch notes, 3 legal, 13 guides and 3 release highlights",
 );
 const decode = (text) =>
   text
@@ -640,7 +640,7 @@ for (const locale of ["ko", "en"])
         : path === "/compare"
           ? COMPARE_CHECKED_AT
           : path === "/privacy" || path === "/terms"
-            ? "2026-11-24"
+            ? "2026-11-25"
             : path === "/account-deletion"
               ? "2026-11-10"
               : path === "/patch-notes"

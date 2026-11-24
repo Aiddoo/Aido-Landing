@@ -29,7 +29,11 @@ export type HighlightIcon =
   | "chart"
   | "gift"
   | "bell"
-  | "wrench";
+  | "wrench"
+  | "calendar"
+  | "tags"
+  | "sliders"
+  | "undo";
 
 type HighlightSection = {
   /** 페이지 안 앵커. 공개 후 바꾸지 않는다. */
@@ -56,6 +60,262 @@ type PlanRow = {
  * updatedAt은 이 페이지 내용을 실제로 고친 날이며 사이트맵이 쓴다.
  */
 export const releaseHighlights = [
+  {
+    version: "1.17.0",
+    slug: "1-17-0",
+    path: "/patch-notes/1-17-0",
+    updatedAt: "2026-11-25",
+    kicker: { ko: "아이두 1.17.0 업데이트", en: "Aido 1.17.0 update" },
+    title: {
+      ko: "캘린더 일정, 아이두로 쉽게 옮겨 보세요",
+      en: "Move your calendar events to Aido, the easy way",
+    },
+    metaTitle: {
+      ko: "아이두 1.17.0 업데이트: 캘린더 일정을 할 일로 가져오기",
+      en: "Aido 1.17.0: Import calendar events as to-dos",
+    },
+    description: {
+      ko: "캘린더에 적어 둔 일정이 많아 아이두로 옮기기 어렵다는 이야기를 들었어요. 그래서 캘린더 일정을 할 일로 한 번에 옮기는 기능을 만들었어요. 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할 일로 들어와요. 기본으로 아이두 카테고리 한 곳에 모두 넣고, 원하면 캘린더마다 다른 곳에 넣을 수 있어요. 7일 안에는 되돌릴 수 있고, 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
+      en: "We heard it's hard to switch when your plans already live in your calendar. So we made a way to turn calendar events into to-dos in one go. Pick iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. By default they all go into one Aido category, or you can put each calendar somewhere else. Undo within 7 days. Free covers the next 30 days, Premium up to 365.",
+    },
+    sections: [
+      {
+        id: "choose-calendars",
+        navLabel: { ko: "캘린더와 기간", en: "Calendars and range" },
+        icon: "calendar",
+        title: {
+          ko: "가져올 캘린더와 기간을 골라요",
+          en: "Pick calendars and a range",
+        },
+        body: {
+          ko: "마이 > 설정 > 캘린더 일정 가져오기를 열면 어떤 정보를 읽는지 먼저 알려 드려요. ‘계속’을 누른 뒤에만 캘린더 권한을 묻고, 이 기기에 이미 있는 iCloud·Google·Outlook 캘린더를 계정 이름별로 묶어 보여 줘요. 아이두에서 따로 로그인하지 않아요.",
+          en: "Open Me > Settings > Import calendar events, and Aido first explains what it reads. Calendar permission is asked only after you tap Continue, and the iCloud, Google and Outlook calendars already on your device are listed under their account names. There's no separate sign-in inside Aido.",
+        },
+        points: {
+          ko: [
+            "공휴일·생일·구독 캘린더는 목록 맨 아래에 접혀 있고 처음에 선택하지 않아요. 필요하면 직접 체크해요.",
+            "캘린더가 목록에 없다면 ‘캘린더가 목록에 없나요?’에서 이 기기에 계정을 추가하는 방법을 볼 수 있어요.",
+            "기간은 오늘부터 시작일과 종료일을 직접 고르거나, 1주·1개월·3개월·6개월·1년으로 바로 골라요.",
+            "무료 플랜은 오늘부터 30일 동안의 일정을 가져올 수 있고, 프리미엄은 365일까지 가져올 수 있어요. 가져오기 자체는 무료예요.",
+            "필요할 때 한 번 복사해 오는 기능이라, 나중에 캘린더에서 바꾼 일정은 아이두에 따라오지 않아요. 캘린더는 읽기만 하고 바꾸거나 지우지 않아요.",
+          ],
+          en: [
+            "Holiday, birthday and subscribed calendars are folded at the bottom and start unchecked. Check them yourself if you want them.",
+            "If a calendar isn't listed, tap Missing a calendar? to see how to add its account to your device.",
+            "Choose start and end dates from today, or tap 1 week, 1 month, 3 months, 6 months or 1 year.",
+            "The free plan imports events for the next 30 days from today, and Premium up to 365. Importing itself is free.",
+            "It's a one-time copy you start yourself, so later changes in your calendar don't carry over. Aido only reads your calendar and never changes or deletes events.",
+          ],
+        },
+        screens: [
+          {
+            key: "calendar-import-intro",
+            alt: {
+              ko: "iCloud·Google·Outlook 캘린더에서 가져오고 일정의 제목·날짜·시간만 저장한다고 설명하고 ‘계속’ 버튼이 있는 아이두 캘린더 일정 가져오기 안내 화면",
+              en: "Aido's Import calendar events explanation screen saying it works with iCloud, Google and Outlook calendars and saves only titles, dates and times, with a Continue button",
+            },
+            caption: {
+              ko: "권한을 묻기 전에 먼저 알려 드려요.",
+              en: "You see what happens before any permission prompt.",
+            },
+          },
+          {
+            key: "calendar-import-select",
+            alt: {
+              ko: "시작일·종료일과 1주·1개월 바로 고르기, 무료 30일 안내, 체크한 캘린더 목록이 보이는 아이두 캘린더 일정 가져오기 화면",
+              en: "Aido's Import calendar events screen with start and end dates, 1 week and 1 month presets, the free 30-day note and checked calendars",
+            },
+            caption: {
+              ko: "캘린더와 기간을 골라요.",
+              en: "Pick calendars and a range.",
+            },
+          },
+        ],
+      },
+      {
+        id: "connect-categories",
+        navLabel: { ko: "넣을 곳", en: "Where they go" },
+        icon: "tags",
+        title: {
+          ko: "넣을 곳은 한 곳이면 돼요",
+          en: "One place is enough",
+        },
+        body: {
+          ko: "가져온 일정은 기본으로 아이두 카테고리 한 곳에 모두 들어가요. 화면의 ‘가져올 일정 → 넣을 곳’에서 넣을 곳을 눌러 다른 아이두 카테고리로 바꾸거나 새로 만들 수 있어요. 캘린더마다 나누고 싶다면 ‘캘린더마다 다른 곳에 넣을래요’를 눌러요.",
+          en: "By default, every imported event goes into one Aido category. Under Events to import → Put them in, tap where they go to pick another Aido category or create a new one. To split them up, tap Put each calendar somewhere else.",
+        },
+        points: {
+          ko: [
+            "가져온 뒤에도 할 일은 언제든 다른 아이두 카테고리로 옮길 수 있어요.",
+            "카테고리 한도는 그대로예요. 무료는 3개, 프리미엄은 30개까지 만들 수 있어요.",
+            "카테고리마다 진행 중인 할 일은 300개까지예요.",
+          ],
+          en: [
+            "You can move imported to-dos to another Aido category anytime.",
+            "Category limits stay the same: 3 on Free and up to 30 on Premium.",
+            "Each category holds up to 300 active to-dos.",
+          ],
+        },
+        screens: [
+          {
+            key: "calendar-import-categories",
+            alt: {
+              ko: "‘어디에 넣을까요?’ 단계에서 ‘가져올 일정’(이 기기 · 개인·학교/업무 12개) 아래 ‘넣을 곳’에 ‘중요한 일’ 카테고리와 ‘277개 더 넣을 수 있어요’, ‘캘린더마다 다른 곳에 넣을래요’ 링크가 보이는 아이두 화면",
+              en: "Aido's Where should they go? step with Events to import (On this device, 12 events) above Put them in, showing the Important category, Room for 288 more and a Put each calendar somewhere else link",
+            },
+            caption: {
+              ko: "기본은 아이두 카테고리 한 곳이에요.",
+              en: "By default, everything goes into one Aido category.",
+            },
+          },
+        ],
+      },
+      {
+        id: "options",
+        navLabel: { ko: "시간과 공개", en: "Times and sharing" },
+        icon: "sliders",
+        title: {
+          ko: "시간과 공개 범위를 정해요",
+          en: "Choose times and sharing",
+        },
+        body: {
+          ko: "‘시간도 가져오기’는 처음에 켜져 있어 일정의 시작 시간까지 가져와요. 끄면 날짜만 가져오고 리마인드 알림은 오지 않아요.",
+          en: "Include times starts on, so each event's start time comes along. Turn it off to bring in dates only, with no reminders.",
+        },
+        points: {
+          ko: [
+            "가져온 할 일은 기본으로 비공개예요. ‘친구에게 공개’를 켜면 친구에게도 보여요.",
+            "가져오기 전에 고른 일정의 제목·날짜·시간을 아이두 서버로 보낸다고 알려 드리고, ‘가져오기’를 눌러야 시작해요.",
+          ],
+          en: [
+            "Imported to-dos are private by default. Turn on Share with friends to show them to friends.",
+            "Before anything is sent, Aido tells you that the titles, dates and times of the events you picked go to its server. Nothing starts until you tap Import.",
+          ],
+        },
+        screens: [
+          {
+            key: "calendar-import-options",
+            alt: {
+              ko: "‘시간도 가져오기’와 ‘친구에게 공개’ 스위치, 보내는 정보 안내와 ‘가져오기’ 버튼이 보이는 아이두 가져오기 옵션 화면",
+              en: "Aido import options screen with Include times and Share with friends switches, a note on what is sent and an Import button",
+            },
+            caption: {
+              ko: "시간과 공개 범위를 정하고 가져와요.",
+              en: "Set times and sharing, then import.",
+            },
+          },
+        ],
+      },
+      {
+        id: "import-undo",
+        navLabel: { ko: "가져오기와 되돌리기", en: "Import and undo" },
+        icon: "undo",
+        title: {
+          ko: "가져오고, 7일 안에는 되돌려요",
+          en: "Import, and undo within 7 days",
+        },
+        body: {
+          ko: "‘가져오기’를 누르면 고른 일정이 할 일로 들어와요. 가져오는 동안 앱을 나가도 이어서 가져오고, 끝나면 가져온 수와 건너뛴 이유를 보여 드려요. 가져온 지 7일 안에는 한 번에 되돌릴 수 있어요.",
+          en: "Tap Import and the events you picked become to-dos. You can leave the app while it imports, and when it's done you see how many came in and why any were skipped. Within 7 days, you can undo the import all at once.",
+        },
+        points: {
+          ko: [
+            "같은 일정은 다시 가져와도 두 번 들어오지 않아요.",
+            "되돌리면 아직 끝내지 않은 가져온 할 일만 지우고, 끝낸 할 일은 남겨 둬요.",
+            "기기 캘린더에는 아무것도 쓰거나 지우지 않아요. 참석자·메모·장소는 보내지 않아요.",
+            "가져오는 동안 받은 일정 정보는 할 일을 만드는 데만 써요. 자세한 내용은 개인정보처리방침에 있어요.",
+          ],
+          en: [
+            "Importing the same events again won't add them twice.",
+            "Undo removes only the imported to-dos you haven't finished. Completed ones stay.",
+            "Nothing in your device calendar is changed or deleted. Attendees, notes and locations are never sent.",
+            "Event details received during an import are used only to create your to-dos. See the Privacy Policy for details.",
+          ],
+        },
+        screens: [
+          {
+            key: "calendar-import-done",
+            alt: {
+              ko: "‘할 일 12개를 가져왔어요’와 7일 안 되돌리기 안내, ‘할 일 보러 가기’·‘되돌리기’ 버튼이 보이는 아이두 가져오기 결과 화면",
+              en: "Aido import result screen showing Imported 12 to-dos, a note on undoing within 7 days, and See to-dos and Undo buttons",
+            },
+            caption: {
+              ko: "7일 안에는 한 번에 되돌릴 수 있어요.",
+              en: "Undo it all within 7 days.",
+            },
+          },
+        ],
+      },
+      {
+        id: "more",
+        navLabel: { ko: "그 밖에", en: "Also new" },
+        icon: "wrench",
+        title: { ko: "그 밖에 달라진 점", en: "Also in this update" },
+        body: {
+          ko: "화면 읽기 기능을 쓰는 분과 Mac에서 쓰는 분을 위해 다듬고 고쳤어요.",
+          en: "A few improvements for screen reader users and a fix for Mac.",
+        },
+        points: {
+          ko: [
+            "VoiceOver·TalkBack으로도 캘린더와 기간을 고르고 가져오는 진행 상태를 들을 수 있어요.",
+            "Mac에서 날씨를 열 때마다 위치 권한을 다시 묻던 문제를 고쳤어요.",
+            "업데이트하면 캘린더 일정 가져오기를 짧게 소개해 드려요. 마이 > 새로운 기능에서 다시 볼 수 있어요.",
+          ],
+          en: [
+            "VoiceOver and TalkBack can read the calendar and range choices and the import progress.",
+            "Fixed Weather asking for location again every time you opened it on Mac.",
+            "A short tour shows Import calendar events after you update. Find it again in Me > What's new.",
+          ],
+        },
+        screens: [],
+      },
+    ],
+    plans: {
+      navLabel: { ko: "무료와 프리미엄", en: "Free vs Premium" },
+      title: {
+        ko: "무료와 프리미엄, 이만큼 달라요",
+        en: "What Free and Premium include",
+      },
+      rows: [
+        {
+          label: {
+            ko: "캘린더 일정 가져오기 기간",
+            en: "Calendar import range",
+          },
+          free: { ko: "오늘부터 30일", en: "Next 30 days" },
+          premium: { ko: "오늘부터 365일", en: "Up to 365 days" },
+        },
+        {
+          label: { ko: "카테고리", en: "Categories" },
+          free: { ko: "3개", en: "3" },
+          premium: { ko: "30개", en: "30" },
+        },
+        {
+          label: {
+            ko: "카테고리마다 진행 중인 할 일",
+            en: "Active to-dos per category",
+          },
+          free: { ko: "300개", en: "300" },
+          premium: { ko: "300개", en: "300" },
+        },
+      ],
+      note: {
+        ko: "캘린더 일정 가져오기와 7일 안 되돌리기는 플랜과 상관없이 쓸 수 있어요. 구독 가격과 자세한 조건은 앱에서 확인할 수 있어요.",
+        en: "Importing calendar events and undoing within 7 days work on every plan. See prices and full terms in the app.",
+      },
+      screen: {
+        key: "calendar-import-premium",
+        alt: {
+          ko: "‘더 먼 일정은 프리미엄으로 가져올 수 있어요’와 무료 30일·프리미엄 365일 비교, ‘프리미엄 보기’ 버튼이 보이는 아이두 안내 시트",
+          en: "Aido sheet saying Import events further ahead with Premium, comparing Free 30 days with Premium 365 days, with a See Premium button",
+        },
+        caption: {
+          ko: "프리미엄은 365일 뒤 일정까지 가져와요.",
+          en: "Premium imports up to 365 days ahead.",
+        },
+      },
+    },
+  },
   {
     version: "1.16.0",
     slug: "1-16-0",

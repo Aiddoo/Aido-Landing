@@ -36,6 +36,7 @@ for (const locale of ["ko", "en"]) {
     "/patch-notes",
     "/patch-notes/1-15-0",
     "/patch-notes/1-16-0",
+    "/patch-notes/1-17-0",
   ]) {
     test(`${locale}${path || "/"} fits mobile, tablet and desktop widths`, async ({
       page,

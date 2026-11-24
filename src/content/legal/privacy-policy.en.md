@@ -1,14 +1,14 @@
 # Aido Privacy Policy
 
-**Effective Date: December 1, 2026** (posted November 24, 2026) · Previous policy: effective November 10, 2026
+**Effective Date: November 25, 2026** (posted November 24, 2026; wording clarified November 25, 2026) · Previous policy: effective November 10, 2026
 
 ---
 
 RedBand (hereinafter "Company") complies with the Personal Information Protection Act, the Act on Promotion of Information and Communications Network Utilization and Information Protection, and other applicable laws, and establishes and discloses this Privacy Policy to safely process users' personal information.
 
-### What changed in this revision (effective December 1, 2026, app 1.17.0)
+### What changed in this revision (effective November 25, 2026, app 1.17.0)
 
-- **Import from Calendar**: What the app reads on your device and what it sends to our server when you import events from your device calendar as to-dos in one go (event titles, dates and start times, plus values computed from the calendar and event IDs with SHA-256 on your device instead of the original IDs), how long it's kept, the optional calendar permission and how to turn it off. Event data received through an import isn't used for AI features, analytics or ads, and isn't provided to third parties or transferred overseas (Articles 2, 3, 4, 7, 8-3 and 12).
+- **Import calendar events**: What the app reads on your device and what it sends to our server when you import events from your device calendar as to-dos in one go (event titles, dates and start times, plus values computed from the calendar and event IDs with SHA-256 on your device instead of the original IDs), how long it's kept, the optional calendar permission and how to turn it off. Event data received through an import is used only to create the to-dos and isn't provided to third parties or transferred overseas. The to-dos it creates are handled like any other to-do: for example, if you agree to AI feature data sharing and use AI features, they're included just like your other to-dos (Articles 2, 3, 4, 7, 8, 8-3 and 12).
 
 ---
 
@@ -31,9 +31,9 @@ This Privacy Policy is intended to inform users about the processing of personal
 | AI Data Sharing Consent | Whether you agreed or withdrew, the notice version you answered, consent timestamp | Optional |
 | Using AI features | Text for AI to organize (sentences and memos you type, and text converted from speech) — used only for organizing and not stored on the Company's servers (Article 8) | When you use AI features |
 | Reports | Report target (the reported Member and the content type and ID), reason, details (up to 500 characters) | Required when reporting (details are optional) |
-| Import from Calendar | Titles of events in the calendars and range you pick, dates (including the last day of multi-day all-day events), start times (when **Include times** is on), values computed from the calendar and event IDs with SHA-256 on your device (the original IDs are never sent), and your import settings (range, whether to include times, whether to share with friends, the category each calendar goes into and its number of events; a new category is created with the name and color you set, the calendar's name and color by default) — Article 8-3 | When you use Import from Calendar |
+| Import calendar events | Titles of events in the calendars and range you pick, dates (including the last day of multi-day all-day events), start times (when **Include times** is on), values computed from the calendar and event IDs with SHA-256 on your device (the original IDs are never sent), and your import settings (range, whether to include times, whether to share with friends, the category each calendar goes into and its number of events; a new category is created with the name and color you set, the calendar's name and color by default) — Article 8-3 | When you use Import calendar events |
 
-- **Right to Refuse Optional Items**: Users may decline to provide optional items. Refusal does not restrict access to the basic functions of the Service. However, certain supplementary features such as profile display, marketing information, AI features and Import from Calendar may be limited.
+- **Right to Refuse Optional Items**: Users may decline to provide optional items. Refusal does not restrict access to the basic functions of the Service. However, certain supplementary features such as profile display, marketing information, AI features and Import calendar events may be limited.
 
 ### 2-2. Automatically Collected During Service Use
 
@@ -70,7 +70,7 @@ The app asks for each permission through the system prompt when you first use th
 | Location (only while using the app) | The weather screen and weather notifications. Background location is not used |
 | Notifications | Push notifications such as to-do reminders, friend activity and billing notices |
 | Photo library (add only) | Saving shared images to your photo library. We don't read your photos or send them to our servers |
-| Calendar | Import from Calendar. Requested only after you tap **Continue** on the in-app explanation. Events are only read; nothing is written to or deleted from your calendar. On iPhone and iPad, reading events requires full calendar access; on Android, only calendar read access (READ_CALENDAR) is requested. Reminders are not accessed (Article 8-3) |
+| Calendar | Import calendar events. Requested only after you tap **Continue** on the in-app explanation. Events are only read; nothing is written to or deleted from your calendar. On iPhone and iPad, reading events requires full calendar access; on Android, only calendar read access (READ_CALENDAR) is requested. Reminders are not accessed (Article 8-3) |
 
 - **Information kept only on your device**: Voice note audio files, transcripts and summaries are stored on your device and are not sent to the Company's servers. They are deleted automatically 30&nbsp;days after they're created, and you can delete them sooner in the app under **Me** tab > **Recording storage**. If device backup (iCloud, Google backup, etc.) is on, they may be included in backups. Only the to-dos and memos you choose to save from the results are stored on our servers.
 
@@ -96,7 +96,7 @@ The Company processes collected personal information only for the following purp
 | Member Management | Member identification, registration/withdrawal processing, identity verification, prevention of fraudulent use |
 | Service Provision | Core features including task management, recurring to-dos, calendar (weekly/monthly), friend sharing, Nudge, Cheer, Social Digest (weekly summary of friends' activities), weekly achievement badges, streaks, and weather for the current location. Publicly shared to-dos are visible to mutual followers, and Nudge and Cheer messages are delivered to the recipient. |
 | AI Feature Provision | Organizing sentences and memos into to-dos, Speak to add, Voice notes (summaries, key points and to-dos), weekly & monthly AI reports, and recurring to-do suggestions (only with AI data sharing consent; see Article 8) |
-| Import from Calendar | Creating to-dos from the device calendar events you pick, preventing the same event from being imported twice, showing import progress and undo within 7&nbsp;days (Article 8-3) |
+| Import calendar events | Creating to-dos from the device calendar events you pick, preventing the same event from being imported twice, showing import progress and undo within 7&nbsp;days (Article 8-3) |
 | Subscription and Payment Management | Checking paid subscription and free trial status, receipt verification, reminders 3&nbsp;days before a free trial ends and 7&nbsp;days before a yearly renewal, responding to billing inquiries |
 | Notification Delivery | Service notifications (to-do reminders, morning & evening reminders, weather notifications, social notifications such as friend requests, Nudges and Cheers, AI reports, how-to tips, service announcements) and transactional notifications (free trial ending, yearly renewal and reward Premium ending notices, confirmations of your promotional consent) |
 | Service Improvement | Usage statistics analysis, error response, service quality enhancement |
@@ -134,7 +134,7 @@ The Company destroys personal information without delay once the purpose of coll
 | Text sent for AI organizing (including transcripts) | **Not stored on the Company's servers** (only the result is held in server memory for up to 10&nbsp;minutes to answer the same request again) | AI feature provision |
 | AI usage records (QuotaUsage, QuotaCharge) | **Until Member withdrawal** (request content hashes are deleted after **7&nbsp;days**) | Managing plan limits, explaining charges and refunds |
 | Voice note audio, transcripts and summaries (stored on your device) | Deleted automatically **30&nbsp;days after creation** (you can delete them sooner) | Playback and organizing |
-| To-dos created by Import from Calendar | **Until you delete them or withdraw** (same as other to-dos) | To-do management |
+| To-dos created with the Import calendar events feature | **Until you delete them or withdraw** (same as other to-dos) | To-do management |
 | Temporary calendar import upload data (event titles, dates, times and hashes sent) | Deleted **7&nbsp;days** after the import finishes (uploads that never finish are deleted after **24&nbsp;hours**) | Processing and undoing the import |
 | Calendar import records (status, number of events, time zone; no event titles) | Deleted **30&nbsp;days** after the import finishes | Showing progress, responding to inquiries |
 | Duplicate-prevention links (event hash ↔ to-do created) | **For as long as the linked to-do exists** (deleted with the to-do) | Preventing the same event from being imported again |
@@ -150,7 +150,7 @@ The Company destroys personal information without delay once the purpose of coll
 - Upon Member withdrawal, the Company applies a **30-day grace period** before destroying personal information. If the Member logs in again within the grace period, the account is restored. After the grace period, personal information is permanently deleted except for information that must be retained under the legally mandated retention periods above.
 - Invite relationships and reward records are deleted together with the account upon Member withdrawal. However, the hash values used to prevent duplicate reward claims are not linked to any user information and cannot identify an individual, and are kept after Member withdrawal to prevent abuse.
 - Block records, report records and AI data sharing consent records are deleted when the account is permanently deleted after the grace period. Report records are also deleted when either the reporting or the reported Member's account is permanently deleted. Report notification emails sent to the operator are kept for as long as needed to handle the report and any related dispute, and then destroyed.
-- Import from Calendar never changes or deletes the original events in your device calendar. To-dos created by an import and the related records are deleted when the account is permanently deleted after the grace period.
+- The Import calendar events feature never changes or deletes the original events in your device calendar. To-dos created by an import and the related records are deleted when the account is permanently deleted after the grace period.
 - Voice note recordings kept only on your device can't be deleted by the Company. Regardless of account deletion, they are removed by the 30-day automatic deletion, in **Recording storage** in the app, or by deleting the app. If a different account signs in on the same device, the previous account's recordings are deleted.
 
 ---
@@ -209,7 +209,7 @@ The Company transfers personal information overseas for service provision as fol
 - **When and how**: Data is sent over encrypted network connections (HTTPS/TLS) each time you use the relevant feature or processing is needed.
 - **Transfers to AI providers**: We send data only for Members who have agreed to **AI data sharing** in the app, and send data to Anthropic and OpenAI only for Members who agreed to the November 4, 2026 notice (app 1.15.0) (Article 8). If you don't agree or you withdraw, only AI features become unavailable; you can keep using everything else, such as adding to-dos yourself. The retention periods and training use above reflect each provider's API policies as checked in November 2026, and we will update this policy if a provider changes them.
 - **Speech recognition**: When your device can't recognize speech on its own, Apple (United States) or Google (United States) may process your voice. This is done by your operating system's speech recognition service under each company's privacy policy; the Company doesn't receive or keep your voice (Article 8-2).
-- **Import from Calendar**: Event data received through an import is processed only on the Company's servers (Amazon Web Services, Seoul region) and isn't provided to third parties, including the companies listed above, or transferred overseas. Once imported, the to-dos are handled like any other to-do, so if you use reminders or AI features on them, those features' processing applies (Articles 6 and 8). See Article 8-3 for details.
+- **Import calendar events**: Event data received through an import is processed only on the Company's servers (Amazon Web Services, Seoul region) and isn't provided to third parties, including the companies listed above, or transferred overseas. Once imported, the to-dos are handled like any other to-do, so if you use reminders or AI features on them, those features' processing applies (Articles 6 and 8). See Article 8-3 for details.
 - **Weather**: To get weather information, we send weather providers (Apple WeatherKit, the Korea Meteorological Administration, Korea Environment Corporation's AirKorea, etc.) only the center of an area about 5&nbsp;km across instead of your exact coordinates, and never anything that identifies you.
 - **How to refuse and what happens**: AI data isn't transferred if you don't agree or if you withdraw under **Me** tab > **Terms & policies** > **AI data sharing**. App analytics can be limited as described in Article 10. Other transfers are essential to providing the Service; to refuse them, please request account deletion.
 
@@ -257,16 +257,16 @@ The Company transfers personal information overseas for service provision as fol
 
 ---
 
-## Article 8-3 (Import from Calendar)
+## Article 8-3 (Import calendar events)
 
-1. **The feature**: Events from your device calendar are imported as to-dos once, and only when you start it yourself under **Me** tab > **Settings** > **Import from Calendar**. It doesn't keep syncing with your device calendar.
+1. **The feature**: Events from your device calendar are imported as to-dos once, and only when you start it yourself under **Me** tab > **Settings** > **Import calendar events**. It doesn't keep syncing with your device calendar.
 2. **Calendar permission**: The app asks for calendar permission only after you tap **Continue** on the in-app explanation. On iPhone and iPad, reading events requires full calendar access; on Android, only calendar read access (READ_CALENDAR) is requested. Nothing is written to or deleted from your calendar, and Reminders are not accessed.
 3. **What's read on your device**: Only events in the calendars you pick, within a date range you choose, starting today and within your plan's limit (30&nbsp;days on Free, 365&nbsp;days on Premium). Attendees, notes, location, URLs and event alerts are neither read nor sent.
 4. **What's sent to our server**: Before sending, the app tells you that the selected events' titles, dates and times will be sent to Aido's server. When you tap **Import**, only the following is sent:
    - Event titles, dates (including the last day of multi-day all-day events) and start times. With **Include times** off, only dates are sent and no reminder notifications are scheduled.
    - Values computed from the calendar and event IDs with SHA-256 on your device. The original IDs are never sent, and these values are used only to avoid importing the same event twice.
    - Import settings: the range, whether to include times, whether to share with friends (off by default), and the category each calendar goes into with its number of events. If you choose a new category, it's created with the name and color you set (the calendar's name and color by default).
-5. **Processing on the Company's servers**: The events become regular to-dos, stored on servers in the Amazon Web Services Seoul region like the rest of the Service's data. Event data received through an import isn't used for AI features, analytics, ads or AI model training, and isn't provided to third parties. Imported to-dos are handled like any other to-do, so reminders, AI features and other features you later use on them follow those features' processing.
+5. **Processing on the Company's servers**: The events become regular to-dos, stored on servers in the Amazon Web Services Seoul region like the rest of the Service's data. Event data received through an import is used only to create the to-dos, and isn't provided to third parties or transferred overseas. To-dos created by an import are handled like any other to-do. For example, if you agree to AI feature data sharing and use AI features, they may be included like your other to-dos (Article 8), and reminders and other features follow those features' processing.
 6. **Retention**
    - Imported to-dos: until you delete them or your account is deleted
    - Temporary upload data (event titles, dates, times and hashes sent): deleted 7&nbsp;days after the import finishes; uploads that never finish are deleted after 24&nbsp;hours
@@ -417,14 +417,14 @@ For reports or consultations regarding personal information breaches, you may co
 
 ## Addendum
 
-1. This Privacy Policy is posted in advance on November 24, 2026 and takes effect on **December 1, 2026**. Import from Calendar (Article 8-3) applies from the day the feature becomes available in the Aido app (the release date of app version 1.17.0).
+1. This Privacy Policy is posted on November 24, 2026 and takes effect on **November 25, 2026**. The Import calendar events feature (Article 8-3) applies from the day the feature becomes available in the Aido app (the release date of app version 1.17.0).
 2. The previous Privacy Policy (effective November 10, 2026) ceases to have effect when this Policy takes effect. If you need the previous policy, email matthew@redband.co.kr.
 
 ### Revision history
 
 | Effective date | Main changes |
 |----------------|--------------|
-| December 1, 2026 | Import from Calendar (app 1.17.0): items collected, hashing on the device, retention periods, calendar permission and how to turn it off |
+| November 25, 2026 | Import calendar events (app 1.17.0): items collected, hashing on the device, retention periods, calendar permission and how to turn it off. The November 25 posting clarifies that imported event data is used only to create the to-dos, and that those to-dos are handled like any other to-do, and renames the feature to Import calendar events to match the app menu |
 | November 10, 2026 | Speak to add and Voice notes and how recordings are kept, new AI providers (Anthropic, OpenAI) and their retention periods, the yearly plan free trial and billing notices, separating service and transactional notifications from promotional ones, updated processor and cross-border transfer lists (AWS and Discord added, Firebase Crashlytics removed) |
 | October 27, 2026 | Website analytics notice updated for Consent Mode and Vercel Web Analytics |
 | October 26, 2026 | Friend invite reward abuse prevention, block and report, and AI data sharing consent notices added (applied from app 1.13.0) |

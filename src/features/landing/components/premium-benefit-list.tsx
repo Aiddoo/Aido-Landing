@@ -1,5 +1,6 @@
 import {
   BellRing,
+  CalendarArrowDown,
   Cat,
   ChartColumn,
   Repeat,
@@ -34,7 +35,7 @@ export function PremiumBenefitList({
           verticalPadding="xlarge"
           border="indented"
           leftAlignment="top"
-          className="gap-4 last:border-b-0 sm:odd:mr-6 sm:even:ml-6 sm:nth-last-2:odd:border-b-0"
+          className="gap-4 last:border-b-0 sm:odd:mr-6 sm:even:ml-6 sm:nth-last-2:border-b-0"
           left={
             <span className="grid size-10 place-items-center rounded-xl bg-brand-soft text-brand-deep">
               <BenefitIcon id={benefit.id} />
@@ -70,6 +71,9 @@ function BenefitIcon({ id }: { id: PremiumBenefitId }) {
     ))
     .with("aiRepeat", () => <Repeat aria-hidden="true" className={className} />)
     .with("categories", () => <Tags aria-hidden="true" className={className} />)
+    .with("calendarImport", () => (
+      <CalendarArrowDown aria-hidden="true" className={className} />
+    ))
     .with("appIcon", () => <Cat aria-hidden="true" className={className} />)
     .exhaustive();
 }

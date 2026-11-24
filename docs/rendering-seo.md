@@ -6,14 +6,14 @@
 
 | 대상 | 전략 | 이유와 갱신 방식 |
 |---|---|---|
-| 한영 홈·기능 소개·앱 비교·기능 가이드 13개·패치노트·업데이트 소개·법적 문서, 총 44개 정규 페이지 | **SSG + Server Components** | 모두 공개 파일 기반 콘텐츠입니다. 배포할 때 HTML을 만들고 캐시하며, 방문마다 서버에서 본문을 다시 만들지 않습니다. |
+| 한영 홈·기능 소개·앱 비교·기능 가이드 13개·패치노트·업데이트 소개·법적 문서, 총 46개 정규 페이지 | **SSG + Server Components** | 모두 공개 파일 기반 콘텐츠입니다. 배포할 때 HTML을 만들고 캐시하며, 방문마다 서버에서 본문을 다시 만들지 않습니다. |
 | 복사·언어 전환·모바일 메뉴·분석 동의 | **작은 Client Components** | 초기 HTML에 포함한 뒤 필요한 부분만 하이드레이션합니다. 페이지 본문과 전체 한영 카탈로그를 클라이언트에서 다시 조립하지 않습니다. |
 | 친구 초대 코드 페이지 | **요청마다 SSR(스트리밍)** | 초대한 친구가 코드마다 다르고 바뀔 수 있습니다. 아래 [친구 초대 링크](#친구-초대-링크-i코드)를 참고합니다. |
 | 로케일 없는 주소 | **Proxy의 요청 시 언어 선택** | 쿠키·언어 헤더로 기존 정적 한영 페이지를 선택합니다. 보조 리다이렉트 경로의 동적 처리는 공개 본문의 SSR과 별개입니다. |
 | 공유 이미지·RSS·llms.txt | **빌드 때 정적 생성** | `opengraph-image.tsx`·`feed.xml/route.ts`·`llms.txt/route.ts`는 Route Handler지만 `generateStaticParams`·`force-static`으로 빌드 때 한 번 만들고 CDN이 정적 파일로 냅니다. 요청마다 함수가 돌지 않습니다. |
 | ISR | **사용하지 않음** | 원본이 Git 안에 있으므로 주기적으로 다시 만들어도 새 내용이 생기지 않습니다. 변경은 Vercel Git 배포로 반영합니다. |
 
-`[locale]/(static)/layout.tsx`의 `dynamic = "error"`는 요청 시 API나 캐시하지 않는 데이터가 공개 페이지에 들어오면 빌드를 실패시킵니다. `dynamicParams = false`는 등록하지 않은 언어·사용법·업데이트 소개 경로의 요청 시 생성을 막습니다. `pnpm seo:check`는 실제 빌드 결과에서 44개 페이지의 정적 생성·ISR 미사용, 본문의 초기 HTML 포함, canonical·hreflang·OG/Twitter·JSON-LD·실제 변경일의 사이트맵을 확인합니다. 패치노트와 FAQ는 브라우저 기본 `<details>`를 사용해 JavaScript 없이도 펼칠 수 있습니다.
+`[locale]/(static)/layout.tsx`의 `dynamic = "error"`는 요청 시 API나 캐시하지 않는 데이터가 공개 페이지에 들어오면 빌드를 실패시킵니다. `dynamicParams = false`는 등록하지 않은 언어·사용법·업데이트 소개 경로의 요청 시 생성을 막습니다. `pnpm seo:check`는 실제 빌드 결과에서 46개 페이지의 정적 생성·ISR 미사용, 본문의 초기 HTML 포함, canonical·hreflang·OG/Twitter·JSON-LD·실제 변경일의 사이트맵을 확인합니다. 패치노트와 FAQ는 브라우저 기본 `<details>`를 사용해 JavaScript 없이도 펼칠 수 있습니다.
 
 ## 친구 초대 링크 (/i/{코드})
 
@@ -43,13 +43,13 @@
 
 ## 검증 범위
 
-렌더링·메타데이터·폰트를 바꿨다면 `pnpm build` 후 `pnpm seo:check`로 실제 생성 HTML과 manifest를 확인합니다. 검사는 44개 정규 페이지의 SSG·ISR 미사용, 미등록 경로의 동적 생성 차단, 본문·메타데이터·사이트맵·이미지·폰트를 다룹니다. 새 경로를 만들면 검사 대상도 함께 갱신합니다.
+렌더링·메타데이터·폰트를 바꿨다면 `pnpm build` 후 `pnpm seo:check`로 실제 생성 HTML과 manifest를 확인합니다. 검사는 46개 정규 페이지의 SSG·ISR 미사용, 미등록 경로의 동적 생성 차단, 본문·메타데이터·사이트맵·이미지·폰트를 다룹니다. 새 경로를 만들면 검사 대상도 함께 갱신합니다.
 
 정적 HTML 제공은 검색 접근성을 위한 조건이며 검색 순위나 AI 인용을 보장하지 않습니다. 성능 비교에서는 불필요한 리소스 제거처럼 확인한 사실과 실제 방문자 LCP/CLS 측정 결과를 구분합니다. 검색·방문 측정 운영은 [분석 안내](analytics.md)를 참고합니다.
 
 ## Google AI 검색 / GEO
 
-Google의 [AI 기능 공식 지침](https://developers.google.com/search/docs/appearance/ai-features)에 따라 일반 검색의 기술 요건을 적용합니다. 공개 페이지는 robots.txt에서 크롤링을 허용하고, Googlebot의 snippet을 허용하며, 중요한 설명·사용 단계·FAQ는 초기 HTML의 텍스트입니다. 홈/기능 소개/관련 가이드 링크는 실제 a href로 연결하고 canonical/hreflang과 사이트맵은 44개 실제 페이지를 가리킵니다. 제목/설명/H1은 페이지 목적을 설명하며 키워드를 반복하기 위해 가짜 페이지를 만들지 않습니다.
+Google의 [AI 기능 공식 지침](https://developers.google.com/search/docs/appearance/ai-features)에 따라 일반 검색의 기술 요건을 적용합니다. 공개 페이지는 robots.txt에서 크롤링을 허용하고, Googlebot의 snippet을 허용하며, 중요한 설명·사용 단계·FAQ는 초기 HTML의 텍스트입니다. 홈/기능 소개/관련 가이드 링크는 실제 a href로 연결하고 canonical/hreflang과 사이트맵은 46개 실제 페이지를 가리킵니다. 제목/설명/H1은 페이지 목적을 설명하며 키워드를 반복하기 위해 가짜 페이지를 만들지 않습니다.
 
 Organization/WebSite/MobileApplication/BreadcrumbList JSON-LD는 실제 공개 내용과 맞추고 schema-dts로 타입 검사합니다. 허위 별점·리뷰·AI 전용 스키마나 상업용 FAQ의 rich result 자격을 주장하지 않습니다. Google은 AI Overviews/AI Mode를 위해 llms.txt 등 새로운 AI 텍스트 파일이나 특수 스키마가 필요하지 않다고 명시합니다. 그래도 다른 AI 검색 도구의 안내용으로 [llmstxt.org](https://llmstxt.org) 형식의 `/llms.txt`를 화면 문구에서 빌드 때 만들어 둡니다(정적 파일이라 비용이 없고 순위를 보장하지 않습니다). 네이버 서치어드바이저 제출용으로 언어별 RSS 2.0 `/{ko|en}/feed.xml`(업데이트·기능 가이드)을 Next 공식 예제처럼 Route Handler로 만들고, 모든 페이지 `<head>`에 `alternates.types`로 알립니다. robots.txt의 `User-Agent: * / Allow: /`가 Google 검색 크롤러 접근을 허용하며, 별도 Google-Extended 학습 제어는 검색 AI 노출 제어와 구분합니다.
 

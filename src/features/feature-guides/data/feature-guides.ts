@@ -17,7 +17,7 @@ export const featureGuides = [
     slug: "todo-calendar",
     path: "/features/todo-calendar",
     group: "plan",
-    updatedAt: "2026-11-14",
+    updatedAt: "2026-11-25",
     screens: ["todo-home", "todo-compose", "todo-month", "todo-checklist"],
   },
   {
@@ -116,7 +116,7 @@ export const featureGuides = [
     slug: "premium",
     path: "/features/premium",
     group: "me",
-    updatedAt: "2026-11-17",
+    updatedAt: "2026-11-25",
     screens: ["premium-usage", "premium-friend-limit", "premium-mypage"],
   },
 ] as const satisfies ReadonlyArray<{

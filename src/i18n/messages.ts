@@ -136,6 +136,7 @@ type PremiumBenefitId =
   | "aiReport"
   | "aiRepeat"
   | "categories"
+  | "calendarImport"
   | "appIcon";
 type HomeCatalog = {
   hero: {
@@ -752,7 +753,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "오늘 할\u00a0일, 한눈에 쏙",
           title: "할\u00a0일과 달력으로 하루·한 달\u00a0계획하기",
           summary:
-            "아이두는 할\u00a0일을 적고 주간·월간 달력에서 한눈에 보는 투두 리스트 앱이에요. 날짜·시간·반복·카테고리를 칩으로 바로 고르고, 큰 일은 체크리스트로 잘게 나눠요. 혼자만 볼 일은 비공개로 두면 친구에게 보이지\u00a0않아요.",
+            "아이두는 할\u00a0일을 적고 주간·월간 달력에서 한눈에 보는 투두 리스트 앱이에요. 날짜·시간·반복·카테고리를 칩으로 바로 고르고, 큰 일은 체크리스트로 잘게 나눠요. 기기의 iCloud·Google·Outlook 캘린더 일정도 할\u00a0일로 가져오고, 혼자만 볼 일은 비공개로 두면 친구에게 보이지\u00a0않아요.",
           cardDescription:
             "할\u00a0일을 적고 주·월 달력에서 계획을 봐요. 체크리스트로 큰 일을 잘게\u00a0나눠요.",
           steps: [
@@ -800,11 +801,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
               title: "말로 한 번에 적어도 돼요",
               body: "추가 시트의 마이크를 누르고 ‘내일 아침 7시 헬스장’처럼 말하면 AI가 날짜·시간까지 채워 할\u00a0일로\u00a0만들어요.",
             },
+            {
+              title: "캘린더 일정도 쉽게 옮겨 와요",
+              body: "캘린더에 적어 둔 일정이 많아도 괜찮아요. 마이 > 설정 > 캘린더 일정 가져오기에서 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할\u00a0일로 들어와요. 기본으로 아이두 카테고리 한 곳에 넣고 원하면 캘린더마다 나눌 수 있으며, 7일 안에는 되돌릴 수\u00a0있어요.",
+            },
           ],
           plans: {
-            free: "할\u00a0일 추가·체크·주간·월간 달력·반복·체크리스트·비공개 할\u00a0일을 무료로 써요. 카테고리는 3개까지 만들 수\u00a0있어요.",
+            free: "할\u00a0일 추가·체크·주간·월간 달력·반복·체크리스트·비공개 할\u00a0일을 무료로 써요. 카테고리는 3개까지 만들고, 캘린더 일정은 오늘부터 30일 뒤까지 가져올 수\u00a0있어요.",
             premium:
-              "카테고리를 30개까지 만들 수 있고, AI 할\u00a0일 만들기를 월 1,000회까지 넉넉하게\u00a0써요.",
+              "카테고리를 30개까지 만들고, 캘린더 일정을 365일 뒤까지 가져오며, AI 할\u00a0일 만들기를 월 1,000회까지 넉넉하게\u00a0써요.",
           },
           faq: [
             {
@@ -821,6 +826,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
               question: "달력은 일요일부터 시작하나요?",
               answer:
                 "네. 주간·월간 달력은 일요일부터 토요일까지 보여요. 주간 보기 위에는 ‘11월 2주차’처럼 몇째 주인지 함께\u00a0보여요.",
+            },
+            {
+              question: "기기 캘린더의 일정을 가져올 수\u00a0있나요?",
+              answer:
+                "네. 마이 > 설정 > 캘린더 일정 가져오기에서 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번에 옮겨 와요. 나중에 캘린더에서 바꾼 일정은 따라오지 않고, 기기 캘린더에는 아무것도 쓰거나 지우지\u00a0않아요.",
+            },
+            {
+              question: "Microsoft To Do 대안으로 아이두를 써도\u00a0되나요?",
+              answer:
+                "Microsoft는 To Do 앱을 2027년 6월 30일에 종료하고, Microsoft 365 Personal·Family를 포함한 개인 계정에서는 Planner를 쓸 수 없다고 안내했어요. 아이두는 Microsoft To Do 목록을 가져오지 않아요. 다만 기기에 Outlook 캘린더를 추가해 두면 그 일정을 할\u00a0일로 한 번에 가져올 수\u00a0있어요.",
             },
           ],
           screens: [
@@ -1262,7 +1277,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "더 쓰고 싶어지면",
           title: "아이두 무료와 프리미엄 비교",
           summary:
-            "아이두는 할\u00a0일·달력·반복·메모·친구·콕·댓글·위젯을 무료로 쓸 수 있는 할\u00a0일 앱이에요. 프리미엄은 AI 할\u00a0일 만들기와 말로 메모를 넉넉하게, AI 주간·월간 리포트와 반복 제안, 친구·콕 무제한, 리마인드 시간 설정, 카테고리 30개, 고양이 앱 아이콘을\u00a0더해요.",
+            "아이두는 할\u00a0일·달력·반복·메모·친구·콕·댓글·위젯을 무료로 쓸 수 있는 할\u00a0일 앱이에요. 프리미엄은 AI 할\u00a0일 만들기와 말로 메모를 넉넉하게, AI 주간·월간 리포트와 반복 제안, 친구·콕 무제한, 리마인드 시간 설정, 카테고리 30개, 캘린더 일정 365일 뒤까지 가져오기, 고양이 앱 아이콘을\u00a0더해요.",
           cardDescription:
             "무료로 충분히 쓰고, 필요할 때 프리미엄으로 넉넉하게. 한눈에\u00a0비교해요.",
           steps: [
@@ -1299,9 +1314,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
           ],
           plans: {
-            free: "할\u00a0일·달력·반복·체크리스트·메모·친구 5명·콕 하루 3회·댓글·위젯·날씨·알림을 무료로 써요. AI 할\u00a0일 만들기는 월 10회, 말로 메모는 월\u00a03회예요.",
+            free: "할\u00a0일·달력·반복·체크리스트·메모·친구 5명·콕 하루 3회·댓글·위젯·날씨·알림을 무료로 써요. AI 할\u00a0일 만들기는 월 10회, 말로 메모는 월 3회, 캘린더 일정은 오늘부터 30일 뒤까지\u00a0가져와요.",
             premium:
-              "AI 할\u00a0일 만들기 월 1,000회, 말로 메모 월 100회, AI 리포트·반복 제안, 친구·콕 무제한, 리마인드 시간 설정, 카테고리 30개, 고양이 앱 아이콘을\u00a0더해요.",
+              "AI 할\u00a0일 만들기 월 1,000회, 말로 메모 월 100회, AI 리포트·반복 제안, 친구·콕 무제한, 리마인드 시간 설정, 카테고리 30개, 캘린더 일정 가져오기 365일, 고양이 앱 아이콘을\u00a0더해요.",
           },
           comparison: {
             title: "한눈에 비교해요",
@@ -1336,6 +1351,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 premium: "원하는 시간",
               },
               { feature: "카테고리", free: "3개", premium: "30개" },
+              {
+                feature: "캘린더 일정 가져오기",
+                free: "30일 뒤까지",
+                premium: "365일 뒤까지",
+              },
               { feature: "앱 아이콘", free: "기본", premium: "고양이 9종" },
               {
                 feature: "할\u00a0일·달력·반복·메모·댓글·위젯",
@@ -2499,6 +2519,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "AI 투두",
         "친구 초대",
         "홈 화면 위젯",
+        "캘린더 일정 할\u00a0일로 가져오기",
+        "아이폰 캘린더 할\u00a0일 앱",
+        "구글 캘린더 할\u00a0일 가져오기",
+        "Microsoft To Do 대안",
       ],
     },
     nav: {
@@ -2521,7 +2545,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.16.0 새 기능: 자주 하는 할\u00a0일, AI가 반복으로 만들어요",
+        release: "1.17.0 새 기능: 캘린더 일정, 아이두로 쉽게 옮겨\u00a0보세요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -2767,6 +2791,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
             description: "3개 제한에서 최대 30개까지 늘어나요",
           },
           {
+            id: "calendarImport",
+            title: "캘린더 일정 더 멀리 가져오기",
+            description: "무료는 앞으로 30일, 프리미엄은 365일까지 가져와요",
+          },
+          {
             id: "appIcon",
             title: "앱 아이콘 커스터마이징",
             description: "나만의 스타일로 앱 아이콘을 바꿀 수 있어요",
@@ -2781,6 +2810,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "iOS·Android 홈 화면 위젯",
         "iPhone\u00a0Duo·폴더블·iPad 두 칸 화면",
         "AI 주간·월간 리포트와 반복 제안",
+        "기기 캘린더 일정을 할\u00a0일로 가져오기",
         "리마인드 알림",
       ],
     },
@@ -3252,7 +3282,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "Your day at a glance",
           title: "Plan your day and month with to-dos and a\u00a0calendar",
           summary:
-            "Aido is a to-do list app where you jot down tasks and see them in weekly and monthly calendar views. Pick the date, time, repeat and category with quick chips, and break bigger tasks into checklists. Keep personal tasks private and they won’t show up for\u00a0friends.",
+            "Aido is a to-do list app where you jot down tasks and see them in weekly and monthly calendar views. Pick the date, time, repeat and category with quick chips, and break bigger tasks into checklists. Bring in events from the iCloud, Google or Outlook calendars on your device, and keep personal tasks private so they won’t show up for\u00a0friends.",
           cardDescription:
             "Write to-dos and see your plans by week or month. Break big tasks into\u00a0checklists.",
           steps: [
@@ -3300,11 +3330,15 @@ const catalogs: Record<Locale, MessageCatalog> = {
               title: "Or just say it",
               body: "Tap the mic in the add sheet and say something like “gym tomorrow at 7 AM”. AI fills in the date and time and turns it into a\u00a0to-do.",
             },
+            {
+              title: "Move your calendar events\u00a0over",
+              body: "Plans already in your calendar? In Me > Settings > Import calendar events, pick the iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. By default they go into one Aido category, or you can split them by calendar, and undo within 7\u00a0days.",
+            },
           ],
           plans: {
-            free: "Adding and checking off to-dos, weekly and monthly calendars, repeats, checklists and private to-dos are all free. You can create up to 3\u00a0categories.",
+            free: "Adding and checking off to-dos, weekly and monthly calendars, repeats, checklists and private to-dos are all free. You can create up to 3 categories and import calendar events up to 30 days\u00a0ahead.",
             premium:
-              "Create up to 30 categories and use AI to-do creation up to 1,000 times a\u00a0month.",
+              "Create up to 30 categories, import calendar events up to 365 days ahead and use AI to-do creation up to 1,000 times a\u00a0month.",
           },
           faq: [
             {
@@ -3321,6 +3355,16 @@ const catalogs: Record<Locale, MessageCatalog> = {
               question: "Does the calendar start on\u00a0Sunday?",
               answer:
                 "Yes. The weekly and monthly calendars run Sunday to Saturday, and the weekly view shows which week of the month you’re\u00a0in.",
+            },
+            {
+              question: "Can I bring in events from my device\u00a0calendar?",
+              answer:
+                "Yes. In Me > Settings > Import calendar events, pick calendars and a range to bring their events in as to-dos in one go. Later changes in your calendar don’t carry over, and nothing in your device calendar is changed or\u00a0deleted.",
+            },
+            {
+              question: "Can Aido be a Microsoft To Do\u00a0alternative?",
+              answer:
+                "Microsoft says the To Do apps retire on June 30, 2027, and that Planner isn’t available for personal accounts, including Microsoft 365 Personal and Family. Aido doesn’t import Microsoft To Do lists. If you add your Outlook calendar to your device, though, you can bring its events in as to-dos in one\u00a0go.",
             },
           ],
           screens: [
@@ -3765,7 +3809,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "When you want more",
           title: "Aido Free vs Premium",
           summary:
-            "Aido’s to-dos, calendar, repeats, notes, friends, nudges, comments and widgets are free. Premium adds more AI to-do creation and Voice notes, weekly and monthly AI reports, AI repeat suggestions, unlimited friends and nudges, custom reminder times, 30 categories and cat app\u00a0icons.",
+            "Aido’s to-dos, calendar, repeats, notes, friends, nudges, comments and widgets are free. Premium adds more AI to-do creation and Voice notes, weekly and monthly AI reports, AI repeat suggestions, unlimited friends and nudges, custom reminder times, 30 categories, calendar imports up to 365 days ahead and cat app\u00a0icons.",
           cardDescription:
             "Plenty for free, more with Premium. Compare them side by\u00a0side.",
           steps: [
@@ -3802,9 +3846,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
           ],
           plans: {
-            free: "To-dos, calendar, repeats, checklists, notes, 5 friends, 3 nudges a day, comments, widgets, weather and notifications are free. AI to-do creation is 10 a month and Voice notes 3 a\u00a0month.",
+            free: "To-dos, calendar, repeats, checklists, notes, 5 friends, 3 nudges a day, comments, widgets, weather and notifications are free. AI to-do creation is 10 a month, Voice notes 3 a month, and calendar imports reach 30 days\u00a0ahead.",
             premium:
-              "1,000 AI to-dos a month, 100 Voice notes a month, AI reports and repeat suggestions, unlimited friends and nudges, custom reminder times, 30 categories and cat app\u00a0icons.",
+              "1,000 AI to-dos a month, 100 Voice notes a month, AI reports and repeat suggestions, unlimited friends and nudges, custom reminder times, 30 categories, calendar imports up to 365 days ahead and cat app\u00a0icons.",
           },
           comparison: {
             title: "Side by side",
@@ -3839,6 +3883,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
                 premium: "Any time",
               },
               { feature: "Categories", free: "3", premium: "30" },
+              {
+                feature: "Import calendar events",
+                free: "Next 30 days",
+                premium: "Up to 365 days",
+              },
               { feature: "App icon", free: "Default", premium: "9 cats" },
               {
                 feature:
@@ -5020,6 +5069,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "AI to-do app",
         "invite friends",
         "home screen widget",
+        "import calendar events as to-dos",
+        "iCloud calendar to-do import",
+        "Outlook calendar to-do import",
+        "Microsoft To Do alternative",
       ],
     },
     nav: {
@@ -5043,7 +5096,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     home: {
       hero: {
         release:
-          "New in 1.16.0: AI turns what you do often into repeating\u00a0to-dos",
+          "New in 1.17.0: Move your calendar events to Aido, the easy\u00a0way",
         titleLead: "Put it off alone.",
         titleTail: "Get it done together.",
         description:
@@ -5296,6 +5349,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
             description: "Grow from the 3-category limit up to 30",
           },
           {
+            id: "calendarImport",
+            title: "Import calendar events further ahead",
+            description: "Free: next 30 days · Premium: up to 365\u00a0days",
+          },
+          {
             id: "appIcon",
             title: "App icon customization",
             description: "Change the app icon to match your style",
@@ -5310,6 +5368,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "Home screen widgets on iOS and Android",
         "Two-pane view on iPhone\u00a0Duo, foldables and\u00a0iPad",
         "AI weekly and monthly reports and repeat suggestions",
+        "Import device calendar events as to-dos",
         "Reminders",
       ],
     },
