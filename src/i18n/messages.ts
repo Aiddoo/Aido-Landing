@@ -802,8 +802,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
               body: "추가 시트의 마이크를 누르고 ‘내일 아침 7시 헬스장’처럼 말하면 AI가 날짜·시간까지 채워 할\u00a0일로\u00a0만들어요.",
             },
             {
-              title: "캘린더 일정도 가져와요",
-              body: "마이 > 설정 > 캘린더 일정 가져오기에서 기기의 iCloud·Google·Outlook 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번에 가져와요. 캘린더마다 카테고리를 정하고, 가져온 지 7일 안에는 되돌릴 수\u00a0있어요.",
+              title: "캘린더 일정도 쉽게 옮겨 와요",
+              body: "캘린더에 적어 둔 일정이 많아도 괜찮아요. 마이 > 설정 > 캘린더 일정 가져오기에서 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할\u00a0일로 들어와요. 캘린더마다 나누거나 한 카테고리에 모을 수 있고, 7일 안에는 되돌릴 수\u00a0있어요.",
             },
           ],
           plans: {
@@ -2545,7 +2545,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.17.0 새 기능: 캘린더 일정을 할\u00a0일로 한 번에 가져와요",
+        release: "1.17.0 새 기능: 캘린더 일정, 아이두로 쉽게 옮겨\u00a0보세요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -3331,8 +3331,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
               body: "Tap the mic in the add sheet and say something like “gym tomorrow at 7 AM”. AI fills in the date and time and turns it into a\u00a0to-do.",
             },
             {
-              title: "Bring in your calendar\u00a0events",
-              body: "In Me > Settings > Import calendar events, pick the iCloud, Google or Outlook calendars on your device and a range to bring their events in as to-dos in one go. Choose a category for each calendar, and undo within 7\u00a0days.",
+              title: "Move your calendar events\u00a0over",
+              body: "Plans already in your calendar? In Me > Settings > Import calendar events, pick the iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. Keep calendars separate or put everything in one category, and undo within 7\u00a0days.",
             },
           ],
           plans: {
@@ -5095,7 +5095,8 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "New in 1.17.0: Bring your calendar events in as\u00a0to-dos",
+        release:
+          "New in 1.17.0: Move your calendar events to Aido, the easy\u00a0way",
         titleLead: "Put it off alone.",
         titleTail: "Get it done together.",
         description:

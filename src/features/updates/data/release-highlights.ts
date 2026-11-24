@@ -67,16 +67,16 @@ export const releaseHighlights = [
     updatedAt: "2026-11-25",
     kicker: { ko: "아이두 1.17.0 업데이트", en: "Aido 1.17.0 update" },
     title: {
-      ko: "캘린더 일정을 할 일로 한 번에 가져와요",
-      en: "Bring your calendar events in as to-dos",
+      ko: "캘린더 일정, 아이두로 쉽게 옮겨 보세요",
+      en: "Move your calendar events to Aido, the easy way",
     },
     metaTitle: {
       ko: "아이두 1.17.0 업데이트: 캘린더 일정을 할 일로 가져오기",
       en: "Aido 1.17.0: Import calendar events as to-dos",
     },
     description: {
-      ko: "기기에 있는 iCloud·Google·Outlook 캘린더에서 캘린더와 기간을 고르면 일정을 할 일로 한 번에 가져와요. 캘린더마다 카테고리를 정하고, 7일 안에는 되돌릴 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
-      en: "Pick iCloud, Google or Outlook calendars on your device and a date range, and their events come in as to-dos in one go. Choose a category for each calendar, and undo within 7 days. Free covers the next 30 days, Premium up to 365.",
+      ko: "캘린더에 적어 둔 일정이 많아 아이두로 옮기기 어렵다는 이야기를 들었어요. 그래서 캘린더 일정을 할 일로 한 번에 옮기는 기능을 만들었어요. 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할 일로 들어와요. 캘린더마다 나누거나 한 카테고리에 모을 수 있고, 7일 안에는 되돌릴 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
+      en: "We heard it's hard to switch when your plans already live in your calendar. So we made a way to turn calendar events into to-dos in one go. Pick iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. Keep calendars separate or put everything in one category, and undo within 7 days. Free covers the next 30 days, Premium up to 365.",
     },
     sections: [
       {
@@ -134,22 +134,24 @@ export const releaseHighlights = [
       },
       {
         id: "connect-categories",
-        navLabel: { ko: "카테고리 연결", en: "Categories" },
+        navLabel: { ko: "카테고리 고르기", en: "Categories" },
         icon: "tags",
         title: {
-          ko: "캘린더마다 카테고리를 정해요",
-          en: "Choose a category for each calendar",
+          ko: "캘린더마다 나누거나, 한곳에 모아요",
+          en: "Keep calendars separate, or put them together",
         },
         body: {
-          ko: "캘린더마다 새 카테고리를 만들거나 이미 있는 카테고리로 연결해요. 새 카테고리는 캘린더 이름과 색으로 시작하고, 원하는 이름·색으로 바꿀 수 있어요. 한곳에 모으고 싶다면 ‘모두 한 카테고리에’를 눌러요.",
-          en: "For each calendar, make a new category or connect one you already have. A new category starts with the calendar's name and color, and you can change both. To keep everything together, tap Put all in one category.",
+          ko: "맨 위에서 ‘캘린더마다 따로 넣기’나 ‘한 카테고리에 모두 넣기’를 골라요. 그다음 캘린더마다 넣을 카테고리를 고르면 돼요. 이미 있는 카테고리도, 새 카테고리도 괜찮아요. 새 카테고리는 캘린더 이름과 색으로 시작하고 이름·색을 바꿀 수 있어요.",
+          en: "At the top, choose Keep calendars separate or Put all in one category. Then pick where each calendar goes: a category you already have or a new one. A new category starts with the calendar's name and color, and you can change both.",
         },
         points: {
           ko: [
+            "가져온 뒤에도 할 일의 카테고리는 언제든 바꿀 수 있어요.",
             "카테고리 한도는 그대로예요. 무료는 3개, 프리미엄은 30개까지 만들 수 있어요.",
             "카테고리마다 진행 중인 할 일은 300개까지예요.",
           ],
           en: [
+            "You can change a to-do's category anytime after importing.",
             "Category limits stay the same: 3 on Free and up to 30 on Premium.",
             "Each category holds up to 300 active to-dos.",
           ],
@@ -158,12 +160,12 @@ export const releaseHighlights = [
           {
             key: "calendar-import-categories",
             alt: {
-              ko: "캘린더마다 새 카테고리 또는 기존 카테고리를 고르고 ‘모두 한 카테고리에’ 버튼이 보이는 아이두 카테고리 연결 화면",
-              en: "Aido screen connecting each calendar to a new or existing category, with a Put all in one category button",
+              ko: "맨 위에 ‘캘린더마다 따로 넣기’와 ‘한 카테고리에 모두 넣기’ 선택이 있고, 아래에 캘린더마다 넣을 카테고리가 보이는 아이두 카테고리 고르기 화면",
+              en: "Aido category step with Keep calendars separate and Put all in one category choices at the top, and the category for each calendar below",
             },
             caption: {
-              ko: "캘린더마다 카테고리를 연결해요.",
-              en: "Connect each calendar to a category.",
+              ko: "캘린더마다 나누거나 한곳에 모아요.",
+              en: "Keep calendars separate or put them together.",
             },
           },
         ],

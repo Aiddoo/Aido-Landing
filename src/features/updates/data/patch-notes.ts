@@ -39,8 +39,12 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "마이 > 설정 > 캘린더 일정 가져오기에서 기기 캘린더의 일정을 할 일로 한 번에 가져올 수 있어요.",
-            en: "Import events from your device calendars as to-dos in one go, in Me > Settings > Import calendar events.",
+            ko: "캘린더에 적어 둔 일정이 많아 아이두로 옮기기 어렵다는 이야기를 듣고, 일정을 할 일로 한 번에 옮기는 기능을 만들었어요.",
+            en: "Switching is hard when your plans already live in your calendar, so now you can turn calendar events into to-dos in one go.",
+          },
+          {
+            ko: "마이 > 설정 > 캘린더 일정 가져오기에서 캘린더와 기간만 고르면 일정이 할 일로 들어와요.",
+            en: "In Me > Settings > Import calendar events, pick calendars and a date range, and your events arrive as to-dos.",
           },
           {
             ko: "기기에 있는 iCloud·Google·Outlook 캘린더를 권한 한 번으로 읽어요. 아이두에 따로 로그인하지 않아요.",
@@ -51,16 +55,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Aido only reads your calendar and never changes or deletes events. It's a one-time copy, not a sync.",
           },
           {
-            ko: "가져올 캘린더와 기간을 골라요. 기간은 1주·1개월·3개월·6개월·1년으로 바로 고를 수도 있어요.",
-            en: "Pick calendars and a date range, or tap 1 week, 1 month, 3 months, 6 months or 1 year.",
+            ko: "기간은 1주·1개월·3개월·6개월·1년으로 바로 고르거나, 시작일과 종료일을 직접 정해요.",
+            en: "Tap 1 week, 1 month, 3 months, 6 months or 1 year, or set the start and end dates yourself.",
           },
           {
             ko: "공휴일·생일·구독 캘린더는 처음에 빼 둬요. 캘린더가 안 보이면 ‘캘린더가 목록에 없나요?’를 눌러 보세요.",
             en: "Holiday, birthday and subscribed calendars start unchecked. If one is missing, tap “Missing a calendar?” to see how to add it.",
           },
           {
-            ko: "캘린더마다 새 카테고리(캘린더 이름·색)나 기존 카테고리를 고르거나, ‘모두 한 카테고리에’로 모아요.",
-            en: "Send each calendar to a new category (its name and color) or one you have, or tap “Put all in one category.”",
+            ko: "캘린더마다 따로 넣거나 한 카테고리에 모두 넣어요. 새 카테고리도 만들 수 있고, 가져온 뒤에도 언제든 바꿀 수 있어요.",
+            en: "Keep calendars separate or put them all in one category, including a new one. You can change categories anytime after importing.",
           },
           {
             ko: "‘시간도 가져오기’를 끄면 날짜만 가져와 리마인드가 오지 않아요. ‘친구에게 공개’는 처음에 꺼져 있어요.",
@@ -110,14 +114,14 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
     storeNotes: {
       ko: [
         "기기 캘린더의 일정을 골라 할 일로 한 번에 가져와요. 캘린더는 읽기만 해요.",
-        "캘린더마다 카테고리를 정하고, 시간과 친구 공개 여부를 골라요.",
+        "캘린더마다 따로 넣거나 한 카테고리에 모으고, 시간과 친구 공개 여부를 골라요.",
         "가져온 뒤 7일 안에는 끝내지 않은 할 일만 되돌릴 수 있어요.",
         "무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요. 가져오기는 무료예요.",
         "Mac에서 날씨를 열 때마다 위치 권한을 다시 묻던 문제를 고쳤어요.",
       ],
       en: [
         "Import events from your device calendars as to-dos in one go. Aido only reads your calendar.",
-        "Choose a category for each calendar, plus times and sharing.",
+        "Keep calendars separate or put them all in one category, then choose times and sharing.",
         "Undo within 7 days to remove only to-dos you haven't finished.",
         "Free covers the next 30 days, Premium up to 365. Importing is free.",
         "Fixed Weather asking for location every time you opened it on Mac.",
