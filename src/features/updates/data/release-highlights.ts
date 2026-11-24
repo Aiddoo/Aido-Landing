@@ -71,12 +71,12 @@ export const releaseHighlights = [
       en: "Bring your calendar events in as to-dos",
     },
     metaTitle: {
-      ko: "아이두 1.17.0 업데이트: 캘린더 일정 가져오기",
-      en: "Aido 1.17.0: Import calendar events",
+      ko: "아이두 1.17.0 업데이트: 캘린더 일정을 할 일로 가져오기",
+      en: "Aido 1.17.0: Import calendar events as to-dos",
     },
     description: {
-      ko: "기기 캘린더에서 캘린더와 기간을 고르면 일정을 할 일로 한 번에 가져와요. 캘린더마다 카테고리를 연결하고 시간과 공개 범위를 정한 뒤, 7일 안에는 되돌릴 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
-      en: "Pick calendars and a range on your device, and their events come in as to-dos in one go. Connect each calendar to a category, choose times and sharing, and undo within 7 days. Free covers the next 30 days, Premium up to 365.",
+      ko: "기기에 있는 iCloud·Google·Outlook 캘린더에서 캘린더와 기간을 고르면 일정을 할 일로 한 번에 가져와요. 캘린더마다 카테고리를 정하고, 7일 안에는 되돌릴 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
+      en: "Pick iCloud, Google or Outlook calendars on your device and a date range, and their events come in as to-dos in one go. Choose a category for each calendar, and undo within 7 days. Free covers the next 30 days, Premium up to 365.",
     },
     sections: [
       {
@@ -95,16 +95,16 @@ export const releaseHighlights = [
           ko: [
             "공휴일·생일·구독 캘린더는 목록 맨 아래에 접혀 있고 처음에 선택하지 않아요. 필요하면 직접 체크해요.",
             "캘린더가 목록에 없다면 ‘캘린더가 목록에 없나요?’에서 이 기기에 계정을 추가하는 방법을 볼 수 있어요.",
-            "기간은 오늘부터 시작일과 종료일을 직접 고르거나, 바로 고르기로 정해요.",
+            "기간은 오늘부터 시작일과 종료일을 직접 고르거나, 1주·1개월·3개월·6개월·1년으로 바로 골라요.",
             "무료 플랜은 오늘부터 30일 동안의 일정을 가져올 수 있고, 프리미엄은 365일까지 가져올 수 있어요. 가져오기 자체는 무료예요.",
-            "필요할 때 한 번 복사해 오는 기능이라 캘린더와 계속 동기화하지 않아요. 캘린더는 읽기만 해요.",
+            "필요할 때 한 번 복사해 오는 기능이라 캘린더와 계속 동기화하지 않아요. 캘린더는 읽기만 하고 바꾸거나 지우지 않아요.",
           ],
           en: [
             "Holiday, birthday and subscribed calendars are folded at the bottom and start unchecked. Check them yourself if you want them.",
             "If a calendar isn't listed, tap Missing a calendar? to see how to add its account to your device.",
-            "Choose start and end dates from today, or tap a quick preset.",
+            "Choose start and end dates from today, or tap 1 week, 1 month, 3 months, 6 months or 1 year.",
             "The free plan imports events for the next 30 days from today, and Premium up to 365. Importing itself is free.",
-            "It's a one-time copy you start yourself, so it doesn't keep syncing. Aido only reads your calendar.",
+            "It's a one-time copy you start yourself, so it doesn't keep syncing. Aido only reads your calendar and never changes or deletes events.",
           ],
         },
         screens: [
@@ -213,15 +213,19 @@ export const releaseHighlights = [
           en: "Import, and undo within 7 days",
         },
         body: {
-          ko: "‘가져오기’를 누르면 고른 일정이 할 일로 들어와요. 이미 가져온 일정은 다시 가져오지 않고, 가져온 지 7일 안에는 아직 끝내지 않은 가져온 할 일을 한 번에 되돌릴 수 있어요.",
-          en: "Tap Import and the events you picked become to-dos. Events you've already imported aren't brought in again, and within 7 days you can undo the import to remove the imported to-dos you haven't finished, all at once.",
+          ko: "‘가져오기’를 누르면 고른 일정이 할 일로 들어와요. 가져오는 동안 앱을 나가도 이어서 가져오고, 끝나면 가져온 수와 건너뛴 이유를 보여 드려요. 가져온 지 7일 안에는 한 번에 되돌릴 수 있어요.",
+          en: "Tap Import and the events you picked become to-dos. You can leave the app while it imports, and when it's done you see how many came in and why any were skipped. Within 7 days, you can undo the import all at once.",
         },
         points: {
           ko: [
+            "같은 일정은 다시 가져와도 두 번 들어오지 않아요.",
+            "되돌리면 아직 끝내지 않은 가져온 할 일만 지우고, 끝낸 할 일은 남겨 둬요.",
             "기기 캘린더에는 아무것도 쓰거나 지우지 않아요. 참석자·메모·장소·URL·알림은 읽지 않아요.",
             "보낸 일정 정보는 AI 기능·분석·광고에 쓰지 않아요. 자세한 내용은 개인정보처리방침에 있어요.",
           ],
           en: [
+            "Importing the same events again won't add them twice.",
+            "Undo removes only the imported to-dos you haven't finished. Completed ones stay.",
             "Nothing in your device calendar is changed or deleted. Attendees, notes, locations, URLs and alerts aren't read.",
             "Event details you send aren't used for AI features, analytics or ads. See the Privacy Policy for details.",
           ],
@@ -239,6 +243,29 @@ export const releaseHighlights = [
             },
           },
         ],
+      },
+      {
+        id: "more",
+        navLabel: { ko: "그 밖에", en: "Also new" },
+        icon: "wrench",
+        title: { ko: "그 밖에 달라진 점", en: "Also in this update" },
+        body: {
+          ko: "화면 읽기 기능을 쓰는 분과 Mac에서 쓰는 분을 위해 다듬고 고쳤어요.",
+          en: "A few improvements for screen reader users and a fix for Mac.",
+        },
+        points: {
+          ko: [
+            "VoiceOver·TalkBack으로도 캘린더와 기간을 고르고 가져오는 진행 상태를 들을 수 있어요.",
+            "Mac에서 날씨를 열 때마다 위치 권한을 다시 묻던 문제를 고쳤어요.",
+            "업데이트하면 캘린더 일정 가져오기를 짧게 소개해 드려요. 마이 > 새로운 기능에서 다시 볼 수 있어요.",
+          ],
+          en: [
+            "VoiceOver and TalkBack can read the calendar and range choices and the import progress.",
+            "Fixed Weather asking for location again every time you opened it on Mac.",
+            "A short tour shows Import calendar events after you update. Find it again in Me > What's new.",
+          ],
+        },
+        screens: [],
       },
     ],
     plans: {
