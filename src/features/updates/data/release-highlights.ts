@@ -94,13 +94,13 @@ export const releaseHighlights = [
         points: {
           ko: [
             "휴일·생일·구독 캘린더는 처음에 선택하지 않아요. 필요하면 직접 체크해요.",
-            "기간은 오늘부터 1주·1개월·3개월·6개월·1년 중에서 골라요.",
+            "기간은 오늘부터 시작일과 종료일을 직접 고르거나, 바로 고르기로 정해요.",
             "무료는 30일, 프리미엄은 365일 뒤 일정까지 가져올 수 있어요.",
             "필요할 때 한 번 가져오는 기능이라 캘린더와 계속 동기화하지 않아요.",
           ],
           en: [
             "Holiday, birthday and subscribed calendars start unchecked. Check them yourself if you want them.",
-            "Choose a range starting today: 1 week, 1 month, 3 months, 6 months or 1 year.",
+            "Choose start and end dates from today, or tap a quick preset.",
             "Free covers the next 30 days, Premium up to 365.",
             "It's a one-time import you start yourself, so it doesn't keep syncing with your calendar.",
           ],
@@ -120,8 +120,8 @@ export const releaseHighlights = [
           {
             key: "calendar-import-select",
             alt: {
-              ko: "계정별로 묶인 캘린더 목록과 1주·1개월·3개월·6개월·1년 기간 선택이 보이는 아이두 캘린더 가져오기 화면",
-              en: "Aido Import from Calendar screen with calendars grouped by account and range options from 1 week to 1 year",
+              ko: "계정별로 묶인 캘린더 목록과 시작일·종료일 기간 선택이 보이는 아이두 캘린더 가져오기 화면",
+              en: "Aido Import from Calendar screen with calendars grouped by account and start and end date options",
             },
             caption: {
               ko: "캘린더와 기간을 골라요.",
@@ -139,8 +139,8 @@ export const releaseHighlights = [
           en: "Choose a category for each calendar",
         },
         body: {
-          ko: "캘린더마다 캘린더 이름과 색으로 새 카테고리를 만들거나, 이미 있는 카테고리로 연결해요. 한곳에 모으고 싶다면 ‘모두 한 카테고리에’를 눌러요.",
-          en: "For each calendar, make a new category with its name and color, or connect one you already have. To keep everything together, tap All in one category.",
+          ko: "캘린더마다 새 카테고리를 만들거나 이미 있는 카테고리로 연결해요. 새 카테고리는 캘린더 이름과 색으로 시작하고, 원하는 이름·색으로 바꿀 수 있어요. 한곳에 모으고 싶다면 ‘모두 한 카테고리에’를 눌러요.",
+          en: "For each calendar, make a new category or connect one you already have. A new category starts with the calendar's name and color, and you can change both. To keep everything together, tap Put all in one category.",
         },
         points: {
           ko: [
@@ -157,7 +157,7 @@ export const releaseHighlights = [
             key: "calendar-import-categories",
             alt: {
               ko: "캘린더마다 새 카테고리 또는 기존 카테고리를 고르고 ‘모두 한 카테고리에’ 버튼이 보이는 아이두 카테고리 연결 화면",
-              en: "Aido screen connecting each calendar to a new or existing category, with an All in one category button",
+              en: "Aido screen connecting each calendar to a new or existing category, with a Put all in one category button",
             },
             caption: {
               ko: "캘린더마다 카테고리를 연결해요.",
@@ -176,7 +176,7 @@ export const releaseHighlights = [
         },
         body: {
           ko: "‘시간도 가져오기’는 처음에 켜져 있어 일정의 시작 시간까지 가져와요. 끄면 날짜만 가져오고 리마인드 알림은 오지 않아요.",
-          en: "Import times starts on, so each event's start time comes along. Turn it off to bring in dates only, with no reminders.",
+          en: "Include times starts on, so each event's start time comes along. Turn it off to bring in dates only, with no reminders.",
         },
         points: {
           ko: [
@@ -193,7 +193,7 @@ export const releaseHighlights = [
             key: "calendar-import-options",
             alt: {
               ko: "‘시간도 가져오기’와 ‘친구에게 공개’ 스위치, 보내는 정보 안내와 ‘가져오기’ 버튼이 보이는 아이두 가져오기 옵션 화면",
-              en: "Aido import options screen with Import times and Share with friends switches, a note on what is sent and an Import button",
+              en: "Aido import options screen with Include times and Share with friends switches, a note on what is sent and an Import button",
             },
             caption: {
               ko: "시간과 공개 범위를 정하고 가져와요.",
@@ -228,8 +228,8 @@ export const releaseHighlights = [
           {
             key: "calendar-import-done",
             alt: {
-              ko: "가져오기를 마친 뒤 가져온 할 일과 ‘되돌리기’ 버튼이 보이는 아이두 캘린더 가져오기 완료 화면",
-              en: "Aido Import from Calendar result screen with the imported to-dos and an Undo button",
+              ko: "가져오기를 마친 뒤 가져온 할 일과 7일 안 되돌리기 안내가 보이는 아이두 캘린더 가져오기 완료 화면",
+              en: "Aido Import from Calendar result screen with the imported to-dos and the option to undo within 7 days",
             },
             caption: {
               ko: "7일 안에는 한 번에 되돌릴 수 있어요.",
