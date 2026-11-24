@@ -753,7 +753,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "오늘 할\u00a0일, 한눈에 쏙",
           title: "할\u00a0일과 달력으로 하루·한 달\u00a0계획하기",
           summary:
-            "아이두는 할\u00a0일을 적고 주간·월간 달력에서 한눈에 보는 투두 리스트 앱이에요. 날짜·시간·반복·카테고리를 칩으로 바로 고르고, 큰 일은 체크리스트로 잘게 나눠요. 혼자만 볼 일은 비공개로 두면 친구에게 보이지\u00a0않아요.",
+            "아이두는 할\u00a0일을 적고 주간·월간 달력에서 한눈에 보는 투두 리스트 앱이에요. 날짜·시간·반복·카테고리를 칩으로 바로 고르고, 큰 일은 체크리스트로 잘게 나눠요. 기기의 iCloud·Google·Outlook 캘린더 일정도 할\u00a0일로 가져오고, 혼자만 볼 일은 비공개로 두면 친구에게 보이지\u00a0않아요.",
           cardDescription:
             "할\u00a0일을 적고 주·월 달력에서 계획을 봐요. 체크리스트로 큰 일을 잘게\u00a0나눠요.",
           steps: [
@@ -803,7 +803,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "캘린더 일정도 가져와요",
-              body: "마이 > 설정 > 캘린더 일정 가져오기에서 기기 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번에 가져와요. 캘린더마다 카테고리를 정하고, 가져온 지 7일 안에는 되돌릴 수\u00a0있어요.",
+              body: "마이 > 설정 > 캘린더 일정 가져오기에서 기기의 iCloud·Google·Outlook 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번에 가져와요. 캘린더마다 카테고리를 정하고, 가져온 지 7일 안에는 되돌릴 수\u00a0있어요.",
             },
           ],
           plans: {
@@ -831,6 +831,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
               question: "기기 캘린더의 일정을 가져올 수\u00a0있나요?",
               answer:
                 "네. 마이 > 설정 > 캘린더 일정 가져오기에서 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번 가져와요. 계속 동기화하지는 않으며, 기기 캘린더에는 아무것도 쓰거나 지우지\u00a0않아요.",
+            },
+            {
+              question: "Microsoft To Do 대안으로 아이두를 써도\u00a0되나요?",
+              answer:
+                "Microsoft는 To Do 앱을 2027년 6월 30일에 종료하고, Microsoft 365 Personal·Family를 포함한 개인 계정에서는 Planner를 쓸 수 없다고 안내했어요. 아이두는 Microsoft To Do 목록을 가져오지 않아요. 다만 기기에 Outlook 캘린더를 추가해 두면 그 일정을 할\u00a0일로 한 번에 가져올 수\u00a0있어요.",
             },
           ],
           screens: [
@@ -2514,6 +2519,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "AI 투두",
         "친구 초대",
         "홈 화면 위젯",
+        "캘린더 일정 할\u00a0일로 가져오기",
+        "아이폰 캘린더 할\u00a0일 앱",
+        "구글 캘린더 할\u00a0일 가져오기",
+        "Microsoft To Do 대안",
       ],
     },
     nav: {
@@ -2536,7 +2545,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release: "1.16.0 새 기능: 자주 하는 할\u00a0일, AI가 반복으로 만들어요",
+        release: "1.17.0 새 기능: 캘린더 일정을 할\u00a0일로 한 번에 가져와요",
         titleLead: "혼자 하면 미루고,",
         titleTail: "같이 하면 끝내요",
         description:
@@ -3273,7 +3282,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
           kicker: "Your day at a glance",
           title: "Plan your day and month with to-dos and a\u00a0calendar",
           summary:
-            "Aido is a to-do list app where you jot down tasks and see them in weekly and monthly calendar views. Pick the date, time, repeat and category with quick chips, and break bigger tasks into checklists. Keep personal tasks private and they won’t show up for\u00a0friends.",
+            "Aido is a to-do list app where you jot down tasks and see them in weekly and monthly calendar views. Pick the date, time, repeat and category with quick chips, and break bigger tasks into checklists. Bring in events from the iCloud, Google or Outlook calendars on your device, and keep personal tasks private so they won’t show up for\u00a0friends.",
           cardDescription:
             "Write to-dos and see your plans by week or month. Break big tasks into\u00a0checklists.",
           steps: [
@@ -3323,7 +3332,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "Bring in your calendar\u00a0events",
-              body: "In Me > Settings > Import calendar events, pick your device calendars and a range to bring their events in as to-dos in one go. Choose a category for each calendar, and undo within 7\u00a0days.",
+              body: "In Me > Settings > Import calendar events, pick the iCloud, Google or Outlook calendars on your device and a range to bring their events in as to-dos in one go. Choose a category for each calendar, and undo within 7\u00a0days.",
             },
           ],
           plans: {
@@ -3351,6 +3360,11 @@ const catalogs: Record<Locale, MessageCatalog> = {
               question: "Can I bring in events from my device\u00a0calendar?",
               answer:
                 "Yes. In Me > Settings > Import calendar events, pick calendars and a range to import their events as to-dos once. It doesn’t keep syncing, and nothing in your device calendar is changed or\u00a0deleted.",
+            },
+            {
+              question: "Can Aido be a Microsoft To Do\u00a0alternative?",
+              answer:
+                "Microsoft says the To Do apps retire on June 30, 2027, and that Planner isn’t available for personal accounts, including Microsoft 365 Personal and Family. Aido doesn’t import Microsoft To Do lists. If you add your Outlook calendar to your device, though, you can bring its events in as to-dos in one\u00a0go.",
             },
           ],
           screens: [
@@ -5055,6 +5069,10 @@ const catalogs: Record<Locale, MessageCatalog> = {
         "AI to-do app",
         "invite friends",
         "home screen widget",
+        "import calendar events as to-dos",
+        "iCloud calendar to-do import",
+        "Outlook calendar to-do import",
+        "Microsoft To Do alternative",
       ],
     },
     nav: {
@@ -5077,8 +5095,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
     },
     home: {
       hero: {
-        release:
-          "New in 1.16.0: AI turns what you do often into repeating\u00a0to-dos",
+        release: "New in 1.17.0: Bring your calendar events in as\u00a0to-dos",
         titleLead: "Put it off alone.",
         titleTail: "Get it done together.",
         description:
