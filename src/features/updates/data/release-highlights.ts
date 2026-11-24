@@ -64,7 +64,7 @@ export const releaseHighlights = [
     version: "1.17.0",
     slug: "1-17-0",
     path: "/patch-notes/1-17-0",
-    updatedAt: "2026-12-01",
+    updatedAt: "2026-11-25",
     kicker: { ko: "아이두 1.17.0 업데이트", en: "Aido 1.17.0 update" },
     title: {
       ko: "캘린더 일정을 할 일로 한 번에 가져와요",

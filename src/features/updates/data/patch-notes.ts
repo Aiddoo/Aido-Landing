@@ -29,7 +29,7 @@ export const PATCH_NOTES_EDITED_AT = "2026-11-17";
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
     version: "1.17.0",
-    date: "2026-12-01",
+    date: "2026-11-25",
     summary: {
       ko: "기기 캘린더의 일정을 골라 할 일로 한 번에 가져올 수 있어요.",
       en: "Import events from your device calendar as to-dos in one go.",
