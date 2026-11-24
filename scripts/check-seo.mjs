@@ -639,22 +639,20 @@ for (const locale of ["ko", "en"])
         ? [featuresHubUpdatedAt, SERVICE_CONTENT_UPDATED_AT].sort().at(-1)
         : path === "/compare"
           ? COMPARE_CHECKED_AT
-          : path === "/privacy"
+          : path === "/privacy" || path === "/terms"
             ? "2026-11-25"
-            : path === "/terms"
-              ? "2026-11-24"
-              : path === "/account-deletion"
-                ? "2026-11-10"
-                : path === "/patch-notes"
-                  ? patchNotesUpdatedAt
-                  : releaseHighlights.some((item) => item.path === path)
-                    ? releaseHighlights.find((item) => item.path === path)
-                        .updatedAt
-                    : (featureGuides.find((guide) => guide.path === path)
-                        ?.updatedAt ??
-                      [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date]
-                        .sort()
-                        .at(-1));
+            : path === "/account-deletion"
+              ? "2026-11-10"
+              : path === "/patch-notes"
+                ? patchNotesUpdatedAt
+                : releaseHighlights.some((item) => item.path === path)
+                  ? releaseHighlights.find((item) => item.path === path)
+                      .updatedAt
+                  : (featureGuides.find((guide) => guide.path === path)
+                      ?.updatedAt ??
+                    [HOME_CONTENT_UPDATED_AT, releaseNotes[0].date]
+                      .sort()
+                      .at(-1));
     assert.ok(entry.includes(`<lastmod>${date}T00:00:00.000Z</lastmod>`));
     for (const language of ["ko", "en", "x-default"])
       assert.ok(

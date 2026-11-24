@@ -26,10 +26,10 @@ const homeLastModifiedDate = new Date(
     Date.parse(releaseNotes[0].date),
   ),
 );
-// Effective date stays 2026-04-19; Import from Calendar (Article 6 item 2, Article 8 paragraph 1) was posted on
-// 2026-11-24 and takes effect on 2026-12-01 (app 1.17.0).
-const termsLastModifiedDate = new Date("2026-11-24");
-// New version posted 2026-11-24, effective 2026-12-01 (app 1.17.0): Import from Calendar (Article 8-3).
+// Effective date stays 2026-04-19; Import calendar events (Article 6 item 2, Article 8 paragraph 1) was posted
+// on 2026-11-24 and takes effect on 2026-12-01 (app 1.17.0). Feature name aligned with the app menu on 2026-11-25.
+const termsLastModifiedDate = new Date("2026-11-25");
+// New version posted 2026-11-24, effective 2026-12-01 (app 1.17.0): Import calendar events (Article 8-3).
 // Wording clarified on 2026-11-25 (how imported event data and the resulting to-dos are used).
 const privacyLastModifiedDate = new Date("2026-11-25");
 // Free trial cancellation and on-device voice note recordings added on 2026-11-10.
