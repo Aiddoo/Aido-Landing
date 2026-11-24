@@ -29,8 +29,8 @@ const homeLastModifiedDate = new Date(
 // Effective date stays 2026-04-19; plan limits, the yearly free trial, AI (Article 12) and voice notes (Article 12-2)
 // were revised on 2026-11-10 for app 1.15.0.
 const termsLastModifiedDate = new Date("2026-11-10");
-// New version effective 2026-11-10 (app 1.15.0): voice features, AI providers, free trial and notification consent.
-const privacyLastModifiedDate = new Date("2026-11-10");
+// New version posted 2026-11-24, effective 2026-12-01 (app 1.17.0): Import from Calendar (Article 8-3).
+const privacyLastModifiedDate = new Date("2026-11-24");
 // Free trial cancellation and on-device voice note recordings added on 2026-11-10.
 const accountDeletionLastModifiedDate = new Date("2026-11-10");
 
