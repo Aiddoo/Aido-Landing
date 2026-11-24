@@ -156,7 +156,19 @@ export const releaseHighlights = [
             "Each category holds up to 300 active to-dos.",
           ],
         },
-        screens: [],
+        screens: [
+          {
+            key: "calendar-import-categories",
+            alt: {
+              ko: "‘어디에 넣을까요?’ 단계에서 ‘가져올 일정’(이 기기 · 개인·학교/업무 12개) 아래 ‘넣을 곳’에 ‘중요한 일’ 카테고리와 ‘277개 더 넣을 수 있어요’, ‘캘린더마다 다른 곳에 넣을래요’ 링크가 보이는 아이두 화면",
+              en: "Aido's Where should they go? step with Events to import (On this device, 12 events) above Put them in, showing the Important category, Room for 288 more and a Put each calendar somewhere else link",
+            },
+            caption: {
+              ko: "기본은 아이두 카테고리 한 곳이에요.",
+              en: "By default, everything goes into one Aido category.",
+            },
+          },
+        ],
       },
       {
         id: "options",

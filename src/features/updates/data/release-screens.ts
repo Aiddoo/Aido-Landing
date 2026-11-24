@@ -8,10 +8,10 @@ type ReleaseScreenDevice = Extract<DeviceFrame, "iphone" | "duo-open">;
 // 1.16.0 화면(suggestion-rows·report-*)은 iPhone SE 무료 계정의 예시 화면이다. 한영 캡처가 따로 있고,
 // 상태 막대·내비 헤더 아래부터 잘라 기기 틀의 섬 자리에 흰 띠를 두었다.
 // 1.17.0 캘린더 일정 가져오기 화면(calendar-import-*)은 한영 iPhone 캡처(1206×2622)를 640×1391로 줄였다.
-// 카테고리 단계 화면은 앱 화면을 다시 만든 뒤 찍어 더한다.
 export const releaseScreenFiles = {
   "calendar-import-intro": "iphone",
   "calendar-import-select": "iphone",
+  "calendar-import-categories": "iphone",
   "calendar-import-options": "iphone",
   "calendar-import-done": "iphone",
   "calendar-import-premium": "iphone",
