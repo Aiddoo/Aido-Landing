@@ -1,6 +1,6 @@
 # Aido Privacy Policy
 
-**Effective Date: December 1, 2026** (posted November 24, 2026) · Previous policy: effective November 10, 2026
+**Effective Date: December 1, 2026** (posted November 24, 2026; wording clarified November 25, 2026) · Previous policy: effective November 10, 2026
 
 ---
 
@@ -8,7 +8,7 @@ RedBand (hereinafter "Company") complies with the Personal Information Protectio
 
 ### What changed in this revision (effective December 1, 2026, app 1.17.0)
 
-- **Import from Calendar**: What the app reads on your device and what it sends to our server when you import events from your device calendar as to-dos in one go (event titles, dates and start times, plus values computed from the calendar and event IDs with SHA-256 on your device instead of the original IDs), how long it's kept, the optional calendar permission and how to turn it off. Event data received through an import isn't used for AI features, analytics or ads, and isn't provided to third parties or transferred overseas (Articles 2, 3, 4, 7, 8-3 and 12).
+- **Import from Calendar**: What the app reads on your device and what it sends to our server when you import events from your device calendar as to-dos in one go (event titles, dates and start times, plus values computed from the calendar and event IDs with SHA-256 on your device instead of the original IDs), how long it's kept, the optional calendar permission and how to turn it off. Event data received through an import is used only to create the to-dos and isn't provided to third parties or transferred overseas. The to-dos it creates are handled like any other to-do: for example, if you agree to AI feature data sharing and use AI features, they're included just like your other to-dos (Articles 2, 3, 4, 7, 8, 8-3 and 12).
 
 ---
 
@@ -266,7 +266,7 @@ The Company transfers personal information overseas for service provision as fol
    - Event titles, dates (including the last day of multi-day all-day events) and start times. With **Include times** off, only dates are sent and no reminder notifications are scheduled.
    - Values computed from the calendar and event IDs with SHA-256 on your device. The original IDs are never sent, and these values are used only to avoid importing the same event twice.
    - Import settings: the range, whether to include times, whether to share with friends (off by default), and the category each calendar goes into with its number of events. If you choose a new category, it's created with the name and color you set (the calendar's name and color by default).
-5. **Processing on the Company's servers**: The events become regular to-dos, stored on servers in the Amazon Web Services Seoul region like the rest of the Service's data. Event data received through an import isn't used for AI features, analytics, ads or AI model training, and isn't provided to third parties. Imported to-dos are handled like any other to-do, so reminders, AI features and other features you later use on them follow those features' processing.
+5. **Processing on the Company's servers**: The events become regular to-dos, stored on servers in the Amazon Web Services Seoul region like the rest of the Service's data. Event data received through an import is used only to create the to-dos, and isn't provided to third parties or transferred overseas. To-dos created by an import are handled like any other to-do. For example, if you agree to AI feature data sharing and use AI features, they may be included like your other to-dos (Article 8), and reminders and other features follow those features' processing.
 6. **Retention**
    - Imported to-dos: until you delete them or your account is deleted
    - Temporary upload data (event titles, dates, times and hashes sent): deleted 7&nbsp;days after the import finishes; uploads that never finish are deleted after 24&nbsp;hours
@@ -424,7 +424,7 @@ For reports or consultations regarding personal information breaches, you may co
 
 | Effective date | Main changes |
 |----------------|--------------|
-| December 1, 2026 | Import from Calendar (app 1.17.0): items collected, hashing on the device, retention periods, calendar permission and how to turn it off |
+| December 1, 2026 | Import from Calendar (app 1.17.0): items collected, hashing on the device, retention periods, calendar permission and how to turn it off. The November 25 posting clarifies that imported event data is used only to create the to-dos, and that those to-dos are handled like any other to-do |
 | November 10, 2026 | Speak to add and Voice notes and how recordings are kept, new AI providers (Anthropic, OpenAI) and their retention periods, the yearly plan free trial and billing notices, separating service and transactional notifications from promotional ones, updated processor and cross-border transfer lists (AWS and Discord added, Firebase Crashlytics removed) |
 | October 27, 2026 | Website analytics notice updated for Consent Mode and Vercel Web Analytics |
 | October 26, 2026 | Friend invite reward abuse prevention, block and report, and AI data sharing consent notices added (applied from app 1.13.0) |
