@@ -803,7 +803,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "캘린더 일정도 쉽게 옮겨 와요",
-              body: "캘린더에 적어 둔 일정이 많아도 괜찮아요. 마이 > 설정 > 캘린더 일정 가져오기에서 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할\u00a0일로 들어와요. 캘린더마다 나누거나 한 카테고리에 모을 수 있고, 7일 안에는 되돌릴 수\u00a0있어요.",
+              body: "캘린더에 적어 둔 일정이 많아도 괜찮아요. 마이 > 설정 > 캘린더 일정 가져오기에서 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할\u00a0일로 들어와요. 기본으로 아이두 카테고리 한 곳에 넣고 원하면 캘린더마다 나눌 수 있으며, 7일 안에는 되돌릴 수\u00a0있어요.",
             },
           ],
           plans: {
@@ -830,7 +830,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "기기 캘린더의 일정을 가져올 수\u00a0있나요?",
               answer:
-                "네. 마이 > 설정 > 캘린더 일정 가져오기에서 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번 가져와요. 계속 동기화하지는 않으며, 기기 캘린더에는 아무것도 쓰거나 지우지\u00a0않아요.",
+                "네. 마이 > 설정 > 캘린더 일정 가져오기에서 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번에 옮겨 와요. 나중에 캘린더에서 바꾼 일정은 따라오지 않고, 기기 캘린더에는 아무것도 쓰거나 지우지\u00a0않아요.",
             },
             {
               question: "Microsoft To Do 대안으로 아이두를 써도\u00a0되나요?",
@@ -3332,7 +3332,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "Move your calendar events\u00a0over",
-              body: "Plans already in your calendar? In Me > Settings > Import calendar events, pick the iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. Keep calendars separate or put everything in one category, and undo within 7\u00a0days.",
+              body: "Plans already in your calendar? In Me > Settings > Import calendar events, pick the iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. By default they go into one Aido category, or you can split them by calendar, and undo within 7\u00a0days.",
             },
           ],
           plans: {
@@ -3359,7 +3359,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "Can I bring in events from my device\u00a0calendar?",
               answer:
-                "Yes. In Me > Settings > Import calendar events, pick calendars and a range to import their events as to-dos once. It doesn’t keep syncing, and nothing in your device calendar is changed or\u00a0deleted.",
+                "Yes. In Me > Settings > Import calendar events, pick calendars and a range to bring their events in as to-dos in one go. Later changes in your calendar don’t carry over, and nothing in your device calendar is changed or\u00a0deleted.",
             },
             {
               question: "Can Aido be a Microsoft To Do\u00a0alternative?",

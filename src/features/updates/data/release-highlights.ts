@@ -75,8 +75,8 @@ export const releaseHighlights = [
       en: "Aido 1.17.0: Import calendar events as to-dos",
     },
     description: {
-      ko: "캘린더에 적어 둔 일정이 많아 아이두로 옮기기 어렵다는 이야기를 들었어요. 그래서 캘린더 일정을 할 일로 한 번에 옮기는 기능을 만들었어요. 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할 일로 들어와요. 캘린더마다 나누거나 한 카테고리에 모을 수 있고, 7일 안에는 되돌릴 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
-      en: "We heard it's hard to switch when your plans already live in your calendar. So we made a way to turn calendar events into to-dos in one go. Pick iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. Keep calendars separate or put everything in one category, and undo within 7 days. Free covers the next 30 days, Premium up to 365.",
+      ko: "캘린더에 적어 둔 일정이 많아 아이두로 옮기기 어렵다는 이야기를 들었어요. 그래서 캘린더 일정을 할 일로 한 번에 옮기는 기능을 만들었어요. 기기의 iCloud·Google·Outlook 캘린더와 기간만 고르면 일정이 할 일로 들어와요. 기본으로 아이두 카테고리 한 곳에 모두 넣고, 원하면 캘린더마다 다른 곳에 넣을 수 있어요. 7일 안에는 되돌릴 수 있고, 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
+      en: "We heard it's hard to switch when your plans already live in your calendar. So we made a way to turn calendar events into to-dos in one go. Pick iCloud, Google or Outlook calendars on your device and a date range, and your events arrive as to-dos. By default they all go into one Aido category, or you can put each calendar somewhere else. Undo within 7 days. Free covers the next 30 days, Premium up to 365.",
     },
     sections: [
       {
@@ -88,7 +88,7 @@ export const releaseHighlights = [
           en: "Pick calendars and a range",
         },
         body: {
-          ko: "마이 > 설정 > 캘린더 일정 가져오기를 열면 어떤 정보를 읽는지 먼저 알려 드려요. ‘계속’을 누른 뒤에만 캘린더 권한을 묻고, 이 기기에 이미 있는 iCloud·Google·Outlook 캘린더를 계정 이름별로 묶어 보여 줘요. 아이두에서 따로 로그인하지 않아요.",
+          ko: "마이 > 설정 > 캘린더 일정 가져오기를 열면 어떤 정보를 읽는지 먼저 알려 드려요. ‘다음’을 누른 뒤에만 캘린더 권한을 묻고, 이 기기에 이미 있는 iCloud·Google·Outlook 캘린더를 계정 이름별로 묶어 보여 줘요. 아이두에서 따로 로그인하지 않아요.",
           en: "Open Me > Settings > Import calendar events, and Aido first explains what it reads. Calendar permission is asked only after you tap Continue, and the iCloud, Google and Outlook calendars already on your device are listed under their account names. There's no separate sign-in inside Aido.",
         },
         points: {
@@ -97,22 +97,22 @@ export const releaseHighlights = [
             "캘린더가 목록에 없다면 ‘캘린더가 목록에 없나요?’에서 이 기기에 계정을 추가하는 방법을 볼 수 있어요.",
             "기간은 오늘부터 시작일과 종료일을 직접 고르거나, 1주·1개월·3개월·6개월·1년으로 바로 골라요.",
             "무료 플랜은 오늘부터 30일 동안의 일정을 가져올 수 있고, 프리미엄은 365일까지 가져올 수 있어요. 가져오기 자체는 무료예요.",
-            "필요할 때 한 번 복사해 오는 기능이라 캘린더와 계속 동기화하지 않아요. 캘린더는 읽기만 하고 바꾸거나 지우지 않아요.",
+            "필요할 때 한 번 복사해 오는 기능이라, 나중에 캘린더에서 바꾼 일정은 아이두에 따라오지 않아요. 캘린더는 읽기만 하고 바꾸거나 지우지 않아요.",
           ],
           en: [
             "Holiday, birthday and subscribed calendars are folded at the bottom and start unchecked. Check them yourself if you want them.",
             "If a calendar isn't listed, tap Missing a calendar? to see how to add its account to your device.",
             "Choose start and end dates from today, or tap 1 week, 1 month, 3 months, 6 months or 1 year.",
             "The free plan imports events for the next 30 days from today, and Premium up to 365. Importing itself is free.",
-            "It's a one-time copy you start yourself, so it doesn't keep syncing. Aido only reads your calendar and never changes or deletes events.",
+            "It's a one-time copy you start yourself, so later changes in your calendar don't carry over. Aido only reads your calendar and never changes or deletes events.",
           ],
         },
         screens: [
           {
             key: "calendar-import-intro",
             alt: {
-              ko: "어떤 일정 정보를 읽고 보내는지 설명하고 ‘계속’ 버튼이 있는 아이두 캘린더 일정 가져오기 안내 화면",
-              en: "Aido's Import calendar events explanation screen describing what event details are read and sent, with a Continue button",
+              ko: "iCloud·Google·Outlook 캘린더에서 가져오고 일정의 제목·날짜·시간만 저장한다고 설명하고 ‘다음’ 버튼이 있는 아이두 캘린더 일정 가져오기 안내 화면",
+              en: "Aido's Import calendar events explanation screen saying it works with iCloud, Google and Outlook calendars and saves only titles, dates and times, with a Continue button",
             },
             caption: {
               ko: "권한을 묻기 전에 먼저 알려 드려요.",
@@ -122,8 +122,8 @@ export const releaseHighlights = [
           {
             key: "calendar-import-select",
             alt: {
-              ko: "계정별로 묶인 캘린더 목록과 시작일·종료일 기간 선택이 보이는 아이두 캘린더 일정 가져오기 화면",
-              en: "Aido's Import calendar events screen with calendars grouped by account and start and end date options",
+              ko: "시작일·종료일과 1주·1개월 바로 고르기, 무료 30일 안내, 체크한 캘린더 목록이 보이는 아이두 캘린더 일정 가져오기 화면",
+              en: "Aido's Import calendar events screen with start and end dates, 1 week and 1 month presets, the free 30-day note and checked calendars",
             },
             caption: {
               ko: "캘린더와 기간을 골라요.",
@@ -134,41 +134,29 @@ export const releaseHighlights = [
       },
       {
         id: "connect-categories",
-        navLabel: { ko: "카테고리 고르기", en: "Categories" },
+        navLabel: { ko: "넣을 곳", en: "Where they go" },
         icon: "tags",
         title: {
-          ko: "캘린더마다 나누거나, 한곳에 모아요",
-          en: "Keep calendars separate, or put them together",
+          ko: "넣을 곳은 한 곳이면 돼요",
+          en: "One place is enough",
         },
         body: {
-          ko: "맨 위에서 ‘캘린더마다 따로 넣기’나 ‘한 카테고리에 모두 넣기’를 골라요. 그다음 캘린더마다 넣을 카테고리를 고르면 돼요. 이미 있는 카테고리도, 새 카테고리도 괜찮아요. 새 카테고리는 캘린더 이름과 색으로 시작하고 이름·색을 바꿀 수 있어요.",
-          en: "At the top, choose Keep calendars separate or Put all in one category. Then pick where each calendar goes: a category you already have or a new one. A new category starts with the calendar's name and color, and you can change both.",
+          ko: "가져온 일정은 기본으로 아이두 카테고리 한 곳에 모두 들어가요. 화면의 ‘가져올 일정 → 넣을 곳’에서 넣을 곳을 눌러 다른 아이두 카테고리로 바꾸거나 새로 만들 수 있어요. 캘린더마다 나누고 싶다면 ‘캘린더마다 다른 곳에 넣을래요’를 눌러요.",
+          en: "By default, every imported event goes into one Aido category. Under Events to import → Put them in, tap where they go to pick another Aido category or create a new one. To split them up, tap Put each calendar somewhere else.",
         },
         points: {
           ko: [
-            "가져온 뒤에도 할 일의 카테고리는 언제든 바꿀 수 있어요.",
+            "가져온 뒤에도 할 일은 언제든 다른 아이두 카테고리로 옮길 수 있어요.",
             "카테고리 한도는 그대로예요. 무료는 3개, 프리미엄은 30개까지 만들 수 있어요.",
             "카테고리마다 진행 중인 할 일은 300개까지예요.",
           ],
           en: [
-            "You can change a to-do's category anytime after importing.",
+            "You can move imported to-dos to another Aido category anytime.",
             "Category limits stay the same: 3 on Free and up to 30 on Premium.",
             "Each category holds up to 300 active to-dos.",
           ],
         },
-        screens: [
-          {
-            key: "calendar-import-categories",
-            alt: {
-              ko: "맨 위에 ‘캘린더마다 따로 넣기’와 ‘한 카테고리에 모두 넣기’ 선택이 있고, 아래에 캘린더마다 넣을 카테고리가 보이는 아이두 카테고리 고르기 화면",
-              en: "Aido category step with Keep calendars separate and Put all in one category choices at the top, and the category for each calendar below",
-            },
-            caption: {
-              ko: "캘린더마다 나누거나 한곳에 모아요.",
-              en: "Keep calendars separate or put them together.",
-            },
-          },
-        ],
+        screens: [],
       },
       {
         id: "options",
@@ -236,8 +224,8 @@ export const releaseHighlights = [
           {
             key: "calendar-import-done",
             alt: {
-              ko: "가져오기를 마친 뒤 가져온 할 일과 7일 안 되돌리기 안내가 보이는 아이두 캘린더 일정 가져오기 완료 화면",
-              en: "Aido's Import calendar events result screen with the imported to-dos and the option to undo within 7 days",
+              ko: "‘할 일 12개를 가져왔어요’와 7일 안 되돌리기 안내, ‘할 일 보러 가기’·‘되돌리기’ 버튼이 보이는 아이두 가져오기 결과 화면",
+              en: "Aido import result screen showing Imported 12 to-dos, a note on undoing within 7 days, and See to-dos and Undo buttons",
             },
             caption: {
               ko: "7일 안에는 한 번에 되돌릴 수 있어요.",
@@ -306,8 +294,8 @@ export const releaseHighlights = [
       screen: {
         key: "calendar-import-premium",
         alt: {
-          ko: "구독 혜택에 ‘캘린더 일정 더 멀리 가져오기’가 보이는 아이두 프리미엄 화면",
-          en: "Aido Premium screen listing Import calendar events further ahead among the benefits",
+          ko: "‘더 먼 일정은 프리미엄으로 가져올 수 있어요’와 무료 30일·프리미엄 365일 비교, ‘프리미엄 보기’ 버튼이 보이는 아이두 안내 시트",
+          en: "Aido sheet saying Import events further ahead with Premium, comparing Free 30 days with Premium 365 days, with a See Premium button",
         },
         caption: {
           ko: "프리미엄은 365일 뒤 일정까지 가져와요.",
