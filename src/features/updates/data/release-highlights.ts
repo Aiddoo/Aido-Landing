@@ -71,8 +71,8 @@ export const releaseHighlights = [
       en: "Bring your calendar events in as to-dos",
     },
     metaTitle: {
-      ko: "아이두 1.17.0 업데이트: 캘린더 가져오기",
-      en: "Aido 1.17.0: Import from Calendar",
+      ko: "아이두 1.17.0 업데이트: 캘린더 일정 가져오기",
+      en: "Aido 1.17.0: Import calendar events",
     },
     description: {
       ko: "기기 캘린더에서 캘린더와 기간을 고르면 일정을 할 일로 한 번에 가져와요. 캘린더마다 카테고리를 연결하고 시간과 공개 범위를 정한 뒤, 7일 안에는 되돌릴 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
@@ -88,29 +88,31 @@ export const releaseHighlights = [
           en: "Pick calendars and a range",
         },
         body: {
-          ko: "마이 > 설정 > 캘린더 가져오기를 열면 어떤 정보를 읽는지 먼저 알려 드려요. ‘계속’을 누른 뒤에만 캘린더 권한을 묻고, 캘린더는 계정별로 묶어 보여 줘요.",
-          en: "Open Me > Settings > Import from Calendar, and Aido first explains what it reads. Calendar permission is asked only after you tap Continue, and your calendars are grouped by account.",
+          ko: "마이 > 설정 > 캘린더 일정 가져오기를 열면 어떤 정보를 읽는지 먼저 알려 드려요. ‘계속’을 누른 뒤에만 캘린더 권한을 묻고, 이 기기에 이미 있는 iCloud·Google·Outlook 캘린더를 계정 이름별로 묶어 보여 줘요. 아이두에서 따로 로그인하지 않아요.",
+          en: "Open Me > Settings > Import calendar events, and Aido first explains what it reads. Calendar permission is asked only after you tap Continue, and the iCloud, Google and Outlook calendars already on your device are listed under their account names. There's no separate sign-in inside Aido.",
         },
         points: {
           ko: [
-            "휴일·생일·구독 캘린더는 처음에 선택하지 않아요. 필요하면 직접 체크해요.",
+            "공휴일·생일·구독 캘린더는 목록 맨 아래에 접혀 있고 처음에 선택하지 않아요. 필요하면 직접 체크해요.",
+            "캘린더가 목록에 없다면 ‘캘린더가 목록에 없나요?’에서 이 기기에 계정을 추가하는 방법을 볼 수 있어요.",
             "기간은 오늘부터 시작일과 종료일을 직접 고르거나, 바로 고르기로 정해요.",
-            "무료는 30일, 프리미엄은 365일 뒤 일정까지 가져올 수 있어요.",
-            "필요할 때 한 번 가져오는 기능이라 캘린더와 계속 동기화하지 않아요.",
+            "무료 플랜은 오늘부터 30일 동안의 일정을 가져올 수 있고, 프리미엄은 365일까지 가져올 수 있어요. 가져오기 자체는 무료예요.",
+            "필요할 때 한 번 복사해 오는 기능이라 캘린더와 계속 동기화하지 않아요. 캘린더는 읽기만 해요.",
           ],
           en: [
-            "Holiday, birthday and subscribed calendars start unchecked. Check them yourself if you want them.",
+            "Holiday, birthday and subscribed calendars are folded at the bottom and start unchecked. Check them yourself if you want them.",
+            "If a calendar isn't listed, tap Missing a calendar? to see how to add its account to your device.",
             "Choose start and end dates from today, or tap a quick preset.",
-            "Free covers the next 30 days, Premium up to 365.",
-            "It's a one-time import you start yourself, so it doesn't keep syncing with your calendar.",
+            "The free plan imports events for the next 30 days from today, and Premium up to 365. Importing itself is free.",
+            "It's a one-time copy you start yourself, so it doesn't keep syncing. Aido only reads your calendar.",
           ],
         },
         screens: [
           {
             key: "calendar-import-intro",
             alt: {
-              ko: "어떤 일정 정보를 읽고 보내는지 설명하고 ‘계속’ 버튼이 있는 아이두 캘린더 가져오기 안내 화면",
-              en: "Aido Import from Calendar explanation screen describing what event details are read and sent, with a Continue button",
+              ko: "어떤 일정 정보를 읽고 보내는지 설명하고 ‘계속’ 버튼이 있는 아이두 캘린더 일정 가져오기 안내 화면",
+              en: "Aido's Import calendar events explanation screen describing what event details are read and sent, with a Continue button",
             },
             caption: {
               ko: "권한을 묻기 전에 먼저 알려 드려요.",
@@ -120,8 +122,8 @@ export const releaseHighlights = [
           {
             key: "calendar-import-select",
             alt: {
-              ko: "계정별로 묶인 캘린더 목록과 시작일·종료일 기간 선택이 보이는 아이두 캘린더 가져오기 화면",
-              en: "Aido Import from Calendar screen with calendars grouped by account and start and end date options",
+              ko: "계정별로 묶인 캘린더 목록과 시작일·종료일 기간 선택이 보이는 아이두 캘린더 일정 가져오기 화면",
+              en: "Aido's Import calendar events screen with calendars grouped by account and start and end date options",
             },
             caption: {
               ko: "캘린더와 기간을 골라요.",
@@ -228,8 +230,8 @@ export const releaseHighlights = [
           {
             key: "calendar-import-done",
             alt: {
-              ko: "가져오기를 마친 뒤 가져온 할 일과 7일 안 되돌리기 안내가 보이는 아이두 캘린더 가져오기 완료 화면",
-              en: "Aido Import from Calendar result screen with the imported to-dos and the option to undo within 7 days",
+              ko: "가져오기를 마친 뒤 가져온 할 일과 7일 안 되돌리기 안내가 보이는 아이두 캘린더 일정 가져오기 완료 화면",
+              en: "Aido's Import calendar events result screen with the imported to-dos and the option to undo within 7 days",
             },
             caption: {
               ko: "7일 안에는 한 번에 되돌릴 수 있어요.",
@@ -247,7 +249,10 @@ export const releaseHighlights = [
       },
       rows: [
         {
-          label: { ko: "캘린더 가져오기 기간", en: "Calendar import range" },
+          label: {
+            ko: "캘린더 일정 가져오기 기간",
+            en: "Calendar import range",
+          },
           free: { ko: "오늘부터 30일", en: "Next 30 days" },
           premium: { ko: "오늘부터 365일", en: "Up to 365 days" },
         },
@@ -266,8 +271,8 @@ export const releaseHighlights = [
         },
       ],
       note: {
-        ko: "캘린더 가져오기와 7일 안 되돌리기는 플랜과 상관없이 쓸 수 있어요. 구독 가격과 자세한 조건은 앱에서 확인할 수 있어요.",
-        en: "Import from Calendar and undo within 7 days work on every plan. See prices and full terms in the app.",
+        ko: "캘린더 일정 가져오기와 7일 안 되돌리기는 플랜과 상관없이 쓸 수 있어요. 구독 가격과 자세한 조건은 앱에서 확인할 수 있어요.",
+        en: "Importing calendar events and undoing within 7 days work on every plan. See prices and full terms in the app.",
       },
       screen: {
         key: "calendar-import-premium",

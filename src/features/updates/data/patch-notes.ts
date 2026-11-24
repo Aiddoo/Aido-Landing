@@ -39,16 +39,16 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         type: "features",
         items: [
           {
-            ko: "마이 > 설정 > 캘린더 가져오기에서 기기 캘린더의 일정을 할 일로 한 번에 가져올 수 있어요. 휴일·생일·구독 캘린더는 처음에 선택하지 않아요.",
-            en: "Import events from your device calendar as to-dos in Me > Settings > Import from Calendar. Holiday, birthday and subscribed calendars start unchecked.",
+            ko: "마이 > 설정 > 캘린더 일정 가져오기에서 기기 캘린더(iCloud·Google·Outlook 등)의 일정을 할 일로 한 번에 가져올 수 있어요. 권한만 허용하면 되고 아이두에서 따로 로그인하지 않아요.",
+            en: "Import events from your device calendars (iCloud, Google, Outlook and more) as to-dos in Me > Settings > Import calendar events. Just allow access; there's no separate sign-in inside Aido.",
           },
           {
-            ko: "오늘부터 가져올 기간의 시작일과 종료일을 직접 고르거나 바로 고를 수 있어요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
-            en: "Choose start and end dates from today, or tap a quick preset. Free covers the next 30 days, Premium up to 365.",
+            ko: "캘린더는 계정 이름(iCloud·Google 캘린더·Outlook 캘린더)별로 보여 줘요. 공휴일·생일·구독 캘린더는 목록 맨 아래에 접혀 처음에 선택하지 않고, 목록에 없으면 ‘캘린더가 목록에 없나요?’에서 계정 추가 방법을 알려 드려요.",
+            en: "Calendars are listed under their account names (iCloud, Google Calendar, Outlook Calendar). Holiday, birthday and subscribed calendars are folded at the bottom and start unchecked, and if one is missing, “Missing a calendar?” shows how to add its account.",
           },
           {
-            ko: "캘린더마다 새 카테고리나 기존 카테고리로 연결해요. 새 카테고리는 캘린더 이름·색으로 시작해 바꿀 수 있고, ‘모두 한 카테고리에’로 모을 수도 있어요.",
-            en: "Send each calendar to a new category, which starts with the calendar's name and color that you can change, or to one you have. “Put all in one category” keeps everything together.",
+            ko: "오늘부터 가져올 기간의 시작일과 종료일을 직접 고르거나 바로 고를 수 있어요. 무료 플랜은 오늘부터 30일 동안의 일정을 가져올 수 있고, 프리미엄은 365일까지예요. 가져오기 자체는 무료예요.",
+            en: "Choose start and end dates from today, or tap a quick preset. The free plan imports events for the next 30 days, and Premium up to 365. Importing itself is free.",
           },
           {
             ko: "‘시간도 가져오기’를 끄면 날짜만 가져와 리마인드 알림이 오지 않아요. 가져온 할 일은 기본으로 비공개이고, ‘친구에게 공개’로 바꿀 수 있어요.",
@@ -59,8 +59,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Within 7 days, undo an import to remove the imported to-dos you haven't finished, all at once.",
           },
           {
-            ko: "고른 일정의 제목·날짜·시간만 아이두 서버로 보내고, 기기 캘린더에는 아무것도 쓰거나 지우지 않아요.",
-            en: "Only the titles, dates and times of the events you pick are sent to Aido, and nothing in your calendar is changed or deleted.",
+            ko: "고른 일정의 제목·날짜·시간만 아이두 서버로 보내요. 캘린더는 읽기만 하고, 한 번 복사해 오는 기능이라 동기화하지 않아요.",
+            en: "Only the titles, dates and times of the events you pick are sent to Aido. Aido only reads your calendar, and it's a one-time copy, not a sync.",
           },
         ],
       },
@@ -72,8 +72,21 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Premium benefits now include “Import calendar events further ahead.”",
           },
           {
-            ko: "업데이트하면 캘린더 가져오기를 짧게 소개해 드려요. 마이 > 새로운 기능에서 다시 볼 수 있어요.",
-            en: "A short tour shows Import from Calendar after you update. Find it again in Me > What's new.",
+            ko: "업데이트하면 캘린더 일정 가져오기를 짧게 소개해 드려요. 마이 > 새로운 기능에서 다시 볼 수 있어요.",
+            en: "A short tour shows Import calendar events after you update. Find it again in Me > What's new.",
+          },
+          {
+            ko: "VoiceOver로도 캘린더와 기간을 고르고 진행 상태를 들을 수 있어요.",
+            en: "VoiceOver can read the calendar and range choices and the import progress.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "Mac에서 날씨를 열 때마다 위치 권한을 다시 묻던 문제를 고쳤어요.",
+            en: "Fixed Weather asking for location again every time you opened it on Mac.",
           },
         ],
       },
@@ -83,13 +96,15 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
         "기기 캘린더의 일정을 골라 할 일로 한 번에 가져와요.",
         "캘린더마다 새 카테고리나 기존 카테고리로 연결해요.",
         "날짜만 가져올지, 친구에게 공개할지 고르고 7일 안에 되돌릴 수 있어요.",
-        "무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
+        "무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요. 가져오기 자체는 무료예요.",
+        "Mac에서 날씨를 열 때마다 위치 권한을 다시 묻던 문제를 고쳤어요.",
       ],
       en: [
         "Import events from your device calendar as to-dos in one go.",
         "Send each calendar to a new or existing category.",
         "Choose dates only or sharing with friends, and undo within 7 days.",
-        "Free imports the next 30 days, Premium up to 365.",
+        "Free imports the next 30 days, Premium up to 365. Importing itself is free.",
+        "Fixed Weather asking for location again every time you opened it on Mac.",
       ],
     },
   },

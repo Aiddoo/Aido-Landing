@@ -803,7 +803,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "캘린더 일정도 가져와요",
-              body: "마이 > 설정 > 캘린더 가져오기에서 기기 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번에 가져와요. 캘린더마다 카테고리를 정하고, 가져온 지 7일 안에는 되돌릴 수\u00a0있어요.",
+              body: "마이 > 설정 > 캘린더 일정 가져오기에서 기기 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번에 가져와요. 캘린더마다 카테고리를 정하고, 가져온 지 7일 안에는 되돌릴 수\u00a0있어요.",
             },
           ],
           plans: {
@@ -830,7 +830,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "기기 캘린더의 일정을 가져올 수\u00a0있나요?",
               answer:
-                "네. 마이 > 설정 > 캘린더 가져오기에서 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번 가져와요. 계속 동기화하지는 않으며, 기기 캘린더에는 아무것도 쓰거나 지우지\u00a0않아요.",
+                "네. 마이 > 설정 > 캘린더 일정 가져오기에서 캘린더와 기간을 고르면 일정을 할\u00a0일로 한 번 가져와요. 계속 동기화하지는 않으며, 기기 캘린더에는 아무것도 쓰거나 지우지\u00a0않아요.",
             },
           ],
           screens: [
@@ -1309,9 +1309,9 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
           ],
           plans: {
-            free: "할\u00a0일·달력·반복·체크리스트·메모·친구 5명·콕 하루 3회·댓글·위젯·날씨·알림을 무료로 써요. AI 할\u00a0일 만들기는 월 10회, 말로 메모는 월 3회, 캘린더 가져오기는 30일 뒤\u00a0일정까지예요.",
+            free: "할\u00a0일·달력·반복·체크리스트·메모·친구 5명·콕 하루 3회·댓글·위젯·날씨·알림을 무료로 써요. AI 할\u00a0일 만들기는 월 10회, 말로 메모는 월 3회, 캘린더 일정은 오늘부터 30일 뒤까지\u00a0가져와요.",
             premium:
-              "AI 할\u00a0일 만들기 월 1,000회, 말로 메모 월 100회, AI 리포트·반복 제안, 친구·콕 무제한, 리마인드 시간 설정, 카테고리 30개, 캘린더 가져오기 365일, 고양이 앱 아이콘을\u00a0더해요.",
+              "AI 할\u00a0일 만들기 월 1,000회, 말로 메모 월 100회, AI 리포트·반복 제안, 친구·콕 무제한, 리마인드 시간 설정, 카테고리 30개, 캘린더 일정 가져오기 365일, 고양이 앱 아이콘을\u00a0더해요.",
           },
           comparison: {
             title: "한눈에 비교해요",
@@ -1347,7 +1347,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
               },
               { feature: "카테고리", free: "3개", premium: "30개" },
               {
-                feature: "캘린더 가져오기",
+                feature: "캘린더 일정 가져오기",
                 free: "30일 뒤까지",
                 premium: "365일 뒤까지",
               },
@@ -3323,7 +3323,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             },
             {
               title: "Bring in your calendar\u00a0events",
-              body: "In Me > Settings > Import from Calendar, pick your device calendars and a range to bring their events in as to-dos in one go. Choose a category for each calendar, and undo within 7\u00a0days.",
+              body: "In Me > Settings > Import calendar events, pick your device calendars and a range to bring their events in as to-dos in one go. Choose a category for each calendar, and undo within 7\u00a0days.",
             },
           ],
           plans: {
@@ -3350,7 +3350,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
             {
               question: "Can I bring in events from my device\u00a0calendar?",
               answer:
-                "Yes. In Me > Settings > Import from Calendar, pick calendars and a range to import their events as to-dos once. It doesn’t keep syncing, and nothing in your device calendar is changed or\u00a0deleted.",
+                "Yes. In Me > Settings > Import calendar events, pick calendars and a range to import their events as to-dos once. It doesn’t keep syncing, and nothing in your device calendar is changed or\u00a0deleted.",
             },
           ],
           screens: [
@@ -3870,7 +3870,7 @@ const catalogs: Record<Locale, MessageCatalog> = {
               },
               { feature: "Categories", free: "3", premium: "30" },
               {
-                feature: "Calendar import",
+                feature: "Import calendar events",
                 free: "Next 30 days",
                 premium: "Up to 365 days",
               },
