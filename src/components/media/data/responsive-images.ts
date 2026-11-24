@@ -5696,6 +5696,216 @@ export const responsiveImages = {
       }
     ]
   },
+  "/app-assets/releases/en/calendar-import-done.webp": {
+    "sourceHash": "16c720aa0b84",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-done-48-3898ecad863d.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-done-96-7876ab4cdcd9.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-done-160-6b706be6666a.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-done-240-c98f63579b3d.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-done-320-f8a7da185101.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-done-480-39b0e0b9faf0.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-done-640-3f504f84e5b4.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/calendar-import-intro.webp": {
+    "sourceHash": "1269aa925135",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-intro-48-8522522f4b5a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-intro-96-0a11b2544ede.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-intro-160-741d010c9582.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-intro-240-37f35ca7c1ec.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-intro-320-4c234ac797d2.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-intro-480-282c95e71a72.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-intro-640-bbd17c424770.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/calendar-import-options.webp": {
+    "sourceHash": "e7e7831e0e47",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-options-48-74216959ffef.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-options-96-6c70a785fa59.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-options-160-94376214bdc8.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-options-240-b2ebf9fa6c71.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-options-320-748665ddb74f.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-options-480-bf8a3d801a28.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-options-640-e39033921d11.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/calendar-import-premium.webp": {
+    "sourceHash": "e179ed110c62",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-premium-48-6579cce8cdf6.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-premium-96-da958fe1c837.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-premium-160-924be1413fc9.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-premium-240-907c887e3d68.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-premium-320-7a83c30ad8bc.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-premium-480-72d516977b62.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-premium-640-8e704cd0b45b.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/en/calendar-import-select.webp": {
+    "sourceHash": "f5b1e0b80fa2",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-select-48-4c0484859085.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-select-96-44b5590f89ba.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-select-160-e26690ae0758.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-select-240-978f36fb614c.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-select-320-9c43dd493069.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-select-480-f34a9e606553.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-select-640-366c95dbc46f.webp"
+      }
+    ]
+  },
   "/app-assets/releases/en/memo-ai-review.webp": {
     "sourceHash": "625a7208d22c",
     "width": 640,
@@ -6375,6 +6585,216 @@ export const responsiveImages = {
         "width": 640,
         "height": 1391,
         "src": "/responsive/voice-note-result-640-37eaa0fcbe7d.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/calendar-import-done.webp": {
+    "sourceHash": "972dc41a21dd",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-done-48-3b3ad6c5d12a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-done-96-e6682e64219d.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-done-160-734537c1f373.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-done-240-9c5af758e8f2.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-done-320-7040193ba9dc.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-done-480-451ebe6c068d.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-done-640-c90e6d9e52e9.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/calendar-import-intro.webp": {
+    "sourceHash": "f715636dc53a",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-intro-48-1660eabfc10f.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-intro-96-853083874427.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-intro-160-d89a301c2af3.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-intro-240-681d528751a5.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-intro-320-aa59e28f190a.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-intro-480-81f069ae7607.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-intro-640-37105cd89a79.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/calendar-import-options.webp": {
+    "sourceHash": "3650a82bb554",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-options-48-b14d56e96346.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-options-96-576074973307.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-options-160-e4311f79a4c6.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-options-240-88221322995c.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-options-320-692448717b63.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-options-480-0ae7bd13a9ef.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-options-640-9155873a56f0.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/calendar-import-premium.webp": {
+    "sourceHash": "4c7d5db3787d",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-premium-48-414237ca6703.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-premium-96-c8cce4e62af2.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-premium-160-3e7f584f625e.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-premium-240-94157f943908.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-premium-320-557c9fb9cd19.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-premium-480-d34d69ea2fd2.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-premium-640-8ad729f0978a.webp"
+      }
+    ]
+  },
+  "/app-assets/releases/ko/calendar-import-select.webp": {
+    "sourceHash": "f569120469e2",
+    "width": 640,
+    "height": 1391,
+    "variants": [
+      {
+        "width": 48,
+        "height": 104,
+        "src": "/responsive/calendar-import-select-48-8058a5fbea5a.webp"
+      },
+      {
+        "width": 96,
+        "height": 209,
+        "src": "/responsive/calendar-import-select-96-40724147484b.webp"
+      },
+      {
+        "width": 160,
+        "height": 348,
+        "src": "/responsive/calendar-import-select-160-f8880dac40b3.webp"
+      },
+      {
+        "width": 240,
+        "height": 522,
+        "src": "/responsive/calendar-import-select-240-e3e6175e876a.webp"
+      },
+      {
+        "width": 320,
+        "height": 696,
+        "src": "/responsive/calendar-import-select-320-e5e16d870b39.webp"
+      },
+      {
+        "width": 480,
+        "height": 1043,
+        "src": "/responsive/calendar-import-select-480-99c63c415016.webp"
+      },
+      {
+        "width": 640,
+        "height": 1391,
+        "src": "/responsive/calendar-import-select-640-2e2f170ac787.webp"
       }
     ]
   },
