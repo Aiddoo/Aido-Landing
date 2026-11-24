@@ -28,6 +28,72 @@ export const PATCH_NOTES_EDITED_AT = "2026-11-17";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.17.0",
+    date: "2026-12-01",
+    summary: {
+      ko: "기기 캘린더의 일정을 골라 할 일로 한 번에 가져올 수 있어요.",
+      en: "Import events from your device calendar as to-dos in one go.",
+    },
+    categories: [
+      {
+        type: "features",
+        items: [
+          {
+            ko: "마이 > 설정 > 캘린더 가져오기에서 기기 캘린더의 일정을 할 일로 한 번에 가져올 수 있어요. 휴일·생일·구독 캘린더는 처음에 선택하지 않아요.",
+            en: "Import events from your device calendar as to-dos in Me > Settings > Import from Calendar. Holiday, birthday and subscribed calendars start unchecked.",
+          },
+          {
+            ko: "오늘부터 1주·1개월·3개월·6개월·1년 중에서 기간을 골라요. 무료는 30일, 프리미엄은 365일 뒤 일정까지 가져올 수 있어요.",
+            en: "Pick a range starting today: 1 week, 1 month, 3 months, 6 months or 1 year. Free covers the next 30 days, Premium up to 365.",
+          },
+          {
+            ko: "캘린더마다 캘린더 이름·색의 새 카테고리나 기존 카테고리로 연결해요. ‘모두 한 카테고리에’로 한 번에 모을 수도 있어요.",
+            en: "Send each calendar to a new category with its name and color, or to one you have. “All in one category” puts everything together.",
+          },
+          {
+            ko: "‘시간도 가져오기’를 끄면 날짜만 가져와 리마인드 알림이 오지 않아요. 가져온 할 일은 기본으로 비공개이고, ‘친구에게 공개’로 바꿀 수 있어요.",
+            en: "Turn off “Import times” to bring in dates only, with no reminders. Imported to-dos are private unless you turn on “Share with friends.”",
+          },
+          {
+            ko: "가져온 지 7일 안에는 아직 끝내지 않은 가져온 할 일을 한 번에 되돌릴 수 있어요.",
+            en: "Within 7 days, undo an import to remove the imported to-dos you haven't finished, all at once.",
+          },
+          {
+            ko: "고른 일정의 제목·날짜·시간만 아이두 서버로 보내고, 기기 캘린더에는 아무것도 쓰거나 지우지 않아요.",
+            en: "Only the titles, dates and times of the events you pick are sent to Aido, and nothing in your calendar is changed or deleted.",
+          },
+        ],
+      },
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "구독 혜택에 ‘캘린더 일정 더 멀리 가져오기’를 더했어요.",
+            en: "Premium benefits now include “Import calendar events further ahead.”",
+          },
+          {
+            ko: "업데이트하면 캘린더 가져오기를 짧게 소개해 드려요. 마이 > 새로운 기능에서 다시 볼 수 있어요.",
+            en: "A short tour shows Import from Calendar after you update. Find it again in Me > What's new.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "기기 캘린더의 일정을 골라 할 일로 한 번에 가져와요.",
+        "캘린더마다 새 카테고리나 기존 카테고리로 연결해요.",
+        "날짜만 가져올지, 친구에게 공개할지 고르고 7일 안에 되돌릴 수 있어요.",
+        "무료는 30일, 프리미엄은 365일 뒤 일정까지 가져와요.",
+      ],
+      en: [
+        "Import events from your device calendar as to-dos in one go.",
+        "Send each calendar to a new or existing category.",
+        "Choose dates only or sharing with friends, and undo within 7 days.",
+        "Free imports the next 30 days, Premium up to 365.",
+      ],
+    },
+  },
+  {
     version: "1.16.1",
     date: "2026-11-23",
     summary: {
