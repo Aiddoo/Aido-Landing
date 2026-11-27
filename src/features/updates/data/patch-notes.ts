@@ -29,7 +29,7 @@ export const PATCH_NOTES_EDITED_AT = "2026-11-17";
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
     version: "1.17.1",
-    date: "2026-11-27",
+    date: "2026-11-28",
     summary: {
       ko: "캘린더 가져오기를 다듬고, 알림 시각과 말로 메모, Android 날씨에서 생기던 문제를 고쳤어요.",
       en: "Calendar import refinements, plus fixes for reminder times, voice notes and Weather on Android.",
