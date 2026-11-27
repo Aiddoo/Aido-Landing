@@ -31,8 +31,8 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
     version: "1.17.1",
     date: "2026-11-27",
     summary: {
-      ko: "알림 시각과 말로 메모, Android 날씨에서 생기던 문제를 고쳤어요.",
-      en: "Fixes for reminder times, voice notes and Weather on Android.",
+      ko: "캘린더 가져오기를 다듬고, 알림 시각과 말로 메모, Android 날씨에서 생기던 문제를 고쳤어요.",
+      en: "Calendar import refinements, plus fixes for reminder times, voice notes and Weather on Android.",
     },
     categories: [
       {
@@ -45,6 +45,14 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
           {
             ko: "화면 안내 문구를 더 짧고 알기 쉽게 다듬었어요.",
             en: "Wording across the app is shorter and clearer.",
+          },
+          {
+            ko: "캘린더 가져오기 마지막 단계에서 일정 수·기간·넣을 곳을 한 줄로 확인할 수 있어요.",
+            en: "Calendar import now shows a one-line summary of the events, dates and destination before you start.",
+          },
+          {
+            ko: "할 일이 아직 없으면 할 일 탭에서 캘린더 가져오기를 바로 시작할 수 있어요.",
+            en: "If you have no to-dos yet, you can start a calendar import right from the To-dos tab.",
           },
         ],
       },
@@ -76,6 +84,10 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Fixed a tip bubble appearing on top of a sheet and covering its text.",
           },
           {
+            ko: "다른 기기에서 지운 메모를 고치거나 고정·삭제하려 하면 같은 실패만 되풀이되던 문제를 고쳤어요.",
+            en: "Fixed editing, pinning or deleting a memo that was removed on another device failing again and again.",
+          },
+          {
             ko: "Android에서 날씨를 열면 앱이 꺼지던 문제를 고쳤어요.",
             en: "Fixed the app closing when you opened Weather on Android.",
           },
@@ -93,6 +105,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
     storeNotes: {
       ko: [
         "버튼을 빠르게 두 번 눌러도 한 번만 처리해요.",
+        "캘린더 가져오기 마지막 단계에서 가져올 내용을 한 줄로 확인할 수 있어요.",
         "오프라인에서 알림의 ‘완료하기’를 누르면 나중에 실행되던 문제를 고쳤어요.",
         "리마인드 시각이 어긋나거나 알림 글에 24시간 표기가 반영되지 않던 문제를 고쳤어요.",
         "말로 메모에서 녹음이 섞이거나 ‘이어서 말하기’가 되지 않던 문제를 고쳤어요.",
@@ -100,6 +113,7 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
       ],
       en: [
         "Double-tapping a button now runs it just once.",
+        "Calendar import shows a summary before you start.",
         "Fixed the Complete action on a notification running later if you tapped it offline.",
         "Fixed reminder times that could be off, and 24-hour time not showing in notifications.",
         "Fixed voice notes mixing audio and “Keep talking” not working.",
