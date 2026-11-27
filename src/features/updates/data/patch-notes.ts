@@ -28,6 +28,86 @@ export const PATCH_NOTES_EDITED_AT = "2026-11-17";
 
 export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
   {
+    version: "1.17.1",
+    date: "2026-11-27",
+    summary: {
+      ko: "알림 시각과 말로 메모, Android 날씨에서 생기던 문제를 고쳤어요.",
+      en: "Fixes for reminder times, voice notes and Weather on Android.",
+    },
+    categories: [
+      {
+        type: "improvements",
+        items: [
+          {
+            ko: "로그인, 친구 요청, 초대 코드 확인, 캘린더 일정 가져오기 버튼을 빠르게 두 번 눌러도 한 번만 처리해요.",
+            en: "Double-tapping log in, friend request, invite code or calendar import now runs it just once.",
+          },
+          {
+            ko: "화면 안내 문구를 더 짧고 알기 쉽게 다듬었어요.",
+            en: "Wording across the app is shorter and clearer.",
+          },
+        ],
+      },
+      {
+        type: "bugFixes",
+        items: [
+          {
+            ko: "오프라인에서 알림의 ‘완료하기’를 누르면 나중에 연결될 때 조용히 완료되던 문제를 고쳤어요. 이제 바로 알려 드려요.",
+            en: "Fixed the Complete action on a notification running quietly later if you tapped it offline. It now tells you right away.",
+          },
+          {
+            ko: "기기 시간대를 읽지 못했을 때 리마인드 시각이 어긋날 수 있던 문제를 고쳤어요.",
+            en: "Fixed reminder times that could be off when the app couldn't read your device's time zone.",
+          },
+          {
+            ko: "24시간 표기를 써도 알림 글의 시각이 오전·오후로 나오던 문제를 고쳤어요.",
+            en: "Fixed notification text showing AM/PM times even when you use the 24-hour format.",
+          },
+          {
+            ko: "말로 메모에서 다른 메모의 녹음이 섞이거나, 시작에 실패한 뒤 ‘이어서 말하기’가 되지 않던 문제를 고쳤어요.",
+            en: "Fixed voice notes picking up audio from another note, and “Keep talking” not working after a failed start.",
+          },
+          {
+            ko: "저장하는 사이 화면을 벗어나면 다른 화면이 닫히거나, 링크로 바로 연 화면이 저장 뒤 닫히지 않던 문제를 고쳤어요.",
+            en: "Fixed a different screen closing if you left during a save, and screens opened from a link not closing after you saved.",
+          },
+          {
+            ko: "안내 말풍선이 아래에서 올라온 창 위에 겹쳐 글자를 가리던 문제를 고쳤어요.",
+            en: "Fixed a tip bubble appearing on top of a sheet and covering its text.",
+          },
+          {
+            ko: "Android에서 날씨를 열면 앱이 꺼지던 문제를 고쳤어요.",
+            en: "Fixed the app closing when you opened Weather on Android.",
+          },
+          {
+            ko: "Android에서 기기 애니메이션을 꺼 두면 날씨의 지역과 기온이 보이지 않던 문제를 고쳤어요.",
+            en: "Fixed the location and temperature missing from Weather on Android with animations turned off.",
+          },
+          {
+            ko: "Android 카테고리 관리에서 수정·삭제 버튼이 줄 밖에 보이던 문제를 고쳤어요.",
+            en: "Fixed the Edit and Delete buttons appearing out of place in Manage categories on Android.",
+          },
+        ],
+      },
+    ],
+    storeNotes: {
+      ko: [
+        "버튼을 빠르게 두 번 눌러도 한 번만 처리해요.",
+        "오프라인에서 알림의 ‘완료하기’를 누르면 나중에 실행되던 문제를 고쳤어요.",
+        "리마인드 시각이 어긋나거나 알림 글에 24시간 표기가 반영되지 않던 문제를 고쳤어요.",
+        "말로 메모에서 녹음이 섞이거나 ‘이어서 말하기’가 되지 않던 문제를 고쳤어요.",
+        "Android에서 날씨를 열면 앱이 꺼지던 문제를 고쳤어요.",
+      ],
+      en: [
+        "Double-tapping a button now runs it just once.",
+        "Fixed the Complete action on a notification running later if you tapped it offline.",
+        "Fixed reminder times that could be off, and 24-hour time not showing in notifications.",
+        "Fixed voice notes mixing audio and “Keep talking” not working.",
+        "Fixed the app closing when you opened Weather on Android.",
+      ],
+    },
+  },
+  {
     version: "1.17.0",
     date: "2026-11-25",
     summary: {
