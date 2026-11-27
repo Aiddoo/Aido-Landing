@@ -72,6 +72,10 @@ export const releaseNotes: [ReleaseNote, ...ReleaseNote[]] = [
             en: "Fixed a different screen closing if you left during a save, and screens opened from a link not closing after you saved.",
           },
           {
+            ko: "안내 말풍선이 아래에서 올라온 창 위에 겹쳐 글자를 가리던 문제를 고쳤어요.",
+            en: "Fixed a tip bubble appearing on top of a sheet and covering its text.",
+          },
+          {
             ko: "Android에서 날씨를 열면 앱이 꺼지던 문제를 고쳤어요.",
             en: "Fixed the app closing when you opened Weather on Android.",
           },
